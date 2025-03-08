@@ -1,0 +1,36 @@
+# Git
+
+## Intro
+
+The stupid content tracker.
+
+!![Feliz cumpleaños](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGllZmxtbXFhZ2Voa2s5dXF6Nm5vajR1Z3p2cnY0ODcxamNtZzAzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kuPIiwMUgKJaORFiVN/giphy.gif)
+
+## Commands
+
+### git branch
+lista todas las ramas
+
+### git status
+muestra el estado de la rama
+
+### git status -u 
+variante que te ofrece la ruta completa al archivo
+
+### git log
+muestra todas las ramas
+
+### git switch branch-name
+cambia a otra rama
+
+### git add file-path
+añade un archivo
+
+### git commit -m message
+guarda los cambios de la rama
+
+### git restore nombrearchivoborrado
+restaure un archivo
+
+### git clone repository-url
+clona esa direccion de repositorio
