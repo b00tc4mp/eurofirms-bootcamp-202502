@@ -15,6 +15,10 @@ Lista todas las ramas
 
 Muestra el estado de las ramas
 
+### git status -u
+
+Muestra la ruta exacta del archivo da mas detalles
+
 ### git log
 
 Muestra los commits
