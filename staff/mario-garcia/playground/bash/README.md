@@ -1,6 +1,8 @@
 BASH
 
-"Bourne Again SHell", interactive command interpreter and command programming language developed for UNIX-like operating systems
+We have added some keyboards shortcuts to speep up our process flow:
+
+![](https://i.gifer.com/bJk.gif)
 
 Commands
 
