@@ -6,14 +6,28 @@
 
 ## Commands
 
+Comandos
+
 ### pwd
+
+contraseña
 
 ### mkdir
 
+directorio mk
+
 ### ls
+
+es
 
 ### cd folder.path
 
+ruta de la carpeta cd
+
 ### touch
 
+tocar
+
 ### clear (CTRL + L)
+
+borrar (CTRL + L)
