@@ -24,3 +24,7 @@ Commands
 
   Clear the screen.
 
+* CTRL + C
+
+  Kill process
+
