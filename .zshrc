@@ -1,1 +1,1 @@
-export PS1='\u@\h \w 🐔 to 🐖 'ls
+export PS1='\u@\h \w 🐔 to 🐖 '
