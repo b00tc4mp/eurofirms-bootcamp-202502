@@ -2,9 +2,9 @@
 
 ## Intro
 
-The stupid content tracker.
+![devil sonic](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTRidzB2djZ6MzBxa2c1cDEwZnlhbmU4b2RydTVhczcyemp1M2FpdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/aTPT4krIPWgJW/giphy.gif)
 
-![Jedy Birthday](https://media.giphy.com/media/kuPIiwMUgKJaORFiVN/giphy.gif?cid=790b7611nnv2tor1b2q2zisskd752m0kt37g345dlyzdsf46&ep=v1_gifs_trending&rid=giphy.gif&ct=g)
+## The stupid content tracker.
 
 ## Commands
 
