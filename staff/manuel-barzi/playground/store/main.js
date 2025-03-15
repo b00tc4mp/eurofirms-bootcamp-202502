@@ -3,7 +3,7 @@ var products = []
 // populate
 
 var cinquecento = {
-    id: '2025031-1601',
+    id: '20250315-1601',
     brand: 'Fiat',
     model: '500',
     color: 'pink',
@@ -14,7 +14,7 @@ var cinquecento = {
 products[0] = cinquecento
 
 var clio = {
-    id: '2025031-1603',
+    id: '20250315-1603',
     brand: 'Renault',
     model: 'Clio',
     color: 'red',
@@ -25,7 +25,7 @@ var clio = {
 products[1] = clio
 
 var c3 = {
-    id: '2025031-1605',
+    id: '20250315-1605',
     brand: 'Citröen',
     model: 'C3',
     color: 'black',
@@ -44,6 +44,19 @@ function addCar(brand, model, color, year, kilometers) {
     - create object for car data and id
     - insert object in products
     */
+
+    var id = Math.random() + '-' + Math.random()
+
+    var car = {}
+
+    car.brand = brand
+    car.model = model
+    car.color = color
+    car.year = year
+    car.kilometers = kilometers
+    car.id = id
+
+    products[products.length] = car
 }
 
 addCar('Audi', 'A1', 'gray', 2013, 170000)
