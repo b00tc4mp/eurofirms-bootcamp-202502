@@ -59,9 +59,20 @@ function addCar(brand, model, color, year, kilometers) {
     products[products.length] = car
 }
 
+function updateCar(id, brand, model, color, year, kilometers) {
+    /*
+    STEPS
+    - iterar en products (cars) y encontrar indice (posicion) en la que está el coche con ese id
+    - extraer coche del array (usando ese indice)
+    - actualizar todos los campos del coche, con los datos de entrada en la funcion
+    */
+}
+
 addCar('Audi', 'A1', 'gray', 2013, 170000)
 addCar('Smart', 'ForTwo', 'yellow', 2024, 17000)
 addCar('Fiat', '500 Abarth', 'skyblue', 2023, 56000)
+updateCar('20250315-1603', 'Renault', 'Clio', 'green', 2015, 225000)
+updateCar('20250315-1605', 'Citröen', 'C3', 'black', 2012, 310000)
 
 // view cars
 
