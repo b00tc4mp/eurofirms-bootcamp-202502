@@ -36,5 +36,18 @@ function addcar (brand, model, color, year, km){
     -Create object for car and id
     -Insert object in products
     */
+
+    var carId = Math.random();
+    var car = {
+        id: carId,
+        brand: brand,
+        model: model,
+        color: color,
+        year: year,
+        km: km
+    }
+    products[products.length] = car;
 }
+addcar("ferrari", "f80", "red", 2025, 156032)
+addcar("peugeot", "300", "amarillo", 2023, 154856)
 console.table(products)
