@@ -72,31 +72,59 @@ function updateCar(id, brand, model, color, year, kilometers) {
     */
    for(var i = 0; i < products.length; i++) { //iterar sobre products
     
-        var carupdate = products[i] 
-        var searchId = products[i].id
+        var carUpdate = products[i] 
+        var searchId = carUpdate.id
     
         if(searchId === id) { // comprobar la coincidencia con id, si coincide modifica el objeto
-            carupdate.brand = brand
-            carupdate.model = model
-            carupdate.color = color
-            carupdate.year = year
-            carupdate.kilometers = kilometers
+            carUpdate.brand = brand
+            carUpdate.model = model
+            carUpdate.color = color
+            carUpdate.year = year
+            carUpdate.kilometers = kilometers
+
+            var updateCar = { // esta variable la creo simplemente como control para comprobar con el console log el objeto modificado
+                                // no es necesaria para el funcionamiento de la función.
+                id : carUpdate.id,
+                brand : carUpdate.brand,
+                model : carUpdate.model,
+                color : carUpdate.color,
+                year : carUpdate.year,
+                kilometers : carUpdate.kilometers
+            }
 
             console.log(`Car with ID ${id} updated successfully.`);
-            return
+            console.log(updateCar);
+            
         }
     }
 }
 
 function removeCar(id) {
-    
+
+    for(var i = 0; i < products.length; i++) {
+        if(products[i].id === id) { // buscamos la coincidencia con el id que pasamos y el que tenemos en la posicion del array
+            if(i < products.length - 1 ) { // comprueba que no sea el ultimo elemento del array
+                for(var j = i; j < products.length - 1; j++) { // si no es el ultimo elemento con este bucle movemos elementos a la izquierda para evitar huecos empty
+                    products[j] = products[j + 1]
+                }
+            }
+           
+            products.length-- // reducimos tamaño del array eliminando el ultimo elemento
+            console.log(`Car with ID ${id} has been removed.`)
+            
+        }
+    }
+    console.log(`Car with ID ${id} not found.`);
 }
 
 addCar('Audi', 'A1', 'gray', 2013, 170000)
 addCar('Smart', 'ForTwo', 'yellow', 2024, 17000)
 addCar('Fiat', '500 Abarth', 'skyblue', 2023, 56000)
+console.table(products)
+
 updateCar('20250315-1603', 'Renault', 'Clio', 'green', 2015, 225000)
 updateCar('20250315-1605', 'Citröen', 'C3', 'black', 2012, 310000)
-// view cars
+console.table(products)
 
+removeCar('20250315-1603')
 console.table(products)
