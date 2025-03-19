@@ -8,4 +8,6 @@
 
 ## Commands
 
-file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html.exe 
+Copy and paste in your navigator ;-)
+
+file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html
