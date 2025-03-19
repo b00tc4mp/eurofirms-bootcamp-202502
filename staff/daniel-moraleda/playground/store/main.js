@@ -45,4 +45,20 @@ function addpart(element, brand, model, amount) {
     products[products.length] = part
 }
 addpart("motherboard", "Asus", "Z890p", "empty")
+
+function updatePart(id, element, brand, model, amount) {
+    for (let i = 0; i < products.length; i++) {
+        let part = products[i]
+        if (products[i].id === id) {
+            let part = products[i]
+                part.element = element
+                part.brand = brand
+                part.model = model
+                part.amount = amount
+        }
+    }
+}
+
+updatePart("20250319-1", "rammemory", "corsair", "hyper", "32gb" )
+
 console.table(products)
