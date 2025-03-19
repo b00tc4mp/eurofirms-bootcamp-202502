@@ -8,14 +8,4 @@
 
 ## Commands
 
-### git branch
-
-### git log
-
-### git commit -m 
-
-### git switch main
-
-### git status
-
-### git restore
+![git Manual page](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html)
