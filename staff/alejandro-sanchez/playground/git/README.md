@@ -8,6 +8,6 @@
 
 ## Commands
 
-Copy and paste in your navigator ;-)
+Copy and paste in your navigator ;-) enjoy
 
 file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html
