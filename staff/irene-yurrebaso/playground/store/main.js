@@ -1,8 +1,8 @@
-var products = []
+let products = []
 
 //populate
 
-var cinquecento = {
+let cinquecento = {
     id: '20250315-1601',
     brand: 'Fiat',
     model: '500',
@@ -13,7 +13,7 @@ var cinquecento = {
 
 products[0] = cinquecento
 
-var clio = {
+let clio = {
     id: '20250315-1603',
     brand: 'Renault',
     model: 'Clio',
@@ -24,8 +24,8 @@ var clio = {
 
 products[1] = clio
 
-var c3 = {
-    id: '20250315-1605'
+let c3 = {
+    id: '20250315-1605',
     brand: 'Citroen',
     model: 'C3',
     color: 'black',
@@ -45,9 +45,9 @@ function addCar(brand, model, color, year, kilometers) {
     - insert object in products
     */
 
-    var id = Math.random() + '-' + Math.random()
+    let id = Math.random() + '-' + Math.random()
 
-    var car = {}
+    let car = {}
 
     car.brand = brand
     car.model = model
@@ -66,6 +66,20 @@ function updateCar(id, brand, model, color, year, kilometers) {
     - extraer coche del array (usando ese indice)
     - actualizar todos los campos del coche, con los datos de entrada en la funcion
     */
+   
+
+    for(let i = 0; i < products.length; i++) {
+        if(id === products[i]['id']) {
+            let car = products[i]
+            car.brand = brand
+            car.model = model
+            car.color = color
+            car.year = year
+            car.kilometers = kilometers
+            break
+        }
+    }
+
 }
 
 addCar('Audi', 'A1', 'gray', 2013, 170000)
