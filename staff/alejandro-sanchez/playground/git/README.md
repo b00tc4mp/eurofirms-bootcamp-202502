@@ -8,4 +8,4 @@
 
 ## Commands
 
-(file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html)
+(file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html).exe 
