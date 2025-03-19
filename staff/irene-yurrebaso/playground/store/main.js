@@ -91,3 +91,4 @@ updateCar('20250315-1605', 'Citröen', 'C3', 'black', 2012, 310000)
 //view cars
 
 console.table(products)
+console.log(products)
