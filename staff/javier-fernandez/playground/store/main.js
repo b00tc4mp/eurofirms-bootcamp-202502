@@ -48,6 +48,30 @@ function addcar (brand, model, color, year, km){
     }
     products[products.length] = car;
 }
+
+
+
+function updateCar(id,brand, model,color, year, km){
+    /*
+  STEPS
+  - iterar en products (cars) y encontrar indice (posicion) en la que está el coche con ese id
+  - extraer coche del array (usando ese indice)
+  - actualizar todos los campos del coche, con los datos de entrada en la funcion
+  */ 
+  for (let i = 0; i < products.length; i++){
+  
+      if (products[i].id === id){
+           let car = products[i]
+              car.brand = brand
+              car.model = model
+              car.color = color
+              car.year = year
+              car.km = km
+      }
+  }
+}
+ 
 addcar("ferrari", "f80", "red", 2025, 156032)
 addcar("peugeot", "300", "amarillo", 2023, 154856)
+updateCar("2025315-1605", "citroen", "c3", "blue", 2016, 310000)
 console.table(products)
