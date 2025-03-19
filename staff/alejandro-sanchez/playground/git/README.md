@@ -8,4 +8,4 @@
 
 ## Commands
 
-![git Manual page](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html)
+[git Manual page](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html)
