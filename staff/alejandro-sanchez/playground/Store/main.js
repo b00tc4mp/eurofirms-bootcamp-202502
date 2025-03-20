@@ -54,3 +54,12 @@ addCar('fiat','500abarth','smartblue',2030,5000000)
 // view cars
 
 console.table(products)
+
+
+let brand = prompt("¿?");
+
+let color = prompt("¿Cuál es tu nombre?");
+
+let year = prompt("¿Cuál es tu nombre?");
+
+let kilometer = prompt("¿Cuál es tu nombre?");
