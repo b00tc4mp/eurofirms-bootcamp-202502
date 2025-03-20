@@ -74,4 +74,5 @@ function updateCar(id,brand, model,color, year, km){
 addcar("ferrari", "f80", "red", 2025, 156032)
 addcar("peugeot", "300", "amarillo", 2023, 154856)
 updateCar("2025315-1605", "citroen", "c3", "blue", 2016, 310000)
+updateCar("20250315-1603", "renault", "clio", "red", 2015, 225050)
 console.table(products)
