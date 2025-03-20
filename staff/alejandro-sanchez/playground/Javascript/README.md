@@ -1,2 +1,1 @@
-var = (1)
-j
+var products = []
