@@ -66,27 +66,6 @@ function updateCar(id, brand, model, color, year, kilometers) {
     - extraer coche del array (usando ese indice)
     - actualizar todos los campos del coche, con los datos de entrada en la funcion
     */
-
-    var index
-
-    //for (var i = 0; i < products.length; i++) {
-    for (var i = 0; i < products.length && index === undefined; i++) {
-        var car = products[i]
-
-        if (car.id === id) {
-            index = i
-
-            //break
-        }
-    }
-
-    var car = products[index]
-
-    car.brand = brand
-    car.model = model
-    car.color = color
-    car.year = year
-    car.kilometers = kilometers
 }
 
 addCar('Audi', 'A1', 'gray', 2013, 170000)
