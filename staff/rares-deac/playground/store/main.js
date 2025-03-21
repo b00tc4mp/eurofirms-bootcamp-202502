@@ -85,7 +85,7 @@ function updateCar(carId, brand, model, color, year, kilometers) {
     console.log(carId);
     
 
-    for(i=0; i < products.length; i++){
+    for(var i=0; i < products.length; i++){
         if(products[i].id===carId){
             var car = {}
             car.id = carId;
@@ -93,7 +93,7 @@ function updateCar(carId, brand, model, color, year, kilometers) {
             car.model = model;
             car.color = color;
             car.year = year;
-            car.kilometers = kilometers
+            car.kilometers = kilometers;
             products[i]=car;
         }
         
