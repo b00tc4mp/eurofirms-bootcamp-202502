@@ -1,6 +1,6 @@
 var products = []
 
-// Manual population/populate
+// Manual population/populate (manual fill data trought JS)
 
 var cinquecento = {
     id: "20250315-1601",
@@ -50,7 +50,7 @@ function generateRandomId() {
     const hours = String(Math.floor(Math.random() * 24)).padStart(2, '0');
     const minutes = String(Math.floor(Math.random() * 60)).padStart(2, '0');
     
-    // Combine into final ID
+    // Combine into final Id
     return `${year}${month}${day}-${hours}${minutes}`;
 }
 
@@ -60,8 +60,8 @@ function generateRandomId() {
 function addCar(brand, model, color, year, kilometers) {
     /* TODO STEPS 
     - Create ID for car (done)
-    - Create OBJECT for car data and ID (done)
-    - Insert OBJECT in products
+    - Create OBJECT for car data and Id (done)
+    - Insert OBJECT in products (done)
     */
     var carId = generateRandomId();
 
@@ -74,12 +74,49 @@ function addCar(brand, model, color, year, kilometers) {
         kilometers: kilometers        
     }
     products[products.length] = car; /* a.[a.length] SIN UTILIZAR EL PUSH AÑADIMOS
-    UNA NUEVA PROPIEDAD A CADA ELEMENTO DEL ARRAY */
+    UNA NUEVA PROPIEDAD A CADA ELEMENTO DEL ARRAY/OBJETO "PRODUCTS", ES DECIR, AÑADIMOS
+    UN PRODUCTO (CAR) NUEVO  */
        
 }
 
 addCar("Audi", "A1", "Grey", 2013, 170000);
 addCar("Smart", "ForTwo", "Yellow", 2024, 170000);
 addCar("Fiat", "500 Abarth", "SkyBlue", 2023, 65000);
+
+console.table(products);
+
+/* MODIFY A CAR KEY PROPERTY */
+
+function updateCar(id, brand, model, color, year, kilometers) {
+
+     /*
+    STEPS
+    - iterar en products (cars) y encontrar indice (posicion) en la que está el coche con ese id
+    - extraer coche del array (usando ese indice)
+    - actualizar todos los campos del coche, con los datos de entrada en la funcion
+    */
+    
+    for (i = 0; i < products.length; i++){
+		if (products[i].id === id) {
+            var car = {
+                id: id,
+                brand: brand,
+                model: model,
+                color: color,
+                year: year,
+                kilometers: kilometers        
+            }
+
+			
+		}
+	}
+}
+
+console.table(products); // view cars before update
+
+updateCar('20250315-1603', 'Renault', 'Clio', 'green', 2015, 225000)
+updateCar('20250315-1605', 'Citröen', 'C3', 'black', 2012, 310000)
+
+// view cars
 
 console.table(products);
