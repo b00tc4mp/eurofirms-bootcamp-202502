@@ -1,3 +1,6 @@
+/* ME HICE UN LÍO CON LOS CARID E HICE UN MAL COPY/PASTE DESDE SUBLIME!! HAY QUE REMIRAR
+EL UPDATECAR. MUCHO OJO!!! */
+
 var products = []
 
 // Manual population/populate (manual fill data trought JS)
@@ -47,12 +50,12 @@ function generateRandomId() {
     const day = String(now.getDate()).padStart(2, '0');
 
     // Generate random time-like number (HHMM)
-    const hours = String(Math.floor(Math.random() * 24)).padStart(2, '0');
+    const hours = String(Math.floor(Math.random() * 24)).padStart(2, '0'); // padStart limita 2 characters
     const minutes = String(Math.floor(Math.random() * 60)).padStart(2, '0');
     
     // Combine into final Id
-    return `${year}${month}${day}-${hours}${minutes}`;
-}
+    return `${year}${month}${day}-${hours}${minutes}`; // RETURN ALL TRU STRING WITH $
+} // We can use Math.random to generate a UUID too
 
 // Example usage
 /* console.log(generateRandomId()); // Outputs something like "20250317-1432" */
@@ -85,38 +88,43 @@ addCar("Fiat", "500 Abarth", "SkyBlue", 2023, 65000);
 
 console.table(products);
 
-/* MODIFY A CAR KEY PROPERTY */
+/* MODIFY A CAR PROPERTY KEY */
 
 function updateCar(id, brand, model, color, year, kilometers) {
 
      /*
     STEPS
-    - iterar en products (cars) y encontrar indice (posicion) en la que está el coche con ese id
+    - iterar en products (car) y encontrar indice (posicion) en la que está el coche con ese id
     - extraer coche del array (usando ese indice)
     - actualizar todos los campos del coche, con los datos de entrada en la funcion
     */
-    
-    for (i = 0; i < products.length; i++){
-		if (products[i].id === id) {
-            var car = {
-                id: id,
-                brand: brand,
-                model: model,
-                color: color,
-                year: year,
-                kilometers: kilometers        
+        
+    var carId
+
+    for (var i = 0; i < products.length; i++){
+		if (products[i].id === carId) {
+            var car = {}
+
+                car.carId = carId
+                car.brand = brand,
+                car.model = model,
+                car.color = color,
+                car.year = year,
+                car.kilometers = kilometers
+                
+                products[i] = car
             }
+        break;
 
 			
 		}
 	}
-}
 
 console.table(products); // view cars before update
 
-updateCar('20250315-1603', 'Renault', 'Clio', 'green', 2015, 225000)
+updateCar('20250315-1601', 'Renault', 'Clio', 'green', 2015, 225000)
 updateCar('20250315-1605', 'Citröen', 'C3', 'black', 2012, 310000)
 
-// view cars
+// view cars after update a Property Key!
 
 console.table(products);
