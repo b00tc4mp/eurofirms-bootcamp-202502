@@ -28,30 +28,46 @@ function buildLandingView () {
 
 }
 
+
+
 function buildRegisterView() {
 
     var registerView = document.createElement('div')
 
+    var logoHeading = document.createElement('h1')
+    var logoText = document.createElement('Logo')
+    logoHeading.appendChild(logoText)
+    registerView.appendChild(logoHeading)
+
     var registerForm = document.createElement('form')
 
+    var nameField = document.createElement('div')
     var nameLabel = document.createElement('label')
     nameLabel.htmlform = 'name'
-
-
+    var nameText = document.createTextNode('Name')
+    nameLabel.appendChild(nameText)
     var nameInput = document.createElement('input')
     nameInput.type = 'text'
     nameInput.name = 'name'
-    var nameField = document.createElement('div')
-    nameField.appendChild('nameLabel')
+    nameField.appendChild(nameLabel)
+    nameField.appendChild(nameInput)
+    registerForm.appendChild(nameField)
 
+    // TODO Finish Register View
 
+    registerView.appendChild(registerForm)
 
-
-
+    return registerView
 }
 
+function buildLoginView() {} // TODO Implement
+function buildHomeView() {} // TODO Implement
 
+// var landingView = buildLandingView()
+// body.appendChild(landingView)
 
-var landingView = buildLandingView()
+var registerView = buildRegisterView()
+body.appendChild(registerView)
 
-body.appendChild(landingView)
+// TODO test Login view
+// TODO test Home view
