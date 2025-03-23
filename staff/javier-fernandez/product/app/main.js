@@ -1,41 +1,52 @@
 var body = document.querySelector("body")
 
-function buildLandingView(){
-var landingView = document.createElement("div")
+function buildLandingView() {
+    var landingView = document.createElement("div")
 
 
-var logoHeading = document.createElement("h1")
-var logoText = document.createTextNode("logo")
-logoHeading.appendChild(logoText)
-landingView.appendChild(logoHeading)
+    var logoHeading = document.createElement("h1")
+    var logoText = document.createTextNode("landing page")
+    logoHeading.appendChild(logoText)
+    landingView.appendChild(logoHeading)
 
-var registerLink = document.createElement("a")
-registerLink.href = "
-var registerLink = document.createTextNote("register")
-registerLink.appendChild(registerText)
-landingView.appendChild(logoHeading)
+    var registerLink = document.createElement("a")
+    registerLink.href = "#"
+    var registerText = document.createTextNode("register")
+    registerLink.appendChild(registerText)
+    landingView.appendChild(registerLink)
 
-var orText = document.createTextNote(" or ")
-landingViewappendChild(orText)
+    var orText = document.createTextNode(" or ")
+    landingView.appendChild(orText)
 
-var loginLink = document.createElement("a")
-logingLink.href = "a"
-var loginText = document.createTextNode("login")
-loginLink.appendChild(loginText)
-landingView.appendChild(loginLink)
-return landingView
+    var loginLink = document.createElement("a")
+    loginLink.href = "#"
+    var loginText = document.createTextNode("login")
+    loginLink.appendChild(loginText)
+    landingView.appendChild(loginLink)
+    return landingView
 }
+
 function buildRegisterView() {
     var registerView = document.createElement("div")
 
+    var logoHeading = document.createElement("h1")
+    var logoText = document.createTextNode("Logo")
+    logoHeading.appendChild(logoText)
+    registerView.appendChild(logoHeading)
+
     var registerForm = document.createElement("form")
-    nameLabel.htmlFor = "name"
-    var nameImput =document.createElement("imput")
-    nameImput.type = "text"
-    nameImput:name 0 "name"
+
     var nameField = document.createElement("div")
+    var nameLabel = document.createElement("label")
+    nameLabel.htmlFor = "name"
+    var nameText = document.createTextNode("name")
+    nameLabel.appendChild(nameText)
+    var nameInput = document.createElement("input")
+    nameInput.type = "text"
+    nameInput.name = "name"
+
     nameField.appendChild(nameLabel)
-    nameField.appendChild(maneImput)
+    nameField.appendChild(nameInput)
 
     registerForm.appendChild(nameField)
 
@@ -43,16 +54,19 @@ function buildRegisterView() {
 
     return registerView
 }
-function buildLoginView{
+
+function buildLoginView() {
 
 }
 
-function buildHomeVIew{
-    
+function buildHomeView() {
+
 }
 
 
 
-var landingView = buildLandingView
+var landingView = buildLandingView()
+var registerView = buildRegisterView()
 
 body.appendChild(landingView)
+body.appendChild(registerView)
