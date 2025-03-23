@@ -48,7 +48,9 @@ function buildRegisterView() {
     
     nameField.appendChild(nameLabel)
     nameField.appendChild(nameInput)
-    var space =document.createElement("br")
+
+    var space = document.createElement("br")
+
     var emailField = document.createElement("div")
     var emailLabel = document.createElement("label")
     emailLabel.htmlFor = "email"
@@ -60,6 +62,20 @@ function buildRegisterView() {
 
     emailField.appendChild(emailLabel)
     emailField.appendChild(emailInput)
+
+    var space1 = document.createElement("br")
+
+    var usernameField = document.createElement("div")
+    var usernameLabel = document.createElement("label")
+    usernameLabel.htmlFor = "username"
+    var usernameText = document.createTextNode("username")
+    usernameLabel.appendChild(usernameText)
+    var usernameInput = document.createElement("input")
+    usernameInput.type = "text"
+    usernameInput.name = "username"
+
+    usernameField.appendChild(usernameLabel)
+    usernameField.appendChild(usernameInput)
 
     registerForm.appendChild(nameField)
     registerForm.appendChild(space)
