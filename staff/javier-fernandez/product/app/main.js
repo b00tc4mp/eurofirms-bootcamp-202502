@@ -95,8 +95,9 @@ function buildRegisterView() {
 
     var loginLink = document.createElement("a")
     loginLink.href = "#"
-    var loginText = document.createAttribute.createNote("login")
+    var loginText = document.createTextNode("login")
     loginLink.appendChild(loginText)
+
     
 
 
