@@ -23,6 +23,7 @@ function buildLandingView() {
     var loginText = document.createTextNode("login")
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
+
     return landingView
 }
 
@@ -35,7 +36,7 @@ function buildRegisterView() {
     registerView.appendChild(logoHeading)
 
     var registerForm = document.createElement("form")
-
+    
     var nameField = document.createElement("div")
     var nameLabel = document.createElement("label")
     nameLabel.htmlFor = "name"
@@ -69,7 +70,7 @@ function buildRegisterView() {
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")
-    usernameLabel.appendChild(usernameText)
+    usernameField.appendChild(usernameText)
     var usernameInput = document.createElement("input")
     usernameInput.type = "text"
     usernameInput.name = "username"
@@ -83,7 +84,7 @@ function buildRegisterView() {
     var passwordLabel = document.createElement("label")
     passwordLabel.htmlFor = "password"
     var passwordText = document.createTextNode("password")
-    passwordLabel.appendChild(passwordText)
+    passwordField.appendChild(passwordText)
     var passwordInput = document.createElement("input")
     passwordInput.type = "text"
     passwordInput.name = "password"
@@ -93,6 +94,14 @@ function buildRegisterView() {
 
     var space3 = document.createElement("br")
 
+    registerForm.appendChild(nameField)
+    registerForm.appendChild(space)
+    registerForm.appendChild(emailField)
+    registerForm.appendChild(space1)
+    registerForm.appendChild(usernameField)
+    registerForm.appendChild(space2)
+    registerForm.appendChild(passwordField)
+
     var loginLink = document.createElement("a")
     loginLink.href = "#"
     var loginText = document.createTextNode("login")
@@ -100,8 +109,10 @@ function buildRegisterView() {
 
     var space4 = document.createElement("br")
 
-    var buttomLink = document.createElement("a")
-    buttomLink.href = "#"
+    var registerButtom = document.createElement("buttom")
+    registerButtom.href = "register"
+    var registerText = document.createElement("register")
+    
     
 
     
