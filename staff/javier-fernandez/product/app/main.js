@@ -77,6 +77,29 @@ function buildRegisterView() {
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
 
+    var space2 = document.createElement("br")
+
+    var passwordField = document.createElement("div")
+    var passwordLabel = document.createElement("label")
+    passwordLabel.htmlFor = "password"
+    var passwordText = document.createTextNode("password")
+    passwordLabel.appendChild(passwordText)
+    var passwordInput = document.createElement("input")
+    passwordInput.type = "text"
+    passwordInput.name = "password"
+
+    passwordField.appendChild(passwordLabel)
+    passwordField.appendChild(passwordInput)
+
+    var space3 = document.createElement("br")
+
+    var loginLink = document.createElement("a")
+    loginLink.href = "#"
+    var loginText = document.createAttribute.createNote("login")
+    loginLink.appendChild(loginText)
+    
+
+
     registerForm.appendChild(nameField)
     registerForm.appendChild(space)
     registerForm.appendChild(emailField)
