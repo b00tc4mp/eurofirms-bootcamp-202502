@@ -98,6 +98,12 @@ function buildRegisterView() {
     var loginText = document.createTextNode("login")
     loginLink.appendChild(loginText)
 
+    var space4 = document.createElement("br")
+
+    var buttomLink = document.createElement("a")
+    buttomLink.href = "#"
+    
+
     
 
 
