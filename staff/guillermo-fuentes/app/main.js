@@ -87,7 +87,7 @@ function buildRegisterView() {
   var loginLinkText = document.createTextNode('Login  ');
   loginLink.appendChild(loginLinkText);
   registerForm.appendChild(loginLink);
-  //-----------Insercion de elementos boton de enviar
+  //-----------Insercion de elementos boton de registro
   var submitButton = document.createElement('button');
   var submitButtonText = document.createTextNode('Register ');
   submitButton.appendChild(submitButtonText);
@@ -125,10 +125,12 @@ function buildLoginView() {
   passwordField.appendChild(passwordLabel);
   passwordField.appendChild(passwordInput);
   loginView.appendChild(passwordField);
+  //----------Insercion de elementos boton de registro
   var buttonRegister = document.createElement('button');
   var buttonRegisterText = document.createTextNode('Register');
   buttonRegister.appendChild(buttonRegisterText);
   loginView.appendChild(buttonRegister);
+  //----------Insercion de elementos boton de login
   var buttonLogin = document.createElement('button');
   var buttonSubmitText = document.createTextNode('Login');
   buttonLogin.appendChild(buttonSubmitText);
