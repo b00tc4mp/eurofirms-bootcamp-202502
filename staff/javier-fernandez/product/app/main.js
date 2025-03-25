@@ -171,7 +171,7 @@ function buildLoginView() {
     passwordField.appendChild.passwordLabel
     passwordField.appendChild.passwordImput
 
-    return buildLoginView
+    returnlLoginView
     
 }
 
