@@ -111,8 +111,17 @@ function buildRegisterView() {
 
     var registerButtom = document.createElement("buttom")
     registerButtom.href = "register"
-    var registerText = document.createElement("register")
+    var registerText = document.createTextNode("register")
+    registerButtom.appendChild(registerText)
     
+
+    var loginButtom = document.createElement("buttom")
+    var loginText = document.createTextNode("login")
+    loginButtom.appendChild(loginText)
+    registerView.appendChild(loginButtom)
+
+    return registerView
+
     
 
     
@@ -145,8 +154,24 @@ function buildLoginView() {
     usernameInput.Text = "text"
     usernameInput.name = "username"
 
-    usernameField.appendChild.usrenameLabel
+    usernameField.appendChild.usernameLabel
     usernameField.appendChild.usernameImput
+
+    var space2 = document.createElement("br")
+
+    var passwordField = document.createElement("div")
+    var passwordLabel = document.createElement("label")
+    passwordLabel.htmelFor = "password"
+    var passwordText = document.createTextNode("password")
+    passwordField.appendChild(passwordText)
+    var passwordInput = document.createElement("Input")
+    passwordInput.Text = "text"
+    passwordInput.Name = "password"
+
+    passwordField.appendChild.passwordLabel
+    passwordField.appendChild.passwordImput
+
+    return buildLoginView
     
 }
 
