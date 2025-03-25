@@ -127,7 +127,27 @@ function buildRegisterView() {
 }
 
 function buildLoginView() {
+    var loginView = document.createElement("div")
 
+    var logoHeading = document.createElement("h1")
+    var logoText = document.createElement("register")
+    logoHeading.appendChild(logoText)
+    loginView.appendChild(logoHeading)
+
+    var space = document.createAttribute("br")
+
+    var usernameField = document.createElement("div")
+    var usernameLabel = document.createElement("label")
+    usernameLabel.htmlFor = "username"
+    var usernameText = document.createTextNode("username")
+    usernameField.appendChild(usernameText)
+    var usernameInput = document.createElement("Input")
+    usernameInput.Text = "text"
+    usernameInput.name = "username"
+
+    usernameField.appendChild.usrenameLabel
+    usernameField.appendChild.usernameImput
+    
 }
 
 function buildHomeView() {
