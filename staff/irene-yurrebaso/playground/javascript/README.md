@@ -65,7 +65,6 @@ ensambla un elemento (con el nombre de variable image) dentro de body
 
 `document.querySelector('body')` para montar la imagen en el documento, hay que ponerla en el contenedor body.
 
-
 `body.appendChild(image)` después se usa la propiedad .appendChild para insertarle la variable image (objeto con sus propiedades).
 .appendChild es un método que tiene los elementos html en memoria y permite poner otros elementos más.
 
@@ -78,5 +77,4 @@ crea un nodo de texto
 
 `logoHeading.appendChild(logoText)`
 le añade el nodo de texto a la etiqueta
-
 
