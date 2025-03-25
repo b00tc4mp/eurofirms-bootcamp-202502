@@ -53,6 +53,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var nameLabel = document.createElement('label')
     nameLabel.htmlFor = 'name'
     var nameText = document.createTextNode('Name')
+    nameLabel.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
     nameLabel.appendChild(nameText)
     var nameInput = document.createElement('input')
     nameInput.type = 'text'
@@ -64,6 +65,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var emailLabel = document.createElement('label')
     emailLabel.htmlFor = 'email'
     var emailText = document.createTextNode('Email')
+    emailLabel.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
     emailLabel.appendChild(emailText)
     var emailInput = document.createElement('input')
     emailInput.type = 'text'
@@ -75,6 +77,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var usernameLabel = document.createElement('label')
     usernameLabel.htmlFor = 'username'
     var usernameText = document.createTextNode('Username')
+    usernameLabel.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
     usernameField.appendChild(usernameText)
     var usernameInput = document.createElement('input')
     usernameInput.type = 'text'
@@ -86,6 +89,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'password' // ¿Que estamos haciendo aquí?
     var passwordText = document.createTextNode('Password')
+    passwordLabel.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
     passwordField.appendChild(passwordText)
     var passwordInput = document.createElement('input')
     passwordInput.type = 'text'
@@ -111,14 +115,16 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var registerButton = document.createElement('button')
     var registerText = document.createTextNode('Register')
     registerButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    registerButton.style.marginRight = '20px' // Dar ESPACIADO a la Derecha
+    registerButton.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
+    registerButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
     registerButton.appendChild(registerText)
     registerView.appendChild(registerButton)
 
     var loginButton = document.createElement('button')
     var loginText = document.createTextNode('Login')
     loginButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    registerButton.style.marginLeft = '20px' // Dar ESPACIADO a la Izquierda
+    loginButton.style.marginLeft = '10px' // Dar ESPACIADO a la Izquierda
+    loginButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
     loginButton.appendChild(loginText)
     registerView.appendChild(loginButton)
 
@@ -143,6 +149,7 @@ var usernameField = document.createElement('div')
 var usernameLabel = document.createElement('label')
 usernameLabel.htmlFor = 'username'
 var usernameText = document.createTextNode('Username')
+usernameLabel.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
 usernameField.appendChild(usernameText)
 var usernameInput = document.createElement('input')
 usernameInput.type = 'text'
@@ -154,6 +161,7 @@ var passwordField = document.createElement('div')
 var passwordLabel = document.createElement('label')
 passwordLabel.htmlFor = 'password'
 var passwordText = document.createTextNode('Password')
+passwordLabel.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
 passwordField.appendChild(passwordText)
 var passwordInput = document.createElement('input')
 passwordInput.type = 'text'
@@ -175,14 +183,16 @@ loginView.appendChild(registerForm)
 var registerButton = document.createElement('button')
 var registerText = document.createTextNode('Register')
 registerButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-registerButton.style.marginRight = '20px' // Dar ESPACIADO a la Derecha
-registerButton.style.marginLeft = '20px' // Dar ESPACIADO a la Izquierda
+registerButton.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
+registerButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
 registerButton.appendChild(registerText)
 loginView.appendChild(registerButton)
 
 var loginButton = document.createElement('button')
 var loginText = document.createTextNode('Login')
 loginButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
+loginButton.style.marginLeft = '10px' // Dar ESPACIADO a la Izquierda
+loginButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
 loginButton.appendChild(loginText)
 loginView.appendChild(loginButton)
 
@@ -204,6 +214,7 @@ var welcomeButton = document.createElement('button')
 var welcomeText = document.createTextNode('Welcome')
 welcomeButton.style.backgroundColor = 'sandybrown' // Dar COLOR al BOTON
 welcomeButton.style.marginLeft = '40px' // Dar ESPACIADO a la Izquierda para CENTRAR el BOTON
+welcomeButton.style.cursor = 'pointer'
 welcomeButton.appendChild(welcomeText)
 homeView.appendChild(welcomeButton)
 
