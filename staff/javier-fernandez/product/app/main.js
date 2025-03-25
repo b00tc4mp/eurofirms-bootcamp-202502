@@ -117,7 +117,7 @@ function buildRegisterView() {
 
     var loginButtom = document.createElement("buttom")
     var loginText = document.createTextNode("login")
-    loginButtom.appendChild(loginText)
+    registerButtom.appendChild(loginText)
     registerView.appendChild(loginButtom)
 
     return registerView
@@ -176,7 +176,14 @@ function buildLoginView() {
 }
 
 function buildHomeView() {
+    var logoHeading = document.createElement("h1")
+    var logoText = document.createElement("landing page")
+    logoHeading.appendChild(logoText)
+    landingView.appendChild(logoHeading)
 
+
+
+    return buildHomeView
 }
 
 
