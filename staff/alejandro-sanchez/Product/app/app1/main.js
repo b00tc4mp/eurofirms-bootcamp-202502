@@ -25,7 +25,7 @@ function buildLandingView() {
     return landingView
 }   
 
-function buildLandingView(){
+function buildLandingView() {
     var registerview = document.createElement('div')
 
     var logoHeading = document.createElement('h1')
@@ -58,7 +58,7 @@ function buildiLoginView() {
 
 }
 
-function buildHomeView {
+function buildHomeView() {
 
 }
 
