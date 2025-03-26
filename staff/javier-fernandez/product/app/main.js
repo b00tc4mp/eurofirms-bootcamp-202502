@@ -171,15 +171,19 @@ function buildLoginView() {
     passwordField.appendChild.passwordLabel
     passwordField.appendChild.passwordImput
 
-    returnlLoginView
+    return loginView
     
 }
 
 function buildHomeView() {
+
+    var homeView = document.createElement("div")
     var logoHeading = document.createElement("h1")
-    var logoText = document.createElement("landing page")
-    logoHeading.appendChild(logoText)
-    landingView.appendChild(logoHeading)
+    
+    
+
+    var holaText = document.createElement("h2")
+    
 
 
 
