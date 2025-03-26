@@ -41,12 +41,50 @@ function buildRegisterView() {
     nameLabel.htmlFor = 'name'
     var nameText = document.createTextNode('name')
     nameLabel.appendChild(nameText)
-    var nameInput =document.createElement('input')
+    var nameInput = document.createElement('input')
     nameInput.type = 'text'
-    nameInput.name = "name"
+    nameInput.name = 'name'
     nameField.appendChild(nameLabel)
     nameField.appendChild(nameInput)
     registerForm.appendChild(nameField)
+    
+    var eMailField = document.createElement('div')
+    var eMailLabel = document.createElement('label')
+    eMailLabel.htmlFor = 'E-mail'
+    var eMailText = document.createTextNode('E-mail')
+    eMailLabel.appendChild(eMailText)
+    var eMailInput = document.createElement('input')
+    eMailInput.type = 'text'
+    eMailInput.name = 'E-mail'
+    eMailField.appendChild(eMailLabel)
+    eMailField.appendChild(eMailInput)
+    registerForm.appendChild(eMailField)
+
+    var userField = document.createElement('div')
+    var userLabel = document.createElement('label')
+    userLabel.htmlFor = 'Usuario'
+    var userText = document.createTextNode ('Usuario')
+    userLabel.appendChild(userText)
+    var userInput = document.createElement('input')
+    userInput.type = 'text'
+    userInput.name = 'Usuario'
+    userField.appendChild(userLabel)
+    userField.appendChild(userInput)
+    registerForm.appendChild(userField)
+
+    var passwordField = document.createElement('div')
+    var passwordLabel = document.createElement('label')
+    userLabel.htmlFor = 'Contraseña'
+    var passwordText = document.createTextNode ('Contraseña')
+    passwordLabel.appendChild(passwordText)
+    var passwordInput = document.createElement('input')
+    passwordInput.type = 'text'
+    passwordInput.name = 'Contraseña'
+    passwordField.appendChild(passwordLabel)
+    passwordField.appendChild(passwordInput)
+    registerForm.appendChild(passwordField)
+
+    
 
     //TODO finish register view
 
