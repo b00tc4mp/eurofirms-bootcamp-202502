@@ -3,15 +3,11 @@ JavaScript es un lenguaje de programación interpretado, dialecto del estándar 
 ![JS](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJlYzAzZTEwb3h5N2xlbXpuZWdoaG8yaHZhdGc1dmwzbjVva2x2NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SvFocn0wNMx0iv2rYz/giphy.gif)
 
 ## Stack & Heap
-[Memory](la url del doc de Manu)
+[Memory](https://docs.google.com/spreadsheets/d/1VDFE2Ls9B3qmBmPiPu-evp1zjk838D3oAd7B_IhT3sE/edit?usp=sharing)
 
 Code
 
 ```js
-poner mi codigo aqui
-
-
-
 
 let noelia
 noelia= 'mi nombre'
@@ -48,73 +44,72 @@ otroArray[2] = sumar
 var resultado2 = otroArray[2](resultadoSuma, 40)
 
 //POR AQUI
-delete otroArray[1].name
+delete otroArray[1]['sin posicion']
 
 delete nuevoArray[2]
 delete nuevoArray[3]
-nuevoArray.length = 2
-nuevoArray.length-- //nuevoArray.length = nuevoArray.length - 1
+nuevoArray.length = 3
+nuevoArray.length-- //sirve para restar uno
 
-var cart = [
-    { 
-        id: 'abc-123', 
-        brand: 'Apple', 
-        model: 'iPhone 16',
-        price: 1600,
-        quantity: 2
+
+var frutas= [
+    {
+        id='mnzn',
+        nombre='manzana',
+        preciokg=2,
+        cantidad=50
     },
     {
-        id: 'def-456',
-        brand: 'Samsung',
-        model: 'Note',
-        price: 800,
-        quantity: 3
-    },
-    {
-        id: 'ghi-789',
-        brand: 'Apple',
-        model: 'USB cable',
-        price: 20,
-        quantity: 10
+        id='pr',
+        nombre='pera',
+        preciokg=3,
+        cantidad=20
+    },{
+        id='kw',
+        nombre='kiwi',
+        preciokg=4,
+        cantidad=50
     }
 ]
 
 var total = 0
 
-/*
-total = total + cart[0].price * cart[0].quantity
-total = total + cart[1].price * cart[1].quantity
-total = total + cart[2].price * cart[2].quantity
+//operacion sin bucles
+/* 
+total = frutas[0].preciokg * frutas[0].cantidad
+total= total + frutas[1].preciokg * frutas[1].cantidad
+total = total + frutas[2].preciokg * frutas[2].cantidad 
 */
 
+
+//operaciones con un while
 /*
-var i = 0, item
+var i = 0, actual
 
-while (i < cart.length) {
-    item = cart[i]
-    total = total + item.price * item.quantity
-
+while (i < frutas.length) {
+    actual = frutas[i]
+    total = total + actual.preciokg * actual.cantidad
     i++
 }
 */
 
+//operaciones con un do while
 /*
-var i = 0, item
+var i = 0, actual
 
 do {
-    item = cart[i]
-    total = total + item.price * item.quantity
-
+    actual = frutas[i]
+    total = total + actual.preciokg * actual.cantidad
     i++
-} while (i < cart.length)
+} while (i < frutas.length)
 */
 
-for (var i = 0; i < cart.length; i++) { //i = i + 1
-    //total = total + cart[i].price * cart[i].quantity
-
-    var item = cart[i]
-    total = total + item.price * item.quantity
+//operaciones con un for
+/* 
+for (var i = 0; i < frutas.length; i++) { 
+    var actual = frutas[i]
+    total = total + actual.preciokg * actual.cantidad
 }
+ */
 
-// ...
 

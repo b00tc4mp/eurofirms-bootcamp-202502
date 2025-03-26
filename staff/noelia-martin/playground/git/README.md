@@ -4,7 +4,7 @@
 
 The stupid content tracker.
 
-!![Feliz cumpleaños](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGllZmxtbXFhZ2Voa2s5dXF6Nm5vajR1Z3p2cnY0ODcxamNtZzAzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kuPIiwMUgKJaORFiVN/giphy.gif)
+!![Git](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXEyZ2ZsYWVwM3dwb2V5azFnOXE4Mmo0NmR4aWRwNnNxeDV3ejB6cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kH6CqYiquZawmU1HI6/giphy.gif)
 
 ## Commands
 
