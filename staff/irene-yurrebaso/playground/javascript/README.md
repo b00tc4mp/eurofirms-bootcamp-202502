@@ -6,6 +6,8 @@ JavaScript is the programming language of the Web. JavaScript is easy to learn.
 
 ## Stack & Heap
 
+[Memory](https://docs.google.com/spreadsheets/d/1STF9qpPAoUvSLAx7OhOLUhPGoxZae2s-KLXBNtQ8jnU/edit?gid=0#gid=0)
+
 **Stack**: datos primitivos (null, undefined, boolean, number, bigInt, string, symbol )- no son mutables, se pueden copiar. Memoria rapida que solo acepta datos inmutables primitivos.
 
 **Heap**: objetos (incluye arrays y funciones) - son mutables. No se copian, se referencian. 
