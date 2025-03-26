@@ -31,7 +31,7 @@ function buildRegisterView() {
     var registerView = document.createElement("div")
 
     var logoHeading = document.createElement("h1")
-    var logoText = document.createTextNode("Logo")
+    var logoText = document.createTextNode("register page")
     logoHeading.appendChild(logoText)
     registerView.appendChild(logoHeading)
 
@@ -113,7 +113,8 @@ function buildRegisterView() {
     registerButtom.href = "register"
     var registerText = document.createTextNode("register")
     registerButtom.appendChild(registerText)
-    
+    registerView.appendChild(registerButtom)
+
 
     var loginButtom = document.createElement("buttom")
     var loginText = document.createTextNode("login")
@@ -139,10 +140,11 @@ function buildLoginView() {
     var loginView = document.createElement("div")
 
     var logoHeading = document.createElement("h1")
-    var logoText = document.createElement("register")
+    var logoText = document.createElement("login page")
     logoHeading.appendChild(logoText)
     loginView.appendChild(logoHeading)
 
+    var registerForm = document.createElement("form")
     var space = document.createAttribute("br")
 
     var usernameField = document.createElement("div")
@@ -154,8 +156,8 @@ function buildLoginView() {
     usernameInput.Text = "text"
     usernameInput.name = "username"
 
-    usernameField.appendChild.usernameLabel
-    usernameField.appendChild.usernameImput
+    usernameField.appendChild(usernameLabel)
+    usernameField.appendChild(usernameImput)
 
     var space2 = document.createElement("br")
 
@@ -168,16 +170,23 @@ function buildLoginView() {
     passwordInput.Text = "text"
     passwordInput.Name = "password"
 
-    passwordField.appendChild.passwordLabel
-    passwordField.appendChild.passwordImput
+    passwordField.appendChild(passwordLabel)
+    passwordField.appendChild(passwordImput)
+
+    registerForm.appendChild(usernameField)
+    registerForm.appendChild(space)
+    registerForm.appendChild(passwordField)
+
+    loginView.appendChild(registerFrom)
+
 
     return loginView
     
 }
 
 function buildHomeView() {
-
     var homeView = document.createElement("div")
+
     var logoHeading = document.createElement("h1")
     
     
