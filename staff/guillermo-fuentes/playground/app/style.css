@@ -1,0 +1,21 @@
+* {
+  text-decoration: none;
+  list-style: none;
+}
+h1,
+h2 {
+  text-align: center;
+  background-color: bisque;
+}
+#datos_personales,
+#perfil_profesional,
+#experiencia_laboral,
+#habilidades,
+#educacion_certificaciones,
+#idiomas,
+#referencias {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: azure;
+}

@@ -27,10 +27,19 @@ var c3 = {
   kilometers: 310000,
 };
 products[2] = c3;
+function generateRandomId() {
+  var id = '2025031-160' + products.length + 1;
+  var year = new Date().getFullYear();
+  var month = new Date().getMonth() + 1;
 
+  var hour = String(Math.floor(Math.random() * 24));
+  var minute = String(Math.floor(Math.random() * 60));
+  products[products.length - 1].id = id + '-' + year + month;
+  return id;
+}
 function addCar(brand, model, color, year, kilometers) {
   var car = {
-    id: '2025031-160' + products.length + 1,
+    id: generateRandomId(),
     brand: brand,
     model: model,
     color: color,
@@ -51,6 +60,14 @@ function updateCar(id, brand, model, color, year, kilometers) {
     }
   }
 }
+function deleteCar(id) {
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].id === id) {
+      products.splice(i, 1);
+    }
+  }
+}
+updateCar('2025031-1601', 'Fiat', '500', 'pink', 2019, 145000);
 addCar('Audi', 'A1', 'gray', 2013, 170000);
 addCar('Smart', 'ForTwo', 'yellow', 2024, 17000);
 addCar('Fiat', '500 Abarth', 'skyblue', 2023, 56000);
