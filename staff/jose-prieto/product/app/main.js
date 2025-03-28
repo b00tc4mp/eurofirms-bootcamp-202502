@@ -65,7 +65,7 @@ function buildRegisterView() {
     registerForm.appendChild(emailField)
     registerView.appendChild(registerForm)
 
-//
+    //
     var userField = document.createElement('div')
     var userLabel = document.createElement('label')
     userLabel.htmlFor = 'user'
@@ -79,11 +79,11 @@ function buildRegisterView() {
     userField.appendChild(userInput)
     registerForm.appendChild(userField)
     registerView.appendChild(registerForm)
-//
+    //
     var passField = document.createElement('div')
     var passLabel = document.createElement('label')
-    passLabel.htmlFor = 'email'
-    var passText = document.createTextNode('Contraseña  ')
+    passLabel.htmlFor = 'pass'
+    var passText = document.createTextNode('Contraseña ')
     passLabel.appendChild(passText)
     var passInput = document.createElement('input')
     passInput.type = 'text'
@@ -93,11 +93,106 @@ function buildRegisterView() {
     passField.appendChild(passInput)
     registerForm.appendChild(passField)
     registerView.appendChild(registerForm)
+    var loginLink = document.createElement('a')
+    loginLink.href = '#' 
+    var loginText = document.createTextNode('Login')
+    loginLink.appendChild(loginText)
+    registerView.appendChild(loginLink)
 
 
-
+    var br = document.createElement('div')    
+    passField.appendChild(br)
+    loginLink.style.marginRight = '20px'
+    
+    var registerLink = document.createElement('button')
+    registerLink.href = '#'
+    var registerText = document.createTextNode('Register')
+    registerLink.appendChild(registerText)
+    registerView.appendChild(registerLink)
 
     return registerView
+
+}
+
+function buildLoginView() {
+    var loginView = document.createElement('div');
+
+    var logoHeading = document.createElement('h1');
+    var logoText = document.createTextNode('LOGO');
+    logoHeading.appendChild(logoText);
+    loginView.appendChild(logoHeading);
+
+    var loginForm = document.createElement('form');
+
+    var userNameField = document.createElement('div');
+    var userNameLabel = document.createElement('label');
+    userNameLabel.htmlfor = 'username';
+    var userNameText = document.createTextNode('Usuario');
+    userNameLabel.appendChild(userNameText);
+    var userNameInput = document.createElement('input');
+    userNameInput.type = 'text';
+    userNameInput.name = 'username';
+    userNameField.appendChild(userNameLabel);
+    userNameField.appendChild(userNameInput);
+    loginForm.appendChild(userNameField);
+
+    var passNameField = document.createElement('div');
+    var passNameLabel = document.createElement('label');
+    passNameLabel.htmlfor = 'passname';
+    var passNameText = document.createTextNode('Contraseña');
+    passNameLabel.appendChild(passNameText);
+    var passNameInput = document.createElement('input');
+    passNameInput.type = 'text';
+    passNameInput.name = 'username';
+    passNameField.appendChild(passNameLabel);
+    passNameField.appendChild(passNameInput);
+    loginForm.appendChild(passNameField);
+
+    var loginField = document.createElement('div');
+    loginView.appendChild(loginForm);
+    var loginLink = document.createElement('button')
+    loginLink.href = '#' 
+    var loginText = document.createTextNode('Login')
+    loginLink.appendChild(loginText)
+    loginView.appendChild(loginLink)
+
+
+    var br = document.createElement('div')    
+    loginField.appendChild(br)
+    loginLink.style.marginRight = '20px'
+    
+    var loginLink = document.createElement('a')
+    loginLink.href = '#'
+    var loginText = document.createTextNode('Register')
+    loginLink.appendChild(loginText)
+    loginView.appendChild(loginLink)
+
+
+
+    return loginView;
+}
+
+function buildHomeView() {
+    var homeView = document.createElement('div');
+
+    var logoHeading = document.createElement('h1');
+    var logoText = document.createTextNode('LOGO');
+    logoHeading.appendChild(logoText);
+    homeView.appendChild(logoHeading);
+
+    var textView = document.createElement('div');
+
+    var textHeading = document.createElement('h5');
+    var textText = document.createTextNode('HOLA MUNDO');
+    textHeading.appendChild(textText);
+    textView.appendChild(textHeading);
+    homeView.appendChild(textView);
+
+    //acontinuacion va el logo 
+    //escribir un Bienvenidos
+    return homeView;
+
+
 }
 
 var landingView = buildLandingView()
@@ -105,4 +200,10 @@ body.appendChild(landingView)
 
 var registerView = buildRegisterView()
 body.appendChild(registerView)
+
+var loginView = buildLoginView()
+body.appendChild(loginView)
+
+var homeView = buildHomeView()
+body.appendChild(homeView)
 
