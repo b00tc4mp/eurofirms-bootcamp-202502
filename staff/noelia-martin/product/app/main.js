@@ -8,7 +8,8 @@ function construirAterrizaje() {
    /*  
    Estructura html a imitar
         <div>
-            <h1>Logo</h1>
+            <i>Logo<i>
+            <br>
             <a href="">Register</a> or <a href="">Login</a>
         </div> 
     */
@@ -16,11 +17,14 @@ function construirAterrizaje() {
     var aterrrizaje= document.createElement('div')   //Crea el elemento div que es el contenedor de toda la pg
 
     //Comun en todas las paginas
-    //Titulo Logo
-    var logoEncabezado= document.createElement('h1')    //Crea el elemento de la etiqueta h1 del html(Etiqueta de formato titulo)
+    //Logo
+    var logoEncabezado= document.createElement('i')    //Crea el elemento de la etiqueta i del html(Etiqueta de formato cursivo)
     var logoTexto= document.createTextNode('Logo')      //crea el texto Logo
     logoEncabezado.appendChild(logoTexto)               //le añadimos como hijo(como propiedad) el texto
     aterrrizaje.appendChild(logoEncabezado)          //por ultimo, añadimos la etiqueta h1 y el texto, a nuestro contenedor(div)
+
+    var saltopagina= document.createElement('br')
+    aterrrizaje.appendChild(saltopagina)
 
     //Hipervinculo de Register
     var registerLink= document.createElement('a')       //Crea el elemento de la etiqueta a
@@ -47,7 +51,8 @@ function construirRegister(){
     /*  
    Estructura html a imitar
         <div>
-            <h1>Logo</h1>
+            <i>Logo</i>
+            <h1>Register</h1>
             <form>
                 //Name
                 <div>
@@ -76,11 +81,17 @@ function construirRegister(){
     */
     var register= document.createElement('div')
 
-    //Titulo Logo
-    var registerEncabezado= document.createElement('h1')    
-    var registerTexto= document.createTextNode('Logo')      
-    registerEncabezado.appendChild(registerTexto)               
-    register.appendChild(registerEncabezado)  
+    //Logo
+    var registerLogo= document.createElement('i')    
+    var registerLogoTexto= document.createTextNode('Logo')      
+    registerLogo.appendChild(registerLogoTexto)               
+    register.appendChild(registerLogo)  
+
+    //Titulo de la pagina
+    var registerTitulo=document.createElement('h1')
+    var registerTituloText= document.createTextNode('Register')
+    registerTitulo.appendChild(registerTituloText)               
+    register.appendChild(registerTitulo)
 
     //Creo formulario
     var registerFormulario= document.createElement('form')
@@ -95,7 +106,9 @@ function construirRegister(){
 
     var nameEtiquetaInput= document.createElement('input')
     nameEtiquetaInput.type='text'                               //añadimos el contenido de type
-    nameEtiquetaInput.name='name'   
+    nameEtiquetaInput.id='name'                                 //el id debe tener el mismo contenido que el htmlfor al que corresponde   
+    nameEtiquetaInput.name='name'                               //para el submit
+    nameEtiquetaInput.placeholder='your full name'              //añade texto para ayudar al cliente
     
     nameEtiquetaDiv.appendChild(nameEtiquetaLabel)              //en estas dos lineas metemos label e imput en el div creado exclusivamente para ellos
     nameEtiquetaDiv.appendChild(nameEtiquetaInput)
@@ -104,13 +117,16 @@ function construirRegister(){
     var emailEtiquetaDiv= document.createElement('div')
 
     var emailEtiquetaLabel=document.createElement('label')
-    emailEtiquetaLabel.htmlFor='name'
+    emailEtiquetaLabel.htmlFor='email'
     var emailEtiquetaLabelText= document.createTextNode('E-mail')
     emailEtiquetaLabel.appendChild(emailEtiquetaLabelText)
 
     var emailEtiquetaInput= document.createElement('input')
-    emailEtiquetaInput.type='text'
-    emailEtiquetaInput.name='name'
+    emailEtiquetaInput.type='email' //no haria falta una expresion regular, un pattern, ya que el tipo email lo tiene integrado
+    emailEtiquetaInput.id='email'
+    emailEtiquetaInput.name='email'
+    emailEtiquetaInput.placeholder='your e-mail'
+
 
     emailEtiquetaDiv.appendChild(emailEtiquetaLabel)
     emailEtiquetaDiv.appendChild(emailEtiquetaInput)
@@ -119,13 +135,15 @@ function construirRegister(){
     var usernameEtiquetaDiv= document.createElement('div')
 
     var usernameEtiquetaLabel=document.createElement('label')
-    usernameEtiquetaLabel.htmlFor='name'
+    usernameEtiquetaLabel.htmlFor='username'
     var usernameEtiquetaLabelText= document.createTextNode('Username')
     usernameEtiquetaLabel.appendChild(usernameEtiquetaLabelText)
 
     var usernameEtiquetaInput= document.createElement('input')
     usernameEtiquetaInput.type='text'
-    usernameEtiquetaInput.name='name'
+    usernameEtiquetaInput.id='username'
+    usernameEtiquetaInput.name='username'
+    usernameEtiquetaInput.placeholder='your username'
 
     usernameEtiquetaDiv.appendChild(usernameEtiquetaLabel)
     usernameEtiquetaDiv.appendChild(usernameEtiquetaInput)
@@ -134,13 +152,15 @@ function construirRegister(){
     var passwordEtiquetaDiv= document.createElement('div')
 
     var passwordEtiquetaLabel=document.createElement('label')
-    passwordEtiquetaLabel.htmlFor='name'
+    passwordEtiquetaLabel.htmlFor='password'
     var passwordEtiquetaLabelText= document.createTextNode('Password')
     passwordEtiquetaLabel.appendChild(passwordEtiquetaLabelText)
 
     var passwordEtiquetaInput= document.createElement('input')
-    passwordEtiquetaInput.type='text'
-    passwordEtiquetaInput.name='name'
+    passwordEtiquetaInput.type='password'
+    passwordEtiquetaInput.id='password'
+    passwordEtiquetaInput.name='password'
+    passwordEtiquetaInput.placeholder='your password'
 
     passwordEtiquetaDiv.appendChild(passwordEtiquetaLabel)
     passwordEtiquetaDiv.appendChild(passwordEtiquetaInput)
@@ -175,7 +195,8 @@ function construirRegister(){
     /*  
    Estructura html a imitar
         <div>
-            <h1>Logo</h1>
+            <i>Logo</i>
+            <h1>Login</h1>
             <form>
                 //E-mail
                 <div>
@@ -195,10 +216,16 @@ function construirRegister(){
         var login= document.createElement('div')
 
         //Titulo Logo
-        var loginEncabezado= document.createElement('h1')    
-        var loginTexto= document.createTextNode('Logo')      
-        loginEncabezado.appendChild(loginTexto)               
-        login.appendChild(loginEncabezado)  
+        var loginLogo= document.createElement('i')    
+        var loginLogoTexto= document.createTextNode('Logo')      
+        loginLogo.appendChild(loginLogoTexto)               
+        login.appendChild(loginLogo)  
+
+        //Titulo de la pagina
+        var loginTitulo=document.createElement('h1')
+        var loginTituloText= document.createTextNode('Login')
+        loginTitulo.appendChild(loginTituloText)               
+        login.appendChild(loginTitulo)
     
         //Creo formulario
         var loginFormulario= document.createElement('form')
@@ -207,13 +234,15 @@ function construirRegister(){
         var emailEtiquetaDiv= document.createElement('div')
     
         var emailEtiquetaLabel=document.createElement('label')
-        emailEtiquetaLabel.htmlFor='name'
+        emailEtiquetaLabel.htmlFor='email'
         var emailEtiquetaLabelText= document.createTextNode('E-mail')
         emailEtiquetaLabel.appendChild(emailEtiquetaLabelText)
     
         var emailEtiquetaInput= document.createElement('input')
-        emailEtiquetaInput.type='text'
-        emailEtiquetaInput.name='name'
+        emailEtiquetaInput.type='email'
+        emailEtiquetaInput.id='email'
+        emailEtiquetaInput.name='email'
+        emailEtiquetaInput.placeholder='your e-mail'
     
         emailEtiquetaDiv.appendChild(emailEtiquetaLabel)
         emailEtiquetaDiv.appendChild(emailEtiquetaInput)
@@ -222,13 +251,15 @@ function construirRegister(){
         var passwordEtiquetaDiv= document.createElement('div')
     
         var passwordEtiquetaLabel=document.createElement('label')
-        passwordEtiquetaLabel.htmlFor='name'
+        passwordEtiquetaLabel.htmlFor='password'
         var passwordEtiquetaLabelText= document.createTextNode('Password')
         passwordEtiquetaLabel.appendChild(passwordEtiquetaLabelText)
     
         var passwordEtiquetaInput= document.createElement('input')
-        passwordEtiquetaInput.type='text'
-        passwordEtiquetaInput.name='name'
+        passwordEtiquetaInput.type='password'
+        passwordEtiquetaInput.id='password'
+        passwordEtiquetaInput.name='password'
+        passwordEtiquetaInput.placeholder='your password'
     
         passwordEtiquetaDiv.appendChild(passwordEtiquetaLabel)
         passwordEtiquetaDiv.appendChild(passwordEtiquetaInput)
@@ -248,7 +279,7 @@ function construirRegister(){
 
         //Boton Login
         var loginButton= document.createElement('button')
-        loginButton.type='button'
+        loginButton.type='submit' //botton y submit aparentemente actuan igual, consulto en internet: en button podria meter imagenes cosa en en submit no solo texto 
         var loginButtonText= document.createTextNode('Login')
         loginButton.appendChild(loginButtonText)
         login.appendChild(loginButton)
@@ -261,32 +292,31 @@ function construirHome() {
     /*  
     Estructura html a imitar
          <div>
-             <h1>Logo</h1>
-             <h2>Hello, Hole!</h2>
+             <i>Logo</i>
+             <h1>Hello, World!</h1>
          </div> 
      */
  
      var home= document.createElement('div')   //Crea el elemento div que es el contenedor de toda la pg
  
-     //Titulo Logo
-     var logoEncabezado= document.createElement('h1')    
+     //Logo
+     var logoEncabezado= document.createElement('i')    
      var logoTexto= document.createTextNode('Logo')     
      logoEncabezado.appendChild(logoTexto)            
      home.appendChild(logoEncabezado)     
  
     //Contenido pg (h2)
-     var contenido=document.createElement('h2')
-     var contenidoText=document.createTextNode('Hello,Home!')
+     var contenido=document.createElement('h1')
+     var contenidoText=document.createTextNode('Hello,World!')
      contenido.appendChild(contenidoText)
      home.appendChild(contenido) 
  
      return home
  }
 
-//Segun la pg que queramos ver, habra que descomentarla. En estas lineas estamos añadiendo las llamadas a las funciones, las cuales
-//contienen el div principal de cada pagina
-//body.appendChild(construirAterrizaje())       
-//body.appendChild(construirRegister())
+//Segun la pg que queramos ver, habra que comentar o descomentar. En estas lineas estamos añadiendo las llamadas a las funciones, las cuales contienen el div principal de cada pagina
+body.appendChild(construirAterrizaje())       
+body.appendChild(construirRegister())
 body.appendChild(construirLogin())
-//body.appendChild(construirHome())
+body.appendChild(construirHome())
 
