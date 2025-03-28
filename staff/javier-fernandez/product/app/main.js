@@ -4,17 +4,17 @@ function buildLandingView() {
     var landingView = document.createElement("div")
 
 
-    var logoHeading = document.createElement("h1")
+    var logo = document.createElement("i")
     var logoText = document.createTextNode("landing page")
-    logoHeading.appendChild(logoText)
-    landingView.appendChild(logoHeading)
+    logo.appendChild(logoText)
+    landingView.appendChild(logo)
 
     var registerLink = document.createElement("a")
     registerLink.href = "#"
     var registerText = document.createTextNode("register")
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
-
+    
     var orText = document.createTextNode(" or ")
     landingView.appendChild(orText)
 
@@ -30,10 +30,10 @@ function buildLandingView() {
 function buildRegisterView() {
     var registerView = document.createElement("div")
 
-    var logoHeading = document.createElement("h1")
+    var logo = document.createElement("i")
     var logoText = document.createTextNode("Register Page")
-    logoHeading.appendChild(logoText)
-    registerView.appendChild(logoHeading)
+    logo.appendChild(logoText)
+    registerView.appendChild(logo)
 
     var registerForm = document.createElement("form")
     
@@ -45,7 +45,7 @@ function buildRegisterView() {
     var nameInput = document.createElement("input")
     nameInput.type = "text"
     nameInput.name = "name"
-
+    nameInput.placeholder = "your name"
     
     nameField.appendChild(nameLabel)
     nameField.appendChild(nameInput)
@@ -61,7 +61,7 @@ function buildRegisterView() {
     var emailInput = document.createElement("input")
     emailInput.type = "text"
     emailInput.name = "email"
-
+    emailInput.placeholder = "your email"
     emailField.appendChild(emailLabel)
     emailField.appendChild(emailInput)
 
@@ -75,7 +75,7 @@ function buildRegisterView() {
     var usernameInput = document.createElement("input")
     usernameInput.type = "text"
     usernameInput.name = "username"
-
+    usernameInput.placeholder = "your username"
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
 
@@ -89,7 +89,7 @@ function buildRegisterView() {
     var passwordInput = document.createElement("input")
     passwordInput.type = "text"
     passwordInput.name = "password"
-
+    passwordInput.placeholder = "your password"
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
 
@@ -132,10 +132,10 @@ function buildRegisterView() {
 function buildLoginView() {
     var loginView = document.createElement("div")
 
-    var logoHeading = document.createElement("h1")
+    var logo = document.createElement("i")
     var logoText = document.createTextNode("Loginpage")
-    logoHeading.appendChild(logoText)
-    loginView.appendChild(logoHeading)
+    logo.appendChild(logoText)
+    loginView.appendChild(logo)
 
     var registerForm = document.createElement("form")
     var space = document.createAttribute("br")
@@ -148,7 +148,7 @@ function buildLoginView() {
     var usernameInput = document.createElement("Input")
     usernameInput.Text = "text"
     usernameInput.name = "username"
-
+    usernameInput.placeholder = "your username"
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
 
@@ -162,7 +162,7 @@ function buildLoginView() {
     var passwordInput = document.createElement("Input")
     passwordInput.Text = "text"
     passwordInput.Name = "password"
-
+    passwordInput.placeholder = "your password"
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
 
@@ -189,10 +189,10 @@ function buildLoginView() {
 function buildHomeView() {
     var homeView = document.createElement("div")
 
-    var logoHeading = document.createElement("h1")
+    var logo = document.createElement("i")
     var logoText = document.createTextNode("Home Page")
-    logoHeading.appendChild(logoText)
-    homeView.appendChild(logoHeading)
+    logo.appendChild(logoText)
+    homeView.appendChild(logo)
 
 
     var welcomeButton = document.createElement("button")
