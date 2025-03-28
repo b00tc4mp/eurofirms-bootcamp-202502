@@ -56,7 +56,9 @@ function buildRegisterView() {
   emailField.appendChild(emailLabel);
   emailField.appendChild(emailInput);
   registerForm.appendChild(emailField);
+
   //----------Insercion de elementos en el elemento div del formulario (div del username)------
+
   var usernameField = document.createElement('div');
   var usernameLabel = document.createElement('label');
   usernameLabel.htmlFor = 'username';
@@ -69,7 +71,9 @@ function buildRegisterView() {
   usernameField.appendChild(usernameInput);
   registerForm.appendChild(usernameField);
   registerView.appendChild(registerForm);
+
   //----------Insercion de elementos en el elemento div del formulario (div del password)------
+
   var passwordField = document.createElement('div');
   var passwordLabel = document.createElement('label');
   passwordLabel.htmlFor = 'password';
@@ -81,13 +85,17 @@ function buildRegisterView() {
   passwordField.appendChild(passwordLabel);
   passwordField.appendChild(passwordInput);
   registerForm.appendChild(passwordField);
+
   //----------Insercion de elementos link a pagina login
+
   var loginLink = document.createElement('a');
   loginLink.href = '#';
   var loginLinkText = document.createTextNode('Login  ');
   loginLink.appendChild(loginLinkText);
   registerForm.appendChild(loginLink);
+
   //-----------Insercion de elementos boton de registro
+
   var submitButton = document.createElement('button');
   var submitButtonText = document.createTextNode('Register ');
   submitButton.appendChild(submitButtonText);
@@ -101,7 +109,9 @@ function buildLoginView() {
   var logoText = document.createTextNode('Logo');
   logoHeading.appendChild(logoText);
   loginView.appendChild(logoHeading);
+
   //----------Insercion de elementos en el elemento div del formulario (div del username)------
+
   var usernameField = document.createElement('div');
   var usernameLabel = document.createElement('label');
   usernameLabel.htmlFor = 'username';
@@ -113,7 +123,9 @@ function buildLoginView() {
   usernameField.appendChild(usernameLabel);
   usernameField.appendChild(usernameInput);
   loginView.appendChild(usernameField);
+
   //----------Insercion de elementos en el elemento div del formulario (div del password)------
+
   var passwordField = document.createElement('div');
   var passwordLabel = document.createElement('label');
   passwordLabel.htmlFor = 'password';
@@ -125,12 +137,16 @@ function buildLoginView() {
   passwordField.appendChild(passwordLabel);
   passwordField.appendChild(passwordInput);
   loginView.appendChild(passwordField);
+
   //----------Insercion de elementos boton de registro
+
   var buttonRegister = document.createElement('button');
   var buttonRegisterText = document.createTextNode('Register');
   buttonRegister.appendChild(buttonRegisterText);
   loginView.appendChild(buttonRegister);
+
   //----------Insercion de elementos boton de login
+
   var buttonLogin = document.createElement('button');
   var buttonSubmitText = document.createTextNode('Login');
   buttonLogin.appendChild(buttonSubmitText);
@@ -149,10 +165,17 @@ function buildHomeView() {
   return homeView;
 }
 var landingView = buildLandingView();
+
 var registerView = buildRegisterView();
+
 var loginView = buildLoginView();
+
 var homeView = buildHomeView();
+
 body.appendChild(landingView);
+
 body.appendChild(registerView);
+
 body.appendChild(loginView);
+
 body.appendChild(homeView);
