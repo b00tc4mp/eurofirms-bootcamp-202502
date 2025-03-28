@@ -7,11 +7,17 @@ function buildLandingView() {
     var landingView = document.createElement('div')
 
     //crear el logo: 1. crear etiqueta html, 2. crear texto, 3. poner texto dentro de etiqueta
-    var logoHeading = document.createElement('h1')
+    var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     //ensamblar logoHeading dentro de landingView
     landingView.appendChild(logoHeading) 
+
+    //Titulo de la pagina
+    var titleLanding = document.createElement('h1')
+    var titleLandingText = document.createTextNode('Landing')
+    titleLanding.appendChild(titleLandingText)
+    landingView.appendChild(titleLanding)
 
     //crear "Register": 1. etiqueta html (con attr), 2. texto, 3. poner texto en etiqueta
     var registerLink = document.createElement('a')
@@ -40,14 +46,21 @@ function buildRegisterView() {
     var registerView = document.createElement('div')
 
     //logo
-    var logoHeading = document.createElement('h1')
+    var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     registerView.appendChild(logoHeading) 
 
+    //Titulo de la pagina
+    var titleRegister = document.createElement('h1')
+    var titleRegisterText = document.createTextNode('Register')
+    titleRegister.appendChild(titleRegisterText)
+    registerView.appendChild(titleRegister)
+
     //crear formulario
     var registerForm = document.createElement('form')
 
+    //label & input para name
     //crear Label y añadirle for attribute y su texto
     var nameLabel = document.createElement('label')
     nameLabel.htmlFor = 'name'
@@ -57,6 +70,7 @@ function buildRegisterView() {
     var nameInput = document.createElement('input')
     nameInput.type = 'text'
     nameInput.name = 'name'
+    nameInput.placeholder = 'full name'
     //poner cada pareja de label & input en un div
     var nameField = document.createElement('div')
     nameField.appendChild(nameLabel)
@@ -70,8 +84,9 @@ function buildRegisterView() {
     var emailText = document.createTextNode('E-mail')
     emailLabel.appendChild(emailText)
     var emailInput = document.createElement('input')
-    emailInput.type = 'text'
+    emailInput.type = 'email' //un tipo de input especifico para que solo deje poner email y no texto normal
     emailInput.name = 'email'
+    emailInput.placeholder = 'your email'
     var emailField = document.createElement('div')
     emailField.appendChild(emailLabel)
     emailField.appendChild(emailInput)
@@ -85,6 +100,7 @@ function buildRegisterView() {
     var usernameInput = document.createElement('input')
     usernameInput.type = 'text'
     usernameInput.name = 'username'
+    usernameInput.placeholder = 'your username'
     var usernameField = document.createElement('div')
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
@@ -98,6 +114,7 @@ function buildRegisterView() {
     var passwordInput = document.createElement('input')
     passwordInput.type = 'text'
     passwordInput.name = 'password'
+    passwordInput.placeholder = 'your password'
     var passwordField = document.createElement('div')
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
@@ -127,10 +144,16 @@ function buildLoginView() {
     var loginView = document.createElement('div')
 
     //logo
-    var logoHeading = document.createElement('h1')
+    var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     loginView.appendChild(logoHeading)
+
+    //Titulo de la pagina
+    var titleLogin = document.createElement('h1')
+    var titleLoginText = document.createTextNode('Login')
+    titleLogin.appendChild(titleLoginText)
+    loginView.appendChild(titleLogin)
 
     //crear formulario
     var loginForm = document.createElement('form')
@@ -185,10 +208,16 @@ function buildHomeView() {
     var homeView = document.createElement('div')
 
     //logo
-    var logoHeading = document.createElement('h1')
+    var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     homeView.appendChild(logoHeading)
+
+    //Titulo de la pagina
+    var titleHome = document.createElement('h1')
+    var titleHomeText = document.createTextNode('Home')
+    titleHome.appendChild(titleHomeText)
+    homeView.appendChild(titleHome)
 
     //hello home
     var headingHome = document.createElement('h2')
