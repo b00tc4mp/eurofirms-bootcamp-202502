@@ -12,13 +12,13 @@ function buildLandingView() { // landingView FUNCTION
 
     // LANDING: LOGIN or REGISTER
     // Link Creation of registerButton
-    var registerButton = document.createElement('button') // Button Element
+    var registerLink = document.createElement('a') // Button Element
     // Add URL al Link variable
-    registerButton.href = '#'
+    registerLink.href = '#'
     var registerText = document.createTextNode('Register')
     // Ahijamos el texto como registerText
-    registerButton.appendChild(registerText)
-    landingView.appendChild(registerButton)
+    registerLink.appendChild(registerText)
+    landingView.appendChild(registerLink)
     // Nodo " or " y lo ahijamos al DIV bajo BODY
     var orText = document.createTextNode(' or ')
     landingView.appendChild(orText)
@@ -46,7 +46,6 @@ function buildRegisterView() {
 
     // CREATE FORM
 
-    var registerView = document.createElement('div')
     var registerForm = document.createElement('form')
 
 
@@ -130,7 +129,6 @@ function buildLoginView() {
 
     // CREATE FORM
 
-    var loginView = document.createElement('div')
     var loginForm = document.createElement('form')
 
     // CREATE USERNAME FIELD UNDER FORM
