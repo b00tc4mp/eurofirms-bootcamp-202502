@@ -182,7 +182,7 @@ function buildHomeView() {
 
     var textView = document.createElement('div');
 
-    var textHeading = document.createElement('h5');
+    var textHeading = document.createElement('h1');
     var textText = document.createTextNode('HOLA MUNDO');
     textHeading.appendChild(textText);
     textView.appendChild(textHeading);
