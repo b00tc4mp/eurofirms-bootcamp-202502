@@ -2,24 +2,24 @@
 var body = document.querySelector('body')
 
 // Metemos todo el contenido de la LANDING en una función JS
-function buildLandingView() {
+function buildLandingView() { // landingView FUNCTION
     // LOGO
-    var landingView = document.createElement('div')
+    var landingView = document.createElement('div') // DIV CONTAINS EVERYTHING
     var logoHeading = document.createElement('h1')
-    var logoText = document.createTextNode('Logo')
+    var logoText = document.createTextNode('LANDING LOGO')
     logoHeading.appendChild(logoText)
     landingView.appendChild(logoHeading)
 
     // LANDING: LOGIN or REGISTER
     // Link Creation of registerButton
-    var registerLink = document.createElement('a') // a ref en HTML
+    var registerButton = document.createElement('button') // Button Element
     // Add URL al Link variable
-    registerLink.href = '#'
+    registerButton.href = '#'
     var registerText = document.createTextNode('Register')
     // Ahijamos el texto como registerText
-    registerLink.appendChild(registerText)
-    landingView.appendChild(registerLink)
-    // Nodo " or " y lo ahijamos al DIV --> BODY
+    registerButton.appendChild(registerText)
+    landingView.appendChild(registerButton)
+    // Nodo " or " y lo ahijamos al DIV bajo BODY
     var orText = document.createTextNode(' or ')
     landingView.appendChild(orText)
     // The same link but with Login
@@ -30,14 +30,17 @@ function buildLandingView() {
 
     landingView.appendChild(loginLink) // MIRAR!!
 
+
     return landingView
 }
 
 function buildRegisterView() {
 
-    var registerView = document.createElement('div')
+
+    // TROUBLE WITH REGISTER LOGO
+    var registerView = document.createElement('div') // DIV CONTAINS EVERYTHING IN THIS VIEW
     var logoHeading = document.createElement('h1')
-    var logoText = document.createTextNode('Logo')
+    var logoText = document.createTextNode('REGISTER LOGO')
     logoHeading.appendChild(logoText)
     registerView.appendChild(logoHeading)
 
@@ -77,6 +80,7 @@ function buildRegisterView() {
 
     registerForm.appendChild(userField)
 
+
     // CREATE EMAIL FIELD
     var emailField = document.createElement('div')
     var emailLabel = document.createElement('label')
@@ -90,6 +94,7 @@ function buildRegisterView() {
     emailField.appendChild(emailInput)
 
     registerForm.appendChild(emailField)
+
 
     // CREATE PASSWORD FIELD
     var passField = document.createElement('div')
@@ -107,15 +112,19 @@ function buildRegisterView() {
 
     registerView.appendChild(registerForm) // LOOK ME!!
 
+
     return registerView
 }
 
 
 function buildLoginView() {
+
+    var loginView = document.createElement('div') // DIV: CONTAINS EVERYTHING
+
+    // TROUBLE WITH LOGIN LOGO
     // LOGO
-    var loginView = document.createElement('div')
     var logoHeading = document.createElement('h1')
-    var logoText = document.createTextNode('Logo')
+    var logoText = document.createTextNode('LOGIN LOGO')
     logoHeading.appendChild(logoText)
     loginView.appendChild(logoHeading)
 
@@ -124,12 +133,11 @@ function buildLoginView() {
     var loginView = document.createElement('div')
     var loginForm = document.createElement('form')
 
-    // CREATE USERNAME FIELD
+    // CREATE USERNAME FIELD UNDER FORM
     var userField = document.createElement('div')
     var userLabel = document.createElement('label')
-    userLabel.htmlFor = 'username'
+    userLabel.htmlFor = 'text'
     var userText = document.createTextNode('Username:  ')
-
     userLabel.appendChild(userText)
     var userInput = document.createElement('input')
     userInput.type = 'text'
@@ -137,8 +145,12 @@ function buildLoginView() {
     userField.appendChild(userLabel)
     userField.appendChild(userInput)
 
+    loginForm.appendChild(userField)
+
+    loginView.appendChild(loginForm)
+
    
-    // CREATE PASSWORD FIELD
+    // CREATE PASSWORD FIELD UNDER FORM
     var passField = document.createElement('div')
     var passLabel = document.createElement('label')
     passLabel.htmlFor = 'password'
@@ -150,9 +162,9 @@ function buildLoginView() {
     passField.appendChild(passLabel)
     passField.appendChild(passInput)
 
-    registerForm.appendChild(passField)
+    loginForm.appendChild(passField)
 
-    registerView.appendChild(registerForm)
+    loginView.appendChild(loginForm)
 
     return loginView
 
@@ -160,11 +172,29 @@ function buildLoginView() {
 
 function buildHomeView() {
     // LOGO
-    var homeView = document.createElement('div')
+    
+    var homeView = document.createElement('div') // DIV: CONTAINS EVERYTHING
+
     var logoHeading = document.createElement('h1')
-    var logoText = document.createTextNode('Logo')
+    var logoText = document.createTextNode('HOME LOGO')
     logoHeading.appendChild(logoText)
     homeView.appendChild(logoHeading)
+
+    var welcomeHeading = document.createElement('div') // DIV: CONTAINS EVERYTHING
+    var welcomeHeading = document.createElement('h2')
+    var logoText = document.createTextNode('HI HOME!')
+    welcomeHeading.appendChild(logoText)
+    homeView.appendChild(welcomeHeading)
+
+    var logoutButton = document.createElement('button') // Logout Button Element
+    // Add URL al Link variable
+    logoutButton.href = '#'
+    var logoutText = document.createTextNode('LOG OUT')
+    // Ahijamos el texto como registerText
+    logoutButton.appendChild(logoutText)
+    homeView.appendChild(logoutButton)
+
+    
 
 
     return homeView
@@ -182,6 +212,5 @@ body.appendChild(loginView)
 
 var homeView = buildHomeView()
 body.appendChild(homeView)
-
 
 
