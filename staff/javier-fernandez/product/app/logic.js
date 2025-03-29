@@ -13,3 +13,17 @@ function registerUser(name, email, useranme, password) {
     if (password.length > 20) throw new Error("invalid password max length")
         //TO DO REGISTER USER IN DATABASE
 }
+for (var i = 0; i < users.length; i++) {
+    var user = users[i]
+
+    if (user.email === email || user.username === username) throw new Error("user a\ready exists")
+}
+
+var user = {
+    name: name,
+    email: email,
+    username: username,
+    password: password,
+}
+
+user [users.length] = user
