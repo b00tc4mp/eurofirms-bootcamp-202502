@@ -1,16 +1,19 @@
 var body = document.querySelector('body');
 function buildLandingView() {
+  //--------------Insercion de logotipo
   var landingView = document.createElement('div');
-
   var logo = document.createElement('i');
   var logoText = document.createTextNode('Logo');
   logo.appendChild(logoText);
   landingView.appendChild(logo);
+  //-----------------------Insercion titulo----------------
   var title = document.createElement('h1');
   var titleText = document.createTextNode('Welcome to the App');
   title.appendChild(titleText);
   landingView.appendChild(title);
+  //------------------Insercion enlace registro
   var registerLink = document.createElement('a');
+
   registerLink.href = '#';
   var registerLinkText = document.createTextNode('Register');
   registerLink.appendChild(registerLinkText);
@@ -18,7 +21,7 @@ function buildLandingView() {
 
   var orText = document.createTextNode(' or ');
   landingView.appendChild(orText);
-
+  //-----------------insercion login link
   var loginLink = document.createElement('a');
   loginLink.href = '#';
   var loginLinkText = document.createTextNode('Login');
@@ -38,9 +41,10 @@ function buildRegisterView() {
   title.appendChild(titleText);
   registerView.appendChild(title);
   var registerForm = document.createElement('form');
-
+  registerForm.classList.add('flex', 'flex-col', 'gap-20px');
   //----------Insercion de elementos en el elemento div del formulario (div del nombre)------
   var nameField = document.createElement('div');
+  nameField.classList.add('flex', 'flex-col');
   var nameLabel = document.createElement('label');
   nameLabel.htmlFor = 'name';
   var nameLabelText = document.createTextNode('Name ');
@@ -54,6 +58,7 @@ function buildRegisterView() {
   registerForm.appendChild(nameField);
   //----------Insercion de elementos en el elemento div del formulario (div del email)------
   var emailField = document.createElement('div');
+  emailField.classList.add('flex', 'flex-col');
   var emailLabel = document.createElement('label');
   emailLabel.htmlFor = 'email';
   var emailLabelText = document.createTextNode('Email ');
@@ -67,6 +72,7 @@ function buildRegisterView() {
   registerForm.appendChild(emailField);
   //----------Insercion de elementos en el elemento div del formulario (div del username)------
   var usernameField = document.createElement('div');
+  usernameField.classList.add('flex', 'flex-col');
   var usernameLabel = document.createElement('label');
   usernameLabel.htmlFor = 'username';
   var usernameLabelText = document.createTextNode('Username ');
@@ -81,6 +87,7 @@ function buildRegisterView() {
   registerView.appendChild(registerForm);
   //----------Insercion de elementos en el elemento div del formulario (div del password)------
   var passwordField = document.createElement('div');
+  passwordField.classList.add('flex', 'flex-col');
   var passwordLabel = document.createElement('label');
   passwordLabel.htmlFor = 'password';
   var passwordLabelText = document.createTextNode('Password ');
@@ -93,17 +100,20 @@ function buildRegisterView() {
   passwordField.appendChild(passwordInput);
   registerForm.appendChild(passwordField);
   //----------Insercion de elementos link a pagina login
+  var buttons = document.createElement('div');
+  buttons.classList.add('flex', 'justify-between');
   var loginLink = document.createElement('a');
   loginLink.href = '#';
   var loginLinkText = document.createTextNode('Login  ');
   loginLink.appendChild(loginLinkText);
-  registerForm.appendChild(loginLink);
+  buttons.appendChild(loginLink);
+
   //-----------Insercion de elementos boton de registro
   var submitButton = document.createElement('button');
   var submitButtonText = document.createTextNode('Register ');
   submitButton.appendChild(submitButtonText);
-  registerForm.appendChild(submitButton);
-
+  buttons.appendChild(submitButton);
+  registerForm.appendChild(buttons);
   return registerView;
 }
 function buildLoginView() {
@@ -113,8 +123,11 @@ function buildLoginView() {
   var titleText = document.createTextNode('Login');
   title.appendChild(titleText);
   loginView.appendChild(title);
+  var loginForm = document.createElement('form');
+  loginForm.classList.add('flex', 'flex-col', 'gap-20px');
   //----------Insercion de elementos en el elemento div del formulario (div del username)------
   var usernameField = document.createElement('div');
+  usernameField.classList.add('flex', 'flex-col');
   var usernameLabel = document.createElement('label');
   usernameLabel.htmlFor = 'username';
   var usernameLabelText = document.createTextNode('Username ');
@@ -125,9 +138,11 @@ function buildLoginView() {
   usernameInput.placeholder = ' your username';
   usernameField.appendChild(usernameLabel);
   usernameField.appendChild(usernameInput);
-  loginView.appendChild(usernameField);
+
+  loginForm.appendChild(usernameField);
   //----------Insercion de elementos en el elemento div del formulario (div del password)------
   var passwordField = document.createElement('div');
+  passwordField.classList.add('flex', 'flex-col');
   var passwordLabel = document.createElement('label');
   passwordLabel.htmlFor = 'password';
   var passwordLabelText = document.createTextNode('Password ');
@@ -138,18 +153,27 @@ function buildLoginView() {
   passwordInput.placeholder = ' your password';
   passwordField.appendChild(passwordLabel);
   passwordField.appendChild(passwordInput);
-  loginView.appendChild(passwordField);
+  loginForm.appendChild(passwordField);
   //----------Insercion de elementos boton de registro
-  var buttonRegister = document.createElement('button');
+  var buttons = document.createElement('div');
+  buttons.classList.add('flex', 'justify-between');
+  var linkRegister = document.createElement('a');
+  linkRegister.href = '#';
   var buttonRegisterText = document.createTextNode('Register');
-  buttonRegister.appendChild(buttonRegisterText);
-  loginView.appendChild(buttonRegister);
+  linkRegister.appendChild(buttonRegisterText);
+  buttons.appendChild(linkRegister);
+  //----------Insercion de elementos login boton
+  var linkLogin = document.createElement('a');
+  linkRegister.href = '#';
+  var linkLoginText = document.createTextNode('Login');
+  linkLogin.appendChild(linkLoginText);
+  buttons.appendChild(linkLogin);
   //----------Insercion de elementos boton de login
   var buttonLogin = document.createElement('button');
   var buttonSubmitText = document.createTextNode('Login');
   buttonLogin.appendChild(buttonSubmitText);
-  loginView.appendChild(buttonLogin);
-
+  loginForm.appendChild(buttons);
+  loginView.appendChild(loginForm);
   return loginView;
 }
 function buildHomeView() {
