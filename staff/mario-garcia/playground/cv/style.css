@@ -51,9 +51,6 @@ h2 {
     border-radius: 10px;
 }
 
-.mainTitle {
-    background-color: wheat;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    padding: 10px;
-    border-radius: 10px;
+.gap-10 {
+    gap: 10px;
 }
