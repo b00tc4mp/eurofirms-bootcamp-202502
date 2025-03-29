@@ -32,6 +32,14 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
+    //Montamos la NAVEGACIÓN del Link 
+
+    registerLink.addEventListener('click', function (event) {
+        body.removeChild(landingView)
+        body.appendChild(registerView)
+    })
+
+
     var orText = document.createTextNode('   or   ')
     landingView.appendChild(orText)
 
@@ -40,6 +48,14 @@ function buildLandingView() {
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
+
+    //Montamos la NAVEGACIÓN del Link 
+
+    loginLink.addEventListener('click', function (event) {
+        body.removeChild(landingView)
+        body.appendChild(loginView)
+    })
+
 
     return landingView
 
@@ -172,6 +188,14 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
 
+    //Montamos la NAVEGACIÓN del Link
+
+    loginLink.addEventListener('click', function (event) {
+        body.removeChild(registerView)
+        body.appendChild(loginView)
+    })
+
+
     // var orText = document.createTextNode('   or   ')
     // registerView.appendChild(orText)
 
@@ -191,7 +215,32 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     registerButton.appendChild(registerText)
     buttons.appendChild(registerButton)
 
+
+
     registerForm.appendChild(buttons)
+
+    //Montamos la NAVEGACIÓN del Botón REGISTER
+
+    registerForm.addEventListener('submit', function (event) {
+        event.preventDefault()
+
+        const name = nameInput.value
+        const email = emailInput.value
+        const username = usernameInput.value
+        const password = passwordInput.value
+
+        //La siguiente lógica NOS devuelve Error si ya estoy registrado
+
+        try {
+            registerUser(name, email, username, password)
+
+            body.removeChild(registerView)
+            body.appendChild(loginView)
+
+        } catch (error) {
+            alert(error.message)
+        }
+    })
 
     return registerView
 }
@@ -224,7 +273,7 @@ function buildLoginView() { // TODO Implement
     var usernameLabel = document.createElement('label')
     usernameLabel.htmlFor = 'username'
     var usernameText = document.createTextNode('Username')
-    usernameField.appendChild(usernameText)
+    usernameLabel.appendChild(usernameText)
     var usernameInput = document.createElement('input')
     usernameInput.type = 'text'
     usernameInput.name = 'username'
@@ -237,7 +286,7 @@ function buildLoginView() { // TODO Implement
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'password'
     var passwordText = document.createTextNode('Password')
-    passwordField.appendChild(passwordText)
+    passwordLabel.appendChild(passwordText)
     var passwordInput = document.createElement('input')
     passwordInput.type = 'text'
     passwordInput.name = 'password'
@@ -279,6 +328,7 @@ function buildLoginView() { // TODO Implement
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
     loginView.appendChild(registerLink)
+
 
     // var orText = document.createTextNode('   or   ')
     // loginView.appendChild(orText)
@@ -327,16 +377,16 @@ function buildHomeView() {
 
 }
 
-// var landingView = buildLandingView()
-// body.appendChild(landingView)
+var landingView = buildLandingView()
+body.appendChild(landingView)
 
 var registerView = buildRegisterView()
-body.appendChild(registerView)
+// body.appendChild(registerView)
 
-// var loginView = buildLoginView()
+var loginView = buildLoginView()
 // body.appendChild(loginView)
 
-// var homeView = buildHomeView()
+var homeView = buildHomeView()
 // body.appendChild(homeView)
 
 // TODO test Login view
