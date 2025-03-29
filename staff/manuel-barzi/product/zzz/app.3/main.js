@@ -2,10 +2,8 @@ var body = document.querySelector('body')
 
 function buildLandingView() {
     var landingView = document.createElement('div')
-    landingView.classList.add('p-20px')
 
     var logo = document.createElement('i')
-    logo.classList.add('block')
     var logoText = document.createTextNode('Logo')
     logo.appendChild(logoText)
     landingView.appendChild(logo)
@@ -30,7 +28,6 @@ function buildLandingView() {
 
 function buildRegisterView() {
     var registerView = document.createElement('div')
-    registerView.classList.add('p-20px')
 
     var logo = document.createElement('i')
     var logoText = document.createTextNode('Logo')
@@ -43,10 +40,8 @@ function buildRegisterView() {
     registerView.appendChild(registerTitle)
 
     var registerForm = document.createElement('form')
-    registerForm.classList.add('flex', 'flex-col', 'gap-20px')
 
     var nameField = document.createElement('div')
-    nameField.classList.add('flex', 'flex-col', 'gap-10px')
     var nameLabel = document.createElement('label')
     nameLabel.htmlFor = 'name'
     var nameText = document.createTextNode('Name')
@@ -61,7 +56,6 @@ function buildRegisterView() {
     registerForm.appendChild(nameField)
 
     var emailField = document.createElement('div')
-    emailField.classList.add('flex', 'flex-col', 'gap-10px')
     var emailLabel = document.createElement('label')
     emailLabel.htmlFor = 'email'
     var emailText = document.createTextNode('E-mail')
@@ -76,7 +70,6 @@ function buildRegisterView() {
     registerForm.appendChild(emailField)
 
     var usernameField = document.createElement('div')
-    usernameField.classList.add('flex', 'flex-col', 'gap-10px')
     var usernameLabel = document.createElement('label')
     usernameLabel.htmlFor = 'username'
     var usernameText = document.createTextNode('Username')
@@ -91,10 +84,9 @@ function buildRegisterView() {
     registerForm.appendChild(usernameField)
 
     var passwordField = document.createElement('div')
-    passwordField.classList.add('flex', 'flex-col', 'gap-10px')
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'password'
-    var passwordText = document.createTextNode('Password')
+    var passwordText = document.createTextNode('password')
     passwordLabel.appendChild(passwordText)
     passwordField.appendChild(passwordLabel)
     var passwordInput = document.createElement('input')
@@ -105,23 +97,17 @@ function buildRegisterView() {
     passwordField.appendChild(passwordInput)
     registerForm.appendChild(passwordField)
 
-    var buttons = document.createElement('div')
-    buttons.classList.add('flex', 'justify-between')
-
     var loginLink = document.createElement('a')
     loginLink.href = '#'
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
-    buttons.appendChild(loginLink)
+    registerForm.appendChild(loginLink)
 
     var submitButton = document.createElement('button')
-    submitButton.classList.add('black-button')
     submitButton.type = 'submit'
     var submitText = document.createTextNode('Register')
     submitButton.appendChild(submitText)
-    buttons.appendChild(submitButton)
-
-    registerForm.appendChild(buttons)
+    registerForm.appendChild(submitButton)
 
     registerView.appendChild(registerForm)
 
@@ -204,8 +190,8 @@ function buildHomeView() {
     return homeView
 }
 
-var landingView = buildLandingView()
-body.appendChild(landingView)
+// var landingView = buildLandingView()
+// body.appendChild(landingView)
 
 // var registerView = buildRegisterView()
 // body.appendChild(registerView)
@@ -213,5 +199,5 @@ body.appendChild(landingView)
 // var loginView = buildLoginView()
 // body.appendChild(loginView)
 
-// var homeView = buildHomeView()
-// body.appendChild(homeView)
+var homeView = buildHomeView()
+body.appendChild(homeView)
