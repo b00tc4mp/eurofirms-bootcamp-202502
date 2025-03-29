@@ -2,14 +2,18 @@ var body = document.querySelector("body")
 
 function buildLandingView() {
     var landingView = document.createElement("div")
+    landingView.classList.add("p-20px")
 
 
     var logo = document.createElement("i")
+    logo.classList.add("block")
     var logoText = document.createTextNode("landing page")
     logo.classList.add("block")
     logo.appendChild(logoText)
     landingView.appendChild(logo)
 
+    var buttons = document.createElement("div")
+    
     var registerLink = document.createElement("a")
     registerLink.href = "#"
     var registerText = document.createTextNode("register")
@@ -38,10 +42,10 @@ function buildRegisterView() {
     registerView.appendChild(logo)
 
     var registerForm = document.createElement("form")
-    registerForm.classList.add("flex", "flex-col", "gap-5px")
+    registerForm.classList.add("flex", "flex-col", "gap-20px")
     
     var nameField = document.createElement("div")
-    nameField.classList.add("flex", "flex-col", "gap-5px")
+    nameField.classList.add("flex", "flex-col", "gap-10px")
     var nameLabel = document.createElement("label")
     nameLabel.htmlFor = "name"
     var nameText = document.createTextNode("Name")
@@ -50,15 +54,14 @@ function buildRegisterView() {
     nameInput.type = "text"
     nameInput.name = "name"
     nameInput.placeholder = "your name"
-    
     nameField.appendChild(nameLabel)
     nameField.appendChild(nameInput)
-    registerForm.appendChild(nameField)
+    
 
     var space = document.createElement("br")
 
     var emailField = document.createElement("div")
-    emailField.classList.add("flex","flex-col")
+    emailField.classList.add("flex","flex-col", "gap-10px")
     var emailLabel = document.createElement("label")
     emailLabel.htmlFor = "email"
     var emailText = document.createTextNode("email")
@@ -69,11 +72,12 @@ function buildRegisterView() {
     emailInput.placeholder = "your email"
     emailField.appendChild(emailLabel)
     emailField.appendChild(emailInput)
+    
 
     var space1 = document.createElement("br")
 
     var usernameField = document.createElement("div")
-    usernameField.classList.add("flex", "flex-col", "gap-5px")
+    usernameField.classList.add("flex", "flex-col", "gap-10px")
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")
@@ -84,10 +88,12 @@ function buildRegisterView() {
     usernameInput.placeholder = "your username"
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
+    
 
     var space2 = document.createElement("br")
 
     var passwordField = document.createElement("div")
+    passwordField.classList.add("flex", "flex-col", "gap-10px")
     var passwordLabel = document.createElement("label")
     passwordLabel.htmlFor = "password"
     var passwordText = document.createTextNode("password")
@@ -98,6 +104,7 @@ function buildRegisterView() {
     passwordInput.placeholder = "your password"
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
+    
 
     var space3 = document.createElement("br")
 
@@ -108,6 +115,9 @@ function buildRegisterView() {
     registerForm.appendChild(usernameField)
     registerForm.appendChild(space2)
     registerForm.appendChild(passwordField)
+
+    var buttons = document.createElement("div")
+    buttons.classList.add("flex", "justify-between")
 
     var loginLink = document.createElement("a")
     loginLink.href = "#"
@@ -120,7 +130,7 @@ function buildRegisterView() {
     
     registerView.appendChild(space3)
     var registerButton = document.createElement("button")
-    registerButton.href = "register"
+    registerButton.classList.add("black-button")
     var registerText = document.createTextNode("register")
     registerButton.appendChild(registerText)
     registerView.appendChild(registerButton)
@@ -147,6 +157,7 @@ function buildLoginView() {
     var space = document.createAttribute("br")
 
     var usernameField = document.createElement("div")
+    usernameField.classList.add("flex", "flex-col", "gap-10px")
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")
@@ -161,6 +172,7 @@ function buildLoginView() {
     var space2 = document.createElement("br")
 
     var passwordField = document.createElement("div")
+    passwordField.classList.add("flex", "flex-col", "gap-10px")
     var passwordLabel = document.createElement("label")
     passwordLabel.htmelFor = "password"
     var passwordText = document.createTextNode("password")
@@ -187,6 +199,7 @@ function buildLoginView() {
     var loginText = document.createTextNode("login")
     loginButton.appendChild(loginText)
     loginView.appendChild(loginButton)
+    loginButton.classList.add("black-button")
 
     return loginView
     
