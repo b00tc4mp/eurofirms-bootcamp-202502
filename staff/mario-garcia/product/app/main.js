@@ -246,8 +246,8 @@ function buildLoginView() { // TODO Implement
     //Creamos los Campos para INTRODUCIR los datos del Usuario
 
     var registerForm = document.createElement('form')
-    var space = document.createElement('br')
-    var space1 = document.createElement('br')
+    registerForm.classList.add('flex', 'flex-col', 'gap-20px')
+
 
     var usernameField = document.createElement('div')
     usernameField.classList.add('flex', 'flex-col', 'gap-10px')
@@ -282,9 +282,9 @@ function buildLoginView() { // TODO Implement
     //A continuación PINTAMOS los CAMPOS en la Pantalla LOGIN = var loginView
 
     registerForm.appendChild(usernameField)
-    registerForm.appendChild(space)
+
     registerForm.appendChild(passwordField)
-    registerForm.appendChild(space1)
+
 
     // A continuacion pintamos 1. Link de REGISTER & 2. Boton de LOGIN
 

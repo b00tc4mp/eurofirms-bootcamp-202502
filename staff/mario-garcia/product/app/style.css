@@ -64,6 +64,10 @@ label {
 }
 
 .placeholder {
-    color: rgb(162, 73, 76);
     background-color: rgb(205, 225, 251);
+    border-radius: 10px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(97, 39, 120);
 }
