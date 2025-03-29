@@ -9,6 +9,8 @@ function buildLandingView() {
     var landingView = document.createElement('div')
     landingView.classList.add('p-x-20px')
 
+    // landingView.classList.add('p-x-20px')
+
     //Creamos el LOGO 
 
     var logo = document.createElement('i')
@@ -64,7 +66,7 @@ function buildLandingView() {
 function buildRegisterView() { // Pintamos la Pantalla REGISTER
 
     var registerView = document.createElement('div')
-    registerView.classList.add('p-x-30px')
+    registerView.classList.add('p-x-20px')
 
     //Creamos el Logo
 
@@ -84,6 +86,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
 
     var registerForm = document.createElement('form')
     registerForm.classList.add('flex', 'flex-col', 'gap-20px')
+
     // var space = document.createElement('br')
     // var space1 = document.createElement('br')
     // var space2 = document.createElement('br')
@@ -96,6 +99,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var nameText = document.createTextNode('Name:')
     nameLabel.appendChild(nameText)
     var nameInput = document.createElement('input')
+    nameInput.classList.add('placeholder')
     nameInput.type = 'text'
     nameInput.id = 'name'
     nameInput.name = 'name'
@@ -110,6 +114,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var emailText = document.createTextNode('Email:')
     emailLabel.appendChild(emailText)
     var emailInput = document.createElement('input')
+    emailInput.classList.add('placeholder')
     emailInput.type = 'email'
     emailInput.name = 'email'
     emailInput.id = 'email'
@@ -124,6 +129,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var usernameText = document.createTextNode('Username:')
     usernameLabel.appendChild(usernameText)
     var usernameInput = document.createElement('input')
+    usernameInput.classList.add('placeholder')
     usernameInput.type = 'text'
     usernameInput.name = 'username'
     usernameInput.id = 'username'
@@ -138,6 +144,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     var passwordText = document.createTextNode('Password:')
     passwordLabel.appendChild(passwordText)
     var passwordInput = document.createElement('input')
+    passwordInput.classList.add('placeholder')
     passwordInput.type = 'text'
     passwordInput.name = 'password'
     passwordInput.id = 'password'
@@ -158,26 +165,8 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     registerView.appendChild(registerForm)
     // registerForm.appendChild(space3)
 
-    //Si quisieramos usar BOTONES
 
-    // var registerButton = document.createElement('button')
-    // var registerText = document.createTextNode('Register')
-    // registerButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    // registerButton.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
-    // registerButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
-    // registerButton.appendChild(registerText)
-    // registerView.appendChild(registerButton)
-
-    // var loginButton = document.createElement('button')
-    // var loginText = document.createTextNode('Login')
-    // loginButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    // loginButton.style.marginLeft = '10px' // Dar ESPACIADO a la Izquierda
-    // loginButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
-    // loginButton.appendChild(loginText)
-    // registerView.appendChild(loginButton)
-
-
-
+    //Montamos el Link de LOGIN
 
     var buttons = document.createElement('div')
     buttons.classList.add('flex', 'justify-between')
@@ -196,26 +185,16 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     })
 
 
-    // var orText = document.createTextNode('   or   ')
-    // registerView.appendChild(orText)
-
-    // var registerLink = document.createElement('a')
-    // registerLink.href = '#'
-    // var registerText = document.createTextNode('Register')
-    // registerLink.appendChild(registerText)
-    // registerView.appendChild(registerLink)
+    //Montamos el Boton REGISTER
 
     var registerButton = document.createElement('button')
-    registerButton.classList.add('registerButton')
+    registerButton.classList.add('registerButton') // Le doy ESTILO a mi Boton
     registerButton.type = 'submit'
     var registerText = document.createTextNode('Register')
-    // registerButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    registerButton.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
+    // registerButton.style.marginRight = '10px' = Dar ESPACIADO a la Derecha
     registerButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
     registerButton.appendChild(registerText)
     buttons.appendChild(registerButton)
-
-
 
     registerForm.appendChild(buttons)
 
@@ -248,6 +227,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
 function buildLoginView() { // TODO Implement
 
     var loginView = document.createElement('div')
+    loginView.classList.add('p-x-20px')
 
     //Creamos el Logo
 
@@ -270,11 +250,13 @@ function buildLoginView() { // TODO Implement
     var space1 = document.createElement('br')
 
     var usernameField = document.createElement('div')
+    usernameField.classList.add('flex', 'flex-col', 'gap-10px')
     var usernameLabel = document.createElement('label')
     usernameLabel.htmlFor = 'username'
-    var usernameText = document.createTextNode('Username')
+    var usernameText = document.createTextNode('Username:')
     usernameLabel.appendChild(usernameText)
     var usernameInput = document.createElement('input')
+    usernameInput.classList.add('placeholder')
     usernameInput.type = 'text'
     usernameInput.name = 'username'
     usernameInput.id = 'username'
@@ -283,11 +265,13 @@ function buildLoginView() { // TODO Implement
     usernameField.appendChild(usernameInput)
 
     var passwordField = document.createElement('div')
+    passwordField.classList.add('flex', 'flex-col', 'gap-10px')
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'password'
-    var passwordText = document.createTextNode('Password')
+    var passwordText = document.createTextNode('Password:')
     passwordLabel.appendChild(passwordText)
     var passwordInput = document.createElement('input')
+    passwordInput.classList.add('placeholder')
     passwordInput.type = 'text'
     passwordInput.name = 'password'
     passwordInput.id = 'password'
@@ -302,44 +286,28 @@ function buildLoginView() { // TODO Implement
     registerForm.appendChild(passwordField)
     registerForm.appendChild(space1)
 
-    loginView.appendChild(registerForm)
+    // A continuacion pintamos 1. Link de REGISTER & 2. Boton de LOGIN
 
-    // A continuacion pintamos los BOTONES
-
-    // var registerButton = document.createElement('button')
-    // var registerText = document.createTextNode('Register')
-    // registerButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    // registerButton.style.marginRight = '10px' // Dar ESPACIADO a la Derecha
-    // registerButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
-    // registerButton.appendChild(registerText)
-    // loginView.appendChild(registerButton)
-
-    // var loginButton = document.createElement('button')
-    // var loginText = document.createTextNode('Login')
-    // loginButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
-    // loginButton.style.marginLeft = '10px' // Dar ESPACIADO a la Izquierda
-    // loginButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
-    // loginButton.appendChild(loginText)
-    // loginView.appendChild(loginButton)
-
+    var buttons = document.createElement('div')
+    buttons.classList.add('flex', 'justify-between')
 
     var registerLink = document.createElement('a')
     registerLink.href = '#'
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
-    loginView.appendChild(registerLink)
-
-
-    // var orText = document.createTextNode('   or   ')
-    // loginView.appendChild(orText)
+    buttons.appendChild(registerLink)
 
     var loginButton = document.createElement('button')
+    loginButton.classList.add('loginButton')
     loginButton.type = 'submit'
     var loginText = document.createTextNode('Login')
     loginButton.style.backgroundColor = 'floralwhite' // Dar COLOR al BOTON
     loginButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
     loginButton.appendChild(loginText)
-    loginView.appendChild(loginButton)
+    buttons.appendChild(loginButton)
+
+    registerForm.appendChild(buttons)
+    loginView.appendChild(registerForm)
 
     return loginView
 
@@ -348,6 +316,7 @@ function buildLoginView() { // TODO Implement
 function buildHomeView() {
 
     var homeView = document.createElement('div')
+    homeView.classList.add('p-x-20px')
 
     //Creamos el Logo
 
@@ -381,13 +350,13 @@ var landingView = buildLandingView()
 body.appendChild(landingView)
 
 var registerView = buildRegisterView()
-// body.appendChild(registerView)
+body.appendChild(registerView)
 
 var loginView = buildLoginView()
-// body.appendChild(loginView)
+body.appendChild(loginView)
 
 var homeView = buildHomeView()
-// body.appendChild(homeView)
+body.appendChild(homeView)
 
 // TODO test Login view
 // TODO test Home view

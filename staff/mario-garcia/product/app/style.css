@@ -53,6 +53,17 @@ label {
     font-weight: 200;
 }
 
+.loginButton {
+    color: rgb(26, 23, 113);
+    background-color: floralwhite;
+    font-weight: 200;
+}
+
 .p-x-20px {
     padding: 0 20px;
+}
+
+.placeholder {
+    color: rgb(162, 73, 76);
+    background-color: rgb(205, 225, 251);
 }
