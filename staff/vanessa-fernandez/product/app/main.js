@@ -2,8 +2,10 @@ var body = document.querySelector('body')
 
 function buildLandingView() {
     var landingView = document.createElement('div')
+    landingView.classList.add('p-20-px')
     
     var logoHeading = document.createElement('i')
+    logoHeading.classList.add('block')
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     landingView.appendChild(logoHeading)
@@ -33,6 +35,7 @@ function buildLandingView() {
 
 function buildRegisterView() {
     var registerView = document.createElement('div')
+    registerView.classList.add('p-20px')
 
     var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
@@ -45,11 +48,12 @@ function buildRegisterView() {
     registerView.appendChild(namePageHeading)
 
     var registerForm = document.createElement('form')
+    registerForm.classList.add('flex','flex-col', 'gap-20px')
 
     var nameField = document.createElement('div')
+    nameField.classList.add('flex','flex-col','gap-10px')
     var nameLabel = document.createElement('label')
     nameLabel.htmlFor = 'name'
-    nameLabel.style.marginRight = '8px'
     var nameText = document.createTextNode('Name')
     nameLabel.appendChild(nameText)
     nameField.appendChild(nameLabel)
@@ -62,9 +66,9 @@ function buildRegisterView() {
     registerForm.appendChild(nameField)
 
     var emailField = document.createElement('div')
+    emailField.classList.add('flex','flex-col','gap-10px')
     var emailLabel = document.createElement('label')
     emailLabel.htmlFor = 'email'
-    emailLabel.style.marginRight = '8px'
     var emailText = document.createTextNode('E-mail')
     emailLabel.appendChild(emailText)
     emailField.appendChild(emailLabel)
@@ -77,9 +81,9 @@ function buildRegisterView() {
     registerForm.appendChild(emailField)
 
     var userNameField = document.createElement('div')
+    userNameField.classList.add('flex','flex-col','gap-10px')
     var userNameLabel = document.createElement('label')
     userNameLabel.htmlFor = 'username'
-    userNameLabel.style.marginRight = '8px'
     var userNameText = document.createTextNode('Username')
     userNameLabel.appendChild(userNameText)
     userNameField.appendChild(userNameLabel)
@@ -92,6 +96,7 @@ function buildRegisterView() {
     registerForm.appendChild(userNameField)
 
     var passwordField = document.createElement('div')
+    passwordField.classList.add('flex','flex-col','gap-10px')
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'password'
     passwordLabel.style.marginRight = '8px'
@@ -106,21 +111,23 @@ function buildRegisterView() {
     passwordField.appendChild(passwordInput)
     registerForm.appendChild(passwordField)
 
-    
-
+    var buttons = document.createElement('div')
+    buttons.classList.add('flex','justify-between')
 
     var loginLink = document.createElement('a')
     loginLink.href = '#'
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
-    registerForm.appendChild(loginLink)
+    buttons.appendChild(loginLink)
 
     var buttonSubmitRegister = document.createElement('button')
+    buttonSubmitRegister.classList.add('black-button')
     buttonSubmitRegister.type = 'submit'
-    buttonSubmitRegister.style.marginLeft = '20px'
     var buttonText = document.createTextNode('Register')
     buttonSubmitRegister.appendChild(buttonText)
-    registerForm.appendChild(buttonSubmitRegister)
+    buttons.appendChild(buttonSubmitRegister)
+
+    registerForm.appendChild(buttons)
 
     registerView.appendChild(registerForm)
 
@@ -129,6 +136,7 @@ function buildRegisterView() {
 
 function buildLoginView() {
     var loginView = document.createElement('div')
+    loginView.classList.add('p-20px')
 
     var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
@@ -141,10 +149,12 @@ function buildLoginView() {
     loginView.appendChild(namePageHeading)
 
     var loginForm = document.createElement('form')
+    loginForm.classList.add('flex','flex-col','gap-20px')
+
     var userNameField = document.createElement('div')
+    userNameField.classList.add('flex','flex-col','gap-10px')
     var userNameLabel = document.createElement('label')
     userNameLabel.htmlFor = 'username'
-    userNameLabel.style.marginRight = '8px'
     var userNameText = document.createTextNode('Username')
     userNameLabel.appendChild(userNameText)
     var userNameInput = document.createElement('input')
@@ -157,9 +167,9 @@ function buildLoginView() {
     loginForm.appendChild(userNameField)
 
     var passwordField = document.createElement('div')
+    passwordField.classList.add('flex','flex-col','gap-10px')
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'password'
-    passwordLabel.style.marginRight = '8px'
     var passwordText = document.createTextNode('Password')
     passwordLabel.appendChild(passwordText)
     var passwordInput = document.createElement('input')
@@ -170,19 +180,24 @@ function buildLoginView() {
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
     loginForm.appendChild(passwordField)
+
+    var buttons = document.createElement('div')
+    buttons.classList.add('flex','justify-between')
     
     var registerLink = document.createElement('a')
     registerLink.href = '#'
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
-    loginForm.appendChild(registerLink)
+    buttons.appendChild(registerLink)
     
     var buttonSubmitLogin = document.createElement('button')
+    buttonSubmitLogin.classList.add('black-button')
     buttonSubmitLogin.type = 'submit'
-    buttonSubmitLogin.style.marginLeft = '20px'
     var buttonText = document.createTextNode('Login')
     buttonSubmitLogin.appendChild(buttonText)
-    loginForm.appendChild(buttonSubmitLogin)
+    buttons.appendChild(buttonSubmitLogin)
+
+    loginForm.appendChild(buttons)
     
     loginView.appendChild(loginForm)
 
@@ -191,6 +206,7 @@ function buildLoginView() {
 
 function buildHomeView() {
     var homeView = document.createElement('div')
+    homeView.classList.add('p-20px')
 
     var logoHeading = document.createElement('i')
     var logoText = document.createTextNode('Logo')
@@ -210,15 +226,15 @@ function buildHomeView() {
     return homeView
 }
 
-var landingView = buildLandingView()
-body.appendChild(landingView)
+//var landingView = buildLandingView()
+//body.appendChild(landingView)
 
-var registerView = buildRegisterView()
-body.appendChild(registerView)
+//var registerView = buildRegisterView()
+//body.appendChild(registerView)
 
 // TODO TEST LOGIN VIEW
-var loginView = buildLoginView()
-body.appendChild(loginView);
+//var loginView = buildLoginView()
+//body.appendChild(loginView);
 
 // TODO TEST HOME VIEW
 var homeView = buildHomeView()
