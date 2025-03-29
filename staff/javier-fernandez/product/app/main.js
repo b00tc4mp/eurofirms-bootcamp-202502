@@ -19,6 +19,13 @@ function buildLandingView() {
     var registerText = document.createTextNode("register")
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
+
+    var countClicks = 0 
+    registerLink.addEventListener("click", function (event) {
+        console.log("hola lonk registro", countClicks)
+        body.removeChild(landingView)
+        bosy.appendChild(registerView)
+    })
     
     var orText = document.createTextNode(" or ")
     landingView.appendChild(orText)
@@ -233,14 +240,14 @@ function buildHomeView() {
 
 
 
-var landingView = buildLandingView()
-body.appendChild(landingView)
+// var landingView = buildLandingView()
+// body.appendChild(landingView)
 
-var registerView = buildRegisterView()
-body.appendChild(registerView)
+// var registerView = buildRegisterView()
+// body.appendChild(registerView)
 
-var loginView = buildLoginView()
-body.appendChild(loginView)
+// var loginView = buildLoginView()
+// body.appendChild(loginView)
 
-var homeView = buildHomeView()
-body.appendChild(homeView)
+// var homeView = buildHomeView()
+// body.appendChild(homeView)
