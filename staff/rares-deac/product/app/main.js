@@ -50,6 +50,7 @@ function buildRegisterView() {
     var saltoLinea2 = document.createElement('br');
     nameInput.type = 'text';
     nameInput.name = 'name';
+    nameInput.id = 'name';
     nameField.appendChild(nameLabel);
     nameField.appendChild(saltoLinea);
     nameField.appendChild(saltoLinea2);
@@ -67,6 +68,8 @@ function buildRegisterView() {
     var emailInput = document.createElement('input');
     emailInput.type='email';
     emailInput.name='email';
+    emailInput.id = 'email';
+    emailInput.placeholder = 'your e-mail';
     var saltoLinea3 = document.createElement('br');
     var saltoLinea4 = document.createElement('br');
     var saltoLinea5 = document.createElement('br');
@@ -89,6 +92,7 @@ function buildRegisterView() {
     var usernameInput = document.createElement('input');
     usernameInput.type = 'text';
     usernameInput.name = 'username';
+    usernameInput.id = 'username';
     var saltoLinea6 = document.createElement('br');
     var saltoLinea7 = document.createElement('br');
     var saltoLinea8 = document.createElement('br');
@@ -110,6 +114,7 @@ function buildRegisterView() {
     var passwordInput = document.createElement('input');
     passwordInput.type = 'password';
     passwordInput.name = 'password';
+    passwordInput.id = 'password'
     var saltoLinea6 = document.createElement('br');
     var saltoLinea7 = document.createElement('br');
     var saltoLinea8 = document.createElement('br');
