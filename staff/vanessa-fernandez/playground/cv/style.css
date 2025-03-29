@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Boldonse&display=swap');
+body {
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(255,255,255,0.1) 49px),
+                      repeating-linear-gradient(-90deg, transparent, transparent 48px, rgba(255,255,255,0.1) 49px);
+    background-color: #fef3bd;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  h2, h3 {
+    font-family: Barriecito;
+  }
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: Boldonse;
+}
+
+.image {
+    width: 75px;
+    border-radius: 20px;
+}
+ .main {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 20px
+ }
+
+ .left-container {
+    /*background-color: rgb(90, 230, 223);*/
+    width: 250px;
+    
+ }
+
+ .right-container {
+    max-width: 800px;
+    margin: 0 auto;
+ }
+
+ footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer img {
+    width: 100%;
+    max-width: 100%;
+    height: 150px;
+    display: block;
+  }
+  
