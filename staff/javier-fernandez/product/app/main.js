@@ -6,6 +6,7 @@ function buildLandingView() {
 
     var logo = document.createElement("i")
     var logoText = document.createTextNode("landing page")
+    logo.classList.add("block")
     logo.appendChild(logoText)
     landingView.appendChild(logo)
 
@@ -29,6 +30,7 @@ function buildLandingView() {
 
 function buildRegisterView() {
     var registerView = document.createElement("div")
+    registerView.classList.add("p-x-20px")
 
     var logo = document.createElement("i")
     var logoText = document.createTextNode("Register Page")
@@ -36,8 +38,10 @@ function buildRegisterView() {
     registerView.appendChild(logo)
 
     var registerForm = document.createElement("form")
+    registerForm.classList.add("flex", "flex-col", "gap-5px")
     
     var nameField = document.createElement("div")
+    nameField.classList.add("flex", "flex-col", "gap-5px")
     var nameLabel = document.createElement("label")
     nameLabel.htmlFor = "name"
     var nameText = document.createTextNode("Name")
@@ -54,6 +58,7 @@ function buildRegisterView() {
     var space = document.createElement("br")
 
     var emailField = document.createElement("div")
+    emailField.classList.add("flex","flex-col")
     var emailLabel = document.createElement("label")
     emailLabel.htmlFor = "email"
     var emailText = document.createTextNode("email")
@@ -68,6 +73,7 @@ function buildRegisterView() {
     var space1 = document.createElement("br")
 
     var usernameField = document.createElement("div")
+    usernameField.classList.add("flex", "flex-col", "gap-5px")
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")

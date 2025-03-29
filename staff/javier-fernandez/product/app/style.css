@@ -1,0 +1,61 @@
+* {
+    font-family: Arial, Helvetica,sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+body
+
+h1 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+a :visited {
+    color: black;
+    font-weight: 600;
+}
+
+a {
+    color: red;
+    font-weight: 600;
+}
+
+label {
+    font-weight: 500;
+}
+
+input {
+    border-color: black;
+    color: black;
+}
+
+/* utility classes */
+
+.block {
+    display: block;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between
+}
+
+.gap-5px {
+    gap: 5px;
+}
+
+.p-x-20px {
+    padding: 0 20px;
+}
+
+/* components */
+
+.black-button {
+    color: white;
+    background-color: black;
+    font-weight: 100;
+}
