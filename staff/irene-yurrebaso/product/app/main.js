@@ -5,6 +5,8 @@ var body = document.querySelector('body')
 function buildLandingView() {
     //crear un div para la pagina de landing view
     var landingView = document.createElement('div')
+    //añadir estilo
+    landingView.classList.add('p-20')
 
     //crear el logo: 1. crear etiqueta html, 2. crear texto, 3. poner texto dentro de etiqueta
     var logoHeading = document.createElement('i')
@@ -24,6 +26,8 @@ function buildLandingView() {
     registerLink.href = "#"
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
+    //aplicar estilos
+    registerLink.classList.add('a')
     //ensamblar Register en div landingView
     landingView.appendChild(registerLink)
 

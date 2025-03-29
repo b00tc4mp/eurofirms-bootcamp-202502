@@ -1,0 +1,39 @@
+/* globals */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+a:visited {
+    color: black;
+}
+
+/*utility classes*/
+
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+/* custom */
