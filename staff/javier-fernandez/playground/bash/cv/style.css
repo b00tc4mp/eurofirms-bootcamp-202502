@@ -23,3 +23,13 @@
 .justify-center {
     justify-content: center;
 }
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+.font-boldonse {
+    font-family: Boldonse;
+}
+.font-barrio {
+    font-family: Barrio;
+}
