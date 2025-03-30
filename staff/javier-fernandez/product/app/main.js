@@ -20,13 +20,11 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
-    var countClicks = 0 
-    registerLink.addEventListener("click", function (event) {
-        console.log("hola lonk registro", countClicks)
+    registerLink.addEventListeneer("click", function (event) {
         body.removeChild(landingView)
-        bosy.appendChild(registerView)
+        body.appendChild(registerView)
     })
-    
+
     var orText = document.createTextNode(" or ")
     landingView.appendChild(orText)
 
@@ -36,6 +34,13 @@ function buildLandingView() {
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
 
+  
+    registerLink.addEventListener("click", function (event) {
+        body.removeChild(landingView)
+        bosy.appendChild(registerView)
+    })
+    
+   
     return landingView
 }
 
@@ -48,6 +53,11 @@ function buildRegisterView() {
     logo.appendChild(logoText)
     registerView.appendChild(logo)
 
+    var registerTitle = document.createElement("h1")
+    var registerText = document.createTextNode("Register")
+    registerTitle.appendChild(registerText)
+    registerView.appendChild(registerTitle)
+
     var registerForm = document.createElement("form")
     registerForm.classList.add("flex", "flex-col", "gap-20px")
     
@@ -57,12 +67,14 @@ function buildRegisterView() {
     nameLabel.htmlFor = "name"
     var nameText = document.createTextNode("Name")
     nameLabel.appendChild(nameText)
+    nameField.appendChild(nameLabel)
     var nameInput = document.createElement("input")
     nameInput.type = "text"
+    nameInput.id = "name"
     nameInput.name = "name"
     nameInput.placeholder = "your name"
-    nameField.appendChild(nameLabel)
     nameField.appendChild(nameInput)
+    registerForm.appendChild(nameField)
     
 
     var space = document.createElement("br")
@@ -73,12 +85,14 @@ function buildRegisterView() {
     emailLabel.htmlFor = "email"
     var emailText = document.createTextNode("email")
     emailLabel.appendChild(emailText)
+    emailField.appendChild(emailLabel)
     var emailInput = document.createElement("input")
-    emailInput.type = "text"
+    emailInput.type = "email"
+    emailField.id = "email"
     emailInput.name = "email"
     emailInput.placeholder = "your email"
-    emailField.appendChild(emailLabel)
     emailField.appendChild(emailInput)
+    registerForm.appendChild(emailField)
     
 
     var space1 = document.createElement("br")
@@ -88,13 +102,15 @@ function buildRegisterView() {
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")
+    usernameLabel.appendChild(usernameText)
     usernameField.appendChild(usernameText)
     var usernameInput = document.createElement("input")
     usernameInput.type = "text"
+    usernameInput.id = "username"
     usernameInput.name = "username"
     usernameInput.placeholder = "your username"
-    usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
+    registerForm.appendChild(usernameField)
     
 
     var space2 = document.createElement("br")
@@ -104,13 +120,14 @@ function buildRegisterView() {
     var passwordLabel = document.createElement("label")
     passwordLabel.htmlFor = "password"
     var passwordText = document.createTextNode("password")
-    passwordField.appendChild(passwordText)
+    passwordLabel.appendChild(passwordText)
+    passwordField.appendChild(passwordLabel)
     var passwordInput = document.createElement("input")
     passwordInput.type = "text"
     passwordInput.name = "password"
     passwordInput.placeholder = "your password"
-    passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
+    registerForm.appendChild(passwordField)
     
 
     var space3 = document.createElement("br")
@@ -130,7 +147,39 @@ function buildRegisterView() {
     loginLink.href = "#"
     var loginText = document.createTextNode("login")
     loginLink.appendChild(loginText)
+    buttons.appendChild(loginLink)
 
+    loginLink.addEventListener("click", function (event) {
+        body.removeChild(registerView)
+        body.appendChild(loginLink)
+    })
+
+    var submitButton =document.createElement("button")
+    submitButton.classList.add("black-button")
+    submitButton.type = "submit"
+    var submitText = document.createTextNode("Register")
+    submitButton.appendChild(submitText)
+    buttons.appendChild(buttons)
+
+    registerForm.appendChild(buttons)
+
+    registerForm.addEventListener("submit", function (event) {
+        event.preventDefault()
+
+        const name =nameInput.value
+        const email = emailInput.value
+        const username = usernameInput.value
+        const password = passwordInput.value 
+
+        try {
+            registerUser(name, email, username, password)
+
+            body.removeChild(registerView)
+            body.appendChild(loginView)
+        } catch (error) {
+            alert(error.message)
+        }
+    })
     var space3 = document.createElement("br")
 
     registerView.appendChild(registerForm)
@@ -168,13 +217,15 @@ function buildLoginView() {
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")
-    usernameField.appendChild(usernameText)
+    usernameLabel.appendChild(usernameText)
+    usernameField.appendChild(usernameLabel)
     var usernameInput = document.createElement("Input")
     usernameInput.Text = "text"
+    usernameInput.id = "username"
     usernameInput.name = "username"
     usernameInput.placeholder = "your username"
-    usernameField.appendChild(usernameLabel)
-    usernameField.appendChild(usernameInput)
+    usernameInput.appendChild(usernameInput)
+    usernameField.appendChild(usernameField)
 
     var space2 = document.createElement("br")
 
@@ -183,13 +234,15 @@ function buildLoginView() {
     var passwordLabel = document.createElement("label")
     passwordLabel.htmelFor = "password"
     var passwordText = document.createTextNode("password")
-    passwordField.appendChild(passwordText)
+    passwordLabel.appendChild(passwordText)
+    passwordField.appendChild(passwordLabel)
     var passwordInput = document.createElement("Input")
     passwordInput.Text = "text"
+    passwordInput.id = "password"
     passwordInput.Name = "password"
     passwordInput.placeholder = "your password"
-    passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
+    loginForm.appendChild(passwordField)
 
     registerForm.appendChild(usernameField)
     registerForm.appendChild(space2)
@@ -201,6 +254,11 @@ function buildLoginView() {
     var registerText = document.createTextNode("register")
     registerButton.appendChild(registerText)
     loginView.appendChild(registerButton)
+
+    registerButton.addEventListener("click", function (event) {
+        body.removeChild(loginView)
+        body.appendChild(registerView)
+    })
 
     var loginButton = document.createElement("button")
     var loginText = document.createTextNode("login")
