@@ -13,8 +13,4 @@ var users = [
         username: 'peterpan',
         password: '123123123'
     }
-
 ]
-
-
-

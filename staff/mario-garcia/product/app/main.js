@@ -254,8 +254,8 @@ function buildLoginView() { // TODO Implement
 
     //Creamos los Campos para INTRODUCIR los datos del Usuario
 
-    var registerForm = document.createElement('form')
-    registerForm.classList.add('flex', 'flex-col', 'gap-20px')
+    var loginForm = document.createElement('form')
+    loginForm.classList.add('flex', 'flex-col', 'gap-20px')
 
 
     var usernameField = document.createElement('div')
@@ -290,9 +290,9 @@ function buildLoginView() { // TODO Implement
 
     //A continuación PINTAMOS los CAMPOS en la Pantalla LOGIN = var loginView
 
-    registerForm.appendChild(usernameField)
+    loginForm.appendChild(usernameField)
 
-    registerForm.appendChild(passwordField)
+    loginForm.appendChild(passwordField)
 
 
     //A continuacion pintamos los Link's & Botones
@@ -328,32 +328,29 @@ function buildLoginView() { // TODO Implement
 
     //Montamos la FUNCIONALIDAD del Botón LOGIN
 
+    loginForm.addEventListener('submit', function (event) {
 
+        event.preventDefault()
 
+        const username = usernameInput.value
+        const password = passwordInput.value
 
-    // registerForm.addEventList('submit', function (event) {
+        //La siguiente lógica nos devuelve ERROR si YA ESTÁ REGISTRADO
 
-    //     event.preventDefault()
+        try {
 
-    //     const username = usernameInput.value
-    //     const password = passwordInput.value
+            loginUser(username, password)
 
-    //     //La siguiente lógica nos devuelve ERROR si YA ESTÁ REGISTRADO
+            body.removeChild(loginView)
+            body.appendChild(homeView)
+        }
 
-    //     try {
+        catch (error) { alert(error.message) }
 
-    //         loginUser(username, password)
+    })
 
-    //         body.removeChild(loginView)
-    //         body.appendChild(homeView)
-    //     }
-
-    //     catch (error) { alert(error.message) }
-
-    // })
-
-    registerForm.appendChild(buttons)
-    loginView.appendChild(registerForm)
+    loginForm.appendChild(buttons)
+    loginView.appendChild(loginForm)
 
     return loginView
 
@@ -397,12 +394,12 @@ var landingView = buildLandingView()
 body.appendChild(landingView)
 
 var registerView = buildRegisterView()
-body.appendChild(registerView)
+// body.appendChild(registerView)
 
 var loginView = buildLoginView()
-body.appendChild(loginView)
+// body.appendChild(loginView)
 
-// var homeView = buildHomeView()
+var homeView = buildHomeView()
 // body.appendChild(homeView)
 
 // TODO test Login view
