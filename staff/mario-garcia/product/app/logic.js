@@ -19,7 +19,7 @@ function registerUser(name, email, username, password) {
     if (username.length > 20) throw new Error('Invalid username max. length')
 
     if (typeof password !== 'string')
-        throw new Error('Invalid username type')
+        throw new Error('Invalid password type')
 
     if (password.length < 8) throw new Error('Invalid password min. length')
     if (password.length > 20) throw new Error('Invalid password max. length')
@@ -41,8 +41,29 @@ function registerUser(name, email, username, password) {
         password: password
     }
 
-    users[userslength] = user
+    users[users.length] = user
 
 }
 
-function loginUser(username, password) { }
+
+// function loginUser(username, password) {
+
+//     if (username !== 'string')
+//         throw new Error('Invalid username type')
+
+//     if (username.length < 3) throw new Error('Invalid username min. length')
+//     if (username.length > 20) throw new Error('Invalid username max. length')
+
+//     if (password !== 'string')
+//         throw new Error('Invalid password type')
+
+//     if (password.length < 8) throw new Error('Invalid password min. length')
+//     if (password.length > 20) throw new Error('Invalid password max length')
+
+
+//     for (i = 0; i < users.length; i++) {
+
+//         if (users.username === username) throw new Error('user already exists')
+//     }
+
+// }

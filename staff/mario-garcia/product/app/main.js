@@ -7,7 +7,8 @@ function buildLandingView() {
     //Creamos la SECCIÓN 'div' para la Pantalla LANDING
 
     var landingView = document.createElement('div')
-    landingView.classList.add('p-x-20px')
+    // landingView.classList.add('p-x-20px')
+    landingView.classList.add('p-xy-20px')
 
     // landingView.classList.add('p-x-20px')
 
@@ -26,7 +27,7 @@ function buildLandingView() {
     landingTitle.appendChild(landingText)
     landingView.appendChild(landingTitle)
 
-    //Creamos los Link's de REGISTER & LOGIN
+    //Creamos el Link de REGISTER
 
     var registerLink = document.createElement('a')
     registerLink.href = '#'
@@ -34,7 +35,7 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
-    //Montamos la NAVEGACIÓN del Link 
+    //Montamos la NAVEGACIÓN del Link REGISTER
 
     registerLink.addEventListener('click', function (event) {
         body.removeChild(landingView)
@@ -45,13 +46,15 @@ function buildLandingView() {
     var orText = document.createTextNode('   or   ')
     landingView.appendChild(orText)
 
+    //Creamos el Link de LOGIN
+
     var loginLink = document.createElement('a')
     loginLink.href = '#'
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
 
-    //Montamos la NAVEGACIÓN del Link 
+    //Montamos la NAVEGACIÓN del Link LOGIN
 
     loginLink.addEventListener('click', function (event) {
         body.removeChild(landingView)
@@ -66,7 +69,8 @@ function buildLandingView() {
 function buildRegisterView() { // Pintamos la Pantalla REGISTER
 
     var registerView = document.createElement('div')
-    registerView.classList.add('p-x-20px')
+    // registerView.classList.add('p-y-20px')
+    registerView.classList.add('p-xy-20px')
 
     //Creamos el Logo
 
@@ -177,7 +181,7 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
 
-    //Montamos la NAVEGACIÓN del Link
+    //Montamos la NAVEGACIÓN del Link LOGIN
 
     loginLink.addEventListener('click', function (event) {
         body.removeChild(registerView)
@@ -219,15 +223,20 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
         } catch (error) {
             alert(error.message)
         }
+
+        // console.log(name, email, username, password)
     })
 
     return registerView
 }
 
+
+
 function buildLoginView() { // TODO Implement
 
     var loginView = document.createElement('div')
-    loginView.classList.add('p-x-20px')
+    // loginView.classList.add('p-x-20px')
+    loginView.classList.add('p-xy-20px')
 
     //Creamos el Logo
 
@@ -286,16 +295,27 @@ function buildLoginView() { // TODO Implement
     registerForm.appendChild(passwordField)
 
 
-    // A continuacion pintamos 1. Link de REGISTER & 2. Boton de LOGIN
+    //A continuacion pintamos los Link's & Botones
 
     var buttons = document.createElement('div')
-    buttons.classList.add('flex', 'justify-between')
+    buttons.classList.add('flex', 'justify-between') // Con esto los Link's & Botones se me mostrarán uno a cada lado
+
+    //Montamos el Link de de REGISTER 
 
     var registerLink = document.createElement('a')
     registerLink.href = '#'
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
     buttons.appendChild(registerLink)
+
+    //Montamos la FUNCIONALIDAD del Link de REGISTER
+
+    registerLink.addEventListener('click', function (event) {
+        body.removeChild(loginView)
+        body.appendChild(registerView)
+    })
+
+    //Montamos el Boton de LOGIN
 
     var loginButton = document.createElement('button')
     loginButton.classList.add('loginButton')
@@ -305,6 +325,32 @@ function buildLoginView() { // TODO Implement
     loginButton.style.cursor = 'pointer' // Hacemos que nuestro Boton sea CLICKABLE
     loginButton.appendChild(loginText)
     buttons.appendChild(loginButton)
+
+    //Montamos la FUNCIONALIDAD del Botón LOGIN
+
+
+
+
+    // registerForm.addEventList('submit', function (event) {
+
+    //     event.preventDefault()
+
+    //     const username = usernameInput.value
+    //     const password = passwordInput.value
+
+    //     //La siguiente lógica nos devuelve ERROR si YA ESTÁ REGISTRADO
+
+    //     try {
+
+    //         loginUser(username, password)
+
+    //         body.removeChild(loginView)
+    //         body.appendChild(homeView)
+    //     }
+
+    //     catch (error) { alert(error.message) }
+
+    // })
 
     registerForm.appendChild(buttons)
     loginView.appendChild(registerForm)
@@ -316,7 +362,8 @@ function buildLoginView() { // TODO Implement
 function buildHomeView() {
 
     var homeView = document.createElement('div')
-    homeView.classList.add('p-x-20px')
+    homeView.classList.add('p-xy-20px')
+    // homeView.classList.add('p-x-20px')
 
     //Creamos el Logo
 
@@ -355,8 +402,8 @@ body.appendChild(registerView)
 var loginView = buildLoginView()
 body.appendChild(loginView)
 
-var homeView = buildHomeView()
-body.appendChild(homeView)
+// var homeView = buildHomeView()
+// body.appendChild(homeView)
 
 // TODO test Login view
 // TODO test Home view

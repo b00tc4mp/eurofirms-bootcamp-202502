@@ -71,3 +71,7 @@ label {
     border-style: solid;
     border-color: rgb(97, 39, 120);
 }
+
+.p-xy-20px {
+    padding: 20px 20px;
+}
