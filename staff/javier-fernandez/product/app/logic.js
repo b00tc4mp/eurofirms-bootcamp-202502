@@ -1,4 +1,4 @@
-function registerUser(name, email, useranme, password) {
+function registerUser(name, email, username, password) {
     if (typeof name !== "string") throw new Error("invalid name type")
     if (name.length < 1) throw new Error("invalid name length")
     if (name.length > 30) throw new Error("invalid name max length")
@@ -18,21 +18,24 @@ function registerUser(name, email, useranme, password) {
     if (password.length < 8) throw new Error("invalid password length")
     if (password.length > 20) throw new Error("invalid password max length")
         //TO DO REGISTER USER IN DATABASE
-}
-for (var i = 0; i < users.length; i++) {
-    var user = users[i]
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i]
+    
+        if (user.email === email || user.username === username) throw new Error("user already exists")
+    }
+    var user = {
+        name: name,
+        email: email,
+        username: username,
+        password: password,
+    }
+    
+    user [users.length] = user
 
-    if (user.email === email || user.username === username) throw new Error("user already exists")
 }
 
-var user = {
-    name: name,
-    email: email,
-    username: username,
-    password: password,
-}
 
-user [users.length] = user
+
 
 function loginUser(username, password){
     

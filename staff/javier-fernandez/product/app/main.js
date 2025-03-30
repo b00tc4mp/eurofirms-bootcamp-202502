@@ -20,7 +20,7 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
-    registerLink.addEventListeneer("click", function (event) {
+    registerLink.addEventListener("click", function (event) {
         body.removeChild(landingView)
         body.appendChild(registerView)
     })
@@ -35,9 +35,9 @@ function buildLandingView() {
     landingView.appendChild(loginLink)
 
   
-    registerLink.addEventListener("click", function (event) {
+    loginLink.addEventListener("click", function (event) {
         body.removeChild(landingView)
-        bosy.appendChild(registerView)
+        body.appendChild(loginView)
     })
     
    
@@ -61,6 +61,7 @@ function buildRegisterView() {
     var registerForm = document.createElement("form")
     registerForm.classList.add("flex", "flex-col", "gap-20px")
     
+
     var nameField = document.createElement("div")
     nameField.classList.add("flex", "flex-col", "gap-10px")
     var nameLabel = document.createElement("label")
@@ -141,7 +142,7 @@ function buildRegisterView() {
     registerForm.appendChild(passwordField)
 
     var buttons = document.createElement("div")
-    buttons.classList.add("flex", "justify-between")
+    buttons.classList.add("flex", "justify-between", "m-t-20px")
 
     var loginLink = document.createElement("a")
     loginLink.href = "#"
@@ -151,7 +152,7 @@ function buildRegisterView() {
 
     loginLink.addEventListener("click", function (event) {
         body.removeChild(registerView)
-        body.appendChild(loginLink)
+        body.appendChild(loginView)
     })
 
     var submitButton =document.createElement("button")
@@ -159,7 +160,7 @@ function buildRegisterView() {
     submitButton.type = "submit"
     var submitText = document.createTextNode("Register")
     submitButton.appendChild(submitText)
-    buttons.appendChild(buttons)
+    buttons.appendChild(submitButton)
 
     registerForm.appendChild(buttons)
 
@@ -180,22 +181,11 @@ function buildRegisterView() {
             alert(error.message)
         }
     })
-    var space3 = document.createElement("br")
+    
 
     registerView.appendChild(registerForm)
     
-    registerView.appendChild(space3)
-    var registerButton = document.createElement("button")
-    registerButton.classList.add("black-button")
-    var registerText = document.createTextNode("register")
-    registerButton.appendChild(registerText)
-    registerView.appendChild(registerButton)
-
-
-    var loginButton = document.createElement("button")
-    var loginText = document.createTextNode("login")
-    loginButton.appendChild(loginText)
-    registerView.appendChild(loginButton)
+   
 
     return registerView
 
@@ -209,7 +199,7 @@ function buildLoginView() {
     logo.appendChild(logoText)
     loginView.appendChild(logo)
 
-    var registerForm = document.createElement("form")
+    var loginForm = document.createElement("form")
     var space = document.createAttribute("br")
 
     var usernameField = document.createElement("div")
@@ -224,8 +214,7 @@ function buildLoginView() {
     usernameInput.id = "username"
     usernameInput.name = "username"
     usernameInput.placeholder = "your username"
-    usernameInput.appendChild(usernameInput)
-    usernameField.appendChild(usernameField)
+    usernameField.appendChild(usernameInput)
 
     var space2 = document.createElement("br")
 
@@ -244,11 +233,11 @@ function buildLoginView() {
     passwordField.appendChild(passwordInput)
     loginForm.appendChild(passwordField)
 
-    registerForm.appendChild(usernameField)
-    registerForm.appendChild(space2)
-    registerForm.appendChild(passwordField)
+    loginForm.appendChild(usernameField)
+    loginForm.appendChild(space2)
+    loginForm.appendChild(passwordField)
 
-    loginView.appendChild(registerForm)
+    loginView.appendChild(loginForm)
 
     var registerButton = document.createElement("button")
     var registerText = document.createTextNode("register")
@@ -298,14 +287,14 @@ function buildHomeView() {
 
 
 
-// var landingView = buildLandingView()
+var landingView = buildLandingView()
 // body.appendChild(landingView)
 
-// var registerView = buildRegisterView()
-// body.appendChild(registerView)
+ var registerView = buildRegisterView()
+body.appendChild(registerView)
 
-// var loginView = buildLoginView()
+ var loginView = buildLoginView()
 // body.appendChild(loginView)
 
-// var homeView = buildHomeView()
+var homeView = buildHomeView()
 // body.appendChild(homeView)
