@@ -25,6 +25,10 @@ label {
     font-weight: 500;
 }
 
+.buttom {
+    border-radius: 5px;
+}
+
 input {
     border-color: black;
     color: black;
@@ -59,7 +63,7 @@ input {
 /* components */
 
 .black-button {
-    color: white;
-    background-color: black;
+    color: rgb(233, 227, 227);
+    background-color: rgb(8, 8, 8);
     font-weight: 100;
 }
