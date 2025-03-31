@@ -1,294 +1,315 @@
-var body = document.querySelector('body')
+var body = document.querySelector("body");
 
 function buildLandingView() {
-    var landingView = document.createElement('div');
+  var landingView = document.createElement("div");
 
-    var logoHeading = document.createElement('h1');
-    var logoText = document.createTextNode('Logo');
-    logoHeading.appendChild(logoText);
-    landingView.appendChild(logoHeading);
+  var logoHeading = document.createElement("h1");
+  var logoText = document.createTextNode("Logo");
+  logoHeading.classList.add("block");
+  logoHeading.appendChild(logoText);
+  landingView.appendChild(logoHeading);
 
-    var registerLink = document.createElement('a');
-    registerLink.href = '#';
-    var registerText = document.createTextNode('Register');
-    registerLink.appendChild(registerText);
-    landingView.appendChild(registerLink);
+  var registerLink = document.createElement("a");
+  registerLink.href = "#";
+  var registerText = document.createTextNode("Register");
+  registerLink.appendChild(registerText);
+  landingView.appendChild(registerLink);
 
-    var orText = document.createTextNode(' or ');
-    landingView.appendChild(orText);
+  var orText = document.createTextNode(" or ");
+  landingView.appendChild(orText);
 
-    var loginLink = document.createElement('a');
-    loginLink.href= '#';
-    var loginText = document.createTextNode('Login');
-    loginLink.appendChild(loginText);
-    landingView.appendChild(loginLink);
+  var loginLink = document.createElement("a");
+  loginLink.href = "#";
+  var loginText = document.createTextNode("Login");
+  loginLink.appendChild(loginText);
+  landingView.appendChild(loginLink);
 
-    return landingView;
+  return landingView;
 }
 
 function buildRegisterView() {
-    var registerView = document.createElement('div');
+  var registerView = document.createElement("div");
 
+  var logo = document.createElement("i");
+  var logoText = document.createTextNode("Logo");
+  logo.classList.add("bold");
+  logo.appendChild(logoText);
+  registerView.appendChild(logo);
 
+  var registerTitle = document.createElement("h1");
+  registerTitle.classList.add("bold");
+  var registerTitleText = document.createTextNode("Register");
+  registerTitle.appendChild(registerTitleText);
+  registerView.appendChild(registerTitle);
 
-    var logoHeading = document.createElement('h1');
-    var logoText = document.createTextNode('Logo');
-    logoHeading.appendChild(logoText);
-    registerView.appendChild(logoHeading);
+  var registerForm = document.createElement("form");
+  registerForm.classList.add("flex", "flex-col", "gap-20px");
+  //Campo Name
 
-    var registerForm = document.createElement('form');
+  var nameField = document.createElement("div");
+  nameField.classList.add("flex", "flex-col", "gap-10px");
+  var nameLabel = document.createElement("label");
+  nameLabel.htmlFor = "name";
+  var nameText = document.createTextNode("Name");
+  nameLabel.appendChild(nameText);
+  var nameInput = document.createElement("input");
+  nameInput.type = "text";
+  nameInput.name = "name";
+  nameInput.id = "name";
+  nameInput.placeholder = "your name";
+  nameField.appendChild(nameLabel);
+  nameField.appendChild(nameInput);
+  registerForm.appendChild(nameField);
 
-    //Campo Name
+  //Campo E-mail
 
-    var nameField = document.createElement('div');
-    var nameLabel = document.createElement('label');
-    nameLabel.htmlFor = 'name';
-    var nameText = document.createTextNode('Name');
-    nameLabel.appendChild(nameText);
-    var nameInput = document.createElement('input');
-    var saltoLinea = document.createElement('br');
-    var saltoLinea2 = document.createElement('br');
-    nameInput.type = 'text';
-    nameInput.name = 'name';
-    nameInput.id = 'name';
-    nameField.appendChild(nameLabel);
-    nameField.appendChild(saltoLinea);
-    nameField.appendChild(saltoLinea2);
-    nameField.appendChild(nameInput);
-    registerForm.appendChild(nameField);
+  var emailField = document.createElement("div");
+  emailField.classList.add("flex", "flex-col", "gap-10px");
+  var emailLabel = document.createElement("label");
+  emailLabel.htmlFor = "email";
+  var emailText = document.createTextNode("E-mail");
+  emailLabel.appendChild(emailText);
 
-    //Campo E-mail
+  var emailInput = document.createElement("input");
+  emailInput.type = "email";
+  emailInput.name = "email";
+  emailInput.id = "email";
+  emailInput.placeholder = "your e-mail";
 
-    var emailField = document.createElement('div');
-    var emailLabel = document.createElement('label');
-    emailLabel.htmlFor = 'email';
-    var emailText = document.createTextNode('E-mail');
-    emailLabel.appendChild(emailText);
+  emailField.appendChild(emailLabel);
+  emailField.appendChild(emailInput);
+  registerForm.appendChild(emailField);
 
-    var emailInput = document.createElement('input');
-    emailInput.type='email';
-    emailInput.name='email';
-    emailInput.id = 'email';
-    emailInput.placeholder = 'your e-mail';
-    var saltoLinea3 = document.createElement('br');
-    var saltoLinea4 = document.createElement('br');
-    var saltoLinea5 = document.createElement('br');
+  //Campo Username
 
-    emailField.appendChild(saltoLinea3);
-    emailField.appendChild(emailLabel);
-    emailField.appendChild(saltoLinea4);
-    emailField.appendChild(saltoLinea5);
-    emailField.appendChild(emailInput);
-    registerForm.appendChild(emailField);
+  var usernameField = document.createElement("div");
+  usernameField.classList.add("flex", "flex-col", "gap-10px");
+  var usernameLabel = document.createElement("label");
+  usernameLabel.htmlFor = "username";
+  var usernameText = document.createTextNode("Username");
+  usernameLabel.appendChild(usernameText);
+  var usernameInput = document.createElement("input");
+  usernameInput.type = "text";
+  usernameInput.name = "username";
+  usernameInput.id = "username";
+  usernameInput.placeholder = "your username";
 
+  usernameField.appendChild(usernameLabel);
+  usernameField.appendChild(usernameInput);
+  registerForm.appendChild(usernameField);
 
-    //Campo Username
+  // campo Password
 
-    var usernameField = document.createElement('div');
-    var usernameLabel = document.createElement('label');
-    usernameLabel.htmlFor = ('username');
-    var usernameText = document.createTextNode('Username');
-    usernameLabel.appendChild(usernameText);
-    var usernameInput = document.createElement('input');
-    usernameInput.type = 'text';
-    usernameInput.name = 'username';
-    usernameInput.id = 'username';
-    var saltoLinea6 = document.createElement('br');
-    var saltoLinea7 = document.createElement('br');
-    var saltoLinea8 = document.createElement('br');
-    
-    usernameField.appendChild(saltoLinea6);
-    usernameField.appendChild(usernameLabel);
-    usernameField.appendChild(saltoLinea7);
-    usernameField.appendChild(saltoLinea8);
-    usernameField.appendChild(usernameInput);
-    registerForm.appendChild(usernameField);
+  var passwordField = document.createElement("div");
+  passwordField.classList.add("flex", "flex-col", "gap-10px");
+  var passwordLabel = document.createElement("label");
+  passwordLabel.htmlFor = "password";
+  var passwordText = document.createTextNode("Password");
+  passwordLabel.appendChild(passwordText);
+  var passwordInput = document.createElement("input");
+  passwordInput.type = "password";
+  passwordInput.name = "password";
+  passwordInput.id = "password";
+  passwordInput.placeholder = "your password";
 
-    // campo Password
+  passwordField.appendChild(passwordLabel);
+  passwordField.appendChild(passwordInput);
+  registerForm.appendChild(passwordField);
 
-    var passwordField = document.createElement('div');
-    var passwordLabel = document.createElement('label');
-    passwordLabel.htmlFor = 'password';
-    var passwordText = document.createTextNode('Password');
-    passwordLabel.appendChild(passwordText);
-    var passwordInput = document.createElement('input');
-    passwordInput.type = 'password';
-    passwordInput.name = 'password';
-    passwordInput.id = 'password'
-    var saltoLinea6 = document.createElement('br');
-    var saltoLinea7 = document.createElement('br');
-    var saltoLinea8 = document.createElement('br');
+  //div de botones y login
 
-    passwordField.appendChild(saltoLinea8);
-    passwordField.appendChild(passwordLabel);
-    passwordField.appendChild(saltoLinea6);//Preguntar porque se pueden repetir saltoLinea en el campo password y en el campo Username
-    passwordField.appendChild(saltoLinea7);//Preguntar porque se pueden repetir saltoLinea en el campo password y en el campo Username
-    passwordField.appendChild(passwordInput);
+  var buttons = document.createElement("div");
+  buttons.classList.add("flex", "justify-between");
+  // Login
 
-    registerForm.appendChild(passwordField);
+  var loginLink = document.createElement("a");
+  loginLink.href = "#";
+  var loginText = document.createTextNode("Login");
+  loginLink.appendChild(loginText);
+  buttons.appendChild(loginLink);
 
+  loginLink.addEventListener("click", function (event) {
+    body.removeChild(registerView);
+    body.appendChild(loginView);
+  });
 
-    // Login
+  //boton registro
 
-    var loginLink = document.createElement('a');
-    loginLink.href = '#';
-    var loginText = document.createTextNode('Login');
-    var saltolinea10 = document.createElement('br');
-    loginLink.appendChild(saltolinea10);
-    loginLink.appendChild(loginText);
-    registerForm.appendChild(loginLink)
+  var submitButton = document.createElement("button");
+  submitButton.classList.add("black-button");
+  submitButton.type = "submit";
+  var submitText = document.createTextNode("Register");
+  submitButton.appendChild(submitText);
+  buttons.appendChild(submitButton);
 
+  registerForm.appendChild(buttons);
 
-    //Espacio entre login y Register
+  registerForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    var spaceText = document.createTextNode('\t');
-        registerForm.appendChild(spaceText);
+    const name = nameInput.value;
+    const email = emailInput.value;
+    const username = usernameInput.value;
+    const password = passwordInput.value;
 
-    //boton registro
-    
-    var registerButton = document.createElement('input');
-        registerButton.type='submit';
-        registerButton.value = 'Register';
-        registerForm.appendChild(registerButton) 
+    try {
+      registerUser(name, email, username, password);
 
+      body.removeChild(registerView);
+      body.appendChild(loginView);
+    } catch (error) {
+      alert(error.message);
+    }
+  });
 
+  // TODO finish register view
 
-    // TODO finish register view
+  registerView.appendChild(registerForm);
 
-    registerView.appendChild(registerForm)
-    
-
-    return registerView;
+  return registerView;
 }
 
-function buildLoginView(){
-    var buildLoginView = document.createElement('div');
+function buildLoginView() {
+  var buildLoginView = document.createElement("div");
 
-    //Logo
+  //Logo
 
-    var logoHeading = document.createElement('h1');
-    var logoText = document.createTextNode('Logo');
-    logoHeading.appendChild(logoText);
-    buildLoginView.appendChild(logoHeading);
+  var logoHeading = document.createElement("i");
+  logoHeading.classList.add("bold");
+  var logoText = document.createTextNode("Logo");
+  logoHeading.appendChild(logoText);
+  buildLoginView.appendChild(logoHeading);
 
-    // register Form
+  //Login Title
 
-    var registerForm = document.createElement('form');
+  var loginTitle = document.createElement("h1");
+  loginTitle.classList.add("bold");
+  var loginTitleText = document.createTextNode("Login");
+  loginTitle.appendChild(loginTitleText);
+  buildLoginView.appendChild(loginTitle);
 
-    //Campo Nombre
-    var usernameField = document.createElement('div');
-    var usernameLabel = document.createElement('label');
-    usernameLabel.htmlFor = 'username';
-    var usernameText = document.createTextNode('Username');
-        usernameLabel.appendChild(usernameText);
-    var usernameInput = document.createElement('input');
-        usernameInput.type = 'text';
-        usernameInput.name = 'username';
-    var saltoLinea1 = document.createElement('br');
-    var saltoLinea2 = document.createElement('br');
+  // register Form
 
-    usernameField.appendChild(usernameLabel);
-    usernameField.appendChild(saltoLinea1);
-    usernameField.appendChild(saltoLinea2);
-    usernameField.appendChild(usernameInput);
+  var registerForm = document.createElement("form");
+  registerForm.classList.add("flex", "flex-col", "gap-20px");
 
-    registerForm.appendChild(usernameField);
+  //Campo Nombre
+  var usernameField = document.createElement("div");
+  usernameField.classList.add("flex", "flex-col", "gap-10px");
+  var usernameLabel = document.createElement("label");
+  usernameLabel.htmlFor = "username";
+  var usernameText = document.createTextNode("Username");
+  usernameLabel.appendChild(usernameText);
+  var usernameInput = document.createElement("input");
+  usernameInput.type = "text";
+  usernameInput.name = "username";
+  usernameInput.placeholder = "nombre de usuario";
+  usernameField.appendChild(usernameLabel);
+  usernameField.appendChild(usernameInput);
+  registerForm.appendChild(usernameField);
 
+  //Campo Password
 
-    //Campo Password
+  var passwordField = document.createElement("div");
+  passwordField.classList.add("flex", "flex-col", "gap-10px");
+  var passwordLabel = document.createElement("label");
+  passwordLabel.htmlFor = "password";
+  var passwordText = document.createTextNode("Password");
+  passwordLabel.appendChild(passwordText);
+  var passwordInput = document.createElement("Input");
+  passwordInput.type = "password";
+  passwordInput.name = "password";
+  passwordInput.placeholder = "your password";
 
-    var passwordField = document.createElement('div');
-    var passwordLabel = document.createElement('label');
-    passwordLabel.htmlFor = 'password';
-    var passwordText = document.createTextNode('Password');
-    passwordLabel.appendChild(passwordText);
-    var passwordInput = document.createElement('Input');
-    passwordInput.type = 'password';
-    passwordInput.name = 'password';
-    var saltolinea3 = document.createElement('br');
-    var saltolinea4 = document.createElement('br');
-    var saltolinea5 = document.createElement('br');
+  passwordField.appendChild(passwordLabel);
+  passwordField.appendChild(passwordInput);
+  registerForm.appendChild(passwordField);
 
-    passwordField.appendChild(saltolinea3);
-    passwordField.appendChild(passwordLabel);
-    passwordField.appendChild(saltolinea4);
-    passwordField.appendChild(saltolinea5);
-    passwordField.appendChild(passwordInput);
+  //Contenedor registro y botones
 
-    registerForm.appendChild(passwordField);
+  var containerRegisterLogin = document.createElement("div");
+  containerRegisterLogin.classList.add("flex", "justify-between");
 
-    //Register Link
+  //Register Link
 
-    var registerLink = document.createElement('a');
-    registerLink.href = '#';
-    var registerText = document.createTextNode('Register');
-    registerLink.appendChild(registerText);
-    var saltolinea6 = document.createElement('br');
-    var saltolinea7 = document.createElement('br');
+  var registerLink = document.createElement("a");
+  registerLink.href = "#";
+  var registerText = document.createTextNode("Register");
+  registerLink.appendChild(registerText);
+  containerRegisterLogin.appendChild(registerLink);
 
-    registerForm.appendChild(saltolinea6);
-    registerForm.appendChild(saltolinea7);
-    registerForm.appendChild(registerLink);
+  registerLink.addEventListener("click", function (event) {
+    body.removeChild(loginView);
+    body.appendChild(registerView);
+  });
 
+  //Boton Login
 
-    //espacio entre Register y Login
+  var loginButton = document.createElement("button");
+  loginButton.type = "submit";
+  loginButton.classList.add("black-button");
+  var loginButtonText = document.createTextNode("Login");
+  loginButton.appendChild(loginButtonText);
 
-    var separation = document.createTextNode('\t');// porque si añado mas \t no se añaden mas tabulaciones?
-        registerForm.appendChild(separation);
+  loginButton.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    //Boton Login
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    var status = false;
 
-    var loginButton = document.createElement('input');
-    loginButton.type = 'submit';
-    loginButton.value = 'Login';
-    registerForm.appendChild(loginButton);
+    try {
+      loginUser(username, password, status);
 
+      if (status === true) {
+        body.removeChild(loginView);
+        body.appendChild(homeView);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+  containerRegisterLogin.appendChild(loginButton);
 
-    buildLoginView.appendChild(registerForm);
-    
+  registerForm.appendChild(containerRegisterLogin);
 
+  buildLoginView.appendChild(registerForm);
 
-    return buildLoginView;
+  return buildLoginView;
 }
 
+function buildHomeView() {
+  var buildHomeView = document.createElement("div");
 
-function buildHomeView(){
-    
-    var buildHomeView = document.createElement('div');
+  //Create Logo
 
-    //Create Logo
+  var logoHeading = document.createElement("h1");
+  var logoText = document.createTextNode("Logo");
+  logoHeading.appendChild(logoText);
 
-    var logoHeading = document.createElement('h1');
-    var logoText = document.createTextNode('Logo');
-    logoHeading.appendChild(logoText);
+  buildHomeView.appendChild(logoHeading);
 
-    buildHomeView.appendChild(logoHeading)
+  //Create Hello message
 
-    //Create Hello message
+  var helloMessage = document.createElement("div");
+  var helloMessageText = document.createTextNode("Hello, Home!");
+  helloMessage.appendChild(helloMessageText);
 
-    var helloMessage = document.createElement('div');
-    var helloMessageText = document.createTextNode('Hello, Home!');
-        helloMessage.appendChild(helloMessageText);
+  buildHomeView.appendChild(helloMessage);
 
-        buildHomeView.appendChild(helloMessage);
+  return buildHomeView;
 
-    return buildHomeView;
-
-
-    //TODO Home view
+  //TODO Home view
 }
 
-
-
-// var landingView = buildLandingView();
+var landingView = buildLandingView();
 // body.appendChild(landingView);
 
-// var registerView = buildRegisterView();
+var registerView = buildRegisterView();
 // body.appendChild(registerView);
 
-// var buildLoginView = buildLoginView();
-// body.appendChild(buildLoginView);
+var loginView = buildLoginView();
+body.appendChild(loginView);
 
-var buildHomeView = buildHomeView();
-body.appendChild(buildHomeView);
-
+var homeView = buildHomeView();
+// body.appendChild(homeView);
