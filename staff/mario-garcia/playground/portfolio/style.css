@@ -1,0 +1,53 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Utility classes */
+
+.r-10px {
+    border-radius: 10px;
+}
+
+.r-50px {
+    border-radius: 50px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.flex {
+    display: flex
+}
+
+.justify-cont {
+    justify-content: space-evenly;
+}
+
+.w-200px {
+    width: 200px;
+}
+
+.panel-left {
+    background-color: rgb(230, 211, 206);
+    padding: 0 10px;
+}
+
+.panel-right {
+    background-color: rgb(249, 212, 201);
+    padding: 0 10px;
+}
+
+h1 {
+    background-color: rgb(197, 198, 200);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 60px 10px;
+    border-radius: 40px;
+}
+
+h2 {
+    background-color: rgb(236, 188, 178);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    border-radius: 10px;
+}
