@@ -6,10 +6,12 @@ function buildLandingView() {
     //crear un div para la pagina de landing view
     var landingView = document.createElement('div')
     //añadir estilo
-    landingView.classList.add('p-20')
+    landingView.classList.add('p-20px')
 
     //crear el logo: 1. crear etiqueta html, 2. crear texto, 3. poner texto dentro de etiqueta
     var logoHeading = document.createElement('i')
+    //le añado una clase para que se visualice <i> como bloque
+    logoHeading.classList.add('block')
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     //ensamblar logoHeading dentro de landingView
@@ -48,6 +50,8 @@ function buildLandingView() {
 
 function buildRegisterView() {
     var registerView = document.createElement('div')
+    //anadir estilo
+    registerView.classList.add('p-20px')
 
     //logo
     var logoHeading = document.createElement('i')
@@ -63,6 +67,8 @@ function buildRegisterView() {
 
     //crear formulario
     var registerForm = document.createElement('form')
+    //hacemos que el formulario sea flex, columna y separacion de los diferentes fields (contenidos en div)
+    registerForm.classList.add('flex', 'flex-col', 'gap-20px')
 
     //label & input para name
     //crear Label y añadirle for attribute y su texto
@@ -79,7 +85,9 @@ function buildRegisterView() {
     var nameField = document.createElement('div')
     nameField.appendChild(nameLabel)
     nameField.appendChild(nameInput)
-    //ensamblar pareja en formulario
+    //añadir clase al div
+    nameField.classList.add('flex', 'flex-col', 'gap-10px')
+    //ensamblar div en formulario
     registerForm.appendChild(nameField)
 
     //label & input para e-mail
@@ -94,6 +102,7 @@ function buildRegisterView() {
     var emailField = document.createElement('div')
     emailField.appendChild(emailLabel)
     emailField.appendChild(emailInput)
+    emailField.classList.add('flex', 'flex-col', 'gap-10px')
     registerForm.appendChild(emailField)
 
     //label & input para username
@@ -108,6 +117,7 @@ function buildRegisterView() {
     var usernameField = document.createElement('div')
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
+    usernameField.classList.add('flex', 'flex-col', 'gap-10px')
     registerForm.appendChild(usernameField)
 
     //label & input para password
@@ -122,21 +132,30 @@ function buildRegisterView() {
     var passwordField = document.createElement('div')
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
+    passwordField.classList.add('flex', 'flex-col', 'gap-10px')
     registerForm.appendChild(passwordField)
 
-    //register button
-    var button = document.createElement('button')
-    var buttonText = document.createTextNode('Register')
-    button.appendChild(buttonText)
-    button.type = 'submit'
-    registerForm.appendChild(button)
+    //crear div para button y link y aplicar estilo para mostrar en fila
+    var buttons = document.createElement('div')
+    buttons.classList.add('flex', 'justify-between')
 
     //login link
     var loginLink = document.createElement('a')
     loginLink.href = '#'
     var loginLinkText = document.createTextNode('Login')
     loginLink.appendChild(loginLinkText)
-    registerForm.appendChild(loginLink)
+    buttons.appendChild(loginLink)
+
+    //register button
+    var button = document.createElement('button')
+    button.classList.add('black-button')
+    var buttonText = document.createTextNode('Register')
+    button.appendChild(buttonText)
+    button.type = 'submit'
+    buttons.appendChild(button)
+
+    //ensamblar buttons (div) en formulario (form)
+    registerForm.appendChild(buttons)
 
     //ensamblar formulario en div registerView
     registerView.appendChild(registerForm)
@@ -146,6 +165,7 @@ function buildRegisterView() {
 
 function buildLoginView() {
     var loginView = document.createElement('div')
+    loginView.classList.add('p-20px')
 
     //logo
     var logoHeading = document.createElement('i')
@@ -161,6 +181,7 @@ function buildLoginView() {
 
     //crear formulario
     var loginForm = document.createElement('form')
+    loginForm.classList.add('flex', 'flex-col', 'gap-20px')
 
     //label & input para username
     var usernameLabel = document.createElement('label')
@@ -171,6 +192,7 @@ function buildLoginView() {
     usernameInput.type = 'text'
     usernameInput.name = 'username'
     var usernameField = document.createElement('div')
+    usernameField.classList.add('flex', 'flex-col', 'gap-10px')
     usernameField.appendChild(usernameLabel)
     usernameField.appendChild(usernameInput)
     loginForm.appendChild(usernameField)
@@ -184,23 +206,33 @@ function buildLoginView() {
     passwordInput.type = 'text'
     passwordInput.name = 'password'
     var passwordField = document.createElement('div')
+    passwordField.classList.add('flex', 'flex-col', 'gap-10px')
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
     loginForm.appendChild(passwordField)
 
-    //login button
-    var button = document.createElement('button')
-    var buttonText = document.createTextNode('Login')
-    button.appendChild(buttonText)
-    button.type = 'submit'
-    loginForm.appendChild(button)
+    //crear div para poner botones en fila usando flex
+    var buttons = document.createElement('div')
+    buttons.classList.add('flex', 'justify-between')
 
     //register link
     var registerLink = document.createElement('a')
     registerLink.href = '#'
     var registerLinkText = document.createTextNode('Register')
     registerLink.appendChild(registerLinkText)
-    loginForm.appendChild(registerLink)
+    buttons.appendChild(registerLink)
+
+    //login button
+    var button = document.createElement('button')
+    //aplicar estilos al boton
+    button.classList.add('black-button')
+    var buttonText = document.createTextNode('Login')
+    button.appendChild(buttonText)
+    button.type = 'submit'
+    buttons.appendChild(button)
+
+    //ensamblar buttons div en el formulario
+    loginForm.appendChild(buttons)
 
     //ensamblar formulario en div loginView
     loginView.appendChild(loginForm)
@@ -210,6 +242,7 @@ function buildLoginView() {
 
 function buildHomeView() {
     var homeView = document.createElement('div')
+    homeView.classList.add('p-20px')
 
     //logo
     var logoHeading = document.createElement('i')
@@ -225,6 +258,7 @@ function buildHomeView() {
 
     //hello home
     var headingHome = document.createElement('h2')
+    headingHome.classList.add('flex', 'justify-center', 'bold', 'p-20px')
     var headingHomeText = document.createTextNode('Hello, Home!')
     headingHome.appendChild(headingHomeText)
     homeView.appendChild(headingHome)
@@ -234,8 +268,8 @@ function buildHomeView() {
 
 //llamar a la funcion y ensamblar los div contenedores de cada xView dentro de body
 
-var landingView = buildLandingView()
-body.appendChild(landingView)
+//var landingView = buildLandingView()
+//body.appendChild(landingView)
 
 //var registerView = buildRegisterView()
 //body.appendChild(registerView)
@@ -243,6 +277,6 @@ body.appendChild(landingView)
 //var loginView = buildLoginView()
 //body.appendChild(loginView)
 
-//var homeView = buildHomeView()
-//body.appendChild(homeView)
+var homeView = buildHomeView()
+body.appendChild(homeView)
 

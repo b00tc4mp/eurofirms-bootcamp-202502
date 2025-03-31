@@ -14,8 +14,22 @@ h1 {
     font-weight: 700;
 }
 
+a {
+    color: black;
+    font-weight: 500;
+}
+
 a:visited {
     color: black;
+}
+
+label {
+    font-weight: 500;
+}
+
+input {
+    border-color: black;
+    padding: 5px;
 }
 
 /*utility classes*/
@@ -32,8 +46,34 @@ a:visited {
     flex-direction: column;
 }
 
-.p-20 {
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.p-20px {
     padding: 20px;
 }
 
+.gap-10px {
+    gap: 10px;
+}
+
+.gap-20px {
+    gap: 20px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
 /* custom */
+
+.black-button {
+    background-color: black;
+    color: white;
+    padding: 10px 25px;
+}
