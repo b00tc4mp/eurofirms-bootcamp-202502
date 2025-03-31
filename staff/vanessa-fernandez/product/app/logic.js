@@ -51,12 +51,12 @@ function loginUser(username, password) {
     for(var i = 0; i< users.length; i++) {
         
         var user = users[i]
-        
+        if(user.username === username && user.password !== password) throw new Error ('Invalid password.')
         if(user.username === username && user.password === password) {
            return
         }
     }
 
-    throw new Error ('Invalid username or password.')
+    throw new Error ('Invalid password.')
 
 }
