@@ -5,56 +5,99 @@
     color: black;
 }
 
-body {
-    
-}
-
 .photo {
     border-radius: 50px;
     border: black solid 5px;
-    
+    width: 250px;
 }
 
-h1 { 
-    font-family: 'Barriecito';
-    font-weight: 400;
-    color: #FED90F;
-    background-color: black;
-    text-align: center;
-    border-radius: 40px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.h1 { 
+   text-align: center;
 }
 
-h2 {
-    font-family: 'Knewave';
-    font-weight: 400;
+.h2 {
     font-size: 1.75em;
 }
 
-h3 {
-    font-family: 'Chewy';
-    font-weight: 400;
-}
-
-main {
-    display: flex;
-   
+.h3 {
+    margin-bottom: 10px;
 }
 
 .left-side {
     background-color: #71d0f599;
-    padding: 1.2em;
+    padding: 1.2em 3.75em;
     border-radius: 40px 0 0 40px;
 }
 
 .right-side {
     background-color: #fed43999;
-    padding: 1.2em;
+    padding: 1.2em 3.75em;
     border-radius: 0 40px 40px 0;
 }
 
 section {
-    border-bottom: black dotted 5px;
+    border-bottom: #1a9993ff dotted 5px;
     padding-bottom: 20px;
 }
+
+section div {
+    margin-bottom: 30px;
+}
+
+/* Utility classes */
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.m-y-20 {
+    margin: 20px 0;
+}
+.p-y-20px {
+    padding: 15px 0;
+}
+
+.font-500 {
+    font-weight: 500;
+}
+
+.font-400 {
+    font-weight: 400;
+}
+
+.font-barriecito {
+    font-family: 'Barriecito';
+}
+
+.font-knewave {
+    font-family: 'Knewave';
+}
+
+.font-chewy {
+    font-family: 'Chewy';
+}
+
+.radius-40px {
+    border-radius: 40px;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.font-yellow {
+    color: #FED90F;
+}
+
