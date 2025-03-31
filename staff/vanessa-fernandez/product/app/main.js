@@ -142,6 +142,25 @@ function buildRegisterView() {
     buttonSubmitRegister.appendChild(buttonText)
     buttons.appendChild(buttonSubmitRegister)
 
+    registerForm.addEventListener('submit', function (event) {
+        event.preventDefault()
+
+        const name = nameInput.value
+        const email = emailInput.value
+        const username = userNameInput.value
+        const password = passwordInput.value
+
+        try {
+            registerUser(name, email, username, password)
+
+            body.removeChild(registerView)
+            body.appendChile(loginView)
+
+        } catch (error) {
+            alert(error.message)
+        }
+    })
+
     registerForm.appendChild(buttons)
 
     registerView.appendChild(registerForm)
