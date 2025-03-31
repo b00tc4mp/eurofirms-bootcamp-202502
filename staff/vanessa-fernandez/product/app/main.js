@@ -141,7 +141,7 @@ function buildRegisterView() {
     var buttonText = document.createTextNode('Register')
     buttonSubmitRegister.appendChild(buttonText)
     buttons.appendChild(buttonSubmitRegister)
-
+    
     registerForm.addEventListener('submit', function (event) {
         event.preventDefault()
 
@@ -154,7 +154,7 @@ function buildRegisterView() {
             registerUser(name, email, username, password)
 
             body.removeChild(registerView)
-            body.appendChile(loginView)
+            body.appendChild(loginView)
 
         } catch (error) {
             alert(error.message)
@@ -235,6 +235,23 @@ function buildLoginView() {
     var buttonText = document.createTextNode('Login')
     buttonSubmitLogin.appendChild(buttonText)
     buttons.appendChild(buttonSubmitLogin)
+
+    loginForm.addEventListener('submit', function (event) {
+        event.preventDefault()
+
+        const username = userNameInput.value
+        const password = passwordInput.value
+
+        try {
+            loginUser(username,password)
+
+            body.removeChild(loginView)
+            body.appendChild(homeView)
+
+        } catch(error) {
+            alert(error.message)
+        }
+    })
 
     loginForm.appendChild(buttons)
     
