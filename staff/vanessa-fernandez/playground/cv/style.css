@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Boldonse&display=swap');
 body {
-    background-image: repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(255,255,255,0.1) 49px),
-                      repeating-linear-gradient(-90deg, transparent, transparent 48px, rgba(255,255,255,0.1) 49px);
     background-color: #fef3bd;
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
   }
   
 
@@ -33,9 +31,19 @@ body {
     
  }
 
+ .left-container ul li::marker {
+  content: '🍩';
+  font-size: 1.2em;
+ }
+
  .right-container {
     max-width: 800px;
     margin: 0 auto;
+ }
+
+ .experience ul li::marker {
+  content: '🍺';
+  font-size: 1.2em;
  }
 
  footer {
@@ -45,7 +53,7 @@ body {
   }
   
   footer img {
-    width: 100%;
+    width: 50%;
     max-width: 100%;
     height: 150px;
     display: block;
