@@ -21,6 +21,11 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
+    registerLink.addEventListener('click', function(event) {
+        body.removeChild(landingView)
+        body.appendChild(registerView)
+    })
+
     var orText = document.createTextNode(' or ')
     landingView.appendChild(orText)
 
@@ -29,6 +34,11 @@ function buildLandingView() {
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
+
+    loginLink.addEventListener('click', function(event) {
+        body.removeChild(landingView)
+        body.appendChild(loginView)
+    })
 
     return landingView
 }
@@ -120,6 +130,11 @@ function buildRegisterView() {
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
 
+    loginLink.addEventListener('click', function(event) {
+        body.removeChild(registerView)
+        body.appendChild(loginView)
+    })
+
     var buttonSubmitRegister = document.createElement('button')
     buttonSubmitRegister.classList.add('black-button')
     buttonSubmitRegister.type = 'submit'
@@ -189,6 +204,11 @@ function buildLoginView() {
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
     buttons.appendChild(registerLink)
+
+    registerLink.addEventListener('click', function(event) {
+        body.removeChild(loginView)
+        body.appendChild(registerView)
+    })
     
     var buttonSubmitLogin = document.createElement('button')
     buttonSubmitLogin.classList.add('black-button')
@@ -213,11 +233,6 @@ function buildHomeView() {
     logoHeading.appendChild(logoText)
     homeView.appendChild(logoHeading)
 
-    /*var namePageHeading = document.createElement('h3')
-    var nameText = document.createTextNode('Home page')
-    namePageHeading.appendChild(nameText)
-    homeView.appendChild(namePageHeading)*/
-
     var welcomeHeading = document.createElement('h1')
     var welcomeText = document.createTextNode('Hello, World!')
     welcomeHeading.appendChild(welcomeText)
@@ -226,16 +241,16 @@ function buildHomeView() {
     return homeView
 }
 
-//var landingView = buildLandingView()
-//body.appendChild(landingView)
+var landingView = buildLandingView()
+body.appendChild(landingView)
 
-//var registerView = buildRegisterView()
+var registerView = buildRegisterView()
 //body.appendChild(registerView)
 
 // TODO TEST LOGIN VIEW
-//var loginView = buildLoginView()
+var loginView = buildLoginView()
 //body.appendChild(loginView);
 
 // TODO TEST HOME VIEW
 var homeView = buildHomeView()
-body.appendChild(homeView)
+//body.appendChild(homeView)
