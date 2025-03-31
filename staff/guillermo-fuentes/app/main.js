@@ -15,10 +15,14 @@ function buildLandingView() {
   var registerLink = document.createElement('a');
 
   registerLink.href = '#';
+
   var registerLinkText = document.createTextNode('Register');
   registerLink.appendChild(registerLinkText);
   landingView.appendChild(registerLink);
-
+  registerLink.addEventListener('click', function (event) {
+    body.removeChild(landingView);
+    body.appendChild(registerView);
+  });
   var orText = document.createTextNode(' or ');
   landingView.appendChild(orText);
   //-----------------insercion login link
@@ -27,6 +31,10 @@ function buildLandingView() {
   var loginLinkText = document.createTextNode('Login');
   loginLink.appendChild(loginLinkText);
   landingView.appendChild(loginLink);
+  loginLink.addEventListener('click', function (event) {
+    body.removeChild(landingView);
+    body.appendChild(loginView);
+  });
   return landingView;
 }
 
@@ -107,13 +115,32 @@ function buildRegisterView() {
   var loginLinkText = document.createTextNode('Login  ');
   loginLink.appendChild(loginLinkText);
   buttons.appendChild(loginLink);
-
+  loginLink.addEventListener('click', function (event) {
+    body.removeChild(registerView);
+    body.appendChild(loginView);
+  });
   //-----------Insercion de elementos boton de registro
   var submitButton = document.createElement('button');
   var submitButtonText = document.createTextNode('Register ');
   submitButton.appendChild(submitButtonText);
   buttons.appendChild(submitButton);
+
   registerForm.appendChild(buttons);
+  registerForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const name = nameInput.value;
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    const email = emailInput.value;
+    // console.log(name, username, password, email);
+    try {
+      registerUser(name, email, username, password);
+      body.removeChild(registerView);
+      body.appendChild(loginView);
+    } catch (error) {
+      alert(error.message);
+    }
+  });
   return registerView;
 }
 function buildLoginView() {
@@ -162,17 +189,37 @@ function buildLoginView() {
   var buttonRegisterText = document.createTextNode('Register');
   linkRegister.appendChild(buttonRegisterText);
   buttons.appendChild(linkRegister);
+  linkRegister.addEventListener('click', function (event) {
+    linkRegister.addEventListener('click', function (event) {
+      body.removeChild(loginView);
+      body.appendChild(registerView);
+    });
+  });
   //----------Insercion de elementos login boton
-  var linkLogin = document.createElement('a');
-  linkRegister.href = '#';
+  var linkLogin = document.createElement('button');
+
   var linkLoginText = document.createTextNode('Login');
   linkLogin.appendChild(linkLoginText);
   buttons.appendChild(linkLogin);
-  //----------Insercion de elementos boton de login
-  var buttonLogin = document.createElement('button');
-  var buttonSubmitText = document.createTextNode('Login');
-  buttonLogin.appendChild(buttonSubmitText);
+
   loginForm.appendChild(buttons);
+
+  loginForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    try {
+      loginUser(username, password);
+
+      body.removeChild(loginView);
+      body.appendChild(homeView);
+      
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+
   loginView.appendChild(loginForm);
   return loginView;
 }
@@ -191,6 +238,6 @@ var registerView = buildRegisterView();
 var loginView = buildLoginView();
 var homeView = buildHomeView();
 body.appendChild(landingView);
-body.appendChild(registerView);
-body.appendChild(loginView);
-body.appendChild(homeView);
+// body.appendChild(registerView);
+// body.appendChild(loginView);
+// body.appendChild(homeView);
