@@ -181,6 +181,7 @@ function buildRegisterView() {
             alert(error.message)
         }
     })
+
     
 
     registerView.appendChild(registerForm)
@@ -200,7 +201,7 @@ function buildLoginView() {
     loginView.appendChild(logo)
 
     var loginTitle = document.createElement("h1")
-    var logintext = document.createElement("Login")
+    var loginText = document.createElement("Login")
     loginTitle.appendChild(loginText)
     loginView.appendChild(loginTitle)
 
@@ -246,13 +247,18 @@ function buildLoginView() {
 
     loginView.appendChild(loginForm)
 
-    var registerButton = document.createElement("button")
-    var registerText = document.createTextNode("register")
-    registerButton.appendChild(registerText)
-    loginView.appendChild(registerButton)
+    var buttons = document.createElement("div")
+    buttons.classList.add("flex", "justify-between", "m-t-20px")
 
-    registerButton.addEventListener("click", function (event) {
-        body.removeChild(loginView)
+    var registerLink = document.createElement("a")
+    registerLink.href = "#"
+    var registerText = document.createTextNode("register")
+    registerLink.appendChild(registerText)
+    buttons.appendChild(registerLink)
+
+
+    registerLink.addEventListener("click", function (event) {
+     body.removeChild(loginView)
         body.appendChild(registerView)
     })
 
@@ -260,12 +266,15 @@ function buildLoginView() {
     submitButton.type = "submit"
     var submitText = document.createTextNode("Login")
     submitButton.appendChild(submitText)
-    loginForm.appendChild(submitButton)
+    buttons.appendChild(submitButton)
+    loginForm.appendChild(buttons)
+
+
 
     loginForm.addEventListener("submit", function (event) {
         event.preventDefault()
 
-        const usernme = usernameInput.value
+        const username = usernameInput.value
         const password = passwordInput.value
 
         try {
@@ -277,6 +286,8 @@ function buildLoginView() {
             alert(error.message)
         }
     })
+
+
     
    loginView.appendChild(loginForm)
 
@@ -293,10 +304,6 @@ function buildHomeView() {
     homeView.appendChild(logo)
 
 
-    var welcomeButton = document.createElement("button")
-    var welcomeText = document.createTextNode("welcome")
-    welcomeButton.appendChild(welcomeText)
-    homeView.appendChild(welcomeButton)
     
     var space = document.createElement("br")
     
@@ -313,10 +320,10 @@ function buildHomeView() {
 
 
 var landingView = buildLandingView()
-// body.appendChild(landingView)
+body.appendChild(landingView)
 
  var registerView = buildRegisterView()
-body.appendChild(registerView)
+//body.appendChild(registerView)
 
  var loginView = buildLoginView()
 // body.appendChild(loginView)

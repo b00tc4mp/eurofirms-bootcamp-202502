@@ -30,7 +30,7 @@ function registerUser(name, email, username, password) {
         password: password,
     }
     
-    user [users.length] = user
+    users[users.length] = user
 
 }
 
