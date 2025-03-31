@@ -1,0 +1,57 @@
+h1{background-color: yellow;}
+
+header { background-color: darkmagenta;}
+
+.foto{
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+font-style: italic;
+background-color: pink
+
+}  
+
+h3{
+text-decoration: underline;
+}
+
+footer{ display: flex;
+    justify-content: right;
+}
+
+body { 
+    font-family:'Times New Roman', Times, serif;
+    background-color:blanchedalmond;
+}
+
+.ini{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-radius: 3px;
+    border-color:blueviolet;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 30px;
+  }
+ .main{
+    display: flex;
+
+ }
+
+
+.fin{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    border-color:blueviolet;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 30px;
+    
+}
+
+
+
