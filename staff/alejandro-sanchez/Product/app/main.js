@@ -72,6 +72,7 @@ function buildregisterView(){
     var passwordLabel = document.createElement ('label')
     nameLabel.htmlFor = 'password'
     var passwordText = document.CreateTextNode('password')
+    passwordLabel.appendChild (passwordText)
     var passwordInput = document.createElement('password')
     paswordLabel.appendChild(nameText)
     passwordInput.type = 'text'
@@ -104,6 +105,7 @@ function buildiLoginView() {
     var nameLabel = document.createElement ('label')
     nameLabel.htmlFor = 'name'
     var nameText = document.CreateTextNode('Name')
+    nameLabel.appendChild (nameText)
     var nameInput = document.createElement('input')
     nameLabel.appendChild(nameText)
     nameInput.type = 'text'
@@ -120,14 +122,15 @@ function buildiLoginView() {
     
     var passwordLabel = document.createElement ('label')
     nameLabel.htmlFor = 'password'
-    var passwordText = document.CreateTextNode('password')
+    var passwordText = document.createTextNode('password')
+    passwordLabel.appendChild (passwordText)
     var passwordInput = document.createElement('password')
     paswordLabel.appendChild(nameText)
     passwordInput.type = 'text'
     passwordInput.name = 'password'
     var passwordField = document.creatElement ('div')
     passwordField.appendChild(passwordLabel)
-    passwordField.appendChild(PasswordInput)
+    passwordField.appendChild(passwordInput)
 }
 
 function buildHomeView() {
