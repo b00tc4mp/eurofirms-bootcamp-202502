@@ -199,11 +199,16 @@ function buildLoginView() {
     logo.appendChild(logoText)
     loginView.appendChild(logo)
 
+    var loginTitle = document.createElement("h1")
+    var logintext = document.createElement("Login")
+    loginTitle.appendChild(loginText)
+    loginView.appendChild(loginTitle)
+
+
     var loginForm = document.createElement("form")
     var space = document.createAttribute("br")
 
     var usernameField = document.createElement("div")
-    usernameField.classList.add("flex", "flex-col", "gap-10px")
     var usernameLabel = document.createElement("label")
     usernameLabel.htmlFor = "username"
     var usernameText = document.createTextNode("username")
@@ -212,14 +217,15 @@ function buildLoginView() {
     var usernameInput = document.createElement("Input")
     usernameInput.Text = "text"
     usernameInput.id = "username"
+    usernameInput.id = "username"
     usernameInput.name = "username"
     usernameInput.placeholder = "your username"
     usernameField.appendChild(usernameInput)
+    loginForm.appendChild(usernameField)
 
     var space2 = document.createElement("br")
 
     var passwordField = document.createElement("div")
-    passwordField.classList.add("flex", "flex-col", "gap-10px")
     var passwordLabel = document.createElement("label")
     passwordLabel.htmelFor = "password"
     var passwordText = document.createTextNode("password")
@@ -227,6 +233,7 @@ function buildLoginView() {
     passwordField.appendChild(passwordLabel)
     var passwordInput = document.createElement("Input")
     passwordInput.Text = "text"
+    passwordInput.id = "password"
     passwordInput.id = "password"
     passwordInput.Name = "password"
     passwordInput.placeholder = "your password"
@@ -249,11 +256,29 @@ function buildLoginView() {
         body.appendChild(registerView)
     })
 
-    var loginButton = document.createElement("button")
-    var loginText = document.createTextNode("login")
-    loginButton.appendChild(loginText)
-    loginView.appendChild(loginButton)
-    loginButton.classList.add("black-button")
+    var submitButton = document.createElement("button")
+    submitButton.type = "submit"
+    var submitText = document.createTextNode("Login")
+    submitButton.appendChild(submitText)
+    loginForm.appendChild(submitButton)
+
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault()
+
+        const usernme = usernameInput.value
+        const password = passwordInput.value
+
+        try {
+            loginUser(username, password)
+
+            body.removeChild(loginView)
+            body.appendChild(homeView)
+        } catch (error) {
+            alert(error.message)
+        }
+    })
+    
+   loginView.appendChild(loginForm)
 
     return loginView
     
