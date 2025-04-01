@@ -1,0 +1,28 @@
+h1 * {
+    font-family: Arial, Helvetica, sans-serif;
+    font: size 20px;
+    font-weight: 400;
+
+
+}
+
+h1 {
+    color: red
+}
+
+a {
+    color: blue;
+    font-size: 20;
+    text-decoration: underline;
+
+}
+
+a:visited {
+    color: blue;
+}
+
+/*utility classes */
+
+.block {
+    display: block;
+}
