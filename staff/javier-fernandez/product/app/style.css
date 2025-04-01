@@ -4,7 +4,9 @@
     font-weight: 400;
 }
 
-
+body {
+    margin: o;
+}
 
 h1 {
     font-size: 22px;
@@ -31,13 +33,17 @@ label {
 
 input {
     border-color: black;
-    color: black;
+    color: rgb(103, 103, 128);
 }
 
 /* utility classes */
 
 .block {
     display: block;
+}
+
+.flex {
+    display: flex;
 }
 
 .flex-col {
