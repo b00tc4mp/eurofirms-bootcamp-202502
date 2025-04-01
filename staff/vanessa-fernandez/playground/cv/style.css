@@ -1,36 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Boldonse&family=Atma:wght@400&display=swap');
 body {
     background-color: #fef3bd;
-    /*font-family: Arial, sans-serif;*/
   }
-  
+  /* utility classes */
+  .flex {
+    display: flex;
+  }
 
-  h2, h3 {
+  .block {
+    display: block;
+  }
+
+  .justify-content {
+    justify-content: space-evenly;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+
+  .align-items {
+    align-items: flex-start;
+  }
+
+  .gap-40px {
+    gap: 40px;
+  }
+
+  .padding-20px {
+    padding: 20px;
+  }
+
+  .font-family {
+    font-family: Boldonse;
+  }
+
+  .font-family-1 {
     font-family: Barriecito;
   }
-.header {
-    display: flex;
-    justify-content: space-evenly;
-    font-family: Boldonse;
-}
 
-.image {
+  .font-family-2 {
+    font-family: Atma ;
+  }
+
+  .width-75px {
     width: 75px;
-    border-radius: 20px;
-}
- .main {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 20px
- }
+  }
 
- .left-container {
-    /*background-color: rgb(90, 230, 223);*/
+  .width-250px {
     width: 250px;
-    
- }
+  }
 
+  .border-radius-20px {
+    border-radius: 20px;
+  }
+
+  .max-width {
+    max-width: 100%;
+  }
+
+  .width-50 {
+    width: 50%;
+  }
+
+  .height {
+    height: 150px;
+  }
+  
  .left-container ul li::marker {
   content: '🍩';
   font-size: 1.2em;
@@ -45,17 +85,5 @@ body {
   content: '🍺';
   font-size: 1.2em;
  }
-
- footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   
-  footer img {
-    width: 50%;
-    max-width: 100%;
-    height: 150px;
-    display: block;
-  }
   
