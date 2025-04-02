@@ -1,0 +1,84 @@
+/* =============================
+   Estilos generales y reset CSS
+   ============================= */
+
+* {
+    margin: 0; /* Elimina los márgenes predeterminados de todos los elementos */
+    padding: 0; /* Elimina el relleno predeterminado de todos los elementos */
+    box-sizing: border-box; /* Evita que el padding y border aumenten el tamaño de los elementos */
+} 
+
+body {
+    font-family: Arial, sans-serif; /* Fuente legible y estándar */
+    background-color: #f4f4f4; /* Color de fondo suave */
+    color: #333; /* Color de texto principal */
+    line-height: 1.6; /* Mejora la legibilidad del texto */
+    padding: 20px; /* Añade un margen interno alrededor del contenido para evitar que toque los bordes de la pantalla */
+}
+
+/* =============================
+   Estilos para la cabecera
+   ============================= */
+
+header {
+    background: #ffcc00; /* Color amarillo Simpsons */
+    padding: 20px; /* Agrega espacio interno alrededor del contenido para que no quede pegado a los bordes */
+    text-align: center; /* Centra el texto y los elementos dentro del header */
+    border-radius: 10px; /* Redondea las esquinas del encabezado para un diseño más suave */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra sutil para resaltar el encabezado y darle profundidad */
+}
+
+header h1 {
+    font-size: 2em; /* Aumenta el tamaño del texto para que el encabezado sea más llamativo */
+    color: #000; /* Establece el color del texto en negro para un buen contraste */
+}
+
+header .info {
+    font-style: italic; /* Aplica estilo en cursiva al texto para diferenciarlo del resto */
+}
+
+header img {
+    border-radius: 50%; /* Hace que la imagen tenga bordes redondeados hasta formar un círculo */
+    border: 3px solid #000; /* Agrega un borde negro de 3px alrededor de la imagen para destacarla */
+    margin-top: 10px; /* Añade un espacio superior para separar la imagen del texto anterior */
+}
+
+/* =============================
+   Secciones principales
+   ============================= */
+
+section {
+    background: white; /* Establece un fondo blanco para las secciones, resaltándolas sobre el fondo general */
+    margin: 20px 0; /* Agrega un margen vertical de 20px para separar las secciones entre sí */
+    padding: 20px; /* Agrega un espacio interno para que el contenido dentro de la sección no quede pegado a los bordes */
+    border-radius: 10px; /* Redondea las esquinas de la sección para un diseño más suave y moderno */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Aplica una sombra sutil para dar un efecto de profundidad */
+}
+
+h2 {
+    color: #444;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 5px 0;
+}
+
+/* =============================
+   Pie de página
+   ============================= */
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+}
