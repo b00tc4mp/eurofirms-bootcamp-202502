@@ -1,8 +1,15 @@
-S* {
+* {
     font-family: Arial, Arial, Helvetica, sans-serif;
     font-family: 20px;
     font-weight: 400;
 }
+
+h1 {
+    color:blueviolet;
+    font-weight:600;
+}
+
+
 
 a:visited {
     color: black;
@@ -13,13 +20,14 @@ a:visited {
     display: block;
 }
 
-.label {
-    font-weight: 500;
+label {
+    font-weight: 600;
+    margin-right: 15px;
 }
 .flex {
     display: flex;
 }
-.flex.col {
+.flex-col {
     flex-direction: column;
 }
 
@@ -37,6 +45,10 @@ a:visited {
 
 .p-x-20px {
    padding: 0 20px; 
+}
+
+.mr-20px {
+    margin-right: 20px
 }
 
 /* components */
