@@ -4,6 +4,9 @@ function buildLandingView() {
     var landingView = document.createElement('div')
     landingView.classList.add('p-20px')
 
+    var logo = document.createElement('i')
+    logo.classList.add('block')
+
     var logoHeading = document.createElement('h1')
     var logoText = document.createTextNode('logo')
     logoHeading.appendChild(logoText)
@@ -29,6 +32,7 @@ function buildLandingView() {
 
 function buildRegisterView() {
     var registerView = document.createElement('div')
+    registerView.classList.add('p-x-20px')
 
     var logoHeading = document.createElement('h1')
     var logoText = document.createTextNode('Logo')
@@ -46,9 +50,10 @@ function buildRegisterView() {
     registerView.appendChild(registerTitle)
 
     var registerForm = document.createElement ('form')
-    registerForm.classList.add('flex', 'flex-col', 'gap-20px')
+    registerForm.classList.add('display-flex', 'flexDirection-column', 'gap-20px')
 
     var nameField = document.createElement('div')
+    nameField.classList.add('flex', 'flex-col')
     var nameLabel = document.createElement('label')
     nameLabel.htmlFor = 'name'
     var nameText = document.createTextNode('Name')
@@ -64,6 +69,7 @@ function buildRegisterView() {
     registerForm.appendChild(nameField)
     
     var eMailField = document.createElement('div')
+    eMailField.classList.add ('flex', 'flex-col')
     var eMailLabel = document.createElement('label')
     eMailLabel.htmlFor = 'E-mail'
     var eMailText = document.createTextNode('E-mail')
@@ -100,6 +106,8 @@ function buildRegisterView() {
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
     registerForm.appendChild(passwordField)
+
+    var registerButton = document.createElement('div')
 
     var loginLink = document.createElement('a')
     loginLink.href = '#' 
@@ -188,14 +196,14 @@ function buildHomeView() {
     return homeView
 }
 
-var landingView = buildLandingView()
-body.appendChild(landingView)
+//var landingView = buildLandingView()
+//body.appendChild(landingView)
 
 var registerView = buildRegisterView()
 body.appendChild(registerView)
 
-var loginView = buildLoginView()
-    body.appendChild(loginView)
+//var loginView = buildLoginView()
+//body.appendChild(loginView)
 
-var homeView = buildHomeView()
-body.appendChild(homeView)
+//var homeView = buildHomeView()
+//body.appendChild(homeView)
