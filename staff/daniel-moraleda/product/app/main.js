@@ -152,7 +152,7 @@ function buildRegisterView() {
         console.log (name, eMail,username,password)
        
         try {
-            registerUser(name, eMail,username,password)
+            registerUser(name, eMail, username,password)
 
             body.appendChild(registerView)
             body.appendChild(loginView)
@@ -174,10 +174,12 @@ function buildLoginView() {
     var logoText = document.createTextNode('Logo')
     logoHeading.appendChild(logoText)
     loginView.appendChild(logoHeading)
+    loginView.classList.add('p-x-20px')
 
     var loginForm = document.createElement('form')
 
     var usernameField = document.createElement('div')
+    usernameField.classList.add('flex', 'flex-col')//test
     var usernameLabel = document.createElement('label')
     usernameLabel.htmlFor = 'Usuario'
     var usernameText = document.createTextNode('Usuario')
@@ -191,6 +193,7 @@ function buildLoginView() {
     loginForm.appendChild(usernameField)
 
     var passwordField = document.createElement('div')
+    passwordField.classList.add('flex', 'flex-col')//test
     var passwordLabel = document.createElement('label')
     passwordLabel.htmlFor = 'Password'
     var passwordText = document.createTextNode('Password')
