@@ -18,6 +18,11 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
+    registerLink.addEventListener('click', function(event) {
+        body.removeChild(landingView)
+        body.appendChild(registerView)
+    })
+
     var orText = document.createTextNode(' or ')
     landingView.appendChild(orText)
 
@@ -26,6 +31,11 @@ function buildLandingView() {
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
+
+    loginLink.addEventListener('click', function (event){
+        body.removeChild(landingView)
+        body.appendChild(loginView)
+    })
 
     return landingView
 }
@@ -115,11 +125,36 @@ function buildRegisterView() {
     loginLink.appendChild(loginText)
     registerForm.appendChild(loginLink)
     
+    registerLink.addEventListener('click', function (event) {
+        body.appendChild(loginView)
+        body.appendChild(registerView)
+    })
 
     var registerButton = document.createElement('button')
     var registerButtonText = document.createTextNode('Register')
     registerButton.appendChild(registerButtonText)
     registerForm.appendChild(registerButton)
+
+    registerForm.addEventListener('submit', function(event){
+        event.preventDefault()
+
+        const name = nameInput.value
+        const eMail = eMailInput.value
+        const username = usernameInput.value
+        const password = passwordInput.value
+
+        console.log (name, eMail,username,password)
+       
+        try {
+            registerUser(name, eMail,username,password)
+
+            body.appendChild(registerView)
+            body.appendChild(loginView)
+        } catch (error) {
+            alert(error.message)
+
+        }
+    })
 
     registerView.appendChild(registerForm)
 
@@ -171,6 +206,7 @@ function buildLoginView() {
     loginView.appendChild(loginLink)
     loginLink.style.marginRight = '20px'
 
+
     var loginLink = document.createElement('button')
     loginLink.href = '#'
     var loginText = document.createTextNode('Login')
@@ -195,15 +231,14 @@ function buildHomeView() {
 
     return homeView
 }
-
-//var landingView = buildLandingView()
-//body.appendChild(landingView)
+var landingView = buildLandingView()
+body.appendChild(landingView)
 
 var registerView = buildRegisterView()
-body.appendChild(registerView)
+//body.appendChild(registerView)
 
-//var loginView = buildLoginView()
+var loginView = buildLoginView()
 //body.appendChild(loginView)
 
-//var homeView = buildHomeView()
+var homeView = buildHomeView()
 //body.appendChild(homeView)
