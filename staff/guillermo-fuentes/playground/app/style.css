@@ -25,11 +25,12 @@ h2 {
   -o-border-radius: 5px;
 }
 body {
-  background-color: rgb(43, 150, 192);
+  background-color: aquamarine;
 }
 .main {
   display: flex;
   flex-direction: row;
+
   justify-content: space-evenly;
   gap: 5px;
 }
@@ -40,7 +41,7 @@ body {
   border-style: dotted;
   margin-top: 10px;
   padding: 0px 5px;
-  background-color: azure;
+  background-color: antiquewhite;
   font-family: 'Almendra', serif;
   font-weight: 400;
   font-style: normal;
