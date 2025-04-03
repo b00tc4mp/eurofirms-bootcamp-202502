@@ -12,6 +12,7 @@
  h1 {
     font-size: 22px;
     font-weight: bold;
+    color: rgb(117, 117, 210);
  }
 
  label {
@@ -21,11 +22,13 @@
  a {
     color: black;
     font-weight: 500;
+    text-decoration: none;
  }
 
  input {
     border-color: black;
-    background-color: transparent;
+    background-color: rgb(205, 229, 237);
+    border-radius: 5px;
  }
 
  /* utility classes */
@@ -62,6 +65,10 @@
     padding: 0 20px;
  }
 
+ .border {
+   border-radius: 5px;
+ }
+
  /* components */
 
  .black-button {
@@ -70,5 +77,5 @@
     font-weight: 100;
     border:none;
     border-radius: 10px;
-   
+    cursor: pointer;     
  }

@@ -71,7 +71,7 @@ function buildRegisterView() {
     nameInput.type = 'text'
     nameInput.id = 'name'
     nameInput.name = 'name'
-    nameInput.placeholder = 'your full name'
+    nameInput.placeholder = 'Your full name'
     nameField.appendChild(nameInput)
     registerForm.appendChild(nameField)
 
@@ -86,7 +86,7 @@ function buildRegisterView() {
     emailInput.type = 'email'
     emailInput.name = 'email'
     emailInput.id = 'email'
-    emailInput.placeholder = 'your e-mail'
+    emailInput.placeholder = 'Your e-mail'
     emailField.appendChild(emailInput)
     registerForm.appendChild(emailField)
 
@@ -101,7 +101,7 @@ function buildRegisterView() {
     userNameInput.type = 'text'
     userNameInput.name = 'username'
     userNameInput.id = 'username'
-    userNameInput.placeholder = 'your username'
+    userNameInput.placeholder = 'Your username'
     userNameField.appendChild(userNameInput)
     registerForm.appendChild(userNameField)
 
@@ -117,7 +117,7 @@ function buildRegisterView() {
     passwordInput.type = 'password'
     passwordInput.name = 'password'
     passwordInput.id = 'password'
-    passwordInput.placeholder = 'your password'
+    passwordInput.placeholder = 'Your password'
     passwordField.appendChild(passwordInput)
     registerForm.appendChild(passwordField)
 
@@ -195,7 +195,7 @@ function buildLoginView() {
     userNameInput.type = 'text'
     userNameInput.name = 'username'
     userNameInput.id = 'username'
-    userNameInput.placeholder = 'your username'
+    userNameInput.placeholder = 'Your username'
     userNameField.appendChild(userNameLabel)
     userNameField.appendChild(userNameInput)
     loginForm.appendChild(userNameField)
@@ -210,7 +210,7 @@ function buildLoginView() {
     passwordInput.type = 'password'
     passwordInput.name = 'password'
     passwordInput.id = 'password'
-    passwordInput.placeholder = 'your password'
+    passwordInput.placeholder = 'Your password'
     passwordField.appendChild(passwordLabel)
     passwordField.appendChild(passwordInput)
     loginForm.appendChild(passwordField)
