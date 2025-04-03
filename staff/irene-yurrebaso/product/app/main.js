@@ -33,6 +33,14 @@ function buildLandingView() {
     //ensamblar Register en div landingView
     landingView.appendChild(registerLink)
 
+    //Añadimos evento para navegar a registerView
+    registerLink.addEventListener('click', function(event) {
+        //quitar landingView del body
+        body.removeChild(landingView)
+        //mostrar registerView - mas abajo estamos llamando a la funcion registerView
+        body.appendChild(registerView)
+    })
+
     //crear "or" y ensamblar en div landingView ya que es hijo directo de este elemento
     var orText = document.createTextNode(' or ')
     landingView.appendChild(orText)
@@ -44,6 +52,12 @@ function buildLandingView() {
     loginLink.appendChild(loginText)
     //ensamblar Login en div landingView
     landingView.appendChild(loginLink)
+
+    //añadimos evento para navegar a loginView
+    loginLink.addEventListener('click', function(event) {
+        body.removeChild(landingView)
+        body.appendChild(loginView)
+    })
 
     return landingView
 }
@@ -67,7 +81,7 @@ function buildRegisterView() {
 
     //crear formulario
     var registerForm = document.createElement('form')
-    //hacemos que el formulario sea flex, columna y separacion de los diferentes fields (contenidos en div)
+    //hacemos que el formulario sea flex, contenido en columna y separacion de los diferentes fields (contenidos en div)
     registerForm.classList.add('flex', 'flex-col', 'gap-20px')
 
     //label & input para name
@@ -146,6 +160,12 @@ function buildRegisterView() {
     loginLink.appendChild(loginLinkText)
     buttons.appendChild(loginLink)
 
+    //añadir navegacion
+    loginLink.addEventListener('click', function(event) {
+        body.removeChild(registerView)
+        body.appendChild(loginView)
+    })
+
     //register button
     var button = document.createElement('button')
     button.classList.add('black-button')
@@ -156,6 +176,36 @@ function buildRegisterView() {
 
     //ensamblar buttons (div) en formulario (form)
     registerForm.appendChild(buttons)
+
+    //añadir logica envio formulario
+    registerForm.addEventListener('submit', function(event) {
+        //para que no vaya a otra pagina por defecto y manejemos nosotros el evento
+        event.preventDefault()
+
+        //al hacer submit capturamos los datos de los input
+        //extraemos el valor del Input (ej. nameInput en este caso) y lo guardamos en variable
+        const name = nameInput.value
+        const email = emailInput.value
+        const username = usernameInput.value
+        const password = passwordInput.value
+
+        //Cuando tenemos los datos, los pasamos por una logica para el proceso de registro: si todo va bien mandamos los datos, si no lanzamos mensaje de error. Ej. comprobar si el usuario ya existe: intenta hacer esto (try), y si lanza un error, el error se lanza al catch donde se maneja
+        try {
+            //la funcion registerUser se crea en logic.js y aqui la invocamos
+            registerUser(name, email, username, password) 
+
+            //si los datos recogidos estan bien, llevar a autenticar
+            body.removeChild(registerView)
+            body.appendChild(loginView)
+
+        } catch (error) {
+            //si hay error, el bloque "try" va a pasar el error a "catch"
+            //el error es un objeto con una propiedad llamada message. 
+		    //y metemos el mensaje de error en una alerta para que se vea en pantalla.
+            alert(error.message)
+        }
+        
+    })
 
     //ensamblar formulario en div registerView
     registerView.appendChild(registerForm)
@@ -222,17 +272,40 @@ function buildLoginView() {
     registerLink.appendChild(registerLinkText)
     buttons.appendChild(registerLink)
 
+    registerLink.addEventListener('click', function(event) {
+        body.removeChild(loginView)
+        body.appendChild(registerView)
+    })
+
     //login button
-    var button = document.createElement('button')
+    var loginButton = document.createElement('button')
     //aplicar estilos al boton
-    button.classList.add('black-button')
+    loginButton.classList.add('black-button')
     var buttonText = document.createTextNode('Login')
-    button.appendChild(buttonText)
-    button.type = 'submit'
-    buttons.appendChild(button)
+    loginButton.appendChild(buttonText)
+    loginButton.type = 'submit'
+    buttons.appendChild(loginButton)
 
     //ensamblar buttons div en el formulario
     loginForm.appendChild(buttons)
+
+    //añadir logica submit login
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault()
+
+        const username = usernameInput.value
+        const password = passwordInput.value
+
+        try {
+            loginUser(username, password)
+
+            body.removeChild(loginView)
+            body.appendChild(homeView)
+            
+        } catch (error) {
+            alert(error.message)
+        }
+    })
 
     //ensamblar formulario en div loginView
     loginView.appendChild(loginForm)
@@ -268,15 +341,15 @@ function buildHomeView() {
 
 //llamar a la funcion y ensamblar los div contenedores de cada xView dentro de body
 
-//var landingView = buildLandingView()
-//body.appendChild(landingView)
+var landingView = buildLandingView()
+body.appendChild(landingView)
 
-//var registerView = buildRegisterView()
+var registerView = buildRegisterView()
 //body.appendChild(registerView)
 
-//var loginView = buildLoginView()
+var loginView = buildLoginView()
 //body.appendChild(loginView)
 
 var homeView = buildHomeView()
-body.appendChild(homeView)
+//body.appendChild(homeView)
 
