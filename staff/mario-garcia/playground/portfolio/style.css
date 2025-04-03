@@ -65,6 +65,10 @@ h3 {
     justify-content: space-between;
 }
 
+.r-10px {
+    border-radius: 10px;
+}
+
 .r-50px {
     border-radius: 50px;
 }
@@ -93,10 +97,14 @@ h3 {
     height: 185px;
 }
 
-.h-300px {
-    height: 300px;
+.h-275px {
+    height: 275px;
 }
 
 .gap-10 {
     gap: 10px;
+}
+
+.pad-10 {
+    padding: 10px 0
 }
