@@ -42,7 +42,7 @@ h3 {
 .ali-ver {
     /* min-height: 185px; */
     display: grid;
-    justify-items: start;
+
     justify-content: start;
 }
 
@@ -56,8 +56,20 @@ h3 {
     border: 5px solid rgb(103, 103, 188)
 }
 
+.br-5px {
+    border-radius: 5px;
+}
+
+.br-10px {
+    border-radius: 10px;
+}
+
 .flex {
     display: flex
+}
+
+.flex-col {
+    flex-direction: column;
 }
 
 .just-space-e {
@@ -100,6 +112,10 @@ h3 {
     width: 700px;
 }
 
+.h-40px {
+    height: 40px;
+}
+
 .h-50px {
     height: 50px;
 }
@@ -110,6 +126,10 @@ h3 {
 
 .h-275px {
     height: 275px;
+}
+
+.h-full {
+    height: 100%;
 }
 
 .gap-10 {
