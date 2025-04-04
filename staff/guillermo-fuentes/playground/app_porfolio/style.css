@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almendra+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  text-decoration: none;
+  list-style: none;
+}
+h1 {
+  font-family: 'Macondo Swash Caps', cursive;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+h2 {
+  text-align: center;
+  background-color: skyblue;
+  font-family: 'Almendra SC', serif;
+  font-weight: 400;
+  font-style: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+body {
+  background-color: aquamarine;
+}
+.main {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+  gap: 5px;
+}
+.nav-links {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: antiquewhite;
+  font-weight: bolder;
+  padding: 5px;
+}
+.panel_left {
+  background-color: antiquewhite;
+  padding: 0px 5px;
+}
+#datos_personales,
+#perfil_profesional,
+.panel_right {
+  padding: 0px 5px;
+  background-color: antiquewhite;
+  font-family: 'Almendra', serif;
+  font-weight: 400;
+  font-style: normal;
+}
