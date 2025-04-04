@@ -1,0 +1,49 @@
+{
+  "name": "surge",
+  "version": "0.24.6",
+  "description": "Static Web Publishing",
+  "author": "Brock Whitten <brock@chloi.io>",
+  "bin": "./bin/surge",
+  "dependencies": {
+    "babar": "^0.2.0",
+    "cli-table3": "0.6.1",
+    "colors": "1.4.0",
+    "human-readable-numbers": "^0.9.5",
+    "prompts": "*",
+    "is-domain": "0.0.1",
+    "minimist": "1.2.6",
+    "moniker": "0.1.2",
+    "netrc": "0.1.4",
+    "progress": "2.0.3",
+    "read": "1.0.5",
+    "request": "^2.88.0",
+    "surge-ignore": "0.2.0",
+    "surge-sdk": "0.6.4",
+    "surge-stream": "0.6.4",
+    "url-parse-as-address": "1.0.0",
+    "xbytes": "^1.7.0"
+  },
+  "devDependencies": {
+    "commander": "2.9.0",
+    "mocha": "10.7.3",
+    "nixt": "^0.5.1",
+    "should": "7.1.0",
+    "yargs": "3.30.0"
+  },
+  "license": "ISC",
+  "main": "./lib/surge.js",
+  "ignore": [
+    "test"
+  ],
+  "scripts": {
+    "preversion": "npm test",
+    "version": "npm publish",
+    "postversion": "git push --no-verify && git push --tags --no-verify && git push --no-verify",
+    "test": "mocha ./test/basic.js -t 5000",
+    "test:local": "ENDPOINT='surge.lvh.me' mocha ./test/basic -t 4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sintaxi/surge.git"
+  }
+}
