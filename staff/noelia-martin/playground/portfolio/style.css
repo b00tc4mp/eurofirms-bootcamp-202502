@@ -4,6 +4,7 @@
     font-family: Onest;
 }
 
+/*Para la foto de presentacion de Homer*/
 .radius-25porciento {
     border-radius: 25%;
 }
@@ -12,21 +13,6 @@
     width: 7%
 }
 
-.padding-10px-10px {
-    padding: 10px 10px
-}
-
-.padding-0-50px {
-    padding: 0 50px
-}
-
-.colorMoradito {
-    background-color: rgb(192, 177, 206);
-}
-
-.colorAzulito {
-    background-color: rgb(187, 208, 216);
-}
 
 .direction-row {
     flex-direction: row;
@@ -40,11 +26,35 @@
     justify-content: center
 }
 
+.space-evenly {
+    justify-content: space-evenly;
+}
+
 #underline {
     text-decoration: underline;
     /* si uso # tengo que llamarlo a traves de id, mismo funcionamiento*/
 }
 
-.space-evenly {
-    justify-content: space-evenly;
+.width-10porciento {
+    width: 30%;
+}
+
+.width-50porciento {
+    width: 50%;
+}
+
+.colorOrange {
+    background-color: rgb(245, 221, 178);
+}
+
+.colorPink {
+    background-color: rgb(243, 176, 240);
+}
+
+.padding-0-10px {
+    padding: 0 10px
+}
+
+li {
+    padding: 5px 0
 }
