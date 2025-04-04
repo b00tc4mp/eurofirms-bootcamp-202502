@@ -114,7 +114,7 @@ nameInput.name = 'name'
 nameInput.placeholder = 'todo tu nombre'
 nameField.appendChild(nameInput)
 registerForm.appendChild(nameField)
-//voy por la línea 71 del Manu
+
 
 var emailField = document.createElement('div')
 emailField.classList.add('flex', 'flex-col', 'gap-10px')
