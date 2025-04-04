@@ -1,4 +1,4 @@
-* {
+h1 * {
     font-family: Arial, Helvetica, sans-serif;
     font: size 20px;
     font-weight: 400;
@@ -7,24 +7,45 @@
 }
 
 h1 {
-    font-size: 20 a:visited
-}
-
-label {
-    font-weight: 400;
+    color: red
 }
 
 a {
-    color: black
-}
+    color: blue;
+    font-size: 20;
+    text-decoration: underline;
 
-a {
-    color: black;
-    font-weight: 500;
 }
-
-/*utility classes */
 
 .block {
     display: block;
+}
+
+a:visited {
+    color: blue;
+}
+
+/*utility classes */
+.flex {
+    display: flex;
+}
+
+.flex-cool {
+    flex-direction: column;
+}
+
+.gap-5px {
+    gap: 5px
+}
+
+.gap-10px {
+    gap: 10px
+}
+
+.gap-20px {
+    gap: 20px
+}
+
+.justify-between {
+    justify-content: space-between;
 }
