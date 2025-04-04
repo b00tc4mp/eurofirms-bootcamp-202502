@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{font-family: Roboto;
+margin: 0px;}
+
+hr{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: 2px;
+    border: none;
+
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right{
+    justify-content: flex-end;
+}
+
+a:visited{
+    color:black
+}
+
+/*Utility classes*/
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction:row;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+.padding-5{
+    padding: 5px;
+}
+
+.radius-20{
+    border-radius: 20px;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.red-bg {
+    background-color: rgb(225, 117, 117);
+}
+
+.border-red{
+    border-style: solid;
+    border-color: rgb(225, 117, 117);
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.block {
+    display: block;
+}
+
+.inline{
+    display: inline;
+}
+
+.gap-10px {
+    gap: 10px;
+}
+
+.big-size{
+    font-size: x-large;
+}
+
+
+
+
+
