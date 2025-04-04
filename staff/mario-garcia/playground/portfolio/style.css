@@ -39,6 +39,12 @@ h3 {
     color: blue;
 }
 
+.ali-ver {
+    /* min-height: 185px; */
+    display: grid;
+    justify-items: start;
+    justify-content: start;
+}
 
 /* Utility classes */
 
