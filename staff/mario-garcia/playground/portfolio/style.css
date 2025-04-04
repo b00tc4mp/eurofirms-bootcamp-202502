@@ -39,6 +39,7 @@ h3 {
     color: blue;
 }
 
+
 /* Utility classes */
 
 .b-1px {
@@ -75,6 +76,10 @@ h3 {
 
 .w-50px {
     width: 50px;
+}
+
+.w-125px {
+    width: 125px;
 }
 
 .w-200px {
