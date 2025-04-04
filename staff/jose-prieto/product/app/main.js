@@ -14,7 +14,7 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     // 
     landingView.appendChild(registerLink)
-    registerLink.addEventListener("click",function(event){
+    registerLink.addEventListener("click", function (event) {
         body.removeChild(landingView)
         body.appendChild(registerView)
     })
@@ -28,7 +28,7 @@ function buildLandingView() {
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
 
-    loginLink.addEventListener("click",function(event){
+    loginLink.addEventListener("click", function (event) {
         body.removeChild(landingView)
         body.appendChild(loginView)
     })
@@ -38,16 +38,16 @@ function buildLandingView() {
 
 function buildRegisterView() {
     var registerView = document.createElement('div')
-    registerView.classList.add('flex','flex-col')
+    registerView.classList.add('flex', 'flex-col')
     var logoHeading = document.createElement('h1')
     var logoText = document.createTextNode('LOGO')
     logoHeading.appendChild(logoText)
     registerView.appendChild(logoHeading)
 
     var registerForm = document.createElement('form')
-    registerForm.classList.add('flex','flex-col','gap-20px', "width-250px")
+    registerForm.classList.add('flex', 'flex-col', 'gap-20px', "width-250px")
     var nameField = document.createElement('div')
-    nameField.classList.add('flex','flex-col')
+    nameField.classList.add('flex', 'flex-col')
     var nameLabel = document.createElement('label')
     nameLabel.htmlFor = 'name'
     var nameText = document.createTextNode('Nombre  ')
@@ -62,7 +62,7 @@ function buildRegisterView() {
     registerView.appendChild(registerForm)
 
     var emailField = document.createElement('div')
-    emailField.classList.add('flex','flex-col')
+    emailField.classList.add('flex', 'flex-col')
     var emailLabel = document.createElement('label')
     emailLabel.htmlFor = 'email'
     var emailText = document.createTextNode('E-mail  ')
@@ -78,7 +78,7 @@ function buildRegisterView() {
 
     //
     var userField = document.createElement('div')
-    userField.classList.add('flex','flex-col')
+    userField.classList.add('flex', 'flex-col')
     var userLabel = document.createElement('label')
     userLabel.htmlFor = 'user'
     var userText = document.createTextNode('Usuario  ')
@@ -93,7 +93,7 @@ function buildRegisterView() {
     registerView.appendChild(registerForm)
     //
     var passField = document.createElement('div')
-    passField.classList.add('flex','flex-col')
+    passField.classList.add('flex', 'flex-col')
     var passLabel = document.createElement('label')
     passLabel.htmlFor = 'pass'
     var passText = document.createTextNode('Contraseña ')
@@ -106,28 +106,31 @@ function buildRegisterView() {
     passField.appendChild(passInput)
     registerForm.appendChild(passField)
     registerView.appendChild(registerForm)
-    var buttons=document.createElement('div')
-    buttons.classList.add('flex','justify-between', "width-250px")
+    var buttons = document.createElement('div')
+    buttons.classList.add('flex', 'justify-between', "width-250px")
     var loginLink = document.createElement('a')
-    loginLink.href = '#' 
+    loginLink.href = '#'
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
-    loginLink.addEventListener("click",function(event){
+    loginLink.addEventListener("click", function (event) {
         body.removeChild(registerView)
         body.appendChild(loginView)
     })
 
-    var br = document.createElement('div')    
+    var br = document.createElement('div')
     passField.appendChild(br)
     loginLink.style.marginRight = '20px'
-    
+
     var registerButton = document.createElement('button')
     registerButton.href = '#'
     var registerText = document.createTextNode('Register')
     registerButton.appendChild(registerText)
     buttons.appendChild(registerButton)
     registerView.appendChild(buttons)
+
+
+
     return registerView
 
 }
@@ -169,22 +172,22 @@ function buildLoginView() {
     var loginField = document.createElement('div');
     loginView.appendChild(loginForm);
     var loginLink = document.createElement('button')
-    loginLink.href = '#' 
+    loginLink.href = '#'
     var loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     loginView.appendChild(loginLink)
 
 
-    var br = document.createElement('div')    
+    var br = document.createElement('div')
     loginField.appendChild(br)
     loginLink.style.marginRight = '20px'
-    
+
     var registerLink = document.createElement('a')
     registerLink.href = '#'
     var registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
     loginView.appendChild(registerLink)
-    registerLink.addEventListener("click",function(event){
+    registerLink.addEventListener("click", function (event) {
         body.removeChild(loginView)
         body.appendChild(registerView)
     })
