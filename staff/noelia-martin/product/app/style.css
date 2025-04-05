@@ -1,21 +1,25 @@
 /*Globales, para paginas donde se repiten muchas etiquetas es mas comodo de usar*/
 
-* { /*para toda la pg*/
+* {
+    /*para toda la pg*/
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px; /*se aplicaria al texto normal (or) que solo dispone la pg aterrizaje y tambien al texto del boton ya que no lo vamos a cambiar*/
+    font-size: 20px;
+    /*se aplicaria al texto normal (or) que solo dispone la pg aterrizaje y tambien al texto del boton ya que no lo vamos a cambiar*/
     font-weight: 500;
     background-color: rgb(213, 250, 6);
 }
 
-body { /*el navegador suele poner un pequeño borde automaticamente, si especificamos con esta que  no lo queremos, no se pondrá*/
+body {
+    /*el navegador suele poner un pequeño borde automaticamente, si especificamos con esta que  no lo queremos, no se pondrá*/
     margin: 0;
 }
 
-i{ 
+i {
     font-size: 15px
 }
 
-h1 { /*Para el title*/
+h1 {
+    /*Para el title*/
     font-size: 22px;
     font-weight: bold;
 }
@@ -23,12 +27,14 @@ h1 { /*Para el title*/
 input {
     border-color: black;
     background-color: rgb(204, 198, 198);
-    border:100
+    border: 100
 }
 
-a { /*configuro los enlaces sin clicar y clicando(visited)*/
+a {
+    /*configuro los enlaces sin clicar y clicando(visited)*/
     color: black;
 }
+
 a:visited {
     color: black;
 }
@@ -36,31 +42,38 @@ a:visited {
 
 /*Components*/
 
-.block{
-    display:block
-    /* hace que un elemento ocupe todo el ancho disponible de su contenedor padre (que evite tener a cualquier otro elemento a su vera, fuerza un salto de pagina*/
+.block {
+    display: block
+        /* hace que un elemento ocupe todo el ancho disponible de su contenedor padre (que evite tener a cualquier otro elemento a su vera, fuerza un salto de pagina*/
 }
-.p-20px{
-    padding:20px;
+
+.p-20px {
+    padding: 20px;
     /* ponemos bordes a todos los lados */
 }
-.flex{
+
+.flex {
     display: flex;
     /*permite maquetar páginas web con mayor facilidad. 
     Permite distribuir y alinear elementos de forma horizontal o vertical
     Si no se especifica, se pone en fila*/
 }
-.flex-col{
-    flex-direction: column; /*si no se especifica se configura automaticamente en filas*/
+
+.flex-col {
+    flex-direction: column;
+    /*si no se especifica se configura automaticamente en filas*/
 }
-.gap-20{
+
+.gap-20 {
     gap: 20px
-    /*establece un espacio de 20 píxeles entre filas y columnas, en este caso columnas*/
+        /*establece un espacio de 20 píxeles entre filas y columnas, en este caso columnas*/
 }
-.gap-5{
+
+.gap-5 {
     gap: 5px
 }
-.justify-between{
+
+.justify-between {
     justify-content: space-between;
     /*
         Distribuye el espacio libre entre los elementos hijo directo
@@ -69,11 +82,15 @@ a:visited {
         Los elementos intermedios se separan equitativamente
     */
 }
-.margin-30px { margin-top: 30px} /*para separar el div de enlace y boton del div formulario*/
-.black-button { /*podriamos haberlo configurado en  la global de button, pero como solo hay una es mejor ponerlo asi. Evitar las globales!! */
+
+.margin-30px {
+    margin-top: 30px
+}
+
+/*para separar el div de enlace y boton del div formulario*/
+.black-button {
+    /*podriamos haberlo configurado en  la global de button, pero como solo hay una es mejor ponerlo asi. Evitar las globales!! */
     color: white;
     background-color: black;
     padding: 10px 40px
 }
-
-

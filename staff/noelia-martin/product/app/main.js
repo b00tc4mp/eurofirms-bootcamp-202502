@@ -1,10 +1,12 @@
 //Enlace de figma: https://www.figma.com/proto/KzMLcqmKggQTys6UT6Xejr/eurofirms-bootcamp-202502-product?node-id=1-28&p=f&t=7tk4SSqOURm1GHxP-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A28
 
 
-var body = document.querySelector('body');
+const body = document.querySelector('body');
 //body.bgColor='DAE820';
 
-function construirAterrizaje() {
+// function construirAterrizaje() {
+// const construirAterrizaje = function () {
+const construirAterrizaje = () => {
     /*  
     Estructura html a imitar
          <div>
@@ -13,52 +15,57 @@ function construirAterrizaje() {
          </div> 
      */
 
-    var aterrrizaje = document.createElement('div')   //Crea el elemento div que es el contenedor de toda la pg
+    const aterrrizaje = document.createElement('div')   //Crea el elemento div que es el contenedor de toda la pg
     aterrrizaje.classList.add('p-20px')
 
     //Comun en todas las paginas
     //Logo
-    var logoEncabezado = document.createElement('i')    //Crea el elemento de la etiqueta i del html(Etiqueta de formato cursivo)
+    const logoEncabezado = document.createElement('i')    //Crea el elemento de la etiqueta i del html(Etiqueta de formato cursivo)
     logoEncabezado.classList.add('block')
-    var logoTexto = document.createTextNode('Logo')      //crea el texto Logo
+    const logoTexto = document.createTextNode('Logo')      //crea el texto Logo
     logoEncabezado.appendChild(logoTexto)               //le añadimos como hijo(como propiedad) el texto
     aterrrizaje.appendChild(logoEncabezado)          //por ultimo, añadimos la etiqueta h1 y el texto, a nuestro contenedor(div)
 
-
     //Hipervinculo de Register
-    var registerLink = document.createElement('a')       //Crea el elemento de la etiqueta a
+    const registerLink = document.createElement('a')       //Crea el elemento de la etiqueta a
     registerLink.href = '#'                              //Aqui pondriamos nuestro hipervinculo, actualmente inutilizado
-    var registerText = document.createTextNode('Register')  //creamos el texto mostrado al usuario para acceder al hipervinculo
-    registerLink.appendChild(registerText)              //añadimos dicho texto a la variable que contiene la etiqueta a
+    const registerText = document.createTextNode('Register')  //creamos el texto mostrado al usuario para acceder al hipervinculo
+    registerLink.appendChild(registerText)              //añadimos dicho texto a la constiable que contiene la etiqueta a
     aterrrizaje.appendChild(registerLink)            //añadimos Register como hijo a nuestro contener principal
     //Configuramos el enlace Register, borra el div de aterrizaje y añade el de register
-    registerLink.addEventListener('click', function (event) {
+
+    //registerLink.addEventListener('click', function (event) {
+    // registerLink.addEventListener('click', (event) => {
+    registerLink.addEventListener('click', event => {
         body.removeChild(aterrizaje)
         body.appendChild(register)
     })
 
-
     //Texto ' or ' (con espacios)
-    var orText = document.createTextNode(' or ')          //Creamos el texto or
+    const orText = document.createTextNode(' or ')          //Creamos el texto or
 
     aterrrizaje.appendChild(orText)                  //Lo metemos en el div
 
     //Hipervinculo Login
-    var loginLink = document.createElement('a')
+    const loginLink = document.createElement('a')
     loginLink.href = '#'
-    var loginText = document.createTextNode('Login')
+    const loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     aterrrizaje.appendChild(loginLink)
     //Configuramos el enlace Login, borra el div de aterrizaje y añade el de login
-    loginLink.addEventListener('click', function (event) {
+
+    // loginLink.addEventListener('click', function (event) {
+    // loginLink.addEventListener('click', (event) => {
+    loginLink.addEventListener('click', event => {
         body.removeChild(aterrizaje)
         body.appendChild(login)
     })
-
     return aterrrizaje
 }
 
-function construirRegister() {
+// function construirRegister() {
+// const construirRegister = function () {
+const construirRegister = () => {
     /*  
    Estructura html a imitar
         <div>
@@ -93,35 +100,35 @@ function construirRegister() {
             
         </div> 
     */
-    var register = document.createElement('div')
+    const register = document.createElement('div')
     register.classList.add('p-20px')
 
     //Logo
-    var registerLogo = document.createElement('i')
-    var registerLogoTexto = document.createTextNode('Logo')
+    const registerLogo = document.createElement('i')
+    const registerLogoTexto = document.createTextNode('Logo')
     registerLogo.appendChild(registerLogoTexto)
     register.appendChild(registerLogo)
 
     //Titulo de la pagina
-    var registerTitulo = document.createElement('h1')
-    var registerTituloText = document.createTextNode('Register')
+    const registerTitulo = document.createElement('h1')
+    const registerTituloText = document.createTextNode('Register')
     registerTitulo.appendChild(registerTituloText)
     register.appendChild(registerTitulo)
 
     //Creo formulario
-    var registerFormulario = document.createElement('form')
+    const registerFormulario = document.createElement('form')
     registerFormulario.classList.add('flex', 'flex-col', 'gap-20') //gap separa 20px entre todos los div hijos del div padre del formulario 
 
     //Name
-    var nameEtiquetaDiv = document.createElement('div')          // para que se haga un salto de linea, se decidio meter cada componente por separado en un div 
+    const nameEtiquetaDiv = document.createElement('div')          // para que se haga un salto de linea, se decidio meter cada componente por separado en un div 
     nameEtiquetaDiv.classList.add('flex', 'flex-col', 'gap-5') //gap separa 5px entre nombre e input
 
-    var nameEtiquetaLabel = document.createElement('label')
+    const nameEtiquetaLabel = document.createElement('label')
     nameEtiquetaLabel.htmlFor = 'name'                           // añadimos el contenido de for
-    var nameEtiquetaLabelText = document.createTextNode('Name')
+    const nameEtiquetaLabelText = document.createTextNode('Name')
     nameEtiquetaLabel.appendChild(nameEtiquetaLabelText)
 
-    var nameEtiquetaInput = document.createElement('input')
+    const nameEtiquetaInput = document.createElement('input')
     nameEtiquetaInput.type = 'text'                               //añadimos el contenido de type
     nameEtiquetaInput.id = 'name'                                 //el id debe tener el mismo contenido que el htmlfor al que corresponde   
     nameEtiquetaInput.name = 'name'                               //para el submit
@@ -133,15 +140,15 @@ function construirRegister() {
     registerFormulario.appendChild(nameEtiquetaDiv)
 
     //E-mail
-    var emailEtiquetaDiv = document.createElement('div')
+    const emailEtiquetaDiv = document.createElement('div')
     emailEtiquetaDiv.classList.add('flex', 'flex-col', 'gap-5')
 
-    var emailEtiquetaLabel = document.createElement('label')
+    const emailEtiquetaLabel = document.createElement('label')
     emailEtiquetaLabel.htmlFor = 'email'
-    var emailEtiquetaLabelText = document.createTextNode('E-mail')
+    const emailEtiquetaLabelText = document.createTextNode('E-mail')
     emailEtiquetaLabel.appendChild(emailEtiquetaLabelText)
 
-    var emailEtiquetaInput = document.createElement('input')
+    const emailEtiquetaInput = document.createElement('input')
     emailEtiquetaInput.type = 'email' //no haria falta una expresion regular, un pattern, ya que el tipo email lo tiene integrado
     emailEtiquetaInput.id = 'email'
     emailEtiquetaInput.name = 'email'
@@ -152,17 +159,16 @@ function construirRegister() {
 
     registerFormulario.appendChild(emailEtiquetaDiv)
 
-
     //Username
-    var usernameEtiquetaDiv = document.createElement('div')
+    const usernameEtiquetaDiv = document.createElement('div')
     usernameEtiquetaDiv.classList.add('flex', 'flex-col', 'gap-5')
 
-    var usernameEtiquetaLabel = document.createElement('label')
+    const usernameEtiquetaLabel = document.createElement('label')
     usernameEtiquetaLabel.htmlFor = 'username'
-    var usernameEtiquetaLabelText = document.createTextNode('Username')
+    const usernameEtiquetaLabelText = document.createTextNode('Username')
     usernameEtiquetaLabel.appendChild(usernameEtiquetaLabelText)
 
-    var usernameEtiquetaInput = document.createElement('input')
+    const usernameEtiquetaInput = document.createElement('input')
     usernameEtiquetaInput.type = 'text'
     usernameEtiquetaInput.id = 'username'
     usernameEtiquetaInput.name = 'username'
@@ -173,17 +179,16 @@ function construirRegister() {
 
     registerFormulario.appendChild(usernameEtiquetaDiv)
 
-
     //Password
-    var passwordEtiquetaDiv = document.createElement('div')
+    const passwordEtiquetaDiv = document.createElement('div')
     passwordEtiquetaDiv.classList.add('flex', 'flex-col', 'gap-5')
 
-    var passwordEtiquetaLabel = document.createElement('label')
+    const passwordEtiquetaLabel = document.createElement('label')
     passwordEtiquetaLabel.htmlFor = 'password'
-    var passwordEtiquetaLabelText = document.createTextNode('Password')
+    const passwordEtiquetaLabelText = document.createTextNode('Password')
     passwordEtiquetaLabel.appendChild(passwordEtiquetaLabelText)
 
-    var passwordEtiquetaInput = document.createElement('input')
+    const passwordEtiquetaInput = document.createElement('input')
     passwordEtiquetaInput.type = 'password'
     passwordEtiquetaInput.id = 'password'
     passwordEtiquetaInput.name = 'password'
@@ -194,23 +199,22 @@ function construirRegister() {
 
     registerFormulario.appendChild(passwordEtiquetaDiv)
 
-
     //Creo un div tambien para login y register
-    var loginRegisterEtiquetaDiv = document.createElement('div')
+    const loginRegisterEtiquetaDiv = document.createElement('div')
     loginRegisterEtiquetaDiv.classList.add('flex', 'justify-between', 'margin-30px')
 
     //Hipervinculo Login
-    var loginLink = document.createElement('a')
+    const loginLink = document.createElement('a')
     loginLink.href = '#'
-    var loginText = document.createTextNode('Login')
+    const loginText = document.createTextNode('Login')
     loginLink.appendChild(loginText)
     loginRegisterEtiquetaDiv.appendChild(loginLink) //añadimos este login a su div correspondiente
 
     //Boton Register
-    var registerButton = document.createElement('button')
+    const registerButton = document.createElement('button')
     registerButton.classList.add('black-button')
     registerButton.type = 'submit'
-    var registerButtonText = document.createTextNode('Register')
+    const registerButtonText = document.createTextNode('Register')
     registerButton.appendChild(registerButtonText)
     loginRegisterEtiquetaDiv.appendChild(registerButton) //añadimos este button a su div correspondiente
 
@@ -219,13 +223,19 @@ function construirRegister() {
     register.appendChild(registerFormulario)
 
     //Configuramos el enlace Login, borra el div de register y añade el de login
-    loginLink.addEventListener('click', function (event) {
+
+    // loginLink.addEventListener('click', function (event) {
+    // loginLink.addEventListener('click', (event) => {
+    loginLink.addEventListener('click', event => {
         body.removeChild(register)
         body.appendChild(login)
     })
 
     //Configuramos el boton Register(recuerda que configuramos el boton en el formulario, no como los enlaces que se configura en directamente en él)
-    registerFormulario.addEventListener('submit', function (event) {
+
+    // registerFormulario.addEventListener('submit', function (event) {
+    // registerFormulario.addEventListener('submit', (event) => {
+    registerFormulario.addEventListener('submit', event => {
         event.preventDefault() //cancela la accion preterminada, ya que la voy a configurar yo
 
         const name = nameEtiquetaInput.value
@@ -236,18 +246,19 @@ function construirRegister() {
         try {
             registerUser(name, email, username, password) //llamamos a la funcion registerUser con los parametros introducidos en mi pg
 
+            registerFormulario.reset(); //resetea el contenido
             body.removeChild(register)
             body.appendChild(login)
         } catch (error) {
             alert(error.message)
         }
     })
-
-
     return register
 }
 
-function construirLogin() {
+// function construirLogin() {
+// const construirLogin = function () {
+const construirLogin = () => {
     /*  
    Estructura html a imitar
         <div>
@@ -271,35 +282,35 @@ function construirLogin() {
             </form>
         </div> 
     */
-    var login = document.createElement('div')
+    const login = document.createElement('div')
     login.classList.add('p-20px')
 
     //Titulo Logo
-    var loginLogo = document.createElement('i')
-    var loginLogoTexto = document.createTextNode('Logo')
+    const loginLogo = document.createElement('i')
+    const loginLogoTexto = document.createTextNode('Logo')
     loginLogo.appendChild(loginLogoTexto)
     login.appendChild(loginLogo)
 
     //Titulo de la pagina
-    var loginTitulo = document.createElement('h1')
-    var loginTituloText = document.createTextNode('Login')
+    const loginTitulo = document.createElement('h1')
+    const loginTituloText = document.createTextNode('Login')
     loginTitulo.appendChild(loginTituloText)
     login.appendChild(loginTitulo)
 
     //Creo formulario
-    var loginFormulario = document.createElement('form')
+    const loginFormulario = document.createElement('form')
     loginFormulario.classList.add('flex', 'flex-col', 'gap-20')
 
     //Username
-    var usernameEtiquetaDiv = document.createElement('div')
+    const usernameEtiquetaDiv = document.createElement('div')
     usernameEtiquetaDiv.classList.add('flex', 'flex-col', 'gap-5')
 
-    var usernameEtiquetaLabel = document.createElement('label')
+    const usernameEtiquetaLabel = document.createElement('label')
     usernameEtiquetaLabel.htmlFor = 'username'
-    var usernameEtiquetaLabelText = document.createTextNode('Username')
+    const usernameEtiquetaLabelText = document.createTextNode('Username')
     usernameEtiquetaLabel.appendChild(usernameEtiquetaLabelText)
 
-    var usernameEtiquetaInput = document.createElement('input')
+    const usernameEtiquetaInput = document.createElement('input')
     usernameEtiquetaInput.type = 'text'
     usernameEtiquetaInput.id = 'username'
     usernameEtiquetaInput.name = 'username'
@@ -311,15 +322,15 @@ function construirLogin() {
     loginFormulario.appendChild(usernameEtiquetaDiv)
 
     //Password
-    var passwordEtiquetaDiv = document.createElement('div')
+    const passwordEtiquetaDiv = document.createElement('div')
     passwordEtiquetaDiv.classList.add('flex', 'flex-col', 'gap-5')
 
-    var passwordEtiquetaLabel = document.createElement('label')
+    const passwordEtiquetaLabel = document.createElement('label')
     passwordEtiquetaLabel.htmlFor = 'password'
-    var passwordEtiquetaLabelText = document.createTextNode('Password')
+    const passwordEtiquetaLabelText = document.createTextNode('Password')
     passwordEtiquetaLabel.appendChild(passwordEtiquetaLabelText)
 
-    var passwordEtiquetaInput = document.createElement('input')
+    const passwordEtiquetaInput = document.createElement('input')
     passwordEtiquetaInput.type = 'password'
     passwordEtiquetaInput.id = 'password'
     passwordEtiquetaInput.name = 'password'
@@ -331,21 +342,21 @@ function construirLogin() {
     loginFormulario.appendChild(passwordEtiquetaDiv)
 
     //Creo un div tambien para login y register
-    var loginRegisterEtiquetaDiv = document.createElement('div')
+    const loginRegisterEtiquetaDiv = document.createElement('div')
     loginRegisterEtiquetaDiv.classList.add('flex', 'justify-between', 'margin-30px')
 
     //Hipervinculo Register
-    var registerLink = document.createElement('a')
+    const registerLink = document.createElement('a')
     registerLink.href = '#'
-    var registerText = document.createTextNode('Register')
+    const registerText = document.createTextNode('Register')
     registerLink.appendChild(registerText)
     loginRegisterEtiquetaDiv.appendChild(registerLink)
 
     //Boton Login
-    var loginButton = document.createElement('button')
+    const loginButton = document.createElement('button')
     loginButton.classList.add('black-button')
     loginButton.type = 'submit'
-    var loginButtonText = document.createTextNode('Login')
+    const loginButtonText = document.createTextNode('Login')
     loginButton.appendChild(loginButtonText)
     loginRegisterEtiquetaDiv.appendChild(loginButton)
 
@@ -354,19 +365,27 @@ function construirLogin() {
     login.appendChild(loginFormulario)
 
     //Configuramos el enlace Register, borra el div de login y añade el de register
-    registerLink.addEventListener('click', function (event) {
+
+    // registerLink.addEventListener('click', function (event) {
+    // registerLink.addEventListener('click', (event) => {
+    registerLink.addEventListener('click', event => {
         body.removeChild(login)
         body.appendChild(register)
     })
 
     //configuramos el boton Login (recuerda que configuramos el boton en el formulario, no como los enlaces que se configura en directamente en él)
-    loginFormulario.addEventListener('submit', function (event) {
+
+    // loginFormulario.addEventListener('submit', function (event) {
+    // loginFormulario.addEventListener('submit', (event) => {
+    loginFormulario.addEventListener('submit', event => {
         event.preventDefault() //cancela la accion preterminada, ya que la voy a configurar yo
         const username = usernameEtiquetaInput.value
         const password = passwordEtiquetaInput.value
         //try indica un bloque de codigo a intentar, si se produce una excepcion entonces entramos en catch
         try {
             loginUser(username, password) //llamamos a la funcion registerUser con los parametros introducidos en mi pg
+
+            loginFormulario.reset();
             body.removeChild(login)
             body.appendChild(home)
         } catch (error) {
@@ -380,7 +399,9 @@ function construirLogin() {
 
 }
 
-function construirHome() {
+// function construirHome() {
+// const construirHome = function () {
+const construirHome = () => {
     /*  
     Estructura html a imitar
          <div>
@@ -389,34 +410,47 @@ function construirHome() {
          </div> 
      */
 
-    var home = document.createElement('div')
+    const home = document.createElement('div')
     home.classList.add('p-20px')
 
     //Logo
-    var logoEncabezado = document.createElement('i')
-    var logoTexto = document.createTextNode('Logo')
+    const logoEncabezado = document.createElement('i')
+    const logoTexto = document.createTextNode('Logo')
     logoEncabezado.appendChild(logoTexto)
     home.appendChild(logoEncabezado)
 
     //Titulo de la pg
-    var contenido = document.createElement('h1')
-    var contenidoText = document.createTextNode('Hello,World!')
+    const contenido = document.createElement('h1')
+    const contenidoText = document.createTextNode('Hello,World!')
     contenido.appendChild(contenidoText)
     home.appendChild(contenido)
 
+    //Añado un boton, que actuara como un enlace a Login
+    const homeButton = document.createElement('button')
+    homeButton.classList.add('black-button')
+    homeButton.type = 'submit'
+    const homeButtonText = document.createTextNode('Logout')
+    homeButton.appendChild(homeButtonText)
+    home.appendChild(homeButton)
+
+    // homeButton.addEventListener('click', function (event) {
+    // homeButton.addEventListener('click', (event) => {
+    homeButton.addEventListener('click', event => {
+        body.removeChild(home)
+        body.appendChild(login)
+    })
     return home
 }
 
 //Segun la pg que queramos ver, habra que comentar o descomentar. En estas lineas estamos añadiendo las llamadas a las funciones, las cuales contienen el div principal de cada pagina
-var aterrizaje = construirAterrizaje()
+const aterrizaje = construirAterrizaje()
 body.appendChild(aterrizaje)
 
-var register = construirRegister()
+const register = construirRegister()
 //body.appendChild(register)
 
-var login = construirLogin()
+const login = construirLogin()
 //body.appendChild(login)
 
-var home = construirHome()
+const home = construirHome()
 //body.appendChild(home)
-
