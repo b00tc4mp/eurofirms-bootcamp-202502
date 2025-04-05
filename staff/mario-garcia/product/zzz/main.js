@@ -42,7 +42,6 @@ function buildLandingView() {
         body.appendChild(registerView)
     })
 
-
     var orText = document.createTextNode('   or   ')
     landingView.appendChild(orText)
 
@@ -60,7 +59,6 @@ function buildLandingView() {
         body.removeChild(landingView)
         body.appendChild(loginView)
     })
-
 
     return landingView
 
@@ -169,7 +167,6 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
     registerView.appendChild(registerForm)
     // registerForm.appendChild(space3)
 
-
     //Montamos el Link de LOGIN
 
     var buttons = document.createElement('div')
@@ -187,7 +184,6 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
         body.removeChild(registerView)
         body.appendChild(loginView)
     })
-
 
     //Montamos el Boton REGISTER
 
@@ -217,6 +213,8 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
         try {
             registerUser(name, email, username, password)
 
+            registerForm.reset() // Con esto RESETEAMOS los campos una vez que salimos de esta Pantalla
+
             body.removeChild(registerView)
             body.appendChild(loginView)
 
@@ -229,7 +227,6 @@ function buildRegisterView() { // Pintamos la Pantalla REGISTER
 
     return registerView
 }
-
 
 
 function buildLoginView() { // TODO Implement
@@ -256,7 +253,6 @@ function buildLoginView() { // TODO Implement
 
     var loginForm = document.createElement('form')
     loginForm.classList.add('flex', 'flex-col', 'gap-20px')
-
 
     var usernameField = document.createElement('div')
     usernameField.classList.add('flex', 'flex-col', 'gap-10px')
@@ -293,7 +289,6 @@ function buildLoginView() { // TODO Implement
     loginForm.appendChild(usernameField)
 
     loginForm.appendChild(passwordField)
-
 
     //A continuacion pintamos los Link's & Botones
 
@@ -340,6 +335,8 @@ function buildLoginView() { // TODO Implement
         try {
 
             loginUser(username, password)
+
+            loginForm.reset() // Con esto RESETEAMOS los campos una vez que salimos de esta Pantalla
 
             body.removeChild(loginView)
             body.appendChild(homeView)
