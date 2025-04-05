@@ -27,25 +27,6 @@ h2 {
 body {
   background-color: aquamarine;
 }
-.main {
-  display: grid;
-  grid-template-columns: 0.1fr 1fr;
-
-  justify-content: space-evenly;
-  gap: 5px;
-}
-.nav-links {
-  display: grid;
-  grid-template-columns: 0.1fr 0.2fr 0.1fr 0.1fr;
-  justify-content: space-evenly;
-  background-color: antiquewhite;
-  font-weight: bolder;
-  padding: 5px;
-}
-.panel_left {
-  background-color: antiquewhite;
-  padding: 0px 5px;
-}
 #datos_personales,
 #perfil_profesional,
 .panel_right {
@@ -54,4 +35,32 @@ body {
   font-family: 'Almendra', serif;
   font-weight: 400;
   font-style: normal;
+}
+/*utility class*/
+.grid {
+  display: grid;
+}
+.grid-2-col {
+  grid-template-columns: 0.1fr 1fr;
+}
+.grid-4-col {
+  grid-template-columns: 0.1fr 0.2fr 0.1fr 0.1fr;
+}
+.justify-content {
+  justify-content: space-evenly;
+}
+.gap-5px {
+  gap: 5px;
+}
+.font-weight {
+  font-weight: bolder;
+}
+.background-color-antiquewhite {
+  background-color: antiquewhite;
+}
+.padding-5px {
+  padding: 5px;
+}
+.padding-0px-5px {
+  padding: 0px 5px;
 }
