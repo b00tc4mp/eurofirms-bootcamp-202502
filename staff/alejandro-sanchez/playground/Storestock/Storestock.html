@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Vehículos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Vehículos</h1>
+        <form id="vehiculoForm">
+            <div class="form-group">
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca" required>
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" name="modelo" required>
+            </div>
+            <div class="form-group">
+                <label for="anio">Año:</label>
+                <input type="number" id="anio" name="anio" required>
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" required>
+            </div>
+            <div class="form-group">
+                <label for="kilometros">Kilómetros:</label>
+                <input type="number" id="kilometros" name="kilometros" required>
+            </div>
+            <button type="button" onclick="agregarVehiculo()">Registrar Vehículo</button>
+        </form>
+
+        <h2>Buscar Vehículos</h2>
+        <input type="text" id="busqueda" onkeyup="buscarVehiculos()" placeholder="Buscar por marca, modelo, año, color o kilómetros">
+
+        <h2>Inventario de Vehículos</h2>
+        <table id="tablaInventario">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Color</th>
+                    <th>Kilómetros</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos de los vehículos se agregarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Arreglo para almacenar los vehículos
+        const inventario = [];
+
+        // Función para agregar un vehículo al inventario
+        function agregarVehiculo() {
+            // Obtiene los valores del formulario
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const anio = document.getElementById('anio').value;
+            const color = document.getElementById('color').value;
+            const kilometros = document.getElementById('kilometros').value;
+
+            // Crea un objeto con los datos del vehículo
+            const vehiculo = {
+                marca: marca,
+                modelo: modelo,
+                anio: anio,
+                color: color,
+                kilometros: kilometros
+            };
+
+            // Agrega el vehículo al arreglo inventario
+            inventario.push(vehiculo);
+
+            // Limpia el formulario
+            document.getElementById('vehiculoForm').reset();
+
+            // Actualiza la tabla de inventario
+            actualizarTabla();
+        }
+
+        // Función para actualizar la tabla de inventario
+        function actualizarTabla() {
+            const tabla = document.getElementById('tablaInventario').getElementsByTagName('tbody')[0];
+            // Limpia la tabla
+            tabla.innerHTML = '';
+            // Agrega las filas a la tabla
+            inventario.forEach((vehiculo) => {
+                const fila = tabla.insertRow();
+                fila.insertCell(0).textContent = vehiculo.marca;
+                fila.insertCell(1).textContent = vehiculo.modelo;
+                fila.insertCell(2).textContent = vehiculo.anio;
+                fila.insertCell(3).textContent = vehiculo.color;
+                fila.insertCell(4).textContent = vehiculo.kilometros;
+            });
+        }
+
+        // Función para buscar vehículos en el inventario
+        function buscarVehiculos() {
+            const query = document.getElementById('busqueda').value.toLowerCase();
+            const tabla = document.getElementById('tablaInventario').getElementsByTagName('tbody')[0];
+            // Limpia la tabla
+            tabla.innerHTML = '';
+            // Filtra y muestra los vehículos que coinciden con la búsqueda
+            inventario.filter(vehiculo => {
+                return vehiculo.marca.toLowerCase().includes(query) ||
+                       vehiculo.modelo.toLowerCase().includes(query) ||
+                       vehiculo.anio.toString().includes(query) ||
+                       vehiculo.color.toLowerCase().includes(query) ||
+                       vehiculo.kilometros.toString().includes(query);
+            }).forEach((vehiculo) => {
+                const fila = tabla.insertRow();
+                fila.insertCell(0).textContent = vehiculo.marca;
+                fila.insertCell(1).textContent = vehiculo.modelo;
+                fila.insertCell(2).textContent = vehiculo.anio;
+                fila.insertCell(3).textContent = vehiculo.color;
+                fila.insertCell(4).textContent = vehiculo.kilometros;
+            });
+        }
+    </script>
+</body>
+</html>
