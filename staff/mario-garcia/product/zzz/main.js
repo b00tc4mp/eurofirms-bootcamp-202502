@@ -375,29 +375,41 @@ function buildHomeView() {
 
     //Creamos MENSAJE Hello,World!
 
-    var welcomeButton = document.createElement('button')
+    var welcomeTitle = document.createElement('h2')
     var welcomeText = document.createTextNode('Hello, World!')
-    welcomeButton.style.backgroundColor = 'sandybrown' // Dar COLOR al BOTON
-    welcomeButton.style.marginLeft = '40px' // Dar ESPACIADO a la Izquierda para CENTRAR el BOTON
-    //welcomeButton.style.cursor = 'pointer'
-    welcomeButton.appendChild(welcomeText)
-    homeView.appendChild(welcomeButton)
+    welcomeTitle.appendChild(welcomeText)
+    homeView.appendChild(welcomeTitle)
+
+    //Creamos el Boton para regresar a LOGIN
+
+    var logoutButton = document.createElement('button')
+    var logoutText = document.createTextNode('Logout')
+    logoutButton.style.backgroundColor = 'sandybrown'
+    logoutButton.appendChild(logoutText)
+    homeView.appendChild(logoutButton)
+
+    logoutButton.addEventListener('click', function (event) {
+
+        body.removeChild(homeView)
+        body.appendChild(loginView)
+
+    }
+
+    )
 
     return homeView
-
 }
 
 var landingView = buildLandingView()
 body.appendChild(landingView)
 
 var registerView = buildRegisterView()
-// body.appendChild(registerView)
+body.appendChild(registerView)
 
 var loginView = buildLoginView()
-// body.appendChild(loginView)
+body.appendChild(loginView)
 
 var homeView = buildHomeView()
-// body.appendChild(homeView)
+body.appendChild(homeView)
 
-// TODO test Login view
-// TODO test Home view
+
