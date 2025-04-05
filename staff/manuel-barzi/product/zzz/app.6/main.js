@@ -1,8 +1,6 @@
 const body = document.querySelector('body')
 
-// function buildLandingView() {
-// const buildLandingView = function () {
-const buildLandingView = () => {
+function buildLandingView() {
     const landingView = document.createElement('div')
     landingView.classList.add('p-20px')
 
@@ -21,9 +19,7 @@ const buildLandingView = () => {
     registerLink.appendChild(registerText)
     buttons.appendChild(registerLink)
 
-    //registerLink.addEventListener('click', function (event) {
-    // registerLink.addEventListener('click', (event) => {
-    registerLink.addEventListener('click', event => {
+    registerLink.addEventListener('click', function (event) {
         body.removeChild(landingView)
         body.appendChild(registerView)
     })
@@ -37,9 +33,7 @@ const buildLandingView = () => {
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
 
-    // loginLink.addEventListener('click', function (event) {
-    // loginLink.addEventListener('click', (event) => {
-    loginLink.addEventListener('click', event => {
+    loginLink.addEventListener('click', function (event) {
         body.removeChild(landingView)
         body.appendChild(loginView)
     })
@@ -49,9 +43,7 @@ const buildLandingView = () => {
     return landingView
 }
 
-// function buildRegisterView() {
-// const buildRegisterView = function () {
-const buildRegisterView = () => {
+function buildRegisterView() {
     const registerView = document.createElement('div')
     registerView.classList.add('p-20px')
 
@@ -137,9 +129,7 @@ const buildRegisterView = () => {
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
 
-    // loginLink.addEventListener('click', function (event) {
-    // loginLink.addEventListener('click', (event) => {
-    loginLink.addEventListener('click', event => {
+    loginLink.addEventListener('click', function (event) {
         body.removeChild(registerView)
         body.appendChild(loginView)
     })
@@ -153,9 +143,7 @@ const buildRegisterView = () => {
 
     registerForm.appendChild(buttons)
 
-    // registerForm.addEventListener('submit', function (event) {
-    // registerForm.addEventListener('submit', (event) => {
-    registerForm.addEventListener('submit', event => {
+    registerForm.addEventListener('submit', function (event) {
         event.preventDefault()
 
         const name = nameInput.value
@@ -180,9 +168,7 @@ const buildRegisterView = () => {
     return registerView
 }
 
-// function buildLoginView() {
-// const buildLoginView = function () {
-const buildLoginView = () => {
+function buildLoginView() {
     const loginView = document.createElement('div')
     loginView.classList.add('p-20px')
 
@@ -238,9 +224,7 @@ const buildLoginView = () => {
     registerLink.appendChild(registerText)
     buttons.appendChild(registerLink)
 
-    // registerLink.addEventListener('click', function (event) {
-    // registerLink.addEventListener('click', (event) => {
-    registerLink.addEventListener('click', event => {
+    registerLink.addEventListener('click', function (event) {
         body.removeChild(loginView)
         body.appendChild(registerView)
     })
@@ -254,9 +238,7 @@ const buildLoginView = () => {
 
     loginForm.appendChild(buttons)
 
-    // loginForm.addEventListener('submit', function (event) {
-    // loginForm.addEventListener('submit', (event) => {
-    loginForm.addEventListener('submit', event => {
+    loginForm.addEventListener('submit', function (event) {
         event.preventDefault()
 
         const username = usernameInput.value
@@ -279,9 +261,7 @@ const buildLoginView = () => {
     return loginView
 }
 
-// function buildHomeView() {
-// const buildHomeView = function () {
-const buildHomeView = () => {
+function buildHomeView() {
     const homeView = document.createElement('div')
     homeView.classList.add('p-20px')
 
@@ -301,9 +281,7 @@ const buildHomeView = () => {
     logoutButton.appendChild(logoutText)
     homeView.appendChild(logoutButton)
 
-    // logoutButton.addEventListener('click', function (event) {
-    // logoutButton.addEventListener('click', (event) => {
-    logoutButton.addEventListener('click', event => {
+    logoutButton.addEventListener('click', function (event) {
         body.removeChild(homeView)
         body.appendChild(loginView)
     })
