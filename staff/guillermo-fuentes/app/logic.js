@@ -1,4 +1,4 @@
-function registerUser(name, email, username, password) {
+const registerUser = (name, email, username, password) => {
   if (typeof name !== 'string') throw new Error('invalid name type');
   if (name.length < 1) throw new Error('Invalid lenght name');
   if (name.length > 20) throw new Error('Invalid lenght name');
@@ -22,8 +22,8 @@ function registerUser(name, email, username, password) {
     password: password,
   };
   users[users.length] = user;
-}
-function loginUser(username, password) {
+};
+const loginUser = (username, password) => {
   if (typeof username !== 'string') throw new Error('invalid username type');
   if (typeof password !== 'string') throw new Error('invalid password type');
 
@@ -35,4 +35,4 @@ function loginUser(username, password) {
   }
 
   throw new Error('Invalid credential');
-}
+};

@@ -1,5 +1,5 @@
 var body = document.querySelector('body');
-function buildLandingView() {
+const buildLandingView = () => {
   //--------------Insercion de logotipo
   var landingView = document.createElement('div');
   var logo = document.createElement('i');
@@ -19,7 +19,7 @@ function buildLandingView() {
   var registerLinkText = document.createTextNode('Register');
   registerLink.appendChild(registerLinkText);
   landingView.appendChild(registerLink);
-  registerLink.addEventListener('click', function (event) {
+  registerLink.addEventListener('click', (event) => {
     body.removeChild(landingView);
     body.appendChild(registerView);
   });
@@ -31,14 +31,14 @@ function buildLandingView() {
   var loginLinkText = document.createTextNode('Login');
   loginLink.appendChild(loginLinkText);
   landingView.appendChild(loginLink);
-  loginLink.addEventListener('click', function (event) {
+  loginLink.addEventListener('click', (event) => {
     body.removeChild(landingView);
     body.appendChild(loginView);
   });
   return landingView;
-}
+};
 
-function buildRegisterView() {
+const buildRegisterView = () => {
   var registerView = document.createElement('div');
   var logoHeading = document.createElement('i');
   var logoText = document.createTextNode('Logo');
@@ -126,7 +126,7 @@ function buildRegisterView() {
   buttons.appendChild(submitButton);
 
   registerForm.appendChild(buttons);
-  registerForm.addEventListener('submit', function (event) {
+  registerForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const name = nameInput.value;
     const username = usernameInput.value;
@@ -143,8 +143,8 @@ function buildRegisterView() {
     }
   });
   return registerView;
-}
-function buildLoginView() {
+};
+const buildLoginView = () => {
   var loginView = document.createElement('div');
 
   var title = document.createElement('h1');
@@ -190,11 +190,9 @@ function buildLoginView() {
   var buttonRegisterText = document.createTextNode('Register');
   linkRegister.appendChild(buttonRegisterText);
   buttons.appendChild(linkRegister);
-  linkRegister.addEventListener('click', function (event) {
-    linkRegister.addEventListener('click', function (event) {
-      body.removeChild(loginView);
-      body.appendChild(registerView);
-    });
+  linkRegister.addEventListener('click', (event) => {
+    body.removeChild(loginView);
+    body.appendChild(registerView);
   });
   //----------Insercion de elementos login boton
   var linkLogin = document.createElement('button');
@@ -205,7 +203,7 @@ function buildLoginView() {
 
   loginForm.appendChild(buttons);
 
-  loginForm.addEventListener('submit', function (event) {
+  loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const username = usernameInput.value;
     const password = passwordInput.value;
@@ -222,8 +220,8 @@ function buildLoginView() {
 
   loginView.appendChild(loginForm);
   return loginView;
-}
-function buildHomeView() {
+};
+const buildHomeView = () => {
   var homeView = document.createElement('div');
   var logoHeading = document.createElement('h1');
   var logoText = document.createTextNode('Welcome');
@@ -241,7 +239,7 @@ function buildHomeView() {
     body.appendChild(loginView);
   });
   return homeView;
-}
+};
 var landingView = buildLandingView();
 var registerView = buildRegisterView();
 var loginView = buildLoginView();
