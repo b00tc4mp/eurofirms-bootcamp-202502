@@ -28,14 +28,15 @@ body {
   background-color: aquamarine;
 }
 .main {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 0.1fr 1fr;
 
   justify-content: space-evenly;
   gap: 5px;
 }
 .nav-links {
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.1fr 0.2fr 0.1fr 0.1fr;
   justify-content: space-evenly;
   background-color: antiquewhite;
   font-weight: bolder;
