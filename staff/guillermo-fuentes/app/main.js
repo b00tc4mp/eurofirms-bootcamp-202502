@@ -135,6 +135,7 @@ function buildRegisterView() {
     // console.log(name, username, password, email);
     try {
       registerUser(name, email, username, password);
+      registerForm.reset();
       body.removeChild(registerView);
       body.appendChild(loginView);
     } catch (error) {
@@ -211,10 +212,9 @@ function buildLoginView() {
 
     try {
       loginUser(username, password);
-
+      loginForm.reset();
       body.removeChild(loginView);
       body.appendChild(homeView);
-      
     } catch (error) {
       alert(error.message);
     }
@@ -230,7 +230,16 @@ function buildHomeView() {
   logoHeading.appendChild(logoText);
   homeView.appendChild(logoHeading);
   var text = document.createTextNode('Hola Mundo');
+
   homeView.appendChild(text);
+  var button = document.createElement('button');
+  var buttonText = document.createTextNode('Logout');
+  button.appendChild(buttonText);
+  homeView.appendChild(button);
+  button.addEventListener('click', function (event) {
+    body.removeChild(homeView);
+    body.appendChild(loginView);
+  });
   return homeView;
 }
 var landingView = buildLandingView();
