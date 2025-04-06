@@ -45,7 +45,7 @@ export const Register = () => {
 
                 <a href="#">Login</a>
 
-                <button className="registerButton" type="submit" style="cursor: pointer;">Register</button>
+                <button className="registerButton" type="submit">Register</button>
 
             </div>
 

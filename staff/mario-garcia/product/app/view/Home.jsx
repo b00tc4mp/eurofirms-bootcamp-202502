@@ -2,7 +2,7 @@ export const Home = () => {
 
     console.log('Home -> render')
 
-    return <div class="p-xy-20px">
+    return <div className="p-xy-20px">
 
         <i>Logo</i>
 
@@ -10,7 +10,7 @@ export const Home = () => {
 
         <h2>Hello, World!</h2>
 
-        <button style="background-color: sandybrown;">Logout</button>
+        <button className="homeButton">Logout</button>
 
     </div>
 

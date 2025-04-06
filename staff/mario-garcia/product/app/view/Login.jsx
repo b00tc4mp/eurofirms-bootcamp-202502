@@ -30,7 +30,7 @@ export const Login = () => {
 
                 <a href="#">Register</a>
 
-                <button className="loginButton" type="submit" style="background-color: floralwhite; cursor: pointer;">Login</button>
+                <button className="loginButton" type="submit">Login</button>
 
             </div>
 

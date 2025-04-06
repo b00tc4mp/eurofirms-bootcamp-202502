@@ -59,6 +59,14 @@ label {
     font-weight: 200;
 }
 
+.homeButton {
+    color: rgb(26, 23, 113);
+    background-color: sandybrown;
+    font-weight: 200;
+}
+
+/* <button className="loginButton" type="submit" style="background-color: floralwhite; cursor: pointer;">Login</button> */
+
 .p-x-20px {
     padding: 0 20px;
 }
