@@ -1,4 +1,4 @@
-import { Landing } from './view/Landing'
+import { Landing } from './view/Landing.jsx'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
@@ -9,10 +9,10 @@ export const App = () => {
     return <>
         <Landing />
 
-        {/* <Register /> */}
+        <Register /> 
 
-        {/* <Login /> */}
+        <Login />
 
-        {/* <Home /> */}
+        <Home />
     </>
 }
