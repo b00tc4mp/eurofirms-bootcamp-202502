@@ -280,7 +280,9 @@ function buildLoginView() {
   loginForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
+    const name = nameInput.value
     const username = usernameInput.value
+    const email = emailInput.value
     const password = passwordInput.value
 
     try {
@@ -356,14 +358,34 @@ var homeView = buildHomeView()
   nameInput.name = 'name'
   nameField.appendChild(nameLabel)
   nameField.appendChild(nameInput)
-  registerForm.appendChild(nameField)
+  registerForm.appendChild(nameField) */
 
   // TODO finish register view
-  registerView.appendChild(registerForm)
+
+  registerForm.addEvenListener ('submit', function(event) {
+  event.preventDefault()
+
+  const name = nameInput.value
+  const username = usernameInput.value
+  const email = emailInput.value
+  const password = passwordInput.value
+ 
+
+  try{
+    registerUser(name,username,email,password)
+    body.removeChie (registerView)
+    body.appendChild(loginView)
+
+
+  }catch(error){
+    alert(error.message)
+  }
+  })
+
+  registerForm.appendChild(button)
 
   return registerView
-}
-*/
+
 
 
 
