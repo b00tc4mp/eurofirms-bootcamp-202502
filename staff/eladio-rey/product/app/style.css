@@ -2,3 +2,8 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.my-element {
+    display: flex;
+}
+
