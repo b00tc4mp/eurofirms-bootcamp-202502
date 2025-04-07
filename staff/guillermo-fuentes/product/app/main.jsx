@@ -5,4 +5,4 @@ import { Landing } from './view/Landing';
 import { Login } from './view/Login';
 import { Home } from './view/Home';
 const root = createRoot(document.getElementById('root'));
-root.render(<Register />);
+root.render(<App />);

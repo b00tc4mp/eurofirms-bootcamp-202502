@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export const Login = () => {
   return (
     <>
@@ -12,7 +14,7 @@ export const Login = () => {
           <input type="password" name="password" placeholder=" your password" />
         </div>
         <div className="flex justify-between">
-          <a href="#">Register</a>
+          <Link to="/register">Register</Link>
           <button>Login</button>
         </div>
       </form>
