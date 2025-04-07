@@ -83,6 +83,10 @@ h3 {
     flex-direction: column;
 }
 
+.flex-r {
+    flex-direction: row;
+}
+
 .just-space-e {
     justify-content: space-evenly;
 }
@@ -91,10 +95,6 @@ h3 {
     flex-direction: row;
     align-items: center;
     align-content: center;
-}
-
-.flex-r {
-    flex-direction: row;
 }
 
 .just-flex-s {
@@ -163,4 +163,16 @@ h3 {
 
 .pad-20 {
     padding: 20px 0
+}
+
+.education-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.education-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
 }
