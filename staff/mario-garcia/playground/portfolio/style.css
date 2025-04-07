@@ -46,10 +46,21 @@ h3 {
     justify-content: start;
 }
 
+.panel-skill {
+
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
 /* Utility classes */
 
 .b-1px {
     border: 1px solid rgb(103, 103, 188)
+}
+
+.b-3px {
+    border: 3px solid rgb(103, 103, 188)
 }
 
 .b-5px {
@@ -74,6 +85,16 @@ h3 {
 
 .just-space-e {
     justify-content: space-evenly;
+}
+
+.just-cen {
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.flex-r {
+    flex-direction: row;
 }
 
 .just-flex-s {
@@ -138,4 +159,8 @@ h3 {
 
 .pad-10 {
     padding: 10px 0
+}
+
+.pad-20 {
+    padding: 20px 0
 }
