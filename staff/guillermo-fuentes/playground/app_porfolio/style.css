@@ -6,37 +6,7 @@
   text-decoration: none;
   list-style: none;
 }
-h1 {
-  font-family: 'Macondo Swash Caps', cursive;
-  font-weight: 400;
-  font-style: normal;
-  text-align: center;
-}
-h2 {
-  text-align: center;
-  background-color: skyblue;
-  font-family: 'Almendra SC', serif;
-  font-weight: 400;
-  font-style: bold;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-body {
-  background-color: aquamarine;
-}
-#datos_personales,
-#perfil_profesional,
-.panel_right {
-  padding: 0px 5px;
-  background-color: antiquewhite;
-  font-family: 'Almendra', serif;
-  font-weight: 400;
-  font-style: normal;
-}
-/*utility class*/
+
 .grid {
   display: grid;
 }
@@ -55,12 +25,43 @@ body {
 .font-weight {
   font-weight: bolder;
 }
-.background-color-antiquewhite {
+.font-weight-400 {
+  font-weight: 400;
+}
+.font-style {
+  font-style: normal;
+}
+.font-style-bold {
+  font-style: bold;
+}
+.font-family {
+  font-family: 'Almendra', serif;
+}
+.font-family-macondo {
+  font-family: 'Macondo Swash Caps', cursive;
+}
+.bg-antiquewhite {
   background-color: antiquewhite;
+}
+.bg-aquamarine {
+  background-color: aquamarine;
+}
+.bg-skyblue {
+  background-color: skyblue;
 }
 .padding-5px {
   padding: 5px;
 }
 .padding-0px-5px {
   padding: 0px 5px;
+}
+.text-aling-center {
+  text-align: center;
+}
+.border-radius {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
