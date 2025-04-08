@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Homer Simpson</title>
   <!--Meta descripción (importante para el seo) / es una meta descripción en modo cachondeo-->
-  <meta name="descripcion" content="Descubre el lado más inesperado de Homer Simpson: programador, amante de las donuts y héroe del código. ¡El desarrollador más divertido de Springfield te sorprenderá!">
+  <meta name="descripcion"
+    content="Descubre el lado más inesperado de Homer Simpson: programador, amante de las donuts y héroe del código. ¡El desarrollador más divertido de Springfield te sorprenderá!">
   <!--Autor-->
   <meta name="author" content="CV developed">
   <!--Indexación para buscadores-->
@@ -52,41 +53,46 @@
       <!--links a redes sociales-->
       <nav class="social-links">
         <ul>
-          <li><a href="https://www.linkedin.com/in/tu-nombre" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/tu-nombre" target="_blank"><i class="fab fa-linkedin"></i>
+              LinkedIn</a></li>
           <li><a href="https://github.com/tu-usuario" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-          <li><a href="https://www.instagram.com/tu-usuario" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="https://www.instagram.com/tu-usuario" target="_blank"><i class="fab fa-instagram"></i>
+              Instagram</a></li>
         </ul>
       </nav>
+      <!-- Agrega un nuevo enlace para descargar el CV -->
+      <section class="cv-download">
+        <a href="documentos/CV_de_Homer_Simpson.pdf" download="CV_de_Homer_Simpson.pdf" class="download-btn">
+          <i class="fas fa-download"></i> Descargar CV
+        </a>
+      </section>
     </section>
     <!--abro otra sección con la descripción en la pág. principal dcha-->
     <section class="right">
       <p>
         Born in 1984 in Springfield.<br /><!-- Esta línea añade un salto de línea para separar la siguiente frase -->
         I believe coding can be both fun and delicious.<br /><!-- Aquí también uso <br /> para mejorar la lectura -->
-        With a mission to bring joy through web design,<br /><!-- Otra línea para mantener el formato "poético" del párrafo -->
+        With a mission to bring joy through web
+        design,<br /><!-- Otra línea para mantener el formato "poético" del párrafo -->
         I pursue quirky experiences and interactive donuts.
       </p>
     </section>
-    <!-- Agrega un nuevo enlace para descargar el CV -->
-<section class="cv-download">
-  <a href="documentos/CV_de_Homer_Simpson.pdf" download="CV_de_Homer_Simpson.pdf" class="download-btn">
-    <i class="fas fa-download"></i> Descargar CV
-  </a>
-</section>
+    
   </main>
-    <!--esto es para dar movimiento a homer por la pantalla en modo pixel videojuego 80,s-->
+  <!--esto es para dar movimiento a homer por la pantalla en modo pixel videojuego 80,s-->
   <div class="homer-wrapper">
     <svg id="homer" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-      <rect width="40" height="40" fill="none"/>
-      <rect x="10" y="5" width="20" height="5" fill="#ffe600"/>
-      <rect x="15" y="10" width="10" height="10" fill="#f4c542"/>
-      <rect x="12" y="20" width="16" height="10" fill="#ffffff"/>
-      <rect x="14" y="30" width="12" height="5" fill="#000000"/>
+      <rect width="40" height="40" fill="none" />
+      <rect x="10" y="5" width="20" height="5" fill="#ffe600" />
+      <rect x="15" y="10" width="10" height="10" fill="#f4c542" />
+      <rect x="12" y="20" width="16" height="10" fill="#ffffff" />
+      <rect x="14" y="30" width="12" height="5" fill="#000000" />
     </svg>
   </div>
   <!--este es el archivo de audio de homer hablando-->
   <audio id="homerSound" src="audios/woohoo.mp3" preload="auto"></audio>
-  
+
   <script src="script.js"></script>
 </body>
+
 </html>

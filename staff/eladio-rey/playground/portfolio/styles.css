@@ -12,12 +12,12 @@
     color: #cbd80a; /* Texto lima */
     height: 100vh; /* TODO no se lo que es esto?. Ocupa toda la altura de la ventana */
     overflow: hidden; /* Oculta el scroll */
-    transition: background 0.4s, color 0.4s; /* Suaviza cambios de color/fondo */
+    transition: background 9.4s, color 9.4s; /* Suaviza cambios de color/fondo */
   }
   
   /* Contenedor principal */
   .container {
-    display: flex 1fr, 1fr, 1fr; /* Diseño flexible en línea */
+    display: flex; /* Diseño flexible en línea */
     justify-content: space-between; /* Espacio entre los elementos hijos */
     padding: 3rem; /* Relleno interior */
     height: 100%; /* Ocupa el 100% de la altura del body */
@@ -153,7 +153,7 @@
   }
   
   .social-links a:hover {
-    color: #fff;
+    color: #c00606;
   }
   
   .social-links i {
