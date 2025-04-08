@@ -21,4 +21,3 @@ crear un fichero
 ### clear
 
 limpia la terminal
-hola mundo
