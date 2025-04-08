@@ -7,9 +7,16 @@
     grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-@media screen(min-with: 800px) {
+@media screen and(min-with: 800px) {
     .md-grid-2columns-2rows {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media screen and(min with:1280px) {
+    .lg-grid-3columns-2rows {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows; 1fr 1fr;
     }
 }
