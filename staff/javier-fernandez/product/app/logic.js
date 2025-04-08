@@ -18,12 +18,12 @@ function registerUser(name, email, username, password) {
     if (password.length < 8) throw new Error("invalid password length")
     if (password.length > 20) throw new Error("invalid password max length")
         //TO DO REGISTER USER IN DATABASE
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i]
     
         if (user.email === email || user.username === username) throw new Error("user already exists")
     }
-    var user = {
+    const user = {
         name: name,
         email: email,
         username: username,
@@ -38,5 +38,29 @@ function registerUser(name, email, username, password) {
 
 
 function loginUser(username, password){
+    if (typeof username !== "string") throw new Error("invalid username type")
+        if (username.length < 3) throw new Error("invalid username length")
+        if (username.length > 20) throw new Error("invalid username max lenth")
     
+    
+        if (typeof password !== "string") throw new Error ("invalid password type")
+        if (password.length < 8) throw new Error("invalid password length")
+        if (password.length > 20) throw new Error("invalid password max length")
+            for (let i = 0; i < users.length; i++) {
+        const user = users[i]
+        if (user.username === username && user.password !== password) throw new Error ("wrong credentials")
+        }
+    let user
+    for (let i = 0; i < user.length; i++) {
+        const _user = user[i]
+        if (_user.username === username) {
+            user = _user 
+
+            break
+        }
+    }
+
+    if (user === undefined) throw new Error ("user not found")
+
+    if (user.password !== password) throw new Error ("wrong credentials")
 }
