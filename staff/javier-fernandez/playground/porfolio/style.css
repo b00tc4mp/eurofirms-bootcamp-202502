@@ -1,0 +1,15 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.grid-1column-4rows {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+@media screen(min-with: 800px) {
+    .md-grid-2columns-2rows {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
