@@ -1,4 +1,4 @@
-function registerView(name, email, username, password) {
+function registerUser(name, email, username, password) {
     if (typeof name !== 'string') throw new Error('invalid name type')
     if (name.length < 1) throw new Error('invalid name length')
     if (name.length > 30) throw new Error('invalid name length')
