@@ -1,6 +1,7 @@
 var body = document.querySelector("body")
 
-function buildLandingView() {
+//const buildLandingView = function () {
+const buildLandingView = () => {
     const landingView = document.createElement("div")
     landingView.classList.add("p-20px")
 
@@ -20,7 +21,9 @@ function buildLandingView() {
     registerLink.appendChild(registerText)
     landingView.appendChild(registerLink)
 
-    registerLink.addEventListener("click", function (event) {
+     //registerLink.addEventListener("click", function (event) {
+    //registerLink.addEventListener("click", (event) => {
+    registerLink.addEventListener("click",  event => {
         body.removeChild(landingView)
         body.appendChild(registerView)
     })
@@ -34,8 +37,9 @@ function buildLandingView() {
     loginLink.appendChild(loginText)
     landingView.appendChild(loginLink)
 
-  
-    loginLink.addEventListener("click", function (event) {
+   //loginLink.addEventListener("click", function (event) {
+    //loginLink.addEventListener("click", (event) => {
+    loginLink.addEventListener("click",  event => {
         body.removeChild(landingView)
         body.appendChild(loginView)
     })
@@ -44,7 +48,8 @@ function buildLandingView() {
     return landingView
 }
 
-function buildRegisterView() {
+//const buildRegisterView = function () {
+const buildRegisterView = () => {
     const registerView = document.createElement("div")
     registerView.classList.add("p-x-20px")
 
@@ -150,7 +155,9 @@ function buildRegisterView() {
     loginLink.appendChild(loginText)
     buttons.appendChild(loginLink)
 
-    loginLink.addEventListener("click", function (event) {
+     //loginLink.addEventListener("click", function (event) {
+    //loginLink.addEventListener("click", (event) => {
+    loginLink.addEventListener("click",  event => {
         body.removeChild(registerView)
         body.appendChild(loginView)
     })
@@ -164,7 +171,9 @@ function buildRegisterView() {
 
     registerForm.appendChild(buttons)
 
-    registerForm.addEventListener("submit", function (event) {
+    //registerForm.addEventListener("submit", function (event) {
+    //registerForm.addEventListener("submit", (event) => {
+        registerForm.addEventListener("submit", event => {
         event.preventDefault()
 
         const name =nameInput.value
@@ -194,7 +203,8 @@ function buildRegisterView() {
 
 }
 
-function buildLoginView() {
+//const buildLandingView = function () {
+const buildLoginView = () => {
     const loginView = document.createElement("div")
 
     const logo = document.createElement("i")
@@ -259,7 +269,8 @@ function buildLoginView() {
     buttons.appendChild(registerLink)
 
 
-    registerLink.addEventListener("click", function (event) {
+    //registerLink.addEventListener("click", function (event)  {
+    registerLink.addEventListener("click", event => {
      body.removeChild(loginView)
         body.appendChild(registerView)
     })
@@ -272,8 +283,9 @@ function buildLoginView() {
     loginForm.appendChild(buttons)
 
 
-
-    loginForm.addEventListener("submit", function (event) {
+    //loginForm.addEventListener("submit", function (event) {
+     //loginForm.addEventListener("submit", (event) => {
+    loginForm.addEventListener("submit", event => {
         event.preventDefault()
 
         const username = usernameInput.value
@@ -299,7 +311,8 @@ function buildLoginView() {
     
 }
 
-function buildHomeView() {
+//const buildLandingView = function () {
+const buildHomeView = () => {
     const homeView = document.createElement("div")
 
     const logo = document.createElement("i")
@@ -314,13 +327,15 @@ function buildHomeView() {
     const holamundoText = document.createTextNode("Hola Mundo")
     homeView.appendChild(holamundoText)
     
-    const logoutButtom = document.createElement("buttom")
-    logoutButtom.classList.add("black-buttom")
-    const logoutText = document.createElementTextNode("logout")
-    logoutButtom.appendChild(logoutText)
-    homeView.appendChild(logoutButtom)
+    const logoutButton = document.createElement("button")
+    logoutButton.classList.add("black-button")
+    const logoutText = document.createTextNode("logout")
+    logoutButton.appendChild(logoutText)
+    homeView.appendChild(logoutButton)
 
-    logoutButtom.addEventListener("click", function(event) {
+     //logoutButton.addEventListener("click", function (event) {
+    //logoutButton.addEventListener("click", (event) => {
+    logoutButton.addEventListener("click", event => {
         body.removeChild(homeView)
         body.appendChild(loginView)
     })
