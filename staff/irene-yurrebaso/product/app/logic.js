@@ -1,6 +1,6 @@
 //en logic.js vamos a poner las funciones que tienen que procesar la informacion que capturamos en main.js
 
-function registerUser(name, email, username, password) {
+const registerUser = (name, email, username, password) => {
     //1. validar estos datos (ej. asegurarnos que son strings y dentro de longitud requerida)
     if(typeof name !== 'string') throw new Error('Invalid name type')
     if(name.length < 1) throw new Error('Invalid min name length')
@@ -38,7 +38,7 @@ function registerUser(name, email, username, password) {
 }
 
 //TODO implement loginUser function:
-function loginUser(username, password) {
+const loginUser = (username, password) => {
     
     //1. validar datos (ej. asegurarnos que son strings y dentro de longitud requerida)
     if(typeof username !== 'string') throw new Error('Invalid username')
