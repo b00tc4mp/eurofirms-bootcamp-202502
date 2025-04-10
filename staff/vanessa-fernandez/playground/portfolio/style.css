@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Delius+Unicase:wght@400;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: linear-gradient(to bottom, #e0f7ff, #f9fcff);
-  }
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
   
 /*utility classes */
 .font-family {
