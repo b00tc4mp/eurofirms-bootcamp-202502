@@ -5,8 +5,14 @@ export const Landing = () => {
     <>
       <div>
         <i>Logo</i>
-        <h1>Welcome to the App</h1>
-        <Link to="/register">Register</Link> or <Link to="/login">Login</Link>
+        <h1 className="text-red-600">Welcome to the App</h1>
+        <Link to="/register" className="underline">
+          Register
+        </Link>{' '}
+        or{' '}
+        <Link to="/login" className="underline">
+          Login
+        </Link>
       </div>
     </>
   );
