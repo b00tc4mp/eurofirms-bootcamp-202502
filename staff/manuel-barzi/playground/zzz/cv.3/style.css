@@ -1,0 +1,45 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barrio&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Barrio&family=Boldonse&display=swap');
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.title {
+    font-family: Boldonse;
+}
+
+.subtitle {
+    font-family: Barrio;
+}
+
+.photo {
+    width: 75px;
+    border-radius: 10px;
+}
+
+.main {
+    display: flex;
+}
+
+.panel-left {
+    background-color: skyblue;
+    padding: 0 10px;
+}
+
+.panel-right {
+    background-color: plum;
+    padding: 0 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}

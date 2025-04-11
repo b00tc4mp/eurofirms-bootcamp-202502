@@ -1,0 +1,32 @@
+.grid {
+    display: grid;
+}
+
+.grid-1column-4rows {
+    /* mobile */
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+@media screen and (min-width: 800px) {
+    .md-grid-2columns-2rows {
+        /* tablet */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lg-grid-3columns-2rows {
+        /* laptop */
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .xl-grid-4columns-1row {
+        /* desktop */
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
