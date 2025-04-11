@@ -8,10 +8,10 @@
     </head>
 
     <body>
-        <!--El orden de carga de los archivos js depende de la dependencia. Ej. main depende de logic, entonces logic se pone antes-->
-        <script src="data.js"></script>     <!--memoria datos-->
-        <script src="logic.js"></script>    <!--logica-->
-        <script src="main.js"></script>     <!--interfaz usuario-->
+        <!--En este div vamos a pedir a React que pinte todos los componentes de la interfaz de usuario-->
+        <div id="root"></div>
+        
+        <script src="main.jsx" type="module"></script>     <!--interfaz usuario-->
         
     </body>
 
