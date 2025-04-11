@@ -1,51 +1,51 @@
 export const Register = () => {
     console.log('Register -> render')
 
-    return <div className="p-xy-20px">
+    return <div className="p-5">
 
-        <i>Logo</i>
+        <i className="text-xl">Logo</i>
 
-        <h1>REGISTER Page</h1>
+        <h1 className="text-3xl text-blue-900 font-semibold py-2">REGISTER Page</h1>
 
-        <form className="flex flex-col gap-20px">
+        <form className="mt-2 flex flex-col gap-4">
 
-            <div className="flex flex-col gap-10px">
+            <div className="flex flex-col gap">
 
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="name" className="text-xl">Name:</label>
 
-                <input className="placeholder" type="text" id="name" name="name" placeholder="Your full name" />
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" id="name" name="name" placeholder="Your full name" />
+
+            </div>
+
+            <div className="flex flex-col gap">
+
+                <label htmlFor="email" className="text-xl">Email:</label>
+
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="email" name="email" id="email" placeholder="Your e-mail" />
+
+            </div>
+
+            <div className="flex flex-col gap">
+
+                <label htmlFor="username" className="text-xl">Username:</label>
+
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
 
             </div>
 
             <div className="flex flex-col gap-10px">
 
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="password" className="text-xl">Password:</label>
 
-                <input className="placeholder" type="email" name="email" id="email" placeholder="Your e-mail" />
-
-            </div>
-
-            <div className="flex flex-col gap-10px">
-
-                <label htmlFor="username">Username:</label>
-
-                <input className="placeholder" type="text" name="username" id="username" placeholder="Your Username" />
-
-            </div>
-
-            <div className="flex flex-col gap-10px">
-
-                <label htmlFor="password">Password:</label>
-
-                <input className="placeholder" type="text" name="password" id="password" placeholder="Introduce a password" />
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="password" id="password" placeholder="Introduce a password" />
 
             </div>
 
             <div className="flex justify-between">
 
-                <a href="#">Login</a>
+                <a className="underline" href="#">Login</a>
 
-                <button className="registerButton" type="submit">Register</button>
+                <button className="border-1 rounded-md bg-blue-50 text-blue-900 px-2" type="submit">Register</button>
 
             </div>
 

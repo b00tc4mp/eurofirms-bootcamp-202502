@@ -2,35 +2,35 @@ export const Login = () => {
 
     console.log('Login -> render')
 
-    return <div className="p-xy-20px">
+    return <div className="p-5">
 
-        <i>Logo</i>
+        <i className="text-xl">Logo</i>
 
-        <h1>LOGIN Page</h1>
+        <h1 className="text-3xl text-blue-900 font-semibold py-2">LOGIN Page</h1>
 
-        <form className="flex flex-col gap-20px">
+        <form className="mt-2 flex flex-col gap-4">
 
-            <div className="flex flex-col gap-10px">
+            <div className="flex flex-col gap">
 
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username" className="text-xl">Username:</label>
 
-                <input className="placeholder" type="text" name="username" id="username" placeholder="Your Username" />
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
 
             </div>
 
-            <div className="flex flex-col gap-10px">
+            <div className="flex flex-col gap">
 
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password" className="text-xl">Password:</label>
 
-                <input className="placeholder" type="text" name="password" id="password" placeholder="Introduce your password" />
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="password" id="password" placeholder="Introduce your password" />
 
             </div>
 
             <div className="flex justify-between">
 
-                <a href="#">Register</a>
+                <a className="underline" href="#">Register</a>
 
-                <button className="loginButton" type="submit">Login</button>
+                <button className="border-1 rounded-md bg-blue-50 text-blue-900 px-2" type="submit">Login</button>
 
             </div>
 
