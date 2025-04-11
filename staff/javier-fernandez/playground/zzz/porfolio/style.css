@@ -2,21 +2,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.grid-1column-4rows {
+.grid-responsive {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-@media screen and(min-with: 800px) {
-    .md-grid-2columns-2rows {
+@media (min-width: 800px) {
+    .grid-responsive {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
     }
 }
 
-@media screen and(min with:1280px) {
-    .lg-grid-3columns-2rows {
+@media (min-width:1280px) {
+    .grid-responsive {
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows; 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
     }
 }
