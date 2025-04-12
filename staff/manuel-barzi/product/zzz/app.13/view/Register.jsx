@@ -1,31 +1,7 @@
-import { logic } from '../logic'
-
 export const Register = (props) => {
-    const onLoginClicked = props.onLoginClicked
-    const onUserRegistered = props.onUserRegistered
+    const onLoginClick = props.onLoginClick
 
-    const handleLoginClick = () => onLoginClicked()
-
-    const handleRegisterSubmit = event => {
-        event.preventDefault()
-
-        const form = event.target
-
-        const name = form.name.value
-        const email = form.email.value
-        const username = form.username.value
-        const password = form.password.value
-
-        try {
-            logic.registerUser(name, email, username, password)
-
-            form.reset()
-
-            onUserRegistered()
-        } catch (error) {
-            alert(error.message)
-        }
-    }
+    const handleLoginClick = () => onLoginClick()
 
     console.log('Register -> render')
 
@@ -35,7 +11,7 @@ export const Register = (props) => {
         <div className="mt-2">
             <h1 className="text-xl">Register</h1>
 
-            <form className="mt-2 flex flex-col gap-4" onSubmit={handleRegisterSubmit}>
+            <form className="mt-2 flex flex-col gap-4">
                 <div className="flex flex-col gap">
                     <label htmlFor="name">Name</label>
                     <input className="border-2 px-1" type="text" id="name" name="name" placeholder="your full name" />
