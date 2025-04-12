@@ -1,4 +1,33 @@
-export const Register = () => {
+import { logic } from "../logic"
+
+export const Register = (props) => {
+    const onLoginClick = props.onLoginClick
+    const onUserRegistered = props.onUserRegistered
+
+    const handleLoginClick = () => onLoginClick()
+
+    const handleRegisterSubmit = event => {
+        event.preventdefault()
+
+        const form = event.target
+
+        const name = form.name.value
+        const email = form.email.value
+        const username = form.username.value
+        const password = form.password.value
+    }
+
+    try {
+        logic.registerUser(name, email, username, password)
+
+        form.reset()
+
+        onUserRegistered()
+    } catch (error) {
+        alert(error.message)
+
+    }
+
     console.log('Register -> render')
 
     return <div className="p-20x">
@@ -8,14 +37,14 @@ export const Register = () => {
 
         <form className="flex flex-col gap-20px">
             <div className="flex flex-col gap-10px">
-              <label htmlFor="name">Name</label>  
-              <input type="text" id="name" name="name" placeholder="your full name" />
+                <label htmlFor="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="your full name" />
             </div>
 
             <div className="flex flex-col gap-10px">
                 <label htmlFor="email">E-Mail</label>
                 <input type="email" id="email" name="email"
-                placeholder="your e-mail" />
+                    placeholder="your e-mail" />
             </div>
 
             <div className="flex flex-col gap-10px">
@@ -26,17 +55,15 @@ export const Register = () => {
             <div className="flex flex-col gap-10px">
                 <label htmlFor="=password">Password</label>
                 <input type="password" id="password" name="password"
-                placeholder="your password" />
+                    placeholder="your password" />
             </div>
 
             <div className="flex justify-between">
                 <a href="#">Login</a>
                 <button className="black-button" type="submit">Register</button>
             </div>
-                
+
 
         </form>
     </div>
-       
-
 }
