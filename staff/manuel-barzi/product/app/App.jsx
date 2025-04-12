@@ -6,19 +6,29 @@ import { Login } from './view/Login'
 import { Home } from './view/Home'
 
 export const App = () => {
-    const viewState = useState('landing')
+    const [view, setView] = useState('landing')
 
-    const view = viewState[0]
-    //const setView = viewState[1]
+    const handleRegisterClick = () => setView('register')
+
+    const handleLoginClick = () => setView('login')
 
     console.log('App -> render')
 
     return <>
-        {view === 'landing' && <Landing />}
+        {view === 'landing' &&
+            <Landing
+                onRegisterClick={handleRegisterClick}
+                onLoginClick={handleLoginClick}
+            />
+        }
 
-        {view === 'register' && <Register />}
+        {view === 'register' &&
+            <Register onLoginClick={handleLoginClick} />
+        }
 
-        {view === 'login' && <Login />}
+        {view === 'login' &&
+            <Login onRegisterClick={handleRegisterClick} />
+        }
 
         {view === 'home' && <Home />}
     </>

@@ -1,8 +1,4 @@
-export const Register = (props) => {
-    const onLoginClick = props.onLoginClick
-
-    const handleLoginClick = () => onLoginClick()
-
+export const Register = () => {
     console.log('Register -> render')
 
     return <div className="p-5">
@@ -33,8 +29,7 @@ export const Register = (props) => {
                 </div>
 
                 <div className="flex justify-between">
-                    <a className="underline" href="#" onClick={handleLoginClick}>Login</a>
-
+                    <a className="underline" href="#">Login</a>
                     <button className="bg-black text-white px-2" type="submit">Register</button>
                 </div>
             </form>
