@@ -1,3 +1,5 @@
+import { data } from './data';
+
 const registerUser = (name, email, username, password) => {
   if (typeof name !== 'string') throw new Error('invalid name type');
   if (name.length < 1) throw new Error('Invalid lenght name');
@@ -11,8 +13,8 @@ const registerUser = (name, email, username, password) => {
   if (typeof password !== 'string') throw new Error('invalid password type');
   if (password.length < 8) throw new Error('Invalid lenght password');
 
-  for (let i = 0; i < users.length; i++) {
-    var user = users[i];
+  for (let i = 0; i < data.users.length; i++) {
+    var user = data.users[i];
     if (user.email === email || user.username === username) throw new Error('email or username already exists');
   }
   var user = {
@@ -21,18 +23,22 @@ const registerUser = (name, email, username, password) => {
     username: username,
     password: password,
   };
-  users[users.length] = user;
+  data.users[data.users.length] = user;
 };
 const loginUser = (username, password) => {
   if (typeof username !== 'string') throw new Error('invalid username type');
   if (typeof password !== 'string') throw new Error('invalid password type');
 
-  for (let i = 0; i < users.length; i++) {
-    var user = users[i];
+  for (let i = 0; i < data.users.length; i++) {
+    var user = data.users[i];
     if (user.username === username && user.password !== password) throw new Error('invalid credential');
 
     if (user.username === username && user.password === password) return user;
   }
 
   throw new Error('Invalid credential');
+};
+export const logic = {
+  registerUser,
+  loginUser,
 };

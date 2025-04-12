@@ -1,25 +1,37 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './view/Home';
 import { Landing } from './view/Landing';
 import { Login } from './view/Login';
 import { Register } from './view/Register';
+import { useState } from 'react';
 
 export const App = () => {
+  const [view, setView] = useState('landing');
+  const handleRegisterClick = () => setView('register');
+  const handleLoginClick = () => setView('login');
+  const handleUserRegistered = () => setView('login');
+  const handleLoginUser = () => setView('home');
+  const handleLogout = () => setView('landing');
+  console.log('App->render');
   return (
     <>
-      <Router>
-        {/* Configuración de las rutas principales de la aplicación */}
+      {view === 'landing' && <Landing onRegisterClick={handleRegisterClick} onLoginClick={handleLoginClick} />}
+      {view === 'register' && <Register onLoginClick={handleLoginClick} onRegisteredUser={handleUserRegistered} />}
+      {view === 'login' && <Login onRegisterClick={handleRegisterClick} onLoginUser={handleLoginUser} />}
+      {view === 'home' && <Home onUserLogout={handleLogout} />}
+      {/* <Router>
+      
         <Routes>
-          {/* Ruta raíz que muestra la página de bienvenida */}
+        
           <Route path="/" element={<Landing />} />
-          {/* Ruta para el formulario de registro */}
+       
           <Route path="/register" element={<Register />} />
-          {/* Ruta para el formulario de inicio de sesión */}
+        
           <Route path="/login" element={<Login />} />
-          {/* Ruta para la página principal después de iniciar sesión */}
+        
           <Route path="/home" element={<Home />} />
         </Routes>
-      </Router>
+      </Router> */}
+      {}
     </>
   );
 };
