@@ -1,5 +1,7 @@
 import { data } from './data'
 
+// function registerUser(name, email, username, password)
+// const registerUser = function (name, email, username, password) {
 const registerUser = (name, email, username, password) => {
     if (typeof name !== 'string') throw new Error('invalid name type')
     if (name.length < 1) throw new Error('invalid name min length')
@@ -23,17 +25,18 @@ const registerUser = (name, email, username, password) => {
         if (user.email === email || user.username === username) throw new Error('user already exists')
     }
 
-    data.usersCount++
-
-    data.users.push({
-        id: 'user-' + data.usersCount,
+    const user = {
         name: name,
         email: email,
         username: username,
         password: password
-    })
+    }
+
+    data.users[data.users.length] = user
 }
 
+// function loginUser(username, password) {
+// const loginUser = function (username, password) {
 const loginUser = (username, password) => {
     if (typeof username !== 'string') throw new Error('invalid username type')
     if (username.length < 3) throw new Error('invalid username min length')
@@ -58,40 +61,9 @@ const loginUser = (username, password) => {
     if (user === undefined) throw new Error('user not found')
 
     if (user.password !== password) throw new Error('wrong credentials')
-
-    data.userId = user.id
-}
-
-const getUserUsername = () => {
-    let user
-
-    for (let i = 0; i < data.users.length; i++) {
-        const _user = data.users[i]
-
-        if (_user.id === data.userId) {
-            user = _user
-
-            break
-        }
-    }
-
-    if (user === undefined) throw new Error('user not found')
-
-    return user.username
-}
-
-const logoutUser = () => {
-    data.userId = null
-}
-
-const getPosts = () => {
-    return data.posts.toReversed()
 }
 
 export const logic = {
     registerUser,
-    loginUser,
-    getUserUsername,
-    logoutUser,
-    getPosts
+    loginUser
 }
