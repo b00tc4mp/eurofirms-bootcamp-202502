@@ -1,22 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
+
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
 
 export const App = () => {
-    console.log('App -> render')
-    return ( 
-        <Router>
-            <Routes>
-                
-                <Route path='/' element={<Landing />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='home' element={<Home />} />
+    const [view, setView] = useState('landing')
 
-            </Routes>
-       
-        </Router>
-    )
+    const handleRegisterClicked = () => setView('register')
+
+    const handleLoginClicked = () => setView('login')
+
+    const handleUserRegistered = () => setView('login')
+
+    const handleUserLoggedIn = () => setView('home')
+
+    const handleUserLoggedOut = () => setView('login')
+
+    console.log('App -> render')
+
+    return <>
+        {view === 'landing' && <Landing onregisterClicked={handleRegisterClicked} onLoginClicked={handleLoginClicked} />}
+        {view === 'register' && <Register onLoginClicked={handleLoginClicked} onUserRegistered={handleUserRegistered} />}
+        {view === 'login' && <Login onregisterClicked={handleRegisterClicked} onUserLoggedIn={handleUserLoggedIn} />}
+        {view === 'home' && <Home onUserLoggedOut={handleUserLoggedOut} />}
+    </>
 }

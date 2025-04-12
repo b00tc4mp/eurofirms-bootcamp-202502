@@ -1,18 +1,11 @@
-export const Landing = (props) => {
-    const onRegisterClicked = props.onRegisterClicked
-    const onLoginClicked = props.onLoginClicked
+import { Link } from 'react-router-dom'
 
-    const handleRegisterClick = () => onRegisterClicked()
-
-    const handleLoginClick = () => onLoginClicked()
-
+export const Landing = () => {
     console.log('Landing -> render')
 
     return <div className="p-20-px">
         <i className="block">Logo</i>
         <h1>Landing page</h1>
-        <a href="#" onClick={handleRegisterClick}>Register</a>
-        &nbsp;or&nbsp;
-        <a href="#" onClick={handleLoginClick}>Login</a>
+        <Link to='/register'>Register</Link> or <Link to='/login'>Login</Link>
     </div>
 }

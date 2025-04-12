@@ -1,5 +1,3 @@
-import { data } from './data'
-
 function registerUser(name, email, username, password) {
     if (!name) throw new Error('You must fill the name field.')
     if (typeof name !== 'string') throw new Error('Invalid type of name.')
@@ -33,8 +31,7 @@ function registerUser(name, email, username, password) {
         username: username,
         password: password
     }
-
-    data.users[data.users.length] = user
+    user[users.length] = user
 
 }
 
@@ -62,10 +59,4 @@ function loginUser(username, password) {
 
     if (user === undefined) throw new Error('User not found.')
     if (user.password !== password) throw new Error('Wrong credentials.')
-        
-}
-
-export const logic = {
-    registerUser,
-    loginUser
 }

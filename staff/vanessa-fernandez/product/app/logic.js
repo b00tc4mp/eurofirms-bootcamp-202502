@@ -1,4 +1,8 @@
-function registerUser(name, email, username, password) {
+import { data } from './data'
+
+// function registerUser(name, email, username, password)
+// const registerUser = function (name, email, username, password) {}
+const registerUser = (name, email, username, password) => {
     if (!name) throw new Error('You must fill the name field.')
     if (typeof name !== 'string') throw new Error('Invalid type of name.')
     if (name.length < 1) throw new Error('Invalid name min length.')
@@ -19,11 +23,13 @@ function registerUser(name, email, username, password) {
     if (password.length < 8) throw new Error('Invalid password min length.')
     if (password.length > 20) throw new Error('Invalid password max lenght.')
 
-    for (const i = 0; i < users.length; i++) {
-        const user = users[i]
+    for (let i = 0; i < data.users.length; i++) {
+        const user = data.users[i]
 
         if (user.email === email || user.username === username) throw new Error('User already exits.')
     }
+
+    
 
     const user = {
         name: name,
@@ -31,12 +37,14 @@ function registerUser(name, email, username, password) {
         username: username,
         password: password
     }
-    user[users.length] = user
+
+    data.users[data.users.length] = user
 
 }
 
+// function loginUser(username,password)
+// const loginUser = function (username, password){}
 function loginUser(username, password) {
-    //TODO implement me
     if (!username) throw new Error('You must fill the username  field.')
     if (typeof username !== 'string') throw new Error('Invalid type of username.')
     if (username.length < 3) throw new Error('Invalid username min length.')
@@ -49,8 +57,8 @@ function loginUser(username, password) {
 
     let user
 
-    for (const i = 0; i < users.length; i++) {
-        const _user = users[i]
+    for (let i = 0; i < data.users.length; i++) {
+        const _user = data.users[i]
         if (_user.username === username) {
             user = _user
             break
@@ -59,4 +67,12 @@ function loginUser(username, password) {
 
     if (user === undefined) throw new Error('User not found.')
     if (user.password !== password) throw new Error('Wrong credentials.')
+
 }
+
+export const logic = {
+    registerUser,
+    loginUser
+}
+
+
