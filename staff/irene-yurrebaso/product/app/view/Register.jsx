@@ -1,7 +1,7 @@
 export const Register = () => {
     console.log('Register -> render')
 
-    return <div className="p-20px">
+    return <div className="p-5">
         <i>Logo</i>
         <h1>Register</h1>
         <form className="flex flex-col gap-20px">

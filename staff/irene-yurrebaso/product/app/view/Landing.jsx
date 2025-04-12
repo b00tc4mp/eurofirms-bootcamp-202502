@@ -2,13 +2,13 @@ export const Landing = () => {
     console.log('Landing -> render')
 
     return <>
-        <div className="p-20px">
+        <div className="p-5">
         
-        <i className="block">Logo</i>
+        <i className="text-2xl">Logo</i>
         
-        <h1>Landing</h1>
+        <h1 className="my-3 text-2xl">Landing</h1>
         
-        <a href="#" className="a">Register</a> or <a href="#">Login</a>
+        <a href="#" className="underline">Register</a> or <a href="#" className="underline">Login</a>
         
         </div>
     </>
