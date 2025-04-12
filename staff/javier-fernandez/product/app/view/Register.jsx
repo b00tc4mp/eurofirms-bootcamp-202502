@@ -1,4 +1,4 @@
-import { logic } from "../logic"
+import { logic } from "./logic"
 
 export const Register = (props) => {
     const onLoginClicked = props.onLoginClicked
