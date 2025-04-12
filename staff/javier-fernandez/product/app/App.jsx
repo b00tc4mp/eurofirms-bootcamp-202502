@@ -7,31 +7,32 @@ import { Home } from "./view/Home"
 
 
 export const App = () => {
-    // const viewState = useState{"landing"}
-    // const view = viewState[0]
-    // const setView = viewState[1]
-    // const [view, setView] = useState{"landing"}
+    const [view, setView] = useState("landing")
 
-    const {count, setCount} = useState(0)
+    const handleResisterClick = () => setView("register")
 
-    const handleCounterClick = () => setCount(count + 1)
+    const handleLoginClick = () => setView("login")
 
     console.log("App -> render")
 
     return <>
-        <button className="border px-5 bg-blue-500 text-white cursor-pointer"
-            onClick={handleCounterClick}
+    {view === "landing" &&
+        <Landing 
+        onRegisterClick={handleRegisterClick}
+        onLoginClick={handleLoginClick}
         >
-            {count}
-            </button>
 
-        <Landing/>
-        { //  view === "landing" && <Landing/> }
+    }
 
-        // { view === "register" && <Register />}
+    {view === "register" &&
+        <Register onLoginClick={handleLoginClick}/>
 
-        //{ view === "login" && <Login /> }
+    }
 
-        { // view == "home" && <Home />} 
+    {view === "login" &&
+        <Login onRegisterClick={handleRegisterClick}/>
+    }
+    
+    {view === "home" && <Home />}   
     </>
 }
