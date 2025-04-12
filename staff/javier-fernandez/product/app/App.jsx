@@ -2,37 +2,50 @@ import { useState } from "react"
 
 import { Landing } from "./view/Landing"
 import { Register } from "./view/Register"
-import { Loging } from "./view/Login"
+import { Login } from "./view/Login"
 import { Home } from "./view/Home"
 
 
 export const App = () => {
     const [view, setView] = useState("landing")
 
-    const handleResisterClick = () => setView("register")
+    const handleRegisterClicked = () => setView("register")
 
-    const handleLoginClick = () => setView("login")
+    const handleLoginClicked = () => setView("login")
+
+    const handleUserRegistered = () => setView("login")
+
+    const handleUserLoggedIn =() => setView("home")
+
+    const handleUserLoggedOut = () => setView("login")
 
     console.log("App -> render")
 
     return <>
-    {view === "landing" &&
-        <Landing 
-        onRegisterClick={handleRegisterClick}
-        onLoginClick={handleLoginClick}
-        >
+        {view === "landing" &&
+            <Landing
+                onRegisterClicked={handleRegisterClicked}
+                onLoginClicked={handleLoginClicked}
+            />
 
-    }
+        }
 
-    {view === "register" &&
-        <Register onLoginClick={handleLoginClick}/>
+        {view === "register" &&
+            <Register
+             onLoginClicked={handleLoginClicked}
+             onUserRegistered={handleUserRegistered}
+             />
 
-    }
+        }
 
-    {view === "login" &&
-        <Login onRegisterClick={handleRegisterClick}/>
-    }
-    
-    {view === "home" && <Home />}   
+        {view === "login" &&
+            <Login
+             onRegisterClicked={handleRegisterClicked}
+             onUserLoggedIn={handleUserLoggedIn} />
+        }
+
+        {view === "home" && <Home
+        onUserLoggedOut={handleUserLoggedOut}
+         />}
     </>
 }

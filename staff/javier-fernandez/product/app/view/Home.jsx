@@ -1,4 +1,8 @@
-export const Home = () => {
+export const Home = props => {
+    const onUserLoggedOut = props.onUserLoggedOut
+
+    const handleLogoutClick = () => onUserLoggedOut() 
+
     console.log("Home -> render")
 
     return <div classname="p-5">
@@ -6,7 +10,12 @@ export const Home = () => {
 
         <div className="mt-2">
             <h1 className="text-xl">Hello, World!</h1>
-        </div>
-        <button classname="bg-black text-white px-2">Logout</button>
+       
+            <button
+             classname="bg-black text-white px-2"
+             type="button"
+                onClick={handleLogoutClick}
+            >Logout</button>
+         </div>
     </div>
 }

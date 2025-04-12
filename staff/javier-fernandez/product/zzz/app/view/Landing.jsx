@@ -1,10 +1,10 @@
 export const Landing = (props) => {
-    const onRegisterClicked = props.onRegisterClicked
-    const onLoginClicked = props.onLoginClicked
+    const onRegisterClick = props.onRegisterClick
+    const onLoginClick = props.onLoginClick
 
-    const handleRegisterClick = () => onRegisterClicked()
+    const handleRegisterClick = () => onRegisterClick()
 
-    const handleLoginClick = () => onLoginClicked()
+    const handleLoginClick = () => onLoginClick()
 
     console.log("Landing -> render")
 

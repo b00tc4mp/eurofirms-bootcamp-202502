@@ -1,30 +1,7 @@
-import { logic } from "../logic"
-
 export const Login = (props) => {
-    const onRegisterClicked = props.onRegisterClicked 
-    const onUserLoggedIn = props.onUserLoggedIn
+    const onRegisterClick = props.onRegisterClick
 
-    const handleRegisterClick = () => onRegisterClicked()
-
-    const handleLoginSubmit = event => {
-        event.preventDefault() 
-
-        const form = event.target 
-
-        const username = form.username.value 
-        const password = form.password.value 
-
-        try {
-            logic.loginUser(username, password) 
-
-            form.reset() 
-
-            onUserLoggedIn() 
-        } catch (error) {
-            alert(error.message)
-        }
-
-    }
+    const handleRegisterClick = () => onRegisterClick()
 
     console.log("Login -> render")
 
