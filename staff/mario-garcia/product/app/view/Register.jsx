@@ -1,8 +1,38 @@
+import { logic } from '../logic'
+
 export const Register = (props) => {
 
-    const onLoginClick = props.onLoginClick
+    const onLoginClicked = props.onLoginClicked
+    const onUserRegistered = props.onUserRegistered
 
-    const handleLoginClick = () => onLoginClick()
+    const handleLoginClick = () => onLoginClicked()
+
+    const handleRegisterSubmit = event => {
+
+        event.preventDefault()
+
+        const form = event.target
+
+        const name = form.name.value
+        const email = form.email.value
+        const username = form.username.value
+        const password = form.password.value
+
+        try {
+
+            logic.registerUser(name, email, username, password)
+
+            form.reset()
+
+            onUserRegistered()
+
+
+        } catch (error) {
+            alert(error.message)
+
+        }
+
+    }
 
     console.log('Register -> render')
 
@@ -12,7 +42,7 @@ export const Register = (props) => {
 
         <h1 className="text-3xl text-blue-900 font-semibold py-2">REGISTER Page</h1>
 
-        <form className="mt-2 flex flex-col gap-4">
+        <form className="mt-2 flex flex-col gap-4" onSubmit={handleRegisterSubmit}>
 
             <div className="flex flex-col gap">
 
@@ -42,7 +72,7 @@ export const Register = (props) => {
 
                 <label htmlFor="password" className="text-xl">Password:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="password" id="password" placeholder="Introduce a password" />
+                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="password" name="password" id="password" placeholder="Introduce a password" />
 
             </div>
 

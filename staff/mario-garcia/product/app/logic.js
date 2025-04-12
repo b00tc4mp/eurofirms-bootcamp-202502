@@ -1,4 +1,7 @@
-function registerUser(name, email, username, password) {
+import { data } from './data'
+
+
+const registerUser = (name, email, username, password) => {
 
     if (typeof name !== 'string')
         throw new Error('Invalid name type')
@@ -25,27 +28,28 @@ function registerUser(name, email, username, password) {
     if (password.length > 20) throw new Error('Invalid password max. length')
 
 
-    for (var i = 0; i < users.length; i++) {
+    for (let i = 0; i < data.users.length; i++) {
 
-        var user = users[i]
+        const user = data.users[i]
 
         if (user.email === email || user.username === username) throw new Error('user already exists')
 
     }
 
-    var user = {
 
+    data.usersCount++
+
+    data.users.push({
+
+        id: 'user-' + data.usersCount,
         name: name,
         email: email,
         username: username,
         password: password
-    }
-
-    users[users.length] = user
-
+    })
 }
 
-function loginUser(username, password) {
+const loginUser = (username, password) => {
 
     if (typeof username !== 'string') throw new Error('Invalid username type')
 
@@ -59,8 +63,8 @@ function loginUser(username, password) {
 
     let user
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
+    for (let i = 0; i < data.users.length; i++) {
+        const _user = data.users[i]
 
         //Lo siguiente VERIFICA si el username que estoy INCLUYENDO está en mi BB.DD.
 
@@ -76,6 +80,50 @@ function loginUser(username, password) {
 
     if (user === undefined) throw new Error('user not found')
 
-    if (user.password !== password) throw new Error('inavlid credentials')
+    if (user.password !== password) throw new Error('Invalid credentials')
 
+
+    data.userId = user.id
+
+}
+
+
+const getUserUsername = () => {
+
+    let user
+
+    for (let i = 0; i < data.users.length; i++) {
+        const _user = data.users[i]
+
+        if (_user.id === data.userId) {
+
+            user = _user
+
+            break
+        }
+    }
+
+    if (user === undefined) throw new Error('user not found')
+
+    return user.username
+
+}
+
+const logoutUser = () => {
+
+    data.userId = null
+
+}
+
+const getPosts = () => {
+
+    return data.posts.toReversed()
+}
+
+export const logic = {
+    registerUser,
+    loginUser,
+    getUserUsername,
+    logoutUser,
+    getPosts
 }
