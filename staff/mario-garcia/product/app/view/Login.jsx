@@ -1,4 +1,8 @@
-export const Login = () => {
+export const Login = (props) => {
+
+    const onRegisterClick = props.onRegisterClick
+
+    const handleRegisterClick = () => onRegisterClick()
 
     console.log('Login -> render')
 
@@ -28,7 +32,8 @@ export const Login = () => {
 
             <div className="flex justify-between">
 
-                <a className="underline" href="#">Register</a>
+                <a className="underline" href="#"
+                    onClick={handleRegisterClick}>Register</a>
 
                 <button className="border-1 rounded-md bg-blue-50 text-blue-900 px-2" type="submit">Login</button>
 
