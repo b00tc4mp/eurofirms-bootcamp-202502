@@ -1,5 +1,5 @@
 export const Landing = (props) => {
-    const onRegisterClicked = props.onRegisterClicked 
+    const onRegisterClicked = props.onRegisterClicked
     const onLoginClicked = props.onLoginClicked
 
     const handleRegisterClick = () => onRegisterClicked()
@@ -8,13 +8,15 @@ export const Landing = (props) => {
 
     console.log('Landing -> render')
 
+    return <div className="px-5 py-6">
+        <i className="text-2xl block mb-4">Logo</i>
 
-    return <div className="p-20-px">
-        <i className="block">Logo</i>
-        <h1>Landing page</h1>
-        <a href="#" onClick={handleRegisterClick}>Register</a>
-        &nbsp;or&nbsp;
-        <a href="#" onClick={handleLoginClick}>Login</a>
+        <div className="mt-2 text-lg">
+            <a className="no-underline text-black font-medium" href="#" onClick={handleRegisterClick}>Register</a>
+            &nbsp;or&nbsp;
+            <a className="no-underline text-black font-medium" href="#" onClick={handleLoginClick}>Login</a>
+        </div>
+
     </div>
 }
 

@@ -21,9 +21,33 @@ export const App = () => {
     console.log('App -> render')
 
     return <>
-        {view === 'landing' && <Landing onregisterClicked={handleRegisterClicked} onLoginClicked={handleLoginClicked} />}
-        {view === 'register' && <Register onLoginClicked={handleLoginClicked} onUserRegistered={handleUserRegistered} />}
-        {view === 'login' && <Login onregisterClicked={handleRegisterClicked} onUserLoggedIn={handleUserLoggedIn} />}
-        {view === 'home' && <Home onUserLoggedOut={handleUserLoggedOut} />}
+        {view === 'landing' &&
+            <Landing 
+            onRegisterClicked={handleRegisterClicked} 
+            onLoginClicked={handleLoginClicked}
+            />
+        }
+
+        {view === 'register' &&
+            <Register
+                onLoginClicked={handleLoginClicked}
+                onUserRegistered={handleUserRegistered}
+            />
+        }
+
+        {view === 'login' &&
+            <Login
+                onRegisterClicked={handleRegisterClicked}
+                onUserLoggedIn={handleUserLoggedIn}
+            />
+        }
+
+        {view === 'home' &&
+            <Home
+                onUserLoggedOut={handleUserLoggedOut}
+            />
+        }
+
+
     </>
 }

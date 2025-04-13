@@ -1,10 +1,10 @@
 import { logic } from '../logic'
 
 export const Login = (props) => {
-    const onregisterClicked = props.onregisterClicked
+    const onRegisterClicked = props.onRegisterClicked
     const onUserLoggedIn = props.onUserLoggedIn
 
-    const handleRegisterClick = () => onregisterClicked()
+    const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginSubmit = event => {
         event.preventDefault()
@@ -27,28 +27,50 @@ export const Login = (props) => {
 
     console.log('Login -> render')
 
-    return <div className="p-20px">
+    return <div className="px-5 py-6">
 
-        <i>Logo</i>
+        <i className="text-2xl block mb-4">Logo</i>
 
-        <h1>Login page</h1>
-        <form className="flex flex-col gap-20px" onSubmit={handleLoginSubmit}>
+        <div className="mt-2">
+            <h1 className="text-[22px] font-bold text-[#7575d2] mb-4">Login page</h1>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Your username" />
-            </div>
+            <form className="flex flex-col gap-5" onSubmit={handleLoginSubmit}>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Your password" />
-            </div>
+                <div className="flex flex-col gap-[10px]">
+                    <label 
+                    className="font-medium" htmlFor="username">Username
+                    </label>
+                    <input 
+                    className="border border-black bg-[#cde5ed] rounded px-3 py-2" 
+                    type="text" 
+                    name="username" 
+                    id="username" 
+                    placeholder="Your username" />
+                </div>
 
-            <div className="flex justify-between">
-                <a href='#' onClick={handleRegisterClick}>Register</a>
-                <button className="black-button" type="submit">Login</button>
-            </div>
-        </form>
+                <div className="flex flex-col gap-[10px]">
+                    <label 
+                    className="font-medium" htmlFor="password">Password
+                    </label>
+                    <input 
+                    className="border border-black bg-[#cde5ed] rounded px-3 py-2" 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="Your password" />
+                </div>
+
+                <div className="flex justify-between items-center mt-4">
+                    <a 
+                    className="no-underline text-black font-medium" href='#' 
+                    onClick={handleRegisterClick}>Register
+                    </a>
+                    <button 
+                    className="text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2" type="submit">Login
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 }
 

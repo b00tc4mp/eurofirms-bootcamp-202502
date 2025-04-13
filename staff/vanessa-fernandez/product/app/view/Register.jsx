@@ -29,39 +29,73 @@ export const Register = (props) => {
 
     console.log('Register -> render')
 
-    return <div className="p-20px">
+    return <div className="px-5 py-6">
 
-        <i>Logo</i>
+        <i className="text-2xl block">Logo</i>
 
-        <h1>Register page</h1>
+        <div className='mt-2'>
+            <h1 className="text-[22px] font-bold text-[#7575d2] mb-4">Register page</h1>
 
-        <form className="flex flex-col gap-20px" onSubmit={handleRegisterSubmit}>
+            <form className="flex flex-col gap-5" onSubmit={handleRegisterSubmit}>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your full name" />
-            </div>
+                <div className="flex flex-col gap-[10px]">
+                    <label 
+                    className="font-medium" 
+                    htmlFor="name">Name
+                    </label>
+                    <input className="border border-black bg-[#cde5ed] rounded px-3 py-2" 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Your full name" />
+                </div>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Your e-mail" />
-            </div>
+                <div className="flex flex-col gap-[10px]">
+                    <label 
+                    className="font-medium" 
+                    htmlFor="email">E-mail
+                    </label>
+                    <input className="border border-black bg-[#cde5ed] rounded px-3 py-2" 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="Your e-mail" />
+                </div>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Your username" />
-            </div>
+                <div className="flex flex-col gap-[10px]">
+                    <label 
+                    className="font-medium" htmlFor="username">Username
+                    </label>
+                    <input className="border border-black bg-[#cde5ed] rounded px-3 py-2" 
+                    type="text" 
+                    name="username" 
+                    id="username" 
+                    placeholder="Your username" />
+                </div>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Your password" />
-            </div>
+                <div className="flex flex-col gap-[10px]">
+                    <label 
+                    className="font-medium" htmlFor="password">Password
+                    </label>
+                    <input className="border border-black bg-[#cde5ed] rounded px-3 py-2" 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="Your password" />
+                </div>
 
-            <div className="flex justify-between">
-                <a href='#' onClick={handleLoginClick}>Login</a>
-                <button className="black-button" type="submit">Register</button>
-            </div>
-        </form>
+                <div className="flex justify-between items-center mt-4">
+                    <a className="no-underline text-black font-medium" 
+                    href='#' 
+                    onClick={handleLoginClick}>Login
+                    </a>
+                    <button 
+                    className="text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2" type="submit">Register
+                    </button>
+                </div> 
+            </form>
+        </div>
+      
     </div>
 }
 

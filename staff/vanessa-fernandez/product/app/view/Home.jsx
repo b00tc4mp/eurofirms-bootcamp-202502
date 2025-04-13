@@ -5,12 +5,18 @@ export const Home = (props) => {
 
     console.log('Home -> render')
 
-    return <div className="p-20px">
+    return <div className="px-5">
 
-        <i>Logo</i>
+        <i className="text-2xl block">Logo</i>
 
-        <h1>Hello, World!</h1>
-        <button className="black-button" type="button" onClick={handleLogoutClick}>Logout</button>
+        <div className="mt-2">
+            <h1 className="text-[22px] font-bold text-[#7575d2]">Hello, World!</h1>
+
+            <button className=" mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer" 
+            type="button" 
+            onClick={handleLogoutClick}>Logout
+            </button>
+        </div>
     </div>
 }
 

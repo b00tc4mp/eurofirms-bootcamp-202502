@@ -1,4 +1,6 @@
-/* globals */
+@import "tailwindcss"; 
+
+/* globals 
  * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 20px;
@@ -29,9 +31,9 @@
     border-color: black;
     background-color: rgb(205, 229, 237);
     border-radius: 5px;
- }
+ }*/
 
- /* utility classes */
+ /* utility classes 
 
  .block {
     display: block;
@@ -67,9 +69,9 @@
 
  .border {
    border-radius: 5px;
- }
+ }*/
 
- /* components */
+ /* components 
 
  .black-button {
     color: white;
@@ -78,4 +80,4 @@
     border:none;
     border-radius: 10px;
     cursor: pointer;     
- }
+ }*/
