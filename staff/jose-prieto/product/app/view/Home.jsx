@@ -1,7 +1,33 @@
+import { useEffect, useState } from 'react'
+
+import { logic } from '../logic'
+
+import { Posts } from './components/Posts'
+
 export const Home = props => {
     const onUserLoggedOut = props.onUserLoggedOut
 
-    const handleLogoutClick = () => onUserLoggedOut()
+    const [username, setUsername] = useState('World')
+
+    useEffect(() => {
+        try {
+            const username = logic.getUserUsername()
+
+            setUsername(username)
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
+
+    const handleLogoutClick = () => {
+        try {
+            logic.logoutUser()
+
+            onUserLoggedOut()
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     console.log('Home -> render')
 
@@ -9,7 +35,7 @@ export const Home = props => {
         <i className="text-2xl">Logo</i>
 
         <div className="mt-2">
-            <h1 className="text-xl">Hello, World!</h1>
+            <h1 className="text-xl">Hello, {username}!</h1>
 
             <button
                 className="bg-black text-white px-2"
@@ -17,5 +43,7 @@ export const Home = props => {
                 onClick={handleLogoutClick}
             >Logout</button>
         </div>
+
+        <Posts />
     </div>
 }
