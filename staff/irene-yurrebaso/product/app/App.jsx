@@ -10,10 +10,10 @@ export const App = () => {
     return <>
         <Landing />
 
-        <Register />
+        {/* <Register /> */}
 
-        {/*<Login />*/}
+        {/* <Login /> */}
 
-        {/*<Home />*/}
+        {/* <Home /> */}
     </>
 }
