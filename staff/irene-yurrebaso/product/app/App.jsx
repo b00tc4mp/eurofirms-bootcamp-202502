@@ -7,18 +7,22 @@ import { Login } from './view/Login'
 import { Home } from './view/Home'
 
 export const App = () => {
-    //inicialmente al useState le damos el valor 'landing'
-    const viewState = useState('landing')
-    //viewState va a devolver un array con 2 posiciones, el 1ro tiene el valor actual, y el 2do tiene una funcion que permite cambiar estado:
-    const view = viewState[0]
-    const setView = viewState[1]
+    const [view, setView] = useState('landing')
+
+    const handleRegisterClick = () => setView('register')
+
+    const handleLoginClick = () => setView('login')
 
     console.log('App -> render')
 
     //vite esta convirtiendo estos componentes html a javascript DOM y mostrandolos en el div root
     return <>
         {/* muestrame este componente Landing si view es 'landing' */}
-        {view === 'landing' && <Landing />}
+        {/* onRegisterClick (nombre inventado) es una propiedad (prop) */}
+        {view === 'landing' && <Landing 
+            onRegisterClick={handleRegisterClick} 
+            onLoginClick={handleLoginClick}
+        />}
 
         {view === 'register' && <Register />}
 

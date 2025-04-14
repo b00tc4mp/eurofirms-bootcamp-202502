@@ -1,4 +1,14 @@
-export const Landing = () => {
+//el parametro 'props' es un objeto con propiedades (se suele usar el nombre 'props'). En este objeto cogemos la propiedad 'onRegisterClick' que hemos puesto en App.jsx
+
+export const Landing = (props) => {
+    //utilizamos el mismo nombre para la variable (onRegisterClick) q la propiedad para q sea facil de seguir
+    const onRegisterClick = props.onRegisterClick
+    const onLoginClick = props.onLoginClick
+
+    const handleRegisterClick = () => onRegisterClick()
+
+    const handleLoginClick = () => onLoginClick()
+
     console.log('Landing -> render')
 
     return <>
@@ -8,7 +18,9 @@ export const Landing = () => {
 
             <h1 className="my-3 text-xl">Landing</h1>
 
-            <a href="#" className="underline">Register</a> or <a href="#" className="underline">Login</a>
+            <a className="underline" href="#" onClick={handleRegisterClick}>Register</a> 
+            &nbsp;or&nbsp; 
+            <a className="underline" href="#" onClick={handleLoginClick}>Login</a>
 
         </div>
     </>
