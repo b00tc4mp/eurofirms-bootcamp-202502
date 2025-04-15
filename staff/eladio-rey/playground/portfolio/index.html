@@ -1,3 +1,6 @@
+<!--de momento la dejo como MAESTRA-->
+
+
 <!--Portfolio developed de homer simpson-->
 <!DOCTYPE html>
 <html lang="es">
@@ -6,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Homer Simpson</title>
-  <!--Meta descripción (importante para el seo) / es una meta descripción en modo cachondeo-->
+  <!--Meta descripción (importante para el seo) / meta descripción en modo cachondeo-->
   <meta name="descripcion"
     content="Descubre el lado más inesperado de Homer Simpson: programador, amante de las donuts y héroe del código. ¡El desarrollador más divertido de Springfield te sorprenderá!">
   <!--Es una forma ordenada de dejar tu firma como autor del código.-->
@@ -26,27 +29,56 @@
   <meta name="twitter:title" content="el_título_de_tenga_en_la_pág._web">
   <meta name="twitter:descripcion" content="una_descripción_de_tus_servicios">
   <meta name="twitter:image" content="URL_DE_TU_IMAGEN_DESTACADA">
+  <!--para enlazar con css-->
   <link rel="stylesheet" href="styles.css">
   <!-- Iconos para redes sociales (Font Awesome) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
+
 <!--cuerpo (lo que va a ver la persona que acceda a esta pág. en internet-->
 <body>
-  <!--doy opción de pantalla clara u oscura-->
+
+  <section class="container">
+    <div>la primera</div>
+    <div>la segunda</div>
+    <div>la tercera</div>
+  </section>
+  
+<!--Esto crea una cuadrícula de 2 columnas, con separación de gap-4-->
+  <div class="grid grid-cols-2 gap-4">
+    <div class="bg-blue-200">Izquierda</div>
+    <div class="bg-yellow-200">Derecha</div>
+  </div>
+
+  <!--lo transformamos en una cuadrícula-->
+  <main class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+
+    <!--convertir esas secciones en contenedores visuales-->
+    <section class="left p-4 bg-yellow-100 rounder-xl shadow-lg"></section>
+    <section class="right p-4 bg-white rounded-xl shadow-lg text-gray-800"></section>
+
+    <!--Redes sociales en columna-->
+    <ul class="flex flex-col gap-2"></ul>
+
+    <li class="flex items-center gap-2">
+      <i class="fab fa-linkedin"></i>
+      <a href="#">Linkedin</a>
+    </li>
+
+
+  
+  <!--TODO doy opción de pantalla clara u oscura aunque no me funciona-->
   <div class="toggle-theme">
     <label>
       <input type="checkbox" id="themeSwitch" />
       <span>☀️ DARK / LIGHT 🌙</span>
     </label>
   </div>
-  <!--en el menu abro un contenedor-->
-  <main class="container">
-    <!--coloco título y subtítulo y le digo donde lo quiero colocado-->
+ 
     <section class="left">
       <h1>Homer Simpson</h1>
       <p class="subtitle">Frontend Developer</p>
-      <!--links a biografia, proyectos y contacto-->
+      <!--TODO (decirle a t-800 donde lo quiero) links a biografia, proyectos y contacto-->
       <nav class="información sobre mi">
         <ul>
           <li><a href="#biografía">Biografía</a></li>
@@ -54,7 +86,7 @@
           <li><a href="#Contacto">Contacto</a></li>
         </ul>
       </nav>
-      <!--links a redes sociales-->
+      <!--TODO (las quiero en columna, no en línea con taildwinds) links a redes sociales-->
       <nav class="social-links">
         <ul>
           <li><a href="https://www.linkedin.com/in/tu-nombre" target="_blank"><i class="fab fa-linkedin"></i>
@@ -64,14 +96,14 @@
               Instagram</a></li>
         </ul>
       </nav>
-      <!-- Agrega un nuevo enlace para descargar el CV -->
+      <!-- TODO (descarga perfecto pero no se abre el documento) Agrega un nuevo enlace para descargar el CV -->
       <section class="cv-download">
         <a href="documentos/CV_de_Homer_Simpson.pdf" download="CV_de_Homer_Simpson.pdf" class="download-btn">
           <i class="fas fa-download"></i> Descargar CV
         </a>
       </section>
     </section>
-    <!--abro otra sección con la descripción en la pág. principal dcha-->
+    <!--TODO (usar taildwinds para crear un contenedor en la parte dcha) abro otra sección con la descripción en la pág. principal dcha-->
     <section class="right">
       <p>
         Born in 1984 in Springfield.<br /><!-- Esta línea añade un salto de línea para separar la siguiente frase -->
