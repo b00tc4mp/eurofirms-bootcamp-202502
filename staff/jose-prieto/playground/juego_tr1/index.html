@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tablero de Puntaje</title>
+    <link rel="stylesheet" href="tr.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        td {
+            padding: 30px;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .score-change {
+            background-color: #ffe066 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td id="score1" onclick="updateScore('score1')">0</td>
+        </tr>
+    </table>
+
+    <script src="tr.js"></script>
+</body>
+</html>
+
