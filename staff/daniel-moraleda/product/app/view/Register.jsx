@@ -1,13 +1,13 @@
 import { logic } from "../logic"
 
 export const Register = (props) => {
-    const onLoginClick = props.onLoginClick
+    const onLoginClicked = props.onLoginClicked
     const onUserRegistered = props.onUserRegistered
 
-    const handleLoginClick = () => onLoginClick()
+    const handleLoginClick = () => onLoginClicked()
 
     const handleRegisterSubmit = event => {
-        event.preventdefault()
+        event.preventDefault()
 
         const form = event.target
 
@@ -15,17 +15,18 @@ export const Register = (props) => {
         const email = form.email.value
         const username = form.username.value
         const password = form.password.value
-    }
 
-    try {
-        logic.registerUser(name, email, username, password)
 
-        form.reset()
+        try {
+            logic.registerUser(name, email, username, password)
 
-        onUserRegistered()
-    } catch (error) {
-        alert(error.message)
+            form.reset()
 
+            onUserRegistered()
+        } catch (error) {
+            alert(error.message)
+
+        }
     }
 
     console.log('Register -> render')
@@ -35,7 +36,7 @@ export const Register = (props) => {
 
         <h1>Register</h1>
 
-        <form className="flex flex-col gap-20px">
+        <form className="flex flex-col gap-20px" onSubmit={handleRegisterSubmit}>
             <div className="flex flex-col gap-10px">
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="your full name" />
@@ -59,7 +60,7 @@ export const Register = (props) => {
             </div>
 
             <div className="flex justify-between">
-                <a href="#">Login</a>
+                <a href="#" onClick={handleLoginClick}>Login</a>
                 <button className="black-button" type="submit">Register</button>
             </div>
 

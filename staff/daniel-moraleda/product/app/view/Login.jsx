@@ -26,7 +26,7 @@ export const Login = (props) => {
 
     console.log('Login -> render')
 
-    return <div classname="p-5">
+    return <div className="p-5">
         <i className="text-2x1">Logo</i>
 
         <div className="mt-22">

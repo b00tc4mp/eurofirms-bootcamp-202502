@@ -25,11 +25,12 @@ export const App = () => {
             <Landing
                 onRegisterClicked={handleRegisterClicked}
                 onLoginClicked={handleLoginClicked}
-            />}
+            />
+        }
 
         {view === 'register' &&
             <Register
-                onLoginClick={handleLoginClicked}
+                onLoginClicked={handleLoginClicked}
                 onUserRegistered={handleUserRegistered}
 
             />
@@ -41,6 +42,8 @@ export const App = () => {
             />
         }
 
-        {view === 'home' && <Home />}
+        {view === 'home' && <Home 
+        onUserLoggedOut={handleUserLoggedOut}
+        />}
     </>
 }
