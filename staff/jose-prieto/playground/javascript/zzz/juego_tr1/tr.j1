@@ -1,0 +1,6 @@
+function updateScore(elementid) {
+    const element = document.getElementById(elementId);
+     element.textContent = parseInt(element.testConstent) + 1;
+     element.classList.add('score-change');
+     selTimeout(() -> element.classList.remove('score-changed'), 500);
+}
