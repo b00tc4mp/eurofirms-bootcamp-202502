@@ -1,4 +1,8 @@
-export const Login = () => {
+export const Login = (props) => {
+    const onRegisterClick = props.onRegisterClick
+
+    const handleRegisterClick = () => onRegisterClick()
+
     console.log('Login -> render')
 
     return <div className="p-5">
@@ -14,7 +18,7 @@ export const Login = () => {
                 <input className="border-2 p-1" type="password" id="password" name="password" placeholder="your password"/>
             </div>
             <div className="flex justify-between">
-                <a className="underline" href="#">Register</a>
+                <a className="underline" href="#" onClick={handleRegisterClick}>Register</a>
                 <button className="bg-black text-white py-2 px-4" type="submit">Login</button>
             </div>
         </form>
