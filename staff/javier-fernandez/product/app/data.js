@@ -41,3 +41,36 @@ data.users.push({
 })
 
 // populate posts
+
+data.postsCount++
+
+data.posts.push({
+    id: 'post-' + data.postsCount,
+    author: data.users[0].id,
+    image: '',
+    text: 'I feel very HAPPY! ',
+    date: new Date(2024, 11, 31, 23, 45).toISOString(),
+    likes: []
+})
+
+data.postsCount++
+
+data.posts.push({
+    id: 'post-' + data.postsCount,
+    author: data.users[0],id,
+    image: ''
+    text: 'My best friend!',
+    date: new Date(2025, 0, 10, 18, 15).toISOString(),
+    likes: []
+})
+
+data.postsCount++
+
+data.posts.push({
+    id: 'post-' + data.postsCount,
+    author: data.users[0].id,
+    image: '',
+    text: 'Enjoying with Wendy',
+    date: new Date(2025, 0, 11, 10, 0).toISOString(),
+    likes: []
+})
