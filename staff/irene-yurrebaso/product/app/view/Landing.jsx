@@ -2,13 +2,12 @@
 
 export const Landing = (props) => {
     //utilizamos el mismo nombre para la variable (onRegisterClick) q la propiedad para q sea facil de seguir
-    const onRegisterClick = props.onRegisterClick
-    
-    const onLoginClick = props.onLoginClick
+    const onRegisterClicked = props.onRegisterClicked
+    const onLoginClicked = props.onLoginClicked
 
-    const handleRegisterClick = () => onRegisterClick()
+    const handleRegisterClick = () => onRegisterClicked()
 
-    const handleLoginClick = () => onLoginClick()
+    const handleLoginClick = () => onLoginClicked()
 
     console.log('Landing -> render')
 

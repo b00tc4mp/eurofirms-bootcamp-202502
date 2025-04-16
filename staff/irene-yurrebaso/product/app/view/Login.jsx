@@ -1,14 +1,36 @@
-export const Login = (props) => {
-    const onRegisterClick = props.onRegisterClick
+import { logic } from '../logic'
 
-    const handleRegisterClick = () => onRegisterClick()
+export const Login = (props) => {
+    const onRegisterClicked = props.onRegisterClicked
+    const onUserLoggedIn = props.onUserLoggedIn
+
+    const handleRegisterClick = () => onRegisterClicked()
+
+    const handleLoginSubmit = event => {
+        event.preventDefault()
+
+        const form = event.target
+        const username = form.username.value
+        const password = form.password.value
+
+        try {
+            logic.loginUser(username, password)
+
+            form.reset()
+
+            onUserLoggedIn()
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     console.log('Login -> render')
 
     return <div className="p-5">
         <i className="text-2xl">Logo</i>
         <h1 className="text-2xl my-3">Login</h1>
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleLoginSubmit}>
             <div className="flex flex-col gap-1">
                 <label htmlFor="username">Username</label>
                 <input className="border-2 p-1" type="text" id="username" name="username" placeholder="your username"/>

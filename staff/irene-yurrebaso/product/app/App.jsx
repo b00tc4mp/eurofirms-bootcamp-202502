@@ -9,9 +9,15 @@ import { Home } from './view/Home'
 export const App = () => {
     const [view, setView] = useState('landing') //formato "desestructuracion"
 
-    const handleRegisterClick = () => setView('register')
+    const handleRegisterClicked = () => setView('register')
 
-    const handleLoginClick = () => setView('login')
+    const handleLoginClicked = () => setView('login')
+
+    const handleUserRegistered = () => setView('login')
+
+    const handleUserLoggedIn = () => setView('home')
+
+    const handleUserLoggedOut = () => setView('login')
 
     console.log('App -> render')
 
@@ -21,20 +27,25 @@ export const App = () => {
         {/* onRegisterClick (nombre semantico que nos inventamos) es una propiedad (prop) */}
         {view === 'landing' && 
             <Landing 
-                onRegisterClick={handleRegisterClick} 
-                onLoginClick={handleLoginClick}
+                onRegisterClicked={handleRegisterClicked} 
+                onLoginClicked={handleLoginClicked}
         />}
 
         {view === 'register' && 
             <Register 
-                onLoginClick={handleLoginClick}
+                onLoginClicked={handleLoginClicked}
+                onUserRegistered={handleUserRegistered}
             />}
 
         {view === 'login' && 
             <Login 
-                onRegisterClick={handleRegisterClick}
+                onRegisterClicked={handleRegisterClicked}
+                onUserLoggedIn={handleUserLoggedIn}
             />}
 
-        {view === 'home' && <Home />}
+        {view === 'home' && 
+        <Home 
+            onUserLoggedOut={handleUserLoggedOut}
+        />}
     </>
 }

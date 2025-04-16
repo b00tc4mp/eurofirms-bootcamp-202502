@@ -1,16 +1,43 @@
+import { logic } from '../logic'
+
 export const Register = (props) => {
     //recupero la propiedad de onLoginClick que he puesto en App y la pongo en una variable con el mismo nombre. Cuando quiero llamar a esta variable? cuando clico en en <a>Login</a>, al que le anado un handle en onClick.
-    const onLoginClick = props.onLoginClick 
+    const onLoginClicked = props.onLoginClicked 
+    const onUserRegistered = props.onUserRegistered
 
     //creamos una funcion handle que maneja el onClick
-    const handleLoginClick = () => onLoginClick()
+    const handleLoginClick = () => onLoginClicked()
+
+    //para envio de formulario de registro onSubmit
+    const handleRegisterSubmit = event => {
+        
+        event.preventDefault()
+
+        const form = event.target //esto me trae el formulario del DOM
+
+        const name = form.name.value //permite llegar al input usando el id, y del input coger el value
+        const email = form.email.value
+        const username = form.username.value
+        const password = form.password.value
+
+        try {
+            logic.registerUser(name, email, username, password)
+            
+            form.reset()
+
+            onUserRegistered()
+            
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     console.log('Register -> render')
 
     return <div className="p-5">
         <i className="text-2xl">Logo</i>
         <h1 className="text-2xl my-3">Register</h1>
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleRegisterSubmit}>
             <div className="flex flex-col gap-1">
                 <label htmlFor="name">Name</label>
                 <input className="border-2 border-solid p-1" type="text" id="name" name="name" placeholder="full name"/>

@@ -1,4 +1,4 @@
-//en logic.js vamos a poner las funciones que tienen que procesar la informacion que capturamos en main.js
+import { data } from './data'
 
 const registerUser = (name, email, username, password) => {
     //1. validar estos datos (ej. asegurarnos que son strings y dentro de longitud requerida)
@@ -19,8 +19,8 @@ const registerUser = (name, email, username, password) => {
     if(password.length > 20) throw new Error('Invalid max password length')
 
     //2. ver si el usuario existe en la base de datos data.js
-    for(var i = 0; i < users.length; i++) {
-        var user = users[i]
+    for(var i = 0; i < data.users.length; i++) {
+        var user = data.users[i]
 
         if(user.email === email || user.username === username) throw new Error('User already exists')
     }
@@ -33,7 +33,7 @@ const registerUser = (name, email, username, password) => {
         password: password
     }
 
-    users[users.length] = user
+    data.users[data.users.length] = user
 
 }
 
@@ -52,11 +52,18 @@ const loginUser = (username, password) => {
     //2. ver si el usuario existe en la base de datos
     //3. si existe dar paso a Home y si no existe lanzar error
     var userAuthenticated = '' //variable intermedia fuera del bucle
-    for(let i = 0; i < users.length; i++) {
-        var user = users[i]
+    for(let i = 0; i < data.users.length; i++) {
+        var user = data.users[i]
         if(user.username === username && user.password === password) {
             userAuthenticated = 'yes'
         }
     }
     if(userAuthenticated !== 'yes') throw new Error('Invalid username or password')
+}
+
+//exportamos para poder usar esta logica con React. Creamos un objeto que incluye las funciones y exportamos
+//Importante: "users" viene de data.js, hay que importarlo ahora para poder usarlo
+export const logic = {
+    registerUser,
+    loginUser
 }
