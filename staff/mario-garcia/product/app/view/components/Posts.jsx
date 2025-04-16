@@ -26,7 +26,7 @@ export const Posts = () => {
 
             return <article key={post.id}>
 
-                <h3>{post.author}</h3>
+                <h3 className="bg-pink-300">{post.author}</h3>
 
                 <img src={post.image} alt="" />
 
