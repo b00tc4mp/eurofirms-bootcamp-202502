@@ -25,19 +25,18 @@ const registerUser = (name, email, username, password) => {
         if(user.email === email || user.username === username) throw new Error('User already exists')
     }
 
-    //3. si usuario no existe, crear usario como un objeto y agregarlo a la bbdd
-    var user = {
+    //3. si usuario no existe, agregarlo a la bbdd
+    data.usersCount++
+
+    data.users.push({
+        id: 'user-' + data.usersCount,
         name: name,
         email: email,
         username: username,
         password: password
-    }
-
-    data.users[data.users.length] = user
-
+    })
 }
 
-//TODO implement loginUser function:
 const loginUser = (username, password) => {
     
     //1. validar datos (ej. asegurarnos que son strings y dentro de longitud requerida)
@@ -51,19 +50,50 @@ const loginUser = (username, password) => {
     
     //2. ver si el usuario existe en la base de datos
     //3. si existe dar paso a Home y si no existe lanzar error
-    var userAuthenticated = '' //variable intermedia fuera del bucle
-    for(let i = 0; i < data.users.length; i++) {
-        var user = data.users[i]
-        if(user.username === username && user.password === password) {
-            userAuthenticated = 'yes'
+    let user
+
+    for (let i = 0; i < data.users.length; i++) {
+        const _user = data.users[i]
+
+        if(_user.username === username) {
+            user = _user
+
+            break
         }
     }
-    if(userAuthenticated !== 'yes') throw new Error('Invalid username or password')
+
+    if(user === undefined) throw new Error('user not found')
+        
+    if(user.password !== password) throw new Error('wrong credentials')
+
+    //guardamos quien se ha conectado y lo pasamos a data.js
+    data.userId = user.id
 }
+
+//logica para añadir nombre de usuario en la Home
+const getUserUsername = () => {
+    let user
+    //buscar usuario en bbdd para traerme el username
+    for(let i = 0; i < data.users.length; i++) {
+        const _user = data.users[i]
+
+        if(_user.id === data.userId) {
+            user = _user
+
+            break
+        }
+    }
+
+    if(user === undefined) throw new Error('user not found')
+
+    return user.username
+}
+
 
 //exportamos para poder usar esta logica con React. Creamos un objeto que incluye las funciones y exportamos
 //Importante: "users" viene de data.js, hay que importarlo ahora para poder usarlo
 export const logic = {
     registerUser,
-    loginUser
+    loginUser,
+    getUserUsername
 }
