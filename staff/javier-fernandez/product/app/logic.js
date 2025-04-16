@@ -67,4 +67,4 @@ const loginUser = (username, password) => {
 export const logic = {
     registerUser,
     loginUser
-}
+} 
