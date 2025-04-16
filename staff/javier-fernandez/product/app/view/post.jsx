@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 import { logic } from '../../logic'
 
 export const Post = () => {
-    const [posts, setPost] = useState([])
+    const [posts, setPosts] = useState([])
 
-    useEffect(() = {
+    useEffect(() => {
         try {
-            const post = logic.getPosts()
+            const posts = logic.getPosts()
 
             setPosts(posts)
         } catch (error) {
@@ -15,4 +15,19 @@ export const Post = () => {
         }
     }, [])
     
+    console.log('posts -> render')
+
+    return <>
+        {posts.map(post => {
+            return <article key={post.id}>
+                <h3>{post.author}</h3>
+
+                <img src={post.image} alt="" />
+
+                <p>{post.text}</p>
+
+                <time>{post.date}</time>
+            </article>
+         })}
+     </>
 }
