@@ -19,8 +19,8 @@ export const Posts = () => {
 
     return <>
         {posts.map(post => {
-            return <article key={post.id}>
-                <h3>{post.author}</h3>
+            return <article className = "w-100 mb-10 " key={post.id}>
+                <h3 className="bg-pink-300">{post.author} </h3>
 
                 <img src={post.image} alt="" />
 

@@ -31,14 +31,14 @@ export const Home = props => {
 
     console.log('Home -> render')
 
-    return <div className="p-5">
-        <i className="text-2xl">Logo</i>
+    return <div className ="flex flex-col items-center p-5 mb-4">
+        <i className="text-2xl  text-purple-800 font-bold bg-pink-200 px-8 py-2 rounded-lg border-pink-900 border-2">Logo</i>
 
-        <div className="mt-2">
-            <h1 className="text-xl">Hello, {username}!</h1>
+        <div className="mt-2 mb-2 flex ">
+            <h1 className="text-xl mr-2">Hello, {username}!</h1>
 
             <button
-                className="bg-black text-white px-2"
+                className="bg-black text-white px-2 items-center "
                 type="button"
                 onClick={handleLogoutClick}
             >Logout</button>
