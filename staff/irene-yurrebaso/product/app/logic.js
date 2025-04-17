@@ -89,11 +89,16 @@ const getUserUsername = () => {
     return user.username
 }
 
+//logica para poner que el usuario ya no esta conectado o log out
+const logoutUser = () => {
+    data.userId = null
+}
 
 //exportamos para poder usar esta logica con React. Creamos un objeto que incluye las funciones y exportamos
 //Importante: "users" viene de data.js, hay que importarlo ahora para poder usarlo
 export const logic = {
     registerUser,
     loginUser,
-    getUserUsername
+    getUserUsername,
+    logoutUser
 }

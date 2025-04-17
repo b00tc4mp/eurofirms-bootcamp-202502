@@ -23,7 +23,16 @@ export const Home = props => {
 
     }, [])
 
-    const handleLogoutClick = () => onUserLoggedOut()
+    const handleLogoutClick = () => {
+        try {
+            //para que limpie userId en bbdd
+            logic.logoutUser() 
+            //si va bien, q nos lleve a login a traves de la prop que viene de App
+            onUserLoggedOut()
+        } catch(error) {
+            alert(error.message)
+        }
+    }
 
     console.log('Home -> render')
 

@@ -33,6 +33,16 @@ data.users.push({
     password: '123123123'
 })
 
+data.usersCount++
+
+data.users.push({ 
+    id: 'user-' + data.usersCount,
+    name: 'James Hook', 
+    email: 'james@hook.com', 
+    username: 'jameshook', 
+    password: '123123123'
+})
+
 //populate posts
 
 data.postsCount++
