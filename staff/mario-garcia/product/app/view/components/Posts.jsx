@@ -24,11 +24,11 @@ export const Posts = () => {
     return <>
         {posts.map(post => {
 
-            return <article key={post.id}>
+            return <article className="w-100 mb-10" key={post.id}>
 
-                <h3 className="bg-pink-300">{post.author}</h3>
+                <h3 className="my-5 rounded-lg font-bold text-orange-800 px-2 py-2 bg-orange-300">{post.author}</h3>
 
-                <img src={post.image} alt="" />
+                <img className="my-5 rounded-lg" src={post.image} alt="" />
 
                 <p>{post.text}</p>
 

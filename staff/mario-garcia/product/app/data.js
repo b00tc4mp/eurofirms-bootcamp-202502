@@ -63,7 +63,31 @@ data.users.push({
 
 })
 
+data.usersCount++
+
+data.users.push({
+    id: 'user-' + data.usersCount,
+    name: 'Tony Stark',
+    email: 'tonystark@ironman.com',
+    username: 'ironman',
+    password: '123123123'
+
+})
+
 //Populate POSTS
+
+data.postsCount++
+
+data.posts.push({
+
+    id: 'post-' + data.postsCount,
+    author: data.users[5].name,
+    image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTI2cTljYW9ybzgwMXcxbnBqZXRkOTQ3bWpiOWczanNpbjNlbXJoaiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6n8QfoQhIoKWR9uLt5/giphy.gif',
+    text: 'To be a hero you must make a big effort!',
+    date: new Date(2017, 12, 25, 19, 30).toISOString(),
+    likes: []
+
+})
 
 data.postsCount++
 
@@ -83,8 +107,8 @@ data.posts.push({
 
     id: 'post-' + data.postsCount,
     author: data.users[3].name,
-    image: 'https://media.giphy.com/media/yFqLQzipdekuI/giphy.gif?cid=ecf05e47trmc3jm9q4wrj9pf1dws9xw9m8aq6n08gdavmug2&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-    text: 'I am fall in love!',
+    image: 'https://media.giphy.com/media/uTGv3hkQO8XsBkprSv/giphy.gif?cid=ecf05e47wdsae2qgu6fjutozxf3qa7wljxl4vtozef3hxpvm&ep=v1_gifs_related&rid=giphy.gif&ct=g',
+    text: 'With great power comes great responsibility',
     date: new Date(2018, 10, 15, 21, 30).toISOString(),
     likes: []
 })
@@ -101,3 +125,4 @@ data.posts.push({
     likes: []
 
 })
+
