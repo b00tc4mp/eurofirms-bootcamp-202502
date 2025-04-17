@@ -1,77 +1,51 @@
 import React, { useState } from "react";
 
-const options = ["piedra", "papel", "tijera"];
+const opciones = ["piedra", "papel", "tijera"];
 
 export default function App() {
+  const [jugador, setJugador] = useState("");
+  const [maquina, setMaquina] = useState("");
+  const [resultado, setResultado] = useState("");
 
-  const [player, setPlayer] = useState("");
-  const [machine, setMachine] = useState("");
-  const [result, setResult] = useState("");
-
-  function play(selectionPlayer) {
-
-    const selectionMachine = options[Math.floor(Math.ramdom() * 3)];
-    setPlayer(selectionPlayer);
-    setMachine(selectionMachine);
-    checkWinner(selectionPlayer, selectionMachine);
+  function jugar(eleccionJugador) {
+    const eleccionMaquina = opciones[Math.floor(Math.random() * 3)];
+    setJugador(eleccionJugador);
+    setMaquina(eleccionMaquina);
+    determinarGanador(eleccionJugador, eleccionMaquina);
   }
 
-  function checkWinner(j, m) {
-
+  function determinarGanador(j, m) {
     if (j === m) {
-
-      setResult("Tie");
-    }
-
-    else if (
-
+      setResultado("Tie");
+    } else if (
       (j === "piedra" && m === "tijera") ||
       (j === "papel" && m === "piedra") ||
       (j === "tijera" && m === "papel")
     ) {
-
-      setResult("You win!");
-
-    }
-
-    else {
-
-      setResult("You lose!");
+      setResultado("You win!");
+    } else {
+      setResultado("You lose!");
     }
   }
 
   return (
-
     <div className="p-4 text-center">
-
-      <h1 className="text-2xl font-bold mb-4">Piedra, Papel o Tijera</h1>
-
+      <h1 className="text-2xl font-bold mb-4 text-pink-800">Piedra, Papel o Tijera</h1>
       <div className="space-x-4 mb-4">
-
-        {options.map((op) => (
-
-          <button key={op} onClick={() => play(op)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-
+        {opciones.map((op) => (
+          <button
+            key={op}
+            onClick={() => jugar(op)}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
             {op}
-
           </button>
-
         ))}
-
       </div>
-
-      <div className="mb-2">You selected: <strong>{player}</strong></div>
-      <div className="mb-2">The machine selected: <strong>{machine}</strong></div>
-      <div className="text-xl font-semibold">{result}</div>
-
-
-
+      <div className="mb-2">Your selection was: <strong>{jugador}</strong></div>
+      <div className="mb-2">The Machine selected: <strong>{maquina}</strong></div>
+      <div className="text-xl font-semibold">{resultado}</div>
     </div>
-
   );
-
 }
-
-
-
 
