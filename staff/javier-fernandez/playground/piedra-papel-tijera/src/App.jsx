@@ -1,35 +1,50 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const opciones = ["piedra", "papel", "tijera"];
+
+export default function App() {
+  const [jugador, setJugador] = useState("");
+  const [maquina, setMaquina] = useState("");
+  const [resultado, setResultado] = useState("");
+
+  function jugar(eleccionJugador) {
+    const eleccionMaquina = opciones[Math.floor(Math.random() * 3)];
+    setJugador(eleccionJugador);
+    setMaquina(eleccionJugador);
+    determinarGanador(eleccionJugador, eleccionMaquina);
+  }
+
+  function determinarGanador(j, m) {
+    if (j === m) {
+      setResultado("Empate");
+    } else if (
+      (j === "piedra" && m === "tijera") ||
+      (j === "papel" && m === "piedra") ||
+      (j === "tijera" && m === "papel")
+    ) {
+      setResultado("¡Ganaste!")
+    } else {
+      setResultado("Perdiste :(");
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="p-4 text-center">
+      <h1 className="text-2x1 font-bold mb-4">piedra, papel o tijera</h1>
+      <div className="space-x-4 mb-4">
+        {opciones.map((op) => (
+          <button
+          key={op}
+          onClick={() => jugar(op)}
+          className="bg-blue-500 hover;bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            {op}
+          </button>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="mb-2">Tú elegiste: <strong>[jugador]</strong></div>
+      <div className="mb-2">La máquina eligió:<strong>[maquina]</strong></div>
+      <div className="text-x1 font-semibold">[resultado]</div>
+    </div>
+  );
 }
-
-export default App
