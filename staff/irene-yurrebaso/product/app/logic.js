@@ -94,11 +94,17 @@ const logoutUser = () => {
     data.userId = null
 }
 
+//logica que devuelve una copia de los posts que hay en bbdd, en un array por fecha invertida (mas nuevos primero)
+const getPosts = () => {
+    return data.posts.toReversed()
+}
+
 //exportamos para poder usar esta logica con React. Creamos un objeto que incluye las funciones y exportamos
 //Importante: "users" viene de data.js, hay que importarlo ahora para poder usarlo
 export const logic = {
     registerUser,
     loginUser,
     getUserUsername,
-    logoutUser
+    logoutUser,
+    getPosts
 }

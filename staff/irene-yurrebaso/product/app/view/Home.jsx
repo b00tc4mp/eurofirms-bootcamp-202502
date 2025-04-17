@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { logic } from '../logic'
 
+import { Posts } from './components/Posts'
+
 export const Home = props => {
     const onUserLoggedOut = props.onUserLoggedOut
     
@@ -45,5 +47,7 @@ export const Home = props => {
             type="button"
             onClick={handleLogoutClick}
         >Log out</button>
+
+        <Posts />
     </div>
 }

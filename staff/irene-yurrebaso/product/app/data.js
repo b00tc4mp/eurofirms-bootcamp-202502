@@ -51,7 +51,7 @@ data.posts.push({
     id: 'post-' + data.postsCount,
     author: data.users[0].id,
     image: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmc3eGc1Y24xZXNlano0Y2YxMXl5cmI1OGltNW9uMHowZmhwdzh4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y8btJ3OOxT4sg/giphy.gif',
-    text: 'I feel very HAPPY-PPY!',
+    text: 'I feel very HAPPY!',
     date: new Date(2024, 11, 31, 23, 45).toISOString(),
     likes: []
 })
