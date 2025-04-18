@@ -5,34 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homer portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Delius+Unicase:wght@400;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+        .font-delius {
+            font-family: 'Delius Unicase', cursive;
+        }
+        .font-atma {
+            font-family: 'Atma', cursive;
+        }
+        .font-sour {
+            font-family: 'Sour Gummy', cursive;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1 class="text-center font-family padding-1rem text-size-24px">Homer Portfolio</h1>
-        <div class="text-center font-family padding-1rem text-size-20px">
-            <a href="#about" class="margin-1rem weight-bold hover-underline text-pink">About me</a>
-            <a href="#skills" class="margin-1rem weight-bold hover-underline text-pink">Skills</a>
-            <a href="#projects" class="margin-1rem weight-bold hover-underline text-pink">Projects</a>
-            <a href="#contact" class="margin-1rem weight-bold hover-underline text-pink">Contact</a>
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <h1 class="text-center font-delius text-2xl p-4">Homer Portfolio</h1>
+        <div class="text-center font-delius text-pink text-xl p-4">
+            <a href="#about" class="mx-4 font-bold hover:underline">About me</a>
+            <a href="#skills" class="mx-4 font-bold hover:underline">Skills</a>
+            <a href="#projects" class="mx-4 font-bold hover:underline">Projects</a>
+            <a href="#contact" class="mx-4 font-bold hover:underline">Contact</a>
         </div>
     </header>
     <main>
-        <div class="text-center padding-16px max-w-600px margins-auto" id="about">
-            <h2 class="text-size-24px font-family mbottom-16px text-light-blue">About me</h2>
-            <p class="font-family-2 text-size-20px">
+        <div class="text-center px-4 py-8 max-w-[600px] mx-auto" id="about">
+            <h2 class="text-2xl font-delius mb-4 text-sky-400">About me</h2>
+            <p class="font-sour text-lg mb-4">
                 Hi! I'm Homer J. Simpson — passionate front-end developer, full-time donut enthusiast. I live in Springfield with my
                 amazing family and a mountain of rubber ducks on my desk. I discovered coding while trying to hack a vending machine and
                 haven’t looked back since.
             </p>
-            <p class="font-family-2 text-size-20px">
+            <p class="font-sour text-lg mb-4">
                 I specialize in writing HTML while eating donuts, styling with CSS during naps, and occasionally breaking JavaScript in
                 the most creative ways imaginable. I love working on fun projects that make people smile (or at least go “D’oh!”).
             </p>
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDAzYzVjdnkyOXpsZWVrNzltYWRhOXpnbTd6aGxmdjA4ODdkNHJiMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kEKcOWl8RMLde/giphy.gif"alt="Homer Simpson" class="margins-auto mbottom-16px border-img width-180px">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDAzYzVjdnkyOXpsZWVrNzltYWRhOXpnbTd6aGxmdjA4ODdkNHJiMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kEKcOWl8RMLde/giphy.gif"alt="Homer Simpson" class="mx-auto mb-4 rounded-[25px] w-[180px]">
         </div>
-        <div class="text-center content-center padding-16px max-w-600px margins-auto" id="skills">
-            <h2 class="text-size-24px font-family mbottom-16px text-light-blue">Skills</h2>
-            <ul class="list-none grid-col-2 gap-12px font-family-2 text-size-20px">
+        <div class="text-center px-4 py-8 max-w-[600px] mx-auto" id="skills">
+            <h2 class="text-2xl font-delius mb-4 text-sky-400">Skills</h2>
+            <ul class="list-none grid grid-cols-2 gap-3 font-sour text-lg p-0">
                 <li>🍩 Master of CSS Flexbox (and donuts).</li>
                 <li>🧠 Debbuging with pure instinct (sometimes works). </li>
                 <li>💻 Fast HTML Coder (if donuts are involved).</li>
@@ -43,62 +57,70 @@
                 <li>💡 Creative coding when least expected.</li>
             </ul>
         </div>
-        <div class="text-center padding-16px max-w-1000px margins-auto" id="projects">
-            <h2 class="text-size-24px font-family mbottom-16px text-light-blue">Projects</h2>
-            <div class="grid-col-2 gap-16px">
-                <div class="flex flex-column items-center content-start h-100 padding-8px text-center">
-                    <h3 class="text-size-24px font-family-1 mbottom-8px"> 🚀 Space.dev.</h3>
-                    <img src="https://media.giphy.com/media/26tk1ekVTSi8ZVgSA/giphy.gif?cid=790b76117hjjhrl0f0gq7a62mhafjcwwbe2ikq6du5govjtl&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer astronaut" class="margins-auto mbottom-8px width-180px max-h-150px  border-img">
-                    <p class="font-family-2 text-size-20px">A personal landing page project where I used stars, gradients, and zero logic. Deployed accidentally via spaceship
+        <div class="text-center px-4 py-8 max-w-[600px] mx-auto" id="projects">
+            <h2 class="text-2xl font-delius mb-4 text-sky-400">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex flex-col items-center justify-start h-full p-2 text-center">
+                    <h3 class="text-2xl font-atma mb-2"> 🚀 Space.dev.</h3>
+                    <img src="https://media.giphy.com/media/26tk1ekVTSi8ZVgSA/giphy.gif?cid=790b76117hjjhrl0f0gq7a62mhafjcwwbe2ikq6du5govjtl&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer astronaut" class="mx-auto mb-2 width-180px max-h-[150px] object-contain rounded-[25px]">
+                    <p class="font-sour text-lg">A personal landing page project where I used stars, gradients, and zero logic. Deployed accidentally via spaceship
                     console. Surprisingly responsive!.</p>
                 </div>
 
-                <div class="flex flex-column items-center content-start h-100 padding-8px text-center">
-                    <h3 class="text-size-24px font-family-1 mbottom-8px"> 🎤 Sadgasm.io.</h3>
-                    <img src="https://media.giphy.com/media/3orieVlTZA4uw6EDfy/giphy.gif?cid=ecf05e47ou465zvr6ep73kp8nyatrjkbpkf2ecacu6d1eh8q&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer singer" class="margins-auto mbottom-8px width-180px max-h-150px  border-img">
-                    <p class="font-family-2 text-size-20px">Built a tribute website to my old band Sadgasm using HTML, CSS, and lots of emotional support. Includes custom audio
+                <div class="flex flex-col items-center justify-start h-full p-2 text-center">
+                    <h3 class="text-2xl font-atma mb-2"> 🎤 Sadgasm.io.</h3>
+                    <img src="https://media.giphy.com/media/3orieVlTZA4uw6EDfy/giphy.gif?cid=ecf05e47ou465zvr6ep73kp8nyatrjkbpkf2ecacu6d1eh8q&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer singer" class="mx-auto mb-2 width-180px max-h-[150px] object-contain rounded-[25px]">
+                    <p class="font-sour text-lg">Built a tribute website to my old band Sadgasm using HTML, CSS, and lots of emotional support. Includes custom audio
                     player (sometimes plays correctly).</p>
                 </div>
     
-                <div class="flex flex-column items-center content-start h-100 padding-8px text-center">
-                    <h3 class="text-size-24px font-family-1 mbottom-8px"> 🛠️ Nuclear Dashboard.</h3>
-                    <img src="https://media.giphy.com/media/UYmY3vRnWpHHO/giphy.gif?cid=790b76110y156y6j3oiqcu0a26zkighmlzy5huup2c8qgwtb&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer working" class="margins-auto mbottom-8px width-180px max-h-150px  border-img">
-                    <p class="font-family-2 text-size-20px">Led an innovative (and mostly imaginary) redesign of safety procedures at the Springfield Nuclear Plant. Results were... inconclusive.</p>
+                <div class="flex flex-col items-center justify-start h-full p-2 text-center">
+                    <h3 class="text-2xl font-atma mb-2"> 🛠️ Nuclear Dashboard.</h3>
+                    <img src="https://media.giphy.com/media/UYmY3vRnWpHHO/giphy.gif?cid=790b76110y156y6j3oiqcu0a26zkighmlzy5huup2c8qgwtb&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer working" class="mx-auto mb-2 width-180px max-h-[150px] object-contain rounded-[25px]">
+                    <p class="font-sour text-lg">Led an innovative (and mostly imaginary) redesign of safety procedures at the Springfield Nuclear Plant. Results were... inconclusive.</p>
                 </div>
     
-                <div class="flex flex-column items-center content-start h-100 padding-8px text-center">
-                    <h3 class="text-size-24px font-family-1 mbottom-8px"> 🎬 Movie Watchlist.</h3>
-                    <img src= "https://media.giphy.com/media/l2JeaEAEAbrMimbBK/giphy.gif?cid=790b7611ie7pichpbu1myc68k69gtumja8sls44egvlttdg5&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer actor" class="margins-auto mbottom-8px width-180px max-h-150px  border-img">
-                    <p class="font-family-2 text-size-20px">A JavaScript app to track all movies I've watched 100+ times (mostly action and donuts-related content).
+                <div class="flex flex-col items-center justify-start h-full p-2 text-center">
+                    <h3 class="text-2xl font-atma mb-2"> 🎬 Movie Watchlist.</h3>
+                    <img src= "https://media.giphy.com/media/l2JeaEAEAbrMimbBK/giphy.gif?cid=790b7611ie7pichpbu1myc68k69gtumja8sls44egvlttdg5&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Homer actor" class="mx-auto mb-2 width-180px max-h-[150px] object-contain rounded-[25px]">
+                    <p class="font-sour text-lg">A JavaScript app to track all movies I've watched 100+ times (mostly action and donuts-related content).
                     LocalStorage-powered and fully Homer-approved.</p>
                 </div>
                 
             </div>
             
         </div>
-        <div class="padding-16px max-w-600px margins-auto text-center" id="contact">
-            <h2 class="text-size-24px font-family mbottom-16px text-light-blue">Contact</h2>
+        <div class="px-4 py-8 max-w-[600px] mx-auto text-center" id="contact">
+            <h2 class="text-2xl font-delius mb-4 text-sky-400">Contact</h2>
             
-            <p class="font-family-2 text-size-20px mbottom-16px">Want to work together, hire me as a developer, or just share a donut? Drop me a message! 💻🍩</p>
+            <p class="font-sour text-lg mb-4">Want to work together, hire me as a developer, or just share a donut? Drop me a message! 💻🍩</p>
 
-            <form class="flex flex-column items-center width-100">
-                <label for="name" class="font-family-2 text-size-16px">Name:</label>
-                <input type="text" id="name" name="name" required placeholder="Your name" class="width-100 padding-8px mbottom-8px border-2 border-yellow font-family-2 text-size-16px border-radius-8px bg-white">
+            <form class="flex flex-col items-center w-full space-y-4">
+                <div class="w-full">
+                    <label for="name" class="font-sour text-base">Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name"
+                        class="w-full p-2 border-2 border-yellow-400 font-sour text-base rounded bg-white">
+                </div>
+                <div class="w-full">
+                    <label for="email" class="font-sour text-base">E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="Your e-mail"
+                        class="w-full p-2 border-2 border-yellow-400 font-sour text-base rounded bg-white">
+                </div>
+                <div class="w-full">
+                    <label for="message" class="font-sour text-base">Message:</label>
+                    <textarea name="message" id="message" required placeholder="Your message..."
+                        class="w-full p-2 border-2 border-yellow-400 font-sour text-base rounded bg-white"
+                        rows="4"></textarea>
+                </div>
 
-                <label for="email" class="font-family-2 text-size-16px">E-mail:</label>
-                <input type="email" id="email" name="email" required placeholder="Your e-mail" class="width-100 padding-8px mbottom-8px border-2 border-yellow font-family-2 text-size-16px border-radius-8px bg-white">
-
-                <label for="message" class="font-family-2 text-size-16px">Message:</label>
-                <textarea name="message" id="message" required placeholder="Your message..." class="width-100 padding-8px mbottom-16px border-radius-8px border-2 border-yellow font-family-2 text-size-16px bg-white" rows="4"></textarea>
-
-                <button type="submit" class="padding-8px text-size-20px font-family-1 bg-yellow border-none cursor-pointer hover-bg-yellow-light border-radius-8px">Send 🍩</button>
+                <button type="submit" class="p-2 text-lg font-atma bg-yellow-400 border-none cursor-pointer hover:bg-yellow-300 rounded">Send 🍩</button>
             </form>
 
         </div>
     </main>
 
-    <footer class="text-center padding-16px text-size-16px font-family text-pink">
-        <p class="mbottom-8px">📌 742 Evergreen Terrace, Springfield</p>
+    <footer class="text-center py-4 text-base font-delius text-pink-500">
+        <p class="mb-2">📌 742 Evergreen Terrace, Springfield</p>
         <p>© 2025 Homer J. Simpson. All donuts reserved 🍩 </p>
     </footer>
 </body>
