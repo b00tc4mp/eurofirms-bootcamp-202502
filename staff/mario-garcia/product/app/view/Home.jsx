@@ -40,7 +40,7 @@ export const Home = props => {
 
     console.log('Home -> render')
 
-    return <div className="p-5">
+    return <div className="p-5 grid">
 
         <i className="text-xl">Logo</i>
 
@@ -57,6 +57,7 @@ export const Home = props => {
             >Logout</button>
 
         </div>
+
 
         <Posts />
 

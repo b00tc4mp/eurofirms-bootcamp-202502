@@ -44,7 +44,7 @@ export const Login = (props) => {
 
                 <label htmlFor="username" className="text-xl">Username:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
+                <input className="my-2 border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
 
             </div>
 
@@ -52,7 +52,7 @@ export const Login = (props) => {
 
                 <label htmlFor="password" className="text-xl">Password:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="password" name="password" id="password" placeholder="Introduce your password" />
+                <input className="my-2 border-2 px-1 rounded-md bg-violet-50 py-1" type="password" name="password" id="password" placeholder="Introduce your password" />
 
             </div>
 

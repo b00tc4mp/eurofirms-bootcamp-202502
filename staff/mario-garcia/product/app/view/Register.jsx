@@ -48,7 +48,7 @@ export const Register = (props) => {
 
                 <label htmlFor="name" className="text-xl">Name:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" id="name" name="name" placeholder="Your full name" />
+                <input className="my-2 border-2 px-1 rounded-md bg-violet-50 py-1" type="text" id="name" name="name" placeholder="Your full name" />
 
             </div>
 
@@ -56,7 +56,7 @@ export const Register = (props) => {
 
                 <label htmlFor="email" className="text-xl">Email:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="email" name="email" id="email" placeholder="Your e-mail" />
+                <input className="my-2 border-2 px-1 rounded-md bg-violet-50 py-1" type="email" name="email" id="email" placeholder="Your e-mail" />
 
             </div>
 
@@ -64,7 +64,7 @@ export const Register = (props) => {
 
                 <label htmlFor="username" className="text-xl">Username:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
+                <input className="my-2 border-2 px-1 rounded-md bg-violet-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
 
             </div>
 
@@ -72,7 +72,7 @@ export const Register = (props) => {
 
                 <label htmlFor="password" className="text-xl">Password:</label>
 
-                <input className="border-2 px-1 rounded-md bg-violet-50 py-1" type="password" name="password" id="password" placeholder="Introduce a password" />
+                <input className="my-2 border-2 px-1 rounded-md bg-violet-50 py-1" type="password" name="password" id="password" placeholder="Introduce a password" />
 
             </div>
 
