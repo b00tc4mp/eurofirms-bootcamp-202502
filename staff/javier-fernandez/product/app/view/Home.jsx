@@ -27,7 +27,7 @@ export const Home = (props) => {
             alert (error.message)
         }
     }
-
+ 
     console.log("Home -> render")
 
     return <div classname="p-5">
