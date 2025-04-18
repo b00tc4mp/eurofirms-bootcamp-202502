@@ -32,7 +32,7 @@ export const Login = (props) => {
         <i className="text-2xl block mb-4">Logo</i>
 
         <div className="mt-2">
-            <h1 className="text-[22px] font-bold text-[#7575d2] mb-4">Login page</h1>
+            <h1 className="text-[22px] font-bold text-[#119fd3] mb-4">Login page</h1>
 
             <form className="flex flex-col gap-5" onSubmit={handleLoginSubmit}>
 

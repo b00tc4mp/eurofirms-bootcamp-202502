@@ -36,9 +36,9 @@ export const Home = (props) => {
         <i className="text-2xl block">Logo</i>
 
         <div className="mt-2">
-            <h1 className="text-[22px] font-bold text-[#7575d2]">Hello, {username}!</h1>
+            <h1 className="text-[22px] font-bold text-[#119fd3]">Hello, {username}!</h1>
 
-            <button className=" mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer" 
+            <button className=" mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2" 
             type="button" 
             onClick={handleLogoutClick}>Logout
             </button>
