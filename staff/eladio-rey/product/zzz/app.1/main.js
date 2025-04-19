@@ -114,28 +114,83 @@ function buildRegisterView() {
     passwordField.classList.add('flex', 'flex-col', 'gap-10px');
     const passwordLabel = document.createElement('label');
     passwordLabel.htmlFor = 'password';
-    const passwordText = document.createTextNode('Password')
-    passwordLabel.appendChild(passwordText) //voy por la app.7 línea 121 del Manu
+    passwordLabel.appendChild(document.createTextNode('password'))
+    const passwordInput = document.createElement('input')
+    passwordInput.type = 'password'
+    passwordInput.id = 'password'
+    passwordInput.name = 'password'
+    passwordInput.placeholder = 'your password'
+    passwordField.appendChild(passwordLabel)
+    passwordField.appendChild(passwordinput)
+    loginForm.appendChild(passwordField)
 
+/* Botones */
+const buttons = document.createElement('div')
+buttons.classList.add('flex', 'justify-between')
 
+const registerLink = document.createElement('a')
+registerLink.href = '#'
+registerLink.appendChield(document.createTextNode('Register'))
+registerLink.addEventListener('click', event => {
+    body.removeChild(loginView)
+    body.appendChild(registerView)
+})
 
+const submitButton = document.createElement('button')
+submitButton.classList.add('black-button')
+submitButton.type= 'submit'
+submitButton.appendChild(registerLink)
+buttons.appendChild(submitButton)
+loginForm.appendChild(buttons)
 
+/* Evento Login */
 
+loginForm.addEventListener('submit', event => {
+    event.perventDefault()
+    const username = usernameInput.value
+    const password = passwordInput.value
 
-    registerView.appendChild(registerForm)
+    try {
+        loginUser(username, password)
+        loginForm.reset()
+        body.removeChild(logingView)
+        body.appendChild(homeView)
+    } catch (error) {
+        alert(error.message)  
+    }
+})
 
+loginView.appendChild(loginForm)
+return loginView
 
-    return registerView
+/* HOME VIEW (vista principal tras login) */
+const homeView = document.createElement('div')
+homeView.classList.add('p-20px')
+
+const logo = document.createElement('i')
+logo.appendChild(document.createTextNode('logo'))
+homeView.appendChild(logo)
+
+const homeTitle = document.createElement('h1')
+homeTitle.appendChild(document.createTextNode('Hello, World!'))
+homeView.appendChild(homeTitle)
+
+const logoutButton = document.createElement('button')
+logoutButton.classList.add('black-button')
+logoutButton.appendChild(document.createTextNode('Logout'))
+logoutButton.addEventListerner('click', event => {
+    body.removeChild(homeView)
+})
+
+homeView.appendChild(logoutButton)
+return homeView
 }
 
-//en este bloque de código cargamos las vistas dentro del body
-//vamos a llamar a la función buildLandingView y el rersultado (div) lo guardamos en una variable
-const landingView = buildLandingView() 
-body.appendChild(landingView)
+/* Inicialización de vistas */
+const landingView = buildLandingView()
+body.appendChild(landingView) // Se inicia con la vista de bienvenida
 
 const registerView = buildRegisterView()
-body.appendChild(registerView)
-
-
-
+const loginView = buildLoginView()
+const homeView = buildHomeView()
 
