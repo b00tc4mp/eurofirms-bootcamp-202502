@@ -204,11 +204,11 @@ function buildHomeView() {
   return homeView
 }
 
-// var landingView = buildLandingView()
-// body.appendChild(landingView)
+var landingView = buildLandingView()
+body.appendChild(landingView)
 
-var registerView = buildRegisterView()
-body.appendChild(registerView)
+//var registerView = buildRegisterView()
+//body.appendChild(registerView)
 
 // var loginView = buildLoginView()
 // body.appendChild(loginView)
