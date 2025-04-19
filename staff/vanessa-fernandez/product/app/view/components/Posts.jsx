@@ -28,8 +28,11 @@ export const Posts = () => {
 
                     <p className="bg-[#f8fafc] mt-3 p-3 rounded-md text-gray-700">{post.text}</p>
 
-                    <time className="block mt-2 text-sm text-gray-500">{post.date}</time>
+                    <div className="flex justify-between items-center mt-2 text-sm text-gray-500">
+                        <time className="block mt-2 text-sm text-gray-500">{post.date}</time>
 
+                        <span> 💖 {post.likes.length} likes</span>
+                    </div>
                 </article>
             })}
         </div>
