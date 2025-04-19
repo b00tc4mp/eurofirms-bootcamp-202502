@@ -56,12 +56,12 @@ export const Login = (props) => {
 
             </div>
 
-            <div className="flex justify-between">
+            <div className="my-2 flex justify-between">
 
                 <a className="underline" href="#"
                     onClick={handleRegisterClick}>Register</a>
 
-                <button className="border-1 rounded-md bg-blue-50 text-blue-900 px-2" type="submit">Login</button>
+                <button className="border-1 rounded-md bg-blue-50 text-blue-900 px-2 cursor-pointer" type="submit">Login</button>
 
             </div>
 

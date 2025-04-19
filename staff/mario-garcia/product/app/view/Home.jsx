@@ -50,11 +50,22 @@ export const Home = props => {
 
             <h2 className="text-xl text-orange-700 py-2">Hello, {username}!</h2>
 
-            <button className="border-1 rounded-md bg-orange-50 text-orange-900 px-2 font-medium"
-                type="button"
-                onClick={handleLogoutClick}
+            <div className="my-2 flex justify-start">
 
-            >Logout</button>
+                <button className="border-2 rounded-md bg-orange-50 text-orange-900 px-2 font-medium cursor-pointer"
+                    type="button"
+                    onClick={handleLogoutClick}
+
+                >Logout</button>
+
+                <button className="border-2 rounded-md bg-orange-50 text-orange-900 px-2 font-medium mx-75 cursor-pointer"
+                    type="button"
+
+                >+</button>
+
+            </div>
+
+
 
         </div>
 
