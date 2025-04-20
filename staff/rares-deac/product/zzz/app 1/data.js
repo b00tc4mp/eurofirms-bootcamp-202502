@@ -12,8 +12,4 @@ const users = [
     username: "peterpan",
     password: "123123123",
   },
-]
-
-export const data = {
-  users
-}
+];

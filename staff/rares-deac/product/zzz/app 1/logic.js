@@ -1,9 +1,4 @@
-import { data } from './data'
-
-// function registerUser(name, email, username, password)
-// const registerUser = function (name, email, username, password) {
-
-const registerUser = (name, email, username, password) => {
+function registerUser(name, email, username, password) {
   //Campo name
 
   if (typeof name !== "string") throw new Error("invalid name type");
@@ -30,26 +25,24 @@ const registerUser = (name, email, username, password) => {
 
   //user check
 
-  for (var i = 0; i < data.users.length; i++) {
-    const user = data.users[i];
+  for (var i = 0; i < users.length; i++) {
+    var user = users[i];
 
     if (user.email === email || user.username === username)
       throw new Error("user already exists");
   }
 
-  const user = {
+  var user = {
     name: name,
     email: email,
     username: username,
-    password: password
-  }
+    password: password,
+  };
 
-  data.users[data.users.length] = user
+  users[users.length] = user;
 }
 
-// function loginUser(username, password) {
-// const loginUser = function (username, password) {
-const loginUser = (username, password) => {
+function loginUser(username, password) {
   if (typeof username !== "string") throw new Error("invalid username type");
 
   if (typeof password !== "string") throw new Error("invalid password type");
@@ -62,24 +55,21 @@ const loginUser = (username, password) => {
 
   let user
 
-  for (var i = 0; i < data.users.length; i++) {
-    const _user = data.users[i];
+  for (var i = 0; i < users.length; i++) {
+    const _user = users[i];
 
-    if (_user.username === username) {
+    if(_user.username === username){
       user = _user;
 
       break;
     }
 
+    if(user === undefined) throw new Error("user not found");
+
+    if(user.password !== password) throw new Error ("Wrong Credentials");
+
   }
 
-  if (user === undefined) throw new Error("user not found");
 
-  if (user.password !== password) throw new Error("Wrong Credentials");
-
-}
-
-export const logic = {
-  registerUser,
-  loginUser
+  //TODO implement me
 }

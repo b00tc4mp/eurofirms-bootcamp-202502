@@ -1,30 +1,55 @@
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
-export const Login = () => {
+import { logic } from '../logic'
 
-    const navigate = useNavigate();
+export const Login = (props) => {
+    const onRegisterClicked = props.onRegisterClicked
+    const onUserLoggedIn = props.onUserLoggedIn
+
+    const handleRegisterClick = () => onRegisterClicked()
+
+    const handleLoginSubmit = event => {
+        event.preventDefault()
+
+        const form = event.target
+
+        const username = form.username.value
+        const password = form.password.value
+
+        try {
+            logic.loginUser (username, password)
+
+            form.reset()
+
+            onUserLoggedIn()
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     console.log('Login -> render')
 
-    return <div className="p-20x">
-        <i className="block bold">Logo</i>
+    return <div className="p-5">
+        <i className="text-2xl">Logo</i>
 
-        <h1 className="bold">Login</h1>
+        <div className="mt-2">
+            <h1 className="text-xl">Login</h1>
 
-        <form className="flex flex-col gap-20px">
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="username" >Username</label>
-                <input type="text" id="username" name="username" placeholder="nombre de usuario" />
-            </div>
+            <form className="flex flex-col gap-4" onSubmit={handleLoginSubmit}>
+                <div className="flex flex-col gap">
+                    <label htmlFor="username" >Username</label>
+                    <input className="border-2 px-1 rounded-md" type="text" id="username" name="username" placeholder="nombre de usuario" />
+                </div>
 
-            <div className="flex flex-col gap-10px">
-                <label htmlFor="password" >Password</label>
-                <input type="password" name="password" id="password" placeholder="Type your password" />
-            </div>
+                <div className="flex flex-col gap">
+                    <label htmlFor="password" >password</label>
+                    <input className="border-2 px-1 rounded-md" type="password" name="password" id="password" placeholder="Type your password" />
+                </div>
 
-            <div className="flex justify-between">
-                <Link to="/register">Register</Link>
-                <button onClick={() => navigate('/home')} className="black-button" type="submit">Login</button>
-            </div>
-        </form>
+                <div className="flex justify-between">
+                    <a className="underline" onClick={handleRegisterClick}>Register</a>
+                    
+                    <button className="bg-black text-white px-2" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
 }
