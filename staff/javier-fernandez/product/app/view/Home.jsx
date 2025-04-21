@@ -28,19 +28,28 @@ export const Home = (props) => {
         }
     }
  
-    console.log("Home -> render")
+    console.log('Home -> render')
 
     return <div classname="p-5">
         <i className="text-2xl">Logo</i>
 
         <div className="mt-2">
-            <h1 className="text-xl">Hello, {username}</h1>
+            <h1 className="text-xl text-black-800 font-semibold py-2">HOME Page</h1>
+            <h2 className="text-xl text-blue-300 py-2">Hello, {username}!</h2>
+            
+            <div className="my-2 flex justify-start">
        
-            <button
-             classname="bg-black text-white px-2"
-             type="button"
+                <button
+                 classname="border-2 rounded-md bg-black-50 text-white-100 px-2 font-medium cursor pointer"
+                type="button"
                 onClick={handleLogoutClick}
-            >Logout</button>
+                >Logout</button>
+
+                <button className="border-2 rounder-md bg-black-50 text-white-100 px-2 font-medium mx-75 cursor-pointer"
+                    type="button"
+                ></button>
+            </div>
+
          </div>
          <Posts/>
     </div>
