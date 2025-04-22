@@ -1,12 +1,13 @@
-export const data = {
+export const data = { 
     users: [],
     usersCount: 0,
 
     posts: [],
     postsCount: 0,
 
-    userId: 0
+    userId: null
 }
+
 // populate users
 
 data.usersCount++
