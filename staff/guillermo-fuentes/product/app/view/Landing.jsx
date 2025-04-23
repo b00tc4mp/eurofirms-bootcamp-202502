@@ -9,7 +9,7 @@ export const Landing = (props) => {
       <div>
         <i>Logo</i>
         <h1 className="text-red-600">Welcome to the App</h1>
-        <a className="underline" href="#" onClick={handleRegisterClick}>
+        <a className="underline " href="#" onClick={handleRegisterClick}>
           Register
         </a>{' '}
         or{' '}

@@ -42,10 +42,10 @@ export const Register = (props) => {
             <input type="password" name="password" id="password" placeholder=" your password" className="border-2" />
           </div>
           <div className="flex justify-between">
-            <a href="#" onClick={handleLoginClick}>
+            <a href="#" className="bg-blue-200 text-black rounded-full p-2" onClick={handleLoginClick}>
               Login{' '}
             </a>
-            <button className="bg-black text-white">Register </button>
+            <button className="bg-blue-200 text-black rounded-full p-2">Register </button>
           </div>
         </form>
       </div>

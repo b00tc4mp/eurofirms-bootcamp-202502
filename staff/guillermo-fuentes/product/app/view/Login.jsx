@@ -18,7 +18,7 @@ export const Login = (props) => {
   };
   return (
     <>
-      <h1>Login</h1>
+      <h1 className="">Login</h1>
       <form className="flex flex-col gap-2" onSubmit={handleLoginSubmit}>
         <div className="flex flex-col ">
           <label for="username">Username </label>
@@ -29,10 +29,10 @@ export const Login = (props) => {
           <input type="password" name="password" placeholder=" your password" className="border-2" />
         </div>
         <div className="flex justify-between">
-          <a href="#" onClick={handleRegisterClick}>
+          <a href="#" className="bg-blue-200 text-black rounded-full p-2" onClick={handleRegisterClick}>
             Register
           </a>
-          <button className="bg-black text-white">Login</button>
+          <button className="bg-blue-200 text-black rounded-full p-2">Login</button>
         </div>
       </form>
     </>
