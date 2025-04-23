@@ -1,0 +1,1 @@
+version de la aplicacion con JS6 y CSS
