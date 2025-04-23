@@ -1,5 +1,6 @@
 //Enlace de figma: https://www.figma.com/proto/KzMLcqmKggQTys6UT6Xejr/eurofirms-bootcamp-202502-product?node-id=1-28&p=f&t=7tk4SSqOURm1GHxP-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A28
 
+//DOM
 
 const body = document.querySelector('body');
 //body.bgColor='DAE820';
