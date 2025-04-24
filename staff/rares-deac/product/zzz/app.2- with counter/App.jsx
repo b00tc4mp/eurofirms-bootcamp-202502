@@ -5,6 +5,8 @@ import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
 
+// import{ Counter } from './view/Counter'
+
 
 export const App = () => {
     const [view, setView] = useState('landing')
@@ -16,12 +18,14 @@ export const App = () => {
     const handleUserRegistered = () => setView('login')
 
     const handleUserLoggedIn = () => setView('home')
-
+    
     const handleUserLoggedOut = () => setView('login')
 
     console.log('App -> render')
 
     return <>
+
+        {/* <Counter /> */}
 
         {view === 'landing' &&
             <Landing
@@ -31,21 +35,21 @@ export const App = () => {
         }
 
         {view === 'register' &&
-            <Register
+            <Register 
                 onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}
+                onUserRegistered = {handleUserRegistered}
             />
         }
 
         {view === 'login' &&
-            <Login
+            <Login 
                 onRegisterClicked={handleRegisterClicked}
                 onUserLoggedIn={handleUserLoggedIn}
             />
         }
 
         {view === 'home' && <Home
-            onUserLoggedOut={handleUserLoggedOut}
+            onUserLoggedOut = {handleUserLoggedOut}
         />}
     </>
 }

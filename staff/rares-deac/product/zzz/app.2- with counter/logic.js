@@ -36,16 +36,15 @@ const registerUser = (name, email, username, password) => {
     if (user.email === email || user.username === username)
       throw new Error("user already exists");
   }
-  data.usersCount++
 
-  data.users.push({
-    id:'user-' + data.usersCount,
+  const user = {
     name: name,
     email: email,
     username: username,
     password: password
-  })
+  }
 
+  data.users[data.users.length] = user
 }
 
 // function loginUser(username, password) {
@@ -78,40 +77,9 @@ const loginUser = (username, password) => {
 
   if (user.password !== password) throw new Error("Wrong Credentials");
 
-  data.userId = user.id
-
-}
-
-const getUserUsername = () => {
-    let user
-
-    for (let i = 0; i < data.users.length; i++) {
-      const _user = data.users[i]
-
-      if(_user.id === data.userId){
-        user = _user
-
-        break
-      }
-    }
-
-    if(user === undefined) throw new Error('user not found')
-
-      return user.username
-}
-
-const logoutUser = () => {
-  data.userId = null
-}
-
-const getPosts = () => {
-  return data.posts.toReversed()
 }
 
 export const logic = {
   registerUser,
-  loginUser,
-  getUserUsername,
-  logoutUser,
-  getPosts
+  loginUser
 }
