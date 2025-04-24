@@ -18,6 +18,8 @@ export const App = () => {
 
     const handleUserLoggedOut = () => setView('login')
 
+    const handleHome = () => setView('home')
+
     console.log('App -> render')
 
     return <>
@@ -25,6 +27,7 @@ export const App = () => {
             <Landing
                 onRegisterClicked={handleRegisterClicked}
                 onLoginClicked={handleLoginClicked}
+                onHomeClicked={handleHome}
             />
         }
 
