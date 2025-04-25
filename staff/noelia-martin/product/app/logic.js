@@ -1,3 +1,5 @@
+import { data } from './data' //necesito data para trabajar
+
 //Este fichero sera para las funciones de los botones
 
 // function registerUser(name, email, username, password)
@@ -23,8 +25,8 @@ const registerUser = (name, email, username, password) => {
     if (password.length > 20) throw new Error('invalid password max length')
 
     //Creo un for para una ultima regla, no se puede registar un email o username que ya exista en mi BD, el for comprobara uno a uno los objetos de mi array users
-    for (let i = 0; i < users.length; i++) {
-        var usuario = users[i]
+    for (let i = 0; i < data.users.length; i++) {
+        var usuario = data.users[i]
         if (usuario.email === email || usuario.username === username) throw new Error('user already exists')
     }
     //creamos un nuevo objeto con los campos introducidos en la llamada de mi funcion, es decir en la pg de registro
@@ -32,7 +34,7 @@ const registerUser = (name, email, username, password) => {
         name: name, email: email, username: username, password: password
     }
     //metemos el objeto anterior en la siguiente posicion disponible de mi array(BD)
-    users[users.length] = usuarioAMeter
+    data.users[data.users.length] = usuarioAMeter
 }
 
 // function loginUser(username, password) {
@@ -49,8 +51,8 @@ const loginUser = (username, password) => {
 
     let datoCorrecto = false
 
-    for (let i = 0; i < users.length; i++) {
-        const usuario = users[i]
+    for (let i = 0; i < data.users.length; i++) {
+        const usuario = data.users[i]
         if (usuario.username === username && usuario.password === password) {
             datoCorrecto = true;
             break
@@ -74,4 +76,9 @@ const loginUser = (username, password) => {
     if (user === undefined) throw new Error('user not found')
 
     if (user.password !== password) throw new Error('wrong credentials')*/
+}
+
+//exporto las dos funciones
+export const logic = {
+    registerUser, loginUser
 }

@@ -7,65 +7,41 @@ import { Home } from './view/Home'
 
 
 export const App = () => {
-    // const viewState = useState('landing')
-    // const view = viewState[0]
-    // const setView = viewState[1]
-    const [view, setView] = useState('landing') //Si es la primera vez que se usa, devuelve en view el primer estado es decir landing y en setview la llamada a la funcion que se encarga de cambiar a futuros estados
-    //esta funcion es un hook de react (son funciones que te permiten “enganchar” el estado de React y el ciclo de vida desde componentes de función)
+    const [view, setView] = useState('landing')
 
-    const handleRegisterClick = () => setView('register') //funcion para manejar(handle) el click de register; en ella llamamos a setview, que es una llamada a la funcion que cambia el estado y le indicamos por cual cambiar
-    const handleLoginClick = () => setView('login')
-
+    const handleRegisterClicked = () => setView('register')
+    const handleLoginClicked = () => setView('login')
+    //añado todos los handle necesarios para los submit y el click de Home para que procesa al cambio de estado(vista)
+    const handleUserRegistered = () => setView('login')
+    const handleUserLoggedIn = () => setView('home')
+    const handleUserLoggedOut = () => setView('login')
 
     console.log('App -> render')
 
     return <>
-        {/* hay que usar propiedades; recuerda que el a&&b solo comprueba b si a es cierto */}
         {view === 'landing' &&
             <Landing
-                // se le debe llamar asi, comenzando por on. Esta llama a ese handle que es una funcion que en este caso, cambia el estado segun cliques
-                onRegisterClick={handleRegisterClick}
-                onLoginClick={handleLoginClick}
+                onRegisterClicked={handleRegisterClicked}
+                onLoginClicked={handleLoginClicked}
             />
         }
 
         {view === 'register' &&
             <Register
-                onLoginClick={handleLoginClick}
+                onLoginClicked={handleLoginClicked}
+                onUserRegistered={handleUserRegistered}// propiedad del form de la pg registro
             />}
 
         {view === 'login' &&
             <Login
-                onRegisterClick={handleRegisterClick}
+                onRegisterClicked={handleRegisterClicked}
+                onUserLoggedIn={handleUserLoggedIn}// propiedad del form de la pg Loggin
+
             />}
 
-        {view === 'home' && <Home />}
+        {view === 'home' &&
+            <Home
+                onUserLoggedOut={handleUserLoggedOut} //propiedad del submit,configurado como click del home
+            />}
     </>
 }
-//en react los valores se ponen en llaves
-
-
-
-//Version sin navegación
-//importamos todos los archivos a utilizar
-// import { Landing } from './view/Landing'
-// import { Register } from './view/Register'
-// import { Login } from './view/Login'
-// import { Home } from './view/Home'
-// import { Counter } from './view/Counter'
-
-
-// export const App = () => {
-//     console.log('App -> render')
-
-//     return <>
-//         {/* llamamos al contenido del fichero nombrado */}
-
-//         {/* <Landing /> */}
-//         {/* <Register /> */}
-//         {/* <Login /> */}
-//         {/* <Home /> */}
-//         <Counter />
-//     </>
-// }
-// Devolvemos un codigo html y react se encarga de traducirlo a javascript
