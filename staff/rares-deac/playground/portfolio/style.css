@@ -1,0 +1,202 @@
+/*-----------------------------------*\
+    #style.css
+\*-----------------------------------*/
+
+/*-----------------------------------*\
+    #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+
+    /*
+    * COLORS
+    */
+    
+    --primary-100: #da8888;
+    --primary-20: #e51616c0;
+    --secondary-100: #21FFFF;
+    --secondary-20: #073333;
+    --hover-100: #a4d3d3be;
+    --hover-20: #073d3dbe; 
+
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    margin: 0px;
+    color: var(--secondary-20);
+    background-image: linear-gradient();
+}
+
+hr {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: 2px;
+    border: none;
+
+}
+
+a:visited {
+    color: black
+}
+
+
+.no-dec:hover {
+    list-style-type: none;
+}
+
+.hover{
+    transition:background-color .5s ease-in-out, color .75s ease-in-out;
+}
+
+
+.hover:hover {
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
+    background-color: var(--hover-100);
+    color: var(--primary-100);
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+/* a:hover {
+    transition-duration: .5s;
+    background-color: rgb(180, 207, 234);
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+} */
+
+/*-----------------------------------*\
+    #TOPNAV BAR
+\*-----------------------------------*/
+
+.topnav {
+    overflow: hidden;
+    background-color: var(--primary-100);
+    margin-bottom: 5px;
+
+
+}
+
+/*-----------------------------------*\
+    #Style the topnav links
+\*-----------------------------------*/
+
+.topnav a{
+    float: left;
+    display: block;
+    color: var(--secondary-20);
+    padding: 14px 16px;
+    text-decoration:none;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    
+
+
+}
+
+.topnav a:hover{
+    background-color: var(--hover-100);
+    color: var(--primary-20);
+
+    
+}
+
+
+/*-----------------------------------*\
+    #FOOTER
+\*-----------------------------------*/
+
+/*Utility classes*/
+
+.no-decoration {
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.radius-10 {
+    border-radius: 10px;
+}
+
+.radius-20 {
+    border-radius: 20px;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.red-bg {
+    background-color: var(--primary-100);
+}
+
+.border-red {
+    border-style: solid;
+    border-color: var(--primary-100);
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.gap-10px {
+    gap: 10px;
+}
+
+.big-size {
+    font-size: x-large;
+}
+
+.w-100 {
+    width: 100px;
+}
+
+.w-full{
+    width:100%;
+}
+
+.m-10px {
+    margin: 10px;
+}
+
+
+
+/* The animation code */
