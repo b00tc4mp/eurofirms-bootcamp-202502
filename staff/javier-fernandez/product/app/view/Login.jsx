@@ -35,7 +35,7 @@ export const Login = (props) => {
         <div className="mt-2">
             <h1 className="text-xl">Login</h1>
 
-            <form className="flex flex-col gap-4" onSubmit = {handleLoginSubmit}>
+            <form className="flex flex-col gap-4" onSubmit={handleLoginSubmit}>
                 <div className="flex flex-col gap">
                     <label htmlFor="username">Username</label>
                     <input className="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />

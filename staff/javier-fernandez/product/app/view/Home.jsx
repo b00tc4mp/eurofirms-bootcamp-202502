@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { logic } from '../logic'
-import { Posts } from './components/Posts'
 
+import { logic } from '../logic'
+
+import { Posts } from './components/Posts'
+ 
 export const Home = (props) => {
     const onUserLoggedOut = props.onUserLoggedOut
 

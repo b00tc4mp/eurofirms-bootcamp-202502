@@ -5,7 +5,17 @@ export const data = {
     posts: [],
     postsCount: 0,
 
-    userId: null
+    setUserId(userId) {
+        sessionStorage.userId = userId 
+    }
+
+    getUserId() {
+        return sessionStorage.userId 
+    }
+
+    removeUserId() {
+        delete sessionStorage.userId
+    }
 }
 
 // populate users

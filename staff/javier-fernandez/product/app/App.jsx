@@ -5,6 +5,7 @@ import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
  
+import { logic } from './logic'
 
 export const App = () => {
     const [view, setView] = useState('landing')
@@ -19,7 +20,17 @@ export const App = () => {
 
     const handleUserLoggedOut = () => setView('login')
 
-    console.log('App -> render')
+    useEffect(() => {
+        try {
+            const loggedIn = logic.isUserLoggedIn()
+            if (loggedIn)
+                setView('home')
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
+
+    console.log('App -> render') 
 
     return <>
         {view === 'landing' &&
