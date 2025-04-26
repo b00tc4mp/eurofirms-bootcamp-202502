@@ -13,7 +13,7 @@ export const getUserUsername = () => {
     for (let i = 0; i < data.users.length; i++) {
         const _user = data.users[i]
 
-        if (_user.id === data.userId) {
+        if (_user.id === data.getUserId()) {
 
             user = _user
 
