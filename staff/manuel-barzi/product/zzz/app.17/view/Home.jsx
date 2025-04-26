@@ -3,12 +3,10 @@ import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 
 import { Posts } from './components/Posts'
-import { CreatePost } from './components/CreatePost'
 
 export const Home = props => {
     const onUserLoggedOut = props.onUserLoggedOut
 
-    const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
 
     useEffect(() => {
@@ -31,12 +29,6 @@ export const Home = props => {
         }
     }
 
-    const handleCreatePostClick = () => setView('create-post')
-
-    const handleCreatePostCancelClicked = () => setView('posts')
-
-    const handlePostCreated = () => setView('posts')
-
     console.log('Home -> render')
 
     return <div className="p-5">
@@ -48,20 +40,10 @@ export const Home = props => {
             <button
                 className="bg-black text-white px-2"
                 type="button"
-                onClick={handleCreatePostClick}
-            >+</button>
-
-            <button
-                className="bg-black text-white px-2"
-                type="button"
                 onClick={handleLogoutClick}
             >Logout</button>
         </div>
 
-        {view === 'posts' && <Posts />}
-        {view === 'create-post' && <CreatePost
-            onCancelClicked={handleCreatePostCancelClicked}
-            onPostCreated={handlePostCreated}
-        />}
+        <Posts />
     </div>
 }
