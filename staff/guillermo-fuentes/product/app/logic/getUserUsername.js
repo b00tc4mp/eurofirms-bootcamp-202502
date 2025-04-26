@@ -1,9 +1,10 @@
 import { data } from '../data';
 export const getUserUsername = () => {
+  const users = data.getUsers();
   let user;
 
-  for (let i = 0; i < data.users.length; i++) {
-    const _user = data.users[i];
+  for (let i = 0; i < users.length; i++) {
+    const _user = users[i];
 
     if (_user.id === data.getUserId()) {
       user = _user;

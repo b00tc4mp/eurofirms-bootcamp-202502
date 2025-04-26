@@ -11,17 +11,20 @@ export const registerUser = (name, email, username, password) => {
   if (username.length > 20) throw new Error('Invalid lenght username');
   if (typeof password !== 'string') throw new Error('invalid password type');
   if (password.length < 8) throw new Error('Invalid lenght password');
-
-  for (let i = 0; i < data.users.length; i++) {
-    var user = data.users[i];
+  const users = data.getUsers();
+  for (let i = 0; i < users.length; i++) {
+    var user = users[i];
     if (user.email === email || user.username === username) throw new Error('email or username already exists');
   }
-  data.usersCount++;
-  data.users.push({
-    id: 'user-' + data.usersCount,
+  let usersCount = data.getUsersCount();
+  usersCount++;
+  users.push({
+    id: 'user-' + usersCount,
     name: name,
     email: email,
     username: username,
     password: password,
   });
+  data.setUsersCount(usersCount);
+  data.setUsers(users);
 };
