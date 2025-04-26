@@ -1,6 +1,6 @@
 import { logic } from '../logic';
 import { useEffect, useState } from 'react';
-import { Posts } from '../components/Posts';
+import { Posts } from './components/Posts';
 export const Home = (props) => {
   const onLogout = props.onUserLogout;
   const handleLogoutClick = () => onLogout();

@@ -26,19 +26,19 @@ export const Register = (props) => {
         <h1 className="text-3xl text-center">Register</h1>
         <form className="flex flex-col gap-2 " onSubmit={handleRegisterSubmit}>
           <div className="flex flex-col ">
-            <label for="name">Name </label>
+            <label htmlFor="name">Name </label>
             <input type="text" name="name" id="name" placeholder=" your name" className=" border-2" />
           </div>
           <div className="flex flex-col">
-            <label for="email">Email </label>
+            <label htmlFor="email">Email </label>
             <input type="email" name="email" id="email" placeholder=" your email" className="border-2" />
           </div>
           <div className="flex flex-col">
-            <label for="username">Username </label>
+            <label htmlFor="username">Username </label>
             <input type="text" name="username" id="username" placeholder=" your username" className="border-2" />
           </div>
           <div className="flex flex-col">
-            <label for="password">Password </label>
+            <label htmlFor="password">Password </label>
             <input type="password" name="password" id="password" placeholder=" your password" className="border-2" />
           </div>
           <div className="flex justify-between">

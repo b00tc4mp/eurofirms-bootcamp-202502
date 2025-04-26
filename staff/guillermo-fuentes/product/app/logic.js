@@ -50,7 +50,7 @@ const loginUser = (username, password) => {
 
   if (user.password !== password) throw new Error('wrong credentials');
 
-  data.userId = user.id;
+  data.setUserId(user.id);
 };
 const getUserUsername = () => {
   let user;
@@ -58,7 +58,7 @@ const getUserUsername = () => {
   for (let i = 0; i < data.users.length; i++) {
     const _user = data.users[i];
 
-    if (_user.id === data.userId) {
+    if (_user.id === data.getUserId()) {
       user = _user;
 
       break;
@@ -69,12 +69,20 @@ const getUserUsername = () => {
 
   return user.username;
 };
+const isUserLoggedIn = () => {
+  return !!data.getUserId();
+};
 const getPosts = () => {
   return data.posts;
+};
+const logoutUser = () => {
+  data.removeUserId();
 };
 export const logic = {
   registerUser,
   loginUser,
   getUserUsername,
+  logoutUser,
+  isUserLoggedIn,
   getPosts,
 };

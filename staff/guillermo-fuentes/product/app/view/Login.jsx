@@ -21,11 +21,11 @@ export const Login = (props) => {
       <h1 className="">Login</h1>
       <form className="flex flex-col gap-2" onSubmit={handleLoginSubmit}>
         <div className="flex flex-col ">
-          <label for="username">Username </label>
+          <label htmlFor="username">Username </label>
           <input type="text" name="username" placeholder=" your username" className="border-2" />
         </div>
         <div className="flex flex-col">
-          <label for="password">Password </label>
+          <label htmlFor="password">Password </label>
           <input type="password" name="password" placeholder=" your password" className="border-2" />
         </div>
         <div className="flex justify-between">
