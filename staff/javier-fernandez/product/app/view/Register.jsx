@@ -6,7 +6,7 @@ export const Register = (props) => {
 
     const handleLoginClick = () => onLoginClicked()
 
-    const handleRegisterSubmit = event => {
+    const handleRegisterSubmit = event => { 
         event.preventDefault()
 
         const form = event.target

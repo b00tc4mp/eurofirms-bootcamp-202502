@@ -5,7 +5,7 @@ import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
  
-import { logic } from './logic'
+import { logic } from './logic' 
 
 export const App = () => {
     const [view, setView] = useState('landing')
