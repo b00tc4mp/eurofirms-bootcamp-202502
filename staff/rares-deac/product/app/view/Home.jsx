@@ -22,9 +22,10 @@ export const Home = props => {
     const handleLogoutClick = () => {
         try {
             logic.logoutUser()
-        
-            onUserLoggedOut()}
-        catch(error) {
+
+            onUserLoggedOut()
+        }
+        catch (error) {
             alert(error.message)
         }
     }

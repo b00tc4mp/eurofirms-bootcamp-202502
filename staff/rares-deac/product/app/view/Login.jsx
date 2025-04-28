@@ -15,7 +15,7 @@ export const Login = (props) => {
         const password = form.password.value
 
         try {
-            logic.loginUser (username, password)
+            logic.loginUser(username, password)
 
             form.reset()
 
@@ -46,7 +46,7 @@ export const Login = (props) => {
 
                 <div className="flex justify-between">
                     <a className="underline" onClick={handleRegisterClick}>Register</a>
-                    
+
                     <button className="bg-black text-white px-2" type="submit">Login</button>
                 </div>
             </form>

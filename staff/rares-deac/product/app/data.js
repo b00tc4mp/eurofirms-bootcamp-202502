@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 export const data = {
   users: [],
   usersCount: 0,
@@ -6,7 +8,22 @@ export const data = {
   posts: [],
   postsCount: 0,
 
-  userId: null
+  /**
+   * Guarda el control de sesion en Sessionstorage
+   * @param {string} userId 
+   */
+
+  setUserId(userId) {
+    sessionStorage.userId = userId
+  },
+
+  getUserId() {
+    return sessionStorage.userId
+  },
+
+  removeUserId() {
+    delete sessionStorage.userId
+  }
 }
 
 // Populate users

@@ -17,16 +17,14 @@ export const Posts = () => {
 
     console.log('Posts -> render')
     return <>
-        {posts.map(post => {
-            return <article key={post.id}>
-                <h3>{post.author}</h3>
+        {posts.map(post => <article key={post.id}>
+            <h3>{post.author}</h3>
 
-                <img src={post.image} alt="" />
+            <img src={post.image} alt="" />
 
-                <p>{post.text}</p>
+            <p>{post.text}</p>
 
-                <time>{post.date}</time>
-            </article>
-        })}
+            <time>{post.date}</time>
+        </article>)}
     </>
 }
