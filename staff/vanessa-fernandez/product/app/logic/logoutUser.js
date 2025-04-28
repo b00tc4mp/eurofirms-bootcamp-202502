@@ -4,6 +4,6 @@ import { data } from '../data'
  * Logs a user out of the system.
  */
 
-const logoutUser = () => {
+export const logoutUser = () => {
     data.removeUserId()
 }

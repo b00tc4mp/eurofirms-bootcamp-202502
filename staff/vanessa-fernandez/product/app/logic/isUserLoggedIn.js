@@ -7,6 +7,6 @@ import { data } from '../data'
  */
 
 
-const isUserLoggedIn = () => { //comprueba si usuario esta logeado o no
+export const isUserLoggedIn = () => { //comprueba si usuario esta logeado o no
     !!data.getUserId() // atención a la doble negación
 }

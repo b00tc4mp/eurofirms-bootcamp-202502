@@ -4,7 +4,7 @@ import { getUserUsername } from './getUserUsername'
 import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
 import { getPosts } from './getPosts'
-import { createPost } from './createPost'
+//import { createPost } from './createPost'
 
 export const logic = {
     registerUser,
@@ -12,8 +12,8 @@ export const logic = {
     getUserUsername,
     logoutUser,
     isUserLoggedIn,
-    getPosts,
-    createPost
+    getPosts
+    //createPost
 }
 
 

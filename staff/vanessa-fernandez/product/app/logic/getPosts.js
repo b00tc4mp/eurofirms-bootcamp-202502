@@ -13,6 +13,6 @@ import { data } from '../data'
  * }]} The posts from users in the system.
  */
 
-const getPosts = () => {
-    return data.posts.toReversed()
+export const getPosts = () => {
+    return data.getPosts().toReversed()
 }

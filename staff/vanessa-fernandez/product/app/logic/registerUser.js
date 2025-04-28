@@ -11,7 +11,7 @@ import { data } from '../data'
 
 // function registerUser(name, email, username, password)
 // const registerUser = function (name, email, username, password) {}
-const registerUser = (name, email, username, password) => {
+export const registerUser = (name, email, username, password) => {
     if (!name) throw new Error('You must fill the name field.')
     if (typeof name !== 'string') throw new Error('Invalid type of name.')
     if (name.length < 1) throw new Error('Invalid name min length.')
@@ -32,20 +32,27 @@ const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('Invalid password min length.')
     if (password.length > 20) throw new Error('Invalid password max lenght.')
 
-    for (let i = 0; i < data.users.length; i++) {
-        const user = data.users[i]
+    const users = data.getUsers()    
+
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i]
 
         if (user.email === email || user.username === username) throw new Error('User already exits.')
     }
 
-    data.usersCount++
+    let usersCount = data.getUsersCount()
 
-    data.users.push({
-        id: 'user-' + data.usersCount,
+    usersCount++
+
+    users.push({
+        id: 'user-' + usersCount,
         name: name,
         email: email,
         username: username,
         password: password
     })
+
+    data.setUsers(users)
+    data.setUsersCount(usersCount)
 
 }

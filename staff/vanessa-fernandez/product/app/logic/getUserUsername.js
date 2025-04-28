@@ -7,11 +7,13 @@ import { data } from '../data'
  */
 
 
-const getUserUsername = () => {
+export const getUserUsername = () => {
+    const users = data.getUsers()
+
     let user
 
-    for(let i = 0; i < data.users.length; i++) {
-        const _user = data.users[i]
+    for(let i = 0; i < users.length; i++) {
+        const _user = users[i]
 
         if (_user.id === data.getUserId() ) { //añadimos getUserId para traer el userId de forma correcta ahora con la new version
             user = _user
