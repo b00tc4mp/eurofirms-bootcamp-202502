@@ -63,3 +63,17 @@ posts.push({
     date: new Date(2025, 0, 10, 18, 15).toISOString(),
     likes: []
 })
+
+postsCount++
+
+posts.push({
+    id: 'post-' + postsCount,
+    author: users[1].id,
+    image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2U5a2U5dHI3cW16dG5rOW5iMzU0dGRuYTE1YzJ0OHJ5ZXBzaGFhMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/149bwlQxfs2NK8/giphy.gif',
+    text: 'Enjoying with Wendy!',
+    date: new Date(2025, 0, 11, 10, 0).toISOString(),
+    likes: []
+})
+
+data.setPosts(posts)
+data.setPostsCount(postsCount)
