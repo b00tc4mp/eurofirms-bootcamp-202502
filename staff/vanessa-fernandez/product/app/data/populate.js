@@ -6,7 +6,7 @@ let usersCount = 0
 usersCount++
 
 users.push({
-    id: 'user-' + data.usersCount,
+    id: 'user-' + usersCount,
     name: 'Harry Potter',
     email: 'harry@potter.com',
     username: 'harrypotter',
@@ -16,7 +16,7 @@ users.push({
 usersCount++
 
 users.push({
-    id: 'user-' + data.usersCount,
+    id: 'user-' + usersCount,
     name: 'Hermione Granger',
     email: 'hermione@granger',
     username: 'hermionegranger',

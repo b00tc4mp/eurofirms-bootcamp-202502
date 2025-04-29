@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 import { Posts } from './components/Posts'
+import { CreatePost } from './components/CreatePost.jsx'
 
 export const Home = (props) => {
     const onUserLoggedOut = props.onUserLoggedOut
+
+    const[view, setView] = useState('posts')
 
     const [username,setUsername] = useState('World')
 
@@ -25,10 +28,16 @@ export const Home = (props) => {
             onUserLoggedOut()
         } catch (error) {
             alert(error.message)
-        }
-         
+        }         
 
     }    
+
+    const handleCreatePostClick = () => setView('create-post')
+
+    const handleCreatePostCancelClicked = () => setView('post')
+
+    const handlePostCreated = () => setView('post')
+
     console.log('Home -> render')
 
     return <div className="px-5">
@@ -41,7 +50,7 @@ export const Home = (props) => {
             <button className="font-bold rounded-[10px] w-10 h-10 text-center cursor-pointer text-white bg-[#0ab5ee] "
             title="Create new post"    
             type="button"
-            /*onClick={handleCreatePostClick}*/> +   
+            onClick={handleCreatePostClick}> +   
             </button>
         </div>
         <button className=" mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2"
@@ -49,7 +58,8 @@ export const Home = (props) => {
             type="button"
             onClick={handleLogoutClick}>Logout
         </button>
-        <Posts />
+        {view === 'posts' && <Posts />}
+        {view === 'create-post' && <CreatePost onCancelClicked= {handleCreatePostCancelClicked} onPostCreated={handlePostCreated} />}
     </div>
 }
 
