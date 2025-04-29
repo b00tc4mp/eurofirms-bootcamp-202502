@@ -11,7 +11,7 @@ export const getUserUsername = () => {
     let user
 
     for (let i = 0; i < users.length; i++) {
-        const _users[i]
+        const _users = users[i]
 
         if (_users.id === data.getUserId()) {
             user = _users
@@ -20,7 +20,7 @@ export const getUserUsername = () => {
         }
     }
 
-    if (user === underfined) throw new Error('user not found')
+    if (user === undefined) throw new Error('user not found')
 
         return user.username
 }

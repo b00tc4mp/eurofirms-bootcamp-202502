@@ -5,7 +5,7 @@ import { data } from './index'
 const users = []
 let usersCount = 0
 
-users.Count++
+usersCount++
 
 users.push({
     id: 'user-' + usersCount,
@@ -27,7 +27,7 @@ users.push({
 
 usersCount++
 
-users,push({
+users.push({
     id: 'user-' + usersCount,
     name: 'James Hook',
     email: 'james@hook',
