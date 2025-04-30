@@ -13,7 +13,7 @@ export const createPost = (image, text) => {
     author: data.getUserId(),
     image,
     text,
-    date: new Date().toISOString(),
+    date: new Date().toLocaleDateString('es-es', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
     likes: [],
   };
 
