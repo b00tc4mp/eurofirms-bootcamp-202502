@@ -1,4 +1,5 @@
 import { data } from '../../data'
+import { logic } from '../../logic'
 
 export const CreatePost = props => {
     const onCancelClicked = props.onCancelClicked
@@ -8,8 +9,9 @@ export const CreatePost = props => {
 
     const handleCancelClick = () => onCancelClicked()
 
-    const handleCreatedPostSubmit = event => {
-        event.preventDefault()
+    const handleCreatedPostSubmit = (event) => {
+        event.preventDefault() //Controla el comportamiento que tiene event por defecto 
+        
         
         const form = event.target
 
@@ -30,15 +32,15 @@ export const CreatePost = props => {
     return <div className="mt-2">
         <h1 className="text-xl">CreatePost</h1>
 
-        <form className="mt-2 flex flex-col gap-4" onSubmit={handleCreatePostSubmit}>
+        <form className="mt-2 flex flex-col gap-4" onSubmit={handleCreatedPostSubmit}>
             <div className="flex flex-col gap">
                 <label htmlFor="image">Image</label>
-                <imput className="border-2 px-1" type="text" id="image" image="image" placeholder="the post image"/>
+                <input className="border-2 px-1 h-10" type="text" id="image" image="image" placeholder="the post image"/>
             </div>
 
             <div className="flex flex-col gap">
                 <label htmlFor="text">Text</label>
-                <imput className="border-2 px-1" type="text" id="text" name="text" placeholder="the post text" />
+                <input className="border-2 px-1 h-10" type="text" id="text" name="text" placeholder="the post text" />
             </div>
 
             <div className="flex justify-between">
