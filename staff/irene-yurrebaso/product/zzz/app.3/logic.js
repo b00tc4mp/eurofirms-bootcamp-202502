@@ -1,5 +1,14 @@
 import { data } from './data'
 
+/**
+ * Registers a user in the system.
+ * 
+ * @param {string} name The user name.
+ * @param {string} email The user e-mail.
+ * @param {string} username The user username.
+ * @param {string} password The user password.
+ */
+
 const registerUser = (name, email, username, password) => {
     //1. validar estos datos (ej. asegurarnos que son strings y dentro de longitud requerida)
     if(typeof name !== 'string') throw new Error('Invalid name type')
@@ -37,6 +46,12 @@ const registerUser = (name, email, username, password) => {
     })
 }
 
+/**
+ * Logs a user in the system
+ * 
+ * @param {string} username The user username.
+ * @param {string} password The user password.
+ */
 const loginUser = (username, password) => {
     
     //1. validar datos (ej. asegurarnos que son strings y dentro de longitud requerida)
@@ -66,9 +81,15 @@ const loginUser = (username, password) => {
         
     if(user.password !== password) throw new Error('wrong credentials')
 
-    //guardamos quien se ha conectado y lo pasamos a data.js
-    data.userId = user.id
+    //le decimos a data.js quién se ha conectado con el setter, y data decide donde se guarda (en sessionStorage en este caso)
+    data.setUserId(user.id)
 }
+
+/**
+ * Gets the user username.
+ * 
+ * @returns {string} The user username
+ */
 
 //logica para añadir nombre de usuario en la Home
 const getUserUsername = () => {
@@ -77,7 +98,8 @@ const getUserUsername = () => {
     for(let i = 0; i < data.users.length; i++) {
         const _user = data.users[i]
 
-        if(_user.id === data.userId) {
+        //comprueba si el id es el mismo que el id del usuario conectado, q ahora se consigue con el getter
+        if(_user.id === data.getUserId()) {
             user = _user
 
             break
@@ -89,10 +111,34 @@ const getUserUsername = () => {
     return user.username
 }
 
+/**
+ * Logs a user out of the system.
+ */
+
 //logica para poner que el usuario ya no esta conectado o log out
 const logoutUser = () => {
-    data.userId = null
+    data.removeUserId()
 }
+
+/**
+ * Gets whether user is logged in the system.
+ * 
+ * @returns {boolean} The state of user log (true if logged in, false otherwise).
+ */
+
+//logica para ver si el usuario esta conectado (la doble negacion convierte un dato en booleano true/false)
+const isUserLoggedIn = () => !!data.getUserId()
+
+/**
+ * Gets all posts from users in the system.
+ * 
+ * @returns {[{
+ * id: string,
+ * author: string,
+ * image: string,
+ * text: string,
+ * date: Date}]} The posts from users in the system. 
+ */
 
 //logica que devuelve una copia de los posts que hay en bbdd, en un array por fecha invertida (mas nuevos primero)
 const getPosts = () => {
@@ -106,5 +152,6 @@ export const logic = {
     loginUser,
     getUserUsername,
     logoutUser,
+    isUserLoggedIn,
     getPosts
 }
