@@ -34,9 +34,9 @@ export const Home = (props) => {
 
     const handleCreatePostClick = () => setView('create-post')
 
-    const handleCreatePostCancelClicked = () => setView('post')
+    const handleCreatePostCancelClicked = () => setView('posts')
 
-    const handlePostCreated = () => setView('post')
+    const handlePostCreated = () => setView('posts')
 
     console.log('Home -> render')
 

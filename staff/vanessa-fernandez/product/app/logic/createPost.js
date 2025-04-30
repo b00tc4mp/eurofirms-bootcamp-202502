@@ -15,7 +15,7 @@ export const createPost = (image, text) => {
     if (text.length > 250) throw new Error('Invalid text max length.')
 
 
-    if(image !== 'string') throw new Error('Invalid image type.')    
+    if(typeof image !== 'string') throw new Error('Invalid image type.')    
     if(!image.startsWith('http')) throw new Error('Invalid image format.')    
     if (!image) throw new Error('You must provide an image.')
 

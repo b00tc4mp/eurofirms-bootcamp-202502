@@ -8,5 +8,5 @@ import { data } from '../data'
 
 
 export const isUserLoggedIn = () => { //comprueba si usuario esta logeado o no
-    !!data.getUserId() // atención a la doble negación
+   return  !!data.getUserId() // atención a la doble negación
 }
