@@ -4,10 +4,14 @@ import { logic } from '../logic'
 
 import { Posts } from './components/Posts'
 
+import { CreatePost } from './components/CreatePost'
+
 
 export const Home = props => {
 
     const onUserLoggedOut = props.onUserLoggedOut
+
+    const [view, setView] = useState('posts')
 
     const [username, setUsername] = useState('World')
 
@@ -38,6 +42,12 @@ export const Home = props => {
 
     }
 
+    const handleCreatePostClick = () => setView('create-post')
+
+    const handleCreatePostCancelClicked = () => setView('posts')
+
+    const handlePostCreated = () => setView('posts')
+
     console.log('Home -> render')
 
     return <div className="p-5 grid">
@@ -60,6 +70,7 @@ export const Home = props => {
 
                 <button className="border-2 rounded-md bg-orange-50 text-orange-900 px-2 font-medium mx-75 cursor-pointer"
                     type="button"
+                    onClick={handleCreatePostClick}
 
                 >+</button>
 
@@ -70,7 +81,12 @@ export const Home = props => {
         </div>
 
 
-        <Posts />
+        {view === 'posts' && <Posts />}
+
+        {view === 'create-post' && <CreatePost
+            onCancelClicked={handleCreatePostCancelClicked}
+            onPostCreated={handlePostCreated}
+        />}
 
     </div>
 

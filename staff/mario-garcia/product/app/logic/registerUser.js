@@ -35,24 +35,29 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('Invalid password min. length')
     if (password.length > 20) throw new Error('Invalid password max. length')
 
+    const users = data.getUsers()
 
-    for (let i = 0; i < data.users.length; i++) {
+    for (let i = 0; i < users.length; i++) {
 
-        const user = data.users[i]
+        const user = users[i]
 
         if (user.email === email || user.username === username) throw new Error('user already exists')
 
     }
 
+    let usersCount = data.getUsersCount()
 
-    data.usersCount++
+    usersCount++
 
-    data.users.push({
+    users.push({
 
-        id: 'user-' + data.usersCount,
+        id: 'user-' + usersCount,
         name: name,
         email: email,
         username: username,
         password: password
     })
+
+    data.setUsers(users)
+    data.setUsersCount(usersCount)
 }

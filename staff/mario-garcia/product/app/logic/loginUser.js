@@ -18,10 +18,12 @@ export const loginUser = (username, password) => {
     if (password.length < 8) throw new Error('Invalid password min. length')
     if (password.length > 20) throw new Error('Invalid password max. length')
 
+    const users = data.getUsers()
+
     let user
 
-    for (let i = 0; i < data.users.length; i++) {
-        const _user = data.users[i]
+    for (let i = 0; i < users.length; i++) {
+        const _user = users[i]
 
         //Lo siguiente VERIFICA si el username que estoy INCLUYENDO está en mi BB.DD.
 

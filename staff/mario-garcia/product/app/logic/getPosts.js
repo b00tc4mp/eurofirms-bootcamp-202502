@@ -10,4 +10,4 @@ import { data } from '../data'
 * date: Date
 * }]} The posts from Users in the system.
 */
-export const getPosts = () => data.posts.toReversed()
+export const getPosts = () => data.getPosts().toReversed()
