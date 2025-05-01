@@ -38,20 +38,27 @@ export const registerUser = (name, email, username, password) => {
 
     //user check
 
-    for (var i = 0; i < data.users.length; i++) {
-        const user = data.users[i];
+    const users = data.getUsers()
+
+    for (var i = 0; i < users.length; i++) {
+        const user = users[i];
 
         if (user.email === email || user.username === username)
             throw new Error("user already exists");
     }
-    data.usersCount++
 
-    data.users.push({
-        id: 'user-' + data.usersCount,
+    let usersCount = data.getUsersCount()
+    usersCount++
+
+    users.push({
+        id: 'user-' + usersCount,
         name: name,
         email: email,
         username: username,
         password: password
     })
+
+    data.setUsers(users)
+    data.setUsersCount(usersCount)
 
 }
