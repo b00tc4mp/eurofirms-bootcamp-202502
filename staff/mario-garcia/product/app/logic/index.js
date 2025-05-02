@@ -5,6 +5,7 @@ import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
 import { getPosts } from './getPosts'
 import { createPost } from './createPost'
+import { removePost } from './removePost'
 
 
 // /**
@@ -174,5 +175,6 @@ export const logic = {
     logoutUser,
     isUserLoggedIn,
     getPosts,
-    createPost
+    createPost,
+    removePost
 }
