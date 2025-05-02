@@ -29,8 +29,8 @@ export const createPost = (image, text) => {
 
     const posts = data.getPosts()
 
-    post.push(post)
+    posts.push(post)
 
     data.setPosts(posts)
-    data. setPostsCount(postsCount)
+    data.setPostsCount(postsCount)
 }

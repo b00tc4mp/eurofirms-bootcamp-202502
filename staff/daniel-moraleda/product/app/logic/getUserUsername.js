@@ -19,7 +19,7 @@ export const getUserUsername = () => {
         break
         }
     }
-    if (user = undefined) throw new Error ('user not found')
+    if (user === undefined) throw new Error ('user not found')
 
     return user.username
 }
