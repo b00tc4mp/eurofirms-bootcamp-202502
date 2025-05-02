@@ -15,17 +15,42 @@ export const Posts = () => {
         }
     }, [])
 
+    const handlePostDeleted = () => {
+        try {
+            const posts = logic.getPosts()
+
+            setPosts(posts)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     console.log('Posts -> render')
 
     return <>
-        {posts.map(post => <article key={post.id}>
-            <h3>{post.author}</h3>
+        {posts.map(post => {
+            const handleDeleteClick = () => {
+                if (confirm('Delete post?'))
+                    try {
+                        logic.removePost(post.id)
 
-            <img src={post.image} alt="" />
+                        handlePostDeleted()
+                    } catch (error) {
+                        alert(error.message)
+                    }
+            }
 
-            <p>{post.text}</p>
+            return <article key={post.id}>
+                <h3 className="font-bold">{post.author}</h3>
 
-            <time>{post.date}</time>
-        </article>)}
+                <img src={post.image} alt="" />
+
+                <p>{post.text}</p>
+
+                <time>{post.date}</time>
+
+                {post.own && <button className="border-4 border-black px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
+            </article>
+        })}
     </>
 }

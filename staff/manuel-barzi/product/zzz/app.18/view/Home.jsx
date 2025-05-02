@@ -46,13 +46,13 @@ export const Home = props => {
             <h1 className="text-xl">Hello, {username}!</h1>
 
             <button
-                className="bg-black text-white px-2 mx-1"
+                className="bg-black text-white px-2"
                 type="button"
                 onClick={handleCreatePostClick}
             >+</button>
 
             <button
-                className="bg-black text-white px-2 mx-1"
+                className="bg-black text-white px-2"
                 type="button"
                 onClick={handleLogoutClick}
             >Logout</button>
