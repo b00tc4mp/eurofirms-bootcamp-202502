@@ -8,6 +8,7 @@ export const Posts = (props) => {
   console.log('ID Post desde post' + props.postId);
   //useEffect siempre  se ejecuta al menos 1 vez cuando carga el componente y tambien se ejecutara cuando hay un cambio
   //dentro del array
+
   useEffect(() => {
     try {
       const posts = logic.getPosts();
@@ -18,11 +19,32 @@ export const Posts = (props) => {
       alert(error.message);
     }
   }, []);
+  const handlePostDeleted = () => {
+    try {
+      const posts = logic.getPosts();
+
+      setPosts(posts);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   console.log('Posts->render');
 
   return (
     <>
       {posts.map((post) => {
+        const handleDeleteClick = () => {
+          if (confirm('Delete post?'))
+            try {
+              logic.deletePost(post.id);
+
+              handlePostDeleted();
+            } catch (error) {
+              alert(error.message);
+            }
+        };
+
         return (
           <article className=" rounded grid gap-2 mt-2 justify-center" key={post.id}>
             <h3 className="border rounded  mt-2 text-center bg-orange-400 font-bold ">{post.author}</h3>
@@ -36,10 +58,11 @@ export const Posts = (props) => {
               {' '}
               Boton Editar
             </button>
-            <button className="bg-amber-200 rounded-2xl font-bold" onClick={() => props.onPostDeleted(post.id)}>
-              {' '}
-              Boton Eliminar
-            </button>
+            {post.own && (
+              <button className="border-4 border-black px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>
+                🗑️
+              </button>
+            )}
           </article>
         );
       })}

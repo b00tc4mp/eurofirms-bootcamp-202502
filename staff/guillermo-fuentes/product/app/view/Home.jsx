@@ -3,17 +3,18 @@ import { useEffect, useState } from 'react';
 import { Posts } from './components/Posts';
 import { CreatePost } from './components/CreatePost';
 import { EditPost } from './components/EditPost';
+import { data } from '../data';
 export const Home = (props) => {
   const onLogout = props.onUserLogout;
-
-  const handleLogoutClick = () => onLogout();
 
   const [username, setUsername] = useState('world');
 
   const [view, setView] = useState('posts');
 
   const [postId, setPostId] = useState(null);
+
   console.log('Post ID: ' + postId);
+
   const handleCreatePostClick = () => setView('create-post');
 
   const handleCancelCreatePostClicked = () => setView('posts');
@@ -27,18 +28,13 @@ export const Home = (props) => {
     setPostId(postId);
     setView('edit-post');
   };
+
   const handlePostEdited = () => {
     setView('posts');
   };
-  const handlePostDeleted = (postId) => {
-    try {
-      console.log('Eliminando post: ' + postId);
-      logic.deletePost(postId);
-      logic.getPosts();
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+
+  const handleLogoutClick = () => onLogout();
+
   useEffect(() => {
     try {
       const username = logic.getUserUsername();
@@ -64,9 +60,7 @@ export const Home = (props) => {
         </div>
       </div>
 
-      {view === 'posts' && (
-        <Posts onPostEdited={handleGoToPostEdited} onPostDeleted={handlePostDeleted} postId={postId} />
-      )}
+      {view === 'posts' && <Posts onPostEdited={handleGoToPostEdited} postId={postId} />}
       {view === 'create-post' && (
         <CreatePost onCancelClicked={handleCancelCreatePostClicked} onPostCreated={handlePostCreated} />
       )}
