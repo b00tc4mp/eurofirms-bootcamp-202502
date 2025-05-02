@@ -29,4 +29,8 @@ export const loginUser = (username, password) => {
         }
     }
     if (user === undefined) throw new Error ('user not found')
+    
+    if (user.password !== password) throw new Error('wrong credentials')
+
+    data.setUserID(user.id)
 }

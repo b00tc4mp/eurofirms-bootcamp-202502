@@ -1,6 +1,7 @@
 import { data } from '../data'
 
 /**
+ *  Gets the user username
  * 
  * @returns {string} The user username
  */
@@ -19,4 +20,6 @@ export const getUserUsername = () => {
         }
     }
     if (user = undefined) throw new Error ('user not found')
+
+    return user.username
 }

@@ -63,7 +63,6 @@ export const Home = props => {
         {view === 'create-post' && <CreatePost
             onCancelClicked={handleCreatePostCancelClicked}
             onPostCreated={handlePostCreated}
-        />
-        }
+        />}
     </div>
 }

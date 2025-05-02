@@ -9,7 +9,7 @@ export const CreatePost = props => {
     const handleCancelClick = () => onCancelClicked()
 
     const handleCreatePostSubmit = event => {
-        event.preventdefault()
+        event.preventDefault()
 
         const form = event.target
 
@@ -17,7 +17,7 @@ export const CreatePost = props => {
         const text = form.text.value
 
         try {
-            logic.CreatePost(image, text)
+            logic.createPost(image, text)
 
             form.reset()
 
@@ -36,14 +36,15 @@ export const CreatePost = props => {
             {handleCreatePostSubmit}>
             <div className="flex flex-col gap">
                 <label htmlFor="image">Image</label>
-                <input className="border-2 px-1" type="text" id="image"
-                placeholder="the post image" />
+                <input className="border-2 px-1" type="text" id="image" image="image" placeholder="the post image" />
             </div>
-<div className="flex flex-col gap">
+
+            <div className="flex flex-col gap">
                 <label htmlFor="text">Texto</label>
                 <input className="border-2 px-1" type="text" id="text"
-                placeholder="the post text" />
+                    placeholder="the post text" />
             </div>
+            
             <div className="flex justify-between">
                 <a className='underline' href="#" onClick={handleCancelClick}>Cancel</a>
 

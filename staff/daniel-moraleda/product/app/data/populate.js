@@ -12,6 +12,7 @@ users.push({
     name: 'Wendy Darling',
     email: 'wendy@darling.com',
     username: 'wendydarling',
+    password: '123123123'
 })
 
 usersCount++
@@ -65,7 +66,7 @@ posts.push({
 })
 
 postsCount++
-
+ 
 posts.push({
     id: 'post-' + postsCount,
     author: users[1].id,

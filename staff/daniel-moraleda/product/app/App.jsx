@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
+
+import { logic } from './logic'
 
 export const App = () => {
     const [view, setView] = useState('landing')
@@ -17,6 +19,17 @@ export const App = () => {
     const handleUserLoggedIn = () => setView('home')
 
     const handleUserLoggedOut = () => setView('login')
+
+    useEffect(() => {
+        try {
+            const loggedIn = logic.isUserLoggedIn()
+
+            if (loggedIn)
+                setView('home')
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
 
     console.log('App -> render')
 
@@ -42,8 +55,8 @@ export const App = () => {
             />
         }
 
-        {view === 'home' && <Home 
-        onUserLoggedOut={handleUserLoggedOut}
+        {view === 'home' && <Home
+            onUserLoggedOut={handleUserLoggedOut}
         />}
     </>
 }

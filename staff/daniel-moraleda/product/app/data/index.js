@@ -2,21 +2,27 @@ export const data = {
     setUsers(users) {
         localStorage.users = JSON.stringify(users)
     },
+
     getUsers() {
         return JSON.parse(localStorage.users || '[]')
     },
+
     setUsersCount(usersCount) {
         localStorage.usersCount = JSON.stringify(usersCount)
     },
+
     getUsersCount(posts) {
         localStorage.posts = JSON.stringify(posts)
     },
+
     setPosts(posts) {
         localStorage.posts = JSON.stringify(posts)
     },
+
     getPosts() {
         return JSON.parse(localStorage.posts || '[]')
     },
+
     setPostsCount(postsCount) {
         localStorage.postsCount = JSON.stringify(postsCount)
     },
@@ -36,5 +42,5 @@ export const data = {
     removeUserId() {
         delete sessionStorage.userId
     }
-
+    
 }
