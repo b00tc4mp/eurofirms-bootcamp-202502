@@ -12,4 +12,4 @@ import { data } from '../data'
 */
 
 //logica que devuelve una copia de los posts que hay en bbdd, en un array por fecha invertida (mas nuevos primero)
-export const getPosts = () => data.posts.toReversed()
+export const getPosts = () => data.getPosts().toReversed()

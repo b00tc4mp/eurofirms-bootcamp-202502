@@ -4,8 +4,13 @@ import { logic } from '../logic'
 
 import { Posts } from './components/Posts'
 
+import { CreatePost } from './components/CreatePosts'
+
 export const Home = props => {
     const onUserLoggedOut = props.onUserLoggedOut
+
+    //para mostrar formulario para crear posts
+    const [view, setView] = useState('posts')
     
     //definir un useState para username, permite guardar y pintar username
     const [username, setUsername] = useState('World')
@@ -36,6 +41,12 @@ export const Home = props => {
         }
     }
 
+    const handleCreatePostClick = () => setView('create-post')
+
+    const handleCreatePostCancelClicked = () => setView('posts')
+
+    const handlePostCreated = () => setView('posts')
+
     console.log('Home -> render')
 
     return <div className="p-5">
@@ -43,11 +54,20 @@ export const Home = props => {
         <h1 className="text-2xl my-3">Home</h1>
         <h2 className="flex justify-center my-5 font-semibold">Hello, {username}!</h2>
         <button 
+            className="bg-black text-white py-2 px-4 mr-4" 
+            type="button"
+            onClick={handleCreatePostClick}
+        >+</button>
+        <button 
             className="bg-black text-white py-2 px-4" 
             type="button"
             onClick={handleLogoutClick}
         >Log out</button>
 
-        <Posts />
+        {view === 'posts' && <Posts />}
+        {view === 'create-post' && <CreatePost 
+        onCancelClicked={handleCreatePostCancelClicked}
+        onPostCreated={handlePostCreated}
+        />}
     </div>
 }

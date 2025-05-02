@@ -22,7 +22,7 @@ export const Posts = () => {
     console.log('Posts -> render')
 
     return <>
-        {posts.map(post => <article key={post.id}>
+        {posts.map(post => <article key={post.id} className= "mb-5">
                 <h3>{post.author}</h3>
                 <img className = "max-w-xs" src={post.image} alt=""></img>
                 <p>{post.text}</p>

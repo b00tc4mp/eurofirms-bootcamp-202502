@@ -27,21 +27,31 @@ export const registerUser = (name, email, username, password) => {
     if(password.length < 8) throw new Error('Invalid min password length')
     if(password.length > 20) throw new Error('Invalid max password length')
 
-    //2. ver si el usuario existe en la base de datos data.js
-    for(var i = 0; i < data.users.length; i++) {
-        var user = data.users[i]
+    //2a. convertir JSON de localStorage en objeto
+    const users = data.getUsers()
+
+    //2b. despues de que ha convertido el JSON en objeto puedo operar y ver si el usuario existe en ese objeto (como bbdd)
+    for(var i = 0; i < users.length; i++) {
+        var user = users[i]
 
         if(user.email === email || user.username === username) throw new Error('User already exists')
     }
 
-    //3. si usuario no existe, agregarlo a la bbdd
-    data.usersCount++
+    //3a. si usuario no existe, traer el contador e incrementar
+    let usersCount = data.getUsersCount()
 
-    data.users.push({
-        id: 'user-' + data.usersCount,
+    usersCount++
+
+    //3b. guardar usuario en el array de users que está en memoria
+    users.push({
+        id: 'user-' + usersCount,
         name: name,
         email: email,
         username: username,
         password: password
     })
+
+    //para que los datos persistan, guardarlos en localStorage
+    data.setUsers(users)
+    data.setUsersCount(usersCount)
 }

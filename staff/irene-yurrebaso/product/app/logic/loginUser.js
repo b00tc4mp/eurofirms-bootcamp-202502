@@ -18,12 +18,15 @@ export const loginUser = (username, password) => {
     if(password.length < 8) throw new Error('Invalid min password length')
     if(password.length > 20) throw new Error('Invalid max password length')
     
-    //2. ver si el usuario existe en la base de datos
+    //convierte el string almacenado en localStorage en objeto-array y lo guarda en users
+    const users = data.getUsers()
+    
+    //2. ver si el usuario existe en el array users
     //3. si existe dar paso a Home y si no existe lanzar error
     let user
 
-    for (let i = 0; i < data.users.length; i++) {
-        const _user = data.users[i]
+    for (let i = 0; i < users.length; i++) {
+        const _user = users[i]
 
         if(_user.username === username) {
             user = _user

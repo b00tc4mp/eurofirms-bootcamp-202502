@@ -4,6 +4,7 @@ import { getUserUsername } from './getUserUsername'
 import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
 import { getPosts } from './getPosts'
+import { createPost } from './createPost'
 
 //exportamos para poder usar esta logica con React. Creamos un objeto que incluye las funciones y exportamos
 export const logic = {
@@ -12,5 +13,6 @@ export const logic = {
     getUserUsername,
     logoutUser,
     isUserLoggedIn,
-    getPosts
+    getPosts,
+    createPost
 }

@@ -5,6 +5,4 @@ import { data } from '../data'
  */
 
 //logica para poner que el usuario ya no esta conectado o log out
-export const logoutUser = () => {
-    data.removeUserId()
-}
+export const logoutUser = () => data.removeUserId()
