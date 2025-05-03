@@ -9,4 +9,8 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "express": "^5.1.0"
+    }
 }
