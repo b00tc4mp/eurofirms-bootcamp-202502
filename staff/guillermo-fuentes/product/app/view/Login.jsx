@@ -1,8 +1,7 @@
 import { logic } from '../logic';
-export const Login = (props) => {
-  const onRegisterClick = props.onRegisterClick;
+export const Login = ({ onRegisterClick, onLoginUser }) => {
   const handleRegisterClick = () => onRegisterClick();
-  const onLoginUser = props.onLoginUser;
+
   const handleLoginSubmit = (event) => {
     event.preventDefault();
     const form = event.target;

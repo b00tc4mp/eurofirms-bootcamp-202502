@@ -4,9 +4,7 @@ import { Posts } from './components/Posts';
 import { CreatePost } from './components/CreatePost';
 import { EditPost } from './components/EditPost';
 import { data } from '../data';
-export const Home = (props) => {
-  const onLogout = props.onUserLogout;
-
+export const Home = ({ onLogout }) => {
   const [username, setUsername] = useState('world');
 
   const [view, setView] = useState('posts');
@@ -19,19 +17,7 @@ export const Home = (props) => {
 
   const handleCancelCreatePostClicked = () => setView('posts');
 
-  const handleCancelEditClicked = () => setView('posts');
-
   const handlePostCreated = () => setView('posts');
-
-  const handleGoToPostEdited = (postId) => {
-    console.log('Post ID en funcion: ' + postId);
-    setPostId(postId);
-    setView('edit-post');
-  };
-
-  const handlePostEdited = () => {
-    setView('posts');
-  };
 
   const handleLogoutClick = () => onLogout();
 
@@ -50,7 +36,7 @@ export const Home = (props) => {
 
       <div className="mt-2">
         <h1 className="text-xl mb-2 text-blue-600">Hello, {username}!</h1>
-        <div className="  flex justify-around">
+        <div className="  flex justify-center gap-55">
           <button className="bg-black text-white px-2" type="button" onClick={handleCreatePostClick}>
             Create Post
           </button>
@@ -60,13 +46,11 @@ export const Home = (props) => {
         </div>
       </div>
 
-      {view === 'posts' && <Posts onPostEdited={handleGoToPostEdited} postId={postId} />}
+      {view === 'posts' && <Posts />}
       {view === 'create-post' && (
         <CreatePost onCancelClicked={handleCancelCreatePostClicked} onPostCreated={handlePostCreated} />
       )}
-      {view === 'edit-post' && (
-        <EditPost onCancelClickedEdited={handleCancelEditClicked} onPostEdited={handlePostEdited} postId={postId} />
-      )}
+      {view === 'edit-post' && <EditPost postId={postId} />}
     </div>
   );
 };

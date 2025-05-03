@@ -1,8 +1,14 @@
 import { logic } from '../logic';
-export const Register = (props) => {
-  const onLoginClick = props.onLoginClick;
+
+/*
+Aqui al igual que en otros componenentes hemos empleado la deconstruccion antes lo teniamos asi
+export const Register = (props) => {  const onLoginClick = props.onLoginClick;
+    const onRegisteredUser = props.onRegisteredUser;}
+lo que conseguimos con la deconstruccion es ahorrar lineas de codigo
+
+*/
+export const Register = ({ onRegisteredUser, onLoginClick }) => {
   const handleLoginClick = () => onLoginClick();
-  const onRegisteredUser = props.onRegisteredUser;
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();

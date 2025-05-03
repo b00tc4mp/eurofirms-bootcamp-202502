@@ -1,7 +1,5 @@
 import { logic } from '../../logic';
-export const EditPost = (props) => {
-  const onCancelClickedEdited = props.onCancelClickedEdited;
-  const onPostEdited = props.onPostEdited;
+export const EditPost = ({ onCancelClickedEdited, onPostEdited, postId }) => {
   const handleCancelClick = () => onCancelClickedEdited();
   const handleCreatePostSubmit = (event) => {
     event.preventDefault();
@@ -10,7 +8,7 @@ export const EditPost = (props) => {
     const text = form.text.value;
     console.log('ID en componente ' + props.postId, text);
     try {
-      logic.editPost(props.postId, text);
+      logic.editPost(postId, text);
       form.reset();
 
       onPostEdited();
