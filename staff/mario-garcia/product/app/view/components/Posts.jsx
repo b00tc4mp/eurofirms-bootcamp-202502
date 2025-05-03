@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { logic } from '../../logic'
 
+import { Post } from './Post'
+
 export const Posts = () => {
 
     const [posts, setPosts] = useState([])
