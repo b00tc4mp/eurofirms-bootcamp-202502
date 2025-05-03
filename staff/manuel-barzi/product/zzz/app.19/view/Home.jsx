@@ -5,7 +5,9 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
 
-export const Home = ({ onUserLoggedOut }) => {
+export const Home = props => {
+    const onUserLoggedOut = props.onUserLoggedOut
+
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
 

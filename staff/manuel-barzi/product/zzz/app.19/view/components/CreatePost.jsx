@@ -1,6 +1,11 @@
 import { logic } from '../../logic'
 
-export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
+export const CreatePost = props => {
+    const onCancelClicked = props.onCancelClicked
+    const onPostCreated = props.onPostCreated
+
+    console.log('CreatePost -> render')
+
     const handleCancelClick = () => onCancelClicked()
 
     const handleCreatePostSubmit = event => {
@@ -21,8 +26,6 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
             alert(error.message)
         }
     }
-
-    console.log('CreatePost -> render')
 
     return <div className="mt-2">
         <h1 className="text-xl">Create Post</h1>
