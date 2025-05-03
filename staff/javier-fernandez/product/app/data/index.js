@@ -12,7 +12,7 @@ export const data = {
     },
 
     getUsersCount() {
-        return JSON.parse(localStorage.usersCount)
+        return JSON.parse(localStorage.usersCount || '0')
     },
 
     setPosts(posts) {
@@ -28,7 +28,7 @@ export const data = {
     },
 
     getPostsCount() {
-        return JSON.parse(localStorage.postsCount)
+        return JSON.parse(localStorage.postsCount || '0')
     },
 
     setUserId(userId) {

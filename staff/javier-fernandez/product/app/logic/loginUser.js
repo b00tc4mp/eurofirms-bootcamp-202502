@@ -24,6 +24,7 @@ export const loginUser = (username, password) => {
 
         if (_user.username === username) {
             user = _user
+            
             break
         }
     }
