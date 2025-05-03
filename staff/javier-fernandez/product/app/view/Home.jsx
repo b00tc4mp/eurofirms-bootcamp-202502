@@ -5,9 +5,9 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost' 
  
-export const Home = (props) => {
-    const onUserLoggedOut = props.onUserLoggedOut
-
+//export const Home = (props) => {
+//  const onUserLoggedOut = props.onUserLoggedOut
+export const Home = ({ onUserLoggedOut }) => {
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('world')
 
@@ -15,8 +15,7 @@ export const Home = (props) => {
         try {
             const username = logic.getUserUsername() 
 
-            setUsername(username) 
-
+            setUsername(username)
         } catch (error) {
             alert (error.message)
         }
@@ -50,15 +49,15 @@ export const Home = (props) => {
             <div className="my-2 flex justify-start">
        
                 <button
-                 className="bg-black text-white px-2"
-                 type="button"
-                 onClick={handleCreatePostClick}
+                    className="bg-black text-white px-2"
+                    type="button"
+                    onClick={handleCreatePostClick}
                  >+</button>
 
                 <button
-                 classname="border-2 rounded-md bg-black-50 text-white-100 px-2 font-medium cursor pointer"
-                type="button"
-                onClick={handleLogoutClick}
+                    classname="border-2 rounded-md bg-black-50 text-white-100 px-2 font-medium cursor pointer"
+                    type="button"
+                    onClick={handleLogoutClick}
                 >Logout</button>
 
                 <button className="border-2 rounder-md bg-black-50 text-white-100 px-2 font-medium mx-75 cursor-pointer"
