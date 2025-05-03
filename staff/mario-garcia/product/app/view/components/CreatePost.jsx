@@ -1,11 +1,9 @@
 import { logic } from '../../logic'
 
-export const CreatePost = props => {
+//const onCancelClicked = props.onCancelClicked
+//const onPostCreated = props.onPostCreated
 
-    const onCancelClicked = props.onCancelClicked
-    const onPostCreated = props.onPostCreated
-
-    console.log('CreatePost -> render')
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
 
     const handleCancelClick = () => onCancelClicked()
 
@@ -30,6 +28,8 @@ export const CreatePost = props => {
             alert(error.message)
         }
     }
+
+    console.log('CreatePost -> render')
 
     return <div className="p-5">
 

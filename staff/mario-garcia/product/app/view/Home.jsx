@@ -6,10 +6,9 @@ import { Posts } from './components/Posts'
 
 import { CreatePost } from './components/CreatePost'
 
+//const onUserLoggedOut = props.onUserLoggedOut
 
-export const Home = props => {
-
-    const onUserLoggedOut = props.onUserLoggedOut
+export const Home = ({ onUserLoggedOut }) => {
 
     const [view, setView] = useState('posts')
 
