@@ -16,7 +16,7 @@ export const data = {
 
     //para recuperar usersCount de localStorage y reconvertir a objeto JS
     getUsersCount() {
-        return JSON.parse(localStorage.usersCount)
+        return JSON.parse(localStorage.usersCount || '0')
     },
 
     //para guardar posts en localStorage, convertimos a formato JSON
@@ -36,7 +36,7 @@ export const data = {
 
     //para recuperar postsCount de localStorage y reconvertir a objeto JS
     getPostsCount() {
-        return JSON.parse(localStorage.postsCount)
+        return JSON.parse(localStorage.postsCount || '0')
     },
     
     //método para guardar en sessionStorage quién se ha conectado para que el dato permanezca
