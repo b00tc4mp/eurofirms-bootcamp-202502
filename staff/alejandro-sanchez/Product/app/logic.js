@@ -22,8 +22,9 @@
     
             if (user.email === email || user.username === username) throw new Error('user already exists')
         }
-    
-        const user = {
+        data.usersCount ++
+
+        const user= {
             name: name,
             email: email,
             username: username,

@@ -3,6 +3,7 @@ export const Register = (props) => {
 
     const handleLoginClick = () => onLoginClick()
 
+
     console.log('Register -> render')
 
     return <div className="p-5">
