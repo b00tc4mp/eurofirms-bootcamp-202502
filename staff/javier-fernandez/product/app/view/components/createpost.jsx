@@ -1,13 +1,15 @@
 import { data } from '../../data'
-import { logic } from '../../logic'
+import { logic } from '../../logic' 
 
-export const CreatePost = props => {
-    const onCancelClicked = props.onCancelClicked
-    const onPostCreated = props.onPostCreated
+//export const CreatePost = props => {
+//    const onCancelClicked = props.onCancelClicked
+//    const onPostCreated = props.onPostCreated
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
+    const handleCancelClick = () => onCancelClicked() 
+
 
     console.log('CreatePost -> render')
 
-    const handleCancelClick = () => onCancelClicked()
 
     const handleCreatedPostSubmit = (event) => {
         event.preventDefault() //Controla el comportamiento que tiene event por defecto 

@@ -60,7 +60,7 @@ posts.push({
     author: users[0].id,
     image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2U5a2U5dHI3cW16dG5rOW5iMzU0dGRuYTE1YzJ0OHJ5ZXBzaGFhMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oEduMrlC4MtcQ3cEU/giphy.gif',
     text: 'My best friend',
-    date: new Date(2025, 0, 10, 18, 15).toISOString(),
+    date: new Date().toLocaleDateString("es-es",{weekday:"long",day:"numeric",month:"long",year:"numeric"}),
     likes: []
 })
 
@@ -71,7 +71,7 @@ posts.push({
     author: users[1].id,
     image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2U5a2U5dHI3cW16dG5rOW5iMzU0dGRuYTE1YzJ0OHJ5ZXBzaGFhMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/149bwlQxfs2NK8/giphy.gif',
     text: 'Enjoying with Wendy!',
-    date: new Date(2025, 0, 11, 10, 0).toISOString(),
+    date: new Date().toLocaleDateString("es-es",{weekday:"long",day:"numeric",month:"long",year:"numeric"}),
     likes: []
 })
 

@@ -13,13 +13,13 @@ import { data } from '../data'
  */
 export const getPosts = () => {
     const posts = data.getPosts().toReversed()
-    const users = data.getPosts()
+    const users = data.getUsers()
     const userId = data.getUserId()
 
     posts.forEach (post => {
         const authorId = post.author
         
-        const user = users.find(user => User.id === authorId)
+        const user = users.find(user => user.id === authorId)
 
         const username = user.username
 

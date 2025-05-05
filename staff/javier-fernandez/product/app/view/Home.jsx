@@ -39,7 +39,7 @@ export const Home = ({ onUserLoggedOut }) => {
  
     console.log('Home -> render')
 
-    return <div classname="p-5">
+    return <div className="p-5">
         <i className="text-2xl">Logo</i>
 
         <div className="mt-2">
@@ -49,20 +49,17 @@ export const Home = ({ onUserLoggedOut }) => {
             <div className="my-2 flex justify-start">
        
                 <button
-                    className="bg-black text-white px-2"
+                    className="bg-black text-white px-2 mr-4"
                     type="button"
                     onClick={handleCreatePostClick}
                  >+</button>
 
                 <button
-                    classname="border-2 rounded-md bg-black-50 text-white-100 px-2 font-medium cursor pointer"
+                    className="border-2 rounded-md bg-black-50 text-white-100 px-2 font-medium cursor pointer"
                     type="button"
                     onClick={handleLogoutClick}
                 >Logout</button>
 
-                <button className="border-2 rounder-md bg-black-50 text-white-100 px-2 font-medium mx-75 cursor-pointer"
-                    type="button"
-                ></button> 
             </div>
 
          </div>

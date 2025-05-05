@@ -30,6 +30,6 @@ export const Posts = () => {
     console.log('posts -> render')
 
     return <>
-       {posts.map(post => <post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
+       {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
      </>
 }

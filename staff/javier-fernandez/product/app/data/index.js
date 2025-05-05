@@ -1,7 +1,7 @@
 export const data = {
     setUsers(users) {
         localStorage.users = JSON.stringify(users)
-    },
+    }, 
 
     getUsers() {
         return JSON.parse(localStorage.users || '[]')
@@ -35,7 +35,7 @@ export const data = {
         sessionStorage.userId = userId
     },
 
-    getUserId() {
+    getUserId(userId) {
         return sessionStorage.userId
     },
 
