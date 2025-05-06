@@ -1,4 +1,4 @@
-import { data } from './index'
+import { data } from './index' 
 
 // populate users
 

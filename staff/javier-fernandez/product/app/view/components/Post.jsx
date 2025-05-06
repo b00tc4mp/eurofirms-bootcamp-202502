@@ -1,4 +1,4 @@
-import { logic } from '../../logic' 
+import { logic } from '../../logic'  
 
 // export const Post = props => {
 //      const post = props.post
@@ -22,6 +22,8 @@ export const Post = ({ post, onPostDeleted }) => {
         <p>{post.text}</p>
 
         <time>{post.date}</time>
+
+        <button>{post.emoji}</button>
         
         {post.own && <button className='border-4 border black px-2 mx-1 cursor-pointer' onClick={handleDeleteClick}>🗑️</button>}
     </article>
