@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { Post } from './Post'
+
 import { logic } from '../../logic'
 
 export const Posts = () => {
@@ -33,29 +35,10 @@ export const Posts = () => {
     }
 
     console.log('Posts -> render')
-
+    
+    //recibimos por props cada post que hay en el array posts
+    //mapea cada dato a un componente de react, y le envia el dato con la propiedad post, y una funcion para eliminar post
     return <>
-        {posts.map(post => {
-            const handleDeleteClick = () => {
-                if (confirm('Delete post?'))
-                    try {
-                        logic.removePost(post.id)
-
-                        //pedir a Home que se refresque cuando hemos eliminado un post
-                        handlePostDeleted()
-                    } catch(error) {
-                        alert(error.message)
-                }
-            }
-
-            return <article key={post.id} className= "mb-5">
-                <h3 className="font-bold">{post.author}</h3>
-                <img className = "max-w-xs" src={post.image} alt=""></img>
-                <p>{post.text}</p>
-                <time>{post.date}</time>
-                {post.own && <button className="mx-3 border-b-2 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
-            </article>
-            }
-        )}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted}/>)}
     </>
 }

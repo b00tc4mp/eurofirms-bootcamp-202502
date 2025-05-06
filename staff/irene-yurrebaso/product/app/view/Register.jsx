@@ -1,10 +1,7 @@
 import { logic } from '../logic'
 
-export const Register = (props) => {
-    //recupero la propiedad de onLoginClick que he puesto en App y la pongo en una variable con el mismo nombre. Cuando quiero llamar a esta variable? cuando clico en en <a>Login</a>, al que le anado un handle en onClick.
-    const onLoginClicked = props.onLoginClicked 
-    const onUserRegistered = props.onUserRegistered
-
+//destructuracion en las variables que se pasan como props
+export const Register = ({onLoginClicked, onUserRegistered}) => {
     //creamos una funcion handle que maneja el onClick
     const handleLoginClick = () => onLoginClicked()
 

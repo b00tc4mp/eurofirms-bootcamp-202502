@@ -1,10 +1,7 @@
-//el parametro 'props' es un objeto con propiedades (se suele usar el nombre 'props'). En este objeto cogemos la propiedad 'onRegisterClick' que hemos puesto en App.jsx
+//destructuracion de las propiedades del objeto props, que pasamos como parametro
 
-export const Landing = (props) => {
-    //utilizamos el mismo nombre para la variable (onRegisterClick) q la propiedad para q sea facil de seguir
-    const onRegisterClicked = props.onRegisterClicked
-    const onLoginClicked = props.onLoginClicked
-
+export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
+    
     const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginClick = () => onLoginClicked()

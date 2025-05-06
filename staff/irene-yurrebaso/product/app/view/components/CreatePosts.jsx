@@ -1,10 +1,7 @@
 import { logic } from '../../logic'
 
-export const CreatePost = props => {
-const onCancelClicked = props.onCancelClicked
-const onPostCreated = props.onPostCreated
-
-    console.log('CreatePost -> render')
+//pasamos props con destructuring
+export const CreatePost = ({ onCancelClicked, onPostCreated}) => {
 
     const handleCancelClick = () => onCancelClicked() 
 
@@ -32,6 +29,8 @@ const onPostCreated = props.onPostCreated
             alert(error.message)
         }
     }
+
+    console.log('CreatePost -> render')
 
     return <div className="py-5">
         <h1 className="text-2xl my-3">Create Post</h1>

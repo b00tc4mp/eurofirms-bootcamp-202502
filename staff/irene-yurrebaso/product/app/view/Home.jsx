@@ -6,9 +6,9 @@ import { Posts } from './components/Posts'
 
 import { CreatePost } from './components/CreatePosts'
 
-export const Home = props => {
-    const onUserLoggedOut = props.onUserLoggedOut
-
+//pasamos la prop con destructuring
+export const Home = ({ onUserLoggedOut }) => {
+    
     //para mostrar formulario para crear posts
     const [view, setView] = useState('posts')
     
