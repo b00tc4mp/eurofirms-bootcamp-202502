@@ -1,8 +1,6 @@
 import { logic } from '../../logic'
 
-export const CreatePost = props => {
-    const onCancelClicked = props.onCancelClicked
-    const onPostCreated = props.onPostCreated
+export const CreatePost = ({onCancelClicked, onPostCreated}) => {
 
     console.log('createPost -> render')
 

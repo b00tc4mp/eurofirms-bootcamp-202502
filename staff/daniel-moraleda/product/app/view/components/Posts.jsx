@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { Post } from './Post'
+
 import { logic } from '../../logic'
 
 export const Posts = () => {
@@ -15,17 +17,19 @@ export const Posts = () => {
         }
     }, [])
 
+    const handlePostDeleted = () => {
+        try {
+            const posts = logic. getPosts()
+
+            setPosts(posts)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     console.log('Posts -> render')
 
     return <>
-        {posts.map(post => <article key={post.id}>
-            <h3>{post.author}</h3>
-
-            <img src={post.image} alt="" />
-
-            <p>{post.text}</p>
-
-            <time>{post.date}</time>
-        </article>)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
     </>
 }
