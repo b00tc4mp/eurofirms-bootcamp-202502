@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 
 import { logic } from '../logic'
 
-import { Posts } from './components/posts'
+import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
 
-export const Home = props => {
-    const onUserLoggedOut = props.onUserLoggedOut
+// export const Home = props => {
+//     const onUserLoggedOut = props.onUserLoggedOut
+export const Home = ({onUserLoggedOut}) => {
+
 
     const [view, setView] = useState('posts')
 
@@ -61,8 +63,8 @@ export const Home = props => {
         </div>
 
         {view === 'posts' && <Posts />}
-    {view === 'create-post' && <CreatePost
-        onCancelClicked = {handleCreatePostCancelClicked}
-        onPostCreated={handlePostCreated}/>}
+        {view === 'create-post' && <CreatePost
+            onCancelClicked={handleCreatePostCancelClicked}
+            onPostCreated={handlePostCreated} />}
     </div>
 }
