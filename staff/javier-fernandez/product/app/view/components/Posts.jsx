@@ -29,7 +29,7 @@ export const Posts = () => {
 
     console.log('posts -> render')
 
-    return <>
+    return <div className='flex flex-col justify-center items-center'>
        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
-     </>
+     </div>
 }
