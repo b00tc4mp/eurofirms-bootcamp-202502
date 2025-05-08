@@ -3,8 +3,8 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost.jsx'
 
-export const Home = (props) => {
-    const onUserLoggedOut = props.onUserLoggedOut
+export const Home = ({ onUserLoggedOut }) => {
+    //const onUserLoggedOut = props.onUserLoggedOut
 
     const[view, setView] = useState('posts')
 
