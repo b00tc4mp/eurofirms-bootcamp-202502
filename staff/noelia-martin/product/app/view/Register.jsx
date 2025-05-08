@@ -1,11 +1,9 @@
 import { logic } from '../logic'
 
-export const Register = (props) => {
-    //Variables para las propiedades de App
-    const onLoginClicked = props.onLoginClicked
-    const onUserRegistered = props.onUserRegistered
-
-    //creo las funciones handle; son llamadas a las variables que tienen las propiedades
+// export const Register = props => {
+//     const onLoginClicked = props.onLoginClicked
+//     const onUserRegistered = props.onUserRegistered
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const handleLoginClick = () => onLoginClicked()
     const handleRegisterSubmit = (event) => {
         event.preventDefault()
@@ -59,4 +57,8 @@ export const Register = (props) => {
         </div>
     </div>
 }
-//Explicaciones en Login(He configurado el enlace paso a paso como hice en landing de la version app.2)
+
+//Borro todos los comentarios, recuerda que estan en app.3(que se configuro la navegacion completa)
+//aunque los comentarios se fueron arrastrando hasta app.5, también se pueden mirar ahi
+
+//En landing hay otro ejemplo de forma de destruccturing que se puede utilizar

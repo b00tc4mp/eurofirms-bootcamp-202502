@@ -1,26 +1,24 @@
-import { logic } from '../logic' //necesitamos una funcion de ese fichero
+import { logic } from '../logic'
 
-export const Login = (props) => {
-    //Variables para las propiedades de App
-    const onRegisterClicked = props.onRegisterClicked
-    const onUserLoggedIn = props.onUserLoggedIn
-
-    //creo las funciones handle; son llamadas a las variables que tienen las propiedades
+// export const Login = props => {
+//     const onRegisterClicked = props.onRegisterClicked
+//     const onUserLoggedIn = props.onUserLoggedIn
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const handleRegisterClick = () => onRegisterClicked()
     const handleLoggedSubmit = event => {
-        event.preventDefault() //igual que en DOM
+        event.preventDefault()
 
-        const form = event.target //target permite saber sobre que elemento del DOM(formulario de la pgweb; tras el trabajo de react) se ha generado ese evento
+        const form = event.target
 
         const username = form.username.value
         const password = form.password.value
 
         try {
-            logic.loginUser(username, password)//igual que DOM pero importando el fichero logic
+            logic.loginUser(username, password)
 
-            form.reset() //igual que dom reseteamos el formulario por seguridad
+            form.reset()
 
-            onUserLoggedIn()//en vez de borrar y añadir hijos como haciamos en DOM, ahora vamos a usar directamente la propiedad que configuramos en app
+            onUserLoggedIn()
         } catch (error) {
             alert(error.mensage)
         }
@@ -32,7 +30,7 @@ export const Login = (props) => {
         <i className="text-2xl">Logo</i>
         <div className="mt-2">
             <h1 className="text-xl">Login</h1>
-            <form className="flex flex-col gap-4" onSubmit={handleLoggedSubmit}> {/* llamamos al handle si hay un evento submit */}
+            <form className="flex flex-col gap-4" onSubmit={handleLoggedSubmit}>
                 <div className="flex flex-col gap">
                     <label htmlFor="username">Username</label>
                     <input className="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />
@@ -49,22 +47,7 @@ export const Login = (props) => {
         </div>
     </div>
 }
-//Para los botones en react, se trabaja muy parecido como haciamos con DOM
-//El fichero logica y datos lo vamos a dejar igual
+//Borro todos los comentarios, recuerda que estan en app.3(que se configuro la navegacion completa)
+//aunque los comentarios se fueron arrastrando hasta app.5, también se pueden mirar ahi
 
-//Copio la conmfiguración del boton de DOM a continuación para que sea mas facil su comparación con react
-// loginFormulario.addEventListener('submit', event => {
-//     event.preventDefault() //cancela la accion preterminada, ya que la voy a configurar yo
-//     const username = usernameEtiquetaInput.value
-//     const password = passwordEtiquetaInput.value
-//     //try indica un bloque de codigo a intentar, si se produce una excepcion entonces entramos en catch
-//     try {
-//         loginUser(username, password) //llamamos a la funcion registerUser con los parametros introducidos en mi pg
-
-//         loginFormulario.reset();
-//         body.removeChild(login)
-//         body.appendChild(home)
-//     } catch (error) {
-//         alert(error.message)
-//     }
-// })
+//En landing hay otro ejemplo de forma de destruccturing que se puede utilizar

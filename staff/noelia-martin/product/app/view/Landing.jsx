@@ -1,20 +1,23 @@
-export const Landing = (props) => { //props es un objeto, se utiliza para indicar que hay al menos una propiedad para que la tenga en cuenta
+// export const Landing = (props) => { 
+//const onRegisterDeLanding = props.onRegisterClicked
+//const onLoginClicked = props.onLoginClicked
+//otra forma: 
+// const { onRegisterClicked, onLoginClicked } = props
+export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
 
-    //Primero creamos variables para cada propiedad: el nombre es indiferente, pero la llamada a la propiedad debe tener el mismo que nuestra app
-    const onRegisterDeLanding = props.onRegisterClicked
-
-    //Tercero, creamos la funcion handle(manejar), nombres idem que lo anterior. Esta funcion llama a la propiedad que le interesa creada en el paso primero y ya pasamos el control a la app, que es la que se encargara de hacer los pintados
-    //en llamadas a propiedades hay que acabar con ()
-    const handleRegisterClickDeLanding = () => onRegisterDeLanding()
+    const handleRegisterClickDeLanding = () => onRegisterClicked()
+    const handleLoginClick = () => onLoginClicked()
 
     console.log('Landing -> render')
 
     return <div className="p-5">
         <i className="text-2xl">Logo</i>
         <div className="mt-2">
-            <a className="underline" href="#" onClick={handleRegisterClickDeLanding}>Register</a> {/* Segundo con el evento que se dispara al hacer click, indicamos la llamada a la funcion handle */}
+            <a className="underline" href="#" onClick={handleRegisterClickDeLanding}>Register</a>
             &nbsp;or&nbsp;
-            <a className="underline" href="#" onClick={props.onLoginClicked}>Login</a>
+            <a className="underline" href="#" onClick={handleLoginClick}>Login</a>
         </div>
     </div>
 }
+//he borrado comentarios de creacion de este fichero para poner el destructuring. Recuerda que están en la version app.2 (tambien he modificado algunas lineas, ya que use landing con codigo propio para comprender las variaciones que se podian hacer)
+//aunque los comentarios se fueron arrastrando hasta app.5, también se pueden mirar ahi

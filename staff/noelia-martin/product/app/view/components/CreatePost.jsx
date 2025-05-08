@@ -1,11 +1,9 @@
 import { logic } from '../../logic'
 
-export const CreatePost = props => {
-    const onCancelClicked = props.onCancelClicked
-    const onPostCreated = props.onPostCreated
-
-    console.log('CreatePost -> render')
-
+// export const CreatePost = props => {
+//     const onCancelClicked = props.onCancelClicked
+//     const onPostCreated = props.onPostCreated
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked()
 
     const handleCreatePostSubmit = event => {
@@ -27,13 +25,15 @@ export const CreatePost = props => {
         }
     }
 
+    console.log('CreatePost -> render')
+
     return <div className="mt-2">
         <h1 className="text-xl">Create Post</h1>
 
         <form className="mt-2 flex flex-col gap-4" onSubmit={handleCreatePostSubmit}>
             <div className="flex flex-col gap">
                 <label htmlFor="image">Image</label>
-                <input className="border-2 px-1" type="text" id="image" image="image" placeholder="the post image" />
+                <input className="border-2 px-1" type="text" id="image" name="image" placeholder="the post image" />
             </div>
 
             <div className="flex flex-col gap">
@@ -52,3 +52,7 @@ export const CreatePost = props => {
 //Toda esta pg es para: Ultima Configuracion de App.5, creacion de Post
 
 //La configuracion es muy parecida a la de app.4 en el registro de usuarios
+
+//destructuring:
+//para app.6 mantengo comentarios aun siendo antiguos, son pocos no me estorban
+//En landing hay otro ejemplo de forma de destruccturing que se puede utilizar

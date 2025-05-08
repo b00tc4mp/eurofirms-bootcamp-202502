@@ -1,19 +1,5 @@
-import { data } from '../data'
-
-
-//creo una funcion que recoge de la base de datos todos los post y los devuelve, pero en estado inverso ya que normalmente los post deben ir de mas actual a menos
-
-/**
- * Gets all posts from users in the system.
- * 
- * @returns {[{ 
-* id: string, 
-* author: string, 
-* image: string, 
-* text: string, 
-* date: Date 
-* }]} The posts from users in the system.
-*/
+//trabajamos con forEach en getPost.js
+/*
 export const getPosts = () => {
     const posts = data.getPosts().toReversed() //obtenemos los posts existentes en orden inverso
     const users = data.getUsers()//obtenemos los usuarios existentes
@@ -30,6 +16,27 @@ export const getPosts = () => {
 
     return posts
 }
-//en este codigo hemos cambiado la vista de posts. En vez de mostrar el id del usuario, mostrara su username que es mas real.
-//y tambien creamos la propiedad own para que si es mio el post podamos borrarlo. El boton de borrar con la condicion creada aqui, se configura en la vista posts
-//recuerda que todas estas modificaciones se las mostraremos a la view, luego se pierde, no se guarda en la base de datos (es decir todo esa configuracion es en memoria)
+    */
+
+var nums = [10, 20, 30]
+
+// for (var i = 0; i < nums.length; i++) { // imperative
+//     var num = nums[i]
+
+//     console.log(num)
+// }
+
+// nums.forEach(num => console.log(num)) // declarative: se llama asi porque declaras lo que quieres hacer
+
+//creamos una funcion llamada forEach con un funcionamiento similar a lo que hacer el metodo forEach de los arrays, para comprenderlo
+function forEach(array, callback) {
+    for (var i = 0; i < array.length; i++) { // imperative
+        var element = array[i]
+
+        callback(element)
+    }
+}
+
+forEach(nums, num => console.log(num)) // declarative
+
+//con el metodo forEach te ahorras de crear un for, utilizas directamente el suyo

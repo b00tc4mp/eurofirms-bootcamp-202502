@@ -21,7 +21,7 @@ export const createPost = (image, text) => {
     const post = {
         id: 'post-' + postsCount,
         author: data.getUserId(),
-        image,
+        image, //es igual que image=image, javascript permite reducirlo a una sola palabra
         text,
         date: new Date().toISOString(),
         likes: []
