@@ -14,7 +14,7 @@ export const data = {
     },
 
     getUsersCount() {
-        return JSON.parse(localStorage.usersCount)
+        return JSON.parse(localStorage.usersCount || '0')
     },
 
 
@@ -33,7 +33,7 @@ export const data = {
     },
 
     getPostsCount() {
-        return JSON.parse(localStorage.postsCount)
+        return JSON.parse(localStorage.postsCount || '0')
     },
 
     setUserId(userId) { // usamos un setter para setear(modificar) userId en sessionStorage y no perder datos al recargar
