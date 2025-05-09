@@ -47,13 +47,13 @@ export const Home = ({ onUserLoggedOut }) => {
         <div className="mt-2 flex justify-between items-center">
             <h1 className="text-[22px] font-bold text-[#119fd3]">Hello, {username}!</h1>
 
-            <button className="font-bold rounded-[10px] w-10 h-10 text-center cursor-pointer text-white bg-[#0ab5ee] "
+            <button className="font-bold rounded-[10px] w-10 h-10 text-center cursor-pointer text-white bg-[#0ab5ee] transform transition-transform duration-210 hover:scale-110 "
             title="Create new post"    
             type="button"
             onClick={handleCreatePostClick}> +   
             </button>
         </div>
-        <button className=" mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2"
+        <button className=" mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2 transform transition-transform duration-210 hover:scale-110"
             title="Exit to Login"
             type="button"
             onClick={handleLogoutClick}>Logout
