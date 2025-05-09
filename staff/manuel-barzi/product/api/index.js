@@ -14,9 +14,21 @@ server.post('/users', jsonBodyParser, (request, response) => {
 
         logic.registerUser(name, email, username, password)
 
-        response.send()
+        response.status(200).send()
     } catch (error) {
-        //???
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+server.post('/users/auth', jsonBodyParser, (request, response) => {
+    try {
+        const { username, password } = request.body
+
+        const userId = logic.authenticateUser(username, password)
+
+        response.status(200).json(userId)
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
