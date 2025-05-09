@@ -1,4 +1,2 @@
 import { data } from '../data';
-export const isUserLoggedIn = () => {
-  return !!data.getUserId();
-};
+export const isUserLoggedIn = () => !!data.getUserId();

@@ -30,13 +30,21 @@ export const Posts = () => {
       alert(error.message);
     }
   };
+  const handlePostEdited = () => {
+    try {
+      const posts = logic.getPosts();
 
+      setPosts(posts);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   console.log('Posts->render');
 
   return (
     <>
       {posts.map((post) => (
-        <Post post={post} onPostDeleted={handlePostDeleted} />
+        <Post post={post} onPostDeleted={handlePostDeleted} onPostEdited={handlePostEdited} />
       ))}
     </>
   );

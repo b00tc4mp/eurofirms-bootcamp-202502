@@ -46,11 +46,10 @@ export const Home = ({ onLogout }) => {
         </div>
       </div>
 
-      {view === 'posts' && <Posts />}
+      {view === 'posts' && <Posts postId={postId} />}
       {view === 'create-post' && (
         <CreatePost onCancelClicked={handleCancelCreatePostClicked} onPostCreated={handlePostCreated} />
       )}
-      {view === 'edit-post' && <EditPost postId={postId} />}
     </div>
   );
 };
