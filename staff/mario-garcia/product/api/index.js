@@ -1,4 +1,5 @@
 import express from 'express'
+import { logic } from './logic/index.js'
 
 const server = express()
 const jsonBodyParser = express.json()
@@ -9,36 +10,36 @@ server.get('/hello', (request, responde) => {
 
 })
 
-server.get('/color', (request, responde) => {
-
-    const q = request.query.q
-
-    let code
-
-    if (q === 'red')
-        code = '#FF0000'
-
-    else if (q === 'green')
-        code = '#00FF00'
-
-    else if (q === 'blue')
-        code = '#0000FF'
-
-    else if (q === 'yellow')
-        code = '#FFFF00'
-
-    responde.send(code)
-
-})
-
 server.post('/users', jsonBodyParser, (request, responde) => {
 
-    const user = request.body
+    try {
+        const { name, email, username, password } = request.body
 
-    console.log('user', user)
+        logic.registerUser(name, email, username, password)
 
-    responde.send('user received!')
+        responde.status(200).send()
 
+    } catch (error) {
+
+        responde.status(500).json({ error: error.constructor.name, message: error.message })
+
+    }
+})
+
+server.post('/users/auth', jsonBodyParser, (request, responde) => {
+
+    try {
+
+        const { username, password } = request.body
+
+        const userId = logic.authenticateUser(username, password)
+
+        responde.status(200).json(userId)
+
+    } catch (error) {
+
+        responde.status(500).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 server.listen(8080, () => console.log('server is up'))
