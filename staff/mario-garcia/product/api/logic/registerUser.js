@@ -25,13 +25,16 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
+    // VERIFICAMOS si el Usuario ya está REGISTRADO en nuestra BBDD.
+
     const users = data.getUsers()
 
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i]
+    const user = users.find(user => user.email === email || user.username === username)
 
-        if (user.email === email || user.username === username) throw new Error('user already exists')
-    }
+    if (user) throw new Error('User already exists')
+
+    // GUARDAMOS el Nuevo Usuario en la BB.DD. data.setUsers 
+    // GUARDAMOS el Número de Usuarios ACTUALIZADO en la BB.DD. data.setUsersCount
 
     let usersCount = data.getUsersCount()
 
