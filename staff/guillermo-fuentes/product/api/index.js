@@ -23,8 +23,10 @@ server.get('/color', (request, response) => {
 server.post('/users', jsonBodyParser, (request, response) => {
   try {
     const { name, email, username, password } = request.body;
+
     logic.registerUser(name, email, username, password);
-    response.status(200).send();
+
+    response.status(201).send();
   } catch (error) {
     response.status(500).json({ error: error.constructor.name, message: error.message });
   }
@@ -34,8 +36,41 @@ server.post('/users', jsonBodyParser, (request, response) => {
 server.post('/users/auth', jsonBodyParser, (request, response) => {
   try {
     const { username, password } = request.body;
+
     const userId = logic.authenticateUser(username, password);
+
     response.status(200).json(userId);
+  } catch (error) {
+    response.status(500).json({ error: error.constructor.name, message: error.message });
+  }
+});
+server.get('/users/self/username', (request, response) => {
+  try {
+    const authorization = request.headers.authorization;
+    const userId = authorization.slice(6);
+    const username = logic.getUserUsername(userId);
+    response.status(200).json(username);
+  } catch (error) {
+    response.status(500).json({ error: error.constructor.name, message: error.message });
+  }
+});
+server.post('/posts', jsonBodyParser, (request, response) => {
+  try {
+    const authorization = request.headers.authorization;
+    const userId = authorization.slice(6);
+    const { image, text } = request.body;
+    logic.createPost(userId, image, text);
+    response.status(201).send();
+  } catch (error) {
+    response.status(500).json({ error: error.constructor.name, message: error.message });
+  }
+});
+server.get('/posts', (request, response) => {
+  try {
+    const authorization = request.headers.authorization;
+    const userId = authorization.slice(6);
+    const posts = logic.getPosts(userId);
+    response.status(200).json(posts);
   } catch (error) {
     response.status(500).json({ error: error.constructor.name, message: error.message });
   }

@@ -1,5 +1,10 @@
 import { data } from '../data/index.js';
-
+/**Registra a un usuario en el sistema recibe cuatro parametros
+ * @param name el nombre del usuario
+ * @param email el email del usuario
+ * @param username el nombre de usuario (nick)
+ * @param password la constraseña de un usuario
+ */
 export const registerUser = (name, email, username, password) => {
   if (typeof name !== 'string') throw new Error('invalid name type');
   if (name.length < 1) throw new Error('Invalid lenght name');
@@ -15,11 +20,8 @@ export const registerUser = (name, email, username, password) => {
 
   const users = data.getUsers();
 
-  for (let i = 0; i < users.length; i++) {
-    var user = users[i];
-    if (user.email === email || user.username === username) throw new Error('email or username already exists');
-  }
-
+  const user = users.find((user) => user.email === email || user.username === username);
+  if (user) throw new Error('User alredy exist');
   let usersCount = data.getUsersCount();
   usersCount++;
 
