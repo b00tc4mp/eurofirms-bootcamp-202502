@@ -24,6 +24,7 @@ server.post('/users', jsonBodyParser, (request, response) => {
   try {
     const { name, email, username, password } = request.body;
     logic.registerUser(name, email, username, password);
+    response.status(200).send();
   } catch (error) {
     console.error(error.message);
   }
