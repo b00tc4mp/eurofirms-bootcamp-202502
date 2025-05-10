@@ -22,4 +22,6 @@ var loginText = document.createTextNode('Login')
 loginLink.appendChild(loginText)
 landingView.appendChild(loginLink)
 
-body.appendChild(landingView)
+
+
+body.appendChild(landingView) 
