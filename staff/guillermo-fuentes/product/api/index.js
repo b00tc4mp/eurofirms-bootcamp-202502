@@ -26,9 +26,18 @@ server.post('/users', jsonBodyParser, (request, response) => {
     logic.registerUser(name, email, username, password);
     response.status(200).send();
   } catch (error) {
-    console.error(error.message);
+    response.status(500).json({ error: error.constructor.name, message: error.message });
   }
 
   response.send('user received!');
+});
+server.post('/users/auth', jsonBodyParser, (request, response) => {
+  try {
+    const { username, password } = request.body;
+    const userId = logic.authenticateUser(username, password);
+    response.status(200).json(userId);
+  } catch (error) {
+    response.status(500).json({ error: error.constructor.name, message: error.message });
+  }
 });
 server.listen(8080, () => console.log('server escucha'));
