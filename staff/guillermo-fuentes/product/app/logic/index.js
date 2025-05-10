@@ -7,6 +7,7 @@ import { getPosts } from './getPosts';
 import { createPost } from './createPost';
 import { editPost } from './editPost';
 import { deletePost } from './deletePost';
+
 export const logic = {
   registerUser,
   loginUser,

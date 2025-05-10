@@ -13,6 +13,7 @@ export const loginUser = (username, password) => {
   if (password.length < 8) throw new Error('invalid password min length');
   if (password.length > 20) throw new Error('invalid password max length');
   const users = data.getUsers();
+
   let user;
 
   for (let i = 0; i < users.length; i++) {
