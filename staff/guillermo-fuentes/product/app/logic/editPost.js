@@ -1,4 +1,5 @@
 import { data } from '../data';
+
 /** Logica necesaria para editar un post
  * recibe tres parametros
  * @param idPost el id del post a editar
