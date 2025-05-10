@@ -1,5 +1,6 @@
 import { data } from '../data';
-//Recoger el identificador de cada post
+/** Logica encargada de eliminar un post por su id recibe un solo parametro
+ * @param idPost el id del post a eliminar*/
 export const deletePost = (idPost) => {
   const posts = data.getPosts();
   const indice = posts.findIndex((post) => post.id === idPost);

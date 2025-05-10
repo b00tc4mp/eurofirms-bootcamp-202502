@@ -1,4 +1,8 @@
-import { data } from '../data';
+import { data } from '../data'; //Importacion de la "base de datos"
+/**
+ * Logica encargada de crear un post este metodo recibe 2 parametros:
+ * @param image este parametro recibe el enlace de la imgan
+ * @param text este parametro recibe el texto */
 export const createPost = (image, text) => {
   if (typeof image !== 'string') throw new Error('invalid image type');
   if (!image.startsWith('http')) throw new Error('Invalid image format');

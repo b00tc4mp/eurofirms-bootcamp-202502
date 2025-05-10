@@ -1,4 +1,10 @@
 import { data } from '../data';
+/**Logica de registro de un usuario recibe cuatro parametros
+ * @param name representa el nombre del usuario
+ * @param email representa el email del usuario
+ * @param username representa el nombre de usuario
+ * @param password representa la contraseña del usuario
+ */
 export const registerUser = (name, email, username, password) => {
   if (typeof name !== 'string') throw new Error('invalid name type');
   if (name.length < 1) throw new Error('Invalid lenght name');

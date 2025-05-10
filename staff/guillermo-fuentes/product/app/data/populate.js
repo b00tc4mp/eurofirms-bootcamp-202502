@@ -1,4 +1,5 @@
 import { data } from './index';
+/**Este archivo es como nuestra base de datos estatica, esta primera parte representa los usuario registrados */
 const users = [];
 let usersCount = 0;
 usersCount++;
@@ -19,7 +20,7 @@ users.push({
 });
 data.setUsers(users);
 data.setUsersCount(usersCount);
-
+/**Aqui representan los posts y estos post estan vinculados a un usuario por su id, cada post tiene un id y para vincularlos a un usuario hacemos esto: author: users[0].id, aqui lo que hacemos es coger el array usuarios y de ese array obtener la propiedad id, esta propiedad esta vinculada con el id de cada usuario y se indica en esta linea: id: 'user-' + usersCount, y si hacemos una relacion podemos averiguar a quien pertenece cada post   */
 const posts = [];
 let postsCount = 0;
 postsCount++;
