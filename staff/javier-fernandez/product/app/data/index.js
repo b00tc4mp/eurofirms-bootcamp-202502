@@ -1,45 +1,32 @@
-export const data = {
+import fs from 'fs'
+
+export const data = { 
     setUsers(users) {
-        localStorage.users = JSON.stringify(users)
+        const json = JSON.stringify(users)
+
+        fs.writeFileSync('./data/users.json', json)
     }, 
 
     getUsers() {
-        return JSON.parse(localStorage.users || '[]')
+        const json = fs.readFileSync('./dara/users.json', 'utf8')
+
+        const users = JSON.parse(json)
+
+        return users
     },
 
     setUsersCount(usersCount) {
-        localStorage.usersCount = JSON.stringify(usersCount)
+        const json = JSON.stringify(usersCount)
+
+        fs.writeFileSync('./data/userCount.json', json)
     },
 
     getUsersCount() {
-        return JSON.parse(localStorage.usersCount || '0')
+        const json = fs.readFileSync('./data/usersCount.json', 'utf8')
+
+        const usersCount = JSON.parse(json)
+         
+        return usersCount
     },
 
-    setPosts(posts) {
-        localStorage.posts = JSON.stringify(posts)
-    },
-
-    getPosts() {
-        return JSON.parse(localStorage.posts || '[]')
-    },
-
-    setPostsCount(postsCount) {
-        localStorage.postsCount = JSON.stringify(postsCount)
-    },
-
-    getPostsCount() {
-        return JSON.parse(localStorage.postsCount || '0')
-    },
-
-    setUserId(userId) {
-        sessionStorage.userId = userId
-    },
-
-    getUserId(userId) {
-        return sessionStorage.userId
-    },
-
-    removeUserId() {
-        delete sessionStorage.userId
-    }
 }
