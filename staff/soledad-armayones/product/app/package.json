@@ -12,9 +12,9 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.6",
     "@vitejs/plugin-react": "^4.4.1",
-    "tailwindcss": "^4.1.4",
+    "tailwindcss": "^4.1.6",
     "vite": "^6.3.5"
   },
   "dependencies": {
