@@ -1,16 +1,1 @@
-[
-    {
-        "id": "user-1",
-        "name": "Ala Ddin",
-        "email": "ala@ddin.com",
-        "username": "aladdin",
-        "password": "123123123"
-    },
-    {
-        "id": "user-2",
-        "name": "Peter Pan",
-        "email": "peter@pan.com",
-        "username": "peterpan",
-        "password": "123123123"
-    }
-]
+[{"id":"user-1","name":"Ala Ddin","email":"ala@ddin.com","username":"aladdin","password":"123123123"},{"id":"user-2","name":"Peter Pan","email":"peter@pan.com","username":"peterpan","password":"123123123"},{"id":"user-3","name":"Bruce Wayne","email":"brucewayne@batman.com","username":"batman","password":"123123123"},{"id":"user-4","name":"Peter Parker","email":"peterparker@spiderman.com","username":"spiderman","password":"123123123"},{"id":"user-5","name":"Bruce Banner","email":"brucebanner@hulk.com","username":"hulk","password":"123123123"},{"id":"user-6","name":"Tony Stark","email":"tonystark@ironman.com","username":"ironman","password":"123123123"},{"id":"user-7","name":"James Howlett","email":"jameshowlett@lobezno.com","username":"lobezno","password":"123123123"},{"id":"user-8","name":"Steve Rogers","email":"steverogers@capitanamerica.com","username":"capitanamerica","password":"123123123"},{"id":"user-9","name":"Scott Summers","email":"scottsummers@ciclope.com","username":"ciclope","password":"123123123"}]

@@ -2,7 +2,7 @@ import { createPost } from './createPost.js'
 
 try {
 
-    createPost('user-1', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZG10N3FiY3B3ZWZiMDdyYTVwbWNua3NoNHk5ZTBhMXp1NHp1MXlqMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/gqlllRaVSyNxe/giphy.gif', 'I am dreaming!')
+    createPost('user-2', 'https://media.giphy.com/media/xUPGcMFEIgIkVsptQs/giphy.gif?cid=ecf05e47ksj7ap5h065caw60msh5rf6rxsuxcelhjaf8qgwm&ep=v1_gifs_search&rid=giphy.gif&ct=g', 'With my friends in the Big Ben!')
 
     console.log('post created')
 

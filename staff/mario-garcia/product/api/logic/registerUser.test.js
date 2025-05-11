@@ -1,6 +1,6 @@
 import { registerUser } from './registerUser.js'
 try {
-    registerUser('Ala Ddin', 'ala@ddin.com', 'aladdin', '123123123')
+    registerUser('Tony Stark', 'tonystark@ironman.com', 'ironman', '123123123')
 
     console.log('user registered')
 
