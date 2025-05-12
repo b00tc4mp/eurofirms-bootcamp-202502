@@ -91,4 +91,19 @@ server.get('/posts', (request, response) => {
     }
 })
 
+server.delete('/posts/:postId', (request, response) => {
+    try {
+        const authorization = request.headers.authorization
+        const userId = authorization.slice(6)
+
+        const {postId} = request.params
+
+        logic.removePost(userId, postId)
+
+        response.status(204).send()
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 server.listen(8080, () => console.log('server is up'))
