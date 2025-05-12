@@ -78,4 +78,17 @@ server.post('/posts',jsonBodyParser, (request, response) => {
     }
 })
 
+server.get('/posts', (request, response) => {
+    try {
+        const authorization = request.headers.authorization
+        const userId = authorization.slice(6)
+        
+        const posts = logic.getPosts(userId)
+
+        response.status(200).send(posts)
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 server.listen(8080, () => console.log('server is up'))
