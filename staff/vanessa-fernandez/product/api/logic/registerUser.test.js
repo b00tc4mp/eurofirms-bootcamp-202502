@@ -1,7 +1,7 @@
 import { registerUser } from './registerUser.js'
 
 try {
-    registerUser('Harry Potter', 'harry@potter.com', 'harrypotter', '123123123')
+    registerUser('Hermione Granger', 'hermione@granger.com', 'hermionegranger', '456456456')
 
     console.log('user registered')
 } catch (error) {
