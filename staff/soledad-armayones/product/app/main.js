@@ -16,6 +16,13 @@ function buildLandingView() {
   registerLink.appendChild(registerText)
   landingView.appendChild(registerLink)
 
+  registerLink.addEventListener('click', function (event) {
+    console.log(event)
+
+    body.removeChild(landingView)
+    body.appendChild(registerView)
+  })
+
   var orText = document.createTextNode(' or ')
   landingView.appendChild(orText)
 
@@ -24,6 +31,11 @@ function buildLandingView() {
   var loginText = document.createTextNode('Login')
   loginLink.appendChild(loginText)
   landingView.appendChild(loginLink)
+
+  loginLink.addEventListener('click', function (event) {
+    body.removeChild(landingView)
+    body.appendChild(loginView)
+  })
 
   return landingView
 }
@@ -114,14 +126,43 @@ function buildRegisterView() {
   loginLink.appendChild(loginText)
   buttons.appendChild(loginLink)
 
+  loginLink.addEventListener('click', function (event) {
+    body.removeChild(registerView)
+    body.appendChild(loginView)
+  })
+
   var submitButton = document.createElement('button')
-  submitButton.classList.add('black-button')
+  submitButton.classList.add('violet-button')
   submitButton.type = 'submit'
   var submitText = document.createTextNode('Register')
   submitButton.appendChild(submitText)
   buttons.appendChild(submitButton)
 
   registerForm.appendChild(buttons)
+
+  registerForm.addEventListener('submit', function (event) {
+    event.preventDefault()
+
+    const name = nameInput.value
+    const email = emailInput.value
+    const username = usernameInput.value
+    const password = passwordInput.value
+
+    //console.log(name, email, username, password)
+
+
+    try {
+      registerUser(name, email, username, password)
+
+      body.removeChild(registerView)
+      body.appendChild(loginView)
+    } catch (error) {
+      alert(error.message)
+    }
+  })
+
+
+
 
   registerView.appendChild(registerForm)
 
@@ -177,6 +218,11 @@ function buildLoginView() {
   registerLink.appendChild(registerText)
   loginForm.appendChild(registerLink)
 
+  registerLink.addEventListener('click', function (event) {
+    body.removeChild(loginView)
+    body.appendChild(registerView)
+  })
+
   var submitButton = document.createElement('button')
   submitButton.type = 'submit'
   var submitText = document.createTextNode('Login')
@@ -207,11 +253,11 @@ function buildHomeView() {
 var landingView = buildLandingView()
 body.appendChild(landingView)
 
-//var registerView = buildRegisterView()
+var registerView = buildRegisterView()
 //body.appendChild(registerView)
 
-// var loginView = buildLoginView()
+var loginView = buildLoginView()
 // body.appendChild(loginView)
 
-// var homeView = buildHomeView()
+var homeView = buildHomeView()
 // body.appendChild(homeView)

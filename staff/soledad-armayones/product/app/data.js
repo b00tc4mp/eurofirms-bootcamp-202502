@@ -1,6 +1,8 @@
 var users = [
-    { name: "Sole", username: "Armay", email: "Sole@gmail.com", password: "123123123" },
+    { name: 'Bestia', email: 'Bestia@gmail.com', username: 'Palacio', password: '123123123' },
 
-    { name: "Jesus", username: "Rodriguez", email: "Jesus@gmail.com", password: "123123123" }
+    { name: 'bella', email: 'bella@gmail.com', username: 'castillo', password: "123123123" }
+
+    { name: 'Piter', Email: 'piterpan@gmail.com', username: 'Pan', password: '123123123' }
 
 ]
