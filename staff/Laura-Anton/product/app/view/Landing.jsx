@@ -1,8 +1,5 @@
-export const Landing = (props) => {
-    const onRegisterClicked = props.onRegisterClicked
-    const onLoginClicked = props.onLoginClicked
-    const onHomeClicked = props.onHomeClicked
-
+export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
+    
     const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginClick = () => onLoginClicked()

@@ -20,8 +20,19 @@ export const App = () => {
 
     const handleHome = () => setView('home')
 
-    console.log('App -> render')
+    useEffect(() => {
+        try {
+            const loggedIn = logic.isUserLoggedIn()
 
+            if (loggedIn)
+                setView('home')
+        } catch (error) {
+            alert(error.message)
+        }
+    }, [])
+
+    console.log('App -> render')
+    
     return <>
         {view === 'landing' &&
             <Landing

@@ -15,11 +15,21 @@ export const Posts = () => {
         }
     }, [])
 
+    const handlePostDeleted = () => {
+        try {
+            const posts = logic.getPosts()
+
+            setPosts(posts)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     console.log('Posts -> render')
 
     return <>
         {posts.map(post => {
-            return <article className = "w-100 mb-10 " key={post.id}>
+            return <article className="w-100 mb-10 " key={post.id}>
                 <h3 className="bg-pink-300">{post.author} </h3>
 
                 <img src={post.image} alt="" />
