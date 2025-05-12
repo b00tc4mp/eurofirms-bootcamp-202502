@@ -1,4 +1,6 @@
-function registerUser(name, email, username, password) {
+// function registerUser(name, email, username, password)
+// const registerUser = function (name, email, username, password) {
+const registerUser = (name, email, username, password) => {
     if (typeof name !== 'string') throw new Error('invalid name type')
     if (name.length < 1) throw new Error('invalid name min length')
     if (name.length > 30) throw new Error('invalid name max length')
@@ -31,7 +33,9 @@ function registerUser(name, email, username, password) {
     users[users.length] = user
 }
 
-function loginUser(username, password) {
+// function loginUser(username, password) {
+// const loginUser = function (username, password) {
+const loginUser = (username, password) => {
     if (typeof username !== 'string') throw new Error('invalid username type')
     if (username.length < 3) throw new Error('invalid username min length')
     if (username.length > 20) throw new Error('invalid username max length')

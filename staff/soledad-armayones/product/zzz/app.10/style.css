@@ -1,21 +1,13 @@
-/*globals */
+/* globals */
+
 * {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
 }
 
 body {
     margin: 0;
-}
-
-label {
-    font-weight: 500;
-}
-
-a:visited {
-    color: black;
-    font-weight: 500;
 }
 
 h1 {
@@ -27,16 +19,19 @@ label {
     font-weight: 500;
 }
 
+a {
+    color: black;
+    font-weight: 500;
+}
 
 a:visited {
-    color: pink;
+    color: black;
 }
 
-a {
-    color: plum;
-    font-weight: 300;
+input {
+    border-color: black;
+    background-color: transparent;
 }
-
 
 /* utility classes */
 
@@ -52,35 +47,30 @@ a {
     flex-direction: column;
 }
 
-.gap-5px {
-    gap: 5px;
-}
-
-.gap-20px {
-    gap: 20px;
+.justify-between {
+    justify-content: space-between;
 }
 
 .gap-10px {
     gap: 10px;
 }
 
-.p-20px {
-    padding: 20px;
+.gap-20px {
+    gap: 20px;
+}
+
+.p-10px {
+    padding: 10px;
 }
 
 .p-x-20px {
     padding: 0 20px;
-    ;
 }
-
-.justify-between {
-    justify-content: space-between;
-}
-
 
 /* components */
-.violet-button {
-    color: black;
-    background-color: violet;
-    font-weight: 300;
+
+.black-button {
+    color: white;
+    background-color: black;
+    font-weight: 100;
 }
