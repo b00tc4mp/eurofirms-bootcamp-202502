@@ -1,35 +1,41 @@
 import express, { json } from 'express'
 
+import { logic } from './logic/index.js'
+
 const server = express()
-const jsonBodyParser = express.json()
+
+//convierte datos en strings a objetos
+const jsonBodyParser = express.json() 
 
 server.get('/hello', (request, response) => {
     response.send('Hello! 🥳')
 })
 
-server.get('/color', (request, response) => {
-    const q = request.query.q
+//Ruta para registrar usuario, convertir a json, endpoint o manejador de ruta (funcion con request & response)
+server.post('/users', jsonBodyParser, (request, response) => {
+    try {
+        const { name, email, username, password } = request.body
 
-    let code
+        logic.registerUser(name, email, username, password)
 
-    if (q === 'red')
-        code = '#FF0000'
-    else if (q === 'green')
-        code = '#00FF00'
-    else if (q === 'blue')
-        code = '#0000FF'
-    else if (q === 'yellow')
-        code = '#FFFF00'
-
-    response.send(code)
+        response.status(201).send()
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message})
+    }
 })
 
-server.post('/users', jsonBodyParser, (request, response) => {
-    const user = request.body
+//Ruta para autenticar usuario, convertir a json, manejador de ruta
+server.post('/users/auth', jsonBodyParser, (request, response) => {
+    try {
+        const { username, password } = request.body
 
-    console.log('user', user)
-
-    response.send('user received!')
+        const userId = logic.authenticateUser(username, password)
+        
+        response.status(200).json(userId)
+    } catch (error) {
+        //si hay error responderemos con estado 500, y un json que tenga todos los datos del error
+        response.status(500).json({ error: error.constructor.name})
+    }
 })
 
 server.listen(8080, () => console.log('server is up'))
