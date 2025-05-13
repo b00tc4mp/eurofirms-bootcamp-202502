@@ -32,16 +32,28 @@ A través de jsonBodyParser hay una petición del cliente , parametro request y 
  */
 
 server.post('/users' /* path,route */, jsonBodyParser /* middleware */, (request, response) => {
-    try{
-    const {name, email, username, password} = request.body
+    try {
+        const { name, email, username, password } = request.body
 
-    logic.registerUser(name, email. username, password)
+        logic.registerUser(name, email, username, password)
 
-    response.send()
+        response.status(200).send()
 
-    } catch(error) {
-        //???
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 } /* endpoint */)
+
+server.post('/users/auth', jsonBodyParser, (request, response) => {
+    try {
+        const { username, password} = request.body
+
+        const userId = logic.authenticateUser(username, password)
+
+        response.status(200).json(userId)
+    } catch(error){
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
 
 server.listen(8080, () => console.log('server is up'))
