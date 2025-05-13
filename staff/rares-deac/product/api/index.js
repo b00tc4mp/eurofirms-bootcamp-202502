@@ -1,4 +1,5 @@
 import express from 'express'
+import { logic } from './logic/index.js'
 
 const server = express()
 const jsonBodyParser = express.json()
@@ -7,6 +8,7 @@ server.get('/hello', (request, response) => {
     response.send('Hello! 😉')
 })
 
+/*
 server.get('/color', (request, response) => {
     const q = request.query.q
 
@@ -23,13 +25,23 @@ server.get('/color', (request, response) => {
 
     response.send(code)
 })
+*/
 
-server.post('/users', jsonBodyParser, (request, response) => {
-    const user = request.body
+/*
+A través de jsonBodyParser hay una petición del cliente , parametro request y una respuesta del servidor, parametro response. user contiene el body de la peticion del cliente y el parametro response utiliza send para decirle al cliente que ha recibido el mensaje.
+ */
 
-    console.log('user', user)
+server.post('/users' /* path,route */, jsonBodyParser /* middleware */, (request, response) => {
+    try{
+    const {name, email, username, password} = request.body
 
-    response.send('user received!')
-})
+    logic.registerUser(name, email. username, password)
+
+    response.send()
+
+    } catch(error) {
+        //???
+    }
+} /* endpoint */)
 
 server.listen(8080, () => console.log('server is up'))
