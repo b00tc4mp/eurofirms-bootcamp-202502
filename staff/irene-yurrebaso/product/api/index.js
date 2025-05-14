@@ -56,4 +56,41 @@ server.get('/users/self/username', (request, response) => {
     }
 })
 
+//Ruta para crear post
+server.post('/posts', jsonBodyParser, (request, response) => {
+    try {
+        //recuperar el userId de la cabecera enviada a traves de curl
+        const authorization = request.headers.authorization //Basic user-x
+
+        const userId = authorization.slice(6)
+
+        //recojo el json enviado (image & text) usando jsonBodyParser con el body del objeto request
+        const { image, text } = request.body
+
+        logic.createPost(userId, image, text)
+
+        //status 201 sirve para informar de que hemos creado algo
+        response.status(201).send()
+    } catch(error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+//Ruta para mostrar posts
+server.get('/posts', (request, response) => {
+    try {
+        //cual es el user id para usarlo en getPosts, se hace a traves de headers
+        const authorization = request.headers.authorization // Basic user-x
+
+        const userId = authorization.slice(6)
+
+        const posts = logic.getPosts(userId)
+
+        //devolver los posts y transformar el array a json
+        response.status(200).json(posts)
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
 server.listen(8080, () => console.log('server is up'))

@@ -45,5 +45,51 @@ export const data = {
         const usersCount = JSON.parse(json)
 
         return usersCount
+    },
+
+    /**
+     * Saves posts in database (json file).
+     * 
+     * @param { string } posts The array of posts.
+     */
+    setPosts(posts) {
+        const json = JSON.stringify(posts)
+
+        fs.writeFileSync('./data/posts.json', json)
+    },
+
+    /**
+     * Loads posts from database (json file). 
+     * 
+     * @returns { array } The array of posts.
+     */
+    getPosts() {
+        const json = fs.readFileSync('./data/posts.json', 'utf8')
+
+        const posts = JSON.parse(json)
+
+        return posts
+    },
+
+    /**
+     * Saves posts count in database (json file).
+     * @param { number } postsCount The number of posts in database.
+     */
+    setPostsCount(postsCount) {
+        const json = JSON.stringify(postsCount)
+
+        fs.writeFileSync('./data/postsCount.json', json)
+    },
+
+    /**
+     * Loads posts count from database. 
+     * @returns { number } The number of posts in database.
+     */
+    getPostsCount() {
+        const json = fs.readFileSync('./data/postsCount.json', 'utf8')
+
+        const postsCount = JSON.parse(json)
+        
+        return postsCount
     }
 }
