@@ -1,0 +1,44 @@
+[
+    {
+        "id": "user-1",
+        "name": "pin 8",
+        "email": "pin@8.com",
+        "username": "pin8",
+        "password": "123123123"
+    },
+    {
+        "id": "user-2",
+        "name": "Peter Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-3",
+        "name": "Petra Pan",
+        "email": "petra@pan.com",
+        "username": "petrapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-4",
+        "name": "Charly Pan",
+        "email": "charly@pan.com",
+        "username": "charlypan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-5",
+        "name": "Anna Pan",
+        "email": "anna@pan.com",
+        "username": "annapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-6",
+        "name": "Dani",
+        "email": "dani@dani.com",
+        "username": "Daniel",
+        "passsword": "123123123"
+    }
+]
