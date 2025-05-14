@@ -1,4 +1,4 @@
-import { authenticateUser } from './authenticate.js'
+import { authenticateUser } from './authenticateUser.js'
 
 try{
     const userId = authenticateUser('peterpan', '123123123')
