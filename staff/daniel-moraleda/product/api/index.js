@@ -16,7 +16,7 @@ server.post('/users', jsonBodyParser, (request, response) => {
 
         response.status(201).send()
     } catch (error) {
-        response.status(500), json({
+        response.status(500).json({
             error: error.constructor.name,
             message: error.message
         })
@@ -30,7 +30,7 @@ server.post('/users/auth', jsonBodyParser, (request, response) => {
 
         response.status(200).json(userId)
     } catch (error) {
-        response.status(500), json({
+        response.status(500).json({
             error: error.constructor.name,
             message: error.message
         })
@@ -99,7 +99,7 @@ server.delete('/posts/:postId', (request, response) => {
 
         response.status(204).send()
     } catch (error) {
-        response.status(500).json({error:error.cosntructor.name,
+        response.status(500).json({error:error.constructor.name,
             message: error.message })
     }
 })
