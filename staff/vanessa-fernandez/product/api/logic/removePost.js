@@ -1,5 +1,12 @@
 import { data } from '../data/index.js'
 
+/**
+ * Removes a post by id from database.
+ * 
+ * @param {string} userId The requester user id. 
+ * @param {string} postId The post id to remove.
+ */
+
 export const removePost = (userId, postId) => {
     if (typeof userId !== 'string') throw new Error('Invalid userId type.')
     if (userId.length < 6) throw new Error('Invalid userId length.') 

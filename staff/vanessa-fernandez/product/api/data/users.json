@@ -1,1 +1,37 @@
-[{"id":"user-1","name":"Harry Potter","email":"harry@potter.com","username":"harrypotter","password":"123123123"},{"id":"user-2","name":"Hermione Granger","email":"hermione@granger.com","username":"hermionegranger","password":"456456456"}]
+[
+    {
+        "id": "user-1",
+        "name": "Harry Potter",
+        "email": "harry@potter.com",
+        "username": "harrypotter",
+        "password": "123123123"
+    },
+    {
+        "id": "user-2",
+        "name": "Hermione Granger",
+        "email": "hermione@granger.com",
+        "username": "hermionegranger",
+        "password": "456456456"
+    },
+    {
+        "id": "user-3",
+        "name": "Ronald Weasly",
+        "email": "ronald@weasly.com",
+        "username": "ronweasly",
+        "password": "789789789"
+    },
+    {
+        "id": "user-4",
+        "name": "Fred Weasly",
+        "email": "fred@weasly.com",
+        "username": "fredweasly",
+        "password": "789789789"
+    },
+    {
+        "id": "user-5",
+        "name": "George Weasly",
+        "email": "george@weasly.com",
+        "username": "georgeweasly",
+        "password": "789789789"
+    }
+]

@@ -8,7 +8,7 @@ server.get('/hello' , (request, response) => {
     response.send('Hello!! 👋')
 })
 
-server.get('/color', (request, response) => {
+/*server.get('/color', (request, response) => {
     const q = request.query.q
 
     let code
@@ -23,7 +23,7 @@ server.get('/color', (request, response) => {
         code = '#FFFF00'
 
     response.send(code)
-})
+})*/
 
 server.post('/users', jsonBodyParser, (request, response) => {
     try {
@@ -31,7 +31,7 @@ server.post('/users', jsonBodyParser, (request, response) => {
 
         logic.registerUser(name, email, username, password)
 
-        response.status(200).send()
+        response.status(201).send()
     } catch (error) {
         response.status(500).json({ error: error.constructor.name, message: error.message})
     }
