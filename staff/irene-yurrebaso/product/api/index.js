@@ -28,13 +28,12 @@ server.post('/users', jsonBodyParser, (request, response) => {
 server.post('/users/auth', jsonBodyParser, (request, response) => {
     try {
         const { username, password } = request.body
-
         const userId = logic.authenticateUser(username, password)
         
         response.status(200).json(userId)
     } catch (error) {
         //si hay error responderemos con estado 500, y un json que tenga todos los datos del error
-        response.status(500).json({ error: error.constructor.name})
+        response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
@@ -43,7 +42,6 @@ server.get('/users/self/username', (request, response) => {
     try {
         //recogemos la cabecera de curl GET en la request. El objeto headers pone todas las cabeceras en un objeto. A traves de la propiedad authorization le decimos quien es el usuario.
         const authorization = request.headers.authorization // Basic user-1
-
         //recortamos el string a partir de un caracter para obtener solo el ID
         const userId = authorization.slice(6)
 
@@ -61,7 +59,6 @@ server.post('/posts', jsonBodyParser, (request, response) => {
     try {
         //recuperar el userId de la cabecera enviada a traves de curl
         const authorization = request.headers.authorization //Basic user-x
-
         const userId = authorization.slice(6)
 
         //recojo el json enviado (image & text) usando jsonBodyParser con el body del objeto request
@@ -81,7 +78,6 @@ server.get('/posts', (request, response) => {
     try {
         //cual es el user id para usarlo en getPosts, se hace a traves de headers
         const authorization = request.headers.authorization // Basic user-x
-
         const userId = authorization.slice(6)
 
         const posts = logic.getPosts(userId)
@@ -89,6 +85,25 @@ server.get('/posts', (request, response) => {
         //devolver los posts y transformar el array a json
         response.status(200).json(posts)
     } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+//Ruta dinamica para eliminar post con el parametro :postId
+server.delete('/posts/:postId', (request, response) => {
+    try {
+        const authorization = request.headers.authorization //Basic user-x
+        const userId = authorization.slice(6)
+
+        //recogemos postId del objeto params que viene en la request
+        //const postId = request.params.postId
+        const { postId } = request.params
+
+        logic.removePost(userId, postId)
+
+        //si todo va bien damos una respuesta
+        response.status(204).send()
+    } catch(error) {
         response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })

@@ -26,5 +26,26 @@
         "email": "wendy@darling.com",
         "username": "wendydarling",
         "password": "123123123"
+    },
+    {
+        "id": "user-5",
+        "name": "Petra Pan",
+        "email": "petra@pan.com",
+        "username": "petrapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-6",
+        "name": "Micky Mouse",
+        "email": "micky@mouse.com",
+        "username": "mickymouse",
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "Pato Donald",
+        "email": "pato@donald.com",
+        "username": "patodonald",
+        "password": "123123123"
     }
 ]
