@@ -29,11 +29,9 @@ export const registerUser = (name, email, username, password) => {
     // Verifica si un usuario se encuentra en la base de datos.
     const users = data.getUsers()
 
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i]
+    const user = users.find(user => user.email === email || user.username === username)
 
-        if (user.email === email || user.username === username) throw new Error('user already exists')
-    }
+    if (user) throw new Error('user already exists')
 
     // Guarda el nuevo usuario en la base de datos e incrementa el contador de usuarios.  
 

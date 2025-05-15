@@ -56,4 +56,26 @@ server.post('/users/auth', jsonBodyParser, (request, response) => {
     }
 })
 
+/**
+ * Pide a la Api el id de usuario de la base de users, a través de autenticarse a traves de authorization y se devuelve en formato json el username 
+ */
+
+server.get('/users/self/username', (request, response) => {
+    try {
+        /**
+         * Recupera la cabecera de la autorizacion con el metodo slice y recupera el id de usuario
+         */
+
+        const authorization = request.headers.authorization // Basic user-1
+        
+        const userId = authorization.slice(6)
+        
+        const username = logic.getUserUsername(userId)
+
+        response.status(200).json(username)
+    } catch(error) {
+        response.status(500),json({error: error.constructor.name, message: error.message})
+    }
+})
+
 server.listen(8080, () => console.log('server is up'))

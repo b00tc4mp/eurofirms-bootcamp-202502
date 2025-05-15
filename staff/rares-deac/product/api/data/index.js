@@ -6,7 +6,7 @@ export const data = {
     /**
      * Pasa a JSON los usuarios que recoge de users y lo guarda en su archivo.
      * 
-     * @param {string} users 
+     * @param {Array} users The array of users 
      */
     setUsers(users) {
         const json = JSON.stringify(users)
