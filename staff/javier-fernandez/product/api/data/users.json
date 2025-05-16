@@ -19,5 +19,19 @@
         "email": "petra@pan.com",
         "username": "petrapan",
         "password": "123123123"
+    },
+    {
+        "id": "user-4",
+        "name": "Charly Pan",
+        "email": "chaly@pan.com",
+        "username": "charlypan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-5",
+        "name": "Anna Pan",
+        "email": "anna@pan.com",
+        "username": "annapan",
+        "password": "123123123"
     }
 ]
