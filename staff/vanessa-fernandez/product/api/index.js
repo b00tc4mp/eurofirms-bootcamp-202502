@@ -1,8 +1,11 @@
 import express, { response } from 'express'
 import { logic } from './logic/index.js'
+import cors from 'cors'
 
 const server = express()
 const jsonBodyParser = express.json()
+
+server.use(cors())
 
 server.get('/hello' , (request, response) => {
     response.send('Hello!! 👋')
@@ -106,4 +109,4 @@ server.delete('/posts/:postId', (request, response) => {
     }
 })
 
-server.listen(8080, () => console.log('server is up'))
+server.listen(8080, () => console.log('API listening on port 8080'))
