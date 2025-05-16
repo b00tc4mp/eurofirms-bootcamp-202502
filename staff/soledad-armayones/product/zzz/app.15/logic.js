@@ -1,13 +1,5 @@
 import { data } from './data'
 
-/**
- * Registers a user in the system.
- * 
- * @param {string} name The user name.
- * @param {string} email The user e-mail.
- * @param {string} username The user username.
- * @param {string} password The user password.
- */
 const registerUser = (name, email, username, password) => {
     if (typeof name !== 'string') throw new Error('invalid name type')
     if (name.length < 1) throw new Error('invalid name min length')
@@ -42,12 +34,6 @@ const registerUser = (name, email, username, password) => {
     })
 }
 
-/**
- * Logs a user in the system.
- * 
- * @param {string} username The user username.
- * @param {string} password The user password.
- */
 const loginUser = (username, password) => {
     if (typeof username !== 'string') throw new Error('invalid username type')
     if (username.length < 3) throw new Error('invalid username min length')
@@ -73,21 +59,16 @@ const loginUser = (username, password) => {
 
     if (user.password !== password) throw new Error('wrong credentials')
 
-    data.setUserId(user.id)
+    data.userId = user.id
 }
 
-/**
- * Gets the user username.
- * 
- * @returns {string} The user username.
- */
 const getUserUsername = () => {
     let user
 
     for (let i = 0; i < data.users.length; i++) {
         const _user = data.users[i]
 
-        if (_user.id === data.getUserId()) {
+        if (_user.id === data.userId) {
             user = _user
 
             break
@@ -99,31 +80,10 @@ const getUserUsername = () => {
     return user.username
 }
 
-/**
- * Logs a user out of the system.
- */
 const logoutUser = () => {
-    data.removeUserId()
+    data.userId = null
 }
 
-/**
- * Gets whether user is logged in the system.
- * 
- * @returns {boolean} The state of user log (true if logged in, false otherwise).
- */
-const isUserLoggedIn = () => !!data.getUserId()
-
-/**
- * Gets all posts from users in the system.
- * 
- * @returns {[{ 
- * id: string, 
- * author: string, 
- * image: string, 
- * text: string, 
- * date: Date 
- * }]} The posts from users in the system.
- */
 const getPosts = () => {
     return data.posts.toReversed()
 }
@@ -133,6 +93,5 @@ export const logic = {
     loginUser,
     getUserUsername,
     logoutUser,
-    isUserLoggedIn,
     getPosts
 }
