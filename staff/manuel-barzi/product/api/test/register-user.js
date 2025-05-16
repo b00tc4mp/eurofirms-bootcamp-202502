@@ -3,7 +3,7 @@ fetch('http://localhost:8080/users', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: '{"name":"Anna Pan","email":"anna@pan.com","username":"annapan","password":"123123123"}'
+    body: '{"name":"Sole Pan","email":"sole@pan.com","username":"solepan","password":"123123123"}'
 })
     .catch(error => { throw new Error('connection error') })
     .then(response => {
