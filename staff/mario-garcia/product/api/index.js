@@ -1,9 +1,11 @@
 import express from 'express'
 import { logic } from './logic/index.js'
+import cors from 'cors'
 
 const server = express()
 const jsonBodyParser = express.json()
 
+server.use(cors())
 server.get('/hello', (request, responde) => {
 
     responde.send('Hello!😁')
