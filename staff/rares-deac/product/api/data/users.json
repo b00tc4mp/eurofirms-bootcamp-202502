@@ -33,5 +33,26 @@
         "email": "suri@pan.com",
         "username": "suriyatusae",
         "password": "123123123"
+    },
+    {
+        "id": "user-6",
+        "name": "Alejandro Pan",
+        "email": "Alejandro@pan.com",
+        "username": "Alejandropan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "Pepe Pan",
+        "email": "Pepe@pan.com",
+        "username": "Pepepan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-8",
+        "name": "Cefalopodo Pepopapiga",
+        "email": "cefa@pan.com",
+        "username": "cefayatusae",
+        "password": "123123123"
     }
 ]
