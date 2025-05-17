@@ -17,17 +17,19 @@ export const Home = ({ onUserLoggedOut }) => {
 
     //permite cargar algo ej. username; el array vacio en useEffect indica q solo se ejecute al cargar el componente
     useEffect(() => {
-
-        //llamar a la logica, por seguridad siempre llamar a la logica dentro de un try/catch
         try {
-            const userName = logic.getUserUsername()
+            logic.getUserUsername()
+                .then(username => setUsername(username))
+                .catch(error => {
+                    console.error(error)
 
-            setUsername(userName)
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
 
-        } catch(error) {
             alert(error.message)
         }
-
     }, [])
 
     const handleLogoutClick = () => {

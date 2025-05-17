@@ -8,23 +8,27 @@ import { data } from '../data'
 
 //logica para añadir nombre de usuario en la Home
 export const getUserUsername = () => {
-    //traigo los usuarios de la bbdd, en este caso reconvertimos a array el string almacenado en localStorage
-    const users = data.getUsers() 
-
-    let user
-    //buscar usuario en bbdd para traerme el username
-    for(let i = 0; i < users.length; i++) {
-        const _user = users[i]
-
-        //comprueba si el id es el mismo que el id del usuario conectado, q ahora se consigue con el getter
-        if(_user.id === data.getUserId()) {
-            user = _user
-
-            break
+    return fetch('http://localhost:8080/users/self/username', {
+        method: 'GET',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId()
         }
-    }
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    if(user === undefined) throw new Error('user not found')
+            if (status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('json error') })
+                    .then(username => username)
 
-    return user.username
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
+
+                    throw new Error(message)
+                })
+        })
 }

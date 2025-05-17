@@ -1,18 +1,19 @@
 import express, { json } from 'express'
-
 import { logic } from './logic/index.js'
+import cors from 'cors'
 
-const server = express()
-
+const api = express()
 //convierte datos de strings a objetos
 const jsonBodyParser = express.json() 
 
-server.get('/hello', (request, response) => {
+api.use(cors())
+
+api.get('/hello', (request, response) => {
     response.send('Hello! 🥳')
 })
 
 //Ruta para registrar usuario, convertir a json, endpoint o manejador de ruta (funcion con request & response)
-server.post('/users', jsonBodyParser, (request, response) => {
+api.post('/users', jsonBodyParser, (request, response) => {
     try {
         const { name, email, username, password } = request.body
 
@@ -25,7 +26,7 @@ server.post('/users', jsonBodyParser, (request, response) => {
 })
 
 //Ruta para autenticar usuario, convertir a json, manejador de ruta
-server.post('/users/auth', jsonBodyParser, (request, response) => {
+api.post('/users/auth', jsonBodyParser, (request, response) => {
     try {
         const { username, password } = request.body
         const userId = logic.authenticateUser(username, password)
@@ -38,7 +39,7 @@ server.post('/users/auth', jsonBodyParser, (request, response) => {
 })
 
 //Ruta para traer username
-server.get('/users/self/username', (request, response) => {
+api.get('/users/self/username', (request, response) => {
     try {
         //recogemos la cabecera de curl GET en la request. El objeto headers pone todas las cabeceras en un objeto. A traves de la propiedad authorization le decimos quien es el usuario.
         const authorization = request.headers.authorization // Basic user-1
@@ -55,7 +56,7 @@ server.get('/users/self/username', (request, response) => {
 })
 
 //Ruta para crear post
-server.post('/posts', jsonBodyParser, (request, response) => {
+api.post('/posts', jsonBodyParser, (request, response) => {
     try {
         //recuperar el userId de la cabecera enviada a traves de curl
         const authorization = request.headers.authorization //Basic user-x
@@ -74,7 +75,7 @@ server.post('/posts', jsonBodyParser, (request, response) => {
 })
 
 //Ruta para mostrar posts
-server.get('/posts', (request, response) => {
+api.get('/posts', (request, response) => {
     try {
         //cual es el user id para usarlo en getPosts, se hace a traves de headers
         const authorization = request.headers.authorization // Basic user-x
@@ -90,7 +91,7 @@ server.get('/posts', (request, response) => {
 })
 
 //Ruta dinamica para eliminar post con el parametro :postId
-server.delete('/posts/:postId', (request, response) => {
+api.delete('/posts/:postId', (request, response) => {
     try {
         const authorization = request.headers.authorization //Basic user-x
         const userId = authorization.slice(6)
@@ -108,4 +109,4 @@ server.delete('/posts/:postId', (request, response) => {
     }
 })
 
-server.listen(8080, () => console.log('server is up'))
+api.listen(8080, () => console.log('API listening on port 8080'))

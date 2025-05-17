@@ -6,9 +6,7 @@ import { data } from '../data'
  * @param {string} username The user username.
  * @param {string} password The user password.
  */
- 
 export const loginUser = (username, password) => {
-    
     //1. validar datos (ej. asegurarnos que son strings y dentro de longitud requerida)
     if(typeof username !== 'string') throw new Error('Invalid username')
     if(username.length < 3) throw new Error('Invalid min username length')
@@ -18,27 +16,28 @@ export const loginUser = (username, password) => {
     if(password.length < 8) throw new Error('Invalid min password length')
     if(password.length > 20) throw new Error('Invalid max password length')
     
-    //convierte el string almacenado en localStorage en objeto-array y lo guarda en users
-    const users = data.getUsers()
-    
-    //2. ver si el usuario existe en el array users
-    //3. si existe dar paso a Home y si no existe lanzar error
-    let user
+    return fetch('http://localhost:8080/users/auth', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
+            if (status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('json error') })
+                    .then(userId => data.setUserId(userId))
 
-        if(_user.username === username) {
-            user = _user
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, messsage } = body
 
-            break
-        }
-    }
-
-    if(user === undefined) throw new Error('user not found')
-        
-    if(user.password !== password) throw new Error('wrong credentials')
-
-    //le decimos a data.js quién se ha conectado con el setter, y data decide donde se guarda (en sessionStorage en este caso)
-    data.setUserId(user.id)
+                    throw new Error(message)
+                })
+        })
 }

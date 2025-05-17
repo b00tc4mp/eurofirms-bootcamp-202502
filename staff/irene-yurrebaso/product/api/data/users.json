@@ -47,5 +47,19 @@
         "email": "pato@donald.com",
         "username": "patodonald",
         "password": "123123123"
+    },
+    {
+        "id": "user-8",
+        "name": "Popeye",
+        "email": "popeye@mail.com",
+        "username": "popeye",
+        "password": "123123123"
+    },
+    {
+        "id": "user-9",
+        "name": "Snoopy",
+        "email": "snoopy@mail.com",
+        "username": "snoopy",
+        "password": "123123123"
     }
 ]
