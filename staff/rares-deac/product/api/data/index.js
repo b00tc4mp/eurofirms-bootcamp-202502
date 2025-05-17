@@ -1,6 +1,4 @@
-import fs from 'fs' 
-
-
+import fs from 'fs'
 
 export const data = {
     /**
@@ -49,6 +47,55 @@ export const data = {
 
         const usersCount = JSON.parse(json)
 
-        return usersCount 
+        return usersCount
+    },
+
+    /**
+     * Pasa a JSON los posts que recoge de posts y lo guarda en su archivo.
+     * 
+     * @param {Array} posts The array of posts 
+     */
+    setPosts(posts) {
+        const json = JSON.stringify(posts)
+
+        fs.writeFileSync('./data/posts.json', json)
+    },
+
+    /**
+     * Lee los posts que hay en el archivo JSON, los convierte en array y los retorna.
+     * 
+     * @returns {Array} El array de posts.
+     */
+    getPosts() {
+        const json = fs.readFileSync('./data/posts.json', 'utf8')
+
+        const posts = JSON.parse(json)
+
+        return posts
+    },
+
+    /**
+     * Guarda el numero de posts registrados en data.
+     * 
+     * @param {number} postsCount El número de posts insertados en la base de datos. 
+     */
+    setPostsCount(postsCount) {
+        const json = JSON.stringify(postsCount)
+
+        fs.writeFileSync('./data/postsCount.json', json)
+    },
+
+    /** 
+     * Devuelve el número de posts guardados en la base de datos.
+     * 
+     * @returns {number} El número de posts en la base de datos.
+     */
+
+    getPostsCount() {
+        const json = fs.readFileSync('./data/postsCount.json', 'utf8')
+
+        const postsCount = JSON.parse(json)
+
+        return postsCount
     }
 }

@@ -37,7 +37,7 @@ server.post('/users' /* path,route */, jsonBodyParser /* middleware */, (request
 
         logic.registerUser(name, email, username, password)
 
-        response.status(200).send()
+        response.status(201).send()
 
     } catch (error) {
         response.status(500).json({ error: error.constructor.name, message: error.message })
@@ -75,6 +75,36 @@ server.get('/users/self/username', (request, response) => {
         response.status(200).json(username)
     } catch(error) {
         response.status(500),json({error: error.constructor.name, message: error.message})
+    }
+})
+
+server.post('/posts', jsonBodyParser, (request, response) => {
+    try {
+        const authorization = request.headers.authorization // Basic user-1
+
+        const userId = authorization.slice(6)
+
+        const { image, text} = request.body
+        
+        logic.createPost(userId, image, text)        
+
+        response.status(201).send()
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+server.get('/posts', (request, response) => {
+    try {
+        const authorization = request.headers.authorization // Basic user-x
+
+        const userId = authorization.slice(6)
+
+        const posts = logic.getPosts(userId)
+
+        response.status(200).json(posts)
+    } catch(error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
