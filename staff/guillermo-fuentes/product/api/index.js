@@ -1,11 +1,13 @@
 import express from 'express';
 import { logic } from './logic/index.js';
+import cors from 'cors';
 //Convertir en modulo node: node --yes
 //Instalar express npm i express
 
 const server = express();
 //Convierte el json a objeto
 const jsonBodyParser = express.json();
+server.use(cors());
 //Manejador de ruta get hello
 server.get('/hello', (request, response) => {
   response.send('hello');
@@ -30,8 +32,6 @@ server.post('/users', jsonBodyParser, (request, response) => {
   } catch (error) {
     response.status(500).json({ error: error.constructor.name, message: error.message });
   }
-
-  response.send('user received!');
 });
 server.post('/users/auth', jsonBodyParser, (request, response) => {
   try {

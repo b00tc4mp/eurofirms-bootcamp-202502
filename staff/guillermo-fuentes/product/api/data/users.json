@@ -26,5 +26,12 @@
     "email": "pepe@pepe.com",
     "username": "pepe123",
     "password": "12345678"
+  },
+  {
+    "id": "user-24",
+    "name": "Anna Pan",
+    "email": "anna@pan.com",
+    "username": "annapan",
+    "password": "12345678"
   }
 ]
