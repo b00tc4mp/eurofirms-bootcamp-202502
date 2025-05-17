@@ -2,16 +2,16 @@ import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
 
-const server = express()
+const api = express()
 const jsonBodyParser = express.json()
 
-server.use(cors())
+api.use(cors())
 
-server.get('/hello', (request, response) => {
+api.get('/hello', (request, response) => {
     response.send('Hello! 😉')
 })
 
-server.post('/users', jsonBodyParser, (request, response) => {
+api.post('/users', jsonBodyParser, (request, response) => {
     try {
         const { name, email, username, password } = request.body
 
@@ -23,7 +23,7 @@ server.post('/users', jsonBodyParser, (request, response) => {
     }
 })
 
-server.post('/users/auth', jsonBodyParser, (request, response) => {
+api.post('/users/auth', jsonBodyParser, (request, response) => {
     try {
         const { username, password } = request.body
         const userId = logic.authenticateUser(username, password)
@@ -34,7 +34,7 @@ server.post('/users/auth', jsonBodyParser, (request, response) => {
     }
 })
 
-server.get('/users/self/username', (request, response) => {
+api.get('/users/self/username', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -47,7 +47,7 @@ server.get('/users/self/username', (request, response) => {
     }
 })
 
-server.post('/posts', jsonBodyParser, (request, response) => {
+api.post('/posts', jsonBodyParser, (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -62,7 +62,7 @@ server.post('/posts', jsonBodyParser, (request, response) => {
     }
 })
 
-server.get('/posts', (request, response) => {
+api.get('/posts', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -75,7 +75,7 @@ server.get('/posts', (request, response) => {
     }
 })
 
-server.delete('/posts/:postId', (request, response) => {
+api.delete('/posts/:postId', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -91,4 +91,4 @@ server.delete('/posts/:postId', (request, response) => {
     }
 })
 
-server.listen(8080, () => console.log('API listening on port 8080'))
+api.listen(8080, () => console.log('API listening on port 8080'))
