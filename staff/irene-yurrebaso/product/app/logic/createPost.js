@@ -15,30 +15,26 @@ export const createPost = (image, text) => {
     if (typeof text !== 'string') throw new Error('invalid text type')
     if (text.length < 1) throw new Error('invalid min text length')
 
-    //crear el post: un objeto correlativo con lo que hay en la bbdd
-    //traemos una copia del postsCount
-    let postsCount = data.getPostsCount()
+    return fetch('http://localhost:8080/posts', {
+    method: 'POST',
+    headers: {
+        Authorization: 'Basic ' + data.getUserId(),
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ image, text })
+})
+    .catch(error => { throw Error('connection error')})
+    .then(response => {
+        const { status } = response
 
-    postsCount++
+        if (status === 201) return
 
-    //creamos post (lo almacena en memoria)
-    const post = {
-        id: 'post-' + postsCount,
-        author: data.getUserId(),
-        date: new Date().toISOString(),
-        image,
-        text,
-        likes: []
-    }
+        return response.json()
+        .catch(error => { throw new Error('json error') })
+        .then(body => {
+            const { error, message } = body
 
-    //guardamos post en la bbdd
-    //primero, traer array de la bbdd
-    const posts = data.getPosts()
-
-    //despues, insertar post nuevo
-    posts.push(post)
-
-    //finalmente, guardar post y contador en JSON en la bbdd
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
+            throw new Error(message)
+        })
+    })
 }

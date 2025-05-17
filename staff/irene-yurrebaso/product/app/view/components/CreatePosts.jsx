@@ -19,13 +19,20 @@ export const CreatePost = ({ onCancelClicked, onPostCreated}) => {
         //llevamos los datos a la interfaz, con una lógica que cree el post
         try {
             logic.createPost(image, text)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                //avisa a la Home que ya se ha creado un post
+                onPostCreated()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            //avisa a la Home que ya se ha creado un post
-            onPostCreated()
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
             
-        } catch(error) {
             alert(error.message)
         }
     }

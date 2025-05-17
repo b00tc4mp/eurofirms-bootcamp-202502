@@ -14,5 +14,37 @@
         "text": "how I tolerate life",
         "date": "2025-05-14T11:22:58.409Z",
         "likes": []
+    },
+    {
+        "id": "post-5",
+        "author": "user-2",
+        "image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif",
+        "text": "pin8 dancing",
+        "date": "2025-05-17T15:25:53.937Z",
+        "likes": []
+    },
+    {
+        "id": "post-6",
+        "author": "user-2",
+        "image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExamlibnF5djk4bGc3YXZ0M2tkMmJ6bGt3ZHZoeWg4eHIyM3p4NXh0aCZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/F4v3txFTUplfKQvbGT/giphy.gif",
+        "text": "Happy Saturday",
+        "date": "2025-05-17T15:38:31.756Z",
+        "likes": []
+    },
+    {
+        "id": "post-7",
+        "author": "user-2",
+        "image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExamlibnF5djk4bGc3YXZ0M2tkMmJ6bGt3ZHZoeWg4eHIyM3p4NXh0aCZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/F4v3txFTUplfKQvbGT/giphy.gif",
+        "text": "Happy Saturday",
+        "date": "2025-05-17T15:39:50.451Z",
+        "likes": []
+    },
+    {
+        "id": "post-8",
+        "author": "user-2",
+        "image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExamlibnF5djk4bGc3YXZ0M2tkMmJ6bGt3ZHZoeWg4eHIyM3p4NXh0aCZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/F4v3txFTUplfKQvbGT/giphy.gif",
+        "text": "Happy Saturday",
+        "date": "2025-05-17T15:41:42.160Z",
+        "likes": []
     }
 ]
