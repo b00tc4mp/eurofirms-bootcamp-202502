@@ -13,10 +13,16 @@ export const Home = ({ onUserLoggedOut }) => {
     useEffect(() => {
         try{
             const username = logic.getUserUsername()
+                .then(username => setUsername(username))
+                .catch(error => {
+                    console.error(error)
 
-            setUsername(username)
+                    alert(error.message)
+                })
 
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }, [])

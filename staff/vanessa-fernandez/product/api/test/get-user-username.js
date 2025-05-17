@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/users/self/username', {
     method: 'GET',
     headers: {
-        'Authorization': 'Basic-user-3'
+        Authorization: 'Basic-user-3'
     },
 })
     .catch(error => { throw new Error ('Connection error')})
@@ -21,5 +21,5 @@ fetch('http://localhost:8080/users/self/username', {
                 throw new Error(message)
             })   
     })
-    .then(username => console.log('username: ', username))
+    .then(username => console.log('username gotten: ', username))
     .catch(error => console.error(error))

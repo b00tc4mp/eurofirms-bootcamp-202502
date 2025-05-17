@@ -8,22 +8,28 @@ import { data } from '../data'
 
 
 export const getUserUsername = () => {
-    const users = data.getUsers()
+   return fetch('http://localhost:8080/users/self/username', {
+    method: 'GET',
+    headers: {
+        Authorization: 'Basic' + data.getUserId()
+    },
+   })
+    .catch(error => { throw new Error('Connection error')})
+    .then(response => {
+        const { status } = response
 
-    let user
+        if(status === 200)
+            return response.json()
+                .catch(error => { throw new Error('json error')})
+                .then(username => username)
 
-    for(let i = 0; i < users.length; i++) {
-        const _user = users[i]
+        return response.json()
+            .catch(error => { throw new Error ('json error')})
+            .then(body => {
+                const { error, message } = body
 
-        if (_user.id === data.getUserId() ) { //añadimos getUserId para traer el userId de forma correcta ahora con la new version
-            user = _user
-
-            break
-        }
-    }
-
-    if (user === undefined) throw new Error('User not found.')
-
-    return user.username
-
+                throw new Error(message)
+            })        
+    })
 }
+    

@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/posts/post-4', {
     method: 'DELETE',
     headers: {
-        'Authorization': 'Basic user-1'
+        Authorization: 'Basic user-1'
     }
 })
     .catch(error => { throw new Error('Connection error')})

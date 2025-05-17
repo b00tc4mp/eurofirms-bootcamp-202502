@@ -17,9 +17,17 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         try {
             logic.loginUser(username, password)
 
-            form.reset()
+            .then(() => {
+                form.reset()
 
-            onUserLoggedIn()
+                onUserLoggedIn()
+            })
+            .catch(error => {
+                console.error(error)
+
+                alert(error.message)
+            })
+    
         } catch (error) {
             alert(error.message)
         }
