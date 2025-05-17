@@ -68,5 +68,19 @@
         "email": "vane@mail.com",
         "username": "vane",
         "password": "123123123"
+    },
+    {
+        "id": "user-11",
+        "name": "Noe",
+        "email": "noe@mail.com",
+        "username": "noe",
+        "password": "123123123"
+    },
+    {
+        "id": "user-12",
+        "name": "Mario",
+        "email": "mario@mail.com",
+        "username": "mario",
+        "password": "123123123"
     }
 ]
