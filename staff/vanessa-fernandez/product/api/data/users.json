@@ -33,5 +33,26 @@
         "email": "george@weasly.com",
         "username": "georgeweasly",
         "password": "789789789"
+    },
+    {
+        "id": "user-6",
+        "name": "Albus Dumbeldor",
+        "email": "albus@dumbeldor.com",
+        "username": "albus",
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "Cedric Digory",
+        "email": "cedric@digory.com",
+        "username": "cedric",
+        "password": "123123123"
+    },
+    {
+        "id": "user-8",
+        "name": "Ginny Weasley",
+        "email": "ginny@weasley",
+        "username": "ginnyw",
+        "password": "456456456"
     }
 ]

@@ -19,10 +19,18 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         try {
             logic.registerUser(name, email, username, password)
 
-            form.reset()
+            .then (() => {
+                form.reset()
 
-            onUserRegistered()
+                onUserRegistered()
+            })
+            .catch(error => {
+                console.error(error)
+                alert(error.message)
+            })
+            
         } catch (error) {
+            console.error(error)
             alert(error.message)
         }
     }
