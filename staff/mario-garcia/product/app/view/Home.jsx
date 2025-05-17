@@ -17,16 +17,19 @@ export const Home = ({ onUserLoggedOut }) => {
     useEffect(() => {
 
         try {
+            logic.getUserUsername()
+                .then(username => setUsername(username))
+                .catch(error => {
+                    console.error(error)
 
-            const username = logic.getUserUsername()
-
-            setUsername(username)
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }, [])
-
-
 
     const handleLogoutClick = () => {
 

@@ -2,17 +2,17 @@ import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
 
-const server = express()
+const api = express()
 const jsonBodyParser = express.json()
 
-server.use(cors())
-server.get('/hello', (request, responde) => {
+api.use(cors())
+api.get('/hello', (request, responde) => {
 
     responde.send('Hello!😁')
 
 })
 
-server.post('/users', jsonBodyParser, (request, responde) => {
+api.post('/users', jsonBodyParser, (request, responde) => {
 
     try {
         const { name, email, username, password } = request.body
@@ -28,7 +28,7 @@ server.post('/users', jsonBodyParser, (request, responde) => {
     }
 })
 
-server.post('/users/auth', jsonBodyParser, (request, responde) => {
+api.post('/users/auth', jsonBodyParser, (request, responde) => {
 
     try {
 
@@ -44,7 +44,7 @@ server.post('/users/auth', jsonBodyParser, (request, responde) => {
     }
 })
 
-server.get('/users/self/username', (request, response) => {
+api.get('/users/self/username', (request, response) => {
 
     try {
 
@@ -61,7 +61,7 @@ server.get('/users/self/username', (request, response) => {
     }
 })
 
-server.post('/posts', jsonBodyParser, (request, response) => {
+api.post('/posts', jsonBodyParser, (request, response) => {
 
     try {
 
@@ -80,7 +80,7 @@ server.post('/posts', jsonBodyParser, (request, response) => {
     }
 })
 
-server.get('/posts', (request, response) => {
+api.get('/posts', (request, response) => {
 
     try {
 
@@ -97,7 +97,7 @@ server.get('/posts', (request, response) => {
     }
 })
 
-server.delete('/posts/:postId', (request, response) => {
+api.delete('/posts/:postId', (request, response) => {
 
     try {
 
@@ -118,4 +118,4 @@ server.delete('/posts/:postId', (request, response) => {
     }
 })
 
-server.listen(8080, () => console.log('server is up'))
+api.listen(8080, () => console.log('API listening on port 8080'))

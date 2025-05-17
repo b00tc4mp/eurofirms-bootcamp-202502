@@ -18,29 +18,28 @@ export const loginUser = (username, password) => {
     if (password.length < 8) throw new Error('Invalid password min. length')
     if (password.length > 20) throw new Error('Invalid password max. length')
 
-    const users = data.getUsers()
+    return fetch('http://localhost:8080/users/auth', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    let user
+            if (status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('josn error') })
+                    .then(userId => data.setUserId(userId))
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-        //Lo siguiente VERIFICA si el username que estoy INCLUYENDO está en mi BB.DD.
-
-        if (_user.username === username) {
-
-            user = _user //Si el username esta en mi BB.DD. le doy valor a mi "let user" y YA =/= undefined
-
-            //Lo de arriba VERIFICA si el username que estoy INCLUYENDO está en mi BB.DD.
-
-            break
-        }
-    }
-
-    if (user === undefined) throw new Error('user not found')
-
-    if (user.password !== password) throw new Error('Invalid credentials')
-
-
-    data.setUserId(user.id)
+                    throw new Error(message)
+                })
+        })
 }
