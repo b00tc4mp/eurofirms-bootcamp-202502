@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export const data = { 
+export const data = {
     /**
      * Saves users in database (json file).
      * 
@@ -73,6 +73,7 @@ export const data = {
 
         return posts 
     },
+
     /**
      * Saves posts count in database (json file).
      * 
@@ -83,6 +84,7 @@ export const data = {
 
         fs.writeFileSync('./data/postsCount.json', json)
     },
+    
     /**
      * Loads posts count from database (json file).
      * 
