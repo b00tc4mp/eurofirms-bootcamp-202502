@@ -7,7 +7,7 @@ let usersCount = 0
 
 usersCount++
 
-users.push({
+users.push({ 
     id: 'user-' + usersCount,
     name: 'Wendy Darling',
     email: 'wendy@darling.com',

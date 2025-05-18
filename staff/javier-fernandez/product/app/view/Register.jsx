@@ -7,7 +7,7 @@ export const Register = (props) => {
     const handleLoginClick = () => onLoginClicked()
 
     const handleRegisterSubmit = event => { 
-        event.preventDefault()
+        event.preventDefault() 
 
         const form = event.target
 
@@ -17,13 +17,21 @@ export const Register = (props) => {
         const password = form.password.value 
 
         try {
-            logic.registerUser(name, email, username, password)
+           logic.registerUser(name, email, username, password)
+            .then(() => {
+                form.reset()
 
-            form.reset()
+                onUserRegistered()
+            })
+            .catch(error => {
+                console.error(error)
 
-            onUserRegistered()
+                alert(error.message)
+            })
         } catch (error) {
-            alert(error.message) 
+            console.error(error)
+
+            alert(error.message)
         }
         
     }
