@@ -17,14 +17,21 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
         const text = form.text.value
 
         try {
-
             logic.createPost(image, text)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onPostCreated()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            onPostCreated()
-
+                    alert(error.message)
+                })
         } catch (error) {
+
+            console.error(error)
+
             alert(error.message)
         }
     }

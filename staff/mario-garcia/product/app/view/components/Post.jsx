@@ -7,14 +7,18 @@ export const Post = ({ post, onPostDeleted }) => {
             try {
                 logic.removePost(post.id)
 
-                onPostDeleted()
+                    .then(() => onPostDeleted())
+                    .catch(error => {
+                        console.error(error)
+
+                        alert(error.message)
+                    })
             } catch (error) {
+                console.error(error)
+
                 alert(error.message)
             }
     }
-
-    //*key={post.id}
-    //
 
     return <article className="w-100 mb-10">
 

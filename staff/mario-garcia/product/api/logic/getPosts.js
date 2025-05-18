@@ -1,7 +1,10 @@
 import { data } from '../data/index.js'
 /**
+ * DEVUELVE los Posts de la BB.DD.
  * 
+ * @param {string} userId Solicitamos el User id.
  * 
+ * @returns {array} Los posts desde la BB.DD.
  */
 
 export const getPosts = userId => {
@@ -23,7 +26,7 @@ export const getPosts = userId => {
 
     posts.forEach(post => {
 
-        const authorId = post.authorId
+        const authorId = post.author
 
         const user = users.find(user => user.id === authorId)
 

@@ -17,25 +17,26 @@ export const createPost = (image, text) => {
 
     if (text.length < 1) throw new Error('Text length is NOT enough')
 
-    let postsCount = data.getPostsCount()
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image, text })
+    })
+        .catch(error => { throw Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    postsCount++
+            if (status === 201) return
 
-    const post = {
+            return response.json()
+                .catch(error => { throw new Error('json') })
+                .then(body => {
+                    const { error, message } = body
 
-        id: 'post-' + postsCount,
-        author: data.getUserId(),
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
-
-    const posts = data.getPosts()
-
-    posts.push(post)
-
-    data.setPosts(posts)
-
-    data.setPostsCount(postsCount)
+                    throw new Error(message)
+                })
+        })
 } 
