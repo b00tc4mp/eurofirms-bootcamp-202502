@@ -11,16 +11,26 @@ export const removePost = postId => {
     if (typeof postId !== 'string') throw new Error ('invalid postId typ')
     if (postId.length < 6) throw new Error ('invalid postId length')
 
-    //me traigo la bbdd de posts
-    const posts = data.getPosts()
+    //recibo el post por parametro
+    return fetch('http://localhost:8080/posts/' + postId, {
+    method: 'DELETE',
+    headers: {
+        //traemos el userId de sessionStorage en data
+        Authorization: 'Basic ' + data.getUserId()
+    }
+})
+    .catch(error => { throw new Error('connection error') })
+    .then(response => {
+        const { status } = response
 
-    //devuelve el indice que ocupa en el array. Comprueba cual de los posts tiene el id igual que el postId del parametro
-    const index = posts.findIndex(post => post.id === postId)
+        if (status === 204) return
 
-    if (index < 0) throw new Error('post not found')
+        return response.json()
+            .catch(error => { throw new Error('json error')})
+            .then(body => {
+                const { error, message} = body
 
-    //en un array permite eliminar el objeto en el indice especificado
-    posts.splice(index, 1)
-
-    data.setPosts(posts)
+                throw new Error(message)
+            })
+    })
 }

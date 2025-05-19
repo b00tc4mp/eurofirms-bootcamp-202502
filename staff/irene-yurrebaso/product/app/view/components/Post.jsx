@@ -2,17 +2,22 @@ import { logic } from '../../logic'
 
 //pasamos las prop con destructuring
 export const Post = ({ post, onPostDeleted}) => {
-    
     const handleDeleteClick = () => {
         if (confirm('Delete post?'))
             try {
                 logic.removePost(post.id)
+                    //si todo va bien pedir a Home que se refresque cuando hemos eliminado un post
+                    .then(() => onPostDeleted())
+                    .catch(error => {
+                        console.error(error)
 
-                //pedir a Home que se refresque cuando hemos eliminado un post
-                onPostDeleted()
+                        alert(error.message)
+                    } )
             } catch(error) {
+                console.error(error)
+
                 alert(error.message)
-        }
+            }
     }
 
     return <article className= "mb-5">

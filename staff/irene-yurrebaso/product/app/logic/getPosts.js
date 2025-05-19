@@ -11,29 +11,28 @@ import { data } from '../data'
 * date: Date
 *}]} The posts from users in the system. 
 */
-
-//devuelve una copia de los posts que hay en bbdd, en un array por fecha invertida (mas nuevos primero)
 export const getPosts = () => {
-    const posts = data.getPosts().toReversed()
-
-    //mostrar el username como autor del post publicado, en vez del user id
-    const users = data.getUsers()
-    //traigo userId para saber quien esta conectado y despues identificar si es autor del post
-    const userId = data.getUserId()
-
-    posts.forEach(post => {
-        const authorId = post.author
-
-        //devuelve el usuario que da true a la condicion
-        const user = users.find(user => user.id === authorId)
-
-        const username = user.username
-
-        post.author = username
-
-        //saber si userId conectado es el autor del post 
-        post.own = authorId === userId
+    return fetch('http://localhost:8080/posts', {
+    method: 'GET',
+    headers: {
+        Authorization: 'Basic ' + data.getUserId()
+        }
     })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    return posts
+            if (status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('json error') })
+                    .then(posts => posts)
+
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
+
+                    throw new Error(message)
+                })
+        })
 }

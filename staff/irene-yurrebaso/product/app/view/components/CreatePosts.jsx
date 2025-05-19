@@ -16,9 +16,10 @@ export const CreatePost = ({ onCancelClicked, onPostCreated}) => {
         const image = form.image.value //utilizamos el id del input
         const text = form.text.value
 
-        //llevamos los datos a la interfaz, con una lógica que cree el post
+        //llevamos los datos a la interfaz, con una lógica que cree el post. try/catch para errores síncronos
         try {
             logic.createPost(image, text)
+                //then/catch para errores asíncronos
                 .then(() => {
                     form.reset()
 
@@ -26,8 +27,10 @@ export const CreatePost = ({ onCancelClicked, onPostCreated}) => {
                 onPostCreated()
                 })
                 .catch(error => {
+                    //error para en consola para el developer
                     console.error(error)
 
+                    //mensaje error para el usuario
                     alert(error.message)
                 })
         } catch (error) {

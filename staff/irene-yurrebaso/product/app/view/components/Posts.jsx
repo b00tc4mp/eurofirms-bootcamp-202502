@@ -11,12 +11,23 @@ export const Posts = () => {
     //cuando cargue el componente Home se dispara useEffect, se cargan los datos o posts
     useEffect(() => {
         try {
-            const posts = logic.getPosts()
-
-            //cuando guardamos en un useState se repinta el componente, con lo que el array useState([]) deja de estar vacio.
-            setPosts(posts)
-            
+            logic.getPosts()
+                //los posts ahora vienen de la api por lo que hay que hacer un then/catch
+                .then(posts => {
+                    //cuando recibamos los posts, los guardamos en State
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    //para el developer
+                    console.error(error)
+                    //para el usuario final
+                    alert(error.message)
+                })
         } catch (error) {
+            //para el developer
+            console.error(error)
+            
+            //para el usuario final
             alert(error.message)
         }
     }, [])
@@ -25,11 +36,19 @@ export const Posts = () => {
     const handlePostDeleted = () => {
         try {
             //trae un post menos
-            const posts = logic.getPosts()
+            logic.getPosts()
+                .then(posts => {
+                    //se vuelve a guardar en bbdd
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    console.error(error)
 
-            //se vuelve a guardar en bbdd localStorage
-            setPosts(posts)
+                    alert(error.message)
+                })
         } catch(error) {
+            console.error(error)
+
             alert(error.message)
         }
     }
