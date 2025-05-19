@@ -1,14 +1,17 @@
 import express from 'express'
 import { logic } from './logic/index.js' 
+import cors from 'cors'
 
 const server = express()
 const jsonBodyParser = express.json()
 
-server.get('/hello', (request, response) => {
+api.use(cors())
+
+api.get('/hello', (request, response) => {
     response.send('Hello! 😉')
 })
 
-server.get('/users', jsonBodyParser, (request, response) => {
+api.post('/users', jsonBodyParser, (request, response) => {
     try {
         const { name, email, username, password } = request.body
 
@@ -20,12 +23,10 @@ server.get('/users', jsonBodyParser, (request, response) => {
     }   
 })
 
-server.get('/users/self/username', (request, response) => {
+api.post('/users/auth', (request, response) => {
     try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
-
-        const username = logic.getUserUsername(userId)
+        const { username, password } = request.body
+        const userId = logic.authenticateUser(username, password)
 
         response.status(200).json(username) 
     } catch (error) {
@@ -33,12 +34,27 @@ server.get('/users/self/username', (request, response) => {
     }
 })
 
-server.post('/post', jsonBodyParser, (request, response) => {
+api.get('/users/self/username',(request, response) => {
+    try{
+        const authorization = request.headers.authorization // Basic user-x
+        const userId = authorization.slice(6)
+
+        const username = logic.getUserUsername(userId)
+
+        response.status(200).json(username)
+    } catch (error) {
+        response.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+}) 
+
+api.post('/posts', jsonBodyParser, (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
 
-        logic.createPost(userId, Image, text)
+        const { image, text } = request.body
+        
+        logic.createPost(userId, image, text)
 
         response.status(201).send()
     } catch (error) {
@@ -46,20 +62,20 @@ server.post('/post', jsonBodyParser, (request, response) => {
     }
 })
 
-server.get('/posts', (request, response) => {
+api.get('/posts', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
 
-        const post = logic.getPosts(userId)
+       const posts = logic.getPosts(userId)
 
-        resònse.status(200).json(posts)
+        response.status(200).json(posts)
     } catch (error) {
         response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 
-server.delete('/posts/:postId', (request, response) => {
+api.delete('/posts/:postId', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -76,4 +92,4 @@ server.delete('/posts/:postId', (request, response) => {
 })
 
 
-server.listen(8080, () => console.log('server is up'))
+api.listen(8080, () => console.log('API listening on port 8080'))
