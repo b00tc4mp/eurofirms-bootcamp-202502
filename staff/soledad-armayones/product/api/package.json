@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "0 .0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "expres": "^0.0.5",
+    "express": "^5.1.0"
+  }
+}
