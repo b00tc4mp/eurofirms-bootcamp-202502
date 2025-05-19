@@ -2,17 +2,17 @@ import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
 
-const server = express()
+const api = express()
 const jsonBodyParser = express.json()
 
-server.use(cors())
+api.use(cors())
 
-server.get('/hello', (request, response) => {
+api.get('/hello', (request, response) => {
     response.send('Hello! 😉')
 })
 
 /*
-server.get('/color', (request, response) => {
+api.get('/color', (request, response) => {
     const q = request.query.q
 
     let code
@@ -34,7 +34,7 @@ server.get('/color', (request, response) => {
 A través de jsonBodyParser hay una petición del cliente , parametro request y una respuesta del servidor, parametro response. user contiene el body de la peticion del cliente y el parametro response utiliza send para decirle al cliente que ha recibido el mensaje.
  */
 
-server.post('/users' /* path,route */, jsonBodyParser /* middleware */, (request, response) => {
+api.post('/users' /* path,route */, jsonBodyParser /* middleware */, (request, response) => {
     try {
         const { name, email, username, password } = request.body
 
@@ -47,7 +47,7 @@ server.post('/users' /* path,route */, jsonBodyParser /* middleware */, (request
     }
 } /* endpoint */)
 
-server.post('/users/auth', jsonBodyParser, (request, response) => {
+api.post('/users/auth', jsonBodyParser, (request, response) => {
     try {
         const { username, password} = request.body
 
@@ -63,7 +63,7 @@ server.post('/users/auth', jsonBodyParser, (request, response) => {
  * Pide a la Api el id de usuario de la base de users, a través de autenticarse a traves de authorization y se devuelve en formato json el username 
  */
 
-server.get('/users/self/username', (request, response) => {
+api.get('/users/self/username', (request, response) => {
     try {
         /**
          * Recupera la cabecera de la autorizacion con el metodo slice y recupera el id de usuario
@@ -80,7 +80,7 @@ server.get('/users/self/username', (request, response) => {
     }
 })
 
-server.post('/posts', jsonBodyParser, (request, response) => {
+api.post('/posts', jsonBodyParser, (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-1
         const userId = authorization.slice(6)
@@ -95,7 +95,7 @@ server.post('/posts', jsonBodyParser, (request, response) => {
     }
 })
 
-server.get('/posts', (request, response) => {
+api.get('/posts', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -108,7 +108,7 @@ server.get('/posts', (request, response) => {
     }
 })
 
-server.delete('/posts/:postId', (request, response) => {
+api.delete('/posts/:postId', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -125,4 +125,4 @@ server.delete('/posts/:postId', (request, response) => {
     }
 })
 
-server.listen(8080, () => console.log('API listening on port 8080'))
+api.listen(8080, () => console.log('API listening on port 8080'))

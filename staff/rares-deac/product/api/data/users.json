@@ -54,5 +54,12 @@
         "email": "cefa@pan.com",
         "username": "cefayatusae",
         "password": "123123123"
+    },
+    {
+        "id": "user-9",
+        "name": "Rares",
+        "email": "rares@pepe.com",
+        "username": "raresd",
+        "password": "123123123"
     }
 ]
