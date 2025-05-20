@@ -17,17 +17,7 @@ export const authenticateUser = (username, password) => {
 
     const users = data.getUsers()
 
-    let user
-
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
-
-        if (_user.username === username) {
-            user = _user
-
-            break
-        }
-    }
+    const user = users.find(user => user.username === username)
 
     if (user === undefined) throw new Error('user not found')
 
