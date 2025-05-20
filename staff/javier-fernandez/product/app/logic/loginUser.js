@@ -15,23 +15,28 @@ export const loginUser = (username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    const users = data.getUsers()
+ return fetch('http://localhost:8080/posts', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'applocation/json'
+    },
+    body: JSON.stringify({ username, password })
+ })  
+    .catch(error => { throw new Error('connection error') })
+    .then(response => {
+        const { status } = response
 
-    let user
+        if (status === 200)
+            return response.json()
+                .catch(error => {throw new Error('json error') })
+                .then(userId => data.setUserId(userId))
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
+        return response.json()
+            .catch(error => { throw new Error('json error') })
+            .then(body => {
+                const { error, message } = body
 
-        if (_user.username === username) {
-            user = _user
-            
-            break
-        }
-    }
-
-    if (user === undefined) throw new Error('user not found')
-        
-    if (user.password !== password) throw new Error('wrong credentials')
-
-        data.setUserId(user.id)
+                throw new Error(message)
+            })
+    })
 }
