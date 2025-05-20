@@ -6,15 +6,11 @@ import { data } from '../data'
  * @param {string} password The user password.
  */
 
-// function loginUser(username,password)
-// const loginUser = function (username, password){}
-export function loginUser(username, password) {
-    if (!username) throw new Error('You must fill the username  field.')
+export const loginUser = (username, password) => {
     if (typeof username !== 'string') throw new Error('Invalid type of username.')
     if (username.length < 3) throw new Error('Invalid username min length.')
     if (username.length > 20) throw new Error('Invalid username max length.')
 
-    if (!password) throw new Error('You must fill the password field.')
     if (typeof password !== 'string') throw new Error('Invalid type of password.')
     if (password.length < 8) throw new Error('Invalid password min lenght.')
     if (password.length > 20) throw new Error('Invalid password max length.')
@@ -43,5 +39,4 @@ export function loginUser(username, password) {
                     throw new Error(message)
                 })        
         })
-
 }

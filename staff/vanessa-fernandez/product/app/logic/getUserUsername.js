@@ -11,8 +11,8 @@ export const getUserUsername = () => {
    return fetch('http://localhost:8080/users/self/username', {
     method: 'GET',
     headers: {
-        Authorization: 'Basic' + data.getUserId()
-    },
+        Authorization: 'Basic ' + data.getUserId()
+    }
    })
     .catch(error => { throw new Error('Connection error')})
     .then(response => {

@@ -7,11 +7,18 @@ export const Posts = () => {
 
     useEffect(() => {
         try {
-            const posts = logic.getPosts()
+            logic.getPosts()
+                .then(posts => {
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    console.error(error)
 
-            setPosts(posts)
-
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
 

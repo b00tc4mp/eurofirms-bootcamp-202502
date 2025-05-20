@@ -19,24 +19,27 @@ export const createPost = (image, text) => {
     if(!image.startsWith('http')) throw new Error('Invalid image format.')    
     if (!image) throw new Error('You must provide an image.')
 
-    let postsCount = data.getPostsCount()
-    
-    postsCount++
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify ({ image, text })
+    })
+        .catch(error => { throw new Error ('Connection error')})
+        .then(response => {
+            const { status } = response
 
-    const post = {
-        id:'post-' + postsCount,
-        author: data.getUserId(),
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes:[]
-    }
+            if(status === 201) return
 
-    const posts = data.getPosts()
+            return response.json()
+                .catch(error => { throw new Error('json error')})
+                .then(body => {
+                    const { error, message } = body
 
-    posts.push(post)
-
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
+                    throw new Error(message)
+                })
+        })
     
 }

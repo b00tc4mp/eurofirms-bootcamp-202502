@@ -11,8 +11,8 @@ export const Home = ({ onUserLoggedOut }) => {
     const [username,setUsername] = useState('World')
 
     useEffect(() => {
-        try{
-            const username = logic.getUserUsername()
+        try {
+            logic.getUserUsername()
                 .then(username => setUsername(username))
                 .catch(error => {
                     console.error(error)

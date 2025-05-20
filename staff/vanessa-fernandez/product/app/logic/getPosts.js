@@ -15,23 +15,28 @@ import { data } from '../data'
 
 export const getPosts = () => {
 
-    const posts = data.getPosts().toReversed()
-    const users = data.getUsers()
-    const userId = data.getUserId()
-
-    posts.forEach(post => {
-        const authorId = post.author
-
-        const user = users.find(user => user.id === authorId)
-
-        const username = user.username
-
-        post.author = username
-
-        post.own = authorId === userId
-
+   return fetch('http://localhost:8080/posts', {
+        method: 'GET',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId()
+        },
     })
+        .catch(error => { throw new Error ('Connection error')})
+        .then(response => {
+            const { status } = response
 
-    return posts
+            if(status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('json error')})
+                    .then(posts => posts)
+
+            return response.json()
+                .catch(error => { throw new Error('json error')})
+                .then(body => {
+                    const { error, message } = body
+
+                    throw new Error(message)
+                })        
+        })
 
 }
