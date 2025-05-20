@@ -61,5 +61,19 @@
         "email": "rares@pepe.com",
         "username": "raresd",
         "password": "123123123"
+    },
+    {
+        "id": "user-10",
+        "name": "Sole",
+        "email": "sole@gmail.com",
+        "username": "sole",
+        "password": "123123123"
+    },
+    {
+        "id": "user-11",
+        "name": "olimpia",
+        "email": "oli@gmail.com",
+        "username": "olideac",
+        "password": "123123123"
     }
 ]

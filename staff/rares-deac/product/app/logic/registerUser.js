@@ -21,14 +21,14 @@ export const registerUser = (name, email, username, password) => {
     //Campo Email
 
     if (typeof email !== "string") throw new Error("invalid email type");
-    if (email.length < 1) throw new Error("invalid email min length");
+    if (email.length < 6) throw new Error("invalid email min length");
     if (email.length > 30) throw new Error("invalid email max length");
 
     // Campo Username
 
     if (typeof username !== "string") throw new Error("invalid username type");
-    if (username.length < 1) throw new Error("invalid username min length");
-    if (username.length > 30) throw new Error("invalid username max length");
+    if (username.length < 3) throw new Error("invalid username min length");
+    if (username.length > 20) throw new Error("invalid username max length");
 
     //Campo password
 
