@@ -1,0 +1,1 @@
+curl -X POST -H 'Authorization:Basic user-1' -H 'Content-Type: application/json' -d '{"image":"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzZwOWI1MnNmbmk1cGxhNzVzNml2eDJmYWk1eDkxZjYyODFpMTdsZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6rQAkBvurR6CI/giphy.gif","text":"photo bella"}' http://localhost:8080/posts -v
