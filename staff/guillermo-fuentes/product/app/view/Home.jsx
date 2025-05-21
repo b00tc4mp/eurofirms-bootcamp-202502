@@ -2,9 +2,8 @@ import { logic } from '../logic';
 import { useEffect, useState } from 'react';
 import { Posts } from './components/Posts';
 import { CreatePost } from './components/CreatePost';
-import { EditPost } from './components/EditPost';
-import { data } from '../data';
-export const Home = ({ onLogout }) => {
+
+export const Home = ({ onUserLoggedOut }) => {
   const [username, setUsername] = useState('world');
 
   const [view, setView] = useState('posts');
@@ -19,13 +18,21 @@ export const Home = ({ onLogout }) => {
 
   const handlePostCreated = () => setView('posts');
 
-  const handleLogoutClick = () => onLogout();
+  const handleLogoutClick = () => onUserLoggedOut();
 
   useEffect(() => {
     try {
-      const username = logic.getUserUsername();
-      setUsername(username);
+      logic
+        .getUserUsername()
+        .then((username) => {
+          setUsername(username);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error);
+        });
     } catch (error) {
+      console.error(error);
       alert(error.message);
     }
   }, []);

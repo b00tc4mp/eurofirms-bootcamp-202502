@@ -18,9 +18,26 @@ export const Register = ({ onRegisteredUser, onLoginClick }) => {
     const username = form.username.value;
     const password = form.password.value;
     try {
-      logic.registerUser(name, email, username, password);
-      form.reset();
-      onRegisteredUser();
+      /*Ahora que nos conectamos a nuestro servidor la logica que hay en
+      logic el archivo registeruser  este metodo es asincrono por lo tanto
+      retorna una promesa que es como maneja javascript las promesas.
+      En el metodo register dentro de logic no retornamos si hay ido bien o no
+      lo retornamos aqui cuando se finalice de ejecutar la cadena de promesas del
+      fetch el motivo por el cual es una cadena de promesas es porque manejamos
+      distintos casos de error, para mas facil seria equivalente a async/await en c#
+      */
+      logic
+        .registerUser(name, email, username, password)
+        .then(() => {
+          form.reset();
+          onRegisteredUser();
+        })
+        //en este catch entra cuando hay algun error con el servidor
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
+      //En este catch entra cuando hay un error de validacion
     } catch (error) {
       alert(error.message);
     }

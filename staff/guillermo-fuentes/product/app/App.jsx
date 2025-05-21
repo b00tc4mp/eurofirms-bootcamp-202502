@@ -30,7 +30,7 @@ export const App = () => {
       {view === 'landing' && <Landing onRegisterClick={handleRegisterClick} onLoginClick={handleLoginClick} />}
       {view === 'register' && <Register onLoginClick={handleLoginClick} onRegisteredUser={handleUserRegistered} />}
       {view === 'login' && <Login onRegisterClick={handleRegisterClick} onLoginUser={handleLoginUser} />}
-      {view === 'home' && <Home onUserLogout={handleLogout} />}
+      {view === 'home' && <Home onUserLoggedOut={handleLogout} />}
       {/* <Router>
       
         <Routes>

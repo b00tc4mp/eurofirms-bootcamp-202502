@@ -7,10 +7,18 @@ export const Post = ({ post, onPostDeleted, onPostEdited }) => {
   const handleDeleteClick = () => {
     if (confirm('Delete post?'))
       try {
-        logic.deletePost(post.id);
-
-        onPostDeleted();
+        logic
+          .deletePost(post.id)
+          .then(() => {
+            console.log('post deleted');
+            onPostDeleted();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error.message);
+          });
       } catch (error) {
+        console.error(error);
         alert(error.message);
       }
   };

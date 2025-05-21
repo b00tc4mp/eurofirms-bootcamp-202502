@@ -12,21 +12,38 @@ export const Posts = () => {
 
   useEffect(() => {
     try {
-      const posts = logic.getPosts();
-      setPosts(posts);
+      logic
+        .getPosts()
+        .then((posts) => {
+          console.log('posts obtenidos');
+          setPosts(posts);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
+
       console.log('useEffect');
       console.log(posts);
     } catch (error) {
+      console.error(error);
       alert(error.message);
     }
   }, []);
 
   const handlePostDeleted = () => {
     try {
-      const posts = logic.getPosts();
-
-      setPosts(posts);
+      logic
+        .getPosts()
+        .then((posts) => {
+          setPosts(posts);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
     } catch (error) {
+      console.log(error);
       alert(error.message);
     }
   };

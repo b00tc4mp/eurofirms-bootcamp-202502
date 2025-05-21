@@ -10,23 +10,29 @@ export const createPost = (image, text) => {
   if (!image.startsWith('http')) throw new Error('Invalid image format');
   if (typeof text !== 'string') throw new Error('invalid text type');
   if (text.length < 1) throw new Error('Invalid text lenght');
-  let postsCount = data.getPostCount();
-
-  postsCount++;
-
-  const post = {
-    id: 'post-' + postsCount,
-    author: data.getUserId(),
-    image,
-    text,
-    date: new Date().toLocaleDateString('es-es', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
-    likes: [],
-  };
-
-  const posts = data.getPosts();
-
-  posts.push(post);
-
-  data.setPosts(posts);
-  data.setPostCount(postsCount);
+  const userId = data.getUserId();
+  return fetch('http://localhost:8080/posts', {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${userId}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ image, text }),
+  })
+    .catch((error) => {
+      throw new Error('connection error');
+    })
+    .then((response) => {
+      const { status } = response;
+      if (status === 201) return;
+      return response
+        .json()
+        .catch((error) => {
+          throw new Error('json error');
+        })
+        .then((body) => {
+          const { error, message } = body;
+          throw new Error(message);
+        });
+    });
 };

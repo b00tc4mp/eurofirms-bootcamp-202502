@@ -10,11 +10,19 @@ export const CreatePost = (props) => {
     const text = form.text.value;
     console.log(image, text);
     try {
-      logic.createPost(image, text);
-      form.reset();
+      logic
+        .createPost(image, text)
+        .then(() => {
+          form.reset();
 
-      onPostCreated();
+          onPostCreated();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
     } catch (error) {
+      console.log(error);
       alert(error.message);
     }
   };

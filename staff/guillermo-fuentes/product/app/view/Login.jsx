@@ -8,9 +8,16 @@ export const Login = ({ onRegisterClick, onLoginUser }) => {
     const username = form.username.value;
     const password = form.password.value;
     try {
-      logic.loginUser(username, password);
-      form.reset();
-      onLoginUser();
+      logic
+        .loginUser(username, password)
+        .then(() => {
+          form.reset();
+          onLoginUser();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
     } catch (error) {
       alert(error.message);
     }
