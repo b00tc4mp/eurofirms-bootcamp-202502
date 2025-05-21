@@ -39,6 +39,13 @@
         "name": "Dani",
         "email": "dani@dani.com",
         "username": "Daniel",
-        "passsword": "123123123"
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "guille",
+        "email": "guille@guille.com",
+        "username": "guillermo",
+        "password": "123123132"
     }
 ]

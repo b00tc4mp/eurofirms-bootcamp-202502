@@ -15,10 +15,15 @@ export const Login = (props) => {
         const password = form.password.value
         try {
             logic.loginUser(username, password)
+                .then(userId => {
+                    form.reset()
 
-            form.reset()
+                    onUserLoggedIn()
+                })
+                .catch(error => console.error(error))
 
-            onUserLoggedIn()
+
+
         } catch (error) {
             alert(error.message)
         }

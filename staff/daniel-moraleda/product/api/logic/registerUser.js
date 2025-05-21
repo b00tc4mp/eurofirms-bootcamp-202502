@@ -30,7 +30,7 @@ export const registerUser = (name, email, username, password) => {
 
     const user = users.find(user => user.email === email || user.username === username) //verifica que no hay usuarios repetidos
 
-    if (user) throw new Error('user already exists') //si enceuntra el usuario lanza el error
+    if (user) throw new Error('user already exists') //si encuentra el usuario lanza el error
 
     let usersCount = data.getUsersCount() //traemos el contador de usuarios
 
@@ -41,7 +41,7 @@ export const registerUser = (name, email, username, password) => {
         name: name,
         email: email,
         username: username,
-        passsword: password
+        password: password
     })
 
     data.setUsers(users) //reescribe los usuarios en el fichero json de usuarios
