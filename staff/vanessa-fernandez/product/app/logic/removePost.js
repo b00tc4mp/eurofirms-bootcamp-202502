@@ -10,13 +10,24 @@ export const removePost = postId => {
     if (typeof postId !== 'string') throw new Error ('Invalid postId type.')
     if (postId.length < 6) throw new Error ('Invalid postId length.')
 
-    const posts = data.getPosts()
-    
-    const index = posts.findIndex(post => post.id === postId)
+    return fetch('http://localhost:8080/posts/' + postId, {
+        method: 'DELETE',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId()
+        }
+    })
+        .catch(error => { throw new Error('Connection error')})
+        .then(response => {
+            const { status } = response
 
-    if (index < 0) throw new Error ('Post not found.')
+            if(status === 204) return
 
-    posts.splice(index,1)
+            return response.json()
+                .catch(error => { throw new Error('json error')})
+                .then(body => {
+                    const { error, message } = body
 
-    data.setPosts(posts)
+                    throw new Error(message)
+                })
+        })
 }
