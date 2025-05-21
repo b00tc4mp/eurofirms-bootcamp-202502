@@ -1,5 +1,6 @@
 import express from 'express';
 import { logic } from './logic/index.js';
+import { data } from './data/index.js';
 import cors from 'cors';
 //Convertir en modulo node: node --yes
 //Instalar express npm i express
@@ -54,6 +55,7 @@ server.get('/users/self/username', (request, response) => {
     response.status(500).json({ error: error.constructor.name, message: error.message });
   }
 });
+
 server.post('/posts', jsonBodyParser, (request, response) => {
   try {
     const authorization = request.headers.authorization;
