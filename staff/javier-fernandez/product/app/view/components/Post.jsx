@@ -1,6 +1,6 @@
 import { logic } from '../../logic'  
 import { useState } from 'react'
-
+ 
 // export const Post = props => {
 //      const post = props.post
 //      const onPostDeleted = props.onPostDeleted

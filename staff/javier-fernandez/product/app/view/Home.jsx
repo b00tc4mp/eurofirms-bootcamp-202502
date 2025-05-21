@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-
+ 
 import { logic } from '../logic'
 
 import { Posts } from './components/Posts'
@@ -13,9 +13,13 @@ export const Home = ({ onUserLoggedOut }) => {
 
     useEffect(() => {
         try {
-            const username = logic.getUserUsername() 
+            logic.getUserUsername() 
+            .then(username => setUsername(username))
+            .catch(error => {
+                console.error(error)
 
-            setUsername(username)
+                alert(error.message)
+            })
         } catch (error) {
             alert (error.message)
         }

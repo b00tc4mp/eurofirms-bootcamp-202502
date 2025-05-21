@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-
+ 
 import { Post } from './Post'
 
 import { logic } from '../../logic'
@@ -9,19 +9,33 @@ export const Posts = () => {
  
     useEffect(() => {
         try {
-            const posts = logic.getPosts()
+            logic.getPosts()
+                .then(posts => {
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    console.error(error)
 
-            setPosts(posts)
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
-    }, [])
+           [])
      
     const handlePostDeleted = () => {
         try {
-            const posts = logic.getPosts()
+            logic.getPosts()
+                .then(posts => {
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    console.error(error)
 
-            setPosts(posts)
+                    alert(error.message)
+                })
         } catch (error) {
             alert(error.message)
         }

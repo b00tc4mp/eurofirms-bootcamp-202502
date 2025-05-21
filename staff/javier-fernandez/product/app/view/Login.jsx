@@ -16,10 +16,16 @@ export const Login = (props) => {
 
         try {
             logic.loginUser(username, password) 
-
+            .then(() => { 
             form.reset() 
 
-            onUserLoggedIn() 
+            onUserLoggedIn()
+        })
+        .catch(error => {
+            console.error(error)
+
+            alert(error.message)
+        })
         } catch (error) {
             alert(error.message)
         }
