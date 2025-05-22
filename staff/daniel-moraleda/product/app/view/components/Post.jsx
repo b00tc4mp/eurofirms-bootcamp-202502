@@ -1,17 +1,22 @@
-import  { logic } from '../../logic'
+import { logic } from '../../logic'
 
 export const Post = ({ post, onPostDeleted }) => {
     const handleDeleteClick = () => {
         if (confirm('Delete post?'))
             try {
                 logic.removePost(post.id)
+                    .then(() => onPostDeleted())
+                    .catch(error => {
+                        console.error(error)
 
-                onPostDeleted()
-        } catch (error) {
-            alert(error.message)
-        }
+                        alert(error.message)
+                    })
+            } catch (error) {
+                console.error(error)
+
+                alert(error.message)
+            }
     }
-
     return <article>
         <h3 className="font-bold">{post.author}</h3>
 

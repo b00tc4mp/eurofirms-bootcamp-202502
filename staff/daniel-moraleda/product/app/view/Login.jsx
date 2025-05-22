@@ -1,9 +1,6 @@
 import { logic } from '../logic'
 
-export const Login = (props) => {
-    const onRegisterClicked = props.onRegisterClicked
-    const onUserLoggedIn = props.onUserLoggedIn
-
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginSubmit = event => {
@@ -20,9 +17,11 @@ export const Login = (props) => {
 
                     onUserLoggedIn()
                 })
-                .catch(error => console.error(error))
+                .catch(error => {
+                    console.error(error)
 
-
+                    alert(error.message)
+                })
 
         } catch (error) {
             alert(error.message)
