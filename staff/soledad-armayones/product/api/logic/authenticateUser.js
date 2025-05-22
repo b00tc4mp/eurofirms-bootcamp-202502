@@ -19,7 +19,7 @@ export const authenticateUser = (username, password) => {
 
     const user = users.find(user => user.username === username)
 
-    if (user === undefined) throw new Error('user not found')
+    if (!user) throw new Error('user not found')
 
     if (user.password !== password) throw new Error('wrong credentials')
 

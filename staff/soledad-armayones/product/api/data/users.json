@@ -3,16 +3,28 @@
         "id":"user-1",
         "name":"Pin 8",
         "email":"pin@8.com",
-        "username":"pin8","password":"123123123"
+        "username":"pin8",
+        "password":"123123123"
     },
     {
         "id":"user-2",
         "name":"bella",
-        "email":"bella@gmail.com","username":"castillo","password":"123123123"
+        "email":"bella@gmail.com",
+        "username":"castillo",
+        "password":"123123123"
     },
     {
         "id":"user-3",
-        "name":"bestia",
-        "email":"bestia@gmail.com","username":"palacio","password":"123123123"
+        "name":"bestia"
+        ,"email":"bestia@gmail.com"
+        ,"username":"palacio",
+        "password":"123123123"
+    },
+    {
+        "id":"user-4"
+        ,"name":"dama"
+        ,"email":"dama@gmail.com"
+        ,"username":"damabe"
+        ,"password":"123123123"
     }
 ]

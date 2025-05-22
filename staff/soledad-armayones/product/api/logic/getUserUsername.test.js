@@ -5,6 +5,5 @@ try {
 
     console.log('username gotten', username)
 } catch (error) {
-    console.errorr(error)
-
+    console.error(error)
 }
