@@ -13,23 +13,26 @@ import { data } from '../data'
  */
 
 export const getPosts = () => {
-    return fetch ('http://localhost:8080/posts', {
+    return fetch('http://localhost:8080/posts', {
         method: 'GET',
         headers: {
-            Authorization: 'Basic' + data.getçUserId()
+            Authorization: 'Basic ' + data.getUserId()
         }
     })
         .catch(error => { throw new Error('connection error') })
-        .then(respones => {
+        .then(response => {
             const { status } = response
 
-            if (status === 200)
-                return response.json()
-                    .catch(error => { throw new Error('json error') })
-                    .then(body => {
-                        const { error, message } = body
+            if (status === 200) return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(posts => posts)
 
-                        throw new Error(message)
-                    })
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
+
+                    throw new Error(message)
+                })
         })
 }

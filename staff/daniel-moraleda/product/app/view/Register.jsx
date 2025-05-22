@@ -36,7 +36,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
     console.log('Register -> render')
 
     return <div className="p-20x">
-        <i classname="text-2x1">Logo</i>
+        <i className="text-2x1">Logo</i>
 
         <div className="mt-2">
             <h1>Register</h1>
@@ -44,23 +44,23 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
             <form className="flex flex-col gap-20px" onSubmit={handleRegisterSubmit}>
                 <div className="flex flex-col gap-10px">
                     <label htmlFor="name">Name</label>
-                    <input classname="border-2 px-1" type="text" id="name" name="name" placeholder="your full name" />
+                    <input className="border-2 px-1" type="text" id="name" name="name" placeholder="your full name" />
                 </div>
 
                 <div className="flex flex-col gap-10px">
                     <label htmlFor="email">E-Mail</label>
-                    <input classname="border-2 px-1" type="email" id="email" name="email"
+                    <input className="border-2 px-1" type="email" id="email" name="email"
                         placeholder="your e-mail" />
                 </div>
 
                 <div className="flex flex-col gap-10px">
                     <label htmlFor="username">Username</label>
-                    <input classname="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />
+                    <input className="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />
                 </div>
 
                 <div className="flex flex-col gap-10px">
                     <label htmlFor="=password">Password</label>
-                    <input classname="border-2 px-1" type="password" id="password" name="password"
+                    <input className="border-2 px-1" type="password" id="password" name="password"
                         placeholder="your password" />
                 </div>
 

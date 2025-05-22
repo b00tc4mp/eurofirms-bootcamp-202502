@@ -9,10 +9,10 @@ export const getUserUsername = () => {
     return fetch('http://localhost:8080/users/self/username', {
         method: 'GET',
         headers: {
-            Authorization: 'Basic' + data.getUserId()
+            Authorization: 'Basic ' + data.getUserId()
         }
     })
-        .catch(error =>  { throw new Error('connection error') })
+        .catch(error => { throw new Error('connection error') })
         .then(response => {
             const { status } = response
 
