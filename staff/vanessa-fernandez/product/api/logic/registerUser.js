@@ -28,11 +28,9 @@ export const registerUser = (name, email, username, password) => {
 
     const users = data.getUsers()
     
-    for (let i = 0; i< users.length; i++) {
-        const user = users[i]
+    const user = users.find(user => user.email === email || user.username === username)
 
-        if (user.email === email || user.username === username) throw new Error ('User already exists.')
-    }
+    if(user) throw new Error('User already exists')
 
     let usersCount = data.getUsersCount()
 
