@@ -9,9 +9,16 @@ export const Post = ({post, onPostDeleted}) => {
         if (confirm('Delete post?'))
             try {
                 logic.removePost(post.id)
+                    .then(() => onPostDeleted())
+                    .catch(error => {
+                        console.error(error)
 
-                onPostDeleted()
+                        alert(error.message)
+                    })
+                
             } catch (error) {
+                console.error(error)
+                
                 alert(error.message)
             }
     }
