@@ -15,26 +15,32 @@ export const loginUser = (username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    //modificamos la variable de data.users que dejamos de usar por los usuarios guardados en localStorage
-    const users = data.getUsers() //nuevo
-    let user
+    return fetch('http://localhost:8080/users/auth', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        //body: '{"username":"peterpan","password":"123123123"}'
+        body: JSON.stringify({ username, password })
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
+            if (status === 200) //en la logica de authenticate retornabamos el userId, aqui en app este dato lo vamos a meter en nuestro SsesionStorage
+                return response.json()
+                    .catch(error => { throw new Error('json error') })
+                    //.then(userId => userId) //las funciones que solo contienen una variable, es igual que si pusieramos return variable
+                    .then(userId => data.setUserId(userId))
 
-        if (_user.username === username) {
-            user = _user
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-            break
-        }
-    }
-
-    if (user === undefined) throw new Error('user not found')
-
-    if (user.password !== password) throw new Error('wrong credentials')
-
-
-    //data.userId = user.id //antiguo, ahora utilizaremos los metodos creados en data
-    data.setUserId(user.id) //recuerda, este metodo mete en sessionStorage el valor de userId
+                    throw new Error(message)
+                })
+        })
 
 }
+//retornamos el fetch de autorization de la api, excepto el ultimo catch y then(que lo configuramos en la view Login), cambiamos contenido del body y guardamos userId en SesionStorage

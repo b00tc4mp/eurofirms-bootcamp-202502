@@ -3,18 +3,29 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
 
-// export const Home = props => {
-//     const onUserLoggedOut = props.onUserLoggedOut
 export const Home = ({ onUserLoggedOut }) => {
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
 
     useEffect(() => {
-        try {
-            const username = logic.getUserUsername()
+        // try {
+        //     const username = logic.getUserUsername()
 
-            setUsername(username)
+        //     setUsername(username)
+        // } catch (error) {
+        //     alert(error.message)
+        // }
+        try {
+            logic.getUserUsername()
+                .then(username => setUsername(username)) //lo retornado de la logica getUserUsername, que es el username, lo recibimos en el then y lo guardamos en el estado del usuario conectado
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }, [])
@@ -59,7 +70,4 @@ export const Home = ({ onUserLoggedOut }) => {
         />}
     </div>
 }
-
-//Borro todos los comentarios, recuerda que estan en app.5
-//En landing hay otro ejemplo de forma de destruccturing que se puede utilizar
 

@@ -8,19 +8,28 @@ import { data } from '../data'
  * @returns {string} The user username.
  */
 export const getUserUsername = () => {
-    const users = data.getUsers()//nuevo y lo utilizo en el resto del codigo(modifico data.users por users)
-    let user
-
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
-
-        if (_user.id === data.getUserId()) { //cambio userId ya que esa propiedad no la tenemos y utilizamos el metodo getUserId() que creamos en data
-            user = _user
-            break
+    return fetch('http://localhost:8080/users/self/username', {
+        method: 'GET',
+        headers: {
+            //Authorization: 'Basic user-10'
+            Authorization: 'Basic ' + data.getUserId()
         }
-    }
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    if (user === undefined) throw new Error('user not found')
+            if (status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('json error') })
+                    .then(username => username)
 
-    return user.username //devuelvo el campo username
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
+
+                    throw new Error(message)
+                })
+        })
 }

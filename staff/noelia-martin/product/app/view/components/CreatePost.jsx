@@ -1,8 +1,5 @@
 import { logic } from '../../logic'
 
-// export const CreatePost = props => {
-//     const onCancelClicked = props.onCancelClicked
-//     const onPostCreated = props.onPostCreated
 export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked()
 
@@ -14,13 +11,30 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
         const image = form.image.value
         const text = form.text.value
 
+        // try {
+        //     logic.createPost(image, text) 
+
+        //     form.reset()
+
+        //     onPostCreated()
+        // } catch (error) {
+        //     alert(error.message)
+        // }
         try {
-            logic.createPost(image, text) //usamos try y catch para llamar a la logica ya que necesitamos esta funcion (la cuál creamos exclusivamente para utilizar aqui)
+            logic.createPost(image, text)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onPostCreated()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            onPostCreated() //un vez guardado el nuevo posts debe avisar a la home y esta pintara Posts
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }
@@ -49,10 +63,3 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
         </form>
     </div>
 }
-//Toda esta pg es para: Ultima Configuracion de App.5, creacion de Post
-
-//La configuracion es muy parecida a la de app.4 en el registro de usuarios
-
-//destructuring:
-//para app.6 mantengo comentarios aun siendo antiguos, son pocos no me estorban
-//En landing hay otro ejemplo de forma de destruccturing que se puede utilizar

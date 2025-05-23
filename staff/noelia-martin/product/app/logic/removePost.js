@@ -10,18 +10,27 @@ export const removePost = postId => {
     if (typeof postId !== 'string') throw new Error('invalid postId type')
     if (postId.length < 6) throw new Error('invalid postId length')
 
-    //traemos una copia de los posts existentes en nuestra BD
-    const posts = data.getPosts()
+    //antigua ruta 'http://localhost:8080/posts/post-5'
+    return fetch('http://localhost:8080/posts/' + postId, {
+        method: 'DELETE',
+        headers: {
+            //Authorization: 'Basic user-2'            
+            Authorization: 'Basic ' + data.getUserId()
 
-    //localizamos el post que deseo borrar; necesitamos para ello la propiedad postId que se le habra pasado en la llamada a esta logica; una vez localizada nos devuelve su index(su posicion)
-    const index = posts.findIndex(post => post.id === postId)
+        }
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    //otra validación, si no encuentra ninguna posicion de nuestro post, nos avisara
-    if (index < 0) throw new Error('post not found')
+            if (status === 204) return
 
-    //con splice el decimos que borre de esa posicion un elemento; es decir que quite ese post
-    posts.splice(index, 1)
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-    //guardamos estos cambios en LocalStorage
-    data.setPosts(posts)
+                    throw new Error(message)
+                })
+        })
 }

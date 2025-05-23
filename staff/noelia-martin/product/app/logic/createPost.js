@@ -14,24 +14,28 @@ export const createPost = (image, text) => {
     if (typeof text !== 'string') throw new Error('invalid text type')
     if (text.length < 1) throw new Error('invalid min text length')
 
-    let postsCount = data.getPostsCount() //recupera de LocalStorage la variable postsCount para poder trabajar con ella
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            //Authorization: 'Basic user-20',
+            Authorization: 'Basic ' + data.getUserId(),
+            'Content-Type': 'application/json' //como tiene un guion en medio, content-type, lo tenemos que mandar entre comillas
+        },
+        //body: '{"image":"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif","text":"pin8 dancing"}'
+        body: JSON.stringify({ image, text })
+    })
+        .catch(error => { throw Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    postsCount++
+            if (status === 201) return
 
-    const post = {
-        id: 'post-' + postsCount,
-        author: data.getUserId(),
-        image, //es igual que image=image, javascript permite reducirlo a una sola palabra
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-    const posts = data.getPosts() // recupera de LocalStorage el array posts
-
-    posts.push(post) //añadimos a posts uno nuevo
-
-    //añadimos la nueva variable y array a localstorage
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
+                    throw new Error(message)
+                })
+        })
 }

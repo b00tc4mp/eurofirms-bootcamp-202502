@@ -44,3 +44,15 @@ Todas las logica necesitaran de parametro de entrada el idUser, excepto registro
 
 La logica de logoutUser es una logica del fronted solo(recuerda que era para deslogearse en la home)
 La logica de isUserLoggin tampoco se implementará ya que esta logica preguntaba si un usuario estaba logeado, pero como no sabemos quien está logeado, fuera
+
+Finde 16/5/25- 17/5/25
+Instalamos cors (manual en carpeta de instalacion 5º documento)
+Modificamos el mensaje de bienvenida por otro mas correcto(en index.js)
+Modificamos el modo de arranque, en package-json: dentro de scripts configuro un: start="start":"node index.js",
+
+Creo todos los test de la api(carpeta test), todos los que faltaban (comentarios en app.7)
+
+En este mismo fin de semana trabajo con app.7, redacto un readme comenzando con el ultimo contenido añadido en este.
+
+
+Con esto cierro version 1.

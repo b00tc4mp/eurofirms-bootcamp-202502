@@ -3,16 +3,20 @@ import express from 'express'
 //este index hace el mismo trabajo de las view de nuestra apliación, asi que importamos todas las lógicas que va a necesitar
 import { logic } from './logic/index.js'
 
-const server = express()
+import cors from 'cors'
+
+const api = express()
 const jsonBodyParser = express.json()
+
+api.use(cors())
 
 //get es para pedir datos y post para enviar datos
 
-server.get('/hello', (request, response) => {
+api.get('/hello', (request, response) => {
     response.send('Hello! 😉')
 })
 
-server.post('/users', jsonBodyParser, (request, response) => {
+api.post('/users', jsonBodyParser, (request, response) => {
     //llamamos  a la logica, como siempre con un  try/catch
     try {
         //antiguo: const user = request.body 
@@ -31,7 +35,7 @@ server.post('/users', jsonBodyParser, (request, response) => {
 })
 
 //igual que la ruta /users(que es de registro), pero esta ruta sera users/auth y usará su propia logica
-server.post('/users/auth', jsonBodyParser, (request, response) => {
+api.post('/users/auth', jsonBodyParser, (request, response) => {
     try {
         const { username, password } = request.body
         const userId = logic.authenticateUser(username, password)
@@ -42,7 +46,7 @@ server.post('/users/auth', jsonBodyParser, (request, response) => {
     }
 })
 
-server.get('/users/self/username', (request, response) => {
+api.get('/users/self/username', (request, response) => {
     try {
         const authorization = request.headers.authorization // nos traemos el contenido de la cabecera: Basic user-x
         const userId = authorization.slice(6) //recortamos y nos quedamos solo con el id
@@ -55,7 +59,7 @@ server.get('/users/self/username', (request, response) => {
     }
 })
 
-server.post('/posts', jsonBodyParser, (request, response) => {
+api.post('/posts', jsonBodyParser, (request, response) => {
     try {
         //recogemos el dato de la cabecera: userId
         const authorization = request.headers.authorization // Basic user-x
@@ -76,7 +80,7 @@ server.post('/posts', jsonBodyParser, (request, response) => {
 
 //al ser un metodo distinto al utilizado anteriormente, podemos utilizar la misma ruta; idem en el ultimo(en delete)
 //mismos comentarios de /users/self/username
-server.get('/posts', (request, response) => {
+api.get('/posts', (request, response) => {
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -89,7 +93,7 @@ server.get('/posts', (request, response) => {
     }
 })
 
-server.delete('/posts/:postId', (request, response) => { //al poner en la ruta dos puntos se indica que lo que hay a continuacion es variable
+api.delete('/posts/:postId', (request, response) => { //al poner en la ruta dos puntos se indica que lo que hay a continuacion es variable
     try {
         const authorization = request.headers.authorization // Basic user-x
         const userId = authorization.slice(6)
@@ -106,4 +110,4 @@ server.delete('/posts/:postId', (request, response) => { //al poner en la ruta d
     }
 })
 
-server.listen(8080, () => console.log('server is up')) 
+api.listen(8080, () => console.log('API listening on port 8080')) 

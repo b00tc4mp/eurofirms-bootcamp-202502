@@ -12,7 +12,7 @@ fetch('http://localhost:8080/users/auth', {
         if (status === 200)
             return response.json()
                 .catch(error => { throw new Error('json error') })
-                .then(userId => userId)
+                .then(userId => userId) //las funciones que solo contienen una variable, es igual que si pusieramos return variable
 
         return response.json()
             .catch(error => { throw new Error('json error') })

@@ -31,28 +31,34 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    //modificamos este for, para que coja los datos de usuario que necesita del LocalStore
-    const users = data.getUsers() //nuevo
-    //modifico los antiguos data.users por la nueva variable creada: users
-    for (let i = 0; i < users.length; i++) {
-        var usuario = users[i]
-        if (usuario.email === email || usuario.username === username) throw new Error('user already exists')
-    }
-    //idem que hice con users, lo hago con count
-    let usersCount = data.getUsersCount()//nuevo
-    usersCount++
+    //fetch es un objeto de tipo promesa, quue tiene dos metodos: then y catch (el orden de estos objetos se pondrá segun nos interese)   
+    return fetch('http://localhost:8080/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
 
-    users.push({
-        id: 'user-' + usersCount,
-        name: name,
-        email: email,
-        username: username,
-        password: password
+        body: JSON.stringify({ name, email, username, password })
+        //body: '{"name":"Mercedes","email":"mercedes@pan.com","username":"mercedes","password":"123123123"}'
     })
-    //nuevo, tengo que decirle que el nuevo valor de contador y los nuevos push se metan en LocalStorage
-    data.setUsers(users)
-    data.setUsersCount(usersCount)
+        .catch(error => { throw new Error('connection error') }) //primero por seguridad creamos un aviso si el error se debe a la conexion
+        .then(response => { //segundo si la coneccion es correcta, entra en el then.
+            //const status = response.status
+            const { status } = response
+
+            if (status === 201) return //si el status es 201 perfecto, como no hay nada a retornar, indicamos que queremos salir: return que nos saca de esta pg; si falla entra en el siguiente return
+
+            //si el estatus es 500, hay datos a retornar:
+            return response.json() //Para este return capturamos la respuesta que daremos, recibimos un json (de la api(de index.js)) y lo convertimos a objeto
+                .catch(error => { throw new Error('json error') }) //si ocurre algun error en esta conversion, cosa que no suele suceder, creamos un aviso (si sucediera seria por ejemplo si el servidor se ha confundido y nos ha mandado otro formato en vez de json)
+                .then(body => { //si no hay error de conversion, entramos en esta funcion la cual desestructuramos la variable body del objeto response y lanzamos el mensaje de error 
+                    const { error, message } = body
+
+                    throw new Error(message)
+                }) //nos podriamos haber ahorrado los errores propios ya que error lo hubiera capturado del propio json que tiene que ver con fetch pero sería mas dificil de comprender
+        })
 }
-/*explicación resumida: nos traemos con getUsers una copia del JSON convertido en array para poder trabajar con el
-registramos un usuario y actualizamos este array
-por ultimo le decimos con setUsers que coga el array(ya modificado), lo convierta a JSON y lo meta en localStorage, al hacer eso se machaca lo que habia alli y entra mi nuevo array*/
+//borramos todo excepto las validaciones, ya que estas nos evitará en caso de error, llamar innecesariamente a la api.
+//copiamos el fetch que teniamos configurado en tests de api, excepto el ultimo catch y then que lo realizará quien llame a esta logica.
+//Modificamos solo una linea,la del JSON de la variable body del objeto request. En el fetch que hemos copiado traemos un JSON con datos a registrar, en esta logica no nos interesa ya que tenemos nuestros propios datos, nuestros parametros. Asi que creamos un objeto con esos parametros el cual convertimos a formato JSON
+//retornamos el fetch

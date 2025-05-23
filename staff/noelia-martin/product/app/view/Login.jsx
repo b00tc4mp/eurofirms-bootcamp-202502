@@ -1,8 +1,5 @@
 import { logic } from '../logic'
 
-// export const Login = props => {
-//     const onRegisterClicked = props.onRegisterClicked
-//     const onUserLoggedIn = props.onUserLoggedIn
 export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const handleRegisterClick = () => onRegisterClicked()
     const handleLoggedSubmit = event => {
@@ -13,14 +10,31 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         const username = form.username.value
         const password = form.password.value
 
+        // try {
+        //     logic.loginUser(username, password)
+
+        //     form.reset()
+
+        //     onUserLoggedIn()
+        // } catch (error) {
+        //     alert(error.mensage)
+        // }
         try {
             logic.loginUser(username, password)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onUserLoggedIn()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            onUserLoggedIn()
+                    alert(error.message)
+                })
         } catch (error) {
-            alert(error.mensage)
+            console.error(error)
+
+            alert(error.message)
         }
     }
 
@@ -47,7 +61,4 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         </div>
     </div>
 }
-//Borro todos los comentarios, recuerda que estan en app.3(que se configuro la navegacion completa)
-//aunque los comentarios se fueron arrastrando hasta app.5, también se pueden mirar ahi
-
-//En landing hay otro ejemplo de forma de destruccturing que se puede utilizar
+//Modificamos la llamada de la logica login, para que controle errores (igual que hicimos en la view de register)
