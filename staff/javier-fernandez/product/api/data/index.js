@@ -19,7 +19,7 @@ export const data = {
      * @returns {Array} The array of users. 
      */
     getUsers() {
-        const json = fs.readFileSync('./dara/users.json', 'utf8')
+        const json = fs.readFileSync('./data/users.json', 'utf8')
 
         const users = JSON.parse(json)
 

@@ -1,9 +1,9 @@
 fetch("http://localhost:8080/users/auth", {
   method: "POST",
   headers: {
-    "content-Type": "application/json",
+    "Content-Type": "application/json",
   },
-  body: '{"username":"pererpan1","password":"123123123}',
+  body: '{"username":"peterpan","password":"123123123"}'
 })
   .catch((error) => {
     throw new Error("conection error");
@@ -12,19 +12,17 @@ fetch("http://localhost:8080/users/auth", {
     const { status } = response;
 
     if (status === 200)
-      return response
-        .json()
+      return response.json()
         .catch((error) => {
           throw new Error("json error");
         })
         .then((userId) => userId);
 
-    return response
-      .json()
+    return response.json()
       .catch((error) => {
         throw new Error("json error");
       })
-      .then((body) => {
+      .then(body => {
         const { error, message } = body;
 
         throw new Error(message);

@@ -19,16 +19,6 @@ export const authenticateUser = (username, password) => {
 
   const user = users.find(user => user.username === username)
 
-  for (let i = 0; i < users.length; i++) {
-    const _user = users[i];
-
-    if (_user.username === username) {
-      user = _user;
-
-      break;
-    }
-  }
-
   if (user === undefined) throw new Error("user not found");
   if (user.password !== password) throw new Error("wrong credentials");
   return user.id;

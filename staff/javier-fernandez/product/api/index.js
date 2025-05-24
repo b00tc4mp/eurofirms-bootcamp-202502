@@ -2,7 +2,7 @@ import express from 'express'
 import { logic } from './logic/index.js' 
 import cors from 'cors'
 
-const server = express()
+const api = express()
 const jsonBodyParser = express.json()
 
 api.use(cors())
@@ -23,12 +23,12 @@ api.post('/users', jsonBodyParser, (request, response) => {
     }   
 })
 
-api.post('/users/auth', (request, response) => {
+api.post('/users/auth',jsonBodyParser, (request, response) => {
     try {
         const { username, password } = request.body
         const userId = logic.authenticateUser(username, password)
 
-        response.status(200).json(username) 
+        response.status(200).json(userId) 
     } catch (error) {
         response.status(500).json({ error: error.constructor.name, message: error.message }) 
     }
