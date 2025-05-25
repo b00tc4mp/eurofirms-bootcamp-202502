@@ -1,9 +1,10 @@
 import { createPost } from './createPost.js'
 
 try {
-    createPost('user-2', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif', 'pin8 dancing')
+    createPost('user-2', 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzBpeWpiZTlzaWhsZTk5cnRlNzQxbTUxNGpqajQ4NnF0b3prZnY2ciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KcRVkLMk67Nte/giphy.webp', 'la tripulacion')
 
     console.log('post created')
 } catch (error) {
     console.error(error)
 }
+

@@ -13,11 +13,11 @@ export const getUserUsername = userId => {
     // if user not found then throw error
     // if user found then retuen username
 
-    const users = data.getUsers()
+   return User.findById(userId)
+        .catch(error => { throw new Error(error.message) })
+        .then(user => {
+            if(!user) thorw new Error('user not found')
 
-    const user = users.find(user => user.id === userId)
-
-    if (!user) throw new Error('user not found')
-
-        return user.username
+            return user.username
+        })
 }
