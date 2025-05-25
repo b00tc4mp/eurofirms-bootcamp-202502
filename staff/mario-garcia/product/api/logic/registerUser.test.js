@@ -1,11 +1,15 @@
+import { connect, disconnect } from '../data/index.js'
 import { registerUser } from './registerUser.js'
-try {
-    registerUser('Tony Stark', 'tonystark@ironman.com', 'ironman', '123123123')
 
-    console.log('user registered')
-
-} catch (error) {
-
-    console.error(error)
-
-}
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        try {
+            return registerUser('Max Eisenhardt', 'maxeisenhardt@magneto.com', 'magneto', '123123123')
+                .then(() => console.log('user registered'))
+                .catch(error => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))
+    .finally(() => disconnect())

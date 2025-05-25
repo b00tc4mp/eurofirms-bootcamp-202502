@@ -21,14 +21,14 @@ connect('mongodb://localhost:27017/test')
 
         //CREAR un Usuario en 1 PASO
 
-        return User.create({
-            name: 'Bruce Banner',
-            email: 'brucebanner@hulk.com',
-            username: 'hulk',
-            password: '123123123'
-        })
-            .catch(error => { throw new Error(error.message) })
-            .then(() => console.log('user created'))
+        // return User.create({
+        //     name: 'Ororo Munroe',
+        //     email: 'ororomunroe@tormenta.com',
+        //     username: 'tormenta',
+        //     password: '123123123'
+        // })
+        //     .catch(error => { throw new Error(error.message) })
+        //     .then(() => console.log('user created'))
 
         //ELIMINAR un Usuario
 
@@ -72,9 +72,9 @@ connect('mongodb://localhost:27017/test')
 
         //MOSTRAR LISTADO de Todos los Posts
 
-        // return Post.find({})
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(posts => console.log('posts', posts))
+        return Post.find({})
+            .catch(error => { throw new Error(error.message) })
+            .then(posts => console.log('posts', posts))
     })
     .catch(error => console.error(error))
     .finally(() => disconnect())
