@@ -19,7 +19,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn}) => {
 
                     onUserLoggedIn()
                 })
-            .catch(error => {
+                .catch(error => {
                 console.error(error)
 
                 alert(error.message)
