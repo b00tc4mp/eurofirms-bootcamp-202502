@@ -1,9 +1,21 @@
-import { registerUser  } from "./registerUser.js";
+import { connect, disconnect } from '../data/index.js'
+import { registerUser } from "./registerUser.js";
 
-try {
-    registerUser('Mafalda', 'ma@falda.com', 'mafalda', '123123123')
-
-    console.log('user registered')
-} catch (error) {
-    console.error(error)
-}
+//primero conectamos a la bbdd mongo
+connect('mongodb://localhost:27017/test')
+    //luego probamos la logica
+    .then(() => {
+        try {
+            //ponemos "return" porque al conectar con la bbdd de forma asincrona, necesitamos q la logica devuelva una promesa
+            return registerUser('Mos Quito', 'mos@quito.com', 'mosquito', '123123123')
+                .then(() => console.log('user registered'))
+                .catch(error => console.error(error))
+        } catch (error) {
+            console.error(error)
+            //con este catch capturariamos los errores sincronos de la logica de validacion de registerUser.js
+        }
+    })
+    //este catch es para capturar errores de conexion
+    .catch(error => console.log(error))
+    //cuando termine el test, que desconecte
+    .finally(() => disconnect())
