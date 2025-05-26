@@ -1,10 +1,19 @@
+import { connect, disconnect } from '../data/index.js'
 import { getUserUsername } from './getUserUsername.js'
 
-try {
+connect('mongodb://localhost:27017/test')
+    .then(() => {
 
-    const username = getUserUsername('user-1')
+        try {
 
-    console.log('username gotten', username)
-} catch (error) {
-    console.error(error)
-}
+            return getUserUsername('683338c87dd64f2bee44d1f6')
+                .then(username => console.log('user username', username))
+                .catch(error => console.error(error))
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    })
+    .catch(error => console.error(error))
+    .finally(() => disconnect())

@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User } from '../data/index.js'
 /**
  * RETORNAMOS el Username del Usuario encontrado con UserId
  * 
@@ -11,16 +11,11 @@ export const getUserUsername = userId => {
     if (typeof userId !== 'string') throw new Error('Invalid userId type')
     if (userId.length < 6) throw new Error('Invalid userId length')
 
-    //Buscamos el User con el userId
-    //NO encontramos el Usuario - LANZAMOS ERROR
-    //SI encontramos el Usuario - Devolvemos el Username
+    return User.findById(userId)
+        .catch(error => { throw new Error(error.message) })
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-    const users = data.getUsers()
-
-    const user = users.find(user => user.id === userId)
-
-    if (!user) throw new Error('user not found')
-
-    return user.username
-
+            return user.username
+        })
 }
