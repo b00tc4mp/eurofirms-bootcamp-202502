@@ -26,24 +26,7 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    const users = data.getUsers() //traigo los usuarios del json
-
-    const user = users.find(user => user.email === email || user.username === username) //verifica que no hay usuarios repetidos
-
-    if (user) throw new Error('user already exists') //si encuentra el usuario lanza el error
-
-    let usersCount = data.getUsersCount() //traemos el contador de usuarios
-
-    usersCount++ //añadimos uno al contador 
-
-    users.push({ //añadimos un usuario al array de usuarios
-        id: 'user-' + usersCount,
-        name: name,
-        email: email,
-        username: username,
-        password: password
-    })
-
-    data.setUsers(users) //reescribe los usuarios en el fichero json de usuarios
-    data.setUsersCount(usersCount) //reescribe el contador de usuarios en el fichero json de contador de usuarios
+    return User.create({ name, email, username, password})
+        .catch(error => {throw new Error(error.message) })
+        .then(() => { })
 }
