@@ -61,6 +61,6 @@ const User = model('User', user)
 const Post = model('Post', post)
 
 export {
-    user,
-    post
+    User,
+    Post
 }
