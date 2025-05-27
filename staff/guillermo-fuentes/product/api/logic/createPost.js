@@ -1,4 +1,4 @@
-import { data } from '../data/index.js';
+import { Post, User } from '../data/index.js';
 
 export const createPost = (userId, image, text) => {
   if (typeof userId !== 'string') throw new Error('User id invalid');
@@ -7,26 +7,20 @@ export const createPost = (userId, image, text) => {
   if (!image.startsWith('http')) throw new Error('Invalid image format');
   if (typeof text !== 'string') throw new Error('invalid text type');
   if (text.length < 1) throw new Error('Invalid text lenght');
-  const users = data.getUsers();
-  const user = users.find((user) => user.id === userId);
-  if (!user) throw new Error('user not found');
-  let postsCount = data.getPostsCount();
 
-  postsCount++;
+  return User.findById(userId)
+    .catch((error) => console.error(error))
+    .then((user) => {
+      if (!user) throw new Error('User not found');
 
-  const post = {
-    id: 'post-' + postsCount,
-    author: user.id,
-    image,
-    text,
-    date: new Date().toLocaleDateString('es-es', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
-    likes: [],
-  };
-
-  const posts = data.getPosts();
-
-  posts.push(post);
-
-  data.setPosts(posts);
-  data.setPostsCount(postsCount);
+      const author = user._id;
+      const likes = [];
+      return Post.create({ author, image, text, likes });
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    })
+    .then((post) => {
+      console.log('post created', post);
+    });
 };

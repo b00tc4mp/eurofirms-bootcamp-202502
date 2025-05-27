@@ -1,21 +1,33 @@
-import { data } from '../data/index.js';
+import { Post, User } from '../data/index.js';
+
 export const getPosts = (userId) => {
   if (typeof userId !== 'string') throw new Error('Invalid user id');
   if (userId.length < 6) throw new Error('Invalid userId lenght');
-  const users = data.getUsers();
-  const user = users.find((user) => user.id === userId);
-  if (!user) throw new Error('user not found');
-  const posts = data.getPosts().toReversed();
-  posts.forEach((post) => {
-    const authorId = post.author;
 
-    const user = users.find((user) => user.id === authorId);
+  /**
+   * Promise.all([])->permite manejar mas de una promesa como peticion a base de datos.
+   * .lean()->limpia la peticion de impurezas
+   * .populate()->metodo para crear relaciones, recibe texto y el primer texto que le pongas sera un objeto este objeto por defecto tendra un campo _id a este se le podra agregar los campos que se quiera como author y username
+   */
+  return Promise.all([User.findById(userId).lean(), Post.find().populate('author', 'username').lean()])
+    .catch((error) => console.error(error))
+    .then(([user, posts]) => {
+      if (!user) throw new Error('User not found');
+      if (!posts) throw new Error('posts not found');
 
-    const username = user.username;
+      posts.forEach((post) => {
+        post.id = post._id.toString();
+        delete post._id;
 
-    post.author = username;
+        delete post.__v;
 
-    post.own = authorId === userId;
-  });
-  return posts;
+        const authorId = post.author._id.toString();
+
+        post.author = post.author.username;
+
+        post.own = user._id.toString() === authorId;
+      });
+
+      return posts;
+    });
 };

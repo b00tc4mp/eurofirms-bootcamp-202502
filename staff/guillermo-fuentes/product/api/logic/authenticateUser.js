@@ -1,4 +1,4 @@
-import { data } from '../data/index.js';
+import { User } from '../data/index.js';
 
 /**
  * Authenticates a user from the system.
@@ -15,13 +15,13 @@ export const authenticateUser = (username, password) => {
   if (password.length < 8) throw new Error('invalid password min length');
   if (password.length > 20) throw new Error('invalid password max length');
 
-  const users = data.getUsers();
-
-  const user = users.find((user) => user.username === username);
-
-  if (user === undefined) throw new Error('user not found');
-
-  if (user.password !== password) throw new Error('wrong credentials');
-
-  return user.id;
+  return User.findOne({ username })
+    .catch((error) => {
+      throw new Error(error.message);
+    })
+    .then((user) => {
+      if (!user) throw new Error('user not found');
+      if (user.password !== password) throw new Error('credentials error');
+      return user.id;
+    });
 };
