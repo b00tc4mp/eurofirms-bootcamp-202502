@@ -15,7 +15,7 @@ export const authenticateUser = (username, password) => {
     if (password.length < 8) throw new Error('invalid password max length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    return User.findOne
+    return User.findOne({username})
         .catch(error => { throw new Error(error.message) })
         .then(user => {
             if (!user) throw new Error('user not found')

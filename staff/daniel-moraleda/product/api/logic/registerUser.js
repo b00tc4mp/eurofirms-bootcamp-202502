@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User } from '../data/index.js'
 
 /**
  * register a user in the system
