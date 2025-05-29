@@ -1,4 +1,4 @@
-import { User } from '../data/index.js'
+import { data } from '../data/index.js'
 
 /**
  * Registers a user in the system
@@ -25,10 +25,28 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    return User.create({name, email, username, password })
-        .catch(error => {throw new Error(error.message) })
-        .then(() => { })
 
+    // Verifica si un usuario se encuentra en la base de datos.
+    const users = data.getUsers()
 
+    const user = users.find(user => user.email === email || user.username === username)
 
+    if (user) throw new Error('user already exists')
+
+    // Guarda el nuevo usuario en la base de datos e incrementa el contador de usuarios.  
+
+    let usersCount = data.getUsersCount()
+
+    usersCount++
+
+    users.push({
+        id: 'user-' + usersCount,
+        name: name,
+        email: email,
+        username: username,
+        password: password
+    })
+
+    data.setUsers(users)
+    data.setUsersCount(usersCount)
 }
