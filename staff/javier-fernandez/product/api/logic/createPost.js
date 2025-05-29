@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
  
 /**
  * Create a post in database.
@@ -21,29 +21,14 @@ export const createPost = (userId, image, text) => {
     // if user not found then throw error
     // if user found then continue with create post
 
-    const users = data.getUsers()
+   return User.findById(userId)
 
-    const user = users.find(user => user.id === userId)
+   .catch(error => {throw new Error(error.message)}) 
 
-    if (!user) throw new Error('user not found')
-
-    let postsCount = data.getPostsCount()
-
-    postsCount++
-
-    const post = {
-        id: 'post-' + postsCount,
-        author: user.id,
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
-
-    const posts = data.getPosts()
-
-    posts.push(post)
-
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
+    .then(user => {
+        if (!user) throw new Error('user not found')
+            return Post.create({author:user._id, image, text})
+    })
+    .catch(error => {throw new Error(error.message)})
+    .then(() => {})
 }
