@@ -1,8 +1,3 @@
-
-// export const Landing = (props) => {
-//      const onRegisterClicked = props.onRegisterClicked
-//      const onLoginClicked = props.onLoginClicked
-//      const { onRegisterClicked, onLoginClicked } = props
 export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
     const handleRegisterClick = () => onRegisterClicked()
 
@@ -11,7 +6,7 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
     console.log('Landing -> render')
 
     return <div className="p-5">
-        <i className="text-2xl bg-plum-300">Logo</i>
+        <i className="text-2xl">Logo</i>
 
         <div className="mt-2">
             <a className="underline" href="#" onClick={handleRegisterClick}>Register</a>

@@ -1,8 +1,5 @@
 import { logic } from '../../logic'
 
-// export const CreatePost = props => {
-//     const onCancelClicked = props.onCancelClicked
-//     const onPostCreated = props.onPostCreated
 export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked()
 
@@ -16,11 +13,19 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
 
         try {
             logic.createPost(image, text)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onPostCreated()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            onPostCreated()
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }

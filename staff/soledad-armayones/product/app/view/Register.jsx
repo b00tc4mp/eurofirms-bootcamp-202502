@@ -1,8 +1,5 @@
 import { logic } from '../logic'
 
-// export const Register = props => {
-//     const onLoginClicked = props.onLoginClicked
-//     const onUserRegistered = props.onUserRegistered
 export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const handleLoginClick = () => onLoginClicked()
 
@@ -18,11 +15,19 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
 
         try {
             logic.registerUser(name, email, username, password)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onUserRegistered()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            onUserRegistered()
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }
@@ -59,7 +64,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                 <div className="flex justify-between">
                     <a className="underline" href="#" onClick={handleLoginClick}>Login</a>
 
-                    <button className="bg-skyblue text-black px-2" type="submit">Register</button>
+                    <button className="bg-black text-white px-2" type="submit">Register</button>
                 </div>
             </form>
         </div>
