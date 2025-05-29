@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User } from '../data/index.js'
 
 /**
  * Return the username of the user to find by user id.
@@ -16,7 +16,7 @@ export const getUserUsername = userId => {
    return User.findById(userId)
         .catch(error => { throw new Error(error.message) })
         .then(user => {
-            if(!user) thorw new Error('user not found')
+            if(!user) throw new Error('user not found')
 
             return user.username
         })

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const { Schema, model } = mongoose
 const { Types } = Schema
-const { ObjesctId } = Types
+const { ObjectId } = Types
 
 const user = new Schema({
     name: {
@@ -50,7 +50,7 @@ const post = new Schema({
     },
 
     likes: [{
-        type: ObjesctId,
+        type: ObjectId,
         ref: 'user'
     }]
 })
