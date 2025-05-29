@@ -1,53 +1,67 @@
-import mongodb from 'mongodb'
+import mongoose from 'mongoose'
+import { User, Post } from './models.js'
 
-const { MongoClient, ObjectId } = mongodb
+const { connect, disconnect } = mongoose
 
-const client = new MongoClient('mongodb://localhost:27017')
-
-client.connect()
+connect('mongodb://localhost:27017/test')
     .then(() => {
+        // const user = new User({
+        //      name: 'A Kira',
+        //      email: 'a@kira.com',
+        //      username: 'akira',
+        //      password: '123123123'
+        // })
 
-        const db = client.db('test')
-        
-        const users = db.collection('users')
-        const posts = db.collection('posts')
+        // const user = new User ({
+        //      name: 'Don Atello',
+        //      email: 'don@atello.com',
+        //      username:'donatello',
+        //      password: '123123123'
+        // })
 
-        // return users.insertOne({ name: 'Mu Lan', email: 'mu@lan.com', username: 'mulan', password: '123123123' })
-        //     .catch(error => { throw new Error('mongo error') })
-        //     .then(() => console.log('user inserted'))
+        // return user.save()
+        //      .catch(error => { throw new Error(error.message) })
+        //      .then(() => console.log('user saved'))
 
-        // return users.insertOne({ name: 'Do Raemon', email: 'do@raemon.com', username: 'doraemon', password: '123123123' })
-        //     .catch(error => { throw new Error('mongo error') })
-        //     .then(() => console.log('user inserted'))
+        // return User.create({
+        //      name: 'Michel Angelo',
+        //      email: 'michel@angelo.com',
+        //      username: 'michelangelo',
+        //      password: '123123123'
+        // }) 
 
-        // return users.deleteOne({ _id: new ObjectId('683437f3a21050ab9d6c4bd5' ) })
-        //     .catch(error => { throw new Error('mongo error') })
-        //     .then(() => console.log('user deleted'))
+        //      .catch(error => { throw new Error(error.message) })
+        //      .then(() => console.log('user created'))
 
-        // return users.updateOne({ _id: new ObjectId('68343820a21050ab9d6c4bd6') }, { $set: { password: '123123123' } })
-        //     .catch(error => { throw new Error('mongo error') })
-        //     .then(posts => console.log('user updated'))
+        // return User.deleteOne ({ id: '6838981304eeb15aefa788e0' })
+        //      .catch(error => { throw new Erro(error.message) })
+        //      .then(() => console.log('user deleted'))
 
-        // return users.find({}).toArray()
-        //     .catch(error => console.error(error))
+        // return User.updateOne({ _id: '6838981304eeb15aefa788e0' }, { $set: { password: '345345345' } })
+        //     .catch(error => { throw new Error(error.message) })
+        //     .then(() => console.log('user updated'))
+
+        // return User.find({})
+        //     .catch(error => { throw new Error(error.message) })
         //     .then(users => console.log('users', users))
 
-        // return users.find({ name: /P/ }).toArray()
-        //     .catch(error => console.error(error))
-        //     .then(users => console.log('users', users))
+        // return Post.create({
+        //     author: '6838981304eeb15aefa788e0',
+        //     image: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzM3dDBmM2YydHdmNzE4MWFkbGgwd3J5cmR0NjV4eHpteHg2cDgzeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cFdHXXm5GhJsc/giphy.gif',
+        //     text: 'Don Tello playing game Pure'
+        // })
 
-        //  return posts.insertOne({ author: new ObjectId('6834611ab8b5b71fe90cde27'), image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWxwZmx4c3RwMXZycjUxYjc3eXoxemZkZW00OHNydDc2aDh4eGUyaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6nUNZhOJDdlmla00/giphy.gif', text: 'doraemon speaking', date: new Date(), likes: [] })
-        //    .catch(error => { throw new Error('mongo error') })
-        //     .then(() => console.log('post inserted'))
+        // .catch(error => { throw new Error(error.message) })
+        // .then(() => console.log('post created'))
 
-        // return posts.deleteOne({ _id: new ObjectId('6834751426a2e01643db3f09') })
-        //     .catch(error => { throw new Error('mongo error') })
+        // return Post.deleteOne({ _id: '6838abf7d20479b82d492b0b'})
+        //     .catch(error => { throw new Error(error.message) })
         //     .then(() => console.log('post deleted'))
 
-        // return posts.insertOne({ author: new ObjectId(''), image: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3JsanE5Y3Fkb3pua2NtZWlpdXM5cmV0ejNtZWVjdXUzeWRpZGY0MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Rrdy4EoMHBAZy/giphy.gif', text: 'Whendy singing', date: new Date(), likes: [] })
-        //        .catch(error => { throw new Error('mongo error') })
-        //        .then(() => console.log('post inserted'))
+        return Post.find({})
+            .catch(error => { throw new Error(error.message) })
+            .then(posts => console.log('posts', posts))
 
     })
     .catch(error => console.error(error))
-    .finally(() => client.close())
+    .finally(() => disconnect())

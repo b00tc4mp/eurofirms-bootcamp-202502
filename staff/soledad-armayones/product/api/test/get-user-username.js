@@ -1,7 +1,7 @@
-fetch('http://localhost:8080/users/self/username', {
+  fetch('http://localhost:8080/users/self/username', {
     method: 'GET',
     headers: {
-        Authorization: 'Basic user-10'
+        Authorization: 'Basic user-2'
     }
 })
     .catch(error => { throw new Error('connection error') })
