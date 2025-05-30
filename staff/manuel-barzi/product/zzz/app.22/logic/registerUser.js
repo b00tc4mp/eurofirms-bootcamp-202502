@@ -1,4 +1,4 @@
-import { User } from '../data/index.js'
+import { data } from '../data'
 
 /**
  * Registers a user in the system.
@@ -25,11 +25,25 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    return User.create({ name, email, username, password })
-        .catch(error => {
-            if (error.code === 11000) throw new Error('user already exists')
+    return fetch('http://localhost:8080/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, username, password })
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-            throw new Error(error.message)
+            if (status === 201) return
+
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
+
+                    throw new Error(message)
+                })
         })
-        .then(() => { })
 }

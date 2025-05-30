@@ -1,9 +1,15 @@
+import { connect, disconnect } from '../data/index.js'
 import { createPost } from './createPost.js'
 
-try {
-    createPost('user-2', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif', 'pin8 dancing')
-
-    console.log('post created')
-} catch (error) {
-    console.error(error)
-}
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        try {
+            return createPost('6831e7a7fd98fd111ae2800d', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif', 'pin8 dancing')
+                .then(() => console.log('post created'))
+                .catch(error => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))
+    .finally(() => disconnect())

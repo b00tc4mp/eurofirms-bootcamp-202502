@@ -1,9 +1,15 @@
+import { connect, disconnect } from '../data/index.js'
 import { removePost } from './removePost.js'
 
-try {
-    removePost('user-1', 'post-2')
-
-    console.log('post removed')
-} catch (error) {
-    console.error(error)
-}
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        try {
+            return removePost('6831e7a7fd98fd111ae2800d', '6831d56b39462bcec83f3b76')
+                .then(() => console.log('post removed'))
+                .catch(error => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))
+    .finally(() => disconnect())
