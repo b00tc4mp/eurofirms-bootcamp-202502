@@ -26,6 +26,11 @@ export const registerUser = (name, email, username, password) => {
     if (password.length > 20) throw new Error('invalid password max length')
 
     return User.create({ name, email, username, password })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => {
+
+            if (error.code === 11000) throw new Error('user already exists')
+
+            throw new Error(error.message)
+        })
         .then(() => { })
 }

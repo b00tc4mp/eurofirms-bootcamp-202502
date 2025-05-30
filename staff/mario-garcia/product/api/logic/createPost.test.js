@@ -1,13 +1,22 @@
+import { connect, disconnect } from '../data/index.js'
 import { createPost } from './createPost.js'
 
-try {
+connect('mongodb://localhost:27017/test')
+    .then(() => {
 
-    createPost('user-2', 'https://media.giphy.com/media/xUPGcMFEIgIkVsptQs/giphy.gif?cid=ecf05e47ksj7ap5h065caw60msh5rf6rxsuxcelhjaf8qgwm&ep=v1_gifs_search&rid=giphy.gif&ct=g', 'With my friends in the Big Ben!')
+        try {
 
-    console.log('post created')
+            return createPost('6831953cafa1befb3c6a5a90', 'https://media.giphy.com/media/l3vQXWwQMM9A9a1RC/giphy.gif?cid=ecf05e47kzfaip7t9mfzfhchhct07dv6oxipzyhcgnbknos4&ep=v1_gifs_search&rid=giphy.gif&ct=g', 'I am in a mission!')
 
-} catch (error) {
+                .then(() => console.log('post created'))
+                .catch(error => console.error(error))
 
-    console.error(error)
+        } catch (error) {
 
-}
+            console.error(error)
+        }
+    })
+
+    .catch(error => console.error(error))
+    .finally(() => disconnect())
+

@@ -9,7 +9,7 @@ import { User } from '../data/index.js'
 export const getUserUsername = userId => {
 
     if (typeof userId !== 'string') throw new Error('Invalid userId type')
-    if (userId.length < 6) throw new Error('Invalid userId length')
+    if (userId.length !== 24) throw new Error('Invalid userId length')
 
     return User.findById(userId)
         .catch(error => { throw new Error(error.message) })
