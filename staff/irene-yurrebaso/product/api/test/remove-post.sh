@@ -1,1 +1,1 @@
-curl -X DELETE -H 'Authorization: Basic user-4' http://localhost:8080/posts/post-30 -v
+curl -X DELETE -H 'Authorization: Basic 6834a9a7afaf3e44fe405f1f' http://localhost:8080/posts/68389df17415d81c9388f3ca -v

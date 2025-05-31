@@ -10,44 +10,35 @@ import { User, Post } from '../data/index.js'
 export const getPosts = userId => {
     //validate userId
     if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (userId.length !== 24) throw new Error('invalid userId length')
 
     //verificar con userId que el usuario existe
     //si usuario no encontrado lanzar error
     //si usuario existe retornar posts
 
-    User.findById(userId)
+    return User.findById(userId)
         .catch(error => { throw new Error(error.message) })
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            return Post.find()
+            return Post.find({}).select('-__v').populate('author', 'username').sort('-date').lean()
+                .catch(error => { throw new Error(error.message) })
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id
+
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+                            delete post.author._id
+                        }
+
+                        //dará true o false
+                        post.own = post.author.id === userId
+                    })
+
+                    return posts
+                })
         })
 
-    // //verify user exists by user id
-    // //if user not found throw error
-    // //if user exists return posts
-
-    // const users = data.getUsers()
-
-    // const user = users.find(user => user.id === userId)
-
-    // if (!user) throw new Error('user not found')
-
-    // const posts = data.getPosts().toReversed()
-
-    // posts.forEach(post => {
-    //     const authorId = post.author
-
-    //     const user = users.find(user => user.id === authorId)
-
-    //     const username = user.username
-
-    //     post.author = username
-
-    //     //saber si userId conectado es el autor del post 
-    //     post.own = authorId === userId
-    // })
-
-    // return posts
 }

@@ -21,7 +21,8 @@ export const Post = ({ post, onPostDeleted}) => {
     }
 
     return <article className= "mb-5">
-        <h3 className="font-bold">{post.author}</h3>
+        {/* ahora en mongobd author es un objeto */}
+        <h3 className="font-bold">{post.author.username}</h3>
         <img className = "max-w-xs" src={post.image} alt=""></img>
         <p>{post.text}</p>
         <time>{post.date}</time>

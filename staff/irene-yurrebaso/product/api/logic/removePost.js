@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
 
 /**
  * Removes a post by id from database.
@@ -9,10 +9,10 @@ import { data } from '../data/index.js'
 export const removePost = (userId, postId) => {
     //validate userId and postId
     if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (userId.length !== 24) throw new Error('invalid userId length')
 
     if (typeof postId !== 'string') throw new Error('invalid postId type')
-    if (postId.length < 6) throw new Error('invalid postId length')
+    if (postId.length !== 24) throw new Error('invalid postId length')
     
     //verify user exists by userId
     //if user not found throw error
@@ -22,25 +22,21 @@ export const removePost = (userId, postId) => {
     //if post does not belong to user throw error
     //otherwise, delete post from database
 
-    const users = data.getUsers()
+    return User.findById(userId)
+        .catch(error => { throw new Error(error.message) })
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-    const user = users.find(user => user.id === userId)
+            return Post.findById(postId)
+                .catch(error => { throw new Error(error.message) })
+                .then(post => {
+                    if (!post) throw new Error('post not found')
 
-    if (!user) throw new Error('user not found')
+                    if (post.author.toString() !== userId) throw new Error('user not owner of post')
 
-    const posts = data.getPosts()
-
-    const postIndex = posts.findIndex(post => post.id === postId)
-
-    if (postIndex < 0) throw new Error('post nof found')
-    
-    //me traigo el post a traves de su indice, para verificar que es el autor del post
-    const post = posts[postIndex]
-
-    if (post.author !== userId) throw new Error('user is not author of post')
-
-    posts.splice(postIndex, 1)
-
-    //guardamos la actualizacion en disco
-    data.setPosts(posts)
+                    return Post.deleteOne({ _id: postId })
+                        .catch(error => { throw new Error(error.message) })
+                        .then(() => { })
+                })
+        })
 }
