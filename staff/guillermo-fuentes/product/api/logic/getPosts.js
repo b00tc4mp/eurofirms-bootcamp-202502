@@ -1,5 +1,5 @@
 import { Post, User } from '../data/index.js';
-
+import { ValidationError, NotFoundError, SystemError } from './errors.js';
 export const getPosts = (userId) => {
   if (typeof userId !== 'string') throw new Error('Invalid user id');
   if (userId.length < 6) throw new Error('Invalid userId lenght');
@@ -9,11 +9,13 @@ export const getPosts = (userId) => {
    * .lean()->limpia la peticion de impurezas
    * .populate()->metodo para crear relaciones, recibe texto y el primer texto que le pongas sera un objeto este objeto por defecto tendra un campo _id a este se le podra agregar los campos que se quiera como author y username
    */
-  return Promise.all([User.findById(userId).lean(), Post.find().populate('author', 'username').lean()])
-    .catch((error) => console.error(error))
+  return Promise.all([User.findById(userId).lean(), Post.find().populate('author', 'username').sort('-date').lean()])
+    .catch((error) => {
+      throw new SystemError('Mongo error');
+    })
     .then(([user, posts]) => {
-      if (!user) throw new Error('User not found');
-      if (!posts) throw new Error('posts not found');
+      if (!user) throw new NotFoundError('User not found');
+      if (!posts) throw new NotFoundError('posts not found');
 
       posts.forEach((post) => {
         post.id = post._id.toString();

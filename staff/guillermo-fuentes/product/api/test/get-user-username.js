@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/users/self/username', {
   method: 'GET',
   headers: {
-    Authorization: 'Basic user-20',
+    Authorization: 'Basic 6830cb9b22525f24e06c4bd1',
   },
 })
   .catch((error) => {
