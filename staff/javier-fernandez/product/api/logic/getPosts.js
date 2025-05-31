@@ -15,25 +15,25 @@ export const getPosts = userId => {
     // if user not found throw error
     // if user exists return posts
 
-    const users = data.getUsers()
-    
-    const user = users.find(user => user.id === userId)
+    return User.findById(userId)
+        .catch(error => { throw new Error(error.message) })
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-    if (!user) throw new Error('user not found')
+            return Post.find({}).select('-__v').populate('author', 'username').sort('-date').lean()
+                .catch(error => { throw new Error(error.message) })
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id
 
-    const posts = data.getPosts().toReversed()
-
-    posts.forEach(post => {
-        const authorId = post.authorId
-
-        const user = users.find(user => user.id === authorId)
-
-        const username = user.username
-
-        post.author = username
-
-        post.own = authorId === userId 
-    })
-
-    return posts
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+                            delete post.author._id 
+                        }
+                        post.own = post.author.id === userId 
+                    })
+                    return posts
+                })
+        })
 }

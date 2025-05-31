@@ -7,7 +7,7 @@ import { User } from '../data/index.js'
  */
 export const getUserUsername = userId => {
     if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (userId.length !== 24) throw new Error('invalid userId length')
 
     // search user with this userId
     // if user not found then throw error

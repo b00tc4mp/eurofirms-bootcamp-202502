@@ -23,12 +23,12 @@ export const createPost = (userId, image, text) => {
 
    return User.findById(userId)
 
-   .catch(error => {throw new Error(error.message)}) 
-
-    .then(user => {
+        .catch(error => {throw new Error(error.message)}) 
+        .then(user => {
         if (!user) throw new Error('user not found')
-            return Post.create({author:user._id, image, text})
-    })
-    .catch(error => {throw new Error(error.message)})
-    .then(() => {})
+
+            return Post.create({author:userId, image, text})
+                .catch(error => {throw new Error(error.message)})
+                .then(() => {})
+        })
 }
