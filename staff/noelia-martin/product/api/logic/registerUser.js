@@ -1,4 +1,6 @@
-import { data } from '../data/index.js'
+//import { data } from '../data/index.js'
+import { User } from '../data/index.js' //queremos solo User del fichero index de data
+
 
 //exactamente igual que en la app; ningun cambio ya que hemos nombrado los metodos que necesita de data igual que teniamos en app
 /**
@@ -26,29 +28,32 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    const users = data.getUsers()
-    /*for que teniamos en app, lo cambiamos por el metodo find
-    for (let i = 0; i < users.length; i++) {
-            var usuario = users[i]
-            if (usuario.email === email || usuario.username === username) throw new Error('user already exists')
-        }
-    */
-    const user = users.find(user => user.email === email || user.username === username)
-
-    if (user) throw new Error('user already exists')
-
-    let usersCount = data.getUsersCount()
-
-    usersCount++
-
-    users.push({
-        id: 'user-' + usersCount,
-        name: name,
-        email: email,
-        username: username,
-        password: password
-    })
-
-    data.setUsers(users)
-    data.setUsersCount(usersCount)
+    return User.create({ name, email, username, password })
+        .catch(error => {
+            throw new Error(error.message)
+            // console.error(error.message) //prueba para comprobar que si no lanzo el error no funciona el control de errores de la promesa then de conexion del test, me mete del tiron en su then y no mira el catch
+        })
+        .then(() => { })
 }
+
+//mantenemos solo las validaciones
+//creamos un User como practicamos en el fichero populate.js,pero esta vez no escribimos nada en consola, lo escribirá quien llame a esta logica.
+//El error que vamos a lanzar será creado por el constructor Error(). Esta vez no lo personalizamos.
+//No lo personalizamos porque gracias a los schemas que hemos configurado pueden ser distintos errores
+//En este caso no importaria si filtramos con message, ya que Error() no trae otras propiedades. Pero lo dejamos asi ya que en otras ocasiones las traerá y asi nos acostumbramos a este pequeño filtro. (manu lo dejó directamente sin message)
+
+//antiguo
+// const users = data.getUsers()
+// const user = users.find(user => user.email === email || user.username === username)
+// if (user) throw new Error('user already exists')
+// let usersCount = data.getUsersCount()
+// usersCount++
+// users.push({
+//     id: 'user-' + usersCount,
+//     name: name,
+//     email: email,
+//     username: username,
+//     password: password
+// })
+// data.setUsers(users)
+// data.setUsersCount(usersCount)

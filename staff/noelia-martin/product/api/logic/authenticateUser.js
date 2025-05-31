@@ -1,4 +1,6 @@
-import { data } from '../data/index.js'
+//import { data } from '../data/index.js'
+import { User } from '../data/index.js'
+
 
 /**
  * Authenticates a user from the system.
@@ -15,35 +17,20 @@ export const authenticateUser = (username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    const users = data.getUsers()
+    //findOne te devuelve el primer usuario que coincide con el introducido en la llamada a esta logica (en este caso tenemos configurado que no haya username repetidos)
+    return User.findOne({ username })
+        .catch(error => { throw new Error(error.message) })
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-    /*for que teniamos en app, lo cambiamos por el metodo find
-    
-    let user
+            if (user.password !== password) throw new Error('credentials error')
 
-    for (let i = 0; i < users.length; i++) {
-        const _user = users[i]
-
-        if (_user.username === username) {
-            user = _user
-
-            break
-        }
-    }
-
-    if (user === undefined) throw new Error('user not found')
-    */
-
-    const user = users.find(user => user.username === username)
-
-    if (!user) throw new Error('user not found')
-
-    if (user.password !== password) throw new Error('wrong credentials')
-
-    //data.setUserId(user.id) esta es la unica diferencia que aplicamos en esta logica, el resto es copiada de nuestra app. NO guardamos el estado solo lo devolvemos y si alguien lo necesita, que lo guarden por su cuenta
-    return user.id
+            return user.id
+        })
 }
-
-//esta logica no se llama Login ya que NO guardamos el usuario conectado(estado de sesión). En API no se guarda
-//login significa : autenticación y guardar el estado de sesion
-//pero como solo vamos a autenticacion, pues asi se llamara nuestro archivo
+//antiguo
+// const users = data.getUsers()
+// const user = users.find(user => user.username === username)
+// if (!user) throw new Error('user not found')
+// if (user.password !== password) throw new Error('wrong credentials')
+// return user.id

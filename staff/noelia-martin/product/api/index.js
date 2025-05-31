@@ -1,113 +1,130 @@
 import express from 'express'
-
-//este index hace el mismo trabajo de las view de nuestra apliación, asi que importamos todas las lógicas que va a necesitar
 import { logic } from './logic/index.js'
-
 import cors from 'cors'
 
-const api = express()
-const jsonBodyParser = express.json()
+import { connect } from './data/index.js' //nuevo
 
-api.use(cors())
+//se crea la conexion a la BD y todo el contenido que teniamos lo metemos en el .then y en .catch escribimos en consola posibles errores
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        const api = express()
+        const jsonBodyParser = express.json()
 
-//get es para pedir datos y post para enviar datos
+        api.use(cors())
 
-api.get('/hello', (request, response) => {
-    response.send('Hello! 😉')
-})
+        api.get('/hello', (request, response) => {
+            response.send('Hello! 😉')
+        })
 
-api.post('/users', jsonBodyParser, (request, response) => {
-    //llamamos  a la logica, como siempre con un  try/catch
-    try {
-        //antiguo: const user = request.body 
-        //como es un objeto lo vamos a destructurar
-        const { name, email, username, password } = request.body
+        api.post('/users', jsonBodyParser, (request, response) => {
+            try {
+                const { name, email, username, password } = request.body
+                //para las llamadas a lógicas hay que crear control de errores asincronos
+                //en .then configuramos codigo 201 y en .catch el 500(igual que tenemos en el catch sincrono)
+                logic.registerUser(name, email, username, password)
+                    .then(() => response.status(201).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        //version antigua
+        // api.post('/users', jsonBodyParser, (request, response) => {
+        //     try {
 
-        logic.registerUser(name, email, username, password)
+        //         const { name, email, username, password } = request.body
 
-        //si no configuro el estado automaticamente me devolverá un 200; pero lo vamos a dejar configurado
-        //response.send()
-        response.status(201).send()
-    } catch (error) {
-        //responderemos con el nombre de la constructora del error y el mensaje
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        //         logic.registerUser(name, email, username, password)
+        //         response.status(201).send()
+        //     } catch (error) {
+        //         response.status(500).json({ error: error.constructor.name, message: error.message })
+        //     }
+        // })
 
-//igual que la ruta /users(que es de registro), pero esta ruta sera users/auth y usará su propia logica
-api.post('/users/auth', jsonBodyParser, (request, response) => {
-    try {
-        const { username, password } = request.body
-        const userId = logic.authenticateUser(username, password)
+        api.post('/users/auth', jsonBodyParser, (request, response) => {
+            try {
+                const { username, password } = request.body
+                //nuevo
+                logic.authenticateUser(username, password)
+                    .then(userId => response.status(200).json(userId))
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
 
-        response.status(200).json(userId)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-api.get('/users/self/username', (request, response) => {
-    try {
-        const authorization = request.headers.authorization // nos traemos el contenido de la cabecera: Basic user-x
-        const userId = authorization.slice(6) //recortamos y nos quedamos solo con el id
+        // version antigua
+        // api.post('/users/auth', jsonBodyParser, (request, response) => {
+        //     try {
+        //         const { username, password } = request.body
+        //         const userId = logic.authenticateUser(username, password)
 
-        const username = logic.getUserUsername(userId) //llamamos  a la logica con el id y ya respondemos
+        //         response.status(200).json(userId)
+        //     } catch (error) {
+        //         response.status(500).json({ error: error.constructor.name, message: error.message })
+        //     }
+        // })
 
-        response.status(200).json(username)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.get('/users/self/username', (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
+                //nuevo
+                logic.getUserUsername(userId)
+                    .then(username => response.status(200).json(username))
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
 
-api.post('/posts', jsonBodyParser, (request, response) => {
-    try {
-        //recogemos el dato de la cabecera: userId
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        //reogemos el json: destructuro y asi lo tengo ya en variables separadas
-        const { image, text } = request.body
+        api.post('/posts', jsonBodyParser, (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
+                const { image, text } = request.body
 
-        logic.createPost(userId, image, text) //se crea el posts con los parametros recibidos de curl
+                logic.createPost(userId, image, text)
+                    .then(() => response.status(201).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
 
-        response.status(201).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-//el estatus 201 informa que hemos creado algo, asi que lo ponemos tras el createPost y createUsers
+        api.get('/posts', (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
 
-//al ser un metodo distinto al utilizado anteriormente, podemos utilizar la misma ruta; idem en el ultimo(en delete)
-//mismos comentarios de /users/self/username
-api.get('/posts', (request, response) => {
-    try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+                logic.getPosts(userId)
+                    .then(posts => response.status(200).json(posts))
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
 
-        const posts = logic.getPosts(userId)
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        response.status(200).json(posts)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.delete('/posts/:postId', (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
+                const { postId } = request.params
 
-api.delete('/posts/:postId', (request, response) => { //al poner en la ruta dos puntos se indica que lo que hay a continuacion es variable
-    try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+                logic.removePost(userId, postId)
+                    .then(() => response.status(204).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
 
-        //nos traemos el postId con el objeto params seguido del mismo nombre indicado en la ruta
-        //const postId = request.params.postId
-        const { postId } = request.params //usando destructuring
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        logic.removePost(userId, postId)
+        api.listen(8080, () => console.log('API listening on port 8080'))
 
-        response.status(204).send() //204 permite decir ha ido todo bien, sin mas dato
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
-api.listen(8080, () => console.log('API listening on port 8080')) 
+    })
+    .catch(error => console.error(error))

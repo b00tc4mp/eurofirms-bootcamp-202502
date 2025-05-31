@@ -1,58 +1,136 @@
-3/5/25
-Instalo la libreria express (guia en mi documentacion)
-1. Creo un index.js, dentro de la carpeta de instalacion(api, dentro de product)
-2. Se escribe codigo en index, el cual se puede probar tanto en un navegador como en la terminal con el cliente curl (los comandos utilizados de curl los dejamos en una nueva carpeta dentro de api, llamada test)
-Tambien se puede trabajar modo global(red externa) abriendo un puerto y haciendolo publico: junto a console, a la izquierda
+23/05/2025 y 24/05/2025
 
-9/5/25 (continuo en la misma version )
-Guardo copia de index y del test que ya no utilizaré en la misma ruta que estaba, pero modificando el nombre indicando que es version1 ( .1 )
+Instalación en nuestro PC de mongoDB y mongoSH (manual en carpeta de instalacion 6º documento)
+Trabajamos brevemente en mongoSH: (idem con posts)
+    db.users.insertOne({name:`'Pepito Grillo',email: ....})
+    db.users.insertMany([ {name: ...}, {name: ...}, ... ])
+    db.users.find()
+    db.users.deleteOne({_id:ObjectId('codigo id del usuario que quiero borrar')})
+    d.users.findOne({_id:ObjectId('codigo id del usuario que quiero encontrar')})
+    db.users.updateOne({_id:ObjectId('codigo id del usuario que quiero modificar')}, {$set: {password:'contraseña nueva que quiero guardar'}}) //con esta linea modificamos la contraseña del usuario que indicamos con ese id
+    db.users.updateMany({name: /P/}, {$set:{password:'contraseña nueva'}}) //con esta linea modifico la contraseña a todos los usuarios que sus nombres comiencen por una P
 
-1. Creo en data ficheros para almacenar los JSON, para users y posts lo configuro como array vacio => [] y tambien creo ficheros para usersCount y postsCount los pongo en 0
-1.1 Creo un index con los metodos que tenia en app pero cambiando el modo de almacenaje a los nuevos ficheros que tengo. Los metodos setUserID, getUserid y removeUserId NO, ya que las apis no guardan el estado de sesion
+Instalamos en API mongoDB y trabajamos con el cliente en el fichero populate1
+    Hacemos los mismos ejercicios que hicimos en mongoSH, pero con algunas breves modificaciones. (explicado en el codigo)
+    Como estamos trabajando con llamadas al servidor, necesitamos crear control de errores asincronos. 
+    .then: return ...
+        Creamos, modificacion, actualizamos, borramos o buscamos un user o post.
+        Si hay error creamos un Error('mongo error') y si todo ha ido bien un mensaje de consola para poder visualizar un breve mensaje de confirmación.
 
-2. Creo la logica de registerUsers, igual que la que teniamos en app. Hago un pequeño test dentro del mismo directorio, que será el primer tests que usaremos (a nivel interno, no requiere que el servidor este activo, a nivel de capa logica) y otro test en la carpeta test con el cliente curl (a nivel de aplicacion, es decir de API, este si requiere que el servidor este activo)
-2.1. En index.js de la interfaz creamos el post /users
+    .catch: 
+        Si ha habido algun error: si ha entrado en then que muestre el error personalizado que hemos creado(el que hemos lanzado); sino ha entrado en then que muestre el error que crea nuestra api (que recuerda que es un poco inteligible por eso el empeño de ir creandolos personalizados)
 
-En cada logica que se cree habra esos dos tests, uno a nivel logica(primero en utilizar, será un fichero js a ejecutar con node) y otro nivel API(segundo en utilizar, será un fichero sh a ejecutar con bash)
+    .finally
+        En el control de errores hay que añadir un .finally, el cuál SIEMPRE se ejecutará independientemente si ha entrado en .cath o .then. En él cerramos conexion 
 
-Recuerda que estamos trabajando con la misma estructura de la app: Interfaz(API, en la APP eran las view que eran manejadas por App.jsx) => logica => datos
+    Por culpa de .finally, el trabajo a realizar en .then lo metemos en un return. Ya que el servidor tardará lo que necesite. Con esto impedimos al finally ejecutarse hasta recibir respuesta del servidor (con el return encadenamos las promesas con el catch y el finally)
 
-3. Creo la logica de authenticate, igual que en logic de la app pero no se guarda el estado (de ahi el cambio de nombre) sino que lo retorna. Creamos los dos test que le corresponden
-3.1. En index.js de la interfaz creamos el post /users/auth
+Desinstalamos en API mongoDB que acto seguido instalará mongoose. (instalamos mongoose)
+    Models.js
+        Creamos este fichero para configurar el esquema que utilizara users y posts y los exportamos (POCO COMENTADO)
+    Populate.js
+        Importamos los esquemas de models, creamos conexion con la base de datos y hacemos ejercicios como anteriormente.( creación, eliminacion, actualización, busqueda de usuarios y posts)
+        En los metodos hay breves modificaciones respecto a como trabajabamos con mongodb (explicado en el codigo)
+        En el finally en vez de cerrar con close(), se cierra con disconnect()
 
-2.2 y 3.2 lo que cambia respecto a la APP es que utilizabamos una vista de formulario y ahora tenemos que pasar el contenido a registrar/autenticar con un json en los test y la base de datos de api sera en ficheros JSON (punto 1)
+Aplicamos a nuestras logicas las modificaciones necesarias para que utilice la base de datos MongoDB
+    registerUser.test: creamos una conexion a la base de datos con la que estamos trabajando y configuramos un control de errores asincronos: .then introducimos el control de error sincronos que teniamos modificado brevemente, .catch para capturar errores de conexion y .finally para cerrar conexion
+    (mejor explicado en el codigo y al final de este readme de la semana)
+    registerUser: borramos todo menos las validaciones y retornamos la creacion de un User como practicamos en el fichero populate, pero sin escribir nada en consola(ya que se escribirá en el control de errores de quien utilice la logica)
 
-4. Creo la logica getUserUsername: creamos el test de la logica antes de la logica y tambien el test de la api antes de la api(users/self/username). La logica la creamos desde 0.
-4.1 Lo que cambia respecto a la APP que utilizabamos esta logica para el mensaje de bienvenida de la home y ahora simplemente preguntamos por el contenido de username y nos responden
+    authenticateUser.test: parecido a registerUser.test pero como en el control sincrono que teniamos devolviamos userId, aqui lo meteremos de el .then de la llamada a la logica (explicado mejor en el codigo)
+    authenticateUser: parecido a la logica de registerUser pero utilizamos findOne
+        -primer return: utilizamos findOne, dentro del then lanzamos errores si el usuario y/o la contraseña introducido no son validas y ademas...
+        -segundo return: dentro del primer return, dentro del .then, retornamos el user,id
 
-5. Creo la logica CreatePost: primero el test, luego la logica. El único cambio respecto al app es que hay que meter mas validaciones ya que tenemos un nuevo parametro de entrada: userID (ya que no hay almacenamiento para ese dato). Sin retorno.
-5.1 Creo el tests y configuro la api (users/posts)
+    getUsername.test: nada nuevo que comentar.
+    getUsername: lo hice primero sola utilizando utilizando findOne pero en el interior indicaba que se trataba de un _id. Manu lo hizo con findById.
+        -return igual que authenticateUser pero devuelvo en el segundo return username
 
-6. Creo la logica getPost: test de logica, logica, test de api y api (users/posts). Logica igual que la de app pero le ponemos validaciones, entre ellas la que comprueba si existe el userId pasado como parametro
-
-7. Creo la logica removePosts: test de logica, logica, test de api y api (users/posts). Lógica parecida a app, pero hay que verificar parametros de entrada(userId y postId), si el post pertenece a ese usuario y ya borraría el post. En api y test de api usamos el metodo delete(explicado en el codigo)
-
-Recuerda: la propiedad own de los post que nos devuelve la logica getPost se usa solo para visualizar la ruta(en app para que salga el icono de la papelera), en api como trabajamos solo con backend no lo usamos
-
-8. Creamos otro tipo de test de la api: desde debugger o desde la carpeta test, con extension js. authenticate-user y register-user. (no he comentado nada, se dio en el ultimo momento y Manu dijo que el siguiente finde entrariamos en detalles)
-
-
-
-RECUERDA cada logica hay que indexarla
-Todas las logica necesitaran de parametro de entrada el idUser, excepto registro(obviamente no existe aun) y login(que nos identificamos con otras propiedades y no es necesario)
-
-
-La logica de logoutUser es una logica del fronted solo(recuerda que era para deslogearse en la home)
-La logica de isUserLoggin tampoco se implementará ya que esta logica preguntaba si un usuario estaba logeado, pero como no sabemos quien está logeado, fuera
-
-Finde 16/5/25- 17/5/25
-Instalamos cors (manual en carpeta de instalacion 5º documento)
-Modificamos el mensaje de bienvenida por otro mas correcto(en index.js)
-Modificamos el modo de arranque, en package-json: dentro de scripts configuro un: start="start":"node index.js",
-
-Creo todos los test de la api(carpeta test), todos los que faltaban (comentarios en app.7)
-
-En este mismo fin de semana trabajo con app.7, redacto un readme comenzando con el ultimo contenido añadido en este.
+    createPost.test y createPost lo intenté, pero me daba error en author, me decia algo parecido a que no reconocia el formato
 
 
-Con esto cierro version 1.
+Comprension de la creacion de errores: 
+    La sentencia throw se usa para lanzar una excepcion (en el codigo donde se ha producido el error) y esta ser capturada por algun catch de cualquier pila de llamada.
+    Pero en el caso del control de error de conexion(connect), del test de logic, no es necesario, ya que con tenerlo en la pagina con la que trabajo(donde se ha producido el error de conexion) es suficiente, ningun catch fuera lo va a necesitar. Por eso con un console.error para ver en el momento el error es suficiente.
+        Este console.error, en el caso de no tener configurado ningun .catch en la promesa del .then de la conexion, capturaria ambos errores: el de conexion y el producido en el then
+
+    Pero en el caso de crear un segundo .catch en la conexion para personalizar un mensaje de error de conexion, ya no habria ningun catch para capturar el error del .then de connection y tendria solo mi error personalizado (el cual daría lugar a confusion porque me haria creer que es error de conexion cuando no lo es)
+
+Copio y pego de version test con .catch en .then y con doble .catch de connect para tener un mensaje personalizado en caso de error de conexion
+    connect('mongodb://localhost:27017/test')
+        .then(() => {
+            try {
+                return registerUser('Mos Quito', 'mos@quito', 'mosquito', '123123123')
+                    .then(() => console.log('user registered'))
+                    .catch(error => console.error(error))
+            } catch (error) {
+                console.error(error) 
+            }
+        })
+        .catch(error => { throw new Error('Se ha producido un error de conexion!!!!') })
+        .catch(error => { console.error(error.message) })
+        .finally(() => disconnect())
+
+Si no pongo la captura del error de .then de connect, habria que quitar el lanzamiento del error personalizado y simplemente deja el console.error, para que este tenga el posible error de conexion(Con el texto de error) y el posible error del registro del usuario
+El codigo sería asi
+    connect('mongodb://localhost:27017/test')
+        .then(() => {
+            try {
+                return registerUser('Mos Quito', 'mos@quito', 'mosquito', '123123123')
+                    .then(() => console.log('user registered'))
+            } catch (error) {
+                console.error(error) 
+            }
+        })
+        .catch(error => { console.error(error.message) })
+        .finally(() => disconnect())
+
+Si en el .catch de la logica no hubiera creado un lanzamiento de error, el .then de connect entraria dentro de su .then y el control de errores no funcionaria
+(lo he dejado comentado en el codigo)
+
+La unica diferencia que veo entre lanzar y no lanzar, es que lanzando te da mas datos del error, se suele dar la linea donde se ha producido y lo puede capturar un .catch de cualquier pagina de codigo. Y si no lanzo escribo en consola cuando estoy en la pg que lo contiene y ya esa información se pierde si otra pg lo quiere
+
+30/05/2025
+
+Terminamos con todas las logicas para que utilice la base de datos de Mongo
+    createPost.test: nada nuevo que comentar. 
+    createPost : 
+        -primer return: creamos una validacion de existencia de usuario, el cual lanzará un error y nos sacará del codigo si el usuario que quiere crear el post no existe
+        -segundo return: dentro del primer return, creamos otro return, el que devolveremos con la creacion de Posts(como hicimos en populate)
+
+    getPosts.test : nada nuevo que comentar. 
+    getPost: 
+        -primer return: igual que createPost 
+        -segundo return: dentro del primer return, dentro del .then, buscamos con find los posts correspondientes a ese usuario. Este find lo vamos a toquetear un poco:
+            .select('-__v) indicamos que quite(por el menos) la propiedad v, que recuerda que la creaba automaticamente mongoose
+            .populate('author','username') indicamos que en la propiedad author nos incluya la propiedad username
+            .sort('-date') indicamos que ordene descendientemente(por el menos) a traves de las fechas
+            .lean() indicamos que nos traiga el objeto tal cuál está en la BD, este será mutable
+            Una vez hecho el find, en su control asincrono, configuramos un catch que lance un error y en .then vamos a modificar como quiero que lo muestre.
+                Creo un forEach que iterará en cada posts
+                    Dentro creo la propiedad id que sustituirá a _id, la convierto a string y la borro
+                    Si el post tiene un author_id entonces igual que antes, hago que se muestre author.id, sin el _ y lo borro
+                    Creo la propiedad own, si el post con el que itero es del usario le saldrá true sino false
+        -tercer return: dentro de segundo return, dentro del .then, justo debajo del forEach, devuelvo los postsFinalmente devuelvo los posts
+
+        (si no funciona mirar si he borrado algun usuario que tenía creado algun post)
+
+    removePost.test: nada nuevo que comentar. 
+    removePost:
+        -primer return: como los anteriores
+        -segundo return: dentro del primer return, dentro del .then, vamos buscar si existe el post que queremos borrar (misma mecanica que hacemos con userId) pero además creamos un nuevo filtro que nos lance una excepcion y nos saque del codigo si el userId no es dueño del postId. 
+        -tercer return: dentro del segundo return, dentro del .then, creamos el borrado del post metiendo como parametro el postId (recuerda que el userId se pasa como cabecera, no como parametro)
+
+Modificamos el fichero index.js de api
+    Importamos connect para utilizarlo para conectarnos a la BD, esta conexion tendrá el .then con TODO el contenido que tenia este archivo y un catch con un console.error
+    El contenido antiguo lo modifico brevemente solo en las llamadas a logicas. Las cuales hay que crearles un control de errores asincronos, con el mismo mecanismo que los test que creamos en la logica (mejor comentado en el codigo)
+
+Pasamos los tests curl a la api, modificando solo los userId y postId que necesitabamos
+
+Finalmente, fuimos a la app a hacer un breve cambio
+    En el componente Post, indicamos que hemos cambiado en lal logica getPost que en author ahora incluimos username y ese es el dato que necesitamos que muestre
+    Teniamos esta linea dentro de article : <h3 className="font-bold">{post.author}</h3>
+    y ahora la hemos cambiado a esta otra: <h3 className="font-bold">{post.author.username}</h3>
+
+31/05/2025

@@ -1,10 +1,26 @@
 import { getUserUsername } from './getUserUsername.js'
+import { connect, disconnect } from '../data/index.js'
 
-try {
-    const username = getUserUsername('user-10')
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        try {
+            return getUserUsername('6831d3e93e06d0b7063554f7')
+                .then(username => console.log('username gotten', username))
+                .catch(error => console.error(error))
+        }
+        catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error.message))
+    .finally(() => disconnect())
 
-    console.log('username gotten', username) //con esto hay que decirle a la logica que debe retornar el username del Id del usuario indicado
-} catch (error) {
-    console.error(error)
-}
-//para esta logica comenzamos escribiendo su test y luego la logica
+
+
+
+// try {
+//     const username = getUserUsername('user-10')
+//     console.log('username gotten', username)
+// } catch (error) {
+//     console.error(error)
+// }

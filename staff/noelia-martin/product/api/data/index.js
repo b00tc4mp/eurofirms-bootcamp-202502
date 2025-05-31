@@ -1,102 +1,14 @@
-import fs from 'fs' //viene con node, este paquete sirve para trabajar en disco. FS= fyle System
+//Borramos fichero completo, para esta version empezamos de 0
 
-//muy parecido a data de la app, sino que en vez de trabajar con Local y Session Storage, vamos a guardar los datos en ficheros json
-export const data = {
-    /**
-     * Saves users in database (json file).
-     * 
-     * @param {Array} users The array of users.
-     */
-    setUsers(users) {
-        const json = JSON.stringify(users) //convertimos el objeto a JSON
+import mongoose from 'mongoose'
+import { User, Post } from './models.js' //me traigo los modelos aqui a data para que cualquier logica que lo necesite, lo tenga a traves de data y asi simplificarles trabajo. Hacemos lo mismo con connect y disconnect
 
-        fs.writeFileSync('./data/users.json', json) //metodo que escribe de forma sincrona en el disco de nuestra maquina, le especificamos la ruta y el JSON que debe guardar
-    },
+const { connect, disconnect } = mongoose
 
-    /**
-     * Loads users from database (json file).
-     * 
-     * @returns {Array} The array of users.
-     */
-    getUsers() {
-        const json = fs.readFileSync('./data/users.json', 'utf8') //lee archivos de forma sincrona, especificamos la ruta y le decimos el formato
+export {
+    connect,
+    disconnect,
 
-        const users = JSON.parse(json) //convertimos el Json en objeto
-
-        return users
-    },
-
-    /**
-    * Saves users count in database (json file).
-    * 
-    * @param {number} usersCount The number of users in database.
-    */
-    setUsersCount(usersCount) {
-        const json = JSON.stringify(usersCount)
-
-        fs.writeFileSync('./data/usersCount.json', json)
-    },
-
-    /**
-     * Loads users count from database (json file).
-     * 
-     * @returns {number} The number of users in database.
-     */
-    getUsersCount() {
-        const json = fs.readFileSync('./data/usersCount.json', 'utf8')
-
-        const usersCount = JSON.parse(json)
-
-        return usersCount
-    },
-    /**
-         * Saves posts in database (json file).
-         * 
-         * @param {Array} posts The array of posts.
-         */
-    setPosts(posts) {
-        const json = JSON.stringify(posts)
-
-        fs.writeFileSync('./data/posts.json', json)
-    },
-
-    /**
-     * Loads posts from database (json file).
-     * 
-     * @returns {Array} The array of posts.
-     */
-    getPosts() {
-        const json = fs.readFileSync('./data/posts.json', 'utf8')
-
-        const posts = JSON.parse(json)
-
-        return posts
-    },
-
-    /**
-    * Saves posts count in database (json file).
-    * 
-    * @param {number} postsCount The number of posts in database.
-    */
-    setPostsCount(postsCount) {
-        const json = JSON.stringify(postsCount)
-
-        fs.writeFileSync('./data/postsCount.json', json)
-    },
-
-    /**
-     * Loads posts count from database (json file).
-     * 
-     * @returns {number} The number of posts in database.
-     */
-    getPostsCount() {
-        const json = fs.readFileSync('./data/postsCount.json', 'utf8')
-
-        const postsCount = JSON.parse(json)
-
-        return postsCount
-    }
-
-
-
+    User,
+    Post
 }
