@@ -6,29 +6,29 @@ const api = express()
 const jsonBodyParser = express.json()
 
 api.use(cors())
-api.get('/hello', (request, responde) => {
+api.get('/hello', (request, response) => {
 
-    responde.send('Hello!😁')
+    response.send('Hello!😁')
 
 })
 
-api.post('/users', jsonBodyParser, (request, responde) => {
+api.post('/users', jsonBodyParser, (request, response) => {
 
     try {
         const { name, email, username, password } = request.body
 
         logic.registerUser(name, email, username, password)
 
-        responde.status(201).send()
+        response.status(201).send()
 
     } catch (error) {
 
-        responde.status(500).json({ error: error.constructor.name, message: error.message })
+        response.status(500).json({ error: error.constructor.name, message: error.message })
 
     }
 })
 
-api.post('/users/auth', jsonBodyParser, (request, responde) => {
+api.post('/users/auth', jsonBodyParser, (request, response) => {
 
     try {
 
@@ -36,11 +36,11 @@ api.post('/users/auth', jsonBodyParser, (request, responde) => {
 
         const userId = logic.authenticateUser(username, password)
 
-        responde.status(200).json(userId)
+        response.status(200).json(userId)
 
     } catch (error) {
 
-        responde.status(500).json({ error: error.constructor.name, message: error.message })
+        response.status(500).json({ error: error.constructor.name, message: error.message })
     }
 })
 

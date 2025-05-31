@@ -1,1 +1,1 @@
-curl -X POST -H 'Content-Type: application/json' -d '{"username":"aladdin","password":"123123123"}' http://localhost:8080/users/auth -v
+curl -X POST -H 'Content-Type: application/json' -d '{"username":"magneto","password":"123123123"}' http://localhost:8080/users/auth -v

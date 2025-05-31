@@ -11,20 +11,20 @@ connect('mongodb://localhost:27017/test')
 
         api.use(cors())
 
-        api.get('/hello', (request, responde) => {
+        api.get('/hello', (request, response) => {
 
-            responde.send('Hello!😁')
+            response.send('Hello!😁')
 
         })
 
-        api.post('/users', jsonBodyParser, (request, responde) => {
+        api.post('/users', jsonBodyParser, (request, response) => {
 
             try {
                 const { name, email, username, password } = request.body
 
                 logic.registerUser(name, email, username, password)
-                    .then(() => responde.status(201).send())
-                    .catch(error => responde.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .then(() => response.status(201).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
 
             } catch (error) {
 
@@ -32,7 +32,7 @@ connect('mongodb://localhost:27017/test')
             }
         })
 
-        api.post('/users/auth', jsonBodyParser, (request, responde) => {
+        api.post('/users/auth', jsonBodyParser, (request, response) => {
 
             try {
 
@@ -44,7 +44,7 @@ connect('mongodb://localhost:27017/test')
 
             } catch (error) {
 
-                responde.status(500).json({ error: error.constructor.name, message: error.message })
+                response.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
