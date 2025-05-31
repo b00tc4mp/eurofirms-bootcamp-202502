@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
 
 /**
  * Returns post from database.
@@ -9,31 +9,33 @@ import { data } from '../data/index.js'
  */
 export const getPosts = userId => {
     if (typeof userId !== 'string') throw new Error ('invalid userId type')
-    if (userId.length < 6) throw new Error ('invalid userId length')
+    if (userId.length !== 24) throw new Error ('invalid userId length')
 
     // verify user exists by user id
     //if user not found throw error
     //if user exists return posts
 
-    const users = data.getUsers()
+    return User.findById(userId)
+        .catch(error => { throw new Error (error.message) })
+        .then (user => {
+            if(!user) throw new Error ('user not found')
 
-    const user = users.find(user => user.id === userId)
+            return Post.find({}).select('-__v').populate('author', 'username').sort('-date').lean()
+                .catch(error => { throw new Error (error.message) })
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id 
 
-    if (!user) throw new Error ('user not found')
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+                            delete post.author._id
+                        }
 
-    const posts = data.getPosts().toReversed()
+                        post.own = post.author.id === userId
+                    })
 
-    posts.forEach(post => {
-        const authorId = post.author
-        
-        const user = users.find(user => user.id === authorId)
-
-        const username = user.username
-
-        post.author = username
-        
-        post.own = authorId === userId
-    })
-
-    return posts
-}
+                    return posts
+                })
+        })
+    }

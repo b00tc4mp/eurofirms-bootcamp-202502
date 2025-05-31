@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
 
 /**
  * 
@@ -10,10 +10,10 @@ import { data } from '../data/index.js'
 export const removePost = (userId, postId) => {
     //  validate userId and postId
     if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (userId.length !== 24) throw new Error('invalid userId length')
 
     if (typeof postId !== 'string') throw new Error('invalid postId type')
-    if (postId.lengh < 6) throw new Error('invalid postId length')
+    if (postId.length !== 24) throw new Error('invalid postId length')
 
 
 
@@ -25,24 +25,23 @@ export const removePost = (userId, postId) => {
     //id post does not belong to user then throw error
     //otherwise, delete post from database
 
-    const users = data.getUsers()
+    return User.findById(userId)
+        .catch(error => {throw new Error(error.message) })
+        .then(user => {
+            if (!user) throw new Error('user not found')
 
-    const user = users.find(user => user.id === userId)
+                return Post.findById(postId)
+                .catch(error => { throw new Error (error.message) })
+                .then(post => {
+                    if (!post) throw new Error('post not found')
+                    
+                    if (post.author.toString() !== userId) throw new Error('user not author of post')
 
-    if (!user) throw new Error('user not found')
+                    return Post.deleteOne({ _id:postId })
+                        .catch(error => { throw new Error(error.message) })
+                        .then(() => { })
+                })
 
-    const posts = data.getPosts()
-
-    const postIndex = posts.findIndex(post => post.id === postId)
-
-    if (postIndex < 0) throw new Error('post not found')
-
-    const post = posts[postIndex]
-
-    if (post.author !== userId) throw new Error('user is not author of post')
-
-    posts.splice(postIndex, 1)
-
-    data.setPosts(posts)
+        })
 
 }
