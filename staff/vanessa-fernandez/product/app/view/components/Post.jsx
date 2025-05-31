@@ -20,7 +20,7 @@ export const Post = ({ post, onPostDeleted }) => {
     }
 
     return <article className="border border-gray-300 rounded-xl p-4 shadow-sm bg-white flex flex-col gap-3">
-        <h3 className="bg-[#f0f4ff] text-gray-800 font-semibold text-lg rounded px-2 py-1 inline-block">{post.author}</h3>
+        <h3 className="bg-[#f0f4ff] text-gray-800 font-semibold text-lg rounded px-2 py-1 inline-block">{post.author.username}</h3>
 
         <img src={post.image} alt="" className="w-full h-60 object-cover rounded-lg " />
 

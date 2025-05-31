@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { Post, User } from '../data/index.js'
 
 /**
  * Creates a post in database.
@@ -21,28 +21,18 @@ export const createPost = (userId, image, text) => {
     if (!image.startsWith('http')) throw new Error ('Invalid image format.')
     if (!image) throw new Error ('You must provide an image.')    
         
-    const users = data.getUsers()
-    const user = users.find(user => user.id === userId)
-    
-    if(!user) throw new Error ('User not found.')
-    
-    let postsCount = data.getPostsCount()
-    
-    postsCount++
-    
-    const post = {
-        id: 'post-' + postsCount,
-        author: user.id,
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
+    return User.findById(userId)
+        .catch(error => { throw new Error(error.message)})
+        .then(user => {
+            if(!user) throw new Error('user not found')
 
-    const posts = data.getPosts()
-
-    posts.push(post)
-    
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
+            return Post.create({
+                //author:user._id, esto si funciona seguro
+                author: userId,
+                image,
+                text
+            })    
+        })
+        .catch(error => { throw new Error(error.message)})
+        .then(() => { })
 }

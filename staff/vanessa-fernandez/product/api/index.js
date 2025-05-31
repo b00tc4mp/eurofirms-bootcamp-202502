@@ -1,112 +1,102 @@
-import express, { response } from 'express'
+import { connect } from './data/index.js'
+import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
 
-const server = express()
-const jsonBodyParser = express.json()
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        const api = express()
+        const jsonBodyParser = express.json()
 
-server.use(cors())
+        api.use(cors())
 
-server.get('/hello' , (request, response) => {
-    response.send('Hello!! 👋')
-})
+        api.get('/hello', (request, response) => {
+            response.send('Hello! 👋')
+        })
 
-/*server.get('/color', (request, response) => {
-    const q = request.query.q
+        api.post('/users', jsonBodyParser, (request, response) => {
+            try {
+                const { name, email, username, password } = request.body
 
-    let code
+                logic.registerUser(name, email, username, password)
+                    .then(() => response.status(201).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }) )
 
-    if (q === 'red')
-        code = '#FF0000'
-    else if (q === 'green')
-        code = '#00FF00'
-    else if (q === 'blue')
-        code = '#0000FF'
-    else if (q === 'yellow')
-        code = '#FFFF00'
+                
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-    response.send(code)
-})*/
+        api.post('/users/auth', jsonBodyParser, (request, response) => {
+            try {
+                const { username, password } = request.body
 
-server.post('/users', jsonBodyParser, (request, response) => {
-    try {
-        const { name, email, username, password } = request.body
+                logic.authenticateUser(username, password)
+                    .then(userId => response.status(200).json(userId))
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        logic.registerUser(name, email, username, password)
+        api.get('/users/self/username', (request, response) => {
+            try {
+                const authorization = request.headers.authorization
 
-        response.status(201).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message})
-    }
-})
+                const userId = authorization.slice(6)
 
-server.post('/users/auth', jsonBodyParser, (request, response) => {
-    try {
-        const { username, password } = request.body
+                logic.getUserUsername(userId)
+                    .then(username => response.status(200).json(username))
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error. message}))
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        const userId = logic.authenticateUser(username, password)
+        api.post('/posts', jsonBodyParser, (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
 
-        response.status(200).json(userId)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+                const { image, text } = request.body
 
-server.get('/users/self/username', (request, response) => {
-    try {
-        const authorization = request.headers.authorization
-        
-        const userId = authorization.slice(6)
-        
-        const username = logic.getUserUsername(userId)
+                logic.createPost(userId, image, text)
+                    .then(() => response.status(201).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        response.status(200).json(username)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.get('/posts', (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
 
-server.post('/posts',jsonBodyParser, (request, response) => {
-    try{
-        const authorization = request.headers.authorization
-        const userId = authorization.slice(6)
-        
-        const {image, text} = request.body
+                logic.getPosts(userId)
+                    .then(posts => response.status(200).json(posts))
+                    .catch(error => response.status(500).json({ error: error.constructo.name, message: error.message}))
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-        logic.createPost(userId,image,text)
-        
-        response.status(201).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.delete('/posts/:postId', (request, response) => {
+            try {
+                const authorization = request.headers.authorization
+                const userId = authorization.slice(6)
 
-server.get('/posts', (request, response) => {
-    try {
-        const authorization = request.headers.authorization
-        const userId = authorization.slice(6)
-        
-        const posts = logic.getPosts(userId)
+                const { postId } = request.params
 
-        response.status(200).send(posts)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+                logic.removePost(userId, postId)
+                    .then(() => response.status(204).send())
+                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message}))
+            } catch (error) {
+                response.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
-server.delete('/posts/:postId', (request, response) => {
-    try {
-        const authorization = request.headers.authorization
-        const userId = authorization.slice(6)
-
-        const {postId} = request.params
-
-        logic.removePost(userId, postId)
-
-        response.status(204).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
-server.listen(8080, () => console.log('API listening on port 8080'))
+        api.listen(8080, () => console.log('API listening on port 8080'))
+    })
+    .catch(error => console.error(error))    
