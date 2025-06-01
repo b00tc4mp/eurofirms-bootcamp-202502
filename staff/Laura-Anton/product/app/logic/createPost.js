@@ -13,23 +13,26 @@ export const createPost = (image, text) => {
     if (typeof text !== 'string') throw new Error('invalid text type')
     if (text.length < 1) throw new Error('invalid min text length')
 
-    let postsCount = data.getPostsCount()
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image, text })
+    })
+        .catch(error => { throw Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    postsCount++
+            if (status === 201) return
 
-    const post = {
-        id: 'post-' + postsCount,
-        author: data.getUserId(),
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-    const posts = data.getPosts()
-
-    posts.push(post)
-
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
+                    throw new Error(message)
+                })
+        })
 }

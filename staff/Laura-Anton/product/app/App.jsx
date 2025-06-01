@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'

@@ -1,29 +1,29 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
+import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './errors.js'
+
 
 export const removePost = (userId, postId) => {
-    if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
+    if (userId.length !== 24) throw new ValidationError('invalid userId length')
 
-    if (typeof postId !== 'string') throw new Error('invalid postId type')
-    if (postId.length < 6) throw new Error('invalid postId length')
+    if (typeof postId !== 'string') throw new ValidationError('invalid postId type')
+    if (postId.length !== 24) throw new ValidationError('invalid postId length')
 
-    const users = data.getUsers()
+    return User.findById(userId)
+        .catch(error => { throw new SystemError('mongo error') })
+        .then(user => {
+            if (!user) throw new NotFoundError('user not found')
 
-    const user = users.find(user => user.id === userId)
+            return Post.findById(postId)
+                .catch(error => { throw new SystemError('mongo error') })
+                .then(post => {
+                    if (!post) throw new NotFoundError('post not found')
 
-    if (!user) throw new Error('user not found')
+                    if (post.author.toString() !== userId) throw new AuthorshipError('user not author of post')
 
-    const posts = data.getPosts()
-
-    const postIndex = posts.findIndex(post => post.id === postId)
-
-    if (postIndex < 0) throw new Error('post not found')
-
-    const post = posts[postIndex]
-
-    if (post.author !== userId) throw new Error('user is not author of post')
-
-    posts.splice(postIndex, 1)
-
-    data.setPosts(posts)
+                    return Post.deleteOne({ _id: postId })
+                        .catch(error => { throw new SystemError('mongo error') })
+                        .then(() => { })
+                })
+        })
 }
