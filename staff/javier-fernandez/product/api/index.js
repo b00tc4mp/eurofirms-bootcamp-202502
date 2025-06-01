@@ -3,7 +3,7 @@ import express from 'express'
 import { logic } from './logic/index.js' 
 import cors from 'cors'
 
-connect('mongodb://localhost;27017/test')
+connect('mongodb://localhost:27017/test')
     .then(() => {
         const api = express()
         const jsonBodyParser = express.json()
@@ -81,6 +81,23 @@ connect('mongodb://localhost;27017/test')
                 response.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
+
+       // error handler
+
+       api.use((error, request, response, next) => {
+            if (error instanceof ValidationError)
+                response.status(400).json({ error:error.constructor.name, message: error.message })
+            else if (error instanceof NotFoundError)
+                response.status(404).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof CredentialsError)
+                response.status(401).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof AuthorshipError)
+                response.status(403).json({ error: error.constructor.name, message: error.message})
+            else if (error instanceof DuplicityError)
+                response.status(409).json({ error: error.constructor.name, message: error.message })
+            else
+                response.status(500).json({ error: SystemError.name, message: error.message })
+       })
 
         api.listen(8080, () => console.log('API listening on port 8080'))
     })

@@ -15,3 +15,21 @@ export class NotFoundError extends Error {
         super(message)
     }
 }
+
+export class CredentialsError extends Error {
+    constructor(message) {
+        super(message)
+    }
+}
+
+export class AuthorshipError extends Error {
+    constructor(message) {
+        super(message)
+    }
+}
+
+export class SystemError extends Error {
+    constructor(message) { 
+    super(message)
+    }
+}
