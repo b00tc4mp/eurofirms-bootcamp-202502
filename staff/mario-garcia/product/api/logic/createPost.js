@@ -1,4 +1,5 @@
 import { User, Post } from '../data/index.js'
+import { ValidationError, SystemError, NotFoundError } from './errors.js'
 
 /**
  * CREAR Post dentro de la BB.DD.
@@ -10,22 +11,22 @@ import { User, Post } from '../data/index.js'
 
 export const createPost = (userId, image, text) => {
 
-    if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length !== 24) throw new Error('invalid userId length')
+    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
+    if (userId.length !== 24) throw new ValidationError('invalid userId length')
 
-    if (typeof image !== 'string') throw new Error('invalid image type')
-    if (!image.startsWith('http')) throw new Error('invalid image format')
+    if (typeof image !== 'string') throw new ValidationError('invalid image type')
+    if (!image.startsWith('http')) throw new ValidationError('invalid image format')
 
-    if (typeof text !== 'string') throw new Error('invalid text type')
-    if (text.length < 1) throw new Error('invalid min text length')
+    if (typeof text !== 'string') throw new ValidationError('invalid text type')
+    if (text.length < 1) throw new ValidationError('invalid min text length')
 
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
-            if (!user) throw new Error('user not found')
+            if (!user) throw new NotFoundError('user not found')
 
             return Post.create({ author: userId, image, text })
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError('mongo error') })
                 .then(() => { })
         })
 }
