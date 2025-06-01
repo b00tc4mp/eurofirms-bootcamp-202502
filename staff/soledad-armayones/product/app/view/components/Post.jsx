@@ -19,7 +19,7 @@ export const Post = ({ post, onPostDeleted }) => {
     }
 
     return <article>
-        <h3 className="font-bold ">{post.author}</h3>
+        <h3 className="font-bold">{post.author.username}</h3>
 
         <img src={post.image} alt="" />
 
@@ -27,6 +27,6 @@ export const Post = ({ post, onPostDeleted }) => {
 
         <time>{post.date}</time>
 
-        {post.own && <button className="border-4 border-plum   px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
+        {post.own && <button className="border-4 border-black px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
     </article>
 }
