@@ -1,8 +1,5 @@
 import { logic } from '../logic'
 
-// export const Login = props => {
-//     const onRegisterClicked = props.onRegisterClicked
-//     const onUserLoggedIn = props.onUserLoggedIn
 export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const handleRegisterClick = () => onRegisterClicked()
 
@@ -16,11 +13,19 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
         try {
             logic.loginUser(username, password)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onUserLoggedIn()
+                })
+                .catch(error => {
+                    console.error(error)
 
-            onUserLoggedIn()
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }

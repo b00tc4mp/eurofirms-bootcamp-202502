@@ -5,18 +5,22 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
 
-// export const Home = props => {
-//     const onUserLoggedOut = props.onUserLoggedOut
 export const Home = ({ onUserLoggedOut }) => {
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
 
     useEffect(() => {
         try {
-            const username = logic.getUserUsername()
+            logic.getUserUsername()
+                .then(username => setUsername(username))
+                .catch(error => {
+                    console.error(error)
 
-            setUsername(username)
+                    alert(error.message)
+                })
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
     }, [])
