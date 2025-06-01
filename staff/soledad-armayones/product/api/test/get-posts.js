@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/posts', {
     method: 'GET',
     headers: {
-        Authorization: 'Basic user-6'
+        Authorization: 'Basic user-10'
     }
 })
     .catch(error => { throw new Error('connection error') })

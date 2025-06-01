@@ -3,9 +3,8 @@ fetch('http://localhost:8080/users', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: '{"name":"dama","email":"dama@gmail.com","username":"damabe","password":"123123123"}'
+    body: '{"name":"pinocho","email":"pinocho@pan.com","username":"pinocho1","password":"123123123"}'
 })
-
     .catch(error => { throw new Error('connection error') })
     .then(response => {
         //const status = response.status

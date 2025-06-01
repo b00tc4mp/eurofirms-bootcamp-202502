@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
-const { Schema, model } = 
-mongoose
+const { Schema, model } = mongoose
 const { Types } = Schema
 const { ObjectId } = Types
 

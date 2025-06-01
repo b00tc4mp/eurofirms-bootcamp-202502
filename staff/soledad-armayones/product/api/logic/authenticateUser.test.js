@@ -1,9 +1,16 @@
+import { connect, disconnect } from '../data/index.js'
 import { authenticateUser } from './authenticateUser.js'
 
-try {
-    const userId = authenticateUser('peterpan', '123123123')
+connect('mongodb://localhost:27017/test')
+    .then(() => {
+        try {
+            return authenticateUser('Sole Pan', '012012012')
+                .then(userId => console.log('user authenticated', userId))
+                .catch(error => console.error(error))
+        } catch (error) {
+            console.error(error)
+        }
+    })
+    .catch(error => console.error(error))
+    .finally(() => disconnect())
 
-    console.log('user authenticated', userId)
-} catch (error) {
-    console.error(error)
-}

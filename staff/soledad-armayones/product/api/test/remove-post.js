@@ -1,7 +1,7 @@
-fetch('http://localhost:8080/posts/post-8', {
+fetch('http://localhost:8080/posts/post-5', {
     method: 'DELETE',
     headers: {
-        Authorization: 'Basic user-7'
+        Authorization: 'Basic 683c3beef2ca3cda8c9f68bb'
     }
 })
     .catch(error => { throw new Error('connection error') })

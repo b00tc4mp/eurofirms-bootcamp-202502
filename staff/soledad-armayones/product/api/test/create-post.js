@@ -1,10 +1,9 @@
 fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        Authorization: 'Basic user-2',
-        'Content-Type': 'application/json'
+        Authorization: 'Basic 683c43591449ccdee841aa98',  'Content-Type': 'application/json'
     },
-    body: '{"image":"https://https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzZwOWI1MnNmbmk1cGxhNzVzNml2eDJmYWk1eDkxZjYyODFpMTdsZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6rQAkBvurR6CI/giphy.gif","text":"photo bella","text":"pin8 dancing"}'
+    body: '{"image":https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3B3MWF2N2N0d3pmeGNnNTY4cjc5N2xuYXQxdHR4dnpwbjNqNThkayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o85gdhlpxVz8TjsTC/giphy.gif","text":"Pinocho nouse"}'
 })
     .catch(error => { throw Error('connection error') })
     .then(response => {
