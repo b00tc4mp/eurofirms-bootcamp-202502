@@ -1,4 +1,4 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
 
 /**
  * Returns post from database.

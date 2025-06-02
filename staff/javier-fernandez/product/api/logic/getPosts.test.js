@@ -1,4 +1,4 @@
-import { connect, disconnect } from '../data/'
+import { connect, disconnect } from '../data/index.js'
 import { getPosts } from './getPosts.js'
 
 connect('mongodb://localhost:27017/test')

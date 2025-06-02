@@ -1,4 +1,4 @@
-import { connect } from ',/data/index.js'
+import { connect } from './data/index.js'
 import express from 'express'
 import { logic } from './logic/index.js' 
 import cors from 'cors'

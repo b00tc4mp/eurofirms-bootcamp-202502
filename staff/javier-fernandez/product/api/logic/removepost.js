@@ -1,4 +1,4 @@
-import { data, Post } from '../data/index.js'
+import { Post } from '../data/index.js'
 
 /**
  * Removes a post by id from database.

@@ -29,7 +29,8 @@ const user = new Schema({
 
 const post = new Schema({
     author: {
-        type: String,
+        type: ObjectId,
+        ref: 'User',
         required: true 
     },
 
