@@ -8,20 +8,20 @@ import { User, Post } from '../data/index.js'
  * @returns {array} The posts from database.
  */
 export const getPosts = userId => {
-    if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
+    if (userId.length < 6) throw new ValidationError('invalid userId length')
 
     // verify user exists by user id
     // if user not found throw error
     // if user exists return posts
 
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new Error('user not found')
+            if (!user) throw new NotFoundError('user not found')
 
             return Post.find({}).select('-__v').populate('author', 'username').sort('-date').lean()
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()

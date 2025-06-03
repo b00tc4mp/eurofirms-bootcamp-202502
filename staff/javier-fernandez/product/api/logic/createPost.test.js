@@ -5,8 +5,8 @@ connect("mongodb://localhost:27017/test")
   .then(() => {
     try {
       return createPost(
-        "6830ca59d0976cd40d6c4bd0",
-        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzBpeWpiZTlzaWhsZTk5cnRlNzQxbTUxNGpqajQ4NnF0b3prZnY2ciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KcRVkLMk67Nte/giphy.webp",
+        "683de4444dcabbf91de96b83",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGW9bWkZygq8YgE3sD-Df74Ua0ciqLrGv_yg&s",
         "la tripulacion")
         .then(() => console.log("post created"))
         .catch((error) => console.error(error));

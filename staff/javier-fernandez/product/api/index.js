@@ -2,6 +2,7 @@ import { connect } from './data/index.js'
 import express from 'express'
 import { logic } from './logic/index.js' 
 import cors from 'cors'
+import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -14,60 +15,72 @@ connect('mongodb://localhost:27017/test')
             response.send('Hello! 😉')
         })
 
-        api.post('/users', jsonBodyParser, (request, response) => {
+        api.post('/users', jsonBodyParser, (request, response, next) => {
             try {
                 const { name, email, username, password } = request.body
 
                 logic.registerUser(name, email, username, password)
                     .then(() => response.status(201).send())
-                    .catch(error => response.status(599).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => next(error))
             } catch (error) {
-                response.status(500).json({ error: error.constructor.name, message: error.message })
+                next(error)
             }
         })
 
-        api.get('/users/self/username',  (request, response) => {
+        api.post('/users/auth', jsonBodyParser, (request, response, next) => {
+            try {
+                const { username, password } = request.body
+
+                logic.authenticateUser(username, password)
+                    .then(userId => response.status(200).json(userId))
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
+
+        api.get('/users/self/username',  (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
                 const userId = authorization.slice(6)
 
                 logic.getUserUsername(userId)
                     .then(userrname => response.status(200).json(username))
-                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => next(error))
             } catch (error) {
-                response.status(500).json({ error: error.constructor.name, message: error.message })
+                next(error)
             }
         })
 
-        api.post('/posts', jsonBodyParser, (request, response) => {
+        api.post('/posts', jsonBodyParser, (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
-                const userId = authotization.slice(6)
+                const userId = authorization.slice(6)
 
                 const { image, text } = request.body
 
                 logic.createPost(userId, image, text)
                     .then(() => response.status(201).send())
-                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => next(error))
             } catch (error) {
-                response.status(500).json({ error: error.constructor.name, message: error.message })
+                next(error)
             }
         })
 
-        api.get('/posts', (request, response) => {
+        api.get('/posts', (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
                 const userId = authorization.slice(6)
 
                 logic.getPosts(userId)
                     .then(posts => response.status(200).json(posts))
-                    .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => next(error))
             } catch (error) {
-                response.status(500).json({ error: error.constructor.name, message: error.message })
+                next(error)
             }
         })
 
-        api.delete('/posts/:postId', (request, response) => {
+        api.delete('/posts/:postId', (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
                 const userId = authorization.slice(6)
@@ -76,9 +89,9 @@ connect('mongodb://localhost:27017/test')
 
                 logic.removePost(userId, postId)
                 .then(() => response.status(204).send())
-                .catch(error => response.status(500).json({ error: error.constructor.name, message: error.message })) 
+                .catch(error => next(Error)) 
             } catch {
-                response.status(500).json({ error: error.constructor.name, message: error.message })
+                next(error)
             }
         })
 
