@@ -1,1 +1,1 @@
-curl -X GET -H 'Authorization: Basic user-1' http://localhost:8080/posts -v
+curl -X GET -H 'Authorization: Basic 6830cb8e10e539f5366c4bd1' http://localhost:8080/posts -v

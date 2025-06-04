@@ -18,7 +18,7 @@ export const Post = ({ post, onPostDeleted }) => {
             }
     }
     return <article>
-        <h3 className="font-bold">{post.author}</h3>
+        <h3 className="font-bold">{post.author.username}</h3>
 
         <img src={post.image} alt="" />
 

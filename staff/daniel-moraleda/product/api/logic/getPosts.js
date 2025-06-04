@@ -1,4 +1,5 @@
-import { data } from '../data/index.js'
+import { User, Post } from '../data/index.js'
+import { ValidationError, SystemError, NotFoundError } from './errors.js'
 
 /**
  * Returns post from database
@@ -8,32 +9,30 @@ import { data } from '../data/index.js'
  * @returns {array} The psots from database
  */
 export const getPosts = userId => {
-    if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
+    if (userId.length !== 24) throw new ValidationError('invalid userId length')
 
-    // verify user eexists by user ide
-    // if user not found throw error
-    // if user exists return posts
 
-    const users = data.getUsers()
+    return User.findById(userId)
+        .catch(error => { throw new SystemError('mongo error') })
+        .then(user => {
+            if (!user) throw new NotFoundError('user not found')
 
-    const user = users.find(user => user.id === userId)
+            return Post.find({}).select('-__V').populate('author', 'username').sort('-date').lean()
+                .catch(error => { throw new SystemError('mongo error') })
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+                            delete post.author._id
+                        }
 
-    if (!user) throw new Error('user not found')
-
-    const posts = data.getPosts().toReversed()
-
-    posts.forEach(post => {
-        const authorId = post.author
-
-        const user = users.find(user => user.id === authorId)
-
-        const username = user.username
-
-        post.author = username
-
-        post.own = authorId === userId
-    })
-
-    return posts
+                        post.own = post.author.id === userId
+                    })
+                    
+                    return posts
+                })
+        })
 }
