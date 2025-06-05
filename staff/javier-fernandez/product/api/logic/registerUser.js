@@ -1,4 +1,5 @@
 import { User } from '../data/index.js'
+import { ValidationError, DuplicityError, SystemError } from './errors.js'
 
 /**
  * Registers a user in the system.
