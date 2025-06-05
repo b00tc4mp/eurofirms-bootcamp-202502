@@ -23,8 +23,9 @@ export const Posts = () => {
 
             alert(error.message)
         }
-           [])
-     
+     },[])
+
+      
     const handlePostDeleted = () => {
         try {
             logic.getPosts()

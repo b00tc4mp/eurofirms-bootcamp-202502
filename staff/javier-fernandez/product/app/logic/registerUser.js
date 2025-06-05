@@ -28,7 +28,7 @@ export const registerUser = (name, email,username, password) => {
    return fetch('http://localhost:8080/users', {
         method: 'POST',
         headers: {
-            'content-Type': 'aplication/json' 
+            'Content-Type': 'application/json' 
         },
         body: JSON.stringify({ name, email, username, password })
    })

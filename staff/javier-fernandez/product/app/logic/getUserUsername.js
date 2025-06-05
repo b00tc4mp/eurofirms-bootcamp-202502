@@ -6,7 +6,6 @@ import { data } from '../data'
  * @returns {string} The user username.
  */
 export const getUserUsername = () => {
-   return const getUserUsername = () => {
     return fetch('http://localhost:8080/posts', {
         method: 'GET',
         headers: {
@@ -31,4 +30,3 @@ export const getUserUsername = () => {
                 })
         })
    }
-}
