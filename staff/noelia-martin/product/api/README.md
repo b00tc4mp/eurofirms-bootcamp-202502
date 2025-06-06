@@ -129,8 +129,14 @@ Modificamos el fichero index.js de api
 Pasamos los tests curl a la api, modificando solo los userId y postId que necesitabamos
 
 Finalmente, fuimos a la app a hacer un breve cambio
-    En el componente Post, indicamos que hemos cambiado en lal logica getPost que en author ahora incluimos username y ese es el dato que necesitamos que muestre
+    En el componente Post, indicamos que hemos cambiado en la logica getPost que en author ahora incluimos username y ese es el dato que necesitamos que muestre
     Teniamos esta linea dentro de article : <h3 className="font-bold">{post.author}</h3>
     y ahora la hemos cambiado a esta otra: <h3 className="font-bold">{post.author.username}</h3>
 
 31/05/2025
+
+Creamos constructoras de errores en el fichero errors dentro de logica. Los exportamos para importarlos en cada logica.
+Los utilizamos en todas las logicas, modificamos la constructora que teniamos: Error, por la que mejor convenga
+(orden: register, authentication, getUserUsername, createPost, getPosts y deletePost)
+En el index de la api manejamos todos los errores que tienen estado 500 y los controlamos con un handler.
+    En este handler aprovechamos para modificar el estado a uno mas correcto

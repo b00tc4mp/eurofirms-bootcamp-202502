@@ -38,3 +38,10 @@ Despues se hizo por este orden el resto de configuraciones: (tal como iba avanza
     4º createPost, usa el componente CreatePost
     5º getPosts , usa el componente Posts
     6º deletePosts, usa el componente Post, también utiliza el handlePostDeleted de Posts asi que este lo debemos modificar tambien(lo ponemos igual que el useEffect que modificamos en getPosts)
+
+Dia 30/05/25 
+(copio del readme de api.2)
+Finalmente, fuimos a la app a hacer un breve cambio
+    En el componente Post, indicamos que hemos cambiado en la logica getPost que en author ahora incluimos username y ese es el dato que necesitamos que muestre
+    Teniamos esta linea dentro de article : <h3 className="font-bold">{post.author}</h3>
+    y ahora la hemos cambiado a esta otra: <h3 className="font-bold">{post.author.username}</h3>
