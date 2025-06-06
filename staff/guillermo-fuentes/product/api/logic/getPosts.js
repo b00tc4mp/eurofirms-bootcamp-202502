@@ -23,11 +23,15 @@ export const getPosts = (userId) => {
 
         delete post.__v;
 
-        const authorId = post.author._id.toString();
+        if (post.author._id) {
+          post.author.id = post.author._id.toString();
+          delete post.author._id;
+        }
+        //  const authorId = post.author._id.toString();
 
-        post.author = post.author.username;
+        // post.author = post.author.username;
 
-        post.own = user._id.toString() === authorId;
+        post.own = user._id.toString() === post.author.id;
       });
 
       return posts;

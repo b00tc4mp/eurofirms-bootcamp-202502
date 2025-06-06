@@ -1,4 +1,4 @@
-fetch(' http://localhost:8080/posts/68374696eb034244ce3b884c', {
+fetch(' http://localhost:8080/posts/683f3e213d2ade20eb0a0e26', {
   method: 'DELETE',
   headers: {
     Authorization: 'Basic 6831d3e9e716e2e3bda270cc',

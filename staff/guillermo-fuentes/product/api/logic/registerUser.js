@@ -1,5 +1,5 @@
 import { User } from '../data/index.js';
-import { ValidationError, NotFoundError, CredentialsError, SystemError } from './errors.js';
+import { ValidationError, NotFoundError, CredentialsError, SystemError, DuplicityError } from './errors.js';
 /**Registra a un usuario en el sistema recibe cuatro parametros
  * @param name el nombre del usuario
  * @param email el email del usuario
@@ -18,9 +18,11 @@ export const registerUser = (name, email, username, password) => {
   if (username.length > 20) throw new ValidationError('Invalid lenght username');
   if (typeof password !== 'string') throw new ValidationError('invalid password type');
   if (password.length < 8) throw new ValidationError('Invalid lenght password');
+
   return User.create({ name, email, username, password })
     .catch((error) => {
-      throw new SystemError('Mongo error');
+      if (error.code === 11000) DuplicityError('user alredy exists');
+      throw new SystemError('mongo error');
     })
     .then(() => {});
 };
