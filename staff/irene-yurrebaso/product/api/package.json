@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "debugger": "node --inspect-brk index.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

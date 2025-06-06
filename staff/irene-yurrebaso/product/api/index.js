@@ -10,6 +10,7 @@ connect('mongodb://localhost:27017/test')
         //convierte datos de strings a objetos
         const jsonBodyParser = express.json()
 
+        //recibir peticiones del cliente desde cualquier direccion
         api.use(cors())
 
         api.get('/hello', (request, response) => {
