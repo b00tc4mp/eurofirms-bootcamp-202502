@@ -125,6 +125,8 @@ connect('mongodb://localhost:27017/test')
                 response.status(409).json({ error: error.constructor.name, message: error.message })
             else if(error instanceof JsonWebTokenError)
                 response.status(401).json({ error: AuthorizationError.name, message: error.message })
+            else if(error instanceof SyntaxError && error.message.includes('JSON'))
+                response.status(401).json({ error: AuthorizationError.name, message:'invalid payload' })
             else
                 response.status(500).json({ error: SystemError.name, message: error.message })
         })

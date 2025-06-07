@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs'
+
 import { User } from '../data/index.js'
 import { ValidationError, CredentialsError, NotFoundError, SystemError } from './errors.js'
 /**
@@ -20,8 +22,14 @@ export const authenticateUser = (username, password) => {
         .catch(error => { throw new SystemError('mongo error')})
         .then(user => {
             if(!user) throw new NotFoundError('user not found')
-            if(user.password !== password) throw new CredentialsError('wrong credential')
-                
-            return user.id    
+
+            return bcrypt.compare(password, user.password)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(match => {
+                    if (!match) throw new CredentialsError('wrong credential')
+
+                    return user.id    
+                })    
+          
         })
 }
