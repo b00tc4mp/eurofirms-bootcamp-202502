@@ -13,7 +13,7 @@ export const removePost = postId => {
     return fetch('http://localhost:8080/posts/' + postId, {
         method: 'DELETE',
         headers: {
-            Authorization: 'Bearer ' + data.getToken()
+            Authorization: 'Basic ' + data.getUserId()
         }
     })
         .catch(error => { throw new Error('Connection error')})

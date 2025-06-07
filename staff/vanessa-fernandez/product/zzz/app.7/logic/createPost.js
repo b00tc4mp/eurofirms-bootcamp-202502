@@ -22,7 +22,7 @@ export const createPost = (image, text) => {
     return fetch('http://localhost:8080/posts', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer ' + data.getToken(),
+            Authorization: 'Basic ' + data.getUserId(),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify ({ image, text })
