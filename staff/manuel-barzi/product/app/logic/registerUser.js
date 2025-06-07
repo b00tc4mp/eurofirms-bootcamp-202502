@@ -25,7 +25,7 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    return fetch('http://localhost:8080/users', {
+    return fetch(import.meta.env.VITE_API_URL + '/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
