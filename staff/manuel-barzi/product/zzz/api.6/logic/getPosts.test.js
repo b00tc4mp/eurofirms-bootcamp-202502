@@ -1,12 +1,11 @@
 import { connect, disconnect } from '../data/index.js'
-import { registerUser } from './registerUser.js'
+import { getPosts } from './getPosts.js'
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
-            //return registerUser('Mos Quito', 'mos@quito.com', 'mosquito', '123123123')
-            return registerUser('Peter Pan', 'peter@pan.com', 'peterpan', '123123123')
-                .then(() => console.log('user registered'))
+            return getPosts('683a0322553623b7794171e3')
+                .then(posts => console.log('posts', posts))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

@@ -1,12 +1,11 @@
 import { connect, disconnect } from '../data/index.js'
-import { registerUser } from './registerUser.js'
+import { removePost } from './removePost.js'
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
-            //return registerUser('Mos Quito', 'mos@quito.com', 'mosquito', '123123123')
-            return registerUser('Peter Pan', 'peter@pan.com', 'peterpan', '123123123')
-                .then(() => console.log('user registered'))
+            return removePost('6831e7a7fd98fd111ae2800d', '6831d56b39462bcec83f3b76')
+                .then(() => console.log('post removed'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
