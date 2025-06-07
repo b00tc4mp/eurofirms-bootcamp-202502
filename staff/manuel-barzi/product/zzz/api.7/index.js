@@ -8,9 +8,7 @@ import { AuthorizationError } from './errors.js'
 
 const { JsonWebTokenError } = jwt
 
-const { MONGO_URL, PORT, JWT_SECRET } = process.env
-
-connect(MONGO_URL)
+connect('mongodb://localhost:27017/test')
     .then(() => {
         const api = express()
         const jsonBodyParser = express.json()
@@ -39,7 +37,7 @@ connect(MONGO_URL)
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
+                        const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados, uno detras de otro')
 
                         response.status(200).json(token)
                     })
@@ -52,9 +50,9 @@ connect(MONGO_URL)
         api.get('/users/self/username', (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
-                const token = authorization.slice(7)
+                const token = authorization.slice(7) // Bearer adfasjdfhalskhfkahdfkjah...
 
-                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 logic.getUserUsername(userId)
                     .then(username => response.status(200).json(username))
@@ -67,9 +65,9 @@ connect(MONGO_URL)
         api.post('/posts', jsonBodyParser, (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
-                const token = authorization.slice(7)
+                const token = authorization.slice(7) // Bearer adfasjdfhalskhfkahdfkjah...
 
-                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 const { image, text } = request.body
 
@@ -84,9 +82,9 @@ connect(MONGO_URL)
         api.get('/posts', (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
-                const token = authorization.slice(7)
+                const token = authorization.slice(7) // Bearer adfasjdfhalskhfkahdfkjah...
 
-                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 logic.getPosts(userId)
                     .then(posts => response.status(200).json(posts))
@@ -99,9 +97,9 @@ connect(MONGO_URL)
         api.delete('/posts/:postId', (request, response, next) => {
             try {
                 const authorization = request.headers.authorization
-                const token = authorization.slice(7)
+                const token = authorization.slice(7) // Bearer adfasjdfhalskhfkahdfkjah...
 
-                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 const { postId } = request.params
 
@@ -134,7 +132,7 @@ connect(MONGO_URL)
                 response.status(500).json({ error: SystemError.name, message: error.message })
         })
 
-        api.listen(PORT, () => console.log('API listening on port ' + PORT))
+        api.listen(8080, () => console.log('API listening on port 8080'))
     })
     .catch(error => console.error(error))
 
