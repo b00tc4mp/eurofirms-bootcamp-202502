@@ -1,4 +1,5 @@
 import { User } from '../data/index.js';
+import bcrypt from 'bcrypt';
 import { ValidationError, NotFoundError, CredentialsError, SystemError, DuplicityError } from './errors.js';
 /**Registra a un usuario en el sistema recibe cuatro parametros
  * @param name el nombre del usuario
@@ -18,11 +19,18 @@ export const registerUser = (name, email, username, password) => {
   if (username.length > 20) throw new ValidationError('Invalid lenght username');
   if (typeof password !== 'string') throw new ValidationError('invalid password type');
   if (password.length < 8) throw new ValidationError('Invalid lenght password');
-
-  return User.create({ name, email, username, password })
-    .catch((error) => {
-      if (error.code === 11000) DuplicityError('user alredy exists');
-      throw new SystemError('mongo error');
+  const saltRounds = 10;
+  return bcrypt
+    .hash(password, saltRounds)
+    .then((hashedPassword) => {
+      return User.create({ name, email, username, password: hashedPassword })
+        .catch((error) => {
+          if (error.code === 11000) throw new DuplicityError('user alredy exists');
+          throw new SystemError('mongo error');
+        })
+        .then(() => {});
     })
-    .then(() => {});
+    .catch((error) => {
+      throw new Error('Error al hashead' + error);
+    });
 };

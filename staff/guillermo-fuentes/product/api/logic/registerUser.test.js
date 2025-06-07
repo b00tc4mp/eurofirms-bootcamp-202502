@@ -4,7 +4,7 @@ import { connect, disconnect } from '../data/index.js';
 connect('mongodb://localhost:27017')
   .then(() => {
     try {
-      return registerUser('Mos Quito', 'mos@quito.com', 'mosquito', '12345678')
+      return registerUser('Pepito Grillo', 'pepito@grillo.com', 'pepito', '12345678')
         .then(() => console.log('user registered'))
         .catch((error) => console.error(error));
     } catch (error) {

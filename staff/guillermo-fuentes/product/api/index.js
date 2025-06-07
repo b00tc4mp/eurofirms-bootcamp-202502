@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import { logic } from './logic/index.js';
 import { connect } from './data/index.js';
 import {
@@ -15,6 +16,8 @@ import {
 //Convertir en modulo node: node --yes
 //Instalar express npm i express
 const { JsonWebTokenError } = jwt;
+
+const saltRounds = 10;
 connect('mongodb://localhost:27017/test')
   .then(() => {
     const server = express();
