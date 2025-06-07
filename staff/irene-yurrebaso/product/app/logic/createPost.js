@@ -8,7 +8,6 @@ import { data } from '../data'
  */
 
 export const createPost = (image, text) => {
-    //validar datos
     if (typeof image !== 'string') throw new Error('invalid image type')
     if (!image.startsWith('http')) throw new Error('invalid image format')
 
@@ -18,7 +17,7 @@ export const createPost = (image, text) => {
     return fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        Authorization: 'Basic ' + data.getUserId(),
+        Authorization: 'Bearer ' + data.getToken(),
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({ image, text })

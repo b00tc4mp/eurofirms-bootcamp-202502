@@ -16,7 +16,7 @@ export const removePost = postId => {
     method: 'DELETE',
     headers: {
         //traemos el userId de sessionStorage en data
-        Authorization: 'Basic ' + data.getUserId()
+        Authorization: 'Bearer ' + data.getToken()
     }
 })
     .catch(error => { throw new Error('connection error') })

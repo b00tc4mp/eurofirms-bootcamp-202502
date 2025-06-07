@@ -1,16 +1,14 @@
+//ahora trabajamos con el token en sessionStorage (en vez de userId)
 export const data = {
-    //método para guardar en sessionStorage quién se ha conectado para que el dato permanezca
-    setUserId(userId) {
-        sessionStorage.userId = userId
+    setToken(token) {
+        sessionStorage.token = token
     },
 
-    //método para recuperar Id de usuario
-    getUserId() {
-        return sessionStorage.userId
+    getToken() {
+        return sessionStorage.token
     },
 
-    //método para eliminar Id de usuario
-    removeUserId() {
-        delete sessionStorage.userId
+    removeToken() {
+        delete sessionStorage.token
     }
 }

@@ -7,4 +7,4 @@ import { data } from '../data'
  */
 
 //logica para ver si el usuario esta conectado (la doble negacion convierte un dato en booleano true/false)
-export const isUserLoggedIn = () => !!data.getUserId()
+export const isUserLoggedIn = () => !!data.getToken()

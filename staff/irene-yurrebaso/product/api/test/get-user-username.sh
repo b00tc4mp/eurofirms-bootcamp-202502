@@ -1,1 +1,3 @@
-curl -X GET -H 'Authorization: Basic 5830cf525c2e4339ab6c4bd7' http://localhost:8080/users/self/username -v
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODNhY2UzOWRmMzU5MDFhNTk0MDAxZmQiLCJpYXQiOjE3NDkyODI0OTV9.yLsHTXQUa0RWMwT9bTaHLKL1dIrxtAz9jdzCGbSeT6I' http://localhost:8080/users/self/username -v
+
+#la cadena jwt Bearer xyz... nos la da el test authenticate-user.sh

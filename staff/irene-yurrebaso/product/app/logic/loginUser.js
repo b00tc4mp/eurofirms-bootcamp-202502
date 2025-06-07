@@ -7,7 +7,6 @@ import { data } from '../data'
  * @param {string} password The user password.
  */
 export const loginUser = (username, password) => {
-    //1. validar datos (ej. asegurarnos que son strings y dentro de longitud requerida)
     if(typeof username !== 'string') throw new Error('Invalid username')
     if(username.length < 3) throw new Error('Invalid min username length')
     if(username.length > 30) throw new Error('Invalid max username length')
@@ -30,7 +29,8 @@ export const loginUser = (username, password) => {
             if (status === 200)
                 return response.json()
                     .catch(error => { throw new Error('json error') })
-                    .then(userId => data.setUserId(userId))
+                    //token en vez de userId
+                    .then(token => data.setToken(token))
 
             return response.json()
                 .catch(error => { throw new Error('json error') })
