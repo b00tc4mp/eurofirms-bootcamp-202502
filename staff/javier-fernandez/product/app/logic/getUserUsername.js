@@ -6,7 +6,7 @@ import { data } from '../data'
  * @returns {string} The user username.
  */
 export const getUserUsername = () => {
-    return fetch('http://localhost:8080/posts', {
+    return fetch('http://localhost:8080/users/self/username', {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()

@@ -10,14 +10,21 @@ export const Post = ({ post, onPostDeleted }) => {
         if (confirm('Delete post?'))
             try {
                 logic.removePost(post.id)
-                onPostDeleted()
+                    .then(() => onPostDeleted())
+                    .catch(error => {
+                        console.error(error)
+
+                        alert(error.message)
+                    })
             } catch (error){
+                console.error(error)
+                
                 alert(error.message)
             }
     }
 
     return <article className= 'sm:w-[400px] w-[250px] border-2 border-black mb-4 p-2 rounded-xl' >
-        <h3 className="font-bold">{post.author}</h3>
+        <h3 className="font-bold">{post.author.username}</h3>
 
         <img src={post.image} alt="" className='mx-auto'/>
 

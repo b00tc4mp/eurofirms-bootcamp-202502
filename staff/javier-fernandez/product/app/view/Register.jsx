@@ -62,7 +62,7 @@ export const Register = (props) => {
 
                 <div className="flex flex-col gap">
                     <label htmlFor="password">Password</label>
-                    <input className="border-2 px1" type="text" id="password" name="password" placeholder="your password" />
+                    <input className="border-2 px1" type="password" id="password" name="password" placeholder="your password" />
                 </div>
 
                 <div className="flex justify-between">
