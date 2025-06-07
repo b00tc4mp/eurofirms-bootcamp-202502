@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs'
+
 import { User } from '../data/index.js'
 import { ValidationError, DuplicityError, SystemError } from './errors.js'
 
@@ -26,11 +28,15 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new ValidationError('invalid password min length')
     if (password.length > 20) throw new ValidationError('invalid password max length')
         
-    return User.create({ name, email, username,password })
-        .catch(error => { 
-            if (error.code === 11000) throw new DuplicityError('user already exists')
+    return bcrypt.hash(password, 10)
+        .catch(error => { throw new SystemError(error.message) })
+        .then(hash => {
+            return User.create({ name, email, username, password: hash })
+                .catch(error => {
+                    if (error.code === 11000) throw new DuplicityError('user already exists')
 
-            throw new SystemError(error.message)
-         })
+                    throw new SystemError('mongo error')
+                })
+        })
         .then(() => { })
 }

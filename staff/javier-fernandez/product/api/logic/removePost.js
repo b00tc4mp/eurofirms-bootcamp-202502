@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-
+import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './errors.js'
 /**
  * Removes a post by id from database.
  * 

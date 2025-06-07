@@ -2,9 +2,11 @@ import { connect } from './data/index.js'
 import express from 'express'
 import { logic } from './logic/index.js' 
 import cors from 'cors'
-import jwt from '.jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
 import { AuthorizationError } from './errors.js'
+
+const { JsonWebTokenError } = jwt
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -35,7 +37,7 @@ connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados,  uno detras de otro')
+                        const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados, uno detras de otro')
 
                         response.status(200).json(token)
                     })
@@ -53,7 +55,7 @@ connect('mongodb://localhost:27017/test')
                 const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 logic.getUserUsername(userId)
-                    .then(userrname => response.status(200).json(username))
+                    .then(username => response.status(200).json(username))
                     .catch(error => next(error))
             } catch (error) {
                 next(error)
@@ -65,7 +67,7 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, ' hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 const { image, text } = request.body
 
@@ -103,7 +105,7 @@ connect('mongodb://localhost:27017/test')
 
                 logic.removePost(userId, postId)
                 .then(() => response.status(204).send())
-                .catch(error => next(Error)) 
+                .catch(error => next(error)) 
             } catch {
                 next(error)
             }
@@ -124,7 +126,7 @@ connect('mongodb://localhost:27017/test')
                 response.status(409).json({ error: error.constructor.name, message: error.message })
             else if (error instanceof JsonWebTokenError)
                 response.status(401).json({ error: AuthorizationError.name, message: error.message })
-            else if (error instanceof SyntaxError && error.message.insludes('JSON'))
+            else if (error instanceof SyntaxError && error.message.includes('JSON'))
                 response.status(401).json({ error: AuthorizationError.name, message: 'invalid payload' })      
             else
                 response.status(500).json({ error: SystemError.name, message: error.message })
