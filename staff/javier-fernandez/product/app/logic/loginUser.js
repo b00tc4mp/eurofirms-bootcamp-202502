@@ -18,7 +18,7 @@ export const loginUser = (username, password) => {
  return fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        'Content-Type': 'applocation/json'
+        'Content-Type': 'application/json'
     },
     body: JSON.stringify({ username, password })
  })  
@@ -29,7 +29,7 @@ export const loginUser = (username, password) => {
         if (status === 200)
             return response.json()
                 .catch(error => {throw new Error('json error') })
-                .then(userId => data.setUserId(userId))
+                .then(token => data.setToken(token))
 
         return response.json()
             .catch(error => { throw new Error('json error') })

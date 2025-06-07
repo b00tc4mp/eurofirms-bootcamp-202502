@@ -1,13 +1,13 @@
 export const data = {
-    setUserId(value) { //establece el userId en el sessionStorage
-        sessionStorage.userId = value 
+    settoken(token) {
+        sessionStorage.token = token 
     }, 
 
-    getUserId() { //obtiene el userId del sessionStorage
-        return sessionStorage.userId 
+    getToken() {
+        return sessionStorage.token 
     },
 
-    removeUserId() { //elimina el userId del sessionStorage
-        delete sessionStorage.userId 
+    removeToken() {
+        delete sessionStorage.token 
     }
 }
