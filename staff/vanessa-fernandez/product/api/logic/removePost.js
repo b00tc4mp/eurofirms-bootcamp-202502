@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-
+import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './errors.js'
 /**
  * Removes a post by id from database.
  * 
@@ -8,26 +8,26 @@ import { User, Post } from '../data/index.js'
  */
 
 export const removePost = (userId, postId) => {
-    if (typeof userId !== 'string') throw new Error('Invalid userId type.')
-    if (userId.length < 24) throw new Error('Invalid userId length.') 
+    if (typeof userId !== 'string') throw new ValidationError('Invalid userId type.')
+    if (userId.length !== 24) throw new ValidationError('Invalid userId length.') 
 
-    if(typeof postId !== 'string') throw new Error ('Invalid postId type.')
-    if (postId.length < 24) throw new Error ('Invalid postId length.')
+    if(typeof postId !== 'string') throw new ValidationError ('Invalid postId type.')
+    if (postId.length < 24) throw new ValidationError ('Invalid postId length.')
         
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
-            if(!user) throw new Error('user not found')
+            if(!user) throw new NotFoundError('user not found')
 
             return Post.findById(postId)
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError('mongo error') })
                 .then(post => {
-                    if(!post) throw new Error('post not found')
+                    if(!post) throw new NotFoundError('post not found')
 
-                    if(post.author.toString() !== userId) throw new Error('user not owner of post')
+                    if(post.author.toString() !== userId) throw new AuthorshipError('user not owner of post')
                         
                     return Post.deleteOne({_id: postId})
-                        .catch(error => { throw new Error(error.message) })
+                        .catch(error => { throw new SystemError('mongo error') })
                         .then(() => { })    
                 })    
         })

@@ -1,5 +1,5 @@
-import { Post } from '../data/index.js'
-import { User } from '../data/index.js'
+import { User, Post } from '../data/index.js'
+import { ValidationError, SystemError, NotFoundError } from './errors.js'
 /**
  * Returns post from database.
  * 
@@ -9,16 +9,16 @@ import { User } from '../data/index.js'
  */
 
 export const getPosts = userId => {
-    if (typeof userId !== 'string') throw new Error ('Invalid userId type.')
-    if (userId.length < 24) throw new Error ('Invalid userId length.')    
+    if (typeof userId !== 'string') throw new ValidationError ('Invalid userId type.')
+    if (userId.length !== 24) throw new ValidationError ('Invalid userId length.')    
 
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
-            if(!user) throw new Error('user not found')
+            if(!user) throw new NotFoundError('user not found')
             
             return Post.find({}).select('-_v').populate('author', 'username').sort('-date').lean()
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError('mongo error') })
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()

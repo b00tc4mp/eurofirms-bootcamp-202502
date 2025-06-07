@@ -1,5 +1,5 @@
 import { Post, User } from '../data/index.js'
-
+import { ValidationError, SystemError, NotFoundError } from './errors.js'
 /**
  * Creates a post in database.
  * 
@@ -9,22 +9,22 @@ import { Post, User } from '../data/index.js'
  */
 
 export const createPost = (userId, image, text) => {
-    if(typeof userId !== 'string') throw new Error ('Invalid userId type.')
-    if(userId.length < 6) throw new Error ('Invalid userId length.')
+    if(typeof userId !== 'string') throw new ValidationError ('Invalid userId type.')
+    if(userId.length !== 24) throw new ValidationError ('Invalid userId length.')
         
-    if (!text) throw new Error ('You must provide text.')
-    if (typeof text !== 'string') throw new Error ('Invalid text type.')
-    if (text.length < 1) throw new Error ('Invalid text min length.')
-    if (text.length > 250) throw new Error ('Invalid text max length.')
+    if (!text) throw new ValidationError ('You must provide text.')
+    if (typeof text !== 'string') throw new ValidationError ('Invalid text type.')
+    if (text.length < 1) throw new ValidationError ('Invalid text min length.')
+    if (text.length > 250) throw new ValidationError ('Invalid text max length.')
         
-    if (typeof image !== 'string') throw new Error ('Invalid image type.')
-    if (!image.startsWith('http')) throw new Error ('Invalid image format.')
-    if (!image) throw new Error ('You must provide an image.')    
+    if (typeof image !== 'string') throw new ValidationError ('Invalid image type.')
+    if (!image.startsWith('http')) throw new ValidationError ('Invalid image format.')
+    if (!image) throw new ValidationError ('You must provide an image.')    
         
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message)})
+        .catch(error => { throw new SystemError('mongo error')})
         .then(user => {
-            if(!user) throw new Error('user not found')
+            if(!user) throw new NotFoundError('user not found')
 
             return Post.create({
                 //author:user._id, esto si funciona seguro
@@ -33,6 +33,6 @@ export const createPost = (userId, image, text) => {
                 text
             })    
         })
-        .catch(error => { throw new Error(error.message)})
+        .catch(error => { throw new SystemError('mongo error')})
         .then(() => { })
 }
