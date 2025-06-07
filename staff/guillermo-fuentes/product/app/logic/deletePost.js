@@ -12,11 +12,11 @@ export const deletePost = (idPost) => {
   // posts.splice(indice, 1);
 
   // data.setPosts(posts);
-  const userId = data.getUserId();
+
   return fetch(`http://localhost:8080/posts/${idPost}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Basic ${userId}`,
+      Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch((error) => {

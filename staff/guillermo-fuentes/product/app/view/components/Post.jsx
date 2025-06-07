@@ -48,7 +48,7 @@ export const Post = ({ post, onPostDeleted, onPostEdited }) => {
   return (
     <>
       <article className=" rounded grid gap-2 mt-2 justify-center" key={post.id}>
-        <h3 className="border rounded  mt-2 text-center bg-orange-400 font-bold ">{post.author}</h3>
+        <h3 className="border rounded  mt-2 text-center bg-orange-400 font-bold ">{post.author.username}</h3>
         <img src={post.image} />
         {editMode ? (
           <form action="" className="flex flex-col " onSubmit={handleEditedClick}>

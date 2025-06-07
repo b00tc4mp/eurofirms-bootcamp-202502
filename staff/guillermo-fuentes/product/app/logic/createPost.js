@@ -10,11 +10,11 @@ export const createPost = (image, text) => {
   if (!image.startsWith('http')) throw new Error('Invalid image format');
   if (typeof text !== 'string') throw new Error('invalid text type');
   if (text.length < 1) throw new Error('Invalid text lenght');
-  const userId = data.getUserId();
+
   return fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-      Authorization: `Basic ${userId}`,
+      Authorization: `Bearer ${data.getToken()}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ image, text }),

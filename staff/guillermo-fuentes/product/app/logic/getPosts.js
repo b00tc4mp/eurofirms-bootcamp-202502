@@ -11,8 +11,6 @@ import { data } from '../data';
  * }]}
  */
 export const getPosts = () => {
-  const userId = data.getUserId();
-
   // posts.forEach((post) => {
   //   const authorId = post.author;
   //   /*
@@ -40,7 +38,7 @@ export const getPosts = () => {
   return fetch('http://localhost:8080/posts', {
     method: 'GET',
     headers: {
-      Authorization: `Basic ${userId}`,
+      Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch((error) => {

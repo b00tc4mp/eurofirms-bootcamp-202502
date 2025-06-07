@@ -31,7 +31,7 @@ export const loginUser = (username, password) => {
           .catch((error) => {
             throw new Error('json error');
           })
-          .then((userId) => data.setUserId(userId));
+          .then((token) => data.setToken(token));
 
       return response
         .json()
