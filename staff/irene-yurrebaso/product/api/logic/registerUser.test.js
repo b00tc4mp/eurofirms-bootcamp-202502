@@ -7,7 +7,7 @@ connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
             //ponemos "return" porque al conectar con la bbdd de forma asincrona, necesitamos q la logica devuelva una promesa
-            return registerUser('Mos Quito', 'mos@quito.com', 'mosquito', '123123123')
+            return registerUser('Peter Pan', 'peter@pan.com', 'peterpan', '123123123')
                 .then(() => console.log('user registered'))
                 .catch(error => console.error(error))
         } catch (error) {

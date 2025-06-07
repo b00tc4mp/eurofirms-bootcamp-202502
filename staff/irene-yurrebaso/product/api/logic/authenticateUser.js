@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs'
+
 import { User } from '../data/index.js'
 import { ValidationError, SystemError, NotFoundError, CredentialsError } from './errors.js'
 
@@ -19,14 +21,19 @@ export const authenticateUser = (username, password) => {
     return User.findOne({ username })
         //En caso de error lanzamos nuestro error con el mensaje original q venga de mongo
         .catch(error => { throw new SystemError('mongo error') })
-        .then(user => { 
+        .then(user => {
             if (!user) throw new NotFoundError('user not found')
-
-            if (user.password !== password) throw new CredentialsError('wrong password')
             
-            //si todo va bien retornar el user Id
-            //mongoose devuelve el string del ObjectId llamando a la propiedad id
-            //return user._id.toString() Tambien se puede hacer asi
-            return user.id
+            //ahora comparamos el password q se pasa por parametro con el user.password de la bbdd q ahora se guarda hasheado
+            return bcrypt.compare(password, user.password)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(match => {
+                    if (!match) throw new CredentialsError('wrong password')
+
+                    //si todo va bien retornar el user Id
+                    //mongoose devuelve el string del ObjectId llamando a la propiedad id
+                    //return user._id.toString() Tambien se puede hacer asi
+                    return user.id
+                })
         })
 }
