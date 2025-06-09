@@ -23,6 +23,7 @@ export const App = () => {
     useEffect(() => {
         try {
             const loggedIn = logic.isUserLoggedIn()
+            
             if (loggedIn)
                 setView('home')
         } catch (error) {

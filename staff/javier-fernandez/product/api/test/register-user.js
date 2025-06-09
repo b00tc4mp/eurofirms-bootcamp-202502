@@ -1,9 +1,9 @@
 fetch('http://localhost:8080/users', {
     method: 'POST',
     headers: {
-        'content-Type': 'aplication/json' 
+        'Content-Type': 'application/json' 
     },
-    body: '{"name": "Anna pan", "email": "anna@pan.com", "username": "annapan", "password": "123123123"}'
+    body: '{"name": "monkeyd luffy", "email": "monkeyd@luffy.com", "username": "luffy", "password": "123123123"}'
 })
     .catch(error => { throw new Error('connection error') })
     .then(response => {
