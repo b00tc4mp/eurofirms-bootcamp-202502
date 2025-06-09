@@ -1,8 +1,12 @@
 import { connect } from './data/index.js'
 import express from 'express'
-import { logic } from './logic/index.js'
 import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import { logic } from './logic/index.js'
 import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
+import { AuthorizationError } from './errors.js'
+
+const { JsonWebTokenError } = jwt
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -40,7 +44,11 @@ connect('mongodb://localhost:27017/test')
                 const { username, password } = request.body
 
                 logic.authenticateUser(username, password)
-                    .then(userId => response.status(200).json(userId))
+                    .then(userId => {
+                        const token = jwt.sign({ sub: userId }, 'seguiré luchando a pesar de todo')
+
+                        response.status(200).json(token)
+                    })
                     .catch(error => next(error))
 
             } catch (error) {
@@ -55,7 +63,9 @@ connect('mongodb://localhost:27017/test')
 
                 const authorization = request.headers.authorization
 
-                const userId = authorization.slice(6)
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, 'seguiré luchando a pesar de todo')
 
                 logic.getUserUsername(userId)
                     .then(username => response.status(200).json(username))
@@ -71,8 +81,9 @@ connect('mongodb://localhost:27017/test')
             try {
 
                 const authorization = request.headers.authorization // Basic user-X
+                const token = authorization.slice(7)
 
-                const userId = authorization.slice(6)
+                const { sub: userId } = jwt.verify(token, 'seguiré luchando a pesar de todo')
 
                 const { image, text } = request.body
 
@@ -89,9 +100,10 @@ connect('mongodb://localhost:27017/test')
 
             try {
 
-                const authorization = request.headers.authorization // 
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7)
 
-                const userId = authorization.slice(6)
+                const { sub: userId } = jwt.verify(token, 'seguiré luchando a pesar de todo')
 
                 logic.getPosts(userId)
                     .then(posts => response.status(200).json(posts))
@@ -107,8 +119,9 @@ connect('mongodb://localhost:27017/test')
             try {
 
                 const authorization = request.headers.authorization // Basic User-X
+                const token = authorization.slice(7)
 
-                const userId = authorization.slice(6)
+                const { sub: userId } = jwt.verify(token, 'seguiré luchando a pesar de todo')
 
                 const { postId } = request.params
 
@@ -139,6 +152,12 @@ connect('mongodb://localhost:27017/test')
 
             else if (error instanceof DuplicityError)
                 response.status(409).json({ error: error.constructor.name, message: error.message })
+
+            else if (error instanceof JsonWebTokenError)
+                response.status(401).json({ error: AuthorizationError.name, message: error.message })
+
+            else if (error instanceof SyntaxError && error.message.includes('JSON'))
+                response.status(401).json({ error: AuthorizationError.name, message: 'invalid payload' })
 
             else
                 response.status(500).json({ error: SystemError.name, message: error.message })
