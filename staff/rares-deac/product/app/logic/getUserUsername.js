@@ -9,7 +9,7 @@ export const getUserUsername = () => {
     return fetch('http://localhost:8080/users/self/username', {
         method: 'GET',
         headers: {
-            Authorization: 'Basic ' + data.getUserId()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
 

@@ -35,7 +35,7 @@ export const loginUser = (username, password) => {
         if (status === 200) 
             return response.json()
                 .catch(error => { throw new Error('json error')})
-                .then(userId => data.setUserId(userId))
+                .then(token => data.setToken(token))
 
         return response.json()
             .catch(error => {throw new Error('json error')})

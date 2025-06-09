@@ -1,1 +1,1 @@
-curl -X GET -H 'Authorization: Basic 683ad88d7b598f933d7d6243' http://localhost:8080/posts -v
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODNhZDg4ZDdiNTk4ZjkzM2Q3ZDYyNDMiLCJpYXQiOjE3NDk0ODkyODZ9.EtvsuJ_mllY0cQNap_onnD47NsKquk7LsJ90oEOy8AY' http://localhost:8080/posts -v

@@ -2,7 +2,11 @@ import { connect } from './data/index.js'
 import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
+import jwt from 'jsonwebtoken'
 import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
+import { AuthorizationError } from './errors.js'
+
+const {JsonWebTokenError} = jwt
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -32,7 +36,11 @@ connect('mongodb://localhost:27017/test')
                 const { username, password } = request.body
 
                 logic.authenticateUser(username, password)
-                    .then(userId => response.status(200).json(userId))
+                    .then(userId => {
+                        const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados, uno detras de otro')
+
+                        response.status(200).json(token)
+                    })
                     .catch(error => next(error))
             } catch (error) {
                 next(error)
@@ -49,8 +57,10 @@ connect('mongodb://localhost:27017/test')
                  * Recupera la cabecera de la autorizacion con el metodo slice y recupera el id de usuario
                  */
 
-                const authorization = request.headers.authorization 
-                const userId = authorization.slice(6)
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7) // Bearer afdnaspoapoassd
+
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 logic.getUserUsername(userId)
                     .then(username => response.status(200).json(username))
@@ -62,8 +72,10 @@ connect('mongodb://localhost:27017/test')
 
         api.post('/posts', jsonBodyParser, (request, response, next) => {
             try {
-                const authorization = request.headers.authorization 
-                const userId = authorization.slice(6)
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7) // Bearer afdnaspoapoassd
+
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
 
                 const { image, text } = request.body
 
@@ -77,9 +89,10 @@ connect('mongodb://localhost:27017/test')
 
         api.get('/posts', (request, response, next) => {
             try {
-                const authorization = request.headers.authorization 
-                const userId = authorization.slice(6)
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7) // Bearer afdnaspoapoassd
 
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
                 logic.getPosts(userId)
                     .then(posts => response.status(200).json(posts))
                     .catch(error => next(error))
@@ -90,9 +103,10 @@ connect('mongodb://localhost:27017/test')
 
         api.delete('/posts/:postId', (request, response, next) => {
             try {
-                const authorization = request.headers.authorization 
-                const userId = authorization.slice(6)
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7) // Bearer afdnaspoapoassd
 
+                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
                 // const postId = request.params.postId
 
                 const { postId } = request.params
@@ -104,7 +118,7 @@ connect('mongodb://localhost:27017/test')
                 response.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
-        
+
         //error handler
 
         api.use((error, request, response, next) => {
@@ -118,13 +132,12 @@ connect('mongodb://localhost:27017/test')
                 response.status(403).json({ error: error.constructor.name, message: error.message })
             else if (error instanceof DuplicityError)
                 response.status(409).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof JsonWebTokenError)
+                response.status(401).json({ error: AuthorizationError.name, message: error.message })
+            else if (error instanceof SyntaxError && error.message.includes('JSON'))
+                response.status(401).json({ error: AuthorizationError.name, message: 'invalid payload' })
             else
                 response.status(500).json({ error: SystemError.name, message: error.message })
-
-
-
-
-
 
         })
 
