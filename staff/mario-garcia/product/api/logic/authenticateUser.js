@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import { User } from '../data/index.js'
 import { ValidationError, SystemError, NotFoundError, CredentialsError } from './errors.js'
 
@@ -23,8 +24,13 @@ export const authenticateUser = (username, password) => {
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            if (user.password !== password) throw new CredentialsError('wrong password')
+            return bcrypt.compare(password, user.password)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(match => {
 
-            return user.id
+                    if (!match) throw new CredentialsError('wrong password')
+
+                    return user.id
+                })
         })
 }

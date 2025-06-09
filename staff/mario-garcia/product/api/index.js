@@ -8,7 +8,9 @@ import { AuthorizationError } from './errors.js'
 
 const { JsonWebTokenError } = jwt
 
-connect('mongodb://localhost:27017/test')
+const { MONGO_URL, PORT, JWT_SECRET } = process.env
+
+connect(MONGO_URL)
     .then(() => {
 
         const api = express()
@@ -45,7 +47,7 @@ connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, 'seguiré luchando a pesar de todo')
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
 
                         response.status(200).json(token)
                     })
@@ -163,6 +165,6 @@ connect('mongodb://localhost:27017/test')
                 response.status(500).json({ error: SystemError.name, message: error.message })
         })
 
-        api.listen(8080, () => console.log('API listening on port 8080'))
+        api.listen(PORT, () => console.log('API listening on port ' + PORT))
     })
     .catch(error => console.error(error))

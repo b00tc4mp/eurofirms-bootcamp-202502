@@ -6,7 +6,7 @@ connect('mongodb://localhost:27017/test')
 
         try {
 
-            return createPost('6831953cafa1befb3c6a5a90', 'https://media.giphy.com/media/l3vQXWwQMM9A9a1RC/giphy.gif?cid=ecf05e47kzfaip7t9mfzfhchhct07dv6oxipzyhcgnbknos4&ep=v1_gifs_search&rid=giphy.gif&ct=g', 'I am in a mission!')
+            return createPost('6846fb8055f667299687fc30', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXBzeTV6NWtjemY4MDg3Z2JwZHRqeHpwMm9iN3VzaG1xNWswaGtmeCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0NwGpoOVLTAyUJSo/giphy.gif', 'I will always be here to help you!')
 
                 .then(() => console.log('post created'))
                 .catch(error => console.error(error))

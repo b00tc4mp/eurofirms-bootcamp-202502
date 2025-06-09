@@ -6,7 +6,7 @@ connect('mongodb://localhost:27017/test')
 
         try {
 
-            return authenticateUser('hulk', '123123123')
+            return authenticateUser('batman', '123123123')
                 .then(userId => console.log('user authenticated', userId))
                 .catch(error => console.error(error))
 
