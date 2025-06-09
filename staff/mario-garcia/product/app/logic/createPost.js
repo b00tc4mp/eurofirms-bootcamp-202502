@@ -17,7 +17,7 @@ export const createPost = (image, text) => {
 
     if (text.length < 1) throw new Error('Text length is NOT enough')
 
-    return fetch('http://localhost:8080/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer ' + data.getToken(),

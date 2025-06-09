@@ -1,80 +1,131 @@
-import mongoose from 'mongoose'
-import { User, Post } from './models.js'
+import { data } from './index'
 
-const { connect, disconnect } = mongoose
+//Populate USERS
 
-connect('mongodb://localhost:27017/test')
-    .then(() => {
+const users = []
 
-        //CREAR un Usuario en 2 PASOS
+let usersCount = 0
 
-        // const user = new User({
-        //     name: 'Scott Summers',
-        //     email: 'scottsummers@ciclope.com',
-        //     username: 'ciclope',
-        //     password: '123123123'
-        // })
+usersCount++
 
-        // return user.save()
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('user saved'))
+users.push({
+    id: 'user-' + usersCount,
+    name: 'Wendy Darling',
+    email: 'wendy@darling.com',
+    username: 'wendydarling',
+    password: '123123123'
+})
 
-        //CREAR un Usuario en 1 PASO
+usersCount++
 
-        // return User.create({
-        //     name: 'Ororo Munroe',
-        //     email: 'ororomunroe@tormenta.com',
-        //     username: 'tormenta',
-        //     password: '123123123'
-        // })
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('user created'))
+users.push({
+    id: 'user-' + usersCount,
+    name: 'Peter Pan',
+    email: 'peter@pan.com',
+    username: 'peterpan',
+    password: '123123123'
+})
 
-        //ELIMINAR un Usuario
+usersCount++
 
-        // return User.deleteOne({ _id: '6830ceb3f7ba90680e6c4bd7' })
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('user deleted'))
+users.push({
+    id: 'user-' + usersCount,
+    name: 'Bruce Wayne',
+    email: 'brucewayne@batman.com',
+    username: 'batman',
+    password: '123123123'
+})
 
-        //ACTUALIZAR un Usuario
+usersCount++
 
-        // return User.updateOne({ _id: '6831a30bd235ef34f479fb90' }, { $set: { name: 'Peter Benjamin Parker' } })
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('user updated'))
+users.push({
+    id: 'user-' + usersCount,
+    name: 'Peter Parker',
+    email: 'peterparker@spiderman.com',
+    username: 'spiderman',
+    password: '123123123'
+})
 
-        //MOSTRAR LISTADO de Todos los Usuarios
+usersCount++
 
-        // return User.find({})
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(users => console.log('users', users))
+users.push({
+    id: 'user-' + usersCount,
+    name: 'Bruce Banner',
+    email: 'brucebanner@hulk.com',
+    username: 'hulk',
+    password: '123123123'
 
-        //CREAR un POST
+})
 
-        // return Post.create({
-        //     author: '683338c87dd64f2bee44d1f6',
-        //     image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2VoY3B4YWV5cXhoNjFjZ3M0cG54dGI1b3dzZjZ1c2d2b3R0end0cyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l41YuHALY8Zfa3OhO/giphy.gif',
-        //     text: 'If you need me, I will be by your side'
-        // })
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('post created'))
+usersCount++
 
-        //ELIMINAR un POST
+users.push({
+    id: 'user-' + usersCount,
+    name: 'Tony Stark',
+    email: 'tonystark@ironman.com',
+    username: 'ironman',
+    password: '123123123'
 
-        // return Post.deleteOne({ _id: '68333aa8c296833da30b9634' })
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('post deleted'))
+})
 
-        //ACTUALIZAR un Post
+data.setUsers(users)
+data.setUsersCount(usersCount)
 
-        // return Post.updateOne({ _id: '6831bfd2ca9110a140b13d3c' }, { $set: { text: 'If you work harshly you can be calm' } })
-        //     .catch(error => { throw new Error(error.message) })
-        //     .then(() => console.log('post updated'))
+//Populate POSTS
 
-        //MOSTRAR LISTADO de Todos los Posts
+const posts = []
 
-        return Post.find({})
-            .catch(error => { throw new Error(error.message) })
-            .then(posts => console.log('posts', posts))
-    })
-    .catch(error => console.error(error))
-    .finally(() => disconnect())
+let postsCount = 0
+
+postsCount++
+
+posts.push({
+
+    id: 'post-' + postsCount,
+    author: users[5].id,
+    image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTI2cTljYW9ybzgwMXcxbnBqZXRkOTQ3bWpiOWczanNpbjNlbXJoaiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6n8QfoQhIoKWR9uLt5/giphy.gif',
+    text: 'To be a hero you must make a big effort!',
+    date: new Date(2017, 12, 25, 19, 30).toISOString(),
+    likes: []
+
+})
+
+postsCount++
+
+posts.push({
+
+    id: 'post-' + postsCount,
+    author: users[2].id,
+    image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExczVxZWxqcGZjN2luMWx6cnl0em9sbWhnbXNrZGR5YnE4eHB0NHV4aiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qrIlvM63x7x9IjrHw1/giphy.gif',
+    text: 'I am very proud!',
+    date: new Date(2022, 11, 31, 20, 45).toISOString(),
+    likes: []
+})
+
+postsCount++
+
+posts.push({
+
+    id: 'post-' + postsCount,
+    author: users[3].id,
+    image: 'https://media.giphy.com/media/uTGv3hkQO8XsBkprSv/giphy.gif?cid=ecf05e47wdsae2qgu6fjutozxf3qa7wljxl4vtozef3hxpvm&ep=v1_gifs_related&rid=giphy.gif&ct=g',
+    text: 'With great power comes great responsibility',
+    date: new Date(2018, 10, 15, 21, 30).toISOString(),
+    likes: []
+})
+
+postsCount++
+
+posts.push({
+
+    id: 'post-' + postsCount,
+    author: users[4].id,
+    image: 'https://media.giphy.com/media/8c78iOUREZE0OEMj4j/giphy.gif?cid=ecf05e478ws3u4yyen0d6g37yc58jqf216bpg583lq5p2ely&ep=v1_gifs_search&rid=giphy.gif&ct=g',
+    text: 'Here, saving the world!',
+    date: new Date(2015, 10, 22, 22, 30).toISOString(),
+    likes: []
+
+})
+
+data.setPosts(posts)
+data.setPostsCount(postsCount)

@@ -1,51 +1,42 @@
-import { data } from '../data/index.js'
+import { data } from '../data'
 
 /**
- * CREAR Post dentro de la BB.DD.
+ * Creates a post.
  * 
- * @param {string} userId The user id.
- * @param {string} image The post image url.
- * @param {string} text The post text.
+ * @param {string} image The image URL.
+ * @param {string} text The post text. 
  */
 
-export const createPost = (userId, image, text) => {
+export const createPost = (image, text) => {
 
-    if (typeof userId !== 'string') throw new Error('invalid userId type')
-    if (userId.length < 6) throw new Error('invalid userId length')
+    if (typeof image !== 'string') throw new Error('Invalid image type')
 
-    if (typeof image !== 'string') throw new Error('invalid image type')
-    if (!image.startsWith('http')) throw new Error('invalid image format')
+    if (!image.startsWith('http')) throw new Error('Invalid image format')
 
-    if (typeof text !== 'string') throw new Error('invalid text type')
-    if (text.length < 1) throw new Error('invalid min text length')
+    if (typeof text !== 'string') throw new Error('Invalid text type')
 
-    // VERIFICAMOS que el Usuario EXISTE buscando por User id
-    // NO Encontramos el Usuario DEVOLVEMOS ERROR
-    // SI Encontramos el Usuario CREAMOS POST
+    if (text.length < 1) throw new Error('Text length is NOT enough')
 
-    const users = data.getUsers()
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image, text })
+    })
+        .catch(error => { throw Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    const user = users.find(user => user.id === userId)
+            if (status === 201) return
 
-    if (!user) throw new Error('User not found')
+            return response.json()
+                .catch(error => { throw new Error('json') })
+                .then(body => {
+                    const { error, message } = body
 
-    let postsCount = data.getPostsCount()
-
-    postsCount++
-
-    const post = {
-        id: 'post-' + postsCount,
-        author: user.id,
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
-
-    const posts = data.getPosts()
-
-    posts.push(post)
-
-    data.setPosts(posts)
-    data.setPostsCount(postsCount)
-}
+                    throw new Error(message)
+                })
+        })
+} 

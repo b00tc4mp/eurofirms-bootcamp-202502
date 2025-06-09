@@ -1,26 +1,36 @@
-import { data } from '../data/index.js'
+import { data } from '../data'
+
 /**
- * RETORNAMOS el Username del Usuario encontrado con UserId
+ * Gets the User Username.
  * 
- * @param {string} userId The user id.
- * 
+ * @returns {string} The user username.
  */
 
-export const getUserUsername = userId => {
+export const getUserUsername = () => {
 
-    if (typeof userId !== 'string') throw new Error('Invalid userId type')
-    if (userId.length < 6) throw new Error('Invalid userId length')
+    return fetch('http://localhost:8080/users/self/username', {
+        method: 'GET',
+        headers: {
+            Authorization: 'Basic ' + data.getUserId()
+        }
+    })
+        .catch(error => { throw new Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    //Buscamos el User con el userId
-    //NO encontramos el Usuario - LANZAMOS ERROR
-    //SI encontramos el Usuario - Devolvemos el Username
+            if (status === 200)
+                return response.json()
+                    .catch(error => { throw new Error('json error') })
+                    .then(username => username)
 
-    const users = data.getUsers()
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-    const user = users.find(user => user.id === userId)
-
-    if (!user) throw new Error('user not found')
-
-    return user.username
+                    throw new Error(message)
+                })
+        })
 
 }
+

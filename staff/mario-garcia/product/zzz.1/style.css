@@ -1,33 +1,77 @@
-@import "tailwindcss";
-
-/* @media screen and(min-width: 800px) {
-
-    .grid-responsive {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-    }
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
 }
 
-@media screen and(min-width: 1280px) {
-
-    .grid-responsive {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
+h1 {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-@media (min-width: 800px) {
-
-    .grid-responsive {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-    }
+a {
+    color: black;
+    font-weight: 500;
 }
 
-@media (min-width: 1280px) {
+a:visited {
+    color: rgb(70, 145, 192);
+}
 
-    .grid-responsive {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
-} */
+label {
+    font-weight: 500;
+}
+
+.gap-10px {
+    gap: 10px;
+}
+
+.gap-20px {
+    gap: 20px;
+}
+
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+
+.registerButton {
+    color: rgb(26, 23, 113);
+    background-color: floralwhite;
+    font-weight: 200;
+}
+
+.loginButton {
+    color: rgb(26, 23, 113);
+    background-color: floralwhite;
+    font-weight: 200;
+}
+
+.p-x-20px {
+    padding: 0 20px;
+}
+
+.placeholder {
+    background-color: rgb(205, 225, 251);
+    border-radius: 10px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(97, 39, 120);
+}
+
+.p-xy-20px {
+    padding: 20px 20px;
+}
