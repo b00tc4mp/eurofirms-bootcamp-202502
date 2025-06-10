@@ -1,15 +1,10 @@
-import mongodb from 'mongodb'
+import mongoose from 'mongoose'
 import { User, Post } from './models.js'
 
-const { MongoClient } = mongodb
+const { connect, disconnect } = mongoose
 
-const client = new MongoClient('mongodb://localhost:27017')
-
-client.connect()
+connect('mongodb://localhost:27017/test')
     .then(() => {
-        const db = client.db('test')
-
-        const users = db.collection('users')
 
         // return users.insertOne ({ name: 'Mu Lan', email: "mu@lan.com", username: "mulan", password: '123123123'})
         //     .catch(error => { throw new Error('mongo error') })

@@ -1,5 +1,5 @@
-import  { data } from '../data/index.js'
-import { ValidatoinError, SystemError,NotFoundError} from './error.js'
+import  { User, Post } from '../data/index.js'
+import { ValidationError, SystemError,NotFoundError} from './error.js'
 /**
  * Creates a post in database
  * 
