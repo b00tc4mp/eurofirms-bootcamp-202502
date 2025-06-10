@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+
 import { logic } from './logic/index.js';
 import { connect } from './data/index.js';
 import {
@@ -16,9 +16,8 @@ import {
 //Convertir en modulo node: node --yes
 //Instalar express npm i express
 const { JsonWebTokenError } = jwt;
-
-const saltRounds = 10;
-connect('mongodb://localhost:27017/test')
+const { MONGO_URL, PORT, JWT_SECRET } = process.env;
+connect(MONGO_URL)
   .then(() => {
     const server = express();
     //Convierte el json a objeto
@@ -62,7 +61,7 @@ connect('mongodb://localhost:27017/test')
         logic
           .authenticateUser(username, password)
           .then((userId) => {
-            const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados, uno detras de otro');
+            const token = jwt.sign({ sub: userId }, JWT_SECRET);
 
             response.status(200).json(token);
           })
@@ -76,7 +75,7 @@ connect('mongodb://localhost:27017/test')
       try {
         const authorization = request.headers.authorization;
         const token = authorization.slice(7);
-        const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro');
+        const { sub: userId } = jwt.verify(token, JWT_SECRET);
         logic
           .getUserUsername(userId)
           .then((username) => response.status(200).json(username))
@@ -91,7 +90,7 @@ connect('mongodb://localhost:27017/test')
         const authorization = request.headers.authorization;
         const token = authorization.slice(7);
 
-        const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro');
+        const { sub: userId } = jwt.verify(token, JWT_SECRET);
         const { image, text } = request.body;
         logic
           .createPost(userId, image, text)
@@ -106,7 +105,7 @@ connect('mongodb://localhost:27017/test')
       try {
         const authorization = request.headers.authorization;
         const token = authorization.slice(7);
-        const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro');
+        const { sub: userId } = jwt.verify(token, JWT_SECRET);
         logic
           .getPosts(userId)
           .then((posts) => response.status(200).json(posts))
@@ -120,7 +119,7 @@ connect('mongodb://localhost:27017/test')
       try {
         const authorization = request.headers.authorization;
         const token = authorization.slice(7);
-        const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro');
+        const { sub: userId } = jwt.verify(token, JWT_SECRET);
         // const postId = request.params.postId;
         const { postId } = request.params;
         logic
@@ -148,6 +147,6 @@ connect('mongodb://localhost:27017/test')
         response.status(401).json({ error: AuthorizationError.name, message: 'invalid payload' });
       else response.status(500).json({ error: error.constructor.name, message: error.message });
     });
-    server.listen(8080, () => console.log('server escucha'));
+    server.listen(PORT, () => console.log('server escucha'));
   })
   .catch((error) => console.error(error));

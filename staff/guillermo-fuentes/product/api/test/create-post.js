@@ -1,7 +1,8 @@
 fetch('http://localhost:8080/posts', {
   method: 'POST',
   headers: {
-    Authorization: 'Basic 6831d3e9e716e2e3bda270cc',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQzZWU3MjZhYTJjZDQ0NTJkNjljNzEiLCJpYXQiOjE3NDk1Nzc2NTN9.X2JKPC5ty6jfTZGuPPztHTvqfcvkn0xldOKtUk_LtmM',
     'Content-Type': 'application/json',
   },
   body: '{"image":"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif","text":"pin8 dancing"}',
