@@ -27,6 +27,7 @@ export const authenticateUser = (username, password) => {
             //ahora comparamos el password q se pasa por parametro con el user.password de la bbdd q ahora se guarda hasheado
             return bcrypt.compare(password, user.password)
                 .catch(error => { throw new SystemError(error.message) })
+                //match hace de parametro booleano true/false
                 .then(match => {
                     if (!match) throw new CredentialsError('wrong password')
 

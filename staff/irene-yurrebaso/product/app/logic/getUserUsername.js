@@ -8,7 +8,7 @@ import { data } from '../data'
 
 //logica para añadir nombre de usuario en la Home
 export const getUserUsername = () => {
-    return fetch('http://localhost:8080/users/self/username', {
+    return fetch(import.meta.env.VITE_API_URL + '/users/self/username', {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()

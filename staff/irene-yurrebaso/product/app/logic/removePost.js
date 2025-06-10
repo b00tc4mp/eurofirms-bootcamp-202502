@@ -8,11 +8,11 @@ import { data } from '../data'
 
 export const removePost = postId => {
     //validación de postId
-    if (typeof postId !== 'string') throw new Error ('invalid postId typ')
+    if (typeof postId !== 'string') throw new Error ('invalid postId type')
     if (postId.length < 6) throw new Error ('invalid postId length')
 
     //recibo el post por parametro
-    return fetch('http://localhost:8080/posts/' + postId, {
+    return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId, {
     method: 'DELETE',
     headers: {
         //traemos el userId de sessionStorage en data

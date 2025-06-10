@@ -9,7 +9,6 @@ import { data } from '../data'
  * @param {string} password The user password.
  */
 export const registerUser = (name, email, username, password) => {
-    //1. validar estos datos (ej. asegurarnos que son strings y dentro de longitud requerida)
     if(typeof name !== 'string') throw new Error('Invalid name type')
     if(name.length < 1) throw new Error('Invalid min name length')
     if(name.length > 30) throw new Error('Invalid max name length')
@@ -26,7 +25,7 @@ export const registerUser = (name, email, username, password) => {
     if(password.length < 8) throw new Error('Invalid min password length')
     if(password.length > 20) throw new Error('Invalid max password length')
 
-    return fetch('http://localhost:8080/users', {
+    return fetch(import.meta.env.VITE_API_URL + '/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

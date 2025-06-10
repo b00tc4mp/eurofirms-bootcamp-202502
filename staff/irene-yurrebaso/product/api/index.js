@@ -8,7 +8,10 @@ import { AuthorizationError } from './errors.js'
 
 const { JsonWebTokenError } = jwt
 
-connect('mongodb://localhost:27017/test')
+//process es un objeto de node
+const { MONGO_URL, PORT, JWT_SECRET } = process.env
+
+connect(MONGO_URL)
     .then(() => {
         const api = express()
         //convierte datos de strings a objetos
@@ -41,7 +44,7 @@ connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados, uno detras de otro')
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
 
                         response.status(200).json(token)
                     })
@@ -55,11 +58,11 @@ connect('mongodb://localhost:27017/test')
         api.get('/users/self/username', (request, response, next) => {
             try {
                 //recogemos la cabecera de curl GET en la request. El objeto headers pone todas las cabeceras en un objeto. A traves de la propiedad authorization le decimos quien es el usuario.
-                const authorization = request.headers.authorization // Basic user-1
+                const authorization = request.headers.authorization
                 //recortamos el string a partir de un caracter para obtener solo el ID
-                const token = authorization.slice(7) //Bearer qiwudjdjdjdhdhfjfj...
+                const token = authorization.slice(7) //Bearer numero-de-token
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.getUserUsername(userId)
                     //devolveremos el username como un string en la respuesta de la api
@@ -75,9 +78,9 @@ connect('mongodb://localhost:27017/test')
             try {
                 //recuperar el userId de la cabecera enviada a traves de curl
                 const authorization = request.headers.authorization 
-                const token = authorization.slice(7) // Bearer auuaahahhahga...
+                const token = authorization.slice(7) // Bearer numero-de-token
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 //recojo el json enviado (image & text) usando jsonBodyParser con el body del objeto request
                 const { image, text } = request.body
@@ -98,7 +101,7 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization // Basic user-x
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.getPosts(userId)
                     .then(posts => response.status(200).json(posts))
@@ -114,7 +117,7 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 //recogemos postId del objeto params que viene en la request
                 //const postId = request.params.postId
@@ -150,6 +153,6 @@ connect('mongodb://localhost:27017/test')
                 response.status(500).json({ error: SystemError.name, message: error.message })
         })
 
-        api.listen(8080, () => console.log('API listening on port 8080'))
+        api.listen(PORT, () => console.log('API listening on port ' + PORT))
     })
     .catch(error => console.error(error))
