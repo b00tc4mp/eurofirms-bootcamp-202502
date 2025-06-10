@@ -1,5 +1,5 @@
 import { logic } from '../logic';
-
+import { useNavigate } from 'react-router-dom';
 /*
 Aqui al igual que en otros componenentes hemos empleado la deconstruccion antes lo teniamos asi
 export const Register = (props) => {  const onLoginClick = props.onLoginClick;
@@ -7,8 +7,9 @@ export const Register = (props) => {  const onLoginClick = props.onLoginClick;
 lo que conseguimos con la deconstruccion es ahorrar lineas de codigo
 
 */
-export const Register = ({ onRegisteredUser, onLoginClick }) => {
-  const handleLoginClick = () => onLoginClick();
+export const Register = () => {
+  const navigate = useNavigate();
+  const handleLoginClick = () => navigate('/login');
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
@@ -30,7 +31,7 @@ export const Register = ({ onRegisteredUser, onLoginClick }) => {
         .registerUser(name, email, username, password)
         .then(() => {
           form.reset();
-          onRegisteredUser();
+          navigate('login');
         })
         //en este catch entra cuando hay algun error con el servidor
         .catch((error) => {

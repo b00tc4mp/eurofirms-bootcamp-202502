@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { logic } from '../logic';
-export const Login = ({ onRegisterClick, onLoginUser }) => {
-  const handleRegisterClick = () => onRegisterClick();
+
+export const Login = () => {
+  const navigate = useNavigate();
+
+  const handleRegisterClick = () => navigate('/register');
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -12,7 +16,7 @@ export const Login = ({ onRegisterClick, onLoginUser }) => {
         .loginUser(username, password)
         .then(() => {
           form.reset();
-          onLoginUser();
+          navigate('/home/posts');
         })
         .catch((error) => {
           console.error(error);
@@ -22,25 +26,28 @@ export const Login = ({ onRegisterClick, onLoginUser }) => {
       alert(error.message);
     }
   };
+
+  console.log('Login->render');
+
   return (
-    <>
-      <h1 className="">Login</h1>
+    <div>
+      <h1 className="text-3xl text-center">Login</h1>
       <form className="flex flex-col gap-2" onSubmit={handleLoginSubmit}>
-        <div className="flex flex-col ">
-          <label htmlFor="username">Username </label>
-          <input type="text" name="username" placeholder=" your username" className="border-2" />
+        <div className="flex flex-col">
+          <label htmlFor="username">Usuario</label>
+          <input type="text" name="username" placeholder="tu usuario" className="border-2" />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password">Password </label>
-          <input type="password" name="password" placeholder=" your password" className="border-2" />
+          <label htmlFor="password">Contraseña</label>
+          <input type="password" name="password" placeholder="tu contraseña" className="border-2" />
         </div>
         <div className="flex justify-between">
-          <a href="#" className="bg-blue-200 text-black rounded-full p-2" onClick={handleRegisterClick}>
-            Register
-          </a>
+          <button type="button" className="bg-blue-200 text-black rounded-full p-2" onClick={handleRegisterClick}>
+            Registrar
+          </button>
           <button className="bg-blue-200 text-black rounded-full p-2">Login</button>
         </div>
       </form>
-    </>
+    </div>
   );
 };

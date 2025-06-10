@@ -1,24 +1,23 @@
-import { logic } from '../logic';
 import { useEffect, useState } from 'react';
+import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
+import { logic } from '../logic';
 import { Posts } from './components/Posts';
 import { CreatePost } from './components/CreatePost';
 
-export const Home = ({ onUserLoggedOut }) => {
+export const Home = () => {
   const [username, setUsername] = useState('world');
-
-  const [view, setView] = useState('posts');
-
   const [postId, setPostId] = useState(null);
+  const navigate = useNavigate();
 
   console.log('Post ID: ' + postId);
 
-  const handleCreatePostClick = () => setView('create-post');
-
-  const handleCancelCreatePostClicked = () => setView('posts');
-
-  const handlePostCreated = () => setView('posts');
-
-  const handleLogoutClick = () => onUserLoggedOut();
+  const handleCreatePostClick = () => navigate('create-post'); // Navega a subruta
+  const handleCancelCreatePostClicked = () => navigate('posts'); // Vuelve a posts
+  const handlePostCreated = () => navigate('posts'); // Vuelve a posts tras crear
+  const handleLogoutClick = () => {
+    logic.logoutUser(); // Limpia la autenticación
+    navigate('/');
+  };
 
   useEffect(() => {
     try {
@@ -29,7 +28,7 @@ export const Home = ({ onUserLoggedOut }) => {
         })
         .catch((error) => {
           console.error(error);
-          alert(error);
+          alert(error.message);
         });
     } catch (error) {
       console.error(error);
@@ -37,26 +36,30 @@ export const Home = ({ onUserLoggedOut }) => {
     }
   }, []);
 
+  console.log('Home->render');
+
   return (
     <div className="p-5">
       <i className="text-2xl">Logo</i>
-
       <div className="mt-2">
-        <h1 className="text-xl mb-2 text-blue-600">Hello, {username}!</h1>
-        <div className="  flex justify-center gap-55">
+        <h1 className="text-xl mb-2 text-blue-600">¡Hola, {username}!</h1>
+        <div className="flex justify-center gap-5">
           <button className="bg-black text-white px-2" type="button" onClick={handleCreatePostClick}>
-            Create Post
+            Crear Post
           </button>
           <button className="bg-black text-white px-2" type="button" onClick={handleLogoutClick}>
-            Logout
+            Cerrar Sesión
           </button>
         </div>
       </div>
-
-      {view === 'posts' && <Posts postId={postId} />}
-      {view === 'create-post' && (
-        <CreatePost onCancelClicked={handleCancelCreatePostClicked} onPostCreated={handlePostCreated} />
-      )}
+      <Routes>
+        <Route path="/" element={<Navigate to="posts" replace />} /> {/* Redirige /home a /home/posts */}
+        <Route path="posts" element={<Posts postId={postId} />} />
+        <Route
+          path="create-post"
+          element={<CreatePost onCancelClicked={handleCancelCreatePostClicked} onPostCreated={handlePostCreated} />}
+        />
+      </Routes>
     </div>
   );
 };
