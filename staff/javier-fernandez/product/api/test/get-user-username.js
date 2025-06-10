@@ -12,6 +12,7 @@ fetch('http://localhost:8080/users/self/username', {
             return response.json()
                 .catch(error => { throw new Error ('json error') })
                 .then(username => username)
+
         return response.json()
            .catch(error => { throw new Error('json error') })
            .then(body => {
