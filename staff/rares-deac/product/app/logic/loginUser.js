@@ -20,7 +20,7 @@ export const loginUser = (username, password) => {
     if (password.length < 8) throw new Error("invalid password min length");
     if (password.length > 30) throw new Error("invalid password max length");
 
-    return fetch('http://localhost:8080/users/auth', {
+    return fetch(import.meta.env.VITE_API_URL + '/users/auth', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
