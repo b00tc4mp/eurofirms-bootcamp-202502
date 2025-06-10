@@ -11,7 +11,7 @@ export const createPost = (image, text) => {
   if (typeof text !== 'string') throw new Error('invalid text type');
   if (text.length < 1) throw new Error('Invalid text lenght');
 
-  return fetch('http://localhost:8080/posts', {
+  return fetch(`${import.meta.env.VITE_API_URL}posts`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${data.getToken()}`,

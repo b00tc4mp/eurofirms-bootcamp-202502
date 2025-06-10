@@ -20,9 +20,9 @@ export const App = () => {
       const loggedIn = logic.isUserLoggedIn();
       console.log('el logedin es ' + loggedIn);
       if (loggedIn) {
-        navigate('/home/posts', { replace: true });
+        navigate('/posts', { replace: true });
       } else {
-        navigate('/', { replace: true });
+        navigate('/landing', { replace: true });
       }
     } catch (error) {
       console.error(error);
@@ -34,10 +34,10 @@ export const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/landing" element={<Landing />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/home/*" element={<Home />} /> {/* Soporta subrutas */}
+      <Route path="/*" element={<Home />} /> {/* Soporta subrutas */}
     </Routes>
   );
 };

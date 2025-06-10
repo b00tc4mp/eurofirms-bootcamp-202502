@@ -11,12 +11,12 @@ export const Home = () => {
 
   console.log('Post ID: ' + postId);
 
-  const handleCreatePostClick = () => navigate('create-post'); // Navega a subruta
-  const handleCancelCreatePostClicked = () => navigate('posts'); // Vuelve a posts
-  const handlePostCreated = () => navigate('posts'); // Vuelve a posts tras crear
+  const handleCreatePostClick = () => navigate('/create-post'); // Navega a subruta
+  const handleCancelCreatePostClicked = () => navigate('/posts'); // Vuelve a posts
+  const handlePostCreated = () => navigate('/posts'); // Vuelve a posts tras crear
   const handleLogoutClick = () => {
     logic.logoutUser(); // Limpia la autenticación
-    navigate('/');
+    navigate('/landing');
   };
 
   useEffect(() => {
@@ -53,10 +53,10 @@ export const Home = () => {
         </div>
       </div>
       <Routes>
-        <Route path="/" element={<Navigate to="posts" replace />} /> {/* Redirige /home a /home/posts */}
-        <Route path="posts" element={<Posts postId={postId} />} />
+        {/* <Route path="/" element={<Navigate to="posts" replace />} /> Redirige /home a /home/posts */}
+        <Route path="/posts" element={<Posts postId={postId} />} />
         <Route
-          path="create-post"
+          path="/create-post"
           element={<CreatePost onCancelClicked={handleCancelCreatePostClicked} onPostCreated={handlePostCreated} />}
         />
       </Routes>

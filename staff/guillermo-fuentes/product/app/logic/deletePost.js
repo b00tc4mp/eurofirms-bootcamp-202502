@@ -13,7 +13,7 @@ export const deletePost = (idPost) => {
 
   // data.setPosts(posts);
 
-  return fetch(`http://localhost:8080/posts/${idPost}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}posts/${idPost}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${data.getToken()}`,

@@ -16,7 +16,7 @@ export const Login = () => {
         .loginUser(username, password)
         .then(() => {
           form.reset();
-          navigate('/home/posts');
+          navigate('/posts');
         })
         .catch((error) => {
           console.error(error);
