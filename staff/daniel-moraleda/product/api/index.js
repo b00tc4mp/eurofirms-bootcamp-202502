@@ -1,9 +1,9 @@
-import { connect } from '.data/index.js'
+import { connect } from './data/index.js'
 import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
-import { AutorshipError, CredentialsError, DuplicityError, NotFoundError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
-import { AutorizationError } from '.error.js'
+import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
+import { AuthorizationError } from './errors.js'
 import jwt from 'jsonwebtoken'
 
 const { JsonWebTokenError } = jwt
@@ -58,7 +58,7 @@ connect(MONGO_URL)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.getUserUsername(userId)
-                    .then(username => response.status(200), json(username))
+                    .then(username => response.status(200).json(username))
 
             } catch (error) {
                 next(error)
@@ -126,12 +126,12 @@ connect(MONGO_URL)
                 response.status(404).json({ error: error.constructor.name, meessage: error.message })
             else if (error instanceof CredentialsError)
                 response.status(401).json({ error: error.constructor.name, name: error.message })
-            else if (error instanceof AutorshipError)
+            else if (error instanceof AuthorshipError)
                 response.status(403).json({ error: error.constructor.name, message: error.message })
             else if (error instanceof DuplicityError)
                 response.status(409).json({ error: error.cosnmtructor.name, message: error.message })
             else if (error instanceof JsonWebTokenError)
-                response.status(401).json({ error: AutorizationError.name, message: error.message })
+                response.status(401).json({ error: AuthorizationError.name, message: error.message })
             else if (error instanceof SyntaxError && error.message.includes('JSON'))
                 response.status(401).json({ error: SystemError.name, message: 'invalid payload' })
             else

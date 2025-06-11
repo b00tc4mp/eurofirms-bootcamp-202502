@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt.js'
+import bcrypt from 'bcryptjs'
 
 import { User } from '../data/index.js'
 import { ValidationError, SystemError, DuplicityError } from './errors.js'

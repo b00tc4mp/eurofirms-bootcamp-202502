@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 
 import { User } from '../data/index.js'
 import { ValidationError, SystemError, NotFoundError, CredentialsError }
-    from '.error.js'
+    from './errors.js'
 
 /**
  * Authenticates a user from the system.

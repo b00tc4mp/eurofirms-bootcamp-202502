@@ -1,5 +1,5 @@
 import  { User, Post } from '../data/index.js'
-import { ValidationError, SystemError,NotFoundError} from './error.js'
+import { ValidationError, SystemError,NotFoundError} from './errors.js'
 /**
  * Creates a post in database
  * 

@@ -22,7 +22,7 @@ export class CredentialsError extends Error {
     }
 }
 
-export class AutorshipError extends Error {
+export class AuthorshipError extends Error {
     constructor(message) {
         super(message)
     }
