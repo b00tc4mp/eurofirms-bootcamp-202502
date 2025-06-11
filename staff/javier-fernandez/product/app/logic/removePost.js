@@ -9,7 +9,7 @@ export const removePost = postId => {
     if (typeof postId !== 'string') throw new Error('invalid postId type')
     if (postId.length < 6) throw new Error('invalid postId length')
 
-    return fetch('http://localhost:8080/posts/' + postId, {
+    return fetch(import.meta.env.VITE_API_URL +'/posts/' + postId, {
         method: 'DELETE',
         headers: {
             Authorization: 'Bearer ' + data.getToken()
