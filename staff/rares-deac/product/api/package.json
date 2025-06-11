@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node --env-file .env index.js",
-    "start-watch": "node --env-file .env --watch index.js",
+    "start-watch": "node --env-file .env --watch index.js ",
     "start-inspect": "node --inspect-brk --env-file .env index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",

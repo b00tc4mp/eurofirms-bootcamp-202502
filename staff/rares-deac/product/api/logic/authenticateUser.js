@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import { User } from '../data/index.js'
 import { ValidationError, SystemError, NotFoundError, CredentialsError } from './errors.js'
 
@@ -16,14 +17,17 @@ export const authenticateUser = (username, password) => {
     if (password.length < 8) throw new ValidationError('invalid password min length')
     if (password.length > 20) throw new ValidationError('invalid password max length')
 
-        return User.findOne({ username })
-            .catch(error => { throw new SystemError('mongo error') })
-            .then(user => {
-                if(!user) throw new NotFoundError('user not found')
+    return User.findOne({ username })
+        .catch(error => { throw new SystemError('mongo error') })
+        .then(user => {
+            if (!user) throw new NotFoundError('user not found')
 
-                if(user.password !== password) throw new CredentialsError('wrong password')
+            return bcrypt.compare(password, user.password)
+                .catch(error => { throw new SystemError(error.message) })
+                .then(match => {
+                    if (!match) throw new CredentialsError('wrong password')
 
-                return user.id
-            })
-
+                    return user.id
+                })
+        })
 }
