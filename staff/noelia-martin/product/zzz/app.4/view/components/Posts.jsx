@@ -17,7 +17,7 @@ export const Posts = () => {
     console.log('Posts -> render')
 
     return <>
-        {posts.map(post => {
+        {posts.map(post => { //metodo map explicado en la siguiente version
             return <article key={post.id}>
                 <h3>{post.author}</h3>
 

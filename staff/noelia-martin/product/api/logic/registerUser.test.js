@@ -5,7 +5,7 @@ connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
             //Esta parte es nueva: como es un control de errores asincrono,tenemos que hacer que la logica devuelva una promesa.
-            return registerUser('Mos Quito', 'mos@quito', 'mosquito', '123123123')
+            return registerUser('Peter Pan', 'peter@pan', 'petrpan', '123123123')
                 //Si todo ha ido bien mostraremos en consola 'user register'
                 //Si hay algun error en el registro nos lo mostrará en consola (recuerda, mostrara el error creado en la logica)
                 .then(() => console.log('user registered'))

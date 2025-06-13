@@ -8,4 +8,5 @@ import { data } from '../data'
  * 
  * @returns {boolean} The state of user log (true if logged in, false otherwise).
  */
-export const isUserLoggedIn = () => !!data.getUserId()
+//cambiamos el metodo getUserId() por getToken()
+export const isUserLoggedIn = () => !!data.getToken()

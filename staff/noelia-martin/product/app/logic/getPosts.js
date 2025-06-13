@@ -15,11 +15,12 @@ import { data } from '../data'
 * }]} The posts from users in the system.
 */
 export const getPosts = () => {
-    return fetch('http://localhost:8080/posts', {
+    //return fetch('http://localhost:8080/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'GET',
         headers: {
-            //Authorization: 'Basic user-20'
-            Authorization: 'Basic ' + data.getUserId()
+            //Cambio Basic por Bearer y el metodo getUserId() por getToken()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new Error('connection error') })

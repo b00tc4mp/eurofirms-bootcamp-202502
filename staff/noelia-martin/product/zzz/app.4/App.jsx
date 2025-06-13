@@ -14,7 +14,7 @@ export const App = () => {
     //añado todos los handle necesarios para los submit y el click de Home para que procesa al cambio de estado(vista)
     const handleUserRegistered = () => setView('login')
     const handleUserLoggedIn = () => setView('home')
-    const handleUserLoggedOut = () => setView('login')
+    const handleUserLoggedOut = () => setView('landing')
 
     console.log('App -> render')
 

@@ -7,6 +7,6 @@ import { data } from '../data'
  * Logs a user out of the system.
  */
 export const logoutUser = () => {
-    //data.userId = null //antiguo, ya no existe la propiedad userId ahora hay que usar un metodo de data que borra el contenido de SessionStorage
-    data.removeUserId()
+    //cambiamos el metodo removeUserId() por removeToken()
+    data.removeToken()
 }

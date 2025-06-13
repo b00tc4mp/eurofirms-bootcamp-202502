@@ -8,11 +8,12 @@ import { data } from '../data'
  * @returns {string} The user username.
  */
 export const getUserUsername = () => {
-    return fetch('http://localhost:8080/users/self/username', {
+    //return fetch('http://localhost:8080/users/self/username', {
+    return fetch(import.meta.env.VITE_API_URL + '/users/self/username', {
         method: 'GET',
         headers: {
-            //Authorization: 'Basic user-10'
-            Authorization: 'Basic ' + data.getUserId()
+            //Cambio Basic por Bearer y el metodo getUserId() por getToken()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new Error('connection error') })

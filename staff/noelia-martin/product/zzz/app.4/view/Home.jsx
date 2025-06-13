@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+//necesito utilizar los componente logic y post
 import { logic } from '../logic'
 import { Posts } from './components/Posts'
-//necesito utilizar los componente logic y post
-//tambien de react los hook( es una función que te permite "enganchar" el estado, el ciclo de vida y otras características de React a componentes funcionales) de: 
-//useState y UseEffect: hay que pasarle una función flecha y un array vacio (es otra forma de manejar el ciclo de vida de un componente)
+
+//necesito de react los hook( es una función que te permite "enganchar" el estado, el ciclo de vida y otras características de React a componentes funcionales) de: 
+// UseState
+// UseEffect: hay que pasarle una función flecha y un array vacio (es otra forma de manejar el ciclo de vida de un componente)
+import { useEffect, useState } from 'react'
+
 
 export const Home = (props) => {
     const onUserLoggedOut = props.onUserLoggedOut
@@ -11,6 +14,7 @@ export const Home = (props) => {
     //utilizo useState, configuro de estado inicial a mundo
     const [username, setUsername] = useState('World')
 
+    //Se ejecutará solo en el primer pintado de esta vista
     //Recuerda, siempre que llamemos a logica habra que usar try-catch
     useEffect(() => {
         try {
@@ -22,12 +26,12 @@ export const Home = (props) => {
         }
     }, [])
 
-    //ampliamos el handle de nuestrop click para que vacie la variable que contenia el usuario actual conectado, esta configuración de hizo en una funcion de app asi que tiramos de ella(gracias a que entra por nuestro objeto props)
+    //nuevo handle, en él llamamos a la logica de logoutuser para que borre el usuario actual conectado y llamamos a la constante onUserLoggedOut para que con la props que contiene volvamos a App y nos cambie a la vista de Landing
     const handleLogoutClick = () => {
         try {
             logic.logoutUser()
 
-            onUserLoggedOut() //antiguo, llamada a la propiedad que cambia la vista a login
+            onUserLoggedOut() //antiguo, llamada a la propiedad que cambia la vista a landing
         } catch (error) {
             alert(error.message)
         }
@@ -39,7 +43,7 @@ export const Home = (props) => {
         <i className="text-2xl">Logo</i>
 
         <div className="mt-2">
-            <h1 className="text-xl">Hello, {username}</h1> {/* cambiamos el mundo antiguo, que será el estado inicial, por el estado actual es decir por la variable username */}
+            <h1 className="text-xl">Hello, {username}</h1> {/* el estado inicial será hola mundo, pero cuando tengamos contenido en username se cambiará a hola valorUsername */}
 
             <button className="bg-black text-white px-2" type='button' onClick={handleLogoutClick}>Logout</button>
         </div>

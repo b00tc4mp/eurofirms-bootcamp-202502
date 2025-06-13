@@ -1,9 +1,8 @@
-//import { data } from '../data/index.js'
-import { User } from '../data/index.js' //queremos solo User del fichero index de data
+import bcrypt from 'bcryptjs' //nuevo
+
+import { User } from '../data/index.js'
 import { ValidationError, SystemError, DuplicityError } from './errors.js'
 
-
-//exactamente igual que en la app; ningun cambio ya que hemos nombrado los metodos que necesita de data igual que teniamos en app
 /**
  * Registers a user in the system.
  * 
@@ -29,36 +28,28 @@ export const registerUser = (name, email, username, password) => {
     if (password.length < 8) throw new ValidationError('invalid password min length')
     if (password.length > 20) throw new ValidationError('invalid password max length')
 
-    return User.create({ name, email, username, password })
-        .catch(error => {
-            if (error.code === 11000) throw new DuplicityError('user already exists') //filtro por este error que conocemos el code,porque que saldrá muchas veces y asi cambiamos el mensaje a uno personalizado
+    //nuevo   
+    return bcrypt.hash(password, 10) //convierte la contraseña en una cadena de caracteres de longitud fija que parece aleatoria y sin sentido (el 10 es la recomendación no sabemos el por qué, ni es necesario saberlo)
+        .catch(error => { throw new SystemError(error.message) })
+        .then(hash => {
+            //metemos el return que ya teniamos, pero indicamos que en password guardamos el hash
+            return User.create({ name, email, username, password: hash })
+                .catch(error => {
+                    if (error.code === 11000) throw new DuplicityError('user already exists') //
 
+                    throw new SystemError('mongo error')
+                })
+                .then(() => { })
+        })
+}
+
+/*
+Antiguo
+return User.create({ name, email, username, password })
+        .catch(error => {
+            if (error.code === 11000) throw new DuplicityError('user already exists')
             throw new SystemError('mongo error')
-            // console.error(error.message) //prueba para comprobar que si no lanzo el error no funciona el control de errores de la promesa then de conexion del test, me mete del tiron en su then y no mira el catch
         })
         .then(() => { })
 }
-
-//mantenemos solo las validaciones
-//creamos un User como practicamos en el fichero populate.js,pero esta vez no escribimos nada en consola, lo escribirá quien llame a esta logica.
-//El error que vamos a lanzar será creado por el constructor Error(). Esta vez no lo personalizamos.
-//No lo personalizamos porque gracias a los schemas que hemos configurado pueden ser distintos errores
-//En este caso no importaria si filtramos con message, ya que Error() no trae otras propiedades. Pero lo dejamos asi ya que en otras ocasiones las traerá y asi nos acostumbramos a este pequeño filtro. (manu lo dejó directamente sin message)
-
-//antiguo
-// const users = data.getUsers()
-// const user = users.find(user => user.email === email || user.username === username)
-// if (user) throw new Error('user already exists')
-// let usersCount = data.getUsersCount()
-// usersCount++
-// users.push({
-//     id: 'user-' + usersCount,
-//     name: name,
-//     email: email,
-//     username: username,
-//     password: password
-// })
-// data.setUsers(users)
-// data.setUsersCount(usersCount)
-
-//Ultima modificación de esta version: cambiamos la constructora de los errores a la que mejor interesen segun la situacion
+*/

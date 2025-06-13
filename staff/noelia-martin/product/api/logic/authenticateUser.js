@@ -1,4 +1,6 @@
-//import { data } from '../data/index.js'
+//nuevo
+import bcrypt from 'bcryptjs'
+
 import { User } from '../data/index.js'
 import { ValidationError, SystemError, NotFoundError, CredentialsError } from './errors.js'
 
@@ -18,20 +20,33 @@ export const authenticateUser = (username, password) => {
     if (password.length < 8) throw new ValidationError('invalid password min length')
     if (password.length > 20) throw new ValidationError('invalid password max length')
 
-    //findOne te devuelve el primer usuario que coincide con el introducido en la llamada a esta logica (en este caso tenemos configurado que no haya username repetidos)
     return User.findOne({ username })
         .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            if (user.password !== password) throw new CredentialsError('credentials error')
+            //if (user.password !== password) throw new CredentialsError('credentials error') //antiguo, no podemos comparar contraseña de la BD con que recibimos ya que la de la BD ahora es un bash
 
-            return user.id
+            //nuevo, creamos la promesa que compara la contraseña con la que tenemos cifrada
+            return bcrypt.compare(password, user.password)
+                //al ser una promesa hay que controlar errores
+                .catch(error => { throw new SystemError(error.message) })
+                //recibimos un match el cual será true si la comparacion es correcta y false si no lo es
+                .then(match => {
+                    if (!match) throw new CredentialsError('wrong password')
+
+                    return user.id
+                })
         })
 }
-//antiguo
-// const users = data.getUsers()
-// const user = users.find(user => user.username === username)
-// if (!user) throw new Error('user not found')
-// if (user.password !== password) throw new Error('wrong credentials')
-// return user.id
+
+// Antiguo
+//  return User.findOne({ username })
+//         .catch(error => { throw new SystemError('mongo error') })
+//         .then(user => {
+//             if (!user) throw new NotFoundError('user not found')
+
+//             if (user.password !== password) throw new CredentialsError('credentials error')
+
+//             return user.id
+//         })

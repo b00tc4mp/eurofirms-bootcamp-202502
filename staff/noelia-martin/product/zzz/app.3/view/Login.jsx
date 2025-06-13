@@ -52,7 +52,7 @@ export const Login = (props) => {
 //Para los botones en react, se trabaja muy parecido como haciamos con DOM
 //El fichero logica y datos lo vamos a dejar igual
 
-//Copio la conmfiguración del boton de DOM a continuación para que sea mas facil su comparación con react
+//Copio la configuración del boton de DOM a continuación para que sea mas facil su comparación con react
 // loginFormulario.addEventListener('submit', event => {
 //     event.preventDefault() //cancela la accion preterminada, ya que la voy a configurar yo
 //     const username = usernameEtiquetaInput.value

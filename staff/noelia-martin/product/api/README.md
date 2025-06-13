@@ -1,142 +1,104 @@
-23/05/2025 y 24/05/2025
+7/6/25
 
-Instalación en nuestro PC de mongoDB y mongoSH (manual en carpeta de instalacion 6º documento)
-Trabajamos brevemente en mongoSH: (idem con posts)
-    db.users.insertOne({name:`'Pepito Grillo',email: ....})
-    db.users.insertMany([ {name: ...}, {name: ...}, ... ])
-    db.users.find()
-    db.users.deleteOne({_id:ObjectId('codigo id del usuario que quiero borrar')})
-    d.users.findOne({_id:ObjectId('codigo id del usuario que quiero encontrar')})
-    db.users.updateOne({_id:ObjectId('codigo id del usuario que quiero modificar')}, {$set: {password:'contraseña nueva que quiero guardar'}}) //con esta linea modificamos la contraseña del usuario que indicamos con ese id
-    db.users.updateMany({name: /P/}, {$set:{password:'contraseña nueva'}}) //con esta linea modifico la contraseña a todos los usuarios que sus nombres comiencen por una P
+#JWT (explico teoría a final de este readme)
+Tal como lo tenemos hasta esta versión, cualquier usuario logueado puede entrar en los mensajes de respuesta del servidor y ver el contenido de todos los posts.
+En este contenido está idPost, idUser, imagen, texto, like y fecha. Es muy peligroso que pueda tener acceso a cualquier idUser.
+Puede copiar el idUser de cualquier usuario y en SessionStore modificar el suyo por ese nuevo. Automáticamente la sesión se cambiaría al del usuario que corresponde ese id, sin necesidad de loguearse... es un fallo de seguridad muy grave.
+Lo solucionaremos cambiando el contenido de los idUser a token de texto usando JSON Web Token
 
-Instalamos en API mongoDB y trabajamos con el cliente en el fichero populate1
-    Hacemos los mismos ejercicios que hicimos en mongoSH, pero con algunas breves modificaciones. (explicado en el codigo)
-    Como estamos trabajando con llamadas al servidor, necesitamos crear control de errores asincronos. 
-    .then: return ...
-        Creamos, modificacion, actualizamos, borramos o buscamos un user o post.
-        Si hay error creamos un Error('mongo error') y si todo ha ido bien un mensaje de consola para poder visualizar un breve mensaje de confirmación.
+Instalamos (en api): npm i jsonwebtoken
 
-    .catch: 
-        Si ha habido algun error: si ha entrado en then que muestre el error personalizado que hemos creado(el que hemos lanzado); sino ha entrado en then que muestre el error que crea nuestra api (que recuerda que es un poco inteligible por eso el empeño de ir creandolos personalizados)
+Modificamos en API (actualmente versión 3)
+    error.js en api: Creamos constructoras propias para manejar errores desde la Api (no desde lógica). De momento solo creamos AuthorizationError
 
-    .finally
-        En el control de errores hay que añadir un .finally, el cuál SIEMPRE se ejecutará independientemente si ha entrado en .cath o .then. En él cerramos conexion 
+    index en api : 
+        1. Importamos JWT y sacamos la constante JsonWebTokenError que contiene su controlador de errores
+        2. Modificamos el código para que en vez de usar userId utilicen token (explicado detalladamente en el código)
+            En autenticación creamos el token indicando que queremos que su payload contenga el userId y lo firme
+            En el resto de lógicas que necesita una cabecera con el userId, modificamos:
+                El slice: en vez de recibir Basic..., recibiremos Bearer...
+                Obtenemos variable userId: ahora no vamos a recibir directamente un userId sino un token, así que verificamos con la firma digital que sabemos que es correcto y sacamos del payload, el userId
+        3. Modificamos el handler de errores
+            Añadimos dos condiciones a las que teníamos para controlar el token
+                Primera, si se produce un error en la cabecera o en la firma digital, JWT nos devolverá sus propios errores. Los usaremos pero vamos a cambiar la constructora que va a utilizar, que será la creada en error.js => AuthorizationError
+                Segundo, si el error se produce en el payload no lo controla JWT sino SyntaxError y devuelve un mensaje difícil de entender, así que los filtramos y modificamos por nuestra constructora (AuthorizationError) y un mensaje personalizamos (invalid payload)
 
-    Por culpa de .finally, el trabajo a realizar en .then lo metemos en un return. Ya que el servidor tardará lo que necesite. Con esto impedimos al finally ejecutarse hasta recibir respuesta del servidor (con el return encadenamos las promesas con el catch y el finally)
-
-Desinstalamos en API mongoDB que acto seguido instalará mongoose. (instalamos mongoose)
-    Models.js
-        Creamos este fichero para configurar el esquema que utilizara users y posts y los exportamos (POCO COMENTADO)
-    Populate.js
-        Importamos los esquemas de models, creamos conexion con la base de datos y hacemos ejercicios como anteriormente.( creación, eliminacion, actualización, busqueda de usuarios y posts)
-        En los metodos hay breves modificaciones respecto a como trabajabamos con mongodb (explicado en el codigo)
-        En el finally en vez de cerrar con close(), se cierra con disconnect()
-
-Aplicamos a nuestras logicas las modificaciones necesarias para que utilice la base de datos MongoDB
-    registerUser.test: creamos una conexion a la base de datos con la que estamos trabajando y configuramos un control de errores asincronos: .then introducimos el control de error sincronos que teniamos modificado brevemente, .catch para capturar errores de conexion y .finally para cerrar conexion
-    (mejor explicado en el codigo y al final de este readme de la semana)
-    registerUser: borramos todo menos las validaciones y retornamos la creacion de un User como practicamos en el fichero populate, pero sin escribir nada en consola(ya que se escribirá en el control de errores de quien utilice la logica)
-
-    authenticateUser.test: parecido a registerUser.test pero como en el control sincrono que teniamos devolviamos userId, aqui lo meteremos de el .then de la llamada a la logica (explicado mejor en el codigo)
-    authenticateUser: parecido a la logica de registerUser pero utilizamos findOne
-        -primer return: utilizamos findOne, dentro del then lanzamos errores si el usuario y/o la contraseña introducido no son validas y ademas...
-        -segundo return: dentro del primer return, dentro del .then, retornamos el user,id
-
-    getUsername.test: nada nuevo que comentar.
-    getUsername: lo hice primero sola utilizando utilizando findOne pero en el interior indicaba que se trataba de un _id. Manu lo hizo con findById.
-        -return igual que authenticateUser pero devuelvo en el segundo return username
-
-    createPost.test y createPost lo intenté, pero me daba error en author, me decia algo parecido a que no reconocia el formato
+App.8 (README)
+    Cambiamos el index de data para que los métodos no sean para userId sino para token
+    En las lógicas, modificamos todas las que utilizaban los métodos antiguos para usar los nuevos y las cabeceras de autenticación para que trabaje con Bearer en vez de Basic. Recuerda que se realiza así por convenio
 
 
-Comprension de la creacion de errores: 
-    La sentencia throw se usa para lanzar una excepcion (en el codigo donde se ha producido el error) y esta ser capturada por algun catch de cualquier pila de llamada.
-    Pero en el caso del control de error de conexion(connect), del test de logic, no es necesario, ya que con tenerlo en la pagina con la que trabajo(donde se ha producido el error de conexion) es suficiente, ningun catch fuera lo va a necesitar. Por eso con un console.error para ver en el momento el error es suficiente.
-        Este console.error, en el caso de no tener configurado ningun .catch en la promesa del .then de la conexion, capturaria ambos errores: el de conexion y el producido en el then
+#Bcrypt.js
+Tal como lo tenemos hasta esta versión, si alguien consigue acceder a mi BD puede robar todas las contraseñas ya que no están cifradas, procedemos a hacerlo utilizando el algoritmo de hash bcrypt
 
-    Pero en el caso de crear un segundo .catch en la conexion para personalizar un mensaje de error de conexion, ya no habria ningun catch para capturar el error del .then de connection y tendria solo mi error personalizado (el cual daría lugar a confusion porque me haria creer que es error de conexion cuando no lo es)
+Instalamos (en api): npm bcryptjs
 
-Copio y pego de version test con .catch en .then y con doble .catch de connect para tener un mensaje personalizado en caso de error de conexion
-    connect('mongodb://localhost:27017/test')
-        .then(() => {
-            try {
-                return registerUser('Mos Quito', 'mos@quito', 'mosquito', '123123123')
-                    .then(() => console.log('user registered'))
-                    .catch(error => console.error(error))
-            } catch (error) {
-                console.error(error) 
-            }
-        })
-        .catch(error => { throw new Error('Se ha producido un error de conexion!!!!') })
-        .catch(error => { console.error(error.message) })
-        .finally(() => disconnect())
+Borramos nuestra base de datos: db.dropDatabase()
 
-Si no pongo la captura del error de .then de connect, habria que quitar el lanzamiento del error personalizado y simplemente deja el console.error, para que este tenga el posible error de conexion(Con el texto de error) y el posible error del registro del usuario
-El codigo sería asi
-    connect('mongodb://localhost:27017/test')
-        .then(() => {
-            try {
-                return registerUser('Mos Quito', 'mos@quito', 'mosquito', '123123123')
-                    .then(() => console.log('user registered'))
-            } catch (error) {
-                console.error(error) 
-            }
-        })
-        .catch(error => { console.error(error.message) })
-        .finally(() => disconnect())
+Modificamos dos lógicas:
+    register: retornamos la conversión de la contraseña a una cifrada, hacemos un control asíncrono: 
+        .catch si ha fallado la conversión
+        .then si ha ido bien, en él recibimos de parámetro de entrada un hash (la contraseña cifrada, nos lo ha devuelvo el return anterior) y en la función metemos el contenido que teníamos en la versión anterior indicando que ahora password será el hash recibido
+        Por lo tanto en la base de datos vamos a guardar ese hash en vez del password original
+    authenticate: borramos el ultimo if, ya que este creaba un error si la password recibida no coincidía con la password de la BD. Ahora no guardamos en la base de datos la password sino un hash (una password cifrada).
+    Así que creamos un return(en el lugar del if) que devuelva la comparación entre password recibida y la de la base de datos (esta comparación la hace bcrypt internamente no nos metemos en saber cómo es). Este return tendrá un control de errores:
+        .catch si hay algún error en la realización de la comparación
+        .then si se compara bien, en él recibimos un booleano del return de comparación y configuramos que si es falso cree un error de credenciales y si es verdadero devuelva el id (tal como estaba configurado en la versión anterior)
 
-Si en el .catch de la logica no hubiera creado un lanzamiento de error, el .then de connect entraria dentro de su .then y el control de errores no funcionaria
-(lo he dejado comentado en el codigo)
 
-La unica diferencia que veo entre lanzar y no lanzar, es que lanzando te da mas datos del error, se suele dar la linea donde se ha producido y lo puede capturar un .catch de cualquier pagina de codigo. Y si no lanzo escribo en consola cuando estoy en la pg que lo contiene y ya esa información se pierde si otra pg lo quiere
+#Variables de entorno
+Vamos a implementarlo en nuestro proyecto para no tener que tocar los ficheros de configuración con cada cambio que tengamos que hacer. Por ejemplo si quiero cambiar el puerto que utiliza Mongo habría que tocar muchos ficheros, de esta manera solo uno, el que contiene la variable de entorno PORT
 
-30/05/2025
+En los SO, en Mac las podemos ver con el comando printenv o set, en Windows con set
+En node con process.env
+    Podemos crear una nueva variable con el comando: process.env.NombreNuevaVariable='Contenido de texto'
+    También podemos crear nuevas variables utilizando un fichero externo, como haremos en nuestro proyecto (recuerda que para esta configuración necesitamos las ultima versión de mongo)
 
-Terminamos con todas las logicas para que utilice la base de datos de Mongo
-    createPost.test: nada nuevo que comentar. 
-    createPost : 
-        -primer return: creamos una validacion de existencia de usuario, el cual lanzará un error y nos sacará del codigo si el usuario que quiere crear el post no existe
-        -segundo return: dentro del primer return, creamos otro return, el que devolveremos con la creacion de Posts(como hicimos en populate)
+Creamos .env en la carpeta raíz de la api y en él creamos las variables que queremos utilizar
+Modificamos el index de api: cambiamos el contenido para que utilicen esas variables
+Modificamos la configuración de api para que arranque con el fichero de configuración env y así suma esas variables a las que ya tiene ("start": "node --env-file .env index.js",)
+(Reiniciamos visual para que se ejecute la configuración)
 
-    getPosts.test : nada nuevo que comentar. 
-    getPost: 
-        -primer return: igual que createPost 
-        -segundo return: dentro del primer return, dentro del .then, buscamos con find los posts correspondientes a ese usuario. Este find lo vamos a toquetear un poco:
-            .select('-__v) indicamos que quite(por el menos) la propiedad v, que recuerda que la creaba automaticamente mongoose
-            .populate('author','username') indicamos que en la propiedad author nos incluya la propiedad username
-            .sort('-date') indicamos que ordene descendientemente(por el menos) a traves de las fechas
-            .lean() indicamos que nos traiga el objeto tal cuál está en la BD, este será mutable
-            Una vez hecho el find, en su control asincrono, configuramos un catch que lance un error y en .then vamos a modificar como quiero que lo muestre.
-                Creo un forEach que iterará en cada posts
-                    Dentro creo la propiedad id que sustituirá a _id, la convierto a string y la borro
-                    Si el post tiene un author_id entonces igual que antes, hago que se muestre author.id, sin el _ y lo borro
-                    Creo la propiedad own, si el post con el que itero es del usario le saldrá true sino false
-        -tercer return: dentro de segundo return, dentro del .then, justo debajo del forEach, devuelvo los postsFinalmente devuelvo los posts
+Para ejecutar un comando para el arranque del servidor diferente a start, hay que utilizar la palabra run. Ejemplo (modo observador) npm run start-watch , con este comando activamos api e indicamos que se reinicie automáticamente con cada cambio realizado en su configuración (vite lo tiene configurado internamente)
 
-        (si no funciona mirar si he borrado algun usuario que tenía creado algun post)
+Ahora vamos a app y hacemos el mismo proceso pero con vite
 
-    removePost.test: nada nuevo que comentar. 
-    removePost:
-        -primer return: como los anteriores
-        -segundo return: dentro del primer return, dentro del .then, vamos buscar si existe el post que queremos borrar (misma mecanica que hacemos con userId) pero además creamos un nuevo filtro que nos lance una excepcion y nos saque del codigo si el userId no es dueño del postId. 
-        -tercer return: dentro del segundo return, dentro del .then, creamos el borrado del post metiendo como parametro el postId (recuerda que el userId se pasa como cabecera, no como parametro)
+App.8 (README)
+Variables de entorno: creo el fichero .env que tendrá de momento una sola variable de entorno, el enlace a la api.
+Configuro todas las lógicas que contienen una llamada a la api con esta variable
+Configuro vite para que tenga en cuenta este nuevo fichero, en vite.config.js, añado envPrefix: 'VITE_',
+(Reiniciamos visual para que se ejecute la configuración)
 
-Modificamos el fichero index.js de api
-    Importamos connect para utilizarlo para conectarnos a la BD, esta conexion tendrá el .then con TODO el contenido que tenia este archivo y un catch con un console.error
-    El contenido antiguo lo modifico brevemente solo en las llamadas a logicas. Las cuales hay que crearles un control de errores asincronos, con el mismo mecanismo que los test que creamos en la logica (mejor comentado en el codigo)
 
-Pasamos los tests curl a la api, modificando solo los userId y postId que necesitabamos
+##TEORIA JWT (utiliza base64)
 
-Finalmente, fuimos a la app a hacer un breve cambio
-    En el componente Post, indicamos que hemos cambiado en la logica getPost que en author ahora incluimos username y ese es el dato que necesitamos que muestre
-    Teniamos esta linea dentro de article : <h3 className="font-bold">{post.author}</h3>
-    y ahora la hemos cambiado a esta otra: <h3 className="font-bold">{post.author.username}</h3>
+jwt.sign({sub: contenido}, firma)
+    Es una función utilizada para crear y firmar un JWT (JSON Web Token). Generalmente, se utiliza para generar un token que representa la identidad de un usuario o entidad y contiene información de autorización. 
+    Toma los siguientes parámetros: 
+        Payload: Un objeto JSON que contiene los datos que deseas incluir en el token. (en este caso sub:userId).
+        Secret o Key: Una clave secreta que se utiliza para firmar el token y garantizar su autenticidad.
+        Opcional: Parámetros adicionales: Pueden incluir opciones como el algoritmo de firma, el tiempo de vida del token, etc. (de momento no implementado)
 
-31/05/2025
+    Una vez se ha creado el token tendrá la siguiente estructura: A.B.C
+        A: Header => será una cadena de caracteres que contendrá el algoritmo utilizado
+        B: Payload => será una cadena de caracteres que contendrá sub (contenido introducido por nosotros, normalmente sub se usa para credenciales, en este caso userId) y iat (fecha de la creación del token, segundos transcurridos desde el 1/1/1970 hasta ese momento)
+        C: SecretOrPrivateKey(secreto,clave privada,firma digital) => será una cadena de caracteres que se ha generado gracias al secreto utilizamos en la creación del token y este será único para cada Payload. Es el que decide si el token es seguro o lo han modificado
 
-Creamos constructoras de errores en el fichero errors dentro de logica. Los exportamos para importarlos en cada logica.
-Los utilizamos en todas las logicas, modificamos la constructora que teniamos: Error, por la que mejor convenga
-(orden: register, authentication, getUserUsername, createPost, getPosts y deletePost)
-En el index de la api manejamos todos los errores que tienen estado 500 y los controlamos con un handler.
-    En este handler aprovechamos para modificar el estado a uno mas correcto
+La pg que se utilizo en la explicación fue la siguiente: https://jwt.io/
+
+Comando para cambiar de base: 
+    atob('código base64') => te lo pasa a JSON (hay que poner código sin puntos)
+    btoa('JSON') => te lo pasa a código base64
+
+jwt.verify( token , firma)
+     Es un método utilizado para verificar la integridad y autenticidad de un JSON Web Token (JWT). En otras palabras, comprueba si el JWT es válido y no ha sido manipulado.
+     Si es correcto devuelve el payload (en un objeto), pero si falla devuelve un error
+
+Las comprobaciones realizadas han sido:
+- En autenticación cambiar un digito de cada parte, probar antes de configurar los errores cuales eran los que devolvían. Una vez configurado nuestros errores comprobar que efectivamente habían cambiado
+- En la interfaz de api, en vite, en el navegador, probar si la vulnerabilidad había sido subsanada.
+En los posts copio el token completo de algún compañero.
+Me quedo con la parte del payload y con el comando atob averiguo el idUser.
+Me voy a mi token y en la parte del payload repito procedimiento
+Modifico en SessionStorage la parte de mi idUser y pongo el de mi compañero.
+WARN!!! me salta el error de invalid signature, error que indica que la firma no es válida. Ya que efectivamente no es. Cada firma que se crea con cada JSON(payload) es única. Esta firma actualmente no tiene caducidad, la configuraremos más adelante.

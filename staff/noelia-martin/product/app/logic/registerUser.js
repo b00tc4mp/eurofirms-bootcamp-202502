@@ -32,7 +32,8 @@ export const registerUser = (name, email, username, password) => {
     if (password.length > 20) throw new Error('invalid password max length')
 
     //fetch es un objeto de tipo promesa, quue tiene dos metodos: then y catch (el orden de estos objetos se pondrá segun nos interese)   
-    return fetch('http://localhost:8080/users', {
+    //return fetch('http://localhost:8080/users', { //cambiamos la ruta por la variable de entorno creada
+    return fetch(import.meta.env.VITE_API_URL + '/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

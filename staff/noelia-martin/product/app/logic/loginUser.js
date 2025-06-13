@@ -1,4 +1,4 @@
-import { data } from '../data' //nuevo lo necesito
+import { data } from '../data'
 
 /**
  * Logs a user in the system.
@@ -15,23 +15,23 @@ export const loginUser = (username, password) => {
     if (password.length < 8) throw new Error('invalid password min length')
     if (password.length > 20) throw new Error('invalid password max length')
 
-    return fetch('http://localhost:8080/users/auth', {
+    //return fetch('http://localhost:8080/users/auth', {
+    return fetch(import.meta.env.VITE_API_URL + '/users/auth', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        //body: '{"username":"peterpan","password":"123123123"}'
         body: JSON.stringify({ username, password })
     })
         .catch(error => { throw new Error('connection error') })
         .then(response => {
             const { status } = response
 
-            if (status === 200) //en la logica de authenticate retornabamos el userId, aqui en app este dato lo vamos a meter en nuestro SsesionStorage
+            if (status === 200)
                 return response.json()
                     .catch(error => { throw new Error('json error') })
-                    //.then(userId => userId) //las funciones que solo contienen una variable, es igual que si pusieramos return variable
-                    .then(userId => data.setUserId(userId))
+                    //nuevo: modificamos setUserId(userId) por setToken(token) y userId de la funcion por token
+                    .then(token => data.setToken(token))
 
             return response.json()
                 .catch(error => { throw new Error('json error') })
@@ -43,4 +43,3 @@ export const loginUser = (username, password) => {
         })
 
 }
-//retornamos el fetch de autorization de la api, excepto el ultimo catch y then(que lo configuramos en la view Login), cambiamos contenido del body y guardamos userId en SesionStorage

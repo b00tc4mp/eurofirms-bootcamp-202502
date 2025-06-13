@@ -28,7 +28,7 @@ server.get('/color', (request, response) => {
     response.send(code)
 })
 
-//jsonBodyParser lo ponemos antes de nuestro manejador de ruta(es decir este contenido: , (request, response) => {}) )
+//jsonBodyParser lo ponemos antes de nuestro manejador de ruta(MIDDLEWARE)(es decir este contenido: , (request, response) => {}) )
 server.post('/users', jsonBodyParser, (request, response) => {
     //el objeto que trae jsonBodyParser lo va a poner en la request
 

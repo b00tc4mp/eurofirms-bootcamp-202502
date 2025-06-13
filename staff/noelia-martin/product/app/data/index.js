@@ -1,12 +1,13 @@
 export const data = {
-    setUserId(userId) {
+    setToken(userId) {
         sessionStorage.userId = userId
     },
-    getUserId() {
+    getToken() {
         return sessionStorage.userId
     },
 
-    removeUserId() {
+    removeToken() {
         delete sessionStorage.userId
     }
 }
+//modificamos palabra UserId por Token
