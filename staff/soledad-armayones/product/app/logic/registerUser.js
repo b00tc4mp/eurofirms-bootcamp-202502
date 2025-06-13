@@ -3,7 +3,7 @@ import { data } from '../data'
 /**
  * Registers a user in the system.
  * 
- * @param {string} name The user name.
+ * @param {string} name The user name. 
  * @param {string} email The user e-mail.
  * @param {string} username The user username.
  * @param {string} password The user password.

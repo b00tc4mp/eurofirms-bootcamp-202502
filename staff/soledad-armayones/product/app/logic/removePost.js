@@ -1,9 +1,9 @@
 import { data } from '../data'
 
 /**
- * Removes a post.
- * 
- * @param {string} postId The post id.
+ * Removes a post
+ *   
+ * @param {string} postId The post id
  */
 export const removePost = postId => {
     if (typeof postId !== 'string') throw new Error('invalid postId type')
@@ -12,7 +12,7 @@ export const removePost = postId => {
     return fetch('http://localhost:8080/posts/' + postId, {
         method: 'DELETE',
         headers: {
-            Authorization: 'Basic ' + data.getUserId()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new Error('connection error') })

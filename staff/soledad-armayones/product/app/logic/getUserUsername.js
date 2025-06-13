@@ -1,7 +1,7 @@
 import { data } from '../data'
 
 /**
- * Gets the user username.
+ * Get the user username.
  * 
  * @returns {string} The user username.
  */
@@ -9,7 +9,7 @@ export const getUserUsername = () => {
     return fetch('http://localhost:8080/users/self/username', {
         method: 'GET',
         headers: {
-            Authorization: 'Basic ' + data.getUserId()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new Error('connection error') })
