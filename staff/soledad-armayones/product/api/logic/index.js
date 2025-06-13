@@ -14,4 +14,4 @@ export const logic = {
     createPost,
     getPosts,
     removePost
-}
+} 
