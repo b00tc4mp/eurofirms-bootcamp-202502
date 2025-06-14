@@ -1,31 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
+  const handleRegisterClick = () => onRegisterClicked();
 
-export const Landing = () => {
-  const navigate = useNavigate();
+  const handleLoginClick = () => onLoginClicked();
 
-  const handleRegisterClick = () => {
-    console.log('Navegando a /register');
-    navigate('/register');
-  };
-
-  const handleLoginClick = () => {
-    console.log('Navegando a /login');
-    navigate('/login');
-  };
-
-  console.log('Landing->render');
+  console.log('Landing -> render');
 
   return (
-    <div>
-      <i>Logo</i>
-      <h1 className="text-red-600">Bienvenido a la App</h1>
-      <button className="underline" onClick={handleRegisterClick}>
-        Registrar
-      </button>{' '}
-      o{' '}
-      <button className="underline" onClick={handleLoginClick}>
-        Login
-      </button>
+    <div className="p-5">
+      <i className="text-2xl">Logo</i>
+
+      <div className="mt-2">
+        <a className="underline" href="#" onClick={handleRegisterClick}>
+          Register
+        </a>
+        &nbsp;or&nbsp;
+        <a className="underline" href="#" onClick={handleLoginClick}>
+          Login
+        </a>
+      </div>
     </div>
   );
 };

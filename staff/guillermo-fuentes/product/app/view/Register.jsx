@@ -1,78 +1,85 @@
 import { logic } from '../logic';
-import { useNavigate } from 'react-router-dom';
-/*
-Aqui al igual que en otros componenentes hemos empleado la deconstruccion antes lo teniamos asi
-export const Register = (props) => {  const onLoginClick = props.onLoginClick;
-    const onRegisteredUser = props.onRegisteredUser;}
-lo que conseguimos con la deconstruccion es ahorrar lineas de codigo
 
-*/
-export const Register = () => {
-  const navigate = useNavigate();
-  const handleLoginClick = () => navigate('/login');
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
+  const handleLoginClick = () => onLoginClicked();
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
+
     const form = event.target;
+
     const name = form.name.value;
     const email = form.email.value;
     const username = form.username.value;
     const password = form.password.value;
+
     try {
-      /*Ahora que nos conectamos a nuestro servidor la logica que hay en
-      logic el archivo registeruser  este metodo es asincrono por lo tanto
-      retorna una promesa que es como maneja javascript las promesas.
-      En el metodo register dentro de logic no retornamos si hay ido bien o no
-      lo retornamos aqui cuando se finalice de ejecutar la cadena de promesas del
-      fetch el motivo por el cual es una cadena de promesas es porque manejamos
-      distintos casos de error, para mas facil seria equivalente a async/await en c#
-      */
       logic
         .registerUser(name, email, username, password)
         .then(() => {
           form.reset();
-          navigate('login');
+
+          onUserRegistered();
         })
-        //en este catch entra cuando hay algun error con el servidor
         .catch((error) => {
           console.error(error);
+
           alert(error.message);
         });
-      //En este catch entra cuando hay un error de validacion
     } catch (error) {
+      console.error(error);
+
       alert(error.message);
     }
   };
+
+  console.log('Register -> render');
+
   return (
-    <>
-      <div>
-        <i>Logo</i>
-        <h1 className="text-3xl text-center">Register</h1>
-        <form className="flex flex-col gap-2 " onSubmit={handleRegisterSubmit}>
-          <div className="flex flex-col ">
-            <label htmlFor="name">Name </label>
-            <input type="text" name="name" id="name" placeholder=" your name" className=" border-2" />
+    <div className="p-5">
+      <i className="text-2xl">Logo</i>
+
+      <div className="mt-2">
+        <h1 className="text-xl">Register</h1>
+
+        <form className="mt-2 flex flex-col gap-4" onSubmit={handleRegisterSubmit}>
+          <div className="flex flex-col gap">
+            <label htmlFor="name">Name</label>
+            <input className="border-2 px-1" type="text" id="name" name="name" placeholder="your full name" />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="email">Email </label>
-            <input type="email" name="email" id="email" placeholder=" your email" className="border-2" />
+
+          <div className="flex flex-col gap">
+            <label htmlFor="email">E-mail</label>
+            <input className="border-2 px-1" type="email" id="email" name="email" placeholder="your e-mail" />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="username">Username </label>
-            <input type="text" name="username" id="username" placeholder=" your username" className="border-2" />
+
+          <div className="flex flex-col gap">
+            <label htmlFor="username">Username</label>
+            <input className="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="password">Password </label>
-            <input type="password" name="password" id="password" placeholder=" your password" className="border-2" />
+
+          <div className="flex flex-col gap">
+            <label htmlFor="password">Password</label>
+            <input
+              className="border-2 px-1"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="your password"
+            />
           </div>
+
           <div className="flex justify-between">
-            <a href="#" className="bg-blue-200 text-black rounded-full p-2" onClick={handleLoginClick}>
-              Login{' '}
+            <a className="underline" href="#" onClick={handleLoginClick}>
+              Login
             </a>
-            <button className="bg-blue-200 text-black rounded-full p-2">Register </button>
+
+            <button className="bg-black text-white px-2" type="submit">
+              Register
+            </button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
