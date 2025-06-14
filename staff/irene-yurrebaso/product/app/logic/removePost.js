@@ -1,5 +1,5 @@
 import { data } from '../data'
-
+import { validate, SystemError, errors } from 'com'
 /**
  * Removes a post.
  * 
@@ -8,8 +8,7 @@ import { data } from '../data'
 
 export const removePost = postId => {
     //validación de postId
-    if (typeof postId !== 'string') throw new Error ('invalid postId type')
-    if (postId.length < 6) throw new Error ('invalid postId length')
+    validate.postId(postId)
 
     //recibo el post por parametro
     return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId, {
@@ -19,18 +18,20 @@ export const removePost = postId => {
         Authorization: 'Bearer ' + data.getToken()
     }
 })
-    .catch(error => { throw new Error('connection error') })
+    .catch(error => { throw new SystemError('connection error') })
     .then(response => {
         const { status } = response
 
         if (status === 204) return
 
         return response.json()
-            .catch(error => { throw new Error('json error')})
+            .catch(error => { throw new SystemError('json error')})
             .then(body => {
                 const { error, message} = body
 
-                throw new Error(message)
+                const constructor = errors[error] || SystemError
+
+                throw new SystemError(message)
             })
     })
 }
