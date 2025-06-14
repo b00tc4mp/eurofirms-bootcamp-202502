@@ -1,14 +1,15 @@
 import { connect } from './data/index.js'
 import express from 'express'
-import { logic } from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
-import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
-import { AuthorizationError } from './errors.js'
+import { logic } from './logic/index.js'
+import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError, AuthorizationError } from 'com'
 
 const { JsonWebTokenError } = jwt
 
-connect('mongodb://localhost:27017/test')
+const { MONGO_URL, PORT, JWT_SECRET } = process.env
+
+connect(MONGO_URL)
     .then(() => {
         const api = express()
         const jsonBodyParser = express.json()
@@ -37,7 +38,7 @@ connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, 'hoy me comi dos helados, uno detras de otro')
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
 
                         response.status(200).json(token)
                     })
@@ -52,7 +53,7 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.getUserUsername(userId)
                     .then(username => response.status(200).json(username))
@@ -67,7 +68,7 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { image, text } = request.body
 
@@ -84,7 +85,7 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.getPosts(userId)
                     .then(posts => response.status(200).json(posts))
@@ -99,14 +100,14 @@ connect('mongodb://localhost:27017/test')
                 const authorization = request.headers.authorization
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'hoy me comi dos helados, uno detras de otro')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { postId } = request.params
 
                 logic.removePost(userId, postId)
                     .then(() => response.status(204).send())
                     .catch(error => next(error))
-            } catch {
+            } catch (error) {
                 next(error)
             }
         })
@@ -132,6 +133,7 @@ connect('mongodb://localhost:27017/test')
                 response.status(500).json({ error: SystemError.name, message: error.message })
         })
 
-        api.listen(8080, () => console.log('API listening on port 8080'))
+        api.listen(PORT, () => console.log('API listening on port ' + PORT))
     })
     .catch(error => console.error(error))
+
