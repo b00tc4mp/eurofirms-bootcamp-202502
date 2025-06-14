@@ -1,1 +1,1 @@
-curl -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQ2YjlhZDE4YzNmMTJiZjdkZmZmNWIiLCJpYXQiOjE3NDk0NjU1Njl9.bU2RVS79KPjxo1ZGRMs8fUmI50Iz9tVLgLvPioZwf6o' http://localhost:8080/posts/6846c0c511ffeba432641bcf -v
+curl -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODRkNWUyZGMyMTA0NTViYmY0ZDY0NjciLCJpYXQiOjE3NDk5MDA5NDl9.zTeLCvqIX_Y02K5R1sXH79oAt0QkM10Wj8fONiZ4O0E' http://localhost:8080/posts/684d5f68c210455bbf4d646e -v

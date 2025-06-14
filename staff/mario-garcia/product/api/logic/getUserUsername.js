@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+import { validate, SystemError, NotFoundError } from 'com'
 
 /**
  * RETORNAMOS el Username del Usuario encontrado con UserId
@@ -9,9 +9,7 @@ import { ValidationError, SystemError, NotFoundError } from './errors.js'
  */
 
 export const getUserUsername = userId => {
-
-    if (typeof userId !== 'string') throw new ValidationError('Invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('Invalid userId length')
+    validate.userId(userId)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

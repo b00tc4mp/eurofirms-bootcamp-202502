@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 
 /**
  * DEVUELVE los Posts de la BB.DD.
@@ -10,9 +10,7 @@ import { ValidationError, SystemError, NotFoundError } from './errors.js'
  */
 
 export const getPosts = userId => {
-
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('invalid userId length')
+    validate.userId(userId)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError('mongo error') })
@@ -26,6 +24,8 @@ export const getPosts = userId => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
                         delete post._id
+
+                        if (!post.author) throw new AuthorshipError('post has not author')
 
                         if (post.author._id) {
 

@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './errors.js'
+import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 
 /**
  * ELIMINAMOS un Post de la BB.DD.
@@ -9,14 +9,9 @@ import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './
  */
 
 export const removePost = (userId, postId) => {
+    validate.userId(userId)
+    validate.postId(postId)
 
-    // VALIDAMOS el Usuario & el Post.
-
-    if (typeof userId !== 'string') throw new ValidationError('Invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('Invalid userId length')
-
-    if (typeof postId !== 'string') throw new ValidationError('Invalid post type')
-    if (postId.length !== 24) throw new ValidationError('Invalid postId length')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError('mongo error') })
