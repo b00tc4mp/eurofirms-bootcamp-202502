@@ -20,6 +20,8 @@ export const Post = ({ post, onPostDeleted }) => {
             }
     }
 
+    console.log('Post -> render') //Avisa cuando PINTAMOS el Post
+
     return <article className="w-100 mb-10">
 
         <h3 className="my-5 rounded-lg font-bold text-orange-800 px-2 py-2 bg-orange-300 border-2 border-orange-500">{post.author.username}</h3>
