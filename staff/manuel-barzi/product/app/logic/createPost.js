@@ -19,7 +19,7 @@ export const createPost = (image, text) => {
         },
         body: JSON.stringify({ image, text })
     })
-        .catch(error => { throw SystemError('connection error') })
+        .catch(error => { throw new SystemError('connection error') })
         .then(response => {
             const { status } = response
 
