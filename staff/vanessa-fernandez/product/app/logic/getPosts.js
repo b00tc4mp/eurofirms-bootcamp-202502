@@ -15,7 +15,7 @@ import { data } from '../data'
 
 export const getPosts = () => {
 
-   return fetch('http://localhost:8080/posts', {
+   return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()

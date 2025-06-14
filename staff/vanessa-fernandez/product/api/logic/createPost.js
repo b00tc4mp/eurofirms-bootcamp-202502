@@ -1,5 +1,5 @@
 import { Post, User } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+import { validate, SystemError, NotFoundError } from 'com'
 /**
  * Creates a post in database.
  * 
@@ -9,17 +9,9 @@ import { ValidationError, SystemError, NotFoundError } from './errors.js'
  */
 
 export const createPost = (userId, image, text) => {
-    if(typeof userId !== 'string') throw new ValidationError ('Invalid userId type.')
-    if(userId.length !== 24) throw new ValidationError ('Invalid userId length.')
-        
-    if (!text) throw new ValidationError ('You must provide text.')
-    if (typeof text !== 'string') throw new ValidationError ('Invalid text type.')
-    if (text.length < 1) throw new ValidationError ('Invalid text min length.')
-    if (text.length > 250) throw new ValidationError ('Invalid text max length.')
-        
-    if (typeof image !== 'string') throw new ValidationError ('Invalid image type.')
-    if (!image.startsWith('http')) throw new ValidationError ('Invalid image format.')
-    if (!image) throw new ValidationError ('You must provide an image.')    
+    validate.userId(userId)
+    validate.image(image)
+    validate.text(text)
         
     return User.findById(userId)
         .catch(error => { throw new SystemError('mongo error')})

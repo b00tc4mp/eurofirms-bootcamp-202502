@@ -19,7 +19,7 @@ export const createPost = (image, text) => {
     if(!image.startsWith('http')) throw new Error('Invalid image format.')    
     if (!image) throw new Error('You must provide an image.')
 
-    return fetch('http://localhost:8080/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer ' + data.getToken(),

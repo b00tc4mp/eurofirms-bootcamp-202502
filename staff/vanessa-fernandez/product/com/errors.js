@@ -33,3 +33,21 @@ export class SystemError extends Error {
         super(message)
     }
 }
+
+export class AuthorizationError extends Error {
+    constructor(message) {
+        super(message)
+    }
+}
+
+const errors = {
+    ValidationError,
+    DuplicityError,
+    NotFoundError,
+    CredentialsError,
+    AuthorshipError,
+    SystemError,
+    AuthorizationError
+}
+
+export default errors

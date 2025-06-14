@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './errors.js'
+import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 /**
  * Removes a post by id from database.
  * 
@@ -8,11 +8,8 @@ import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './
  */
 
 export const removePost = (userId, postId) => {
-    if (typeof userId !== 'string') throw new ValidationError('Invalid userId type.')
-    if (userId.length !== 24) throw new ValidationError('Invalid userId length.') 
-
-    if(typeof postId !== 'string') throw new ValidationError ('Invalid postId type.')
-    if (postId.length < 24) throw new ValidationError ('Invalid postId length.')
+    validate.userId(userId)
+    validate.postId(postId)
         
     return User.findById(userId)
         .catch(error => { throw new SystemError('mongo error') })
