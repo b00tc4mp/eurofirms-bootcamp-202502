@@ -1,5 +1,6 @@
-import { User, Post } from '../data/index.js' //queremos solo User del fichero index de data
-import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './errors.js'
+import { User, Post } from '../data/index.js'
+import { validate, SystemError, NotFoundError } from 'com'
+
 
 /**
  * Creates a post in database.
@@ -9,43 +10,18 @@ import { ValidationError, SystemError, NotFoundError, AuthorshipError } from './
  * @param {string} text The post text.
  */
 export const createPost = (userId, image, text) => {
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length == !24) throw new ValidationError('invalid userId length')
-
-    if (typeof image !== 'string') throw new ValidationError('invalid image type')
-    if (!image.startsWith('http')) throw new ValidationError('invalid image format')
-
-    if (typeof text !== 'string') throw new ValidationError('invalid text type')
-    if (text.length < 1) throw new ValidationError('invalid min text length')
-
+    validate.userId(userId)
+    validate.image(image)
+    validate.text(text)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            return Post.create({ author: userId, image, text }) //si hubieramos configurado el parametro de entrada con la palabra author nos ahorrariamos este pequeño renombramiento
+            return Post.create({ author: userId, image, text })
                 .catch(error => { throw new SystemError('mongo error') })
                 .then(() => { })
         })
 
 }
-
-// antiguo
-// const users = data.getUsers()
-// const user = users.find(user => user.id === userId)
-// if (!user) throw new Error('user not found')
-// let postsCount = data.getPostsCount()
-// postsCount++
-// const post = {
-//     id: 'post-' + postsCount,
-//     author: user.id,
-//     image,
-//     text,
-//     date: new Date().toISOString(),
-//     likes: []
-// }
-// const posts = data.getPosts()
-// posts.push(post)
-// data.setPosts(posts)
-// data.setPostsCount(postsCount)

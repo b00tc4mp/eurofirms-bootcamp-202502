@@ -1,3 +1,4 @@
+import { DuplicityError, ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 import { logic } from '../logic'
 
 export const Register = ({ onLoginClicked, onUserRegistered }) => {
@@ -12,33 +13,32 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         const username = form.username.value
         const password = form.password.value
 
-        // try {
-        //     logic.registerUser(name, email, username, password)
-
-        //     form.reset()
-
-        //     onUserRegistered()
-        // } catch (error) {
-        //     alert(error.message)
-        // }
-
-        //Recuerda try / catch es un control de error sincrono. Ahora solo manejará las validaciones de la logica de nuestra app
         try {
             logic.registerUser(name, email, username, password)
-                //Usamos dos metodos,then y catch, de nuestro objeto tipo promesa,fetch (control de errores asincrono(ya que no es inmediato, lo que tarde el servidor en atendernos))
-                //Si todo ha ido bien: then ... y un catch por si ocurre algun error al registrar el nuevo usuario(errores de la logica de API o los nuevos creados en el fetch)
-                .then(() => { //como la logica no ha retornado nada, no tenemos paramentro de entrada
+
+                .then(() => {
                     form.reset()
                     onUserRegistered()
                 })
                 .catch(error => {
-                    console.error(error) //con esta linea veremos el error en consola
-                    alert(error.message) //con esta linea le enviaremos SOLO el mensaje del error al usuario para que este informado
-                })
-        } catch (error) { //igual que teniamos pero escribimos el error en consola. Configuramos este control de error sincrono igual que el asincrono (recuerda: este catch es solo para los errores de la logica de nuestra app, que solo tiene validaciones de datos)
-            console.error(error)
+                    console.error(error)
+                    //alert(error.message) ANTIGUO lo mejoramos para dar mas información al usuario
 
-            alert(error.message)
+                    //Si recibe una constructora de error DuplicityError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá una advertencia grave
+                    if (error instanceof DuplicityError)
+                        alert('WARN: ' + error.message)
+                    else
+                        alert('ERROR: ' + error.message)
+                })
+        } catch (error) {
+            console.error(error)
+            //alert(error.message)
+
+            //Si se recibe un ValidationError será una advertencia pero si sale cuálquier otro será un error grave.
+            if (error instanceof ValidationError)
+                alert('WARN: ' + error.message)
+            else
+                alert('ERROR: ' + error.message)
         }
     }
 
@@ -73,5 +73,3 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         </div>
     </div>
 }
-
-//Cambiamos el contenido del control de error de la llamada a la logica de register

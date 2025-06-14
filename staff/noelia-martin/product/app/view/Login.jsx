@@ -1,4 +1,5 @@
 import { logic } from '../logic'
+import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 
 export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const handleRegisterClick = () => onRegisterClicked()
@@ -10,15 +11,6 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         const username = form.username.value
         const password = form.password.value
 
-        // try {
-        //     logic.loginUser(username, password)
-
-        //     form.reset()
-
-        //     onUserLoggedIn()
-        // } catch (error) {
-        //     alert(error.mensage)
-        // }
         try {
             logic.loginUser(username, password)
                 .then(() => {
@@ -28,13 +20,24 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                 })
                 .catch(error => {
                     console.error(error)
+                    //alert(error.message) ANTIGUO lo mejoramos para dar mas información al usuario
 
-                    alert(error.message)
+                    //Si recibe una constructora de error NotFoundError o CredentialsError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá una advertencia grave
+                    if (error instanceof NotFoundError || error instanceof CredentialsError)
+                        alert('WARN: ' + error.message)
+                    else
+                        alert('ERROR: ' + error.message)
+
                 })
         } catch (error) {
             console.error(error)
+            //alert(error.message) ANTIGUO
 
-            alert(error.message)
+            //Si se recibe un ValidationError será una advertencia pero si sale cuálquier otro será un error grave
+            if (error instanceof ValidationError)
+                alert('WARN: ' + error.message)
+            else
+                alert('ERROR: ' + error.message)
         }
     }
 
@@ -61,4 +64,3 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         </div>
     </div>
 }
-//Modificamos la llamada de la logica login, para que controle errores (igual que hicimos en la view de register)

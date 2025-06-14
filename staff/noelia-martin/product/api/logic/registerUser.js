@@ -1,7 +1,8 @@
-import bcrypt from 'bcryptjs' //nuevo
+import bcrypt from 'bcryptjs'
 
 import { User } from '../data/index.js'
-import { ValidationError, SystemError, DuplicityError } from './errors.js'
+//ANTIGUO: import { ValidationError, SystemError, DuplicityError } from './errors.js'
+import { validate, SystemError, DuplicityError } from 'com' //importamos las constructoras de errores desde el paquete com
 
 /**
  * Registers a user in the system.
@@ -12,6 +13,7 @@ import { ValidationError, SystemError, DuplicityError } from './errors.js'
  * @param {string} password The user password.
  */
 export const registerUser = (name, email, username, password) => {
+    /* Antiguo
     if (typeof name !== 'string') throw new ValidationError('invalid name type')
     if (name.length < 1) throw new ValidationError('invalid name min length')
     if (name.length > 30) throw new ValidationError('invalid name max length')
@@ -27,12 +29,16 @@ export const registerUser = (name, email, username, password) => {
     if (typeof password !== 'string') throw new ValidationError('invalid password type')
     if (password.length < 8) throw new ValidationError('invalid password min length')
     if (password.length > 20) throw new ValidationError('invalid password max length')
+    */
+    //nuevo: Metemos los metodos que controlan los errores anteriores
+    validate.name(name)
+    validate.email(email)
+    validate.username(username)
+    validate.password(password)
 
-    //nuevo   
-    return bcrypt.hash(password, 10) //convierte la contraseña en una cadena de caracteres de longitud fija que parece aleatoria y sin sentido (el 10 es la recomendación no sabemos el por qué, ni es necesario saberlo)
+    return bcrypt.hash(password, 10)
         .catch(error => { throw new SystemError(error.message) })
         .then(hash => {
-            //metemos el return que ya teniamos, pero indicamos que en password guardamos el hash
             return User.create({ name, email, username, password: hash })
                 .catch(error => {
                     if (error.code === 11000) throw new DuplicityError('user already exists') //
@@ -42,14 +48,3 @@ export const registerUser = (name, email, username, password) => {
                 .then(() => { })
         })
 }
-
-/*
-Antiguo
-return User.create({ name, email, username, password })
-        .catch(error => {
-            if (error.code === 11000) throw new DuplicityError('user already exists')
-            throw new SystemError('mongo error')
-        })
-        .then(() => { })
-}
-*/

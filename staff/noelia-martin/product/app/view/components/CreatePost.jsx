@@ -1,4 +1,5 @@
 import { logic } from '../../logic'
+import { ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 
 export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked()
@@ -11,15 +12,6 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
         const image = form.image.value
         const text = form.text.value
 
-        // try {
-        //     logic.createPost(image, text) 
-
-        //     form.reset()
-
-        //     onPostCreated()
-        // } catch (error) {
-        //     alert(error.message)
-        // }
         try {
             logic.createPost(image, text)
                 .then(() => {
@@ -29,13 +21,16 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
                 })
                 .catch(error => {
                     console.error(error)
-
-                    alert(error.message)
+                    //alert(error.message)
+                    alert('ERROR: ' + error.message)
                 })
         } catch (error) {
             console.error(error)
-
-            alert(error.message)
+            //alert(error.message)
+            if (error instanceof ValidationError)
+                alert('WARN: ' + error.message)
+            else
+                alert('ERROR: ' + error.message)
         }
     }
 
