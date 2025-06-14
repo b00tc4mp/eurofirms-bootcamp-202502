@@ -5,13 +5,14 @@ import jwt from 'jsonwebtoken';
 import { logic } from './logic/index.js';
 import { connect } from './data/index.js';
 import {
-  AuthorizationError,
   AuthorshipError,
   CredentialsError,
   DuplicityError,
   NotFoundError,
+  SystemError,
   ValidationError,
-} from './logic/errors.js';
+  AuthorizationError,
+} from 'com';
 
 //Convertir en modulo node: node --yes
 //Instalar express npm i express

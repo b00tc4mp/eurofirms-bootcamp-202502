@@ -1,4 +1,4 @@
-import { data } from '../data';
+import { validate, SystemError, errors } from 'com';
 /**Logica de registro de un usuario recibe cuatro parametros
  * @param name representa el nombre del usuario
  * @param email representa el email del usuario
@@ -6,17 +6,10 @@ import { data } from '../data';
  * @param password representa la contraseña del usuario
  */
 export const registerUser = (name, email, username, password) => {
-  if (typeof name !== 'string') throw new Error('invalid name type');
-  if (name.length < 1) throw new Error('Invalid lenght name');
-  if (name.length > 20) throw new Error('Invalid lenght name');
-  if (typeof email !== 'string') throw new Error('invalid email type');
-  if (email.length < 6) throw new Error('Invalid lenght email');
-  if (email.length > 30) throw new Error('Invalid lenght email');
-  if (typeof username !== 'string') throw new Error('invalid username type');
-  if (username.length < 1) throw new Error('Invalid lenght username');
-  if (username.length > 20) throw new Error('Invalid lenght username');
-  if (typeof password !== 'string') throw new Error('invalid password type');
-  if (password.length < 8) throw new Error('Invalid lenght password');
+  validate.name(name);
+  validate.email(email);
+  validate.username(username);
+  validate.password(password);
 
   return fetch(`${import.meta.env.VITE_API_URL}users`, {
     method: 'POST',
@@ -26,7 +19,7 @@ export const registerUser = (name, email, username, password) => {
     body: JSON.stringify({ name, email, username, password }),
   })
     .catch((error) => {
-      throw new Error('connection error');
+      throw new SystemError('connection error');
     })
     .then((response) => {
       const { status } = response;
@@ -34,11 +27,14 @@ export const registerUser = (name, email, username, password) => {
       return response
         .json()
         .catch((error) => {
-          throw new Error('json error');
+          throw new SystemError('json error');
         })
         .then((body) => {
           const { error, message } = body;
-          throw new Error(message);
+
+          const constructor = errors[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

@@ -1,17 +1,13 @@
 import { data } from '../data';
+import { validate, SystemError, errors } from 'com';
 /**Logica de login de un usuario contiene dos parametros:
  * @param username representa el nombre de usuario
  * @param password representa la contraseña del usuario
  * gracias a la logica de login la aplicacion sabe que usuario esta logueado gracias al user.id
  */
 export const loginUser = (username, password) => {
-  if (typeof username !== 'string') throw new Error('invalid username type');
-  if (username.length < 3) throw new Error('invalid username min length');
-  if (username.length > 20) throw new Error('invalid username max length');
-
-  if (typeof password !== 'string') throw new Error('invalid password type');
-  if (password.length < 8) throw new Error('invalid password min length');
-  if (password.length > 20) throw new Error('invalid password max length');
+  validate.username(username);
+  validate.password(password);
   return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
     method: 'POST',
     headers: {
@@ -20,7 +16,7 @@ export const loginUser = (username, password) => {
     body: JSON.stringify({ username, password }),
   })
     .catch((error) => {
-      throw new Error('connection error');
+      throw new SystemError('connection error');
     })
     .then((response) => {
       const { status } = response;
@@ -29,19 +25,21 @@ export const loginUser = (username, password) => {
         return response
           .json()
           .catch((error) => {
-            throw new Error('json error');
+            throw new SystemError('json error');
           })
           .then((token) => data.setToken(token));
 
       return response
         .json()
         .catch((error) => {
-          throw new Error('json error');
+          throw new SystemError('json error');
         })
         .then((body) => {
           const { error, message } = body;
 
-          throw new Error(message);
+          const constructor = errors[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

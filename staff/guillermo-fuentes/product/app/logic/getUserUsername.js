@@ -1,5 +1,5 @@
 import { data } from '../data';
-
+import { SystemError, errors } from 'com';
 /**Logica que obtiene el nombre de usuario para mostrar ese nombre en la interfaz, esta logica contiene un bucle que recorre el array usuarios y va comprobando usuario por usuario y ver si coincide la id del usuario si hay coincidencia muestra el nombre de usuario de ese usuario 
 
 */
@@ -11,7 +11,7 @@ export const getUserUsername = () => {
     },
   })
     .catch((error) => {
-      throw new Error('connection error');
+      throw new SystemError('connection error');
     })
     .then((response) => {
       const { status } = response;
@@ -19,18 +19,21 @@ export const getUserUsername = () => {
         return response
           .json()
           .catch((error) => {
-            throw new Error('json error');
+            throw new SystemError('json error');
           })
           .then((username) => username);
 
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new SystemError('json error');
         })
         .then((body) => {
           const { error, message } = body;
-          throw new Error(message);
+
+          const constructor = errors[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

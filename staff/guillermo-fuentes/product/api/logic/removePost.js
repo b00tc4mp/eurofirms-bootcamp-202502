@@ -1,10 +1,8 @@
 import { User, Post } from '../data/index.js';
-import { ValidationError, NotFoundError, CredentialsError, SystemError, AuthorshipError } from './errors.js';
+import { validate, ValidationError, NotFoundError, CredentialsError, SystemError, AuthorshipError } from 'com';
 export const removePost = (userId, postId) => {
-  if (typeof userId !== 'string') throw new ValidationError('User id invalid');
-  if (userId.length < 6) throw new ValidationError('Invalid user id length');
-  if (typeof postId !== 'string') throw new ValidationError('Post id invalid');
-  if (postId.length < 6) throw new ValidationError('Invalid post id length');
+  validate.userId(userId);
+  validate.postId(postId);
 
   return Promise.all([User.findById(userId).lean(), Post.findById(postId).lean()])
     .catch((error) => {

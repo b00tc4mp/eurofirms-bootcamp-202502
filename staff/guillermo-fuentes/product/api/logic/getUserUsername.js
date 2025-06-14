@@ -1,12 +1,11 @@
 import { User } from '../data/index.js';
-import { ValidationError, NotFoundError, CredentialsError, SystemError } from './errors.js';
+import { validate, ValidationError, NotFoundError, CredentialsError, SystemError } from 'com';
 /**
  * retorna el nombre de usuario del usuario ha encontrar por su id
  * @param {string} userId el id de usuario
  */
 export const getUserUsername = (userId) => {
-  if (typeof userId !== 'string') throw ValidationError('User id invalid');
-  if (userId.length < 6) throw ValidationError('Invalid userId length');
+  validate.userId(userId);
 
   return User.findById(userId)
     .catch((error) => {

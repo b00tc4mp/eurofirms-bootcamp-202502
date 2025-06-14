@@ -1,4 +1,5 @@
 import { data } from '../data';
+import { SystemError, errors } from 'com';
 /**
  * Obtiene todos los posts de los usuarios en el sistema
  *
@@ -18,7 +19,7 @@ export const getPosts = () => {
     },
   })
     .catch((error) => {
-      throw new Error('connection error');
+      throw new SystemError('connection error');
     })
     .then((response) => {
       const { status } = response;
@@ -26,7 +27,7 @@ export const getPosts = () => {
         return response
           .json()
           .catch((error) => {
-            throw new Error('json error');
+            throw new SystemError('json error');
           })
           .then((posts) => {
             console.log('Post recibidos', posts);
@@ -41,7 +42,10 @@ export const getPosts = () => {
         })
         .then((body) => {
           const { error, message } = body;
-          throw new Error(message);
+
+          const constructor = errors[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

@@ -1,4 +1,5 @@
-import { data } from '../data'; //Importacion de la "base de datos"
+import { data } from '../data';
+import { validate, SystemError, errors } from 'com';
 /**
  * Logica encargada de crear un post este metodo recibe 2 parametros:
  * @param image este parametro recibe el enlace de la imgan
@@ -6,11 +7,8 @@ import { data } from '../data'; //Importacion de la "base de datos"
  */
 
 export const createPost = (image, text) => {
-  if (typeof image !== 'string') throw new Error('invalid image type');
-  if (!image.startsWith('http')) throw new Error('Invalid image format');
-  if (typeof text !== 'string') throw new Error('invalid text type');
-  if (text.length < 1) throw new Error('Invalid text lenght');
-
+  validate.image(image);
+  validate.text(text);
   return fetch(`${import.meta.env.VITE_API_URL}posts`, {
     method: 'POST',
     headers: {
@@ -20,7 +18,7 @@ export const createPost = (image, text) => {
     body: JSON.stringify({ image, text }),
   })
     .catch((error) => {
-      throw new Error('connection error');
+      throw new SystemError('connection error');
     })
     .then((response) => {
       const { status } = response;
@@ -28,11 +26,12 @@ export const createPost = (image, text) => {
       return response
         .json()
         .catch((error) => {
-          throw new Error('json error');
+          throw new SystemError('json error');
         })
         .then((body) => {
           const { error, message } = body;
-          throw new Error(message);
+          const constructor = errors[error] || SystemError;
+          throw new constructor(message);
         });
     });
 };

@@ -1,8 +1,7 @@
 import { Post, User } from '../data/index.js';
-import { ValidationError, NotFoundError, SystemError } from './errors.js';
+import { validate, ValidationError, NotFoundError, SystemError } from 'com';
 export const getPosts = (userId) => {
-  if (typeof userId !== 'string') throw new Error('Invalid user id');
-  if (userId.length < 6) throw new Error('Invalid userId lenght');
+  validate.userId(userId);
 
   /**
    * Promise.all([])->permite manejar mas de una promesa como peticion a base de datos.
