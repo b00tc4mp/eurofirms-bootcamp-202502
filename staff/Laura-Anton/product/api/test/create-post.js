@@ -1,7 +1,7 @@
-fetch('http://localhots:8080/posts', {
+fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        Authorization: 'Basic user-20',
+        Authorization: 'Basic 6840955650ed1ced3247eb11',
         'Content-type': 'application/json'
     },
 
