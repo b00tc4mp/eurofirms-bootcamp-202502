@@ -1,18 +1,18 @@
 import { data } from '../data'
 
 /**
- * Gets all posts users in the system.
+ * Gets all posts from users in the system.
  * 
- * @returns {[{
- * id: string,
- * author: string,
- * image: string,
- * text: string,
- * date: Date
- * }]} The posts from users in the system.
- */
+ * @returns {[{ 
+* id: string, 
+* author: string, 
+* image: string, 
+* text: string, 
+* date: Date 
+* }]} The posts from users in the system.
+*/
 export const getPosts = () => {
-    return fetch('http://localhost:8080/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()
@@ -26,6 +26,7 @@ export const getPosts = () => {
                 return response.json()
                     .catch(error => { throw new Error('json error') })
                     .then(posts => posts)
+
             return response.json()
                 .catch(error => { throw new Error('json error') })
                 .then(body => {

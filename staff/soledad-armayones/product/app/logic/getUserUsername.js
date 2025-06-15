@@ -1,12 +1,12 @@
 import { data } from '../data'
 
 /**
- * Get the user username.
+ * Gets the user username.
  * 
  * @returns {string} The user username.
  */
 export const getUserUsername = () => {
-    return fetch('http://localhost:8080/users/self/username', {
+    return fetch(import.meta.env.VITE_API_URL + '/users/self/username', {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()

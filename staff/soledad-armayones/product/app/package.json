@@ -2,7 +2,7 @@
   "name": "app",
   "version": "1.0.0",
   "type": "module",
-  "main": "data.js",
+  "main": "main.js",
   "scripts": {
     "start": "vite --host",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.7",
     "@vitejs/plugin-react": "^4.4.1",
@@ -18,7 +17,9 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
+    "com": "file:../com",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
-  }
+  },
+  "description": ""
 }

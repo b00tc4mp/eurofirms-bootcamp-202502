@@ -1,19 +1,17 @@
-import { registerUser } from './registerUser'
-import { loginUser } from './loginUser'
-import { getUserUsername } from './getUserUsername'
-import { logoutUser } from './logoutUser'
-import { isUserLoggedIn } from './isUserLoggedIn'
-import { getPosts } from './getPosts'
-import { createPost } from './createPost'
-import { removePost } from './removePost'
+import { registerUser } from './registerUser.js'
+import { authenticateUser } from './authenticateUser.js'
+import { getUserUsername } from './getUserUsername.js'
+
+import { createPost } from './createPost.js'
+import { getPosts } from './getPosts.js'
+import { removePost } from './removePost.js'
 
 export const logic = {
     registerUser,
-    loginUser,
+    authenticateUser,
     getUserUsername,
-    logoutUser,
-    isUserLoggedIn,
-    getPosts,
+
     createPost,
+    getPosts,
     removePost
 }

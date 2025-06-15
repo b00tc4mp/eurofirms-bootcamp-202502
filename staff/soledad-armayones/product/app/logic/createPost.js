@@ -1,10 +1,10 @@
 import { data } from '../data'
 
 /**
- * creates a post.
+ * Creates a post.
  * 
- * @param {string} image the post image url.
- * @param {string} text the post text.
+ * @param {string} image The post image url.
+ * @param {string} text The post text.
  */
 export const createPost = (image, text) => {
     if (typeof image !== 'string') throw new Error('invalid image type')
@@ -13,7 +13,7 @@ export const createPost = (image, text) => {
     if (typeof text !== 'string') throw new Error('invalid text type')
     if (text.length < 1) throw new Error('invalid min text length')
 
-    return fetch('http://localhost:8080/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer ' + data.getToken(),
