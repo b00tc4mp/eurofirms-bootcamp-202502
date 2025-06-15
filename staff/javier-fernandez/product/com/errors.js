@@ -28,7 +28,7 @@
     }
  }
 
- export class SystemError Extends Error {
+ export class SystemError extends Error {
     constructor(message) {
         super(message)
     }

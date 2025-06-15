@@ -1,5 +1,5 @@
 import { data } from '../data'
-
+import { Validate, SystemError, errors } from 'com'
 /**
  * creates a post.
  * 
@@ -7,11 +7,8 @@ import { data } from '../data'
  * @param {string} text the post text.
  */
  export const createPost = (image, text) => {
-    if (typeof image !== 'string') throw new Error('invalid image type')
-    if (!image.startsWith('http')) throw new Error('invalid image format')
-    
-    if (typeof text !== 'string') throw new Error('invalid text type')
-    if (text.length < 1) throw new Error('invalid min text length')
+    Validate.image(image)
+    Validate.text(text)
     
         return fetch(import.meta.env.VITE_API_URL + '/posts', {
             method: 'POST',
@@ -21,18 +18,19 @@ import { data } from '../data'
             },
             body: JSON.stringify({ image, text })
         })
-            .catch(error => { throw Error('connection error') })
+            .catch(error => { throw SystemError('connection error') })
             .then(response => {
                 const { status } = response
 
                 if (status === 201) return
 
                 return response.json()
-                    .catch(error => { throw new Error('json error') })
+                    .catch(error => { throw new SystemError('json error') })
                     .then(body => {
                         const { error, message } = body
+                        const constructor = errors[error] || SystemError 
 
-                        throw new Error(message)
+                      throw new constructor(message)
                     })
             })
     }

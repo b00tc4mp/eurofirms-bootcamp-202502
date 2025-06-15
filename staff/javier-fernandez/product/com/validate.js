@@ -1,4 +1,4 @@
-import { validationError } from './errors.js'
+import { ValidationError } from './errors.js'
 
 export const Validate = { 
     name(name) {
