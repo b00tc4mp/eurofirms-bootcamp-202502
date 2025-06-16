@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+import { validate, SystemError, NotFoundError } from 'com'
 
 /**
  *  Returns the username of the user to find by user id.
@@ -9,8 +9,7 @@ import { ValidationError, SystemError, NotFoundError } from './errors.js'
 
 export const getUserUsername = userId => {
     //validate userId
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('invalid userId length')
+    
         
     return User.findById(userId)
         .catch(error => {throw new SystemError('mongo error') })

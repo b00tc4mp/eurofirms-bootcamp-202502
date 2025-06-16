@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+import { validate, SystemError, NotFoundError } from 'com'
 
 /**
  * Returns post from database.
@@ -9,12 +9,7 @@ import { ValidationError, SystemError, NotFoundError } from './errors.js'
  * @returns {Array} The posts from database 
  */
 export const getPosts = userId => {
-    if (typeof userId !== 'string') throw new ValidationError ('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError ('invalid userId length')
-
-    // verify user exists by user id
-    //if user not found throw error
-    //if user exists return posts
+    validate.userId(userId)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError ('mongo error') })
