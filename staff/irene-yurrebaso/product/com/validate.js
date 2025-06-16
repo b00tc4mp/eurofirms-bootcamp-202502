@@ -1,5 +1,7 @@
+//fichero para validaciones síncronas de datos q se utilizan en las lógicas. Los métodos seran llamados desde las lógicas según se necesiten.
 import { ValidationError } from "./errors.js";
 
+//metemos todos los métodos en el objeto validate q será exportado
 export const validate = {
     name(name) {
         if (typeof name !== 'string') throw new ValidationError('invalid name type')

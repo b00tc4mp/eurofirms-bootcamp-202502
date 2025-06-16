@@ -1,5 +1,6 @@
-// importamos el hook useState, lo utilizaremos para encender y apagar vistas; useState es una funcion que devuelve un array y crea un estado sobre un dato
-import { useState, useEffect } from 'react'
+//usaremos react-router para manejar navegacion y url visibles para usuario
+//Navigate para navegacion automatica o condicional durante el renderizado VS useNavigate para navegacion en respuesta a un evento del usuario (ej. click)
+import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
@@ -9,58 +10,66 @@ import { Home } from './view/Home'
 import { logic } from './logic'
 
 export const App = () => {
-    const [view, setView] = useState('landing') //formato "desestructuracion"
+    //usamos el hook useNavigate de React Router para cambiar vistas
+    const navigate = useNavigate()
 
-    const handleRegisterClicked = () => setView('register')
+    const handleRegisterClicked = () => navigate('/register')
 
-    const handleLoginClicked = () => setView('login')
+    const handleLoginClicked = () => navigate('/login')
 
-    const handleUserRegistered = () => setView('login')
+    const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedIn = () => setView('home')
+    const handleUserLoggedIn = () => navigate('/')
 
-    const handleUserLoggedOut = () => setView('login')
+    const handleUserLoggedOut = () => navigate('/login')
 
-    //en la interfaz de usuario que al recargar la pagina se muestre Home si el usuario esta conectado (en vez de volver a Landing)
-    //array vacio en useEffect() significa q se ejecuta solo una vez cuando carga la aplicacion
-    useEffect(() => {
-        try {
-            const loggedIn = logic.isUserLoggedIn()
+    //comprobamos primero si user esta loginado, ya que segun esto cargaremos una vista u otra en las Routes mas abajo
+    let loggedIn
+    
+    try {
+        loggedIn = logic.isUserLoggedIn()
+    } catch (error) {
+        //mensaje error para developer
+        console.error(error)
 
-            if(loggedIn) 
-                setView('home')
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
+        //mensaje error para usuario
+        alert(error.message)
+    }
 
     console.log('App -> render')
 
     //vite esta convirtiendo estos componentes html a javascript DOM y mostrandolos en el div root
-    return <>
-        {/* muestrame este componente Landing si view es 'landing' */}
+    return <Routes>
         {/* onRegisterClick (nombre semantico que nos inventamos) es una propiedad (prop) */}
-        {view === 'landing' && 
-            <Landing 
-                onRegisterClicked={handleRegisterClicked} 
-                onLoginClicked={handleLoginClicked}
-        />}
+        <Route path='/' element={
+            !loggedIn ?
+                <Landing
+                    onRegisterClicked={handleRegisterClicked}
+                    onLoginClicked={handleLoginClicked}
+                />
+                :
+                <Home
+                    onUserLoggedOut={handleUserLoggedOut} />
+        } />
 
-        {view === 'register' && 
-            <Register 
-                onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}
-            />}
+        <Route path='/register' element={
+            !loggedIn ?
+                <Register
+                    onLoginClicked={handleLoginClicked}
+                    onUserRegistered={handleUserRegistered}
+                />
+                :
+                <Navigate to='/' />
+        } />
 
-        {view === 'login' && 
-            <Login 
-                onRegisterClicked={handleRegisterClicked}
-                onUserLoggedIn={handleUserLoggedIn}
-            />}
-
-        {view === 'home' && 
-        <Home 
-            onUserLoggedOut={handleUserLoggedOut}
-        />}
-    </>
+        <Route path='/login' element={
+            !loggedIn ?
+                <Login
+                    onRegisterClicked={handleRegisterClicked}
+                    onUserLoggedIn={handleUserLoggedIn}
+                />
+                :
+                <Navigate to='/' />
+        } />
+    </Routes>
 }
