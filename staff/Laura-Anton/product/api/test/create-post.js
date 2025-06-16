@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        Authorization: 'Basic 6840955650ed1ced3247eb11',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwNTNmNWI3ZDhhOTZmMjAzMmE4ZTMiLCJpYXQiOjE3NTAwOTQ5NDV9._N5_K5wLwZHQMKGz_jCBEy0A7gEYwaGYMWTCwq0Ywks',
         'Content-type': 'application/json'
     },
 
