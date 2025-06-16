@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { validate, SystemError, NotFoundError } from 'com'
+import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 /**
  * Returns post from database.
  * 
@@ -22,6 +22,8 @@ export const getPosts = userId => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
                         delete post._id
+
+                        if(!post.author) throw new AuthorshipError('post has not author')
 
                         if(post.author._id) {
                             post.author.id = post.author._id.toString()

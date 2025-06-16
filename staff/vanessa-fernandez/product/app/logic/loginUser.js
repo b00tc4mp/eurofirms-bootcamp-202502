@@ -1,5 +1,5 @@
 import { data } from '../data'
-
+import { validate, SystemError, errors } from 'com'
 /**
  * Logs a user in the system
  * @param {string} username The user username.
@@ -7,13 +7,8 @@ import { data } from '../data'
  */
 
 export const loginUser = (username, password) => {
-    if (typeof username !== 'string') throw new Error('Invalid type of username.')
-    if (username.length < 3) throw new Error('Invalid username min length.')
-    if (username.length > 20) throw new Error('Invalid username max length.')
-
-    if (typeof password !== 'string') throw new Error('Invalid type of password.')
-    if (password.length < 8) throw new Error('Invalid password min lenght.')
-    if (password.length > 20) throw new Error('Invalid password max length.')
+    validate.username(username)
+    validate.password(password)
 
     return fetch(import.meta.env.VITE_API_URL + '/users/auth', {
         method: 'POST',
@@ -22,21 +17,23 @@ export const loginUser = (username, password) => {
         },
         body: JSON.stringify({ username, password })
     })
-        .catch(error => { throw new Error('Connection error')})
+        .catch(error => { throw new SystemError('Connection error')})
         .then(response => {
             const { status } = response
 
             if(status === 200) 
                 return response.json()
-                    .catch(error => { throw new Error('json error')})
+                    .catch(error => { throw new SystemError('json error')})
                     .then(token => data.setToken(token))
 
             return response.json()
-                .catch(error => { throw new Error('json error')})
+                .catch(error => { throw new SystemError('json error')})
                 .then(body => {
                     const { error, message } = body
 
-                    throw new Error(message)
+                    const constructor = errors[error] || SystemError
+
+                    throw new constructor(message)
                 })        
         })
 }
