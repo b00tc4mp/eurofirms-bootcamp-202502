@@ -18,7 +18,9 @@
     "vite": "^6.2.5"
   },
   "dependencies": {
+    "audit": "^0.0.6",
     "com": "file:../com",
+    "fix": "^0.0.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.2"
