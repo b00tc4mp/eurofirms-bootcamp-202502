@@ -38,6 +38,18 @@
     constructor(message) {
         super(message)
     }
+
+    const errors = {
+        ValidarionError,
+        DuplicityError,
+        NotFoundError,
+        CredentialsError,
+        AuthorshipError,
+        SystemError,
+        AuthorizationError
+    }
+
+    export default errors
  }
 
 
