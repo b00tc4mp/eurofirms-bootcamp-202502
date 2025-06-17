@@ -79,6 +79,7 @@ connect(MONGO_URL)
                 const authorization = request.headers.authorization 
                 const token = authorization.slice(7) // Bearer numero-de-token
 
+                //desencriptamos el jwt y obtenemos el userId
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 //recojo el json enviado (image & text) usando jsonBodyParser con el body del objeto request
@@ -118,7 +119,7 @@ connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                //recogemos postId del objeto params que viene en la request
+                //recogemos postId del objeto params que viene en la request del header
                 //const postId = request.params.postId
                 const { postId } = request.params
 

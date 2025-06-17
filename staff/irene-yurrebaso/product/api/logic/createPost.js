@@ -13,6 +13,7 @@ export const createPost = (userId, image, text) => {
     validate.image(image)
     validate.text(text)
     
+    //user es el modelo que nos permite comunicarnos con la bbdd de usuarios
     return User.findById(userId)
         //lanzamos la promesa (asincrona)
         .catch(error => { throw new SystemError('mongo error') })
