@@ -1,6 +1,7 @@
+import { CredentialsError, NotFoundError, ValidationError } from 'com'
 import { logic } from '../logic'
 
-export const Login = ({onRegisterClicked, onUserLoggedIn}) => {
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     // const onRegisterClicked = props.onRegisterClicked
     // const onUserLoggedIn = props.onUserLoggedIn
 
@@ -16,19 +17,26 @@ export const Login = ({onRegisterClicked, onUserLoggedIn}) => {
 
         try {
             logic.loginUser(username, password)
-                .then(() => {    
+                .then(() => {
                     form.reset()
-                
+
                     onUserLoggedIn()
                 })
                 .catch(error => {
                     console.error(error)
-
-                    alert(error.message)
+                    if (error instanceof NotFoundError || error instanceof CredentialsError)
+                        alert('WARN: ' + error.message)
+                    else
+                        alert('ERROR: ' + error.message)
                 })
         } catch (error) {
             console.error(error)
-            
+
+            if (error instanceof ValidationError)
+                alert('WARN: ' + error.message)
+            else
+                alert('ERROR: ' + error.message)
+
             alert(error.message)
         }
     }
