@@ -2,8 +2,7 @@ import { connect } from './data/index.js'
 import express from 'express'
 import { logic } from './logic/index.js'
 import cors from 'cors'
-import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError } from './logic/errors.js'
-import { AuthorizationError } from './errors.js'
+import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError, AuthorizationError } from 'com'
 import jwt from 'jsonwebtoken'
 
 const { JsonWebTokenError } = jwt

@@ -8,55 +8,58 @@ import { Home } from './view/Home'
 import { logic } from './logic'
 
 export const App = () => {
-    const [view, setView] = useState('landing')
+    const navigate = useNavigate()
 
-    const handleRegisterClicked = () => setView('register')
+    const handleRegisterClicked = () => navigate('/register')
 
-    const handleLoginClicked = () => setView('login')
+    const handleLoginClicked = () => navigate('/login')
 
-    const handleUserRegistered = () => setView('login')
+    const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedIn = () => setView('home')
+    const handleUserLoggedIn = () => navigate('/home')
 
-    const handleUserLoggedOut = () => setView('login')
+    const handleUserLoggedOut = () => navigate('/login')
 
-    useEffect(() => {
-        try {
-            const loggedIn = logic.isUserLoggedIn()
+    let loggedIn
+    try {loggedIn = logic.isUserLoggedIn()    
+    } catch (error) {
+        console.error(error)
 
-            if (loggedIn)
-                setView('home')
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
+        alert (error, message)
+    }
 
     console.log('App -> render')
 
-    return <>
-        {view === 'landing' &&
-            <Landing
-                onRegisterClicked={handleRegisterClicked}
-                onLoginClicked={handleLoginClicked}
-            />
-        }
+    return <Routes>
+        <route path='/' element={
+            !loggedIn ?
+                <Landing
+                onRegisterClicker = {handleRegisterClicked}
+                />
+                :
+                <Home
+                    onUserLoggedOut={handleUserLoggedOut}
+                />
+        } />
 
-        {view === 'register' &&
-            <Register
-                onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}
+        <Route path='register' element={
+            !loggedIn ?
+                <Register
+                    onLoginClicked={handleLoginClicked}
+                    onUserRegistered={handleUserRegistered}
+                />
+                :
+                <navigate to='/' />
+        } />
 
-            />
-        }
-        {view === 'login' &&
-            <Login
-                onRegisterClicked={handleRegisterClicked}
-                onUserLoggedIn={handleUserLoggedIn}
-            />
-        }
-
-        {view === 'home' && <Home
-            onUserLoggedOut={handleUserLoggedOut}
-        />}
-    </>
+        <Route path='/login' element ={
+            !loggedIn ?
+                <Login
+                    onRegisterClicked={handleRegisterClicked}
+                    onUserLoggedIn={handleUserLoggedIn}
+                />
+                :
+                <navigate to='/' />
+        } />
+    </Routes>
 }

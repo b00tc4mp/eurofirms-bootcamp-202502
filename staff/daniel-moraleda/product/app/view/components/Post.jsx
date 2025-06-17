@@ -17,6 +17,8 @@ export const Post = ({ post, onPostDeleted }) => {
                 alert(error.message)
             }
     }
+
+    console.log('Post -> render')
     return <article>
         <h3 className="font-bold">{post.author.username}</h3>
 

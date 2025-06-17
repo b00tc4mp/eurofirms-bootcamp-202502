@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+import { validate , SystemError, NotFoundError, AutorshipError } from 'com'
 
 /**
  * Returns post from database
@@ -9,8 +9,7 @@ import { ValidationError, SystemError, NotFoundError } from './errors.js'
  * @returns {array} The psots from database
  */
 export const getPosts = userId => {
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('invalid userId length')
+   validate.userId(userId)
 
 
     return User.findById(userId)
@@ -24,6 +23,7 @@ export const getPosts = userId => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
                         delete post._id
+                        if (!post.author) throw new AutorshipError('post has not author')
                         if (post.author._id) {
                             post.author.id = post.author._id.toString()
                             delete post.author._id

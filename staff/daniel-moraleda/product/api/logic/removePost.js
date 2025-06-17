@@ -1,6 +1,6 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError, AuthorshipError }
-    from './errors.js'
+import { validate, SystemError, NotFoundError, AuthorshipError }
+    from 'com'
 
 /**
  * removes a post by id from database.
@@ -9,11 +9,8 @@ import { ValidationError, SystemError, NotFoundError, AuthorshipError }
  * @param {string} postId the post id to remove
  */
 export const removePost = (userId, postId) => {
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('invalid userId length')
-
-    if (typeof postId !== 'string') throw new ValidationError('invalid postId type')
-    if (postId.length !== 24) throw new ValidationError('invalid postId length')
+    validate.userId(userId)
+    validate.postId(postId)
 
     // verify user exists by userId
     // if user not found then throw error
