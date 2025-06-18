@@ -68,6 +68,13 @@ User
 - direccion (string, required)
 - role (string, values: administrador | cliente| empleado, required)
 
+  Proveedor
+
+- id (UUID)
+- nombre (string, required, unique)
+- direccion(string required)
+- usuarios(referencia al id usuario, ObjectId)
+
 ### Technologies
 
 - React
