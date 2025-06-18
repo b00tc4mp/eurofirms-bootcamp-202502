@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 
 import { User } from '../data/index.js'
-import { ValidationError, SystemError, CredentialsError,NotFoundError } from 'com'
+import { validate, SystemError, CredentialsError,NotFoundError } from 'com'
 
 /**
  * Authenticates a user from the system.
@@ -11,7 +11,7 @@ import { ValidationError, SystemError, CredentialsError,NotFoundError } from 'co
  */
 export const authenticateUser = (username, password) => {
    validate.username(username)
-   validate.password(passoword)
+   validate.password(password)
 
     return User.findOne({ username })
         .catch(error => { throw new SystemError('mongo error') })

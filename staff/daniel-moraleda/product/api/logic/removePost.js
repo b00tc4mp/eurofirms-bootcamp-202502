@@ -29,7 +29,7 @@ export const removePost = (userId, postId) => {
                 .then(post => {
                     if (!post) throw new NotFoundError('post not found')
 
-                    if (postId.author.toString() !== userId) throw new AuthorshipError('user not author of post')
+                    if (post.author.toString() !== userId) throw new AuthorshipError('user not author of post')
 
 
                     return Post.deleteOne({ _id: postId })

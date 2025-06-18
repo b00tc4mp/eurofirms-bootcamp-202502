@@ -46,7 +46,7 @@ const errors = {
     DuplicityError,
     NotFoundError,
     CredentialsError,
-    AuthorizationError,
+    AuthorshipError,
     SystemError,
     AuthorizationError
 }

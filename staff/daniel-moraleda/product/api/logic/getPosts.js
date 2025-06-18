@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { validate , SystemError, NotFoundError, AutorshipError } from 'com'
+import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 
 /**
  * Returns post from database
@@ -9,7 +9,7 @@ import { validate , SystemError, NotFoundError, AutorshipError } from 'com'
  * @returns {array} The psots from database
  */
 export const getPosts = userId => {
-   validate.userId(userId)
+    validate.userId(userId)
 
 
     return User.findById(userId)
@@ -31,7 +31,7 @@ export const getPosts = userId => {
 
                         post.own = post.author.id === userId
                     })
-                    
+
                     return posts
                 })
         })

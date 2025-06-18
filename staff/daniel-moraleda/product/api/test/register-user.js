@@ -3,7 +3,7 @@ fetch('http://localhost:8080/users', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: '{"name":"Sole Pan","email":"Sole@pan.com","username":"solepan","password":"123123123"}'
+    body: '{"name":"Dani Pan","email":"dani@pan.com","username":"danipan","password":"123123123"}'
 })
 
     .catch(error => { throw new Error('connection error') })
@@ -14,12 +14,12 @@ fetch('http://localhost:8080/users', {
         if (status === 201) return
 
         return response.json()
-        .catch(error => { throw new Error('json error') })
-        .then(body => {
-            const { error, message } = body
+            .catch(error => { throw new Error('json error') })
+            .then(body => {
+                const { error, message } = body
 
-            throw new Error(message)
-        })
+                throw new Error(message)
+            })
     })
     .then(() => console.log('user registered'))
     .catch(error => console.error(error))
