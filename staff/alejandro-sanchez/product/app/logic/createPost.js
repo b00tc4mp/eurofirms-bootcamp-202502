@@ -1,33 +1,38 @@
-import { data } from ' ../data'
+import { data } from '../data'
+
 /**
- * Create a post
+ * Creates a post.
+ * 
  * @param {string} image The post image url.
- * @param {string} text The post text.      
+ * @param {string} text The post text.
  */
-export const createPost = (image,text) => {
+export const createPost = (image, text) => {
     if (typeof image !== 'string') throw new Error('invalid image type')
-    if(!image.startsWith('http'))  throw new Error('invalid image format')
-    
+    if (!image.startsWith('http')) throw new Error('invalid image format')
+
     if (typeof text !== 'string') throw new Error('invalid text type')
-    if (text.length < 1) throw new Error('invalid min text lenght')
+    if (text.length < 1) throw new Error('invalid min text length')
 
-    let postsCount = data.getPostCount()  
-    
-    postsCount++
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer ' + data.getToken(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image, text })
+    })
+        .catch(error => { throw Error('connection error') })
+        .then(response => {
+            const { status } = response
 
-    const post = {
-        id: 'post-' + postsCount,
-        author: data.getUserId(),
-        image,
-        text,
-        date: new Date().toISOString(),
-        likes: []
-    }
+            if (status === 201) return
 
-    const posts= data.getPosts()
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(body => {
+                    const { error, message } = body
 
-    posts.push(post)
-
-    data.setPosts(posts)
-    data.setPostCount(postsCount)
+                    throw new Error(message)
+                })
+        })
 }

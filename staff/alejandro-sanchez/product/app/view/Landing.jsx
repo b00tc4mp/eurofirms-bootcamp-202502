@@ -1,11 +1,4 @@
-export const Landing = (props) => {
-
-    const onRegisterClicked = props.onRegisterClicked
-    
-    const onLoginClicked = props.onLoginClicked
-
-
-
+export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
     const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginClick = () => onLoginClicked()
@@ -21,4 +14,4 @@ export const Landing = (props) => {
             <a className="underline" href="#" onClick={handleLoginClick}>Login</a>
         </div>
     </div>
-};
+}

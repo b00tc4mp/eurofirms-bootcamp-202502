@@ -1,5 +1,5 @@
 
-import {logic} from '../logic'
+import {logic} from './logic'
 
 export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const handleLoginClick = () => onLoginClicked()

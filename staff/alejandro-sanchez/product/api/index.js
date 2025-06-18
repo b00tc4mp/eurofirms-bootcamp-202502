@@ -1,91 +1,138 @@
+import { connect } from './data/index.js'
 import express from 'express'
-import { logic } from '../logic/index.js'
+import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import { logic } from './logic/index.js'
+import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError, AuthorizationError } from 'com'
 
-const server = express()
-const jsonBodyParser = express.json()
+const { JsonWebTokenError } = jwt
 
-server.get('/hello', (request, response) => {
-    response.send('Hello! 😉')
-})
+const { MONGO_URL, PORT, JWT_SECRET } = process.env
 
-server.post('/users', jsonBodyParser, (request, response) => {
-    try {
-        const { name, email, username, password } = request.body
+connect(MONGO_URL)
+    .then(() => {
+        const api = express()
+        const jsonBodyParser = express.json()
 
-        logic.registerUser(name, email, username, password)
+        api.use(cors())
 
-        response.status(201).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.get('/hello', (request, response) => {
+            response.send('Hello! 😉')
+        })
 
-server.post('/users/auth', jsonBodyParser, (request, response) => {
-    try {
-        const { username, password } = request.body
-        const userId = logic.authenticateUser(username, password)
+        api.post('/users', jsonBodyParser, (request, response, next) => {
+            try {
+                const { name, email, username, password } = request.body
 
-        response.status(200).json(userId)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+                logic.registerUser(name, email, username, password)
+                    .then(() => response.status(201).send())
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
 
-server.get('/users/self/username', (request, response) => {
-    try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+        api.post('/users/auth', jsonBodyParser, (request, response, next) => {
+            try {
+                const { username, password } = request.body
 
-        const username = logic.getUserUsername(userId)
+                logic.authenticateUser(username, password)
+                    .then(userId => {
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
 
-        response.status(200).json(username)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+                        response.status(200).json(token)
+                    })
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
 
-server.post('/posts', jsonBodyParser, (request, response) => {
-    try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+        api.get('/users/self/username', (request, response, next) => {
+            try {
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7)
 
-        const { image, text } = request.body
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        logic.createPost(userId, image, text)
+                logic.getUserUsername(userId)
+                    .then(username => response.status(200).json(username))
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
 
-        response.status(201).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.post('/posts', jsonBodyParser, (request, response, next) => {
+            try {
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7)
 
-server.get('/posts', (request, response) => {
-    try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        const posts = logic.getPosts(userId)
+                const { image, text } = request.body
 
-        response.status(200).json(posts)
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+                logic.createPost(userId, image, text)
+                    .then(() => response.status(201).send())
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
 
-server.delete('/posts/:postId', (request, response) => {
-    try {
-        const authorization = request.headers.authorization // Basic user-x
-        const userId = authorization.slice(6)
+        api.get('/posts', (request, response, next) => {
+            try {
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7)
 
-        //const postId = request.params.postId
-        const { postId } = request.params
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        logic.removePost(userId, postId)
+                logic.getPosts(userId)
+                    .then(posts => response.status(200).json(posts))
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
 
-        response.status(204).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, message: error.message })
-    }
-})
+        api.delete('/posts/:postId', (request, response, next) => {
+            try {
+                const authorization = request.headers.authorization
+                const token = authorization.slice(7)
 
-server.listen(8080, () => console.log('server is up'))
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { postId } = request.params
+
+                logic.removePost(userId, postId)
+                    .then(() => response.status(204).send())
+                    .catch(error => next(error))
+            } catch (error) {
+                next(error)
+            }
+        })
+
+        // error handler
+
+        api.use((error, request, response, next) => {
+            if (error instanceof ValidationError)
+                response.status(400).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof NotFoundError)
+                response.status(404).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof CredentialsError)
+                response.status(401).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof AuthorshipError)
+                response.status(403).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof DuplicityError)
+                response.status(409).json({ error: error.constructor.name, message: error.message })
+            else if (error instanceof JsonWebTokenError)
+                response.status(401).json({ error: AuthorizationError.name, message: error.message })
+            else if (error instanceof SyntaxError && error.message.includes('JSON'))
+                response.status(401).json({ error: AuthorizationError.name, message: 'invalid payload' })
+            else
+                response.status(500).json({ error: SystemError.name, message: error.message })
+        })
+
+        api.listen(PORT, () => console.log('API listening on port ' + PORT))
+    })
+    .catch(error => console.error(error))
