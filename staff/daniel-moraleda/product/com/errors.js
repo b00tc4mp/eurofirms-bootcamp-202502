@@ -39,9 +39,16 @@ export class AuthorizationError extends Error {
         super(message)
     }
 
-    
+
+}
+const errors = {
+    ValidationError,
+    DuplicityError,
+    NotFoundError,
+    CredentialsError,
+    AuthorizationError,
+    SystemError,
+    AuthorizationError
 }
 
-export const errors = {
-        AuthorizationError
-    }
+export default errors

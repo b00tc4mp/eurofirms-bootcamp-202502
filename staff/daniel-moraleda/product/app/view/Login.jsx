@@ -1,3 +1,4 @@
+import { CredentialsError, NotFoundError, SystemError,  ValidationError } from 'com'
 import { logic } from '../logic'
 
 export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
@@ -20,11 +21,18 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    if (error instanceof NotFoundError || error instanceof CredentialsError)
+                        alert('WARN: ' + error.message)
+                    else
+                        alert('ERROR: ' + error.message)
                 })
 
         } catch (error) {
-            alert(error.message)
+            console.error(error)
+
+            if (error instanceof ValidationError)
+                alert('WARN: ' + error.message)
+            else alert('ERROR ' + error.message)
         }
     }
 
