@@ -19,6 +19,8 @@ export const Post = ({ post, onPostDeleted }) => {
             }
     }
 
+    console.log('Post -> render')
+
     return <article className="border border-gray-300 rounded-xl p-4 shadow-sm bg-white flex flex-col gap-3">
         <h3 className="bg-[#f0f4ff] text-gray-800 font-semibold text-lg rounded px-2 py-1 inline-block">{post.author.username}</h3>
 
