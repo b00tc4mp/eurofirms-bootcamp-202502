@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { Validate, SystemError, NotFoundError,AuthorshipError } from 'com'
+import { Validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 /**
  * Returns post from database.
  * 

@@ -14,7 +14,7 @@ import { Validate, DuplicityError, SystemError } from 'com'
 export const registerUser = (name, email, username, password) => {
     Validate.name(name)
     Validate.email(email)
-    Validate.useranme(username)
+    Validate.username(username)
     Validate.password(password)
         
     return bcrypt.hash(password, 10)

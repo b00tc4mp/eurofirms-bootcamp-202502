@@ -4,7 +4,7 @@ import { logic } from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError, AuthorizationError } from 'com'
-import { AuthorizationError } from './errors.js'
+
 
 const { JsonWebTokenError } = jwt
 

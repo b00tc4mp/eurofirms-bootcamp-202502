@@ -23,8 +23,6 @@ export const Validate = {
         if (typeof password !== "string") throw new ValidationError("invalid password type");
         if (password.length < 8) throw new ValidationError("invalid password min length");
         if (password.length > 20) throw new ValidationError("invalid password max length");
-        if (typeof userId !== 'string') throw new ValidationError('invalid useId type')
-        if (userId.length < 6) throw new ValidationError('invalid userId length')
     },
 
     userId(userId) {

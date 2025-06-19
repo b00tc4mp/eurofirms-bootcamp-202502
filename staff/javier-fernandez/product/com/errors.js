@@ -1,10 +1,10 @@
- import class ValidtionError extends Error {
+ export class ValidationError extends Error {
     constructor(message) {
         super(message)
     }
  }
 
- export class Duplicity extends Error {
+ export class DuplicityError extends Error {
     constructor(message){
         super(message)
     }
@@ -38,9 +38,9 @@
     constructor(message) {
         super(message)
     }
-
+ }
     const errors = {
-        ValidarionError,
+        ValidationError,
         DuplicityError,
         NotFoundError,
         CredentialsError,
@@ -50,7 +50,7 @@
     }
 
     export default errors
- }
+ 
 
 
 

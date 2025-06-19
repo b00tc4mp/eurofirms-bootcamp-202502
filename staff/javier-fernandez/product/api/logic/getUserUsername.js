@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { ValidateError, SystemError, NotFoundError } from './errors.js'
+import { Validate, SystemError, NotFoundError } from 'com'
 
 /**
  * Return the username of the user to find by user id.

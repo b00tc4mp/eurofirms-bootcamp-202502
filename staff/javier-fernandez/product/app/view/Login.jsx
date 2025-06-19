@@ -26,13 +26,13 @@ export const Login = (props) => {
             console.error(error)
 
             if (error instanceof NotFoundError || error instanceof CredentialsError)
-                aleert('WARN:' error.message)
-            else alert('ERROR:' error.message)
+                alert('WARN:', error.message)
+            else alert('ERROR:', error.message)
         })
         } catch (error) {
            if (error instanceof ValidationError)
-            alert('WARN:' error.message)
-           else alert('ERROR:' error.message)
+            alert('WARN:', error.message)
+           else alert('ERROR:', error.message)
         }
 
     }

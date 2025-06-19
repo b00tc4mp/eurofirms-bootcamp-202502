@@ -1,10 +1,10 @@
 fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQ1ZDRhYzU4Y2JhYzcyYjBiZmM2YTIiLCJpYXQiOjE3NDk0MDgxODF9.dtAzeP0JP63belPgFmBlmtIEjswPP8LlRmdMJeHLcDg',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQ0NDUxMzc1Nzg3ZTdjNTkwOGYxZjEiLCJpYXQiOjE3NTAyNzE2Mjh9.roQHa1VyKCB0svqyZqVGcFEeysZIRY1oESiGvhO5euI',
         'Content-Type': 'application/json'
     },
-    body: '{"image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2V6cWJlZnYzcXY4ODU0NnV1bjN1ZGxlcHVlajRqenh6b2gxN3pqbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GSgWBrpHeRdWE/giphy.gif", "text": "pin8 dancing"}'
+    body: '{"image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWExcmlycmMzcWU2cTc2eDZ2Y2VlNXQwYXpodWs2YTNxd3BwY3k0eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12mRllHWXpt4M8/giphy.gif", "text": "enseño a mi nieto"}'
 })
     .catch(error => { throw Error('connection error') })
     .then(response => {

@@ -23,7 +23,9 @@ export const removePost = postId => {
             return response.json()
                 .catch(error => { throw new SystemError('json error') })
                 .then(body => {
-                    const constructor { error, message } = body
+                    const  { error, message } = body
+
+                    const constructor = errors [error] || SystemError 
 
                     throw new constructor(message)
                 })
