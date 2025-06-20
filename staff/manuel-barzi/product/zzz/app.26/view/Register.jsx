@@ -1,6 +1,6 @@
 import { logic } from '../logic'
 
-export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const handleLoginClick = () => onLoginClicked()
 
     const handleRegisterSubmit = event => {

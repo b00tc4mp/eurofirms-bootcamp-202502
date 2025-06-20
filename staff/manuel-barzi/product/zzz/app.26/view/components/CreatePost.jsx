@@ -1,6 +1,6 @@
 import { logic } from '../../logic'
 
-export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked()
 
     const handleCreatePostSubmit = event => {

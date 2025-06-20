@@ -1,6 +1,6 @@
 import { logic } from '../../logic'
 
-export const Post = ({ post, onPostDeleted, alert }) => {
+export const Post = ({ post, onPostDeleted }) => {
     const handleDeleteClick = () => {
         if (confirm('Delete post?'))
             try {
