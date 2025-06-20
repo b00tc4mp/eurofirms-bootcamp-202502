@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
@@ -8,56 +9,63 @@ import { Home } from './view/Home'
 import { logic } from './logic' 
 
 export const App = () => {
-    const [view, setView] = useState('landing')
+    const navigate = useNavigate()
 
-    const handleRegisterClicked = () => setView('register')
+    const handleRegisterClicked = () => navigate('/register')
 
-    const handleLoginClicked = () => setView('login')
+    const handleLoginClicked = () => navigate('/login')
 
-    const handleUserRegistered = () => setView('login')
+    const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedIn =() => setView('home')
+    const handleUserLoggedIn =() => navigate('/home')
 
-    const handleUserLoggedOut = () => setView('login')
+    const handleUserLoggedOut = () => navigate('/login')
 
-    useEffect(() => {
+    let loggedIn
         try {
-            const loggedIn = logic.isUserLoggedIn()
-            
-            if (loggedIn)
-                setView('home')
+            loggedIn = logic.isUserLoggedIn()
         } catch (error) {
+            console.error(error)
+
             alert(error.message)
         }
-    }, [])
+    }
 
     console.log('App -> render') 
 
-    return <>
-        {view === 'landing' &&
-            <Landing
-                onRegisterClicked={handleRegisterClicked}
+    return <Routes>
+        
+            <Route path='/' element={
+                !loggedIn ?
+                    <Landing
+                    
+                    onRegisterClicked= {handleRegisterClicked}
+                    onLoginClicked= {handleLoginCliked}
+                    />
+                    :
+                    <Home
+                    onUserLoggedOut= {handleUserLoggedOut} 
+                    />
+            }/>
+
+            <Route path='/register' element={
+                !loggedIn ?
+                <Register
                 onLoginClicked={handleLoginClicked}
-            />
+                onUserRegistered={handleUserRegistered}
+                />
+                :
+                <Navigate to='/' />
+            } />
 
-        }
-
-        {view === 'register' &&
-            <Register
-             onLoginClicked={handleLoginClicked}
-             onUserRegistered={handleUserRegistered}
-             />
-
-        }
-
-        {view === 'login' &&
-            <Login
-             onRegisterClicked={handleRegisterClicked}
-             onUserLoggedIn={handleUserLoggedIn} />
-        }
-
-        {view === 'home' && <Home
-        onUserLoggedOut={handleUserLoggedOut}
-         />}
-    </>
+            <Route path='login'element={
+                !loggedIn ?
+                <Login
+                onRegisterClicked={handleRegisterClicked}
+                onUserLoggedIn={handleUserLoggedIn}
+                />
+                :
+                <Navigate to='/' />
+            } />
+            </Routes> 
 }
