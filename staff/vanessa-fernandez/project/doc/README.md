@@ -1,78 +1,89 @@
 # Gym Planner App 🏃‍♂️‍➡️
 
 ## Intro
-Gym Planner es una aplicación diseñada para ayudarte a organizar y visualizar tus entrenamientos semanales personalizados de forma simple y estructurada.
-Esta app permite a cualquier persona que entrene en el gimnasio o desde casa.
+Gym Planner is a web application designed to help you organize and visualize your personalized weekly workout routines in a simple and structured way.
 
-- Registrarse y crear un perfil básico.
-- Visualizar su semana de entrenamiento dividida por días.
-- Consultar qué ejercicios tiene asignados cada día.
-- Marcar los ejercicios como realizados y mantener un seguimiento diario.
-- Comentar problemas que puedan surgir cuando se realiza el ejercicio.
+This app is built for anyone who trains at the gym or from home.
 
-La idea principal es ofrecer una herramienta sencilla para gestionar la rutina semanal sin complicaciones. Gym Planner se enfoca en entrenamientos adaptados a cada persona, teniendo en cuenta posibles limitaciones o necesidades especiales relacionadas con la salud del usuario.
+- Register and create a basic account.
+- View your weekly training schedule divided by days.
+- Check which exercises are assigned each day.
+- Mark exercises as completed and track progress.
+- Leave comments about problems encountered during exercises.
+
+The main idea is to provide a straightforward tool to manage your weekly workout plan without complications. Gym Planner focuses on personalized training tailored to each user’s specific needs or health conditions.
 
 ![Again and Again](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3azkzcGV0OTdsNXN3cWFwc3Q0NnpxMjU4OGk4bGZkOG0zMTRzbTR1YSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/zZapPN7vQZYJRDvMOO/giphy.gif)
 
 ## Functional
+
 ### Use Cases
+
 Regular (User)
 
-- Registrarse e iniciar sesión.
-- Completar su perfil con datos básicos (peso, altura, sexo).
-- Acceder a página de inicio personalizada.
-- Visualizar su planificación semanal de ejercicios.
-- Consultar la rutina diaria de cada día de la semana.
-- Ver los ejercicios asignados por día.
-- Marcar ejercicios como realizados.[V0.1]
-- Añadir comentarios sobre el ejercicio.[V0.1]
-- Probabilidad de editar perfil.[v0.1]
-- Ver progreso histórico.[v0.1]
+- Register and log in.
+- Complete personal profile with gender, weight, and height.
+- Access a personalized home page.
+- View weekly workout schedule.
+- See daily exercises.
+- Mark exercises as completed. [v0.1]
+- Add comments about exercises. [v0.1]
+- Possibly edit profile. [v0.1]
+- View workout history. [v0.1]
 
 Admin (User) [v0.1]
 
-- Crear, editar y eliminar ejercicos disponibles.
-- Asignar rutinas semanales a cada usuario.
-- Consultar el estado o progreso de los usuarios.
-- Revisar comentarios o problemas reportados por los usuarios sobre los ejercicios.
-- Gestionar perfiles de usuarios activos.
+- Create, edit, and delete available exercises.
+- Assign workout plans to users.
+- View users’ progress and performance.
+- Review comments or problems reported by users.
+- Manage user profiles.
+
+---
 
 ### Prototype
+
 [Figma] (https://www.figma.com/proto/rz7a6DNNaBTvh83KI0KOud/eurofirms-bootcamp-202502-product?node-id=69-138&p=f&t=nSlbKVTsAPPqgbap-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=5%3A25) 
 
-## Technical
-### Architecture
-[App] -> [API] -> [DB]
+---
 
-App
+## Technical
+
+### Architecture
+
+`[App] -> [API] -> [DB]`
+
+**App**
 - Components
 - Logic
 - Data
 
-Api
+**Api**
 - Routes
 - Logic
 - Data
 
+---
+
 ### UI Components
 
-App
+**App Views**
 
 - Landing
 - Register
 - Login
 - Home
 
-Home
+**Home Subviews**
 
 - Edit Profile
 - Workout plan
 
-Workout plan
+**Workout plan**
 
-- Ejercicios
+- Exercises
 
-...
+---
 
 ### Data Model
 
@@ -83,9 +94,7 @@ User
 - username (string, required, unique)
 - email (string, required, unique)
 - password (string, required)
-- género (string, required)
-- peso (number, required)
-- altura (number, required)
+- profileCompleted (boolean, default: false)
 - role (string, values: regular | admin, required) [v0.1]
 
 Exercise
@@ -128,7 +137,4 @@ Entrenamiento
 [Issues]
 (https://github.com/b00tc4mp/eurofirms-bootcamp-202502/issues/94)
 
-
-
-    
 
