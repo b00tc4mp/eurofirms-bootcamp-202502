@@ -5,8 +5,6 @@ import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
-import { Alert } from './view/components/Alert'
-import { Confirm } from './view/components/Confirm'
 
 import { logic } from './logic'
 
@@ -37,7 +35,7 @@ export const App = () => {
         alert(error.message)
     }
 
-    const handleAlertAccepted = () => setAlertMessage('')
+    const handleAcceptAlert = () => setAlertMessage('')
 
     const handleAcceptConfirm = () => {
         setConfirmMessage('')
@@ -62,9 +60,32 @@ export const App = () => {
     console.log('App -> render')
 
     return <>
-        {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
+        {alertMessage && <div className="p-10 bg-gray-500/70  absolute w-full h-full flex flex-col justify-center">
+            <div className="bg-white border-2 border-black p-2 flex flex-col gap-2">
+                <p>{alertMessage}</p>
 
-        {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
+                <button className="bg-black text-white px-2 self-end" type="button" onClick={handleAcceptAlert}>Accept</button>
+            </div>
+        </div>}
+
+        {/* TEMP for test purposes */}
+        {/* <button type="button" onClick={() => {
+            handleShowConfirm('hello, confirm?')
+                .then(result => console.log(result ? 'Accept' : 'Cancel'))
+
+        }}>show confirm</button> */}
+
+        {confirmMessage && <div className="p-10 bg-gray-500/70  absolute w-full h-full flex flex-col justify-center">
+            <div className="bg-white border-2 border-black p-2 flex flex-col gap-2">
+                <p>{confirmMessage}</p>
+
+                <div className="self-end flex gap-2">
+                    <button className="text-black border-black border-2 px-2" type="button" onClick={handleCancelConfirm}>Cancel</button>
+
+                    <button className="bg-black text-white px-2" type="button" onClick={handleAcceptConfirm}>Accept</button>
+                </div>
+            </div>
+        </div>}
 
         <Routes>
             <Route path='/' element={
