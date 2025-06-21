@@ -1,6 +1,7 @@
 import { data } from '../data';
-
+import { validate } from 'com';
 export const deleteUser = (idUser) => {
+  validate.userId(idUser);
   return fetch(`${import.meta.env.VITE_API_URL}users/${idUser}`, {
     method: 'DELETE',
     headers: {

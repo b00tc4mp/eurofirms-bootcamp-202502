@@ -1,28 +1,17 @@
-export const registerUser = (nombreCompleto, email, password, direccion, rol) => {
-  // Validaciones de entrada
-  if (typeof nombreCompleto !== 'string' || !nombreCompleto.trim()) {
-    throw new Error('nombre completo inválido o vacío');
-  }
-  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    throw new Error('formato de email inválido');
-  }
-  if (email.length < 6 || email.length > 30) {
-    throw new Error('la longitud del email debe estar entre 6 y 30 caracteres');
-  }
-  if (typeof password !== 'string' || password.length < 8) {
-    throw new Error('contraseña debe ser un string de al menos 8 caracteres');
-  }
-  if (typeof direccion !== 'string' || !direccion.trim()) {
-    throw new Error('dirección inválida o vacía');
-  }
-  const roles = ['administrador', 'cliente', 'empleado'];
-  if (typeof rol !== 'string' || !roles.includes(rol)) throw new Error('rol invalido');
+import { validate } from 'com';
+
+export const registerUser = (nombreCompleto, email, password, direccion, role) => {
+  validate.name(nombreCompleto);
+  validate.email(email);
+  validate.password(password);
+  validate.direction(direccion);
+  validate.role(role);
   return fetch(`${import.meta.env.VITE_API_URL}users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ nombreCompleto, email, password, direccion, rol }),
+    body: JSON.stringify({ nombreCompleto, email, password, direccion, role }),
   })
     .catch(() => {
       throw new Error('error de conexion');

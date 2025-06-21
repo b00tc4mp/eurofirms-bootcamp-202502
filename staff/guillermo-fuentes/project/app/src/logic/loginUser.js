@@ -1,11 +1,9 @@
+import { validate } from 'com';
 import { data } from '../data';
 
 export const loginUser = (email, password) => {
-  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    throw new Error('formato de email inválido');
-  }
-  if (typeof password !== 'string') throw new Error('Credenciales invalidas');
-  if (password.length < 8) throw new Error('longitud de la contraseña insuficiente');
+  validate.email(email);
+  validate.password(password);
   return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
     method: 'POST',
     headers: {

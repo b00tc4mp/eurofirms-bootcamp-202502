@@ -1,35 +1,24 @@
+import { validate } from 'com';
 import { data } from '../data';
 
-export const editUser = (idObjetivo, nombreCompleto, email, password, direccion, rol) => {
-  // Validaciones de entrada
-  if (typeof nombreCompleto !== 'string' || !nombreCompleto.trim()) {
-    throw new Error('nombre completo inválido o vacío');
-  }
-  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    throw new Error('formato de email inválido');
-  }
-  if (email.length < 6 || email.length > 30) {
-    throw new Error('la longitud del email debe estar entre 6 y 30 caracteres');
-  }
-  if (typeof password !== 'string' || password.length < 8) {
-    throw new Error('contraseña debe ser un string de al menos 8 caracteres');
-  }
-  if (typeof direccion !== 'string' || !direccion.trim()) {
-    throw new Error('dirección inválida o vacía');
-  }
-  const roles = ['administrador', 'cliente', 'empleado'];
-  if (typeof rol !== 'string' || !roles.includes(rol)) throw new Error('rol invalido');
+export const editUser = (targetId, fullName, email, password, address, role) => {
+  validate.userId(targetId);
+  validate.name(fullName);
+  validate.email(email);
+  validate.password(password);
+  validate.direction(address);
+  validate.role(role);
 
-  return fetch(`${import.meta.env.VITE_API_URL}users/${idObjetivo}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users/${targetId}`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ nombreCompleto, email, password, direccion, rol }),
+    body: JSON.stringify({ fullName, email, password, address, role }),
   })
     .catch(() => {
-      throw new Error('error de conexion');
+      throw new Error('connection error');
     })
     .then((response) => {
       const { status } = response;
@@ -37,7 +26,7 @@ export const editUser = (idObjetivo, nombreCompleto, email, password, direccion,
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new Error('JSON parsing error');
         })
         .then((body) => {
           const { message } = body;

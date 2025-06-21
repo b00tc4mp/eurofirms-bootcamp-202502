@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // devuelve true si el usuario está logueado y su rol es 'admin'
-  const isAdmin = loggedIn && rol === 'administrador';
+  const isAdmin = loggedIn && rol === 'administrator';
   //Llegados a este punto se le pasa los valores adecuados y puede usarse para sellar rutas
   return <AuthContext.Provider value={{ loggedIn, rol, isAdmin, login, logout }}>{children}</AuthContext.Provider>;
 };

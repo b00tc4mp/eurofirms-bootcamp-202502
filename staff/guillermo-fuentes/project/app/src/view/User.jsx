@@ -41,7 +41,7 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
         <span className="font-semibold">Dirección:</span> {user.direccion}
       </p>
       <p className="text-gray-700 mb-1">
-        <span className="font-semibold">Rol:</span> {user.rol}
+        <span className="font-semibold">Rol:</span> {user.role}
       </p>
       <p className="text-gray-700 mb-4">
         <span className="font-semibold">Fecha registro:</span> {new Date(user.fechaRegistro).toLocaleString()}

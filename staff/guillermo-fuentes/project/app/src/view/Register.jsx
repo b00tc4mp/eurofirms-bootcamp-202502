@@ -18,11 +18,11 @@ export const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const direccion = form.direccion.value;
-    const rol = form.rol.value;
+    const role = form.role.value;
 
     try {
       logic
-        .registerUser(nombreCompleto, email, password, direccion, rol)
+        .registerUser(nombreCompleto, email, password, direccion, role)
         .then(() => {
           form.reset();
           navigate('/home');
@@ -104,22 +104,22 @@ export const Register = () => {
           <div>
             {isAdmin ? (
               <>
-                <label htmlFor="rol" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
                   Rol
                 </label>
                 <select
-                  name="rol"
-                  id="rol"
+                  name="role"
+                  id="role"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  defaultValue="cliente"
+                  defaultValue="client"
                   required
                 >
-                  <option value="cliente">Cliente</option>
-                  <option value="administrador">Administrador</option>
+                  <option value="client">Cliente</option>
+                  <option value="administrator">Administrador</option>
                 </select>
               </>
             ) : (
-              <input type="text" name="rol" id="rol" value="cliente" readOnly hidden className="w-full" />
+              <input type="text" name="role" id="role" value="client" readOnly hidden className="w-full" />
             )}
           </div>
 
