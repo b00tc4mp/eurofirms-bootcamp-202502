@@ -1,5 +1,5 @@
 import { User } from '../data/index.js';
-import { NotFoundError, SystemError } from '../errors.js';
+import { NotFoundError, SystemError } from 'com';
 
 export const getUsers = () => {
   return User.find()
@@ -17,7 +17,6 @@ export const getUsers = () => {
         user.id = user._id.toString();
         delete user._id;
         delete user.__v;
-        
       });
 
       return users;

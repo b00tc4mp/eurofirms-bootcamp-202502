@@ -1,5 +1,5 @@
 import { User, Proveedor } from '../data/index.js';
-import { DuplicityError, NotFoundError, SystemError, ValidationError } from '../errors.js';
+import { DuplicityError, NotFoundError, SystemError, ValidationError } from 'com';
 
 export const editarProveedor = (idSolicitante, idObjetivo, datosActualizados) => {
   return Promise.all([User.findById(idSolicitante), Proveedor.findById(idObjetivo)]).then(

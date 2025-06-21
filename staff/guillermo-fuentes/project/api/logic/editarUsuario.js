@@ -1,13 +1,14 @@
 import { User } from '../data/index.js';
 import bcrypt from 'bcryptjs';
-import { DuplicityError, NotFoundError, SystemError, ValidationError } from '../errors.js';
+import { DuplicityError, SystemError, validate, NotFoundError, ValidationError } from 'com';
 /**Metodo que permite editar un usuario recibe 3 parametros
  * @param idSolicitante el ID del que quiere hacer el cambio (puede ser él mismo usuario o un administrador).
  * @param idObjetivo el id del usuario a editar
  * @param datosActualizados un objeto con los campos a actualizar */
 export const editarUsuario = (idSolicitante, idObjetivo, datosActualizados) => {
   // Se obtienen simultáneamente el solicitante y el usuario objetivo desde la base de datos
-
+  validate.adminId(idSolicitante);
+  validate.userId(idObjetivo);
   return Promise.all([User.findById(idSolicitante), User.findById(idObjetivo)]).then(([solicitante, usuario]) => {
     //Si los usuarios no se encuentran se muestra estos mensajes
     if (!usuario) throw new NotFoundError('Usuario no encontrado');

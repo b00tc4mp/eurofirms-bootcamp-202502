@@ -1,7 +1,8 @@
 import { User, connect } from '../data/index.js';
-import { NotFoundError, SystemError } from '../errors.js';
+import { DuplicityError, SystemError, NotFoundError, validate } from 'com';
 
 export const getUsersByRol = (rol) => {
+  validate.role(rol);
   return User.find({ rol })
     .lean()
     .catch((error) => {

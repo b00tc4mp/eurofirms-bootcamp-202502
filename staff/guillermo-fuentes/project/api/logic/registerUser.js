@@ -1,26 +1,14 @@
 import { User } from '../data/index.js';
 import bcrypt from 'bcryptjs';
-import { DuplicityError, SystemError, ValidationError } from '../errors.js';
+import { DuplicityError, SystemError, validate } from 'com';
 
 export const registerUser = (nombreCompleto, email, password, direccion, rol) => {
   // Validaciones de entrada
-  if (typeof nombreCompleto !== 'string' || !nombreCompleto.trim()) {
-    throw new ValidationError('nombre completo inválido o vacío');
-  }
-  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    throw new ValidationError('formato de email inválido');
-  }
-  if (email.length < 6 || email.length > 30) {
-    throw new ValidationError('la longitud del email debe estar entre 6 y 30 caracteres');
-  }
-  if (typeof password !== 'string' || password.length < 8) {
-    throw new ValidationError('contraseña debe ser un string de al menos 8 caracteres');
-  }
-  if (typeof direccion !== 'string' || !direccion.trim()) {
-    throw new ValidationError('dirección inválida o vacía');
-  }
-  const roles = ['administrador', 'cliente', 'empleado'];
-  if (typeof rol !== 'string' || !roles.includes(rol)) throw new ValidationError('rol invalido');
+  validate.name(nombreCompleto);
+  validate.email(email);
+  validate.password(password);
+  validate.direction(direccion);
+  validate.role(rol);
   const saltRounds = 10;
 
   return bcrypt

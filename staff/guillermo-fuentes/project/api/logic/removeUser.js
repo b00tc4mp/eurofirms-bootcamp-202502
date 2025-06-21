@@ -1,11 +1,10 @@
 import { User } from '../data/index.js';
-import { ValidationError, NotFoundError, SystemError } from '../errors.js';
 
+import { DuplicityError, SystemError, validate } from 'com';
 export const removeUser = (userId, adminId) => {
-  if (typeof userId !== 'string') throw new ValidationError('user id invalid');
-
-  return Promise.all([User.findOne({ _id: userId }), User.findOne({ _id: adminId })])
-  .then(([user, admin]) => {
+  validate.userId(userId);
+  validate.adminId(adminId);
+  return Promise.all([User.findOne({ _id: userId }), User.findOne({ _id: adminId })]).then(([user, admin]) => {
     if (!user) throw NotFoundError('user not found');
     if (!admin) throw NotFoundError('admin not found');
     if (admin.rol === 'administrador') {

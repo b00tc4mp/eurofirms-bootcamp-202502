@@ -1,10 +1,9 @@
 import { Proveedor, User } from '../data/index.js';
-import { DuplicityError, NotFoundError, SystemError, ValidationError } from '../errors.js';
+import { DuplicityError, SystemError, validate, NotFoundError } from 'com';
 
 export const deleteProveedor = (idProveedor, adminId) => {
-  if (typeof idProveedor !== 'string' || !idProveedor.trim()) {
-    throw new ValidationError('ID del proveedor invalido o vacio');
-  }
+  validate.idProveedor(idProveedor);
+  validate.adminId(adminId);
   return Promise.all([Proveedor.findById(idProveedor), User.findById(adminId)])
     .catch((error) => {
       throw new SystemError('mongo error');

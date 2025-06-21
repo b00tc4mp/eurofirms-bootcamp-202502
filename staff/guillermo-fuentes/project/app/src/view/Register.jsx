@@ -25,7 +25,7 @@ export const Register = () => {
         .registerUser(nombreCompleto, email, password, direccion, rol)
         .then(() => {
           form.reset();
-          navigate('/login');
+          navigate('/home');
         })
         .catch((error) => {
           console.error(error);
