@@ -1,0 +1,132 @@
+import { Router } from 'express';
+import { jsonBodyParser } from '../middlewares/jsonBodyParser.js';
+import { logic } from '../logic/index.js';
+import jwt from 'jsonwebtoken';
+const { JWT_SECRET } = process.env;
+
+export const usersRouter = Router();
+
+usersRouter.post('/', jsonBodyParser, (request, response, next) => {
+  try {
+    const { nombreCompleto, email, password, direccion, rol } = request.body;
+    logic
+      .registerUser(nombreCompleto, email, password, direccion, rol)
+      .then(() => response.status(201).send())
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+usersRouter.post('/auth', jsonBodyParser, (request, response, next) => {
+  try {
+    const { email, password } = request.body;
+
+    logic
+      .authenticateUser(email, password)
+      .then(({ id, rol }) => {
+        const token = jwt.sign({ sub: id, rol }, JWT_SECRET);
+        response.status(200).json({ token });
+      })
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.delete('/:userId', (request, response, next) => {
+  try {
+    const { authorization } = request.headers;
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      const error = new Error('Invalid authorization header');
+      error.status = 401;
+      throw error;
+    }
+    const token = authorization.slice(7);
+    const { sub: adminId } = jwt.verify(token, JWT_SECRET);
+    const { userId } = request.params;
+    logic
+      .removeUser(userId, adminId)
+      .then(() => response.status(204).send())
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+usersRouter.get('/', (request, response, next) => {
+  try {
+    const { authorization } = request.headers;
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      const error = new Error('Encabezado de autorización inválido');
+      error.status = 401; // Unauthorized
+      throw error;
+    }
+
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, process.env.JWT_SECRET);
+
+    logic
+      .getUsers(userId)
+      .then((user) => response.status(200).json(user))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.get('/:rol', (request, response, next) => {
+  try {
+    const { authorization } = request.headers;
+    const { rol } = request.params; // Obtener el rol desde los query parameters
+
+    // Validar que se proporcionó el rol
+    if (!rol) {
+      const error = new Error('El parámetro rol es requerido');
+      error.status = 400; // Bad Request
+      throw error;
+    }
+    console.log('Rol recibido:', rol);
+    // Validar el encabezado de autorización
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      const error = new Error('Encabezado de autorización inválido');
+      error.status = 401; // Unauthorized
+      throw error;
+    }
+
+    // Verificar el token JWT
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Llamar a getUsersByRol con el rol proporcionado
+    logic
+      .getUsersByRol(rol)
+      .then((users) => response.status(200).json(users))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.put('/:userId', jsonBodyParser, (request, response, next) => {
+  try {
+    const { authorization } = request.headers;
+
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      const error = new Error('Encabezado de autorización inválido');
+      error.status = 401;
+      throw error;
+    }
+
+    const token = authorization.slice(7);
+    const { sub: idSolicitante } = jwt.verify(token, JWT_SECRET);
+
+    const { userId: idObjetivo } = request.params;
+    const datosActualizados = request.body;
+
+    logic
+      .editarUsuario(idSolicitante, idObjetivo, datosActualizados)
+      .then(() => response.status(200).json({ mensaje: 'Usuario actualizado correctamente' }))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
