@@ -5,23 +5,31 @@ import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
+import { Alert } from './view/components/Alert'
+import { Confirm } from './view/components/confirm'
+import { Context } from './context'
 
 import { logic } from './logic' 
 
 export const App = () => {
     const navigate = useNavigate()
 
-    const handleRegisterClicked = () => navigate('/register')
+    const [alertMessage, setAlertMessage] = useState('')
+    const [confirmMessage, setConfirmMessage] = useState('') 
+    const [confirmAction, setConfirmAction] = useState(null)
+
+    const handleRegisterClicked =() => navigate('/register')
 
     const handleLoginClicked = () => navigate('/login')
 
     const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedIn =() => navigate('/home')
+    const handleUserLoggedIn = () => navigate('/login')
 
     const handleUserLoggedOut = () => navigate('/login')
 
     let loggedIn
+
         try {
             loggedIn = logic.isUserLoggedIn()
         } catch (error) {
@@ -29,43 +37,55 @@ export const App = () => {
 
             alert(error.message)
         }
-    }
 
-    console.log('App -> render') 
+   const handleAlertAccepted = () => setAlertMessage('')
+   
+   const handleAcceptConfirn = () => {
+    setConfirmMessage('')
 
-    return <Routes>
-        
-            <Route path='/' element={
-                !loggedIn ?
-                    <Landing
-                    
-                    onRegisterClicked= {handleRegisterClicked}
-                    onLoginClicked= {handleLoginCliked}
+    confirmAction.resolve(true)
+   }
+
+   const handleShowConfirm = message => {
+    setConfirmMessage(message)
+
+    return new Promise((resolve, reject) => 
+    {
+        setConfirmAction({ resolve})
+    })
+   }
+
+   console.log('App -> render')
+
+   return <Content.Provider value={{
+        alert: setAlertMessage,
+        confirm: handleShowConfirm
+   }}>
+    {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted}/>}
+
+    {confirmMessage && <confirm message={confrimMessage} onAccepted={handleCancelConfirm} onAccepted={handleAcceptedConfirm} />}
+   </Content.Provider>
+
+     <Routes>
+        <Route path='/' element={
+            !loggedIn ?
+                <Landing
+                    onRegisterCclicked={handleRegisterClicked}
+                    onLoginClicked={handleLoginClicked}
                     />
                     :
-                    <Home
-                    onUserLoggedOut= {handleUserLoggedOut} 
-                    />
-            }/>
+                    <Navigate to='/' />
+        } />
 
-            <Route path='/register' element={
-                !loggedIn ?
-                <Register
-                onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}
-                />
-                :
-                <Navigate to='/' />
-            } />
-
-            <Route path='login'element={
-                !loggedIn ?
+        <Route path='/login' element={
+            !loggedin ?
                 <Login
-                onRegisterClicked={handleRegisterClicked}
-                onUserLoggedIn={handleUserLoggedIn}
+                    onRegisterClicked={handleRegisterClicked}
+                    onUserLoggedIn={handleUserLoggedIn}
                 />
                 :
                 <Navigate to='/' />
-            } />
-            </Routes> 
+        } />
+    </Routes>
+    </Context.Provider>
 }
