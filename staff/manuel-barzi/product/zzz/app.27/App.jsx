@@ -7,7 +7,6 @@ import { Login } from './view/Login'
 import { Home } from './view/Home'
 import { Alert } from './view/components/Alert'
 import { Confirm } from './view/components/Confirm'
-import { Context } from './context'
 
 import { logic } from './logic'
 
@@ -62,10 +61,7 @@ export const App = () => {
 
     console.log('App -> render')
 
-    return <Context.Provider value={{
-        alert: setAlertMessage,
-        confirm: handleShowConfirm
-    }}>
+    return <>
         {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
         {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
@@ -78,7 +74,11 @@ export const App = () => {
                         onLoginClicked={handleLoginClicked}
                     />
                     :
-                    <Home onUserLoggedOut={handleUserLoggedOut} />
+                    <Home
+                        onUserLoggedOut={handleUserLoggedOut}
+                        alert={setAlertMessage}
+                        confirm={handleShowConfirm}
+                    />
             } />
 
             <Route path='/register' element={
@@ -86,6 +86,7 @@ export const App = () => {
                     <Register
                         onLoginClicked={handleLoginClicked}
                         onUserRegistered={handleUserRegistered}
+                        alert={setAlertMessage}
                     />
                     :
                     <Navigate to='/' />
@@ -96,10 +97,11 @@ export const App = () => {
                     <Login
                         onRegisterClicked={handleRegisterClicked}
                         onUserLoggedIn={handleUserLoggedIn}
+                        alert={setAlertMessage}
                     />
                     :
                     <Navigate to='/' />
             } />
         </Routes>
-    </Context.Provider>
+    </>
 }

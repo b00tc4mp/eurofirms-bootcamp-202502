@@ -1,12 +1,7 @@
 import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com'
-
 import { logic } from '../logic'
 
-import { useContext } from '../context'
-
-export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
-    const { alert } = useContext()
-
+export const Login = ({ onRegisterClicked, onUserLoggedIn, alert }) => {
     const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginSubmit = event => {
