@@ -35,6 +35,7 @@ export const registerUser = (name, email, username, password) => {
                     //throw new Error(message)
 
                     //nuevo
+                    //utilizamos el objeto errors (el cuál contiene TODAS las constructoras), se lanzará un error con el nombre de la constructora la cuál está en la constante error y el mensaje de error. Pero si saltará una constructora que no conocemos por seguridad configuramos que dé un SystemError
                     const constructor = errors[error] || SystemError
                     throw new constructor(message)
                 })
@@ -42,5 +43,3 @@ export const registerUser = (name, email, username, password) => {
 }
 //Idem que hicimos en api, cambiamos contructoras de errores por las nuestras:
 //En las de validaciones iniciales ponemos la constructora ValidationError(configurada en validate) y los errores de sistemas le pondremos SystemError
-
-//documentar linea 37, tengo capturas de pantalla

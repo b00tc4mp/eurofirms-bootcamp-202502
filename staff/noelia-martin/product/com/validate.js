@@ -1,5 +1,12 @@
-//Creamos este fichero para meter todas las validaciones síncronas de introducción de datos de todas las lógicas. Creamos metodos con cada una de ellas que serán llamados desde todas las lógicas que las necesite. (Así ahorramos muchas líneas de código)
-import { ValidationError } from './errors.js'
+import { ValidationError } from './index.js'
+
+/* 
+Si hubiera dejado el codigo de Manu, podría importar ValidationError directamente del fichero errors.js
+Pero tal como lo he configurado de ese fichero solo puede importarse el objeto errors y si quisiera utilizar solo validationError tendría de desestructurarlo. Sería así:
+import errors from './errors.js'
+const { ValidationError } = errors
+*/
+
 
 //metemos todos los metodos en el objeto validate que será exportado
 export const validate = {
@@ -47,3 +54,4 @@ export const validate = {
         if (postId.length !== 24) throw new ValidationError('invalid postId length')
     }
 }
+//Creamos este fichero para meter todas las validaciones síncronas de introducción de datos de todas las lógicas. Creamos metodos con cada una de ellas que serán llamados desde todas las lógicas que las necesite. (Así ahorramos muchas líneas de código)

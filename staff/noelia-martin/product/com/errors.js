@@ -1,49 +1,49 @@
-export class ValidationError extends Error {
+class ValidationError extends Error {
     constructor(message) {
         super(message)
     }
 }
 
-export class DuplicityError extends Error {
+class DuplicityError extends Error {
     constructor(message) {
         super(message)
     }
 }
 
-export class NotFoundError extends Error {
+class NotFoundError extends Error {
     constructor(message) {
         super(message)
     }
 }
 
-export class CredentialsError extends Error {
+class CredentialsError extends Error {
     constructor(message) {
         super(message)
     }
 }
 
-export class AuthorshipError extends Error {
+class AuthorshipError extends Error {
     constructor(message) {
         super(message)
     }
 }
 
-export class SystemError extends Error {
+class SystemError extends Error {
     constructor(message) {
         super(message)
     }
 }
 
-export class AuthorizationError extends Error {
+class AuthorizationError extends Error {
     constructor(message) {
         super(message)
     }
 }
+//En este fichero ponemos todas las constructoras de errores propios que tenemos hasta el momento, tanto de logica, como el último de se creo para api(AuthorizationError)
 
-//metemos todas las constructoras de errores propios que tenemos hasta el momento, tanto de logica, como el último de se creo para api(AuthorizationErrorr)
-
-//creamos el objeto errors con todas las constructoras
-export const errors = {
+//exportamos todas las constructoras a través del objeto errors
+//Podríamos haberlas exportado una a una pero he preferido desestructurarlo en el index y exportarlas individualmente allí (Manu lo hizo aqui)
+const errors = {
     ValidationError,
     DuplicityError,
     NotFoundError,
@@ -53,5 +53,8 @@ export const errors = {
     AuthorizationError
 }
 
-//export default errors
+export default errors
+//manu exportó este objeto por defecto. Esto se realiza cuando se desea exportar un único valor desde un módulo.
+// La única diferencia respecto a como lo hemos hecho hasta ahora es que cuando otros módulos lo importen pueden hacerlo sin utilizar llaves y podríamos nombrarlo como quisieran
 
+//No es obligatorio exportarlo por defecto, podríamos exportarlo normal. Lo dejo por defecto para probar su funcionamiento

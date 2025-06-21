@@ -22,7 +22,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                     console.error(error)
                     //alert(error.message) ANTIGUO lo mejoramos para dar mas información al usuario
 
-                    //Si recibe una constructora de error NotFoundError o CredentialsError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá una advertencia grave
+                    //Si recibe una constructora de error NotFoundError o CredentialsError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá un error grave
                     if (error instanceof NotFoundError || error instanceof CredentialsError)
                         alert('WARN: ' + error.message)
                     else

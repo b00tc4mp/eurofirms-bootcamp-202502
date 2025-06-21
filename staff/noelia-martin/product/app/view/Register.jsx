@@ -24,7 +24,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                     console.error(error)
                     //alert(error.message) ANTIGUO lo mejoramos para dar mas información al usuario
 
-                    //Si recibe una constructora de error DuplicityError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá una advertencia grave
+                    //Si recibe una constructora de error DuplicityError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá un error grave
                     if (error instanceof DuplicityError)
                         alert('WARN: ' + error.message)
                     else
