@@ -28,20 +28,25 @@ export const Post = ({ post, onPostDeleted }) => {
   console.log('Post -> render');
 
   return (
-    <article>
-      <h3 className="font-bold">{post.author.username}</h3>
+    <article className="bg-white rounded-2xl shadow-md w-full overflow-hidden border border-gray-200">
+      <div className="flex items-center justify-between p-4">
+        <h3 className="font-semibold text-gray-800">@{post.author.username}</h3>
 
-      <img src={post.image} alt="" />
+        {post.own && (
+          <button onClick={handleDeleteClick} className="text-red-500 hover:text-red-700 text-xl" title="Delete post">
+            🗑️
+          </button>
+        )}
+      </div>
 
-      <p>{post.text}</p>
+      <div className="w-full aspect-square bg-gray-100 overflow-hidden">
+        <img src={post.image} alt="" className="object-cover w-full h-full" />
+      </div>
 
-      <time>{post.date}</time>
-
-      {post.own && (
-        <button className="border-4 border-black px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>
-          🗑️
-        </button>
-      )}
+      <div className="p-4 space-y-2">
+        <p className="text-sm text-gray-700">{post.text}</p>
+        <time className="text-xs text-gray-400 block">{new Date(post.date).toLocaleString()}</time>
+      </div>
     </article>
   );
 };

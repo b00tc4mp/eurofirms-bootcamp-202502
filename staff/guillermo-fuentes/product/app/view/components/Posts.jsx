@@ -51,10 +51,10 @@ export const Posts = () => {
   console.log('Posts -> render');
 
   return (
-    <>
+    <div className="flex flex-col items-center gap-6 p-4 max-w-xl mx-auto">
       {posts.map((post) => (
         <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />
       ))}
-    </>
+    </div>
   );
 };
