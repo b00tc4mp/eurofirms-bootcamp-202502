@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost.jsx'
+import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
-    //const onUserLoggedOut = props.onUserLoggedOut
+    const { alert } = useContext()
 
     const[view, setView] = useState('posts')
 
@@ -64,8 +65,8 @@ export const Home = ({ onUserLoggedOut }) => {
             type="button"
             onClick={handleLogoutClick}>Logout
         </button>
-        {view === 'posts' && <Posts />}
-        {view === 'create-post' && <CreatePost onCancelClicked= {handleCreatePostCancelClicked} onPostCreated={handlePostCreated} />}
+        {view === 'posts' && <Posts alert={alert} confirm={confirm} />}
+        {view === 'create-post' && <CreatePost onCancelClicked= {handleCreatePostCancelClicked} onPostCreated={handlePostCreated} alert={alert} />}
     </div>
 }
 
