@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react'
 import { logic } from '../../logic'
 
 import { Post } from './Post'
+import { useContext } from '../../context'
 
-export const Posts = ({ alert, confirm }) => {
+export const Posts = () => {
+    const { alert } = useContext()
+
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -46,6 +49,6 @@ export const Posts = ({ alert, confirm }) => {
     console.log('Posts -> render')
 
     return <>
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} alert={alert} confirm={confirm} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
     </>
 }

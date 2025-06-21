@@ -1,9 +1,12 @@
 import { logic } from '../../logic'
 
+import { useContext } from '../../context'
+
 //const onCancelClicked = props.onCancelClicked
 //const onPostCreated = props.onPostCreated
 
-export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
+    const { alert } = useContext()
 
     const handleCancelClick = () => onCancelClicked()
 

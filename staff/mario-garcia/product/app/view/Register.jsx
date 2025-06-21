@@ -1,9 +1,13 @@
 import { logic } from '../logic'
 
+import { useContext } from '../context'
+
 //const onLoginClicked = props.onLoginClicked
 //const onUserRegistered = props.onUserRegistered
 
-export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
+
+    const { alert } = useContext()
 
     const handleLoginClick = () => onLoginClicked()
 
