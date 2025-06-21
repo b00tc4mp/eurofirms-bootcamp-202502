@@ -24,7 +24,7 @@ export const validate = {
     }
   },
   role(role) {
-    const roles = ['administrador', 'cliente', 'empleado'];
+    const roles = ['administrator', 'employee', 'client'];
     if (typeof role !== 'string' || !roles.includes(role)) throw new ValidationError('rol invalido');
   },
   userId(userId) {
