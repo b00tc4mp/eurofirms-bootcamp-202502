@@ -22,7 +22,7 @@ export const updateUser = (idSolicitante, idObjetivo, nombreCompleto, direccion,
     if (!solicitante) throw new NotFoundError('Solicitante no encontrado');
 
     // Verificar si el solicitante es administrador o si está editando su propio perfil
-    const esAdmin = solicitante.rol === 'administrador';
+    const esAdmin = solicitante.role === 'administrator';
     const esElMismo = idSolicitante === idObjetivo;
 
     // Si no es administrador ni es el mismo usuario, se deniega la operación
@@ -55,11 +55,11 @@ export const updateUser = (idSolicitante, idObjetivo, nombreCompleto, direccion,
 
       // Validar y actualizar el rol si se proporciona
       if (rol !== undefined) {
-        if (!['administrador', 'empleado', 'cliente'].includes(rol)) {
+        if (!['administrator', 'employee', 'client'].includes(rol)) {
           throw new ValidationError('Rol no válido');
         }
         validate.role(rol); // Validar el formato del rol
-        usuario.rol = rol;
+        usuario.role = rol;
       }
 
       // Validar y actualizar el email si se proporciona

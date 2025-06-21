@@ -20,7 +20,7 @@ export const authenticateUser = (email, password) => {
         .then((match) => {
           if (!match) throw new CredentialsError('wrong password');
 
-          return { id: user.id, rol: user.rol };
+          return { id: user.id, role: user.role };
         });
     });
 };
