@@ -1,6 +1,10 @@
 import { logic } from '../../logic';
 
-export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
+import { useContext } from '../../context';
+
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
+  const { alert } = useContext();
+
   const handleCancelClick = () => onCancelClicked();
 
   const handleCreatePostSubmit = (event) => {

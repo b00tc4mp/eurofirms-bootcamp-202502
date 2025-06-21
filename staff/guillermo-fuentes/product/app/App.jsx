@@ -7,6 +7,7 @@ import { Login } from './view/Login';
 import { Home } from './view/Home';
 import { Alert } from './view/components/Alert';
 import { Confirm } from './view/components/Confirm';
+import { Context } from './context';
 
 import { logic } from './logic';
 
@@ -62,7 +63,12 @@ export const App = () => {
   console.log('App -> render');
 
   return (
-    <>
+    <Context.Provider
+      value={{
+        alert: setAlertMessage,
+        confirm: handleShowConfirm,
+      }}
+    >
       {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
       {confirmMessage && (
@@ -76,7 +82,7 @@ export const App = () => {
             !loggedIn ? (
               <Landing onRegisterClicked={handleRegisterClicked} onLoginClicked={handleLoginClicked} />
             ) : (
-              <Home onUserLoggedOut={handleUserLoggedOut} alert={setAlertMessage} confirm={handleShowConfirm} />
+              <Home onUserLoggedOut={handleUserLoggedOut} />
             )
           }
         />
@@ -85,11 +91,7 @@ export const App = () => {
           path="/register"
           element={
             !loggedIn ? (
-              <Register
-                onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}
-                alert={setAlertMessage}
-              />
+              <Register onLoginClicked={handleLoginClicked} onUserRegistered={handleUserRegistered} />
             ) : (
               <Navigate to="/" />
             )
@@ -100,17 +102,13 @@ export const App = () => {
           path="/login"
           element={
             !loggedIn ? (
-              <Login
-                onRegisterClicked={handleRegisterClicked}
-                onUserLoggedIn={handleUserLoggedIn}
-                alert={setAlertMessage}
-              />
+              <Login onRegisterClicked={handleRegisterClicked} onUserLoggedIn={handleUserLoggedIn} />
             ) : (
               <Navigate to="/" />
             )
           }
         />
       </Routes>
-    </>
+    </Context.Provider>
   );
 };

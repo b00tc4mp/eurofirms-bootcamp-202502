@@ -1,6 +1,10 @@
 import { logic } from '../logic';
 
-export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
+import { useContext } from '../context';
+
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
+  const { alert } = useContext();
+
   const handleLoginClick = () => onLoginClicked();
 
   const handleRegisterSubmit = (event) => {
