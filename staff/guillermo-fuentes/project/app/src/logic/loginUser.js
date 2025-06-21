@@ -22,11 +22,11 @@ export const loginUser = (email, password) => {
           .catch(() => {
             throw new Error('json error');
           })
-          .then(({ token, rol }) => {
+          .then(({ token, role }) => {
             data.setToken(token);
 
-            data.setRol(rol);
-            return { token, rol };
+            data.setRol(role);
+            return { token, role };
           });
       }
       return response

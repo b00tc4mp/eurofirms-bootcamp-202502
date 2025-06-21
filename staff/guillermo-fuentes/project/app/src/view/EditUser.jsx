@@ -11,7 +11,7 @@ export const EditUser = ({ user, onEditedUser }) => {
   const [password, setPassword] = useState('');
   const [rol, setRol] = useState(user.rol);
   //Usamos el contexto que hemos creado para comprobar si el usuario esta logueado y es administrador
-  const isAdmin = loggedIn && userRol === 'administrador';
+  const isAdmin = loggedIn && userRol === 'administrator';
   const handleEditUser = () => onEditedUser();
   const handleEditSubmit = (event) => {
     event.preventDefault();
@@ -128,15 +128,15 @@ export const EditUser = ({ user, onEditedUser }) => {
                   value={rol}
                   onChange={(event) => setRol(event.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  defaultValue="cliente"
+                  defaultValue="client"
                   required
                 >
-                  <option value="cliente">Cliente</option>
-                  <option value="administrador">Administrador</option>
+                  <option value="client">Cliente</option>
+                  <option value="administrator">Administrador</option>
                 </select>
               </>
             ) : (
-              <input type="text" name="rol" id="rol" value="cliente" readOnly hidden className="w-full" />
+              <input type="text" name="rol" id="rol" value="client" readOnly hidden className="w-full" />
             )}
           </div>
 
