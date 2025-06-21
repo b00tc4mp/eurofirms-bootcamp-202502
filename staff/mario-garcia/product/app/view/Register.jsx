@@ -3,7 +3,7 @@ import { logic } from '../logic'
 //const onLoginClicked = props.onLoginClicked
 //const onUserRegistered = props.onUserRegistered
 
-export const Register = ({ onLoginClicked, onUserRegistered }) => {
+export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
 
     const handleLoginClick = () => onLoginClicked()
 

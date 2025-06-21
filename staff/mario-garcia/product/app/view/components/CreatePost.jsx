@@ -3,7 +3,7 @@ import { logic } from '../../logic'
 //const onCancelClicked = props.onCancelClicked
 //const onPostCreated = props.onPostCreated
 
-export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
+export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
 
     const handleCancelClick = () => onCancelClicked()
 

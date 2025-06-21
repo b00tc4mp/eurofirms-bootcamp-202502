@@ -1,9 +1,10 @@
+import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com'
 import { logic } from '../logic'
 
 //const onRegisterClicked = props.onRegisterClicked
 //const onUserLoggedIn = props.onUserLoggedIn
 
-export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
+export const Login = ({ onRegisterClicked, onUserLoggedIn, alert }) => {
 
     const handleRegisterClick = () => onRegisterClicked()
 
