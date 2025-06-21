@@ -2,13 +2,13 @@ import { User } from '../data/index.js';
 import bcrypt from 'bcryptjs';
 import { DuplicityError, SystemError, validate } from 'com';
 
-export const registerUser = (nombreCompleto, email, password, direccion, rol) => {
+export const registerUser = (nombreCompleto, email, password, direccion, role) => {
   // Validaciones de entrada
   validate.name(nombreCompleto);
   validate.email(email);
   validate.password(password);
   validate.direction(direccion);
-  validate.role(rol);
+  validate.role(role);
   const saltRounds = 10;
 
   return bcrypt
@@ -22,7 +22,7 @@ export const registerUser = (nombreCompleto, email, password, direccion, rol) =>
         email,
         password: hashedPassword,
         direccion,
-        rol,
+        role,
       })
         .catch((error) => {
           if (error.code === 11000) {

@@ -8,9 +8,9 @@ export const usersRouter = Router();
 
 usersRouter.post('/', jsonBodyParser, (request, response, next) => {
   try {
-    const { nombreCompleto, email, password, direccion, rol } = request.body;
+    const { nombreCompleto, email, password, direccion, role } = request.body;
     logic
-      .registerUser(nombreCompleto, email, password, direccion, rol)
+      .registerUser(nombreCompleto, email, password, direccion, role)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
@@ -111,20 +111,20 @@ usersRouter.put('/:userId', jsonBodyParser, (request, response, next) => {
     const { authorization } = request.headers;
 
     if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Encabezado de autorización inválido');
+      const error = new Error('Invalid authorization header');
       error.status = 401;
       throw error;
     }
 
-    const token = authorization.slice(7);
-    const { sub: idSolicitante } = jwt.verify(token, JWT_SECRET);
+    const token = request.headers.authorization.slice(7);
+    const { sub: requesterUserId } = jwt.verify(token, JWT_SECRET);
 
-    const { userId: idObjetivo } = request.params;
-    const datosActualizados = request.body;
+    const { userId: targetUserId } = request.params;
+    const { fullName, address, role, email, password } = request.body;
 
     logic
-      .editarUsuario(idSolicitante, idObjetivo, datosActualizados)
-      .then(() => response.status(200).json({ mensaje: 'Usuario actualizado correctamente' }))
+      .updateUser(requesterUserId, targetUserId, fullName, address, role, email, password)
+      .then(() => response.status(200).json({ message: 'User updated successfully' }))
       .catch((error) => next(error));
   } catch (error) {
     next(error);

@@ -27,11 +27,11 @@ const user = new Schema({
     type: String,
     required: true,
   },
-  rol: {
+  role: {
     type: String,
-    enum: ['administrador', 'empleado', 'cliente'],
+    enum: ['administrator', 'employee', 'client'],
     required: true,
-    default: 'cliente',
+    default: 'client',
   },
 });
 const proveedor = new Schema({

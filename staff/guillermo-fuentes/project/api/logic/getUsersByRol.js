@@ -1,9 +1,9 @@
 import { User, connect } from '../data/index.js';
 import { DuplicityError, SystemError, NotFoundError, validate } from 'com';
 
-export const getUsersByRol = (rol) => {
-  validate.role(rol);
-  return User.find({ rol })
+export const getUsersByRol = (role) => {
+  validate.role(role);
+  return User.find({ role })
     .lean()
     .catch((error) => {
       throw new SystemError('Error en MongoDB');
