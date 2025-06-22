@@ -40,10 +40,16 @@ export const App = () => {
 
    const handleAlertAccepted = () => setAlertMessage('')
    
-   const handleAcceptConfirn = () => {
+   const handleAcceptConfirm = () => {
     setConfirmMessage('')
 
     confirmAction.resolve(true)
+   }
+
+   const handleCancelConfirm = () => {
+    setConfirmMessage('')
+
+    confirmAction.resolve(false)
    }
 
    const handleShowConfirm = message => {
@@ -57,14 +63,14 @@ export const App = () => {
 
    console.log('App -> render')
 
-   return <Content.Provider value={{
+   return <Context.Provider value={{
         alert: setAlertMessage,
         confirm: handleShowConfirm
    }}>
     {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted}/>}
 
-    {confirmMessage && <confirm message={confrimMessage} onAccepted={handleCancelConfirm} onAccepted={handleAcceptedConfirm} />}
-   </Content.Provider>
+    {confirmMessage && <confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
+   
 
      <Routes>
         <Route path='/' element={
@@ -75,6 +81,16 @@ export const App = () => {
                     />
                     :
                     <Navigate to='/' />
+        } />
+
+        <Route path='/register' element={
+            !loggedIn ?
+                <Register
+                    onLoginClicked={handleLoginClicked}
+                    onUserRegistered={handleUserRegistered}
+                />
+                :
+                <Navigate to='/' />
         } />
 
         <Route path='/login' element={
