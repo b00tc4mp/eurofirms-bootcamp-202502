@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import jwt from 'jsonwebtoken';
+
 import { connect } from './data/index.js';
 
 import { usersRouter } from './routes/userRoutes.js';
