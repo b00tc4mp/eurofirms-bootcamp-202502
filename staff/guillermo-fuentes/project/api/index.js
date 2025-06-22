@@ -19,7 +19,7 @@ connect(MONGO_URL)
     });
     server.use('/users', usersRouter);
 
-    server.use('/provider', providerRouter);
+    server.use('/providers', providerRouter);
     server.use(errorHandler);
     server.listen(PORT, () => console.log('server escucha'));
   })

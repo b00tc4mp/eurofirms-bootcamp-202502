@@ -1,6 +1,5 @@
-import { validate } from 'com';
 import { Provider, User } from '../data/index.js';
-import { DuplicityError, NotFoundError, SystemError } from '../errors.js';
+import { DuplicityError, NotFoundError, SystemError, validate } from 'com';
 
 export const addProvider = (name, contact, direction, idUser) => {
   validate.name(name);

@@ -9,6 +9,7 @@ import { addProvider } from './addProvider.js';
 import { deleteProveedor } from './deleteProveedor.js';
 import { updateProvider } from './updateProvider.js';
 import { updateUser } from './updateUser.js';
+import { getProviders } from './getProvider.js';
 export const logic = {
   registerUser,
   authenticateUser,
@@ -19,4 +20,5 @@ export const logic = {
   addProvider,
   deleteProveedor,
   updateProvider,
+  getProviders,
 };

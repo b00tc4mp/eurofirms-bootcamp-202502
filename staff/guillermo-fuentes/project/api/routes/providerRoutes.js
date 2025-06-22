@@ -66,3 +66,23 @@ providerRouter.put('/:providerId', jsonBodyParser, (request, response, next) => 
     next(error);
   }
 });
+providerRouter.get('/', (request, response, next) => {
+  try {
+    const { authorization } = request.headers;
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      const error = new Error('Invalid authorization header');
+      error.status = 401; // Unauthorized
+      throw error;
+    }
+
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, process.env.JWT_SECRET);
+
+    logic
+      .getProviders(userId)
+      .then((user) => response.status(200).json(user))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
