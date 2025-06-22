@@ -8,9 +8,9 @@ export const usersRouter = Router();
 
 usersRouter.post('/', jsonBodyParser, (request, response, next) => {
   try {
-    const { nombreCompleto, email, password, direccion, role } = request.body;
+    const { fullName, email, password, direction, role } = request.body;
     logic
-      .registerUser(nombreCompleto, email, password, direccion, role)
+      .registerUser(fullName, email, password, direction, role)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
@@ -120,10 +120,10 @@ usersRouter.put('/:userId', jsonBodyParser, (request, response, next) => {
     const { sub: requesterUserId } = jwt.verify(token, JWT_SECRET);
 
     const { userId: targetUserId } = request.params;
-    const { fullName, address, role, email, password } = request.body;
+    const { fullName, direction, role, email, password } = request.body;
 
     logic
-      .updateUser(requesterUserId, targetUserId, fullName, address, role, email, password)
+      .updateUser(requesterUserId, targetUserId, fullName, direction, role, email, password)
       .then(() => response.status(200).json({ message: 'User updated successfully' }))
       .catch((error) => next(error));
   } catch (error) {

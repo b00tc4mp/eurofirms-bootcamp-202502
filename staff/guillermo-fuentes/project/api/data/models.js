@@ -5,7 +5,7 @@ const { Types } = Schema;
 const { ObjectId } = Types;
 
 const user = new Schema({
-  nombreCompleto: {
+  fullName: {
     type: String,
     required: true,
   },
@@ -18,12 +18,12 @@ const user = new Schema({
     type: String,
     required: true,
   },
-  fechaRegistro: {
+  registerDate: {
     type: Date,
     required: true,
     default: Date.now,
   },
-  direccion: {
+  direction: {
     type: String,
     required: true,
   },

@@ -5,13 +5,13 @@ import { DuplicityError, SystemError, validate, NotFoundError, ValidationError }
 /**Metodo que permite editar un usuario recibe varios parámetros
  * @param idSolicitante el ID del que quiere hacer el cambio (puede ser él mismo usuario o un administrador).
  * @param idObjetivo el id del usuario a editar
- * @param nombreCompleto el nombre completo a actualizar
- * @param direccion la dirección a actualizar
+ * @param fullName el nombre completo a actualizar
+ * @param direction la dirección a actualizar
  * @param rol el rol a actualizar (solo para administradores)
  * @param email el correo electrónico a actualizar (solo para administradores)
  * @param password la contraseña a actualizar (solo para administradores)
  */
-export const updateUser = (idSolicitante, idObjetivo, nombreCompleto, direccion, rol, email, password) => {
+export const updateUser = (idSolicitante, idObjetivo, fullName, direction, rol, email, password) => {
   // Validar IDs de entrada
   validate.adminId(idSolicitante);
   validate.userId(idObjetivo);
@@ -30,22 +30,22 @@ export const updateUser = (idSolicitante, idObjetivo, nombreCompleto, direccion,
       throw new Error('No estás autorizado para realizar esta operación');
     }
 
-    // Validar y actualizar nombreCompleto si se proporciona
-    if (nombreCompleto !== undefined) {
+    // Validar y actualizar fullName si se proporciona
+    if (fullName !== undefined) {
       if (!esAdmin && !esElMismo) {
-        throw new ValidationError('Campo no permitido: nombreCompleto');
+        throw new ValidationError('Campo no permitido: fullName');
       }
-      validate.name(nombreCompleto); // Validar el formato del nombre
-      usuario.nombreCompleto = nombreCompleto.trim();
+      validate.name(fullName); // Validar el formato del nombre
+      usuario.fullName = fullName.trim();
     }
 
-    // Validar y actualizar direccion si se proporciona
-    if (direccion !== undefined) {
+    // Validar y actualizar direction si se proporciona
+    if (direction !== undefined) {
       if (!esAdmin && !esElMismo) {
-        throw new ValidationError('Campo no permitido: direccion');
+        throw new ValidationError('Campo no permitido: direction');
       }
-      validate.direction(direccion); // Validar el formato de la dirección
-      usuario.direccion = direccion.trim();
+      validate.direction(direction); // Validar el formato de la dirección
+      usuario.direction = direction.trim();
     }
 
     // Ejecutar validaciones y actualizaciones adicionales si el solicitante es administrador
