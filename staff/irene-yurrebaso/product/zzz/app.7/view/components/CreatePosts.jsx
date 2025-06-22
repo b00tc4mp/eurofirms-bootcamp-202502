@@ -1,7 +1,7 @@
 import { logic } from '../../logic'
 
 //pasamos props con destructuring
-export const CreatePost = ({ onCancelClicked, onPostCreated, alert}) => {
+export const CreatePost = ({ onCancelClicked, onPostCreated}) => {
 
     const handleCancelClick = () => onCancelClicked() 
 

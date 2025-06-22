@@ -1,8 +1,7 @@
 import { logic } from '../logic'
 
 //destructuracion en las variables que se pasan como props
-//la alerta 'alert' ahora viene con prop desde la App.jsx, para mostrar ventana customizada
-export const Register = ({onLoginClicked, onUserRegistered, alert}) => {
+export const Register = ({onLoginClicked, onUserRegistered}) => {
     //creamos una funcion handle que maneja el onClick
     const handleLoginClick = () => onLoginClicked()
 

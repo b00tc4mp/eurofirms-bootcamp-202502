@@ -4,7 +4,7 @@ import { Post } from './Post'
 
 import { logic } from '../../logic'
 
-export const Posts = ({alert}) => {
+export const Posts = () => {
     //array vacio porque inicialmente no hay nada cargado
     const [posts, setPosts] = useState([])
 
@@ -58,6 +58,6 @@ export const Posts = ({alert}) => {
     //recibimos por props cada post que hay en el array posts
     //mapea cada dato a un componente de react, y le envia el dato con la propiedad post, y una funcion para eliminar post
     return <>
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} alert={alert} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted}/>)}
     </>
 }

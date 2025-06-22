@@ -2,7 +2,7 @@ import { logic } from '../logic'
 import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com'
 
 //destructuracion de variables de props
-export const Login = ({ onRegisterClicked, onUserLoggedIn, alert}) => {
+export const Login = ({ onRegisterClicked, onUserLoggedIn}) => {
 
     const handleRegisterClick = () => onRegisterClicked()
 
@@ -24,15 +24,15 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn, alert}) => {
                 console.error(error)
 
                 if (error instanceof NotFoundError || error instanceof CredentialsError)
-                    alert('WARNING: ' + error.message)
+                    alert('WARN: ' + error.message)
                 else
-                    alert('WARNING: ' + error.message)
+                    alert('WARN: ' + error.message)
             })
         } catch (error) {
             console.error(error)
 
             if (error instanceof ValidationError)
-                alert('WARNING: ' + error.message)
+                alert('WARN: ' + error.message)
             else
                 alert('ERROR: ' + error.message)
         }

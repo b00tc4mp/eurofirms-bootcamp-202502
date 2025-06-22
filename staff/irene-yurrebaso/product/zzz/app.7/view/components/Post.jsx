@@ -1,7 +1,7 @@
 import { logic } from '../../logic'
 
 //pasamos las prop con destructuring
-export const Post = ({ post, onPostDeleted, alert}) => {
+export const Post = ({ post, onPostDeleted}) => {
     const handleDeleteClick = () => {
         if (confirm('Delete post?'))
             try {
