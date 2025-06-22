@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/users/cliente', {
+fetch('http://localhost:8080/users/client', {
   method: 'GET',
   headers: {
     Authorization:
@@ -10,17 +10,17 @@ fetch('http://localhost:8080/users/cliente', {
       return response
         .json()
         .then((body) => {
-          throw new Error(body.message || 'Error en la solicitud');
+          throw new Error(body.message || 'Application error');
         })
         .catch(() => {
-          throw new Error('Error al parsear la respuesta');
+          throw new Error('Error parsing response');
         });
     }
     return response.json();
   })
   .then((users) => {
-    console.log('Usuarios con rol admin:', users);
+    console.log('Users with role :', users);
     return users;
   })
-  .then(() => console.log('Usuarios obtenidos correctamente'))
+  .then(() => console.log('Users obtained correctly'))
   .catch((error) => console.error('Error:', error.message));

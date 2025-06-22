@@ -1,16 +1,16 @@
-import { User, connect } from '../data/index.js';
-import { DuplicityError, SystemError, NotFoundError, validate } from 'com';
+import { User } from '../data/index.js';
+import { SystemError, NotFoundError, validate } from 'com';
 
 export const getUsersByRol = (role) => {
   validate.role(role);
   return User.find({ role })
     .lean()
     .catch((error) => {
-      throw new SystemError('Error en MongoDB');
+      throw new SystemError('Error in MongoDB');
     })
     .then((users) => {
       if (!users || users.length === 0) {
-        throw new NotFoundError('No se encontraron usuarios');
+        throw new NotFoundError('Users not found');
       }
 
       users.forEach((user) => {

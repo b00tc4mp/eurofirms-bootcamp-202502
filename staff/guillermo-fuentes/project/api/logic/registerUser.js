@@ -14,7 +14,7 @@ export const registerUser = (fullName, email, password, direction, role) => {
   return bcrypt
     .hash(password, saltRounds)
     .catch((error) => {
-      throw new SystemError(error.message || 'error en el registro');
+      throw new SystemError(error.message || 'Register error');
     })
     .then((hashedPassword) => {
       return User.create({
@@ -26,9 +26,9 @@ export const registerUser = (fullName, email, password, direction, role) => {
       })
         .catch((error) => {
           if (error.code === 11000) {
-            throw new DuplicityError('el usuario con este email ya existe');
+            throw new DuplicityError('the user with this email already exists');
           }
-          throw new SystemError(error.message || 'error en el registro');
+          throw new SystemError(error.message || 'Register error');
         })
         .then(() => {});
     });

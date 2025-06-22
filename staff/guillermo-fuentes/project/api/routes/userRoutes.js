@@ -56,7 +56,7 @@ usersRouter.get('/', (request, response, next) => {
   try {
     const { authorization } = request.headers;
     if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Encabezado de autorización inválido');
+      const error = new Error('Invalid authorization header');
       error.status = 401; // Unauthorized
       throw error;
     }
@@ -80,14 +80,14 @@ usersRouter.get('/:rol', (request, response, next) => {
 
     // Validar que se proporcionó el rol
     if (!rol) {
-      const error = new Error('El parámetro rol es requerido');
+      const error = new Error('The role parameter is required');
       error.status = 400; // Bad Request
       throw error;
     }
-    console.log('Rol recibido:', rol);
+
     // Validar el encabezado de autorización
     if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Encabezado de autorización inválido');
+      const error = new Error('Invalid authorization header');
       error.status = 401; // Unauthorized
       throw error;
     }

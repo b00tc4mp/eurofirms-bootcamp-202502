@@ -1,6 +1,6 @@
 import { User } from '../data/index.js';
 
-import { DuplicityError, SystemError, validate } from 'com';
+import { SystemError, validate } from 'com';
 export const removeUser = (userId, adminId) => {
   validate.userId(userId);
   validate.adminId(adminId);
@@ -12,7 +12,7 @@ export const removeUser = (userId, adminId) => {
         throw new SystemError('Mongo error');
       });
     } else {
-      throw new Error('Este usuario no esta autorizado para esta operacion');
+      throw new Error('This user is not authorized for this operation');
     }
   });
 };

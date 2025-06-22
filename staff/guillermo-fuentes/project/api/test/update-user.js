@@ -10,7 +10,7 @@ fetch('http://localhost:8080/users/68570c3e11cb0b356fedc67d', {
     direccion: 'Calle Sevilla 45',
     email: 'concepcion.garcia@example.com',
     password: 'nuevaPassword123',
-    rol: 'empleado', // Puedes probar también con 'cliente' o 'administrador'
+    rol: 'employee',
   }),
 })
   .then((response) => {
@@ -20,13 +20,13 @@ fetch('http://localhost:8080/users/68570c3e11cb0b356fedc67d', {
         const data = JSON.parse(text);
 
         if (status === 200) {
-          console.log('✅ Mensaje del servidor:', data.mensaje);
+          console.log('✅ Server message:', data.mensaje);
         } else {
-          const mensaje = data.message || 'Error desconocido';
+          const mensaje = data.message || 'Unknown error';
           throw new Error(mensaje);
         }
       } catch (error) {
-        throw new Error('Respuesta no válida del servidor');
+        throw new Error('Invalid server response');
       }
     });
   })

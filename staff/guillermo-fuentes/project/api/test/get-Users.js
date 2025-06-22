@@ -31,5 +31,5 @@ fetch('http://localhost:8080/users', {
         throw new Error(message);
       });
   })
-  .then(() => console.log('Users obtenidos'))
+  .then(() => console.log('Users obtained'))
   .catch((error) => console.error(error));

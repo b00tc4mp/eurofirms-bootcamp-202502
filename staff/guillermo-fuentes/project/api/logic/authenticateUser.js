@@ -1,6 +1,6 @@
 import { User } from '../data/index.js';
 import bcrypt from 'bcryptjs';
-import { DuplicityError, SystemError, validate, NotFoundError, CredentialsError } from 'com';
+import { validate, NotFoundError, CredentialsError } from 'com';
 
 export const authenticateUser = (email, password) => {
   validate.email(email);
