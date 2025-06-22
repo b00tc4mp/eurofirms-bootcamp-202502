@@ -36,12 +36,17 @@ App
 - components
 - logic
 - data
-
-API
+- assets
+- context
+- view
+  API
 
 - routes
 - logic
 - data
+- middlewares
+- routes
+- test
 
 ### UI Components
 
@@ -62,18 +67,18 @@ App
 User
 
 - id (UUID)
-- nombreCompleto (string, required)
+- fullName (string, required)
 - email (string, required, unique)
 - password (string, required)
-- direccion (string, required)
+- direction (string, required)
 - role (string, values: administrador | cliente| empleado, required)
 
   Proveedor
 
 - id (UUID)
-- nombre (string, required, unique)
-- direccion(string required)
-- usuarios(referencia al id usuario, ObjectId)
+- name (string, required, unique)
+- direction(string required)
+- user(referencia al id usuario, ObjectId)
 
 ### Technologies
 
