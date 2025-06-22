@@ -11,12 +11,12 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
   };
 
   const handleDeleteClick = () => {
-    if (confirm('¿Eliminar usuario?')) {
+    if (confirm('¿Delete user?')) {
       try {
         logic
           .deleteUser(user.id)
           .then(() => {
-            console.log('usuario eliminado');
+            console.log('user delete');
             onUserDeleted();
           })
           .catch((error) => {
@@ -38,25 +38,25 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
         <span className="font-semibold">Email:</span> {user.email}
       </p>
       <p className="text-gray-700 mb-1">
-        <span className="font-semibold">Dirección:</span> {user.direction}
+        <span className="font-semibold">Direction:</span> {user.direction}
       </p>
       <p className="text-gray-700 mb-1">
-        <span className="font-semibold">Rol:</span> {user.role}
+        <span className="font-semibold">Role:</span> {user.role}
       </p>
       <p className="text-gray-700 mb-4">
-        <span className="font-semibold">Fecha registro:</span> {new Date(user.registerDate).toLocaleString()}
+        <span className="font-semibold">Register Date:</span> {new Date(user.registerDate).toLocaleString()}
       </p>
       <button
         className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200 mb-4"
         onClick={() => setEditUser(true)}
       >
-        Editar usuario
+        Update user
       </button>
       <button
         onClick={handleDeleteClick}
         className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
       >
-        Eliminar usuario
+        Delete user
       </button>
       {editUser && <EditUser user={user} onEditedUser={handleEditedUser} />}
     </div>

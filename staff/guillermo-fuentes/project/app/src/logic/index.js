@@ -1,5 +1,5 @@
 import { deleteUser } from './deleteUser';
-import { editUser } from './editarUsuario';
+import { updateUser } from './updateUser';
 import { getUsers } from './getUsers';
 import { getUsersByRol } from './getUsersByRol';
 import { isUserLoggedIn } from './isUserLoggedIn';
@@ -14,6 +14,6 @@ export const logic = {
   getUsers,
   deleteUser,
   logoutUser,
-  editUser,
+  updateUser,
   getUsersByRol,
 };

@@ -1,7 +1,7 @@
 import { validate } from 'com';
 import { data } from '../data';
 
-export const editUser = (targetId, fullName, email, password, direction, role) => {
+export const updateUser = (targetId, fullName, email, password, direction, role) => {
   validate.userId(targetId);
   validate.name(fullName);
   validate.email(email);

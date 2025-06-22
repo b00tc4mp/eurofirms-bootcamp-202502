@@ -42,7 +42,7 @@ export const Login = () => {
             <input
               type="email"
               name="email"
-              placeholder="tu email"
+              placeholder="your email"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
@@ -54,7 +54,7 @@ export const Login = () => {
             <input
               type="password"
               name="password"
-              placeholder="tu contraseña"
+              placeholder="your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
@@ -65,7 +65,7 @@ export const Login = () => {
               className="w-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition"
               onClick={handleRegisterClick}
             >
-              Registrar
+              Register
             </button>
             <button
               type="submit"

@@ -15,7 +15,7 @@ export const App = () => {
     if (location.pathname !== '/') return;
     try {
       const loggedIn = logic.isUserLoggedIn();
-      console.log('el login es ' + loggedIn);
+      console.log('the login is ' + loggedIn);
       if (loggedIn) {
         navigate('/users', { replace: true });
       } else {

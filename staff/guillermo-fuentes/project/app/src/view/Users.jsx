@@ -6,17 +6,17 @@ import { useNavigate } from 'react-router';
 export const Users = () => {
   const [users, setUsers] = useState([]);
   //Usar useState para saber que valor está seleccionado en el desplegable
-  const [rol, setRol] = useState('Todos los usuarios');
+  const [role, setRol] = useState('All users');
   const navigate = useNavigate();
-  const roles = ['Todos los usuarios', 'administrador', 'cliente'];
+  const roles = ['All users', 'administrator', 'client'];
 
   useEffect(() => {
-    if (rol === 'Todos los usuarios') {
+    if (role === 'All users') {
       try {
         logic
           .getUsers()
           .then((users) => {
-            console.log('users obtenidos');
+            console.log('users obteined');
             setUsers(users);
           })
           .catch((error) => {
@@ -31,9 +31,9 @@ export const Users = () => {
     } else {
       try {
         logic
-          .getUsersByRol(rol)
+          .getUsersByRol(role)
           .then((users) => {
-            console.log('users obtenidos');
+            console.log('users obteined');
             setUsers(users);
           })
           .catch((error) => {
@@ -46,7 +46,7 @@ export const Users = () => {
         alert(error.message);
       }
     }
-  }, [rol]);
+  }, [role]);
 
   const handleUpadateUser = () => {
     try {
@@ -72,7 +72,7 @@ export const Users = () => {
       {/* Desplegable */}
       <div className="mb-8 flex gapt-4 items-center ">
         <select
-          value={rol}
+          value={role}
           onChange={handleRoleChange}
           className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
         >
@@ -88,7 +88,7 @@ export const Users = () => {
           onClick={() => navigate('/register')}
         >
           <i className="fa fa-plus"></i>
-          Registrar
+          Register
         </button>
       </div>
 

@@ -30,7 +30,7 @@ export const Navbar = () => {
             className="text-gray-700 hover:text-blue-600 transition font-medium"
             onClick={() => navigate('/users')}
           >
-            Usuarios
+            Users
           </button>
         )}
       </div>
@@ -51,7 +51,7 @@ export const Navbar = () => {
               className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
               onClick={() => navigate('/register')}
             >
-              Registrar
+              Register
             </button>
             <button
               className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"

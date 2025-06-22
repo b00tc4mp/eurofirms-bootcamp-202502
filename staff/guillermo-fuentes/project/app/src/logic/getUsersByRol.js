@@ -7,7 +7,7 @@ export const getUsersByRol = (rol) => {
     },
   })
     .catch(() => {
-      throw new Error('error de conexion');
+      throw new Error('Conection error');
     })
     .then((response) => {
       const { status } = response;

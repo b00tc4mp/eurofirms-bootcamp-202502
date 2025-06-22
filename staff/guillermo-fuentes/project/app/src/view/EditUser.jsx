@@ -5,26 +5,26 @@ import { useState } from 'react';
 export const EditUser = ({ user, onEditedUser }) => {
   //Usamos estados para pasar el valor actual del campo y poder cambiar el valor usando value
   const { loggedIn, rol: userRol } = useAuth();
-  const [nombreCompleto, setNombreCompleto] = useState(user.fullName);
+  const [fullName, setFullName] = useState(user.fullName);
   const [email, setEmail] = useState(user.email);
-  const [direccion, setDireccion] = useState(user.direction);
+  const [direction, setdirection] = useState(user.direction);
   const [password, setPassword] = useState('');
-  const [rol, setRol] = useState(user.role);
+  const [role, setRole] = useState(user.role);
   //Usamos el contexto que hemos creado para comprobar si el usuario esta logueado y es administrador
   const isAdmin = loggedIn && userRol === 'administrator';
   const handleEditUser = () => onEditedUser();
   const handleEditSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const nombreCompleto = form.name.value;
+    const fullName = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const direccion = form.direccion.value;
-    const rol = form.rol.value;
+    const direction = form.direction.value;
+    const role = form.role.value;
 
     try {
       logic
-        .editUser(user.id, nombreCompleto, email, password, direccion, rol)
+        .updateUser(user.id, fullName, email, password, direction, role)
         .then(() => {
           form.reset();
           handleEditUser();
@@ -52,14 +52,14 @@ export const EditUser = ({ user, onEditedUser }) => {
         <form className="space-y-4" onSubmit={handleEditSubmit}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Nombre completo
+              Full Name
             </label>
             <input
               type="text"
               name="name"
               id="name"
-              value={nombreCompleto}
-              onChange={(event) => setNombreCompleto(event.target.value)}
+              value={fullName}
+              onChange={(event) => setFullName(event.target.value)}
               placeholder="Tu nombre"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
@@ -82,7 +82,7 @@ export const EditUser = ({ user, onEditedUser }) => {
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Contraseña
+              Password
             </label>
             <input
               type="password"
@@ -96,15 +96,15 @@ export const EditUser = ({ user, onEditedUser }) => {
             />
           </div>
           <div>
-            <label htmlFor="direccion" className="block text-sm font-medium text-gray-700 mb-1">
-              Dirección
+            <label htmlFor="direction" className="block text-sm font-medium text-gray-700 mb-1">
+              Direction
             </label>
             <input
               type="text"
-              name="direccion"
-              id="direccion"
-              value={direccion}
-              onChange={(event) => setDireccion(event.target.value)}
+              name="direction"
+              id="direction"
+              value={direction}
+              onChange={(event) => setdirection(event.target.value)}
               contentEditable="true"
               placeholder="Tu dirección"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -120,13 +120,13 @@ export const EditUser = ({ user, onEditedUser }) => {
             {isAdmin ? (
               <>
                 <label htmlFor="rol" className="block text-sm font-medium text-gray-700 mb-1">
-                  Rol
+                  Role
                 </label>
                 <select
-                  name="rol"
-                  id="rol"
-                  value={rol}
-                  onChange={(event) => setRol(event.target.value)}
+                  name="role"
+                  id="role"
+                  value={role}
+                  onChange={(event) => setRole(event.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                   defaultValue="client"
                   required
@@ -136,7 +136,7 @@ export const EditUser = ({ user, onEditedUser }) => {
                 </select>
               </>
             ) : (
-              <input type="text" name="rol" id="rol" value="client" readOnly hidden className="w-full" />
+              <input type="text" name="role" id="role" value="client" readOnly hidden className="w-full" />
             )}
           </div>
 
@@ -145,14 +145,14 @@ export const EditUser = ({ user, onEditedUser }) => {
               type="submit"
               className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
             >
-              Editar
+              Update user
             </button>
             <button
               type="submit"
               className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
               onClick={() => handleEditUser()}
             >
-              Cancelar edicion
+              Cancel update
             </button>
           </div>
         </form>

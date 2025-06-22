@@ -7,7 +7,7 @@ export const getUsers = () => {
     },
   })
     .catch(() => {
-      throw new Error('error de conexion');
+      throw new Error('Conection error');
     })
     .then((response) => {
       const { status } = response;
@@ -18,7 +18,7 @@ export const getUsers = () => {
             throw new Error('json error');
           })
           .then((users) => {
-            console.log('Usuarios recibidor ', users);
+            console.log('Users received ', users);
             return users;
           });
       return response

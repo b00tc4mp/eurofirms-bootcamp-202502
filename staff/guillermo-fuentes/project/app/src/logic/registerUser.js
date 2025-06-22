@@ -14,7 +14,7 @@ export const registerUser = (fullName, email, password, direction, role) => {
     body: JSON.stringify({ fullName, email, password, direction, role }),
   })
     .catch(() => {
-      throw new Error('error de conexion');
+      throw new Error('Conection error');
     })
     .then((response) => {
       const { status } = response;
