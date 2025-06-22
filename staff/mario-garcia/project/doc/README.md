@@ -10,7 +10,7 @@ This app will be a place where any parents with a child with achondroplasia will
 
 ### Use Cases
 
-Commond (User)
+Regular (User)
 - Search information
 - Share any experience
 - Value trearments and doctors
@@ -69,9 +69,9 @@ User
 * email  (string, required, unique)
 * username  (string, required, unique)
 * password (string, required)
-* role (string, values: Commond | Admin, required  )
+* role (string, values: regular | admin, required  )
 
-Post
+Review
 * id (UUID)
 * author (User.id)
 * date (string, required)
