@@ -21,11 +21,12 @@ const decodeRoleFromToken = () => {
 export const AuthProvider = ({ children }) => {
   //Hacemos uso de el useState para inicializar un estado el primer useState indica si el usuario esta logueado o no, y el segundo indica que rol tiene
   const [loggedIn, setLoggedIn] = useState(logic.isUserLoggedIn());
-  const [rol, setRol] = useState(data.getRol());
+  const [rol, setRol] = useState();
   //Al hacer login se marca el primer useState a true y se obtiene el rol indicando que esta logueado y tiene un rol
   const login = () => {
     setLoggedIn(true);
-    setRol(decodeRoleFromToken());
+    const role = decodeRoleFromToken();
+    setRol(role);
   };
   // Al hacer logout establecemos el primer useState a false y el rol lo ponemos en nulo
   const logout = () => {

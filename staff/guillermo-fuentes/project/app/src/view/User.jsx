@@ -32,19 +32,19 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
 
   return (
     <div className="max-w-sm w-full bg-white border border-gray-300 rounded-xl shadow-lg p-6 m-4 hover:shadow-xl transition-shadow duration-300">
-      <h2 className="text-2xl font-bold text-red-600 mb-3">{user.nombreCompleto}</h2>
+      <h2 className="text-2xl font-bold text-red-600 mb-3">{user.fullName}</h2>
 
       <p className="text-gray-700 mb-1">
         <span className="font-semibold">Email:</span> {user.email}
       </p>
       <p className="text-gray-700 mb-1">
-        <span className="font-semibold">Dirección:</span> {user.direccion}
+        <span className="font-semibold">Dirección:</span> {user.direction}
       </p>
       <p className="text-gray-700 mb-1">
         <span className="font-semibold">Rol:</span> {user.role}
       </p>
       <p className="text-gray-700 mb-4">
-        <span className="font-semibold">Fecha registro:</span> {new Date(user.fechaRegistro).toLocaleString()}
+        <span className="font-semibold">Fecha registro:</span> {new Date(user.registerDate).toLocaleString()}
       </p>
       <button
         className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200 mb-4"

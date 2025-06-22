@@ -1,17 +1,17 @@
 import { validate } from 'com';
 
-export const registerUser = (nombreCompleto, email, password, direccion, role) => {
-  validate.name(nombreCompleto);
+export const registerUser = (fullName, email, password, direction, role) => {
+  validate.name(fullName);
   validate.email(email);
   validate.password(password);
-  validate.direction(direccion);
+  validate.direction(direction);
   validate.role(role);
   return fetch(`${import.meta.env.VITE_API_URL}users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ nombreCompleto, email, password, direccion, role }),
+    body: JSON.stringify({ fullName, email, password, direction, role }),
   })
     .catch(() => {
       throw new Error('error de conexion');

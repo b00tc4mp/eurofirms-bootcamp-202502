@@ -25,7 +25,7 @@ export const loginUser = (email, password) => {
           .then(({ token, role }) => {
             data.setToken(token);
 
-            data.setRol(role);
+            // data.setRol(role);
             return { token, role };
           });
       }

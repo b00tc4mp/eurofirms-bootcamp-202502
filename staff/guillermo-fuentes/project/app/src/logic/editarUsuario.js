@@ -1,12 +1,12 @@
 import { validate } from 'com';
 import { data } from '../data';
 
-export const editUser = (targetId, fullName, email, password, address, role) => {
+export const editUser = (targetId, fullName, email, password, direction, role) => {
   validate.userId(targetId);
   validate.name(fullName);
   validate.email(email);
   validate.password(password);
-  validate.direction(address);
+  validate.direction(direction);
   validate.role(role);
 
   return fetch(`${import.meta.env.VITE_API_URL}users/${targetId}`, {
@@ -15,7 +15,7 @@ export const editUser = (targetId, fullName, email, password, address, role) => 
       Authorization: `Bearer ${data.getToken()}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ fullName, email, password, address, role }),
+    body: JSON.stringify({ fullName, email, password, direction, role }),
   })
     .catch(() => {
       throw new Error('connection error');

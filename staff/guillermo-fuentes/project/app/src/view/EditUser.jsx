@@ -5,11 +5,11 @@ import { useState } from 'react';
 export const EditUser = ({ user, onEditedUser }) => {
   //Usamos estados para pasar el valor actual del campo y poder cambiar el valor usando value
   const { loggedIn, rol: userRol } = useAuth();
-  const [nombreCompleto, setNombreCompleto] = useState(user.nombreCompleto);
+  const [nombreCompleto, setNombreCompleto] = useState(user.fullName);
   const [email, setEmail] = useState(user.email);
-  const [direccion, setDireccion] = useState(user.direccion);
+  const [direccion, setDireccion] = useState(user.direction);
   const [password, setPassword] = useState('');
-  const [rol, setRol] = useState(user.rol);
+  const [rol, setRol] = useState(user.role);
   //Usamos el contexto que hemos creado para comprobar si el usuario esta logueado y es administrador
   const isAdmin = loggedIn && userRol === 'administrator';
   const handleEditUser = () => onEditedUser();
