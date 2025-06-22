@@ -2,86 +2,86 @@ import { User } from '../data/index.js';
 import bcrypt from 'bcryptjs';
 import { DuplicityError, SystemError, validate, NotFoundError, ValidationError } from 'com';
 
-/**Metodo que permite editar un usuario recibe varios parámetros
- * @param idSolicitante el ID del que quiere hacer el cambio (puede ser él mismo usuario o un administrador).
- * @param idObjetivo el id del usuario a editar
+/**Metodo que permite editar un user recibe varios parámetros
+ * @param requesterId el ID del que quiere hacer el cambio (puede ser él mismo user o un administrador).
+ * @param targetId el id del user a editar
  * @param fullName el nombre completo a actualizar
  * @param direction la dirección a actualizar
  * @param rol el rol a actualizar (solo para administradores)
  * @param email el correo electrónico a actualizar (solo para administradores)
  * @param password la contraseña a actualizar (solo para administradores)
  */
-export const updateUser = (idSolicitante, idObjetivo, fullName, direction, rol, email, password) => {
+export const updateUser = (requesterId, targetId, fullName, direction, rol, email, password) => {
   // Validar IDs de entrada
-  validate.adminId(idSolicitante);
-  validate.userId(idObjetivo);
+  validate.adminId(requesterId);
+  validate.userId(targetId);
 
-  return Promise.all([User.findById(idSolicitante), User.findById(idObjetivo)]).then(([solicitante, usuario]) => {
-    // Si los usuarios no se encuentran, se muestran estos mensajes
-    if (!usuario) throw new NotFoundError('Usuario no encontrado');
-    if (!solicitante) throw new NotFoundError('Solicitante no encontrado');
+  return Promise.all([User.findById(requesterId), User.findById(targetId)]).then(([requester, user]) => {
+    // Si los users no se encuentran, se muestran estos mensajes
+    if (!user) throw new NotFoundError('user not found');
+    if (!requester) throw new NotFoundError('requester not found');
 
-    // Verificar si el solicitante es administrador o si está editando su propio perfil
-    const esAdmin = solicitante.role === 'administrator';
-    const esElMismo = idSolicitante === idObjetivo;
+    // Verificar si el requester es administrador o si está editando su propio perfil
+    const isAdmin = requester.role === 'administrator';
+    const isSameUser = requesterId === targetId;
 
-    // Si no es administrador ni es el mismo usuario, se deniega la operación
-    if (!esAdmin && !esElMismo) {
-      throw new Error('No estás autorizado para realizar esta operación');
+    // Si no es administrador ni es el mismo user, se deniega la operación
+    if (!isAdmin && !isSameUser) {
+      throw new Error('You are not authorized to perform this operation');
     }
 
     // Validar y actualizar fullName si se proporciona
     if (fullName !== undefined) {
-      if (!esAdmin && !esElMismo) {
-        throw new ValidationError('Campo no permitido: fullName');
+      if (!isAdmin && !isSameUser) {
+        throw new ValidationError('Field not allowed fullName');
       }
       validate.name(fullName); // Validar el formato del nombre
-      usuario.fullName = fullName.trim();
+      user.fullName = fullName.trim();
     }
 
     // Validar y actualizar direction si se proporciona
     if (direction !== undefined) {
-      if (!esAdmin && !esElMismo) {
-        throw new ValidationError('Campo no permitido: direction');
+      if (!isAdmin && !isSameUser) {
+        throw new ValidationError('Field not allowed direction');
       }
       validate.direction(direction); // Validar el formato de la dirección
-      usuario.direction = direction.trim();
+      user.direction = direction.trim();
     }
 
-    // Ejecutar validaciones y actualizaciones adicionales si el solicitante es administrador
+    // Ejecutar validaciones y actualizaciones adicionales si el requester es administrador
     const actualizarAdmin = () => {
       // Si no es admin, la promesa se resuelve
-      if (!esAdmin) return Promise.resolve();
+      if (!isAdmin) return Promise.resolve();
 
       // Validar y actualizar el rol si se proporciona
       if (rol !== undefined) {
         if (!['administrator', 'employee', 'client'].includes(rol)) {
-          throw new ValidationError('Rol no válido');
+          throw new ValidationError('Invalid role');
         }
         validate.role(rol); // Validar el formato del rol
-        usuario.role = rol;
+        user.role = rol;
       }
 
       // Validar y actualizar el email si se proporciona
       if (email !== undefined) {
         validate.email(email); // Validar el formato del email
         return User.findOne({ email }).then((emailEnUso) => {
-          if (emailEnUso && emailEnUso._id.toString() !== usuario._id.toString()) {
-            throw new DuplicityError('El correo electrónico ya está en uso');
+          if (emailEnUso && emailEnUso._id.toString() !== user._id.toString()) {
+            throw new DuplicityError('Email is already in use');
           }
-          usuario.email = email;
+          user.email = email;
 
           // Validar y actualizar la contraseña si se proporciona
           if (password !== undefined) {
             validate.password(password); // Validar el formato de la contraseña
             if (password.length < 6) {
-              throw new ValidationError('La contraseña debe tener más de 6 caracteres');
+              throw new ValidationError('Password must be at least 6 characters');
             }
             return bcrypt
               .genSalt(10)
               .then((salt) => bcrypt.hash(password, salt))
               .then((hash) => {
-                usuario.password = hash;
+                user.password = hash;
               });
           }
         });
@@ -91,20 +91,20 @@ export const updateUser = (idSolicitante, idObjetivo, fullName, direction, rol, 
       if (password !== undefined) {
         validate.password(password); // Validar el formato de la contraseña
         if (password.length < 6) {
-          throw new ValidationError('La contraseña debe tener más de 6 caracteres');
+          throw new ValidationError('Password must be at least 6 characters');
         }
         return bcrypt
           .genSalt(10)
           .then((salt) => bcrypt.hash(password, salt))
           .then((hash) => {
-            usuario.password = hash;
+            user.password = hash;
           });
       }
 
       return Promise.resolve();
     };
 
-    // Guardar el usuario actualizado en la base de datos
-    return actualizarAdmin().then(() => usuario.save());
+    // Guardar el user actualizado en la base de datos
+    return actualizarAdmin().then(() => user.save());
   });
 };
