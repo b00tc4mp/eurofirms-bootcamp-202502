@@ -35,20 +35,20 @@ const user = new Schema({
   },
 });
 const proveedor = new Schema({
-  nombre: {
+  name: {
     type: String,
     required: true,
     unique: true,
   },
-  contacto: {
+  contact: {
     type: String,
     required: true,
   },
-  direccion: {
+  direction: {
     type: String,
     required: true,
   },
-  usuario: {
+  user: {
     type: ObjectId,
     ref: 'User',
     required: true,

@@ -1,20 +1,20 @@
 import { Proveedor, User } from '../data/index.js';
-import { DuplicityError, SystemError, validate, NotFoundError } from 'com';
+import { SystemError, validate, NotFoundError } from 'com';
 
-export const deleteProveedor = (idProveedor, adminId) => {
-  validate.idProveedor(idProveedor);
+export const deleteProveedor = (providerId, adminId) => {
+  validate.idProveedor(providerId);
   validate.adminId(adminId);
-  return Promise.all([Proveedor.findById(idProveedor), User.findById(adminId)])
+  return Promise.all([Proveedor.findById(providerId), User.findById(adminId)])
     .catch((error) => {
       throw new SystemError('mongo error');
     })
-    .then(([proveedor, user]) => {
-      if (!proveedor) throw new NotFoundError('proveedor no encontrado');
-      if (!user) throw new NotFoundError('usuario no encontrado');
-      if (user.rol !== 'administrador') {
-        throw new Error('no estas autorizado para realizar esta accion');
+    .then(([provider, user]) => {
+      if (!provider) throw new NotFoundError('Provider not found');
+      if (!user) throw new NotFoundError('user not found');
+      if (user.role !== 'administrator') {
+        throw new Error('you are not authorized to carry out this action');
       }
-      return Proveedor.deleteOne({ _id: idProveedor })
+      return Proveedor.deleteOne({ _id: providerId })
         .catch((error) => {
           throw new SystemError('mongo error');
         })

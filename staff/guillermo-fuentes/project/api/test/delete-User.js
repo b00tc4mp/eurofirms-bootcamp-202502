@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/users/684a9788fdc1eaf12e1c05a5', {
+fetch('http://localhost:8080/users/6857ec79cbc738953c373ae6', {
   method: 'DELETE',
   headers: {
     Authorization:

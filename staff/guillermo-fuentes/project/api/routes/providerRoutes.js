@@ -4,24 +4,24 @@ import { logic } from '../logic/index.js';
 import jwt from 'jsonwebtoken';
 const { JWT_SECRET } = process.env;
 
-export const proveedorRouter = Router();
-proveedorRouter.post('/', jsonBodyParser, (request, response, next) => {
+export const providerRouter = Router();
+providerRouter.post('/', jsonBodyParser, (request, response, next) => {
   try {
     const authorization = request.headers.authorization;
     const token = authorization.slice(7);
 
     const { sub: userId } = jwt.verify(token, JWT_SECRET);
 
-    const { nombre, contacto, direccion } = request.body;
+    const { name, contact, direction } = request.body;
     logic
-      .addProveedor(nombre, contacto, direccion, userId)
+      .addProvider(name, contact, direction, userId)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
     next(error);
   }
 });
-proveedorRouter.delete('/:proveedorId', (request, response, next) => {
+providerRouter.delete('/:providerId', (request, response, next) => {
   try {
     // Verificar autenticación
     const authorization = request.headers.authorization;
@@ -32,17 +32,17 @@ proveedorRouter.delete('/:proveedorId', (request, response, next) => {
     const token = authorization.slice(7);
     const { sub: adminId } = jwt.verify(token, JWT_SECRET);
 
-    const { proveedorId } = request.params;
+    const { providerId } = request.params;
 
     logic
-      .deleteProveedor(proveedorId, adminId)
+      .deleteProveedor(providerId, adminId)
       .then(() => response.status(204).send())
       .catch((error) => next(error));
   } catch (error) {
     next(error);
   }
 });
-proveedorRouter.put('/:proveedorId', jsonBodyParser, (request, response, next) => {
+providerRouter.put('/:proveedorId', jsonBodyParser, (request, response, next) => {
   try {
     const { authorization } = request.headers;
 

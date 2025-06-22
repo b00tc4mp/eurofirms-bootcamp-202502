@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { connect } from './data/index.js';
 
 import { usersRouter } from './routes/userRoutes.js';
-import { proveedorRouter } from './routes/proveedorRoutes.js';
+import { providerRouter } from './routes/providerRoutes.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 const { MONGO_URL, PORT } = process.env;
@@ -18,7 +18,8 @@ connect(MONGO_URL)
       response.send('hello');
     });
     server.use('/users', usersRouter);
-    server.use('/proveedor', proveedorRouter);
+
+    server.use('/provider', providerRouter);
     server.use(errorHandler);
     server.listen(PORT, () => console.log('server escucha'));
   })
