@@ -7,7 +7,7 @@ import { removeUser } from './removeUser.js';
 import { getUsersByRol } from './getUsersByRol.js';
 import { addProvider } from './addProvider.js';
 import { deleteProveedor } from './deleteProveedor.js';
-import { editarProveedor } from './editarProveedor.js';
+import { updateProvider } from './updateProvider.js';
 import { updateUser } from './updateUser.js';
 export const logic = {
   registerUser,
@@ -18,5 +18,5 @@ export const logic = {
   getUsersByRol,
   addProvider,
   deleteProveedor,
-  editarProveedor,
+  updateProvider,
 };

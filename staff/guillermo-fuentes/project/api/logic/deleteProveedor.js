@@ -1,10 +1,10 @@
-import { Proveedor, User } from '../data/index.js';
+import { Provider, User } from '../data/index.js';
 import { SystemError, validate, NotFoundError } from 'com';
 
 export const deleteProveedor = (providerId, adminId) => {
   validate.idProveedor(providerId);
   validate.adminId(adminId);
-  return Promise.all([Proveedor.findById(providerId), User.findById(adminId)])
+  return Promise.all([Provider.findById(providerId), User.findById(adminId)])
     .catch((error) => {
       throw new SystemError('mongo error');
     })

@@ -1,15 +1,15 @@
-fetch('http://localhost:8080/proveedor/6854667eb66c3316552a90b2', {
+fetch('http://localhost:8080/provider/685811b2b1963a12ccecde0b', {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODRiMTQzODlhZTg5ZjVjMWQ1Y2EwMTkiLCJyb2wiOiJhZG1pbmlzdHJhZG9yIiwiaWF0IjoxNzUwMzU3MjcxfQ.pN0lDGH7a3FDenIjPfs56I5bTNEHW6p4Xqnlca46clQ',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODU3MGQ1M2M4ZTQ3MWYyNzcwZDI0ZGMiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTc1MDYwMTc5MH0.Z6MATQEVJ75XTpouTKIop94f_QXwETb-2TOH9zTlRlM',
   },
   body: JSON.stringify({
-    nombre: 'Conchita migue',
-    direccion: 'Calle Madrid',
-    contacto: 'conchita@migue.com',
-    usuario: '684b14389ae89f5c1d5ca019',
+    name: 'Conchita migue 2',
+    direction: 'Calle Madrid',
+    contact: 'conchita@migue.com',
+    userId: '6857e3c3c94ecaebfb3d947a',
   }),
 })
   .then((response) => {

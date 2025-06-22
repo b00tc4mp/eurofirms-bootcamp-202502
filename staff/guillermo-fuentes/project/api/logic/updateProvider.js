@@ -1,0 +1,45 @@
+import { User, Provider } from '../data/index.js';
+import { DuplicityError, NotFoundError, SystemError, validate, ValidationError } from 'com';
+
+export const updateProvider = (requesterId, targetId, name, contact, direction, userId) => {
+  validate.adminId(requesterId);
+  validate.userId(targetId);
+  if (name !== undefined) validate.name(name);
+  if (direction !== undefined) validate.direction(direction);
+  if (userId !== undefined) validate.userId(userId);
+
+  return Promise.all([User.findById(requesterId), Provider.findById(targetId)]).then(([requester, provider]) => {
+    if (!requester) throw new NotFoundError('user not found');
+    if (!provider) throw new NotFoundError('provider not found');
+
+    const isAdmin = requester.role === 'administrator';
+    const isSameUser = requesterId === targetId;
+
+    if (!isAdmin && !isSameUser) {
+      throw new Error('You are not authorized to perform this operation');
+    }
+
+    // Solo se actualizan los campos si vienen definidos
+    if (name !== undefined) {
+      if (!isAdmin && !isSameUser) throw new ValidationError('Field not allowed: name');
+      provider.name = name.trim();
+    }
+
+    if (contact !== undefined) {
+      if (!isAdmin && !isSameUser) throw new ValidationError('Field not allowed: contact');
+      provider.contact = contact.trim();
+    }
+
+    if (direction !== undefined) {
+      if (!isAdmin && !isSameUser) throw new ValidationError('Field not allowed: direction');
+      provider.direction = direction.trim();
+    }
+
+    if (userId !== undefined) {
+      if (!isAdmin && !isSameUser) throw new ValidationError('Field not allowed: user');
+      provider.user = userId; // Es una referencia ObjectId
+    }
+
+    return provider.save(); // 💾 Guardar los cambios
+  });
+};

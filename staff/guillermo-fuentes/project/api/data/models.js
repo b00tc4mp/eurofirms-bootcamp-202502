@@ -34,7 +34,7 @@ const user = new Schema({
     default: 'client',
   },
 });
-const proveedor = new Schema({
+const provider = new Schema({
   name: {
     type: String,
     required: true,
@@ -55,6 +55,6 @@ const proveedor = new Schema({
   },
 });
 const User = model('User', user);
-const Proveedor = model('Proveedor', proveedor);
+const Provider = model('Provider', provider);
 
-export { User, Proveedor };
+export { User, Provider };

@@ -1,5 +1,5 @@
 import { validate } from 'com';
-import { Proveedor, User } from '../data/index.js';
+import { Provider, User } from '../data/index.js';
 import { DuplicityError, NotFoundError, SystemError } from '../errors.js';
 
 export const addProvider = (name, contact, direction, idUser) => {
@@ -15,7 +15,7 @@ export const addProvider = (name, contact, direction, idUser) => {
     .then((user) => {
       if (!user) throw new NotFoundError('User not found');
       const userId = user._id;
-      return Proveedor.create({ name, contact, direction, user: userId })
+      return Provider.create({ name, contact, direction, user: userId })
         .catch((error) => {
           if (error.code === 11000) {
             throw new DuplicityError('Provider name alredy exist');

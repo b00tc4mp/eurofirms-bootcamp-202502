@@ -42,7 +42,7 @@ providerRouter.delete('/:providerId', (request, response, next) => {
     next(error);
   }
 });
-providerRouter.put('/:proveedorId', jsonBodyParser, (request, response, next) => {
+providerRouter.put('/:providerId', jsonBodyParser, (request, response, next) => {
   try {
     const { authorization } = request.headers;
 
@@ -53,14 +53,14 @@ providerRouter.put('/:proveedorId', jsonBodyParser, (request, response, next) =>
     }
 
     const token = authorization.slice(7);
-    const { sub: idSolicitante } = jwt.verify(token, JWT_SECRET);
+    const { sub: requesterId } = jwt.verify(token, JWT_SECRET);
 
-    const { proveedorId: idObjetivo } = request.params; // Fixed from userId to proveedorId
-    const datosActualizados = request.body;
+    const { providerId: targetId } = request.params; // Fixed from userId to proveedorId
+    const { name, contact, direction, userId } = request.body;
 
     logic
-      .editarProveedor(idSolicitante, idObjetivo, datosActualizados)
-      .then(() => response.status(200).json({ mensaje: 'Proveedor actualizado correctamente' }))
+      .updateProvider(requesterId, targetId, name, contact, direction, userId)
+      .then(() => response.status(200).json({ mensaje: 'Provider updated succesfully' }))
       .catch((error) => next(error));
   } catch (error) {
     next(error);
