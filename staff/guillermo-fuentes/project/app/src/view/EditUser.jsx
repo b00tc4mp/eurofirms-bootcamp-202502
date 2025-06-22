@@ -11,7 +11,7 @@ export const EditUser = ({ user, onEditedUser }) => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(user.role);
   //Usamos el contexto que hemos creado para comprobar si el usuario esta logueado y es administrador
-  const isAdmin = loggedIn && userRol === 'administrator';
+  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
   const handleEditUser = () => onEditedUser();
   const handleEditSubmit = (event) => {
     event.preventDefault();

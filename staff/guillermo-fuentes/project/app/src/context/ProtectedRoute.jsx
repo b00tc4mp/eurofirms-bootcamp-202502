@@ -4,7 +4,7 @@ import { Navigate } from 'react-router';
 export const ProtectedRoute = ({ children }) => {
   const { loggedIn, rol } = useAuth();
 
-  if (!loggedIn || rol !== 'administrator') {
+  if (!loggedIn || rol !== import.meta.env.VITE_ROL_1) {
     return <Navigate to="/home" replace />;
   }
 

@@ -11,7 +11,7 @@ const decodeRoleFromToken = () => {
     const payloadJson = atob(payloadBase64);
     const payload = JSON.parse(payloadJson);
 
-    return payload.role || payload.rol || null; // Adaptar según el nombre exacto del campo
+    return payload.role;
   } catch (error) {
     console.error('Error al decodificar el token:', error);
     return null;
@@ -21,7 +21,7 @@ const decodeRoleFromToken = () => {
 export const AuthProvider = ({ children }) => {
   //Hacemos uso de el useState para inicializar un estado el primer useState indica si el usuario esta logueado o no, y el segundo indica que rol tiene
   const [loggedIn, setLoggedIn] = useState(logic.isUserLoggedIn());
-  const [rol, setRol] = useState();
+  const [rol, setRol] = useState(null);
   //Al hacer login se marca el primer useState a true y se obtiene el rol indicando que esta logueado y tiene un rol
   const login = () => {
     setLoggedIn(true);
@@ -36,11 +36,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setLoggedIn(logic.isUserLoggedIn());
+    console.log('Context auth activado');
     setRol(decodeRoleFromToken());
   }, []);
 
   // devuelve true si el usuario está logueado y su rol es 'admin'
-  const isAdmin = loggedIn && rol === 'administrator';
+  const isAdmin = loggedIn && rol === import.meta.env.VITE_ROL_1;
   //Llegados a este punto se le pasa los valores adecuados y puede usarse para sellar rutas
   return <AuthContext.Provider value={{ loggedIn, rol, isAdmin, login, logout }}>{children}</AuthContext.Provider>;
 };

@@ -1,15 +1,16 @@
 import { logic } from '../logic';
 import { useEffect, useState } from 'react';
-import { User } from './User';
+import { User } from './components/User';
 import { useNavigate } from 'react-router';
-
+import { useContext } from '../context/context';
 export const Users = () => {
   const [users, setUsers] = useState([]);
   //Usar useState para saber que valor está seleccionado en el desplegable
   const [role, setRol] = useState('All users');
   const navigate = useNavigate();
-  const roles = ['All users', 'administrator', 'client'];
 
+  const roles = ['All users', 'Administrators', 'Clients'];
+  const { alert } = useContext();
   useEffect(() => {
     if (role === 'All users') {
       try {
@@ -30,8 +31,15 @@ export const Users = () => {
       }
     } else {
       try {
+        let roleToSend;
+        if (role === 'Administrators') {
+          roleToSend = 'administrator';
+        } else if (role === 'Clients') {
+          roleToSend = 'client';
+        }
+
         logic
-          .getUsersByRol(role)
+          .getUsersByRol(roleToSend)
           .then((users) => {
             console.log('users obteined');
             setUsers(users);

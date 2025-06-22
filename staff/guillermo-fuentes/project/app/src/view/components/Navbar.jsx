@@ -1,7 +1,7 @@
 // src/view/Navbar.jsx
 import { useNavigate } from 'react-router';
-import { useAuth } from '../context/AuthContext';
-import { logic } from '../logic';
+import { useAuth } from '../../context/AuthContext';
+import { logic } from '../../logic';
 export const Navbar = () => {
   const navigate = useNavigate();
   const { loggedIn } = useAuth();

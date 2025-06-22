@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 export const Register = () => {
   const navigate = useNavigate();
   const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === 'administrator';
+  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
 
   const handleLoginClick = (event) => {
     event.preventDefault();
