@@ -27,7 +27,7 @@ usersRouter.post('/auth', jsonBodyParser, (request, response, next) => {
             .then(userId => {
                 const token = jwt.sign({ sub: userId }, JWT_SECRET)
 
-                Response.status(200).json(token)
+                response.status(200).json(token)
             })
             .catch(error => next(error))
     } catch (error) {

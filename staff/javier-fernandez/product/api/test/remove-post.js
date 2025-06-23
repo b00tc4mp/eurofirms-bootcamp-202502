@@ -1,7 +1,7 @@
-fetch('http://localhost:8080/posts/post-5', {
+fetch('http://localhost:8080/posts/6854560eb9a25bca517a4709', {
     method: 'DELETE',
     headers: {
-        Authorization: 'Basic user-2'
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODU0NTJhMWRjMDY4ZDJkNzU0NGNkZmMiLCJpYXQiOjE3NTA3MDE2OTF9.EK3tZiYOgXHLSsngF_Lxf8bdPWTawWSocAb_wkxDRkY'
     }
 })
     .catch(error => { throw new Error('connection error') })
