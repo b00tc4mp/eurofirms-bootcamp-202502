@@ -1,6 +1,6 @@
 import { logic } from '../logic'
 
-export const Register = ({ onLoginClicked, onUserRegistered }) => {
+export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
     // const onLoginClicked = props.onLoginClicked
     // const onUserRegistered = props.onUserRegistered
 

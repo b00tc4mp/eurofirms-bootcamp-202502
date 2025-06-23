@@ -4,7 +4,7 @@ import { logic } from '../../logic'
 //     const post = props.post
 //     const onPostDeleted = props.onPostDeleted
 
-export const Post = ({post, onPostDeleted}) => {
+export const Post = ({post, onPostDeleted, alert}) => {
     const handleDeleteClick = () => {
         if (confirm('Delete post?'))
             try {
