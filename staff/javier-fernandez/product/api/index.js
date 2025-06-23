@@ -2,7 +2,7 @@ import { connect } from './data/index.js'
 import express from 'express'
 import cors from 'cors'
 
-import { usersRouter } from './routes/'
+import { usersRouter } from './routes/usersRouter.js'
 import { postsRouter } from './routes/postsRouter.js'
 import { errorHandler } from './middlewares/errorHandler.js'
 
@@ -16,18 +16,6 @@ connect(MONGO_URL)
 
         api.get('/', (request, response) => {
             response.send('Hello! API here...')
-        })
-
-        api.post('/users', jsonBodyParser, (request, response, next) => {
-            try {
-                const { name, email, username, password } = request.body
-
-                logic.registerUser(name, email, username, password)
-                    .then(() => response.status(201).send())
-                    .catch(error => next(error))
-            } catch (error) {
-                next(error)
-            }
         })
 
         api.use('/users', usersRouter)

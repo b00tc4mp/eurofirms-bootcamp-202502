@@ -69,7 +69,7 @@ export const App = () => {
    }}>
     {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted}/>}
 
-    {confirmMessage && <confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
+    {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
    
 
      <Routes>
@@ -80,7 +80,7 @@ export const App = () => {
                     onLoginClicked={handleLoginClicked}
                     />
                     :
-                    <Navigate to='/' />
+                    <Home onUserLoggedOut={handleUserLoggedOut} />
         } />
 
         <Route path='/register' element={

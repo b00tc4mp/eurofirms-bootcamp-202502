@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { jsonBodyParrser } from '../middlewares/jsonBodyParser.js'
+import { jsonBodyParser } from '../middlewares/jsonBodyParser.js'
 import { logic } from '../logic/index.js'
 import jwt from 'jsonwebtoken'
 
@@ -7,7 +7,7 @@ const { JWT_SECRET } = process.env
 
 export const postsRouter = Router()
 
-postsRouter.post('/', jsonBodyParrser, (request, response, next) => {
+postsRouter.post('/', jsonBodyParser, (request, response, next) => {
     try {
         const authorization = request.headers.authorization
         const token = authorization.slice(7)
@@ -48,7 +48,7 @@ postsRouter.delete('/:postId', (request, response, next) => {
 
         const { postId } = request.params
 
-        logic.removePost(userId, postsId)
+        logic.removePost(userId, postId)
         .then(() => response.status(204).send())
         .catch(error => next(error))
     } catch (error) {
