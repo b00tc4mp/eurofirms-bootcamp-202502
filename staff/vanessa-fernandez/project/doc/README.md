@@ -62,6 +62,8 @@ Admin (User) [v0.1]
 - Routes
 - Logic
 - Data
+- Middlewares
+- Test
 
 ---
 
@@ -87,39 +89,50 @@ Admin (User) [v0.1]
 
 ### Data Model
 
-User
+**User**
 
 - id (UUID)
 - name (string, required)
 - username (string, required, unique)
 - email (string, required, unique)
 - password (string, required)
+- gender (string, optional)
+- weight (number, optional)
+- height (number, optional)
 - profileCompleted (boolean, default: false)
 - role (string, values: regular | admin, required) [v0.1]
 
-Exercise
+**Exercise**
+
 - id (UUID)
 - name (string, required)
 - description (string, required)
 - image (string)
-- dificultad (string, values: easy | medium | hard) [v0.1]
-- grupo muscular (string, values: hombros | piernas | espalda | brazos | full-body) [v0.1]
+- difficulty (string, values: easy | medium | hard) [v0.1]
+- muscleGroup (string, values: hombros | piernas | espalda | brazos | full-body) [v0.1]
 
-Entrenamiento
+**Workout**
+
 - id (UUID)
 - userId (UserId, required)
 - day (string, required, enum (L-D) )
-- ejercicios (array of objects)
+- exercises (array of objects) :
 
-     [
-        {
+```json
 
-            -ejercicioId (UUID)
-            -series (number, required)
-            -repeticiones (number, required)
-            -descanso (number, required)
+     [{
+
+            -exerciceId (UUID)
+            -sets (number, required)
+            -repetitions (number, required)
+            -restTime (number, required)
 
     }]
+
+ ```   
+    
+
+---    
 
 ### Technologies
 

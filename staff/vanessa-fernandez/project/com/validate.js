@@ -7,10 +7,16 @@ export const validate = {
         if (name.length > 30) throw new ValidationError('invalid name max length')        
     },
 
-    email(email) {
+      email(email) {
         if (typeof email !== 'string') throw new ValidationError('invalid email type')
         if (email.length < 6) throw new ValidationError('invalid email min length')
         if (email.length > 30) throw new ValidationError('invalid email max length')        
+    },
+
+    username(username) {
+        if (typeof username !== 'string') throw new ValidationError('invalid username type')
+        if (username.length < 3) throw new ValidationError('invalid username min length')
+        if (username.length > 20) throw new ValidationError('invalid username max length')
     },
 
     password(password) {

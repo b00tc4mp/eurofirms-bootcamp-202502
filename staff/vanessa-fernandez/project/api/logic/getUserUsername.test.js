@@ -1,11 +1,11 @@
 import { connect, disconnect } from '../data/index.js'
-import { registerUser } from './registerUser.js'
+import { getUserUsername } from './getUserUsername.js'
 
 connect('mongodb://localhost:27017/test-gymplan')
     .then(() => {
-        try {
-            return registerUser('Hermione Granger', 'hermione@granger.com', 'hermioneG', '123123123')
-            .then(() => console.log('user registered'))
+        try{
+            return getUserUsername('68595ebadbc9366fcc70d3b8')
+            .then(username => console.log('username gotten ', username))
             .catch(error => console.error(error))
         } catch(error) {
             console.error(error)

@@ -1,20 +1,26 @@
+import { connect } from './data/index.js'
 import express from 'express'
-import { logic } from './logic/index.js'
 import cors from 'cors'
 
-const server = express()
-const jsonBodyParser = express.json()
+import { usersRouter } from './routes/usersRouter.js'
+import { errorHandler } from './middlewares/errorHandler.js'
 
-server.use(cors())
+const { MONGO_URL, PORT } = process.env
 
-server.post('/users', jsonBodyParser, (request, response) => {
-    try{
-        const { name, email, username, password } = request.body
+connect(MONGO_URL)
+    .then(() => {
+        const api = express()
+
+        api.use(cors())
+
+        api.get('/hello', (request, response) => {
+            response.send('Hello ! 👋')
+        })
+
+        api.use('/users', usersRouter)
+
+        api.use(errorHandler)
         
-        logic.registerUser(name, email, username, password)
-
-        response.status(201).send()
-    } catch (error) {
-        response.status(500).json({ error: error.constructor.name, mesagge: error.message})
-    }
-})
+        api.listen(PORT, () => console.log('API listening on port ' + PORT))
+    })
+    .catch(error => console.error(error))
