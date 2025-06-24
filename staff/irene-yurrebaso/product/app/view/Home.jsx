@@ -7,7 +7,7 @@ import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePosts'
 
 //pasamos la prop con destructuring
-export const Home = ({ onUserLoggedOut, alert }) => {
+export const Home = ({ onUserLoggedOut, alert, confirm }) => {
     
     //para mostrar formulario para crear posts
     const [view, setView] = useState('posts')
@@ -67,7 +67,7 @@ export const Home = ({ onUserLoggedOut, alert }) => {
         >Log out</button>
 
         {/*propagar prop alert a los hijos de Home: Posts y CreatePost*/}
-        {view === 'posts' && <Posts alert={alert}/>}
+        {view === 'posts' && <Posts alert={alert} confirm={confirm}/>}
         {view === 'create-post' && <CreatePost 
         onCancelClicked={handleCreatePostCancelClicked}
         onPostCreated={handlePostCreated}

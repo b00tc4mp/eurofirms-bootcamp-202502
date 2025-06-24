@@ -7,6 +7,8 @@ import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
+import { Alert } from './view/components/Alert'
+import { Confirm } from './view/components/Confirm'
 
 import { logic } from './logic'
 
@@ -14,8 +16,12 @@ export const App = () => {
     //usamos el hook useNavigate de React Router para cambiar vistas
     const navigate = useNavigate()
 
-    //usamos useState para manejar el pintado de los popup 'alert' y 'confirm'
+    //usamos useState para manejar el pintado de la ventana 'alert'
     const [alertMessage, setAlertMessage] = useState('')
+    //pintado ventana 'confirm'
+    const [confirmMessage, setConfirmMessage] = useState('')
+    //este estado me permite guardar el true o false del resolve de la promesa del 'confirm delete post'
+    const [confirmAction, setConfirmAction] = useState(null)
 
     const handleRegisterClicked = () => navigate('/register')
 
@@ -39,20 +45,43 @@ export const App = () => {
         //mensaje error para usuario
         alert(error.message)
     }
+
+    //handle para la ventana de 'Alert: Accept'
     //cuando clico en el boton Accept, el handle cambia el set a vacio
-    const handleAcceptAlert = () => setAlertMessage('')
+    const handleAlertAccepted = () => setAlertMessage('')
+
+    //3 handles para la ventana de 'Confirm: Cancel-Accept'
+    const handleAcceptConfirm = () => {
+        setConfirmMessage('')
+
+        confirmAction.resolve(true)
+    }
+
+    const handleCancelConfirm = () => {
+        setConfirmMessage('')
+
+        confirmAction.resolve(false)
+    }
+
+    //con esta funcion hacemos llegar el confirm con props a Post.jsx, pasando por la cadena Home > Posts > Post, ya que uno esta dentro de otro
+    const handleShowConfirm = (message) => {
+        setConfirmMessage(message)
+
+        //cuando construyo la promesa, el resolve lo guardo en un objeto en el state de React setConfirmAction. Al guardar un objeto, consigo q la respuesta se resuelva en confirmAction.resolve arriba con un true o un false.
+        //la resolucion de la promesa se producirá al clicar en uno de los dos botones de Cancel o Accept, ahi es cuando llamamos al resolve
+        return new Promise((resolve, reject) => { 
+            setConfirmAction({ resolve })
+        })
+    }
 
     console.log('App -> render')
 
     //vite esta convirtiendo estos componentes html a javascript DOM y mostrandolos en el div root
     return <>
-        {/*este componente solo se va a mostrar si alertMessage existe, se maneja desde el useState*/}
-        {alertMessage && <div className="p-10 bg-yellow-500/70 absolute w-full h-full flex flex-col justify-center">
-            <div className="bg-white border-2 border-black p-2 flex flex-col">
-                <p>{alertMessage}</p>
-                <button className="bg-black text-white py-1 px-4 self-end" type="button" onClick={handleAcceptAlert}>Accept</button>
-            </div>
-        </div>}
+        {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
+
+        {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
+
         <Routes>
             {/* onRegisterClick (nombre semantico que nos inventamos) es una propiedad (prop) */}
             <Route path='/' element={
@@ -65,6 +94,7 @@ export const App = () => {
                     <Home
                         onUserLoggedOut={handleUserLoggedOut}
                         alert={setAlertMessage}
+                        confirm={handleShowConfirm}
                     />
             } />
 
