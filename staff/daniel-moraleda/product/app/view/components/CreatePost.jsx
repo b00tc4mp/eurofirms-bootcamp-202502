@@ -1,6 +1,10 @@
 import { logic } from '../../logic'
 
+import { useContext } from '../../context'
+
 export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
+    const { alert } = useContext()
+
 
     console.log('createPost -> render')
 

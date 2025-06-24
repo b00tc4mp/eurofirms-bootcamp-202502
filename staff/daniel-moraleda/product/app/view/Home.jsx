@@ -4,9 +4,12 @@ import { logic } from '../logic'
 
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
+import { useContext } from '../context'
 
-export const Home = props => {
-    const onUserLoggedOut = props.onUserLoggedOut
+export const Home = ({ onUserLoggedOut }) => {
+    const { alert } = useContext()
+
+
 
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
@@ -21,7 +24,7 @@ export const Home = props => {
                     alert(error.message)
                 })
         } catch (error) {
-            console.error(error) 
+            console.error(error)
 
             alert(error.message)
         }
@@ -65,10 +68,11 @@ export const Home = props => {
             >Logout</button>
         </div>
 
-        {view === 'posts' && <Posts />}
+        {view === 'posts' && <Posts  alert={alert} confirm={confirm}/> }
         {view === 'create-post' && <CreatePost
             onCancelClicked={handleCreatePostCancelClicked}
             onPostCreated={handlePostCreated}
+
         />}
     </div>
 }
