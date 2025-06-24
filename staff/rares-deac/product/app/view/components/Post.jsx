@@ -4,23 +4,27 @@ import { logic } from '../../logic'
 //     const post = props.post
 //     const onPostDeleted = props.onPostDeleted
 
-export const Post = ({post, onPostDeleted, alert}) => {
+export const Post = ({ post, onPostDeleted, alert, confirm }) => {
     const handleDeleteClick = () => {
-        if (confirm('Delete post?'))
-            try {
-                logic.removePost(post.id)
-                    .then(() => onPostDeleted())
-                    .catch(error => {
+        confirm('Delete post?')
+            .then ( result => {
+                if (result)
+                    try {
+                        logic.removePost(post.id)
+                            .then(() => onPostDeleted())
+                            .catch(error => {
+                                console.error(error)
+
+                                alert(error.message)
+                            })
+
+                    } catch (error) {
                         console.error(error)
 
                         alert(error.message)
-                    })
-                
-            } catch (error) {
-                console.error(error)
-                
-                alert(error.message)
-            }
+                    }
+
+            })
     }
 
     console.log('Post -> render')

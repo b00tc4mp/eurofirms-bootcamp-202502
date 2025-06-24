@@ -5,6 +5,8 @@ import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
+import { Alert } from './view/components/Alert'
+import { Confirm } from './view/components/Confirm'
 
 import { logic } from './logic'
 
@@ -12,7 +14,9 @@ import { logic } from './logic'
 export const App = () => {
     const navigate = useNavigate()
 
-    const [alertMessage, setAlertMessage] = useState('loquesea')
+    const [alertMessage, setAlertMessage] = useState('')
+    const [confirmMessage, setConfirmMessage] = useState('')
+    const [confirmAction, setConfirmAction] = useState(null)
 
     const handleRegisterClicked = () => navigate('/register')
 
@@ -34,19 +38,34 @@ export const App = () => {
         alert(error.message)
     }
 
-    const handleAcceptAlert = () => setAlertMessage('')
+    const handleAlertAccepted = () => setAlertMessage('')
+
+    const handleAcceptConfirm = () =>{
+        setConfirmMessage('')
+        confirmAction.resolve(true)
+    }
+
+    const handleCancelConfirm = () => {
+        setConfirmMessage('')
+        
+        confirmAction.resolve(false)
+    }
+
+    const handleShowConfirm = message => {
+        setConfirmMessage(message)
+        return new Promise((resolve, reject) => {
+            setConfirmAction({ resolve })
+        })
+
+    }
 
     console.log('App -> render')
 
 
     return <>
-        {alertMessage && <div className='p-10 bg-gray-500/70 absolute w-full h-full flex flex-col justify-center'>
-            <div className="bg-white border-2 border-black p-2 flex flex-col">
-                <p>{alertMessage}</p>
+        {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
-                <button className="bg-black text-white px-2 self-end" type="button" onClick={handleAcceptAlert}>Accept</button>
-            </div>
-        </div>}
+        {confirmMessage && <Confirm message ={confirmMessage} onCancelled={handleCancelConfirm} onAccepted= {handleAcceptConfirm}/>}
         <Routes>
             <Route path='/' element={
                 !loggedIn ?
@@ -58,6 +77,7 @@ export const App = () => {
                     <Home
                         onUserLoggedOut={handleUserLoggedOut}
                         alert={setAlertMessage}
+                        confirm = {handleShowConfirm}
                     />
 
             } />

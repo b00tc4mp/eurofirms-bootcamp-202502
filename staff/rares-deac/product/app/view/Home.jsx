@@ -7,7 +7,7 @@ import { CreatePost } from './components/CreatePost'
 
 // export const Home = props => {
 //     const onUserLoggedOut = props.onUserLoggedOut
-export const Home = ({onUserLoggedOut, alert}) => {
+export const Home = ({onUserLoggedOut, alert, confirm}) => {
 
 
     const [view, setView] = useState('posts')
@@ -68,7 +68,7 @@ export const Home = ({onUserLoggedOut, alert}) => {
                 Logout</button>
         </div>
 
-        {view === 'posts' && <Posts alert={alert} />}
+        {view === 'posts' && <Posts alert={alert} confirm = {confirm} />}
         {view === 'create-post' && <CreatePost
             onCancelClicked={handleCreatePostCancelClicked}
             onPostCreated={handlePostCreated}
