@@ -1,15 +1,21 @@
-fetch('http://localhost:8080/users', {
+fetch('http://localhost:8080/users/auth', {
     method: 'POST',
     headers: {
+
         'Content-Type': 'application/json'
     },
-    body: '{"name":"Bruce Wayne","email":"brucewayne@batman.com","username":"batman","password":"123123123"}'
+    body: '{"username":"peterpan","password":"123123123"}'
 })
-    .catch(error => { throw new Error('connection error') })
+    .catch(error => { throw new Error('Connection error') })
     .then(response => {
+
         const { status } = response
 
-        if (status === 201) return
+        if (status === 200)
+
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(userId => userId)
 
         return response.json()
             .catch(error => { throw new Error('json error') })
@@ -19,5 +25,6 @@ fetch('http://localhost:8080/users', {
                 throw new Error(message)
             })
     })
-    .then(() => console.log('user registered'))
+
+    .then(userId => console.log('user authenticated', userId))
     .catch(error => console.error(error))
