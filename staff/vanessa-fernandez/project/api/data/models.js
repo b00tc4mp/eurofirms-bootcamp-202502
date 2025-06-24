@@ -25,6 +25,33 @@ const user = new Schema({
     password: {
         type: String,
         required: true
+    },
+    
+    gender: {
+        type: String,
+        enum: ['male', 'female', 'other'],
+        default: null
+    },
+
+    weight: {
+        type: Number,
+        default: null
+    },
+
+    height: {
+        type: Number,
+        default: null
+    },
+
+    profileCompleted: {
+        type: Boolean,
+        default: false
+    },
+
+    role: {
+        type: String,
+        enum: ['regular', 'admin'],
+        default: regular
     }
 })
 
