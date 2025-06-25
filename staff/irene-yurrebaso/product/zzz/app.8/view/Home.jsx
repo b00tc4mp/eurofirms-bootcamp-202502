@@ -3,13 +3,11 @@ import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 
 import { Posts } from './components/Posts'
+
 import { CreatePost } from './components/CreatePosts'
-import { useContext } from '../context'
 
 //pasamos la prop con destructuring
-export const Home = ({ onUserLoggedOut }) => {
-    //destructuring de alert q ahora es una propiedad del objeto creado con Context.Provider
-    const { alert } = useContext()
+export const Home = ({ onUserLoggedOut, alert, confirm }) => {
     
     //para mostrar formulario para crear posts
     const [view, setView] = useState('posts')
@@ -69,10 +67,11 @@ export const Home = ({ onUserLoggedOut }) => {
         >Log out</button>
 
         {/*propagar prop alert a los hijos de Home: Posts y CreatePost*/}
-        {view === 'posts' && <Posts />}
+        {view === 'posts' && <Posts alert={alert} confirm={confirm}/>}
         {view === 'create-post' && <CreatePost 
         onCancelClicked={handleCreatePostCancelClicked}
         onPostCreated={handlePostCreated}
+        alert={alert}
         />}
     </div>
 }

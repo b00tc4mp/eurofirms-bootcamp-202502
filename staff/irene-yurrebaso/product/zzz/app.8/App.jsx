@@ -9,7 +9,6 @@ import { Login } from './view/Login'
 import { Home } from './view/Home'
 import { Alert } from './view/components/Alert'
 import { Confirm } from './view/components/Confirm'
-import { Context } from './context'
 
 import { logic } from './logic'
 
@@ -78,11 +77,7 @@ export const App = () => {
     console.log('App -> render')
 
     //vite esta convirtiendo estos componentes html a javascript DOM y mostrandolos en el div root
-    //Provider permite proveer un valor, en nuestro caso le damos el valor de un objeto ya que este nos permite agrupar varios handles, como propiedades de ese objeto.
-    return <Context.Provider value={{
-        alert: setAlertMessage,
-        confirm: handleShowConfirm
-    }}>
+    return <>
         {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
         {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
@@ -98,6 +93,8 @@ export const App = () => {
                     :
                     <Home
                         onUserLoggedOut={handleUserLoggedOut}
+                        alert={setAlertMessage}
+                        confirm={handleShowConfirm}
                     />
             } />
 
@@ -106,6 +103,9 @@ export const App = () => {
                     <Register
                         onLoginClicked={handleLoginClicked}
                         onUserRegistered={handleUserRegistered}
+
+                        //prop o funcion llamada alert, q permite cambiar estado para mostrar el popup de alerta
+                        alert={setAlertMessage}
                     />
                     :
                     <Navigate to='/' />
@@ -116,10 +116,13 @@ export const App = () => {
                     <Login
                         onRegisterClicked={handleRegisterClicked}
                         onUserLoggedIn={handleUserLoggedIn}
+
+                        //paso la prop 'alert' (q es una funcion) a login
+                        alert={setAlertMessage}
                     />
                     :
                     <Navigate to='/' />
             } />
         </Routes>
-    </Context.Provider>
+    </>
 }

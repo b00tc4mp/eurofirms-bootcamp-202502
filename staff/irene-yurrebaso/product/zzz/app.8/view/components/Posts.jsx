@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react'
 
+import { Post } from './Post'
+
 import { logic } from '../../logic'
 
-import { Post } from './Post'
-//nuestras ventanas de alert y confirm customizadas vienen importadas a traves de Context
-import { useContext } from '../../context'
-
-export const Posts = () => {
-    //devuelve el objeto creado con Context.Provider y me quedo con la propiedad alert q esta entre llaves
-    const { alert } = useContext()
-
+export const Posts = ({alert, confirm}) => {
     //array vacio porque inicialmente no hay nada cargado
     const [posts, setPosts] = useState([])
 
@@ -63,6 +58,6 @@ export const Posts = () => {
     //recibimos por props cada post que hay en el array posts
     //mapea cada dato a un componente de react, y le envia el dato con la propiedad post, y una funcion para eliminar post
     return <>
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} alert={alert} confirm={confirm} />)}
     </>
 }

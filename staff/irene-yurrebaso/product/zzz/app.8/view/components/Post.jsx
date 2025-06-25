@@ -1,12 +1,7 @@
 import { logic } from '../../logic'
 
-import { useContext } from 'react'
-
 //pasamos las prop con destructuring
-export const Post = ({ post, onPostDeleted }) => {
-    //destructuring de las propiedades alert y confirm, q ahora vienen del Context.Provider
-    const { alert, confirm } = useContext()
-
+export const Post = ({ post, onPostDeleted, alert, confirm }) => {
     const handleDeleteClick = () => {
         //confirm devuelve una promesa (asincronía) a la q le puedo encadenar el then
         //el confirm le llega por props pasando por la cadena App > Home > Posts > Post; depende de si es Cancel o Accept seguira un camino u otro

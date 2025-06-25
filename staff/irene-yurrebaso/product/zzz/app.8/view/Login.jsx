@@ -1,12 +1,8 @@
 import { logic } from '../logic'
 import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com'
 
-import { useContext } from '../context'
-
 //destructuracion de variables de props
-export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
-    //trae alert a traves de contexto, y esta alert personalizada se usara en el try/catch al loginar
-    const { alert } = useContext()
+export const Login = ({ onRegisterClicked, onUserLoggedIn, alert}) => {
 
     const handleRegisterClick = () => onRegisterClicked()
 

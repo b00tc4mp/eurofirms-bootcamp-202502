@@ -1,11 +1,7 @@
 import { logic } from '../../logic'
 
-import { useContext } from '../../context'
-
 //pasamos props con destructuring
-export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
-    //trae alert a traves de contexto (como propiedad del objeto creado con Context.Provider), y esta alert personalizada se usara en el try/catch al crear post
-    const { alert } = useContext()
+export const CreatePost = ({ onCancelClicked, onPostCreated, alert}) => {
 
     const handleCancelClick = () => onCancelClicked() 
 

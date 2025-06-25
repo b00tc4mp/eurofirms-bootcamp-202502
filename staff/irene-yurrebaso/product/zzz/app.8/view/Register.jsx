@@ -1,10 +1,8 @@
 import { logic } from '../logic'
 
-import { useContext } from '../context'
-
-export const Register = ({ onLoginClicked, onUserRegistered }) => {
-    const { alert } = useContext()
-
+//destructuracion en las variables que se pasan como props
+//la alerta 'alert' ahora viene con prop desde la App.jsx, para mostrar ventana customizada
+export const Register = ({onLoginClicked, onUserRegistered, alert}) => {
     //creamos una funcion handle que maneja el onClick
     const handleLoginClick = () => onLoginClicked()
 
