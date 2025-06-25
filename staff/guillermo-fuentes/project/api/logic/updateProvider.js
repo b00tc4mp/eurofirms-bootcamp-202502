@@ -1,12 +1,12 @@
 import { User, Provider } from '../data/index.js';
 import { DuplicityError, NotFoundError, SystemError, validate, ValidationError } from 'com';
-
-export const updateProvider = (requesterId, targetId, name, contact, direction, userId) => {
+//cambiar targetid a providerid
+export const updateProvider = (requesterId, targetId, name, contact, direction, providerId) => {
   validate.adminId(requesterId);
   validate.userId(targetId);
   if (name !== undefined) validate.name(name);
   if (direction !== undefined) validate.direction(direction);
-  if (userId !== undefined) validate.userId(userId);
+  if (providerId !== undefined) validate.userId(providerId);
 
   return Promise.all([User.findById(requesterId), Provider.findById(targetId)]).then(([requester, provider]) => {
     if (!requester) throw new NotFoundError('user not found');
@@ -35,9 +35,9 @@ export const updateProvider = (requesterId, targetId, name, contact, direction, 
       provider.direction = direction.trim();
     }
 
-    if (userId !== undefined) {
+    if (providerId !== undefined) {
       if (!isAdmin && !isSameUser) throw new ValidationError('Field not allowed: user');
-      provider.user = userId; // Es una referencia ObjectId
+      provider.user = providerId; // Es una referencia ObjectId
     }
 
     return provider.save(); // 💾 Guardar los cambios

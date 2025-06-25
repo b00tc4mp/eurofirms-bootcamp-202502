@@ -1,0 +1,17 @@
+import { User } from '../data/index.js';
+import { NotFoundError, SystemError, validate } from 'com';
+
+export const searchUsers = (query) => {
+  return User.find({ fullName: { $regex: query, $options: 'i' } })
+    .select('fullName _id')
+    .lean()
+    .catch((error) => {
+      throw new SystemError('Mongo error: ', error.message);
+    })
+    .then((users) => {
+      if (!users || users.length === 0) {
+        throw new NotFoundError('No users found');
+      }
+      return users;
+    });
+};

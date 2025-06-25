@@ -130,3 +130,17 @@ usersRouter.put('/:userId', jsonBodyParser, (request, response, next) => {
     next(error);
   }
 });
+usersRouter.get('/search/:query', (req, res, next) => {
+  const { query } = req.params;
+
+  logic
+    .searchUsers(query)
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+export default usersRouter;

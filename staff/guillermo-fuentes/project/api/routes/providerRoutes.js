@@ -8,13 +8,17 @@ export const providerRouter = Router();
 providerRouter.post('/', jsonBodyParser, (request, response, next) => {
   try {
     const authorization = request.headers.authorization;
+    if (!authorization) {
+      return response.status(401).json({ error: 'Authorization header missing' });
+    }
     const token = authorization.slice(7);
 
-    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+    const { sub: adminId } = jwt.verify(token, JWT_SECRET);
 
-    const { name, contact, direction } = request.body;
+    const { name, contact, direction, userFullName } = request.body;
+
     logic
-      .addProvider(name, contact, direction, userId)
+      .addProvider(name, contact, direction, adminId, userFullName)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
@@ -56,10 +60,10 @@ providerRouter.put('/:providerId', jsonBodyParser, (request, response, next) => 
     const { sub: requesterId } = jwt.verify(token, JWT_SECRET);
 
     const { providerId: targetId } = request.params; // Fixed from userId to proveedorId
-    const { name, contact, direction, userId } = request.body;
+    const { name, contact, direction, providerId } = request.body;
 
     logic
-      .updateProvider(requesterId, targetId, name, contact, direction, userId)
+      .updateProvider(requesterId, targetId, name, contact, direction, providerId)
       .then(() => response.status(200).json({ mensaje: 'Provider updated succesfully' }))
       .catch((error) => next(error));
   } catch (error) {
