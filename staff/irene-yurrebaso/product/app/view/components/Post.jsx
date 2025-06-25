@@ -1,6 +1,6 @@
 import { logic } from '../../logic'
 
-import { useContext } from 'react'
+import { useContext } from '../../context'
 
 //pasamos las prop con destructuring
 export const Post = ({ post, onPostDeleted }) => {
