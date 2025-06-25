@@ -28,3 +28,83 @@ Regular (user)
 
 Admin (User) [v0.1]
 
+- Create and view surveys and their statistics.
+- Assign bands as examples for each genre and subgenre.
+- Check survey progress.
+- Review comments or issues reported by users.
+- Manage user profiles.
+
+---
+
+### Prototype
+
+[Figma] 
+
+---
+
+## Technical 
+
+### Architecture
+
+'[App] -> [Api] -> [DB]'
+
+**App**
+- Components
+- Logic
+- Data 
+**Api**
+- Routes
+- Logic
+- Data
+- Middlewares
+- Test
+
+---
+
+### UI Components
+
+**App Views**
+
+- Landing
+- Register
+- Login
+- Home
+
+**Home Subviews**
+
+-Edit profile
+- create test
+
+**Test geners**
+
+- Test geners
+
+---
+
+### Data Model
+
+**User**
+
+- id (UUID)
+- name (string, required)
+- username (string, required, unique)
+- email (string, required, unique)
+- password (string, required)
+
+**Exercise**
+
+- id (UUID)
+- name (string, required)
+- genre and subgenre test
+- image representing each subgenre (string)
+
+### Technologies
+
+- React
+- Express
+- Mongo
+- Node
+- Tailwind
+- JWT
+- Bcrypt
+- ...
