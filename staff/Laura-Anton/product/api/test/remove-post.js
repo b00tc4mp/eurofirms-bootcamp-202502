@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/posts/685055b7b7d8a96f2032a8e7', {
+fetch('http://localhost:8080/posts/685afddbd225ce5cdddeeae1', {
     method: 'DELETE',
     headers: {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUwNTNmNWI3ZDhhOTZmMjAzMmE4ZTMiLCJpYXQiOjE3NTAwOTQ5NDV9._N5_K5wLwZHQMKGz_jCBEy0A7gEYwaGYMWTCwq0Ywks'
@@ -20,3 +20,6 @@ fetch('http://localhost:8080/posts/685055b7b7d8a96f2032a8e7', {
     })
     .then(() => console.log('post removed'))
     .catch(error => console.error(error))
+
+    //userId + secreto = token 
+    //token + secreto = userId
