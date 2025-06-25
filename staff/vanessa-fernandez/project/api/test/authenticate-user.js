@@ -22,5 +22,5 @@ fetch('http://localhost:8080/users/auth', {
                 throw new Error(message)
             })        
     })
-    .then(() => console.log('user authenticated', userId))
+    .then(userId => console.log('user authenticated', userId))
     .catch(error => console.error(error))

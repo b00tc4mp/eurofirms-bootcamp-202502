@@ -51,7 +51,7 @@ const user = new Schema({
     role: {
         type: String,
         enum: ['regular', 'admin'],
-        default: regular
+        default: 'regular'
     }
 })
 

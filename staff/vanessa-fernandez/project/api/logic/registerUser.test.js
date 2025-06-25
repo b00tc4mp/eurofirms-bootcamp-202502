@@ -4,7 +4,7 @@ import { registerUser } from './registerUser.js'
 connect('mongodb://localhost:27017/test-gymplan')
     .then(() => {
         try {
-            return registerUser('Hermione Granger', 'hermione@granger.com', 'hermioneG', '123123123')
+            return registerUser('Harry Potter', 'harry@potter.com', 'harryP', '123123123')
             .then(() => console.log('user registered'))
             .catch(error => console.error(error))
         } catch(error) {
