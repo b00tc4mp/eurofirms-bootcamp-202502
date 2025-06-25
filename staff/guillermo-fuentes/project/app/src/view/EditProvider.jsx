@@ -1,0 +1,197 @@
+import { logic } from '../logic';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+export const EditProvider = ({ provider, onEditedProvider }) => {
+  const { loggedIn, rol: userRol } = useAuth();
+  const [name, setName] = useState(provider.name);
+  const [contact, setContact] = useState(provider.contact);
+  const [direction, setDirection] = useState(provider.direction);
+  const [userFullName, setUserFullName] = useState(provider.user.fullName);
+  const [nameQuery, setNameQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [selectedUserName, setSelectedUserName] = useState('');
+  const [selectedUserId, setSelectedUserId] = useState(provider.user.id);
+  const [error, setError] = useState('');
+
+  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+
+  const handleSelectUser = (user) => {
+    setNameQuery(user.fullName);
+    setSelectedUserName(user.fullName);
+    setSelectedUserId(user._id);
+    setSuggestions([]);
+    setError('');
+  };
+
+  useEffect(() => {
+    if (isAdmin) {
+      logic.fetchSuggestions(nameQuery, setSuggestions, setError);
+    }
+    return () => logic.fetchSuggestions.cancel();
+  }, [nameQuery]);
+
+  const handleEditProvider = () => onEditedProvider();
+
+  const handleEditSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const contact = form.contact.value;
+    const direction = form.direction.value;
+    //const userFullName = form.user.value;
+    if (isAdmin && !selectedUserName) {
+      setError('Please select a user');
+      alert('Please select a user');
+      return;
+    }
+
+    try {
+      logic
+        .updateProvider(provider.id, name, contact, direction, selectedUserId)
+        .then(() => {
+          form.reset();
+          setNameQuery('');
+          setSelectedUserName('');
+          setError('');
+          handleEditProvider();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleNameQueryChange = (event) => {
+    setNameQuery(event.target.value);
+    setSelectedUserName('');
+  };
+  return (
+    <div
+      className="w-screen h-screen flex items-center justify-center  bg-opacity-25
+ px-4 fixed inset-0  z-50"
+    >
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+        <div className="flex justify-center mb-6 text-4xl text-blue-500">
+          <i className="fas fa-user-plus"></i>
+        </div>
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Update provider</h1>
+        <form className="space-y-4" onSubmit={handleEditSubmit}>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="El nombre de tu empresa"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">
+              Contact
+            </label>
+            <input
+              type="text"
+              name="contact"
+              id="contact"
+              value={contact}
+              onChange={(event) => setContact(event.target.value)}
+              placeholder="El contacto de tu empresa"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="direction" className="block text-sm font-medium text-gray-700 mb-1">
+              Direction
+            </label>
+            <input
+              type="text"
+              name="direction"
+              id="direction"
+              value={direction}
+              onChange={(event) => setDirection(event.target.value)}
+              placeholder="La direccion de tu empresa"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="userFullName" className="block text-sm font-medium text-gray-700 mb-1">
+              User full name
+            </label>
+            <input
+              type="text"
+              name="userFullName"
+              id="userFullName"
+              value={userFullName}
+              onChange={(event) => setUserFullName(event.target.value)}
+              placeholder="El nombre de el proveedor"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+              readOnly
+            />
+          </div>
+          {isAdmin && (
+            <div>
+              <label htmlFor="user" className="block text-sm font-medium text-gray-700 mb-1">
+                Search by username
+              </label>
+              <input
+                type="text"
+                name="user"
+                id="user"
+                value={nameQuery}
+                onChange={handleNameQueryChange}
+                placeholder="Search user by name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                autoComplete="off"
+              />
+
+              {suggestions.length > 0 && (
+                <ul className="border border-gray-300 rounded-lg mt-1 max-h-40 overflow-y-auto bg-white">
+                  {suggestions.map((user) => (
+                    <li
+                      key={user._id}
+                      onClick={() => handleSelectUser(user)}
+                      className="px-4 py-2 cursor-pointer hover:bg-blue-100"
+                    >
+                      {user.fullName}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          <div className="flex justify-between gap-2 pt-2">
+            <button
+              type="submit"
+              className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
+            >
+              Update provider
+            </button>
+
+            <button
+              type="submit"
+              className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
+              onClick={() => handleEditProvider()}
+            >
+              Cancel update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};

@@ -5,11 +5,13 @@ import { Home } from './view/Home';
 import { Register } from './view/Register';
 import { Login } from './view/Login';
 import { Users } from './view/Users';
+import { Providers } from './view/Providers';
 import { ProtectedRoute } from './context/ProtectedRoute';
 import { Navbar } from './view/components/Navbar';
 import { Alert } from './view/components/Alert';
 import { Confirm } from './view/components/Confirm';
 import { Context } from './context/context';
+import { AddProvider } from './view/AddProvider';
 export const App = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [confirmMessage, setConfirmMessage] = useState('');
@@ -70,12 +72,21 @@ export const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/addProvider" element={<AddProvider />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/users"
           element={
             <ProtectedRoute>
               <Users />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/providers"
+          element={
+            <ProtectedRoute>
+              <Providers />
             </ProtectedRoute>
           }
         />

@@ -33,6 +33,14 @@ export const Navbar = () => {
             Users
           </button>
         )}
+        {loggedIn && (
+          <button
+            className="text-gray-700 hover:text-blue-600 transition font-medium"
+            onClick={() => navigate('/providers')}
+          >
+            Providers
+          </button>
+        )}
       </div>
 
       <div className="flex gap-3">

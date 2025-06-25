@@ -6,6 +6,10 @@ import { isUserLoggedIn } from './isUserLoggedIn';
 import { loginUser } from './loginUser';
 import { logoutUser } from './logoutUser';
 import { registerUser } from './registerUser';
+import { getProviders } from './getProviders';
+import { addProvider } from './addProvider';
+import { fetchSuggestions } from './fetchSuggestions';
+import { updateProvider } from './updateProvider';
 
 export const logic = {
   loginUser,
@@ -16,4 +20,8 @@ export const logic = {
   logoutUser,
   updateUser,
   getUsersByRol,
+  getProviders,
+  addProvider,
+  fetchSuggestions,
+  updateProvider,
 };

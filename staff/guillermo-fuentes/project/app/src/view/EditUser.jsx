@@ -48,7 +48,7 @@ export const EditUser = ({ user, onEditedUser }) => {
         <div className="flex justify-center mb-6 text-4xl text-blue-500">
           <i className="fas fa-user-plus"></i>
         </div>
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Registro</h1>
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Update user</h1>
         <form className="space-y-4" onSubmit={handleEditSubmit}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
