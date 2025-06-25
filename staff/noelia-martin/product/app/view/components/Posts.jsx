@@ -20,16 +20,13 @@ export const Posts = () => {
                 })
                 .catch(error => {
                     console.error(error)
-
                     alert(error.message)
                 })
         } catch (error) {
             console.error(error)
-
             alert(error.message)
         }
     }, [])
-
     const handlePostDeleted = () => {
         // try {
         //     const posts = logic.getPosts()

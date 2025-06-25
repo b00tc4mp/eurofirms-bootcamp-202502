@@ -35,5 +35,20 @@ Para errores asíncronos, ya se configuro en la anterior versión, la única dif
 
 
 Solo en app: 
+
 Tocamos view de login la parte de las alertas para dar un WARN o un ERROR según la constructora que corresponda. 
 Modifiqué register y createPost por mi cuenta
+
+React Route
+Es una librería de JavaScript para React que permite implementar la navegación entre diferentes vistas (componentes) dentro de una aplicación web de una sola página
+
+1º Lo instalamos: npm i react-router
+2º Modificamos el main.jsx y el index.html:
+    Renombramos el fichero para que se llame index que es lo más habitual y en el html modificamos la src para que sepa el cambio de nombre.
+    Importamos el componente BrowserRouter, el cuál se utiliza para habilitar el enrutamiento del lado del cliente y envolvemos la aplicación en él.
+3º Configuramos la app para que utilice React Route
+    Dejamos de utilizar los estados para poner useNavigate
+    Eliminamos el useEffect que nos cambiaba a la vista Home si habia un usuario conectado, lo dejamos directamente en el código para que se ejecute durante el renderizado. (NO ES UNA BUENA PRACTICA)
+    Metemos el contenido del return en el contenedor Routes (este agrupará múltiples Route y gestionará la logica de enrutamiento)
+    Cambio view por Route y configuramos ternarios que controlen las rutas a mostrar segun si hay algún usuario conectado
+    (Todo bien detallado en el código)

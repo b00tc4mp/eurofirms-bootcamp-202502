@@ -1,57 +1,77 @@
-import { useState, useEffect } from 'react' //añadimos useEffect
+import { Routes, Route, useNavigate, Navigate } from 'react-router' //nos traemos todos estos hook y componentes
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
-import { logic } from './logic' //necesito logic para la funcion que me permite saber si hay algun loogeado
+
+import { logic } from './logic'
 
 export const App = () => {
-    const [view, setView] = useState('landing')
+    //dejamos de utilizar setView para poner useNavigate con la ruta correspondiente
+    const navigate = useNavigate()
 
-    const handleRegisterClicked = () => setView('register')
-    const handleLoginClicked = () => setView('login')
-    const handleUserRegistered = () => setView('login')
-    const handleUserLoggedIn = () => setView('home')
-    const handleUserLoggedOut = () => setView('login')
+    const handleRegisterClicked = () => navigate('/register')
+    const handleLoginClicked = () => navigate('/login')
+    const handleUserRegistered = () => navigate('/login')
+    const handleUserLoggedIn = () => navigate('/') //home y landing lo ponemos en la ruta raiz (en este caso es para home)
+    const handleUserLoggedOut = () => navigate('/login')
 
-    //useEffect se dispara despues del primer render,es decir primero se pintara landing y una vez se dispare pintará lo que quiera
-    useEffect(() => {
-        //hay que consultar a la logica si hay usuarios conectados y de estarlo dejarlo en home
-        try {
-            const loggedIn = logic.isUserLoggedIn() //Utilizamos el metodo isUserLoggedIn para saber si hay alguien conectado
-            if (loggedIn) setView('home')
-        } catch (error) {
-            alert(error.mensage)
-        }
-    }, []) //el array vacio significa que solo de ejecuta una vez
+    let loggedIn //nuevo, necesitamos declarar esta variable para que la utilice el control de errores. Si la declaramos dentro se queda como variable local
+    //Antiguo, quitamos el useEffect para que directamente cuando cargue este componente, se modifique la variable loggedIn. 
+    try {
+        loggedIn = logic.isUserLoggedIn()
+        if (loggedIn) navigate('/') //antiguo setview a Home
+    } catch (error) {
+        console.error(error)//nuevo, pintamos el error en consola para mayor control
+        alert(error.mensage)
+    }
 
     console.log('App -> render')
 
-    return <>
-        {view === 'landing' &&
-            <Landing
-                onRegisterClicked={handleRegisterClicked}
-                onLoginClicked={handleLoginClicked}
-            />
-        }
+    //aprovechamos que disponemos de un contenedor vacio y metemos todo en Routes
+    return <Routes>
+        {/* Cambiamos view por Ruta e indicamos la url y el contenido que se debe mostrar */}
+        <Route path='/' element={
+            !loggedIn ?
+                <Landing
+                    onRegisterClicked={handleRegisterClicked}
+                    onLoginClicked={handleLoginClicked}
+                />
+                :
+                <Home
+                    onUserLoggedOut={handleUserLoggedOut}
+                />
+        } />
 
-        {view === 'register' &&
-            <Register
-                onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}// propiedad del form de la pg registro
-            />}
+        <Route path='/register' element={
+            !loggedIn ?
+                <Register
+                    onLoginClicked={handleLoginClicked}
+                    onUserRegistered={handleUserRegistered}
+                />
+                :
+                <Navigate to='/' />
+        } />
 
-        {view === 'login' &&
-            <Login
-                onRegisterClicked={handleRegisterClicked}
-                onUserLoggedIn={handleUserLoggedIn}// propiedad del form de la pg Loggin
+        <Route path='/login' element={
+            !loggedIn ?
+                <Login
+                    onRegisterClicked={handleRegisterClicked}
+                    onUserLoggedIn={handleUserLoggedIn}
+                />
+                :
+                <Navigate to='/' />
+        } />
+    </Routes >
 
-            />}
-
-        {view === 'home' &&
-            <Home
-                onUserLoggedOut={handleUserLoggedOut} //propiedad del submit,configurado como click del home
-            />}
-    </>
 }
+//Quitamos la ruta home para configurarla en la ruta raiz. Esta ruta raiz mostrará tanto El componente Landing como la Home según si hay algún usuario conectado
+//Para configurarlo utilizaremos la variable loggedIn que nos proporciona la lógica de isUserLoggedIn y configuramos un ternario: si NO está logueado mostrará Landing y si SI muestra Home
+
+//Navigate es un componente, el cuál se usa principalmente para redirecciones automáticas durante el renderizado
+//useNavigate es un hook, que contiene una función que permite la navegación programatica. Se usa para redirecciones basadas en acciones de usuario o lógica dentro de un componente.
+
+//En las rutas configuradas para Login y Register vamos a utilizar el componente Navigate (no confundir con la constante navigate que creamos para los handler, recuerda que contiene el hook useNavegate).
+//En estas rutas creamos un ternario que SI hay algun usuario conectado nos mandará al componente Navigate(este nos redireccionará a la ruta raiz(a Home)) y si NO hay usuario conectado entonces nos mandará al componente Login o Register.
+//Esta configuración la realizamos por seguridad para que si hay algun usuario conectado no pueda cambiar de ruta a su antojo. (Le obligamos a permanecer en Home)

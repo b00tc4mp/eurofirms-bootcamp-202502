@@ -24,6 +24,8 @@ export const Post = ({ post, onPostDeleted }) => {
             }
     }
 
+    console.log('Post -> render')
+
     return <article>
         {/* Al utilizar mongoDB, en la logica de getPost indicamos que en la propiedad author nos incluya la propiedad username. Modificamos este componente para leer esa propiedad */}
         {/*ANTIGUO: <h3 className="font-bold">{post.author}</h3> */}
