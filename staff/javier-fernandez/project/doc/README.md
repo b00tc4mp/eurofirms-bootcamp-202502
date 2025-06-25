@@ -6,7 +6,7 @@ Metals quest is a web aplication made to know the tastes of people who listen to
 This app is designed for anyone who wants to discover new underground bands.
 
 - Register and create a basic account.
--Respond to the styles and bands survey.
+- Respond to the styles and bands survey.
 - Respond to the genre survey.
 - Add new bands assigned to the indicated style.
 - Comment on bands that are relevant to your tastes (generally, their musical career or live performances).

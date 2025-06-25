@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './view/Landing'
@@ -94,7 +94,7 @@ export const App = () => {
         } />
 
         <Route path='/login' element={
-            !loggedin ?
+            !loggedIn ?
                 <Login
                     onRegisterClicked={handleRegisterClicked}
                     onUserLoggedIn={handleUserLoggedIn}
