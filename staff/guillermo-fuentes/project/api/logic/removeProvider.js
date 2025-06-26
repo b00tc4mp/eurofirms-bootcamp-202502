@@ -1,7 +1,7 @@
 import { Provider, User } from '../data/index.js';
 import { SystemError, validate, NotFoundError } from 'com';
 
-export const deleteProveedor = (providerId, adminId) => {
+export const removeProvider = (providerId, adminId) => {
   validate.idProveedor(providerId);
   validate.adminId(adminId);
   return Promise.all([Provider.findById(providerId), User.findById(adminId)])
@@ -14,7 +14,7 @@ export const deleteProveedor = (providerId, adminId) => {
       if (user.role !== 'administrator') {
         throw new Error('you are not authorized to carry out this action');
       }
-      return Proveedor.deleteOne({ _id: providerId })
+      return Provider.deleteOne({ _id: providerId })
         .catch((error) => {
           throw new SystemError('mongo error');
         })

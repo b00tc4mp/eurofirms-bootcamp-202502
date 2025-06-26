@@ -1,6 +1,6 @@
 import { User } from '../data/index.js';
 import { NotFoundError, SystemError, validate } from 'com';
-
+//TODO  BUSCAR SOLO USUARIOS QUE TENGA EL ROL ADMINISTRADOR
 export const searchUsers = (query) => {
   return User.find({ fullName: { $regex: query, $options: 'i' } })
     .select('fullName _id')

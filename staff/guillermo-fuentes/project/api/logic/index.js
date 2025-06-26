@@ -6,11 +6,12 @@ import { removeUser } from './removeUser.js';
 
 import { getUsersByRol } from './getUsersByRol.js';
 import { addProvider } from './addProvider.js';
-import { deleteProveedor } from './deleteProveedor.js';
+
 import { updateProvider } from './updateProvider.js';
 import { updateUser } from './updateUser.js';
 import { getProviders } from './getProvider.js';
 import { searchUsers } from './searchUsers.js';
+import { removeProvider } from './removeProvider.js';
 export const logic = {
   registerUser,
   authenticateUser,
@@ -19,7 +20,7 @@ export const logic = {
   updateUser,
   getUsersByRol,
   addProvider,
-  deleteProveedor,
+  removeProvider,
   updateProvider,
   getProviders,
   searchUsers,

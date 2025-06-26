@@ -1,24 +1,32 @@
 import { User } from '../data/index.js';
 import { SystemError, NotFoundError, validate } from 'com';
 
-export const getUsersByRol = (role) => {
+export const getUsersByRol = (userId, role) => {
   validate.role(role);
-  return User.find({ role })
-    .lean()
+  validate.userId(userId);
+  return User.findById(userId)
     .catch((error) => {
-      throw new SystemError('Error in MongoDB');
+      throw new SystemError('mongo error');
     })
-    .then((users) => {
-      if (!users || users.length === 0) {
-        throw new NotFoundError('Users not found');
-      }
+    .then((user) => {
+      if (!user) throw new NotFoundError('user not found');
+      return User.find({ role })
+        .lean()
+        .catch((error) => {
+          throw new SystemError('Error in MongoDB');
+        })
+        .then((users) => {
+          if (!users || users.length === 0) {
+            throw new NotFoundError('Users not found');
+          }
 
-      users.forEach((user) => {
-        user.id = user._id.toString();
-        delete user._id;
-        delete user.__v;
-      });
+          users.forEach((user) => {
+            user.id = user._id.toString();
+            delete user._id;
+            delete user.__v;
+          });
 
-      return users;
+          return users;
+        });
     });
 };

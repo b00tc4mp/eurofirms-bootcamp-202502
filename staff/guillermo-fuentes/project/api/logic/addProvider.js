@@ -1,37 +1,3 @@
-// import { Provider, User } from '../data/index.js';
-// import { DuplicityError, NotFoundError, SystemError, validate } from 'com';
-
-// export const addProvider = (name, contact, direction, adminId, userId) => {
-//   validate.name(name);
-//   validate.contact(contact);
-//   validate.direction(direction);
-//   validate.userId(userId);
-
-//   return User.findById(userId)
-//     .catch((error) => {
-//       throw new SystemError('Mongo error: ' + error.message);
-//     })
-//     .then((user) => {
-//       if (!user) throw new NotFoundError('User not found');
-//       const isAdmin = user.role === 'administrator';
-
-//       // Si no es administrador ni es el mismo user, se deniega la operación
-//       if (!isAdmin) {
-//         throw new Error('You are not authorized to perform this operation');
-//       }
-//       const userId = user._id;
-//       return Provider.create({ name, contact, direction, user: userId })
-//         .catch((error) => {
-//           if (error.code === 11000) {
-//             throw new DuplicityError('Provider name alredy exist');
-//           }
-//           throw new SystemError('Mongo error: ' + error.message);
-//         })
-//         .then((provider) => provider);
-//     });
-// };
-// logic/providers.js
-// logic/providers.js
 import { Provider, User } from '../data/index.js';
 import { DuplicityError, NotFoundError, SystemError, validate } from 'com';
 
@@ -54,8 +20,10 @@ export const addProvider = (name, contact, direction, adminId, userFullName) => 
       }
 
       // Buscar el usuario por nombre completo usando regex
+      //TODO Cambiar peticion regex por una normal
+      //TODO Cambiar userFullname por un id
       return User.find({
-        fullName: { $regex: `^${userFullName}$`, $options: 'i' }, // Coincidencia exacta
+        fullName: { $regex: `^${userFullName}$`, $options: 'i' },
       })
         .lean()
         .catch((error) => {
@@ -69,7 +37,7 @@ export const addProvider = (name, contact, direction, adminId, userFullName) => 
             throw new Error('Multiple users found with the same name. Please provide a more specific name.');
           }
 
-          const user = users[0]; // Tomar el único usuario encontrado
+          const user = users[0];
 
           // Verificar que el usuario encontrado no sea el administrador
           if (user._id.toString() === adminId) {

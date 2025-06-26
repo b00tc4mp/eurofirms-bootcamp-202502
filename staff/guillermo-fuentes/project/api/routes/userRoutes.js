@@ -98,7 +98,7 @@ usersRouter.get('/:rol', (request, response, next) => {
 
     // Llamar a getUsersByRol con el rol proporcionado
     logic
-      .getUsersByRol(rol)
+      .getUsersByRol(userId, rol)
       .then((users) => response.status(200).json(users))
       .catch((error) => next(error));
   } catch (error) {

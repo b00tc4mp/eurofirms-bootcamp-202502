@@ -39,7 +39,7 @@ providerRouter.delete('/:providerId', (request, response, next) => {
     const { providerId } = request.params;
 
     logic
-      .deleteProveedor(providerId, adminId)
+      .removeProvider(providerId, adminId)
       .then(() => response.status(204).send())
       .catch((error) => next(error));
   } catch (error) {
