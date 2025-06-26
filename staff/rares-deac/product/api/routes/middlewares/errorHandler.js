@@ -29,6 +29,6 @@ export const errorHandler = (error, request, response, next) => {
     } else
         errorName = SystemError.name
 
-    response.status(500).json({ error: SystemError.name, message })
+    response.status(status).json({ error: errorName, message })
 
 }
