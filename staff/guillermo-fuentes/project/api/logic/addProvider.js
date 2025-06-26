@@ -20,10 +20,10 @@ export const addProvider = (name, contact, direction, adminId, userFullName) => 
       }
 
       // Buscar el usuario por nombre completo usando regex
-      //TODO Cambiar peticion regex por una normal
+
       //TODO Cambiar userFullname por un id
       return User.find({
-        fullName: { $regex: `^${userFullName}$`, $options: 'i' },
+        fullName: userFullName,
       })
         .lean()
         .catch((error) => {

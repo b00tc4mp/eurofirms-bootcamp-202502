@@ -3,7 +3,7 @@ import { removeProvider } from './removeProvider.js';
 connect('mongodb://localhost:27017/proyectoFinal')
   .then(() => {
     try {
-      return removeProvider('685d83cd9bb685dd45882f94', '6857e3c3c94ecaebfb3d947a')
+      return removeProvider('685d902a279511dc65679e04', '685d7e3cf3767021029121e0')
         .then(() => console.log('provider removed'))
         .catch((error) => console.error(error));
     } catch (error) {
