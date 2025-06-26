@@ -2,11 +2,11 @@ import { Provider, User } from '../data/index.js';
 import { DuplicityError, NotFoundError, SystemError, validate } from 'com';
 
 export const addProvider = (name, contact, direction, adminId, userFullName) => {
-  validate.name(name, 'provider name');
+  validate.name(name);
   validate.contact(contact);
   validate.direction(direction);
-  validate.userId(adminId, 'adminId');
-  validate.name(userFullName, 'user fullName'); // Validar que userFullName no esté vacío
+  validate.userId(adminId);
+  validate.name(userFullName);
 
   // Verificar que el usuario autenticado es administrador
   return User.findById(adminId)
