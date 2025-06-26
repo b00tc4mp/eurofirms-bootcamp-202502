@@ -6,7 +6,6 @@ export const addProvider = (name, contact, direction, userFullName) => {
   validate.name(name, 'provider name');
   validate.contact(contact);
   validate.direction(direction);
-  validate.name(userFullName, 'user fullName'); // Validar userFullName
 
   return fetch(`${import.meta.env.VITE_API_URL}providers`, {
     method: 'POST',
