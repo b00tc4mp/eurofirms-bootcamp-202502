@@ -45,4 +45,8 @@ export const validate = {
     if (typeof adminId !== 'string') throw new ValidationError('invalid adminId type');
     if (adminId.length !== 24) throw new ValidationError('invalid adminId length');
   },
+  providerId(providerId) {
+    if (typeof providerId !== 'string') throw new ValidationError('invalid providerId type');
+    if (providerId.length !== 24) throw new ValidationError('invalid providerId length');
+  },
 };
