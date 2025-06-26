@@ -1,3 +1,5 @@
+//constructoras de errores propios que tenemos hasta el momento, tanto de lógica, como el último q se creo para api (AuthorizationError)
+
 export class ValidationError extends Error {
     constructor(message) {
         super(message)
@@ -40,7 +42,7 @@ export class AuthorizationError extends Error {
     }
 }
 
-//en el objeto errors, metemos todas las constructoras de errores propios que tenemos hasta el momento, tanto de lógica, como el último q se creo para api (AuthorizationError)
+//en el objeto errors, metemos todas las constructoras 
 const errors = {
     ValidationError,
     DuplicityError,
@@ -52,3 +54,4 @@ const errors = {
 }
 
 export default errors
+//no es obligatorio exportarlo 'por defecto'. Manu exportó este objeto por defecto. Esto se realiza cuando se desea exportar un único valor desde un módulo.
