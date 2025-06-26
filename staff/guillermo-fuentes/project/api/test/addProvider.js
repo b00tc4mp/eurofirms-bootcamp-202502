@@ -5,7 +5,7 @@ fetch('http://localhost:8080/provider', {
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODU3MGQ1M2M4ZTQ3MWYyNzcwZDI0ZGMiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTc1MDU5MjU0NH0.KAvNVuVQ1QBpdXr3PMuGE6PJjHKMRqf46M0ERgj5qjk',
     'Content-Type': 'application/json',
   },
-  body: '{"name":"Test","contact":"test@ramirez.com","direction":"Calle Zafiro 3","adminId":"685d7e3cf3767021029121e0"}',
+  body: '{"name":"Julio Ramirez SA","contact":"pepe@ramirez.com","direction":"Calle Zafiro 3","idUser":"6857e3c3c94ecaebfb3d947a"}',
 })
   .catch((error) => {
     throw new Error('connection error');

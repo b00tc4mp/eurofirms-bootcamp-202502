@@ -4,9 +4,9 @@ import { DuplicityError, NotFoundError, SystemError, validate, ValidationError }
 export const updateProvider = (requesterId, targetId, name, contact, direction, providerId) => {
   validate.adminId(requesterId);
   validate.userId(targetId);
-  if (name !== undefined) validate.name(name);
-  if (direction !== undefined) validate.direction(direction);
-  if (providerId !== undefined) validate.userId(providerId);
+  validate.name(name);
+  validate.direction(direction);
+  validate.providerId(providerId);
 
   return Promise.all([User.findById(requesterId), Provider.findById(targetId)]).then(([requester, provider]) => {
     if (!requester) throw new NotFoundError('user not found');

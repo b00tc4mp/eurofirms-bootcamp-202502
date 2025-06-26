@@ -23,7 +23,8 @@ export const getProviders = (userId) => {
           providers.forEach((provider) => {
             provider.id = provider._id.toString();
             delete provider._id;
-            if (provider.user._id) {
+
+            if (provider.user && provider.user._id) {
               provider.user.id = provider.user._id.toString();
               delete provider.user._id;
             }

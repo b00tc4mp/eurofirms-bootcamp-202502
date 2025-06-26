@@ -15,7 +15,11 @@ export const updateUser = (requesterId, targetId, fullName, direction, rol, emai
   // Validar IDs de entrada
   validate.adminId(requesterId);
   validate.userId(targetId);
-
+  validate.name(fullName);
+  validate.direction(direction);
+  validate.role(rol);
+  validate.email(email);
+  validate.password(password);
   return Promise.all([User.findById(requesterId), User.findById(targetId)]).then(([requester, user]) => {
     // Si los users no se encuentran, se muestran estos mensajes
     if (!user) throw new NotFoundError('user not found');
