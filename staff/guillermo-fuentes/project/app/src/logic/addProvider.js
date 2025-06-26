@@ -3,7 +3,7 @@ import { validate } from 'com';
 import { data } from '../data';
 
 export const addProvider = (name, contact, direction, userFullName) => {
-  validate.name(name, 'provider name');
+  validate.name(name);
   validate.contact(contact);
   validate.direction(direction);
 

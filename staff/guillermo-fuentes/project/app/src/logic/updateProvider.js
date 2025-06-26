@@ -3,9 +3,10 @@ import { data } from '../data';
 
 export const updateProvider = (targetId, name, contact, direction, providerId) => {
   validate.userId(targetId);
-
+  validate.name(name);
   validate.direction(direction);
-
+  validate.contact(contact);
+  validate.providerId(providerId);
   return fetch(`${import.meta.env.VITE_API_URL}providers/${targetId}`, {
     method: 'PUT',
     headers: {
