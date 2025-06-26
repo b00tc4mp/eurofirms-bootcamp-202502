@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react'
 
-import { Post } from './Post'
-
 import { logic } from '../../logic'
 
-export const Posts = ({ alert, confirm }) => {
+import { Post } from './Post'
+
+import { useContext } from '../../context'
+
+
+export const Posts = () => {
+    const { alert } = useContext()
+
     const [posts, setPosts] = useState([])
 
     useEffect(() => {

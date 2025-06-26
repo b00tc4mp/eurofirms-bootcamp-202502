@@ -1,10 +1,14 @@
 import { logic } from '../../logic'
 
+import { useContext } from '../../context'
+
 // export const Post = props => {
 //     const post = props.post
 //     const onPostDeleted = props.onPostDeleted
 
-export const Post = ({ post, onPostDeleted, alert, confirm }) => {
+export const Post = ({ post, onPostDeleted}) => {
+    const {alert, confirm} = useContext()
+
     const handleDeleteClick = () => {
         confirm('Delete post?')
             .then ( result => {
