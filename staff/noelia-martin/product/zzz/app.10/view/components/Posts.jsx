@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
 import { logic } from '../../logic'
 import { Post } from './Post'
-import { useContext } from '../../context' //Me traigo Context
 
-//export const Posts = ({ alert, confirm }) => {
-export const Posts = ({ }) => {
-    //Como nuestro hijo ya no va a necesitar props nuestras, borro confirm
-    //Necesito traerme de Context alert, para mi, ya que hemos dejado de enviarla con props (mejor explicado en Post)
-    const { alert } = useContext()
+export const Posts = ({ alert, confirm }) => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -44,9 +39,8 @@ export const Posts = ({ }) => {
     }
 
     console.log('Posts -> render')
-    {/* Borramos las props que mandabamos a nuestro hijo, ahora las cogerá de context */ }
+    {/* Mandamos la props alert y confirm recibida de nuestro componente padre, que a su vez de la mandó su padre, a mi hijo post */ }
     return <>
-        {/* {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} alert={alert} confirm={confirm} />)} */}
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} alert={alert} confirm={confirm} />)}
     </>
 }

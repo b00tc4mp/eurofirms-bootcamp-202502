@@ -1,11 +1,7 @@
 import { logic } from '../logic'
-import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com'
-import { useContext } from '../context' //Me traigo Context
+import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 
-//export const Login = ({ onRegisterClicked, onUserLoggedIn, alert }) => {
-export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
-    const { alert } = useContext() //me traigo alert
-
+export const Login = ({ onRegisterClicked, onUserLoggedIn, alert }) => {
     const handleRegisterClick = () => onRegisterClicked()
     const handleLoggedSubmit = event => {
         event.preventDefault()
@@ -24,6 +20,9 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                 })
                 .catch(error => {
                     console.error(error)
+                    //alert(error.message) ANTIGUO lo mejoramos para dar mas información al usuario
+
+                    //Si recibe una constructora de error NotFoundError o CredentialsError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá un error grave
                     if (error instanceof NotFoundError || error instanceof CredentialsError)
                         alert('WARN: ' + error.message)
                     else
@@ -32,6 +31,9 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                 })
         } catch (error) {
             console.error(error)
+            //alert(error.message) ANTIGUO
+
+            //Si se recibe un ValidationError será una advertencia pero si sale cuálquier otro será un error grave
             if (error instanceof ValidationError)
                 alert('WARN: ' + error.message)
             else

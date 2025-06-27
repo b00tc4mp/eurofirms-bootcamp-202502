@@ -1,11 +1,7 @@
 import { logic } from '../../logic'
-import { ValidationError } from 'com'
-import { useContext } from '../../context' //Me traigo Context
+import { ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 
-//export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
-export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
-    const { alert } = useContext() //me traigo alert
-
+export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
     const handleCancelClick = () => onCancelClicked()
 
     const handleCreatePostSubmit = event => {
@@ -25,10 +21,12 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
                 })
                 .catch(error => {
                     console.error(error)
+                    //alert(error.message)
                     alert('ERROR: ' + error.message)
                 })
         } catch (error) {
             console.error(error)
+            //alert(error.message)
             if (error instanceof ValidationError)
                 alert('WARN: ' + error.message)
             else

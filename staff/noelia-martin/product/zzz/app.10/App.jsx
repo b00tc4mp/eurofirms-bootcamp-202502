@@ -5,10 +5,9 @@ import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
+//importamos los nuevos componentes que contienen las cajitas
 import { Alert } from './view/components/Alert'
 import { Confirm } from './view/components/Confirm'
-//importo el componente de react para proveer contexto
-import { Context } from './context'
 
 import { logic } from './logic'
 
@@ -59,12 +58,8 @@ export const App = () => {
 
     console.log('App -> render')
 
-    //Aprovechamos que disponemos de un contenedor vacio y metemos todo en Context.Provider
-    //Este permite proveer un valor, en este caso un objeto con las funciones encargadas de despertar las cajitas alert y confirm
-    return <Context.Provider value={{
-        alert: setAlertMessage,
-        confirm: handleShowConfirm
-    }}>
+    return <>
+        {/* llamamos a las cajitas que estan en sus nuevos componetes, a cada una le pasamos las props que necesitan */}
         {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
         {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
@@ -79,8 +74,8 @@ export const App = () => {
                     :
                     <Home
                         onUserLoggedOut={handleUserLoggedOut}
-                    //alert={setAlertMessage}
-                    //confirm={handleShowConfirm}
+                        alert={setAlertMessage}
+                        confirm={handleShowConfirm}
                     />
             } />
 
@@ -89,7 +84,7 @@ export const App = () => {
                     <Register
                         onLoginClicked={handleLoginClicked}
                         onUserRegistered={handleUserRegistered}
-                    //alert={setAlertMessage}
+                        alert={setAlertMessage}
                     />
                     :
                     <Navigate to='/' />
@@ -100,12 +95,14 @@ export const App = () => {
                     <Login
                         onRegisterClicked={handleRegisterClicked}
                         onUserLoggedIn={handleUserLoggedIn}
-                    //alert={setAlertMessage}
+                        alert={setAlertMessage}
                     />
                     :
                     <Navigate to='/' />
             } />
         </Routes >
-    </Context.Provider>
+    </>
 }
-//Borramos en las rutas los envios de alert y confirm 
+//App.1 añado la configuración de alert propio con explicaciones.
+//App.2 añado la configuración de confirm y dejo solo explicaciones de confirm
+//App cojo las cajitas y las meto en nuevos componentes y desde aqui las llamaremos, para un mejor orden.

@@ -1,11 +1,7 @@
+import { DuplicityError, ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 import { logic } from '../logic'
-import { DuplicityError, ValidationError } from 'com'
-import { useContext } from '../context' //Me traigo Context
 
-//export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
-export const Register = ({ onLoginClicked, onUserRegistered }) => {
-    const { alert } = useContext() //me traigo alert
-
+export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
     const handleLoginClick = () => onLoginClicked()
     const handleRegisterSubmit = (event) => {
         event.preventDefault()
@@ -26,6 +22,9 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                 })
                 .catch(error => {
                     console.error(error)
+                    //alert(error.message) ANTIGUO lo mejoramos para dar mas información al usuario
+
+                    //Si recibe una constructora de error DuplicityError saldrá una alerta de advertencia. Pero si sale cualquier otra constructora saldrá un error grave
                     if (error instanceof DuplicityError)
                         alert('WARN: ' + error.message)
                     else
@@ -33,6 +32,9 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                 })
         } catch (error) {
             console.error(error)
+            //alert(error.message)
+
+            //Si se recibe un ValidationError será una advertencia pero si sale cuálquier otro será un error grave.
             if (error instanceof ValidationError)
                 alert('WARN: ' + error.message)
             else

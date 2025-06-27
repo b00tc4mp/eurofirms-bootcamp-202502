@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
-import { useContext } from '../context' //Me traigo Context
 
-//export const Home = ({ onUserLoggedOut, alert, confirm }) => {
-export const Home = ({ onUserLoggedOut }) => {
-    const { alert } = useContext() //me traigo alert
-
+export const Home = ({ onUserLoggedOut, alert, confirm }) => {
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
 
     useEffect(() => {
+        // try {
+        //     const username = logic.getUserUsername()
+
+        //     setUsername(username)
+        // } catch (error) {
+        //     alert(error.message)
+        // }
         try {
             logic.getUserUsername()
-                .then(username => setUsername(username))
+                .then(username => setUsername(username)) //lo retornado de la logica getUserUsername, que es el username, lo recibimos en el then y lo guardamos en el estado del usuario conectado
                 .catch(error => {
                     console.error(error)
 
@@ -60,16 +63,13 @@ export const Home = ({ onUserLoggedOut }) => {
 
             <button className="bg-black text-white px-2 mx-2" type='button' onClick={handleLogoutClick}>Logout</button>
         </div>
-        {/* {view === 'posts' && <Posts alert={alert} confirm={confirm} />}
+        {/* Mandamos la props alert recibida de nuestro componente padre a mis hijos posts y create-posts */}
+        {/* Mandamos la props confirm recibida de nuestro componente padre a mi hijos posts*/}
+        {view === 'posts' && <Posts alert={alert} confirm={confirm} />}
         {view === 'create-post' && <CreatePost
             onCancelClicked={handleCreatePostCancelClicked}
             onPostCreated={handlePostCreated}
             alert={alert}
-        />} */}
-        {view === 'posts' && <Posts />}
-        {view === 'create-post' && <CreatePost
-            onCancelClicked={handleCreatePostCancelClicked}
-            onPostCreated={handlePostCreated}
         />}
     </div>
 }

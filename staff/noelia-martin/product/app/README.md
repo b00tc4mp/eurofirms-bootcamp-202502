@@ -1,19 +1,15 @@
-20/06/25
-Solo trabajo en esta app (es la 10)
-
-Creamos nuestras propias cajitas de alerta y de confirmación. Para ello he creado varias versiones de app para separar los comentarios
-    App.1 añado la configuración de alert propio con explicaciones.
-    App.2 añado la configuración de confirm y dejo solo explicaciones de confirm
-    App cojo las cajitas y las meto en nuevos componentes y desde aqui las llamaremos, para un mejor orden. 
-        (creamos Alert y Confirm en view>components, explicaciones en el código)
-
-Para confirm hemos trabajado con promesas, con una breve explicación. El confirm original es sincrono, el nuestro asincrono.
-
-Primera demo explicada los ultimos minutos
-
 21/06/25
-Se explica detalladamente las promesas y se crean fichero stuff
-Una promesa permite trabajar con cosas a destiempo que ocurren cuadno se produce una señal, ya sea de aceptar o denegar, y no bloquearte
 
-Creamos la carpeta stuff_promise y copio todos los archivos que se crearon en clase. 
-El archivo de waiter lo modifiqué, así que creo una versión propia
+Contextos
+    Permite el paso de parametros desde un componente principal a cualquier otro sin necesidad de usar props
+    (independientemente que sean hijos, nietos...)
+
+    Creamos un fichero en app, context.js, en él creamos el componente Context y una función llamada useContext que utilizará ese componente
+
+    En app.jsx importamos el componente Context y en el return le proveemos de un objeto(a Context) con las funciones encargadas de despertar las cajitas alert y confirm
+
+    En todos los componentes, dejamos de usar las props de alert y/o confirm para utilizar el objeto de Context(hay que importarlo), que desestructurandolo contiene alert y confirm
+
+    En todos los componentes(incluido app) dejamos de pasar a nuestros hijos las props alert y/o confirm
+
+Comentarios detallados en context.js, App.jsx, Post.jsx y Posts.jsx, en el resto de componentes son muy breves
