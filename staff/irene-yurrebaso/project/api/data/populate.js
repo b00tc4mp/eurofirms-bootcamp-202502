@@ -3,9 +3,9 @@ import { User } from './models.js'
 
 const { connect, disconnect } = mongoose
 
-connect('mongodb://localhost:27017/infinity-travel')
+connect('mongodb://localhost:27017/infinity')
     .then(() => {
-        const user = new User({
+        return User.create({
             username: 'pepitapulgarcita',
             email: 'pepita@pulgarcita.com',
             password: '123123123'
