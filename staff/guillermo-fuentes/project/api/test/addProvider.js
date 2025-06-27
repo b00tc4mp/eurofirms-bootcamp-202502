@@ -1,11 +1,11 @@
-fetch('http://localhost:8080/provider', {
+fetch('http://localhost:8080/providers', {
   method: 'POST',
   headers: {
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODU3MGQ1M2M4ZTQ3MWYyNzcwZDI0ZGMiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTc1MDU5MjU0NH0.KAvNVuVQ1QBpdXr3PMuGE6PJjHKMRqf46M0ERgj5qjk',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODVlZDgwMzIwNzJjZTE3YThhOGU1YjgiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTc1MTA0NjU5OH0.sXmACpEKSUK0PXabkkFKaU7De9yvv7Cy0nATwS3jxnA',
     'Content-Type': 'application/json',
   },
-  body: '{"name":"Julio Ramirez SA","contact":"pepe@ramirez.com","direction":"Calle Zafiro 3","idUser":"6857e3c3c94ecaebfb3d947a"}',
+  body: '{"name":"Julio Ramirez SA","contact":"pepe@ramirez.com","direction":"Calle Zafiro 3","userId":"685ed7b5cc250d208b96432e"}',
 })
   .catch((error) => {
     throw new Error('connection error');

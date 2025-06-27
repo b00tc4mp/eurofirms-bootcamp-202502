@@ -3,13 +3,7 @@ import { addProvider } from './addProvider.js';
 connect('mongodb://localhost:27017/proyectoFinal')
   .then(() => {
     try {
-      return addProvider(
-        'Test SA1',
-        'test1@test.com',
-        'Calle test 31',
-        '6857e3c3c94ecaebfb3d947a',
-        'Juanjo Perez Lopez'
-      )
+      return addProvider("685ed8032072ce17a8a8e5b8","Prueba SA","741258963","Calle ejemplo 3","685ed7b5cc250d208b96432e")
         .then(() => console.log('Provider registered'))
         .catch((error) => console.error(error));
     } catch (error) {

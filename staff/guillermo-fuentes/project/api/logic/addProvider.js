@@ -1,12 +1,12 @@
 import { Provider, User } from '../data/index.js';
-import { DuplicityError, NotFoundError, SystemError, validate } from 'com';
-
-export const addProvider = (name, contact, direction, adminId, userFullName) => {
+import { DuplicityError, NotFoundError, SystemError, validate, PermissionError } from 'com';
+//Poner adminId primero
+export const addProvider = (adminId, name, contact, direction,  userId) => {
+  validate.adminId(adminId);
   validate.name(name);
   validate.contact(contact);
   validate.direction(direction);
-  validate.userId(adminId);
-  validate.name(userFullName);
+ validate.userId(userId);
 
   // Verificar que el usuario autenticado es administrador
   return User.findById(adminId)
@@ -22,26 +22,19 @@ export const addProvider = (name, contact, direction, adminId, userFullName) => 
       // Buscar el usuario por nombre completo usando regex
 
       //TODO Cambiar userFullname por un id
-      return User.find({
-        fullName: userFullName,
-      })
+      return User.findById(userId)
         .lean()
         .catch((error) => {
           throw new SystemError(`Mongo error: ${error.message}`);
         })
-        .then((users) => {
-          if (!users || users.length === 0) {
+        .then((user) => {
+          if (!user) {
             throw new NotFoundError('User not found');
           }
-          if (users.length > 1) {
-            throw new Error('Multiple users found with the same name. Please provide a more specific name.');
-          }
-
-          const user = users[0];
-
+      
           // Verificar que el usuario encontrado no sea el administrador
           if (user._id.toString() === adminId) {
-            throw new Error('Admin cannot be assigned as provider');
+            throw new PermissionError('Admin cannot be assigned as provider');
           }
 
           // Crear el proveedor

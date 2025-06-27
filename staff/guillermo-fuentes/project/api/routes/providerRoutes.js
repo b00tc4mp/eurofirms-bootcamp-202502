@@ -15,10 +15,10 @@ providerRouter.post('/', jsonBodyParser, (request, response, next) => {
 
     const { sub: adminId } = jwt.verify(token, JWT_SECRET);
 
-    const { name, contact, direction, userFullName } = request.body;
+    const { name, contact, direction, userId } = request.body;
 
     logic
-      .addProvider(name, contact, direction, adminId, userFullName)
+      .addProvider(adminId, name, contact, direction, userId)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
