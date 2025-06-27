@@ -1,0 +1,56 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main {
+    display: flex;
+}
+
+.panel-left {
+    background-color: #eaeaea;
+    padding: 0 10px;
+}
+
+.panel-right {
+    background-color: lightblue;
+    padding: 0 10px;
+}
+
+
+h1 {
+    background-color: wheat;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px;
+}
+
+h2 {
+    background-color: lightpink;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px;
+}
+
+.photo {
+    width: 85px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: wheat;
+
+}
+
+/* Utility classes */
+
+.radius-10 {
+    border-radius: 10px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
