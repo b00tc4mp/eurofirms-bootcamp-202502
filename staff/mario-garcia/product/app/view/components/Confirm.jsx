@@ -3,8 +3,8 @@ export const Confirm = ({ message, onCancelled, onAccepted }) => {
 
     const handleAcceptConfirm = () => onAccepted()
 
-    return <div className="p-10 bg-orange-500/40 absolute w-full h-full flex flex-col justify-center">
-        <div className="bg-orange border-2 rounded-md border-orange p-2 flex flex-col gap-2 self-end">
+    return <div className="p-10 bg-orange-500/40 fixed w-full h-full flex flex-col justify-center items-center">
+        <div className="bg-orange-500 border-2 rounded-md border-orange p-2 flex flex-col gap-2">
             <p>{message}</p>
 
             <div className="self-end flex gap-2">
