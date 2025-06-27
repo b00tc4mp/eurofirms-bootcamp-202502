@@ -1,35 +1,51 @@
 import { logic } from '../../logic'
 
-export const Post = ({ post, onPostDeleted }) => {
+export const Post = ({ post, onPostDeleted, alert, confirm }) => {
     const handleDeleteClick = () => {
-        if (confirm('Delete post?'))
-            // try {
-            //     logic.removePost(post.id)
-            //     onPostDeleted()
-            // } catch (message) {
-            //     alert(error.message)
-            // }
-            try {
-                logic.removePost(post.id)
-                    .then(() => onPostDeleted())
-                    .catch(error => {
+        //Ahora trabajamos con un confirm asincrono, configurado con promesa
+        // Llmamos al nuevo confirm con un mensaje y acto seguido configuramos un control de errores
+        // Si funciona, entramos en then: si clicamos en aceptar la variable result será true, entra en el if y borra, sino es asi, no borra
+        confirm('Delete post?')
+            .then(result => {
+                if (result)
+                    try {
+                        logic.removePost(post.id)
+                            .then(() => onPostDeleted())
+                            .catch(error => {
+                                console.error(error)
+
+                                alert(error.message)
+                            })
+                    } catch (error) {
                         console.error(error)
 
                         alert(error.message)
-                    })
-            } catch (error) {
-                console.error(error)
-
-                alert(error.message)
-            }
+                    }
+            })
     }
+
+    // ANTIGUO cuando utilizamos confirm del navegador
+    // const handleDeleteClick = () => {
+    //         if (confirm('Delete post?'))
+    //             try {
+    //                 logic.removePost(post.id)
+    //                     .then(() => onPostDeleted())
+    //                     .catch(error => {
+    //                         console.error(error)
+
+    //                         alert(error.message)
+    //                     })
+    //             } catch (error) {
+    //                 console.error(error)
+
+    //                 alert(error.message)
+    //             }
+    //     }
+
 
     console.log('Post -> render')
 
     return <article>
-        {/* Al utilizar mongoDB, en la logica de getPost indicamos que en la propiedad author nos incluya la propiedad username. Modificamos este componente para leer esa propiedad */}
-        {/*ANTIGUO: <h3 className="font-bold">{post.author}</h3> */}
-
         <h3 className="font-bold">{post.author.username}</h3>
 
         <img src={post.image} alt="" />

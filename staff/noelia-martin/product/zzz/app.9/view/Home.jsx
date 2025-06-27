@@ -3,7 +3,7 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
 
-export const Home = ({ onUserLoggedOut, alert, confirm }) => {
+export const Home = ({ onUserLoggedOut }) => {
     const [view, setView] = useState('posts')
     const [username, setUsername] = useState('World')
 
@@ -63,13 +63,10 @@ export const Home = ({ onUserLoggedOut, alert, confirm }) => {
 
             <button className="bg-black text-white px-2 mx-2" type='button' onClick={handleLogoutClick}>Logout</button>
         </div>
-        {/* Mandamos la props alert recibida de nuestro componente padre a mis hijos posts y create-posts */}
-        {/* Mandamos la props confirm recibida de nuestro componente padre a mi hijos posts*/}
-        {view === 'posts' && <Posts alert={alert} confirm={confirm} />}
+        {view === 'posts' && <Posts />}
         {view === 'create-post' && <CreatePost
             onCancelClicked={handleCreatePostCancelClicked}
             onPostCreated={handlePostCreated}
-            alert={alert}
         />}
     </div>
 }

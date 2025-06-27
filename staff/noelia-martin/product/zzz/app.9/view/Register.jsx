@@ -1,7 +1,7 @@
 import { DuplicityError, ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 import { logic } from '../logic'
 
-export const Register = ({ onLoginClicked, onUserRegistered, alert }) => {
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const handleLoginClick = () => onLoginClicked()
     const handleRegisterSubmit = (event) => {
         event.preventDefault()

@@ -1,7 +1,7 @@
 import { logic } from '../../logic'
 import { ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 
-export const CreatePost = ({ onCancelClicked, onPostCreated, alert }) => {
+export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked()
 
     const handleCreatePostSubmit = event => {

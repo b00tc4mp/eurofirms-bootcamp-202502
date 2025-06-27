@@ -1,7 +1,7 @@
 import { logic } from '../logic'
 import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com' //Nuevo: importamos constructoras de errores del paquete com
 
-export const Login = ({ onRegisterClicked, onUserLoggedIn, alert }) => {
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const handleRegisterClick = () => onRegisterClicked()
     const handleLoggedSubmit = event => {
         event.preventDefault()

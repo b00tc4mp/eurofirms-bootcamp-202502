@@ -2,10 +2,17 @@ import { useEffect, useState } from 'react'
 import { logic } from '../../logic'
 import { Post } from './Post'
 
-export const Posts = ({ alert, confirm }) => {
+export const Posts = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
+        // try {
+        //     const posts = logic.getPosts()
+
+        //     setPosts(posts)
+        // } catch (error) {
+        //     alert(error.message)
+        // }
         try {
             logic.getPosts()
                 .then(posts => {
@@ -21,6 +28,13 @@ export const Posts = ({ alert, confirm }) => {
         }
     }, [])
     const handlePostDeleted = () => {
+        // try {
+        //     const posts = logic.getPosts()
+
+        //     setPosts(posts)
+        // } catch (error) {
+        //     alert(error.message)
+        // }
         try {
             logic.getPosts()
                 .then(posts => {
@@ -39,8 +53,8 @@ export const Posts = ({ alert, confirm }) => {
     }
 
     console.log('Posts -> render')
-    {/* Mandamos la props alert y confirm recibida de nuestro componente padre, que a su vez de la mandó su padre, a mi hijo post */ }
+
     return <>
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} alert={alert} confirm={confirm} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
     </>
 }
