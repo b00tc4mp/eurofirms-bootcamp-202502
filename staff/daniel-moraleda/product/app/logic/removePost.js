@@ -1,12 +1,12 @@
 import { data } from '../data'
-import {validate, SystemError, erors} from 'com'
+import { validate, SystemError, errors } from 'com'
 /**
  * Removes a post
  * 
  * @param {string} postId The post id
  */
 export const removePost = postId => {
-   validate.post.id(postId)
+    validate.postId(postId)
 
     return fetch(import.meta.env.VITE_API_URL + '/posts/' + postId, {
         method: 'DELETE',
@@ -14,7 +14,7 @@ export const removePost = postId => {
             Authorization: 'Bearer ' + data.getToken()
         }
     })
-        .catch(error =>  {throw new SystemError('connection error')})
+        .catch(error => { throw new SystemError('connection error') })
         .then(response => {
             const { status } = response
 

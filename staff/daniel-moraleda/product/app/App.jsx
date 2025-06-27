@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react'
-
+import { Routes, Route, useNavigate, Navigate } from 'react-router'
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
-import { Context } from '.context'
+import { Confirm } from './view/components/Confirm'
+import { Context } from './context'
 import { logic } from './logic'
 
 export const App = () => {
     const navigate = useNavigate()
 
-     const [alertMessage, setAlertMessage] = useState('')
+    const [alertMessage, setAlertMessage] = useState('')
+
+    const [confirmMessage, setConfirmMessage] = useState('')
+
+    const [confirmAction, setConfirmAction] = useState(null)
 
     const handleRegisterClicked = () => navigate('/register')
 
@@ -18,19 +23,20 @@ export const App = () => {
 
     const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedIn = () => navigate('/home')
+    const handleUserLoggedIn = () => navigate('/')
 
     const handleUserLoggedOut = () => navigate('/login')
 
     let loggedIn
-    try {loggedIn = logic.isUserLoggedIn()    
+    try {
+        loggedIn = logic.isUserLoggedIn()
     } catch (error) {
         console.error(error)
 
-        alert (error, message)
+        alert(error, message)
     }
 
-       const handleAlertAccepted = () => setAlertMessage('')
+    const handleAlertAccepted = () => setAlertMessage('')
 
     const handleAcceptConfirm = () => {
         setConfirmMessage('')
@@ -58,7 +64,7 @@ export const App = () => {
         confirm: handleShowConfirm
     }}>
 
-      {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
+        {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
         {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
 

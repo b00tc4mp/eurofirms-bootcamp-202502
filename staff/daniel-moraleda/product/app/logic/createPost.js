@@ -1,6 +1,5 @@
-import { SystemError } from '../../com'
 import { data } from '../data'
-import { validate, systemError, errors} from 'com'
+import { validate, SystemError, errors } from 'com'
 /**
  * creates a post
  * 
@@ -26,13 +25,13 @@ export const createPost = (image, text) => {
 
             if (status === 201) return
             return response.json()
-                .catch(error => { throw new SystemError ('json error') })
+                .catch(error => { throw new SystemError('json error') })
                 .then(body => {
                     const { error, message } = body
 
-                const constructor = errors[error] || SystemError
+                    const constructor = errors[error] || SystemError
 
-                throw new constructor(message)
+                    throw new constructor(message)
                 })
         })
 }

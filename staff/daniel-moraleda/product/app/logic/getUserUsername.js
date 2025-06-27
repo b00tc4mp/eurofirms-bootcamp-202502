@@ -9,7 +9,7 @@ export const getUserUsername = () => {
     return fetch(import.meta.env.VITE_API_URL + '/users/self/username', {
         method: 'GET',
         headers: {
-            Authorization: 'Basic ' + data.getUserId()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new SystemError('connection error') })
