@@ -9,12 +9,11 @@ export const AddProvider = () => {
   const navigate = useNavigate();
   const { loggedIn, rol: userRol } = useAuth();
   const { alert } = useContext();
-  const [query, setQuery] = useState(''); //este useState guarda la consulta
-  const [suggestions, setSuggestions] = useState([]); //este useState guarda las palabras sugeridas
-  const [selectedUserName, setSelectedUserName] = useState(''); //este useState guarda el usuario seleccionado
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState('');
   const [error, setError] = useState('');
 
-  // Verificar si el usuario es administrador
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
 
   useEffect(() => {
@@ -24,10 +23,9 @@ export const AddProvider = () => {
     return () => logic.fetchSuggestions.cancel();
   }, [query]);
 
-  // Seleccionar un usuario de las sugerencias
   const handleSelectUser = (user) => {
     setQuery(user.fullName);
-    setSelectedUserName(user.fullName);
+    setSelectedUserId(user._id); 
     setSuggestions([]);
     setError('');
   };
@@ -39,26 +37,27 @@ export const AddProvider = () => {
     const direction = form.direction.value;
     const contact = form.contact.value;
 
-    // Validar que se haya seleccionado un usuario si es administrador
-    if (isAdmin && !selectedUserName) {
-      setError('Please select a user');
-      alert('Please select a user');
+    if (isAdmin && !selectedUserId) {
+      const msg = 'Please select a user';
+      setError(msg);
+      alert(msg);
       return;
     }
 
     logic
-      .addProvider(name, contact, direction, isAdmin ? selectedUserName : undefined)
+      .addProvider(name, contact, direction, isAdmin ? selectedUserId : undefined)
       .then(() => {
         form.reset();
         setQuery('');
-        setSelectedUserName('');
+        setSelectedUserId('');
         setError('');
         navigate('/providers');
       })
       .catch((error) => {
         console.error(error);
-        setError(error.message || 'Error creating provider');
-        alert(error.message || 'Error creating provider');
+        const msg = error.message || 'Error creating provider';
+        setError(msg);
+        alert(msg);
       });
   };
 
@@ -72,17 +71,16 @@ export const AddProvider = () => {
         <form className="space-y-4" onSubmit={handleRegisterSubmit}>
           {isAdmin && (
             <div>
-              <label htmlFor="userFullName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="userSearch" className="block text-sm font-medium text-gray-700 mb-1">
                 User
               </label>
               <input
                 type="text"
-                name="userFullName"
-                id="userFullName"
+                id="userSearch"
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
-                  setSelectedUserName(''); // Resetear al cambiar el texto
+                  setSelectedUserId('');
                 }}
                 placeholder="Search user by name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -147,7 +145,7 @@ export const AddProvider = () => {
             <button
               type="submit"
               className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
-              disabled={isAdmin && !selectedUserName}
+              disabled={isAdmin && !selectedUserId}
             >
               Add provider
             </button>
