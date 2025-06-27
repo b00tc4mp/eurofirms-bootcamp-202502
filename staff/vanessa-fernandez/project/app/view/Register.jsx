@@ -40,7 +40,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
 
     return <div className="px-5 py-6">
 
-        <i className="text-2xl block">Logo</i>
+        <i className="text-4xl block mb-4 font-bold text-blue text-center"> 🏋️ GymPlan 🏋️</i>
 
         <div className="mt-2">
             <h1 className="text-2xl font-semibold text-[#0ab5ee] mb-6">Create your user</h1>

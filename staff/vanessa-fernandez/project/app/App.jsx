@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
+import { Login } from './view/Login'
 import { Context } from './context'
 
 import { logic } from './logic'
@@ -28,7 +29,7 @@ export const App = () => {
     let loggedIn
 
     try {
-        loggedIn = logic.isUserLoggeIn()
+        loggedIn = logic.isUserLoggedIn()
 
     } catch (error) {
         console.error(error)
@@ -94,6 +95,17 @@ export const App = () => {
                 />
                 :
                 <Navigate to='/' />    
+            } />
+
+            <Route path='/login' element={
+                !loggedIn ?
+                    <Login 
+                        onRegisterClicked={handleRegisterClicked}
+                        onUserLoggedIn={handleUserLoggedIn}
+                        alert={setAlertMessage}
+                    />
+                    :    
+                    <Navigate to='/' />
             } />
         </Routes>
 
