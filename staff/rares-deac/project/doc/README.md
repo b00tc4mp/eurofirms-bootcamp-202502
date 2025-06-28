@@ -52,11 +52,9 @@ Admin (User)
   |- Home
 
   Home
-   |- Posts
-   |- CreatePost
+   |- Routine
+   |- 
 
-  Posts
-   |- Post
    ...
    ```
    ### Data Model
@@ -72,6 +70,13 @@ Admin (User)
     Exercise 
     - id (UUID)
     - Category (string, required)
+    - Name (string, required)
+    - Descripcion (string)
+
+    Routine
+    -id (UUID)
+    -name (string, required)
+    -Author (UserId, required)
 
 
 ### Technologies
