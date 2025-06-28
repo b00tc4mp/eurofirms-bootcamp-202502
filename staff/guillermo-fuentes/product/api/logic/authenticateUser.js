@@ -18,6 +18,7 @@ export const authenticateUser = (username, password) => {
     })
     .then((user) => {
       if (!user) throw new NotFoundError('user not found');
+      
       return bcrypt
         .compare(password, user.password)
         .then(() => {

@@ -1,6 +1,7 @@
 import { User } from '../data/index.js';
 import bcrypt from 'bcryptjs';
-import { validate, ValidationError, NotFoundError, CredentialsError, SystemError, DuplicityError } from 'com';
+import { validate, SystemError, DuplicityError } from 'com';
+
 /**Registra a un usuario en el sistema recibe cuatro parametros
  * @param name el nombre del usuario
  * @param email el email del usuario
@@ -12,7 +13,9 @@ export const registerUser = (name, email, username, password) => {
   validate.email(email);
   validate.username(username);
   validate.password(password);
+
   const saltRounds = 10;
+
   return bcrypt
     .hash(password, saltRounds)
     .catch((error) => {
