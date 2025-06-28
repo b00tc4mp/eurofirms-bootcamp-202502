@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.2.5"
+  },
+  "scripts": {
+    "start": "vite"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.3",
+    "com": "file:../com",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^7.6.2",
+    "tailwindcss": "^4.1.3"
+  },
+  "name": "app",
+  "version": "1.0.0",
+  "main": "data.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
