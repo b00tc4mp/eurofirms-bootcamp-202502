@@ -43,7 +43,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         <i className="text-4xl block mb-4 font-bold text-blue text-center"> 🏋️ GymPlan 🏋️</i>
 
         <div className="mt-2">
-            <h1 className="text-2xl font-semibold text-[#0ab5ee] mb-6">Create your user</h1>
+            <h1 className="text-2xl font-semibold text-center text-[#0ab5ee] mb-6">Create your user</h1>
 
             <form className="flex flex-col gap-5" onSubmit={handleRegisterSubmit}>
 
