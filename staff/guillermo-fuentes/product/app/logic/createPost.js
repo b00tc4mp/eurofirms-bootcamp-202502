@@ -9,7 +9,8 @@ import { validate, SystemError, errors } from 'com';
 export const createPost = (image, text) => {
   validate.image(image);
   validate.text(text);
-  return fetch(`${import.meta.env.VITE_API_URL}posts`, {
+  
+  return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${data.getToken()}`,

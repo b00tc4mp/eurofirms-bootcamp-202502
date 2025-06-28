@@ -8,7 +8,8 @@ import { validate, SystemError, errors } from 'com';
 export const loginUser = (username, password) => {
   validate.username(username);
   validate.password(password);
-  return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
+  
+  return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

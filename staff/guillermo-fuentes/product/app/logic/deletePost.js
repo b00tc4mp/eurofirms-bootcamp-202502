@@ -7,7 +7,8 @@ import { validate, SystemError, errors } from 'com';
 
 export const deletePost = (idPost) => {
   validate.postId(idPost);
-  return fetch(`${import.meta.env.VITE_API_URL}posts/${idPost}`, {
+  
+  return fetch(`${import.meta.env.VITE_API_URL}/posts/${idPost}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${data.getToken()}`,

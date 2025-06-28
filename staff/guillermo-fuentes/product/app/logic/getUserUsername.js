@@ -4,7 +4,7 @@ import { SystemError, errors } from 'com';
 
 */
 export const getUserUsername = () => {
-  return fetch(`${import.meta.env.VITE_API_URL}users/self/username`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/self/username`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
