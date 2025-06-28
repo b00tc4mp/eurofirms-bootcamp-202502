@@ -1,0 +1,83 @@
+@import "tailwindcss"; 
+
+/* globals 
+ * {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+ }
+
+ body {
+    margin: 0;
+ }
+
+ h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(117, 117, 210);
+ }
+
+ label {
+    font-weight: 500;
+ }
+
+ a {
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+ }
+
+ input {
+    border-color: black;
+    background-color: rgb(205, 229, 237);
+    border-radius: 5px;
+ }*/
+
+ /* utility classes 
+
+ .block {
+    display: block;
+ }
+
+ .flex {
+    display: flex;
+ }
+
+ .flex-col {
+    flex-direction: column;
+ }
+
+ .justify-between {
+    justify-content: space-between;
+ }
+
+ .gap-10px {
+    gap: 10px;
+ }
+
+ .gap-20px {
+    gap: 20px;
+ }
+
+ .p-20px {
+    padding: 20px
+ }
+
+ .p-x-20px {
+    padding: 0 20px;
+ }
+
+ .border {
+   border-radius: 5px;
+ }*/
+
+ /* components 
+
+ .black-button {
+    color: white;
+    background-color: rgb(10, 181, 238);
+    font-weight: 100;
+    border:none;
+    border-radius: 10px;
+    cursor: pointer;     
+ }*/
