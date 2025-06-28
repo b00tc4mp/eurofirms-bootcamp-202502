@@ -1,0 +1,35 @@
+* {
+    font-family: Arial, helvetica, sans-serif;
+}
+.title {
+    background-color:brown;
+}
+
+.header {
+    display: flex;
+    flex-direction: rdw;
+    justify-content: space-evenly;
+}
+.intro {
+    background-color: skyblue;
+}
+
+/* utility classes */
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+.font-boldonse {
+    font-family: Boldonse;
+}
+.font-barrio {
+    font-family: Barrio;
+}
