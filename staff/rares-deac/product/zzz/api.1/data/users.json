@@ -1,0 +1,79 @@
+[
+    {
+        "id": "user-1",
+        "name": "Pin 8",
+        "email": "pin@8.com",
+        "username": "pin8",
+        "password": "123123123"
+    },
+    {
+        "id": "user-2",
+        "name": "Peter Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-3",
+        "name": "Petra Pan",
+        "email": "petra@pan.com",
+        "username": "petrapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-4",
+        "name": "Eduardo Manostijeras",
+        "email": "eduardo@pan.com",
+        "username": "eduelmanos",
+        "password": "123123123"
+    },
+    {
+        "id": "user-5",
+        "name": "Suriname Pepopapiga",
+        "email": "suri@pan.com",
+        "username": "suriyatusae",
+        "password": "123123123"
+    },
+    {
+        "id": "user-6",
+        "name": "Alejandro Pan",
+        "email": "Alejandro@pan.com",
+        "username": "Alejandropan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "Pepe Pan",
+        "email": "Pepe@pan.com",
+        "username": "Pepepan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-8",
+        "name": "Cefalopodo Pepopapiga",
+        "email": "cefa@pan.com",
+        "username": "cefayatusae",
+        "password": "123123123"
+    },
+    {
+        "id": "user-9",
+        "name": "Rares",
+        "email": "rares@pepe.com",
+        "username": "raresd",
+        "password": "123123123"
+    },
+    {
+        "id": "user-10",
+        "name": "Sole",
+        "email": "sole@gmail.com",
+        "username": "sole",
+        "password": "123123123"
+    },
+    {
+        "id": "user-11",
+        "name": "olimpia",
+        "email": "oli@gmail.com",
+        "username": "olideac",
+        "password": "123123123"
+    }
+]
