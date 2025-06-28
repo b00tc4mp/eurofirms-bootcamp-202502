@@ -1,0 +1,1 @@
+curl -X POST -H 'Authorization: Basic user-4' -H 'Content-Type: application/json' -d '{"image":"https://media.giphy.com/media/uTGv3hkQO8XsBkprSv/giphy.gif?cid=ecf05e47wdsae2qgu6fjutozxf3qa7wljxl4vtozef3hxpvm&ep=v1_gifs_related&rid=giphy.gif&ct=g","text":"With great power comes great responsibility!"}' http://localhost:8080/posts -v
