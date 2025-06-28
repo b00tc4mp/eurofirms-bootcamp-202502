@@ -1,23 +1,23 @@
-import { Router } from 'express';
-import { jsonBodyParser } from '../middlewares/jsonBodyParser.js';
-import { logic } from '../logic/index.js';
-import jwt from 'jsonwebtoken';
+import { Router } from "express";
+import { jsonBodyParser } from "../middlewares/jsonBodyParser.js";
+import { logic } from "../logic/index.js";
+import jwt from "jsonwebtoken";
 const { JWT_SECRET } = process.env;
 
 export const usersRouter = Router();
 
-usersRouter.post('/', jsonBodyParser, (request, response, next) => {
+usersRouter.post("/", jsonBodyParser, (request, response, next) => {
   try {
-    const { fullName, email, password, direction, role } = request.body;
+    const { fullName, email, password, address, role } = request.body;
     logic
-      .registerUser(fullName, email, password, direction, role)
+      .registerUser(fullName, email, password, address, role)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
     next(error);
   }
 });
-usersRouter.post('/auth', jsonBodyParser, (request, response, next) => {
+usersRouter.post("/auth", jsonBodyParser, (request, response, next) => {
   try {
     const { email, password } = request.body;
 
@@ -33,11 +33,11 @@ usersRouter.post('/auth', jsonBodyParser, (request, response, next) => {
   }
 });
 
-usersRouter.delete('/:userId', (request, response, next) => {
+usersRouter.delete("/:userId", (request, response, next) => {
   try {
     const { authorization } = request.headers;
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Invalid authorization header');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Invalid authorization header");
       error.status = 401;
       throw error;
     }
@@ -52,11 +52,11 @@ usersRouter.delete('/:userId', (request, response, next) => {
     next(error);
   }
 });
-usersRouter.get('/', (request, response, next) => {
+usersRouter.get("/", (request, response, next) => {
   try {
     const { authorization } = request.headers;
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Invalid authorization header');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Invalid authorization header");
       error.status = 401; // Unauthorized
       throw error;
     }
@@ -73,21 +73,21 @@ usersRouter.get('/', (request, response, next) => {
   }
 });
 
-usersRouter.get('/:rol', (request, response, next) => {
+usersRouter.get("/:rol", (request, response, next) => {
   try {
     const { authorization } = request.headers;
     const { rol } = request.params; // Obtener el rol desde los query parameters
 
     // Validar que se proporcionó el rol
     if (!rol) {
-      const error = new Error('The role parameter is required');
+      const error = new Error("The role parameter is required");
       error.status = 400; // Bad Request
       throw error;
     }
 
     // Validar el encabezado de autorización
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Invalid authorization header');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Invalid authorization header");
       error.status = 401; // Unauthorized
       throw error;
     }
@@ -106,12 +106,12 @@ usersRouter.get('/:rol', (request, response, next) => {
   }
 });
 
-usersRouter.put('/:userId', jsonBodyParser, (request, response, next) => {
+usersRouter.put("/:userId", jsonBodyParser, (request, response, next) => {
   try {
     const { authorization } = request.headers;
 
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Invalid authorization header');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Invalid authorization header");
       error.status = 401;
       throw error;
     }
@@ -120,17 +120,17 @@ usersRouter.put('/:userId', jsonBodyParser, (request, response, next) => {
     const { sub: requesterUserId } = jwt.verify(token, JWT_SECRET);
 
     const { userId: targetUserId } = request.params;
-    const { fullName, direction, role, email, password } = request.body;
+    const { fullName, address, role, email, password } = request.body;
 
     logic
-      .updateUser(requesterUserId, targetUserId, fullName, direction, role, email, password)
-      .then(() => response.status(200).json({ message: 'User updated successfully' }))
+      .updateUser(requesterUserId, targetUserId, fullName, address, role, email, password)
+      .then(() => response.status(200).json({ message: "User updated successfully" }))
       .catch((error) => next(error));
   } catch (error) {
     next(error);
   }
 });
-usersRouter.get('/search/:query', (req, res, next) => {
+usersRouter.get("/search/:query", (req, res, next) => {
   const { query } = req.params;
 
   logic

@@ -1,0 +1,1 @@
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODVmY2UwMjg0MDhhZjk2ZTYwMzU0MzIiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTc1MTExNjczMX0.4uRpPXfjEF5EN9Kr7vgIz_2JlmoL0BnMcutreyBTlAY' http://localhost:8080/providers -v

@@ -1,12 +1,13 @@
-import { Provider, User } from '../data/index.js';
-import { DuplicityError, NotFoundError, SystemError, validate, PermissionError } from 'com';
+import { Provider, User } from "../data/index.js";
+import { DuplicityError, NotFoundError, SystemError, validate, PermissionError, RoleError } from "com";
 //Poner adminId primero
-export const addProvider = (adminId, name, contact, direction,  userId) => {
+export const addProvider = (adminId, taxId, name, contact, address, userId) => {
   validate.adminId(adminId);
+  validate.taxId(taxId);
   validate.name(name);
   validate.contact(contact);
-  validate.direction(direction);
- validate.userId(userId);
+  validate.address(address);
+  validate.userId(userId);
 
   // Verificar que el usuario autenticado es administrador
   return User.findById(adminId)
@@ -14,14 +15,10 @@ export const addProvider = (adminId, name, contact, direction,  userId) => {
       throw new SystemError(`Mongo error: ${error.message}`);
     })
     .then((admin) => {
-      if (!admin) throw new NotFoundError('Admin not found');
-      if (admin.role !== 'administrator') {
-        throw new Error('User is not authorized to perform this operation');
+      if (!admin) throw new NotFoundError("Admin not found");
+      if (admin.role !== "administrator") {
+        throw new RoleError("User is not admin");
       }
-
-      // Buscar el usuario por nombre completo usando regex
-
-      //TODO Cambiar userFullname por un id
       return User.findById(userId)
         .lean()
         .catch((error) => {
@@ -29,24 +26,25 @@ export const addProvider = (adminId, name, contact, direction,  userId) => {
         })
         .then((user) => {
           if (!user) {
-            throw new NotFoundError('User not found');
+            throw new NotFoundError("User not found");
           }
-      
+
           // Verificar que el usuario encontrado no sea el administrador
           if (user._id.toString() === adminId) {
-            throw new PermissionError('Admin cannot be assigned as provider');
+            throw new PermissionError("Admin cannot be assigned as provider");
           }
 
           // Crear el proveedor
           return Provider.create({
+            taxId,
             name,
             contact,
-            direction,
+            address,
             user: user._id,
           })
             .catch((error) => {
               if (error.code === 11000) {
-                throw new DuplicityError('Provider name already exists');
+                throw new DuplicityError("Provider with this taxId already exists");
               }
               throw new SystemError(`Mongo error: ${error.message}`);
             })

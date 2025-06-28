@@ -1,36 +1,36 @@
-import { Router } from 'express';
-import { jsonBodyParser } from '../middlewares/jsonBodyParser.js';
-import { logic } from '../logic/index.js';
-import jwt from 'jsonwebtoken';
+import { Router } from "express";
+import { jsonBodyParser } from "../middlewares/jsonBodyParser.js";
+import { logic } from "../logic/index.js";
+import jwt from "jsonwebtoken";
 const { JWT_SECRET } = process.env;
 
 export const providerRouter = Router();
-providerRouter.post('/', jsonBodyParser, (request, response, next) => {
+providerRouter.post("/", jsonBodyParser, (request, response, next) => {
   try {
     const authorization = request.headers.authorization;
     if (!authorization) {
-      return response.status(401).json({ error: 'Authorization header missing' });
+      return response.status(401).json({ error: "Authorization header missing" });
     }
     const token = authorization.slice(7);
 
     const { sub: adminId } = jwt.verify(token, JWT_SECRET);
 
-    const { name, contact, direction, userId } = request.body;
+    const { taxId, name, contact, address, userId } = request.body;
 
     logic
-      .addProvider(adminId, name, contact, direction, userId)
+      .addProvider(adminId, taxId, name, contact, address, userId)
       .then(() => response.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
     next(error);
   }
 });
-providerRouter.delete('/:providerId', (request, response, next) => {
+providerRouter.delete("/:providerId", (request, response, next) => {
   try {
     // Verificar autenticación
     const authorization = request.headers.authorization;
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      throw new ValidationError('Token de autenticación no proporcionado');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      throw new ValidationError("Token de autenticación no proporcionado");
     }
 
     const token = authorization.slice(7);
@@ -46,12 +46,12 @@ providerRouter.delete('/:providerId', (request, response, next) => {
     next(error);
   }
 });
-providerRouter.put('/:providerId', jsonBodyParser, (request, response, next) => {
+providerRouter.put("/:providerId", jsonBodyParser, (request, response, next) => {
   try {
     const { authorization } = request.headers;
 
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Encabezado de autorización inválido');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Encabezado de autorización inválido");
       error.status = 401;
       throw error;
     }
@@ -60,21 +60,21 @@ providerRouter.put('/:providerId', jsonBodyParser, (request, response, next) => 
     const { sub: requesterId } = jwt.verify(token, JWT_SECRET);
 
     const { providerId: targetId } = request.params; // Fixed from userId to proveedorId
-    const { name, contact, direction, providerId } = request.body;
+    const { name, contact, address, providerId } = request.body;
 
     logic
-      .updateProvider(requesterId, targetId, name, contact, direction, providerId)
-      .then(() => response.status(200).json({ mensaje: 'Provider updated succesfully' }))
+      .updateProvider(requesterId, targetId, name, contact, address, providerId)
+      .then(() => response.status(200).json({ mensaje: "Provider updated succesfully" }))
       .catch((error) => next(error));
   } catch (error) {
     next(error);
   }
 });
-providerRouter.get('/', (request, response, next) => {
+providerRouter.get("/", (request, response, next) => {
   try {
     const { authorization } = request.headers;
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      const error = new Error('Invalid authorization header');
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Invalid authorization header");
       error.status = 401; // Unauthorized
       throw error;
     }

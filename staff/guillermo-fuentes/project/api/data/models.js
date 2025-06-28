@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 const { Types } = Schema;
@@ -23,38 +23,43 @@ const user = new Schema({
     required: true,
     default: Date.now,
   },
-  direction: {
+  address: {
     type: String,
     required: true,
   },
   role: {
     type: String,
-    enum: ['administrator', 'employee', 'client'],
+    enum: ["administrator", "employee", "client"],
     required: true,
-    default: 'client',
+    default: "client",
   },
 });
+//TODO taxId agregar a provider
 const provider = new Schema({
-  name: {
+  taxId: {
     type: String,
     required: true,
     unique: true,
+  },
+  name: {
+    type: String,
+    required: true,
   },
   contact: {
     type: String,
     required: true,
   },
-  direction: {
+  address: {
     type: String,
     required: true,
   },
   user: {
     type: ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
 });
-const User = model('User', user);
-const Provider = model('Provider', provider);
+const User = model("User", user);
+const Provider = model("Provider", provider);
 
 export { User, Provider };
