@@ -35,6 +35,43 @@ const user = new Schema({
     }
 })
 
-const User = model('User', user)
+const post = new Schema({
+    author: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
 
-export { User }
+    image: {
+        type: String,
+        required: true
+    },
+
+    doctor: {
+        type: String,
+        required: true
+    },
+
+    treatment: {
+        type: String,
+        required: true
+    },
+
+    city: {
+        type: String,
+        required: true
+    },
+
+    experience: {
+        type: String,
+        required: true
+    },
+})
+
+const User = model('User', user)
+const Post = model('Post', post)
+
+export {
+    User,
+    Post
+}
