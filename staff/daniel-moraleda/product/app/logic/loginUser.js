@@ -1,5 +1,5 @@
 import { data } from '../data'
-import {validate, SystemError, errors } from 'com'
+import { validate, SystemError, errors } from 'com'
 
 /**
  * Logs a user in the system.
@@ -34,9 +34,9 @@ export const loginUser = (username, password) => {
                 .then(body => {
                     const { error, message } = body
 
-                const constructor = errors[error] || SystemError
+                    const constructor = errors[error] || SystemError
 
-                throw new constructor(mesage)
+                    throw new constructor(message)
                 })
         })
 

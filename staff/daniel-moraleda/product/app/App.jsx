@@ -7,6 +7,7 @@ import { Home } from './view/Home'
 import { Confirm } from './view/components/Confirm'
 import { Context } from './context'
 import { logic } from './logic'
+import { Alert } from './view/components/Alert'
 
 export const App = () => {
     const navigate = useNavigate()
