@@ -49,3 +49,20 @@ usersRouter.get('/self/username', (request, response, next) => {
         next(error)
     }
 })
+
+usersRouter.patch('/profile', jsonBodyParser, (request, response, next) => {
+    try {
+        const authorization = request.headers.authorization
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+        const { gender, weight, height } = request.body
+
+        logic.createProfile(userId, gender, weight, height)
+            .then(() => response.status(200).send())
+            .catch(error => next(error))
+    } catch(error) {
+        next(error)
+    }
+})

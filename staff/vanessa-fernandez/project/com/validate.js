@@ -22,7 +22,22 @@ export const validate = {
     password(password) {
         if (typeof password !== 'string') throw new ValidationError('invalid password type')
         if (password.length < 8) throw new ValidationError('invalid password ming length')
-        if (password.length > 20) throw new ValidationError('invalid password max length')        
+        if (password.length > 20) throw new ValidationError('invalid password max length')          
+    },
+
+    gender(gender) {
+        if (typeof gender !== 'string') throw new ValidationError('invalid gender type')
+        if (!['male', 'female', 'other'].includes(gender)) throw new ValidationError('invalid gender value')    
+    },
+
+    weight(weight) {
+        if (typeof weight !== 'number' || isNaN(weight)) throw new ValidationError('invalid weight type')
+        if (weight < 30 || weight > 200) throw new ValidationError('unrealistic weight')    
+    },
+
+    height(height) {
+        if (typeof height !== 'number' || isNaN(height)) throw new ValidationError('invalid height type')
+        if (height < 50 || height > 250) throw new ValidationError('unrealistic height')    
     },
 
     userId(userId) {
