@@ -1,62 +1,105 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
 import { Home } from './view/Home'
+import { Alert } from './view/components/Alert'
+import { Confirm } from './view/components/Confirm'
+import { Context } from './context'
 
-import { logic } from '../logic'
+import { logic } from './logic'
 
 export const App = () => {
-    const [view, setView] = useState('landing')
+    const navigate = useNavigate()
 
-    const handleRegisterClicked = () => setView('register')
+    const [alertMessage, setAlertMessage] = useState('')
+    const [confirmMessage, setConfirmMessage] = useState('')
+    const [confirmAction, setConfirmAction] = useState(null)
 
-    const handleLoginClicked = () => setView('login')
+    const handleRegisterClicked = () => navigate('/register')
 
-    const handleUserRegistered = () => setView('login')
+    const handleLoginClicked = () => navigate('/login')
 
-    const handleUserLoggedIn = () => setView('home')
+    const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedOut = () => setView('login')
+    const handleUserLoggedIn = () => navigate('/')
 
-    useEffect(() => {
-        try {
-            const loggedIn = logic.isUserLoggedIn()
+    const handleUserLoggedOut = () => navigate('/login')
 
-            if (loggedIn)
-                setView('home')
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
+    let loggedIn
+
+    try {
+        loggedIn = logic.isUserLoggedIn()
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
+
+    const handleAlertAccepted = () => setAlertMessage('')
+
+    const handleAcceptConfirm = () => {
+        setConfirmMessage('')
+
+        confirmAction.resolve(true)
+    }
+
+    const handleCancelConfirm = () => {
+        setConfirmMessage('')
+
+        confirmAction.resolve(false)
+    }
+
+    const handleShowConfirm = message => {
+        setConfirmMessage(message)
+
+        return new Promise((resolve, reject) => {
+            setConfirmAction({ resolve })
+        })
+    }
 
     console.log('App -> render')
 
-    return <>
-        {view === 'landing' &&
-            <Landing
-                onRegisterClicked={handleRegisterClicked}
-                onLoginClicked={handleLoginClicked}
-            />
-        }
+    return <Context.Provider value={{
+        alert: setAlertMessage,
+        confirm: handleShowConfirm
+    }}>
+        {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
-        {view === 'register' &&
-            <Register
-                onLoginClicked={handleLoginClicked}
-                onUserRegistered={handleUserRegistered}
-            />
-        }
+        {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
 
-        {view === 'login' &&
-            <Login
-                onRegisterClicked={handleRegisterClicked}
-                onUserLoggedIn={handleUserLoggedIn}
-            />
-        }
+        <Routes>
+            <Route path='/' element={
+                !loggedIn ?
+                    <Landing
+                        onRegisterClicked={handleRegisterClicked}
+                        onLoginClicked={handleLoginClicked}
+                    />
+                    :
+                    <Home onUserLoggedOut={handleUserLoggedOut} />
+            } />
 
-        {view === 'home' && <Home
-            onUserLoggedOut={handleUserLoggedOut}
-        />}
-    </>
+            <Route path='/register' element={
+                !loggedIn ?
+                    <Register
+                        onLoginClicked={handleLoginClicked}
+                        onUserRegistered={handleUserRegistered}
+                    />
+                    :
+                    <Navigate to='/' />
+            } />
+
+            <Route path='/login' element={
+                !loggedIn ?
+                    <Login
+                        onRegisterClicked={handleRegisterClicked}
+                        onUserLoggedIn={handleUserLoggedIn}
+                    />
+                    :
+                    <Navigate to='/' />
+            } />
+        </Routes>
+    </Context.Provider>
 }
