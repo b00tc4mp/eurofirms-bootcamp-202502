@@ -1,0 +1,1 @@
+curl -i -X PATCH -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODYwMGRhODU2NDE1ZjRjODc5NjkyMWYiLCJpYXQiOjE3NTExMjYzMzB9.yw04Lux8CADNOikfdvRKe7gcw2u-2Zg-D_9JjZGN8so' -H 'Content-Type: application/json' -d '{"gender":"female", "weight": 50, "height":150}' http://localhost:8080/users/profile
