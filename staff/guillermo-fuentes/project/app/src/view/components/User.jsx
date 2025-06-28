@@ -38,7 +38,7 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
         <span className="font-semibold">Email:</span> {user.email}
       </p>
       <p className="text-gray-700 mb-1">
-        <span className="font-semibold">Direction:</span> {user.direction}
+        <span className="font-semibold">Address:</span> {user.address}
       </p>
       <p className="text-gray-700 mb-1">
         <span className="font-semibold">Role:</span> {user.role}

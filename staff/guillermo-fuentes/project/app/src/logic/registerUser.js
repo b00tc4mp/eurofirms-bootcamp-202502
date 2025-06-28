@@ -1,20 +1,20 @@
-import { validate } from 'com';
+import { validate } from "com";
 
-export const registerUser = (fullName, email, password, direction, role) => {
+export const registerUser = (fullName, email, password, address, role) => {
   validate.name(fullName);
   validate.email(email);
   validate.password(password);
-  validate.direction(direction);
+  validate.address(address);
   validate.role(role);
   return fetch(`${import.meta.env.VITE_API_URL}users`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ fullName, email, password, direction, role }),
+    body: JSON.stringify({ fullName, email, password, address, role }),
   })
     .catch(() => {
-      throw new Error('Conection error');
+      throw new Error("Conection error");
     })
     .then((response) => {
       const { status } = response;
@@ -22,7 +22,7 @@ export const registerUser = (fullName, email, password, direction, role) => {
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new Error("json error");
         })
         .then((body) => {
           const { message } = body;

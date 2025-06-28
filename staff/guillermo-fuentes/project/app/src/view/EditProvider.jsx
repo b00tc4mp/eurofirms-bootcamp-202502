@@ -5,7 +5,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
   const { loggedIn, rol: userRol } = useAuth();
   const [name, setName] = useState(provider.name);
   const [contact, setContact] = useState(provider.contact);
-  const [direction, setDirection] = useState(provider.direction);
+  const [address, setAddress] = useState(provider.address);
   const [userFullName, setUserFullName] = useState(provider.user.fullName);
   const [nameQuery, setNameQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -37,7 +37,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
     const form = event.target;
     const name = form.name.value;
     const contact = form.contact.value;
-    const direction = form.direction.value;
+    const address = form.address.value;
     //const userFullName = form.user.value;
     if (isAdmin && !selectedUserName) {
       setError('Please select a user');
@@ -47,7 +47,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
 
     try {
       logic
-        .updateProvider(provider.id, name, contact, direction, selectedUserId)
+        .updateProvider(provider.id, name, contact, address, selectedUserId)
         .then(() => {
           form.reset();
           setNameQuery('');
@@ -110,15 +110,15 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
             />
           </div>
           <div>
-            <label htmlFor="direction" className="block text-sm font-medium text-gray-700 mb-1">
-              Direction
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+            Address
             </label>
             <input
               type="text"
-              name="direction"
-              id="direction"
-              value={direction}
-              onChange={(event) => setDirection(event.target.value)}
+              name="address"
+              id="address"
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
               placeholder="La direccion de tu empresa"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required

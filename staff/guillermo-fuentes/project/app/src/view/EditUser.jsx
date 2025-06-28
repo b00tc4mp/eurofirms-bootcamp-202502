@@ -7,7 +7,7 @@ export const EditUser = ({ user, onEditedUser }) => {
   const { loggedIn, rol: userRol } = useAuth();
   const [fullName, setFullName] = useState(user.fullName);
   const [email, setEmail] = useState(user.email);
-  const [direction, setdirection] = useState(user.direction);
+  const [address, setAddress] = useState(user.address);
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(user.role);
   //Usamos el contexto que hemos creado para comprobar si el usuario esta logueado y es administrador
@@ -19,12 +19,12 @@ export const EditUser = ({ user, onEditedUser }) => {
     const fullName = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const direction = form.direction.value;
+    const address = form.address.value;
     const role = form.role.value;
 
     try {
       logic
-        .updateUser(user.id, fullName, email, password, direction, role)
+        .updateUser(user.id, fullName, email, password, address, role)
         .then(() => {
           form.reset();
           handleEditUser();
@@ -96,17 +96,17 @@ export const EditUser = ({ user, onEditedUser }) => {
             />
           </div>
           <div>
-            <label htmlFor="direction" className="block text-sm font-medium text-gray-700 mb-1">
-              Direction
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+            Address
             </label>
             <input
               type="text"
-              name="direction"
-              id="direction"
-              value={direction}
-              onChange={(event) => setdirection(event.target.value)}
+              name="address"
+              id="address"
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
               contentEditable="true"
-              placeholder="Tu dirección"
+              placeholder="Your address"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />

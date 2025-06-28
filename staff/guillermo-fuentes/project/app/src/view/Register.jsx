@@ -17,12 +17,12 @@ export const Register = () => {
     const fullName = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const direction = form.direction.value;
+    const address = form.address.value;
     const role = form.role.value;
 
     try {
       logic
-        .registerUser(fullName, email, password, direction, role)
+        .registerUser(fullName, email, password, address, role)
         .then(() => {
           form.reset();
           navigate('/home');
@@ -84,14 +84,14 @@ export const Register = () => {
             />
           </div>
           <div>
-            <label htmlFor="direction" className="block text-sm font-medium text-gray-700 mb-1">
-              Direction
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+            Address
             </label>
             <input
               type="text"
-              name="direction"
-              id="direction"
-              placeholder="Your direction"
+              name="address"
+              id="address"
+              placeholder="Your address"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />

@@ -1,22 +1,22 @@
-import { validate } from 'com';
-import { data } from '../data';
+import { validate } from "com";
+import { data } from "../data";
 
-export const updateProvider = (targetId, name, contact, direction, providerId) => {
+export const updateProvider = (targetId, name, contact, address, providerId) => {
   validate.userId(targetId);
   validate.name(name);
-  validate.direction(direction);
+  validate.address(address);
   validate.contact(contact);
   validate.providerId(providerId);
   return fetch(`${import.meta.env.VITE_API_URL}providers/${targetId}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, direction, contact, providerId }),
+    body: JSON.stringify({ name, address, contact, providerId }),
   })
     .catch(() => {
-      throw new Error('connection error');
+      throw new Error("connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -24,7 +24,7 @@ export const updateProvider = (targetId, name, contact, direction, providerId) =
       return response
         .json()
         .catch(() => {
-          throw new Error('JSON parsing error');
+          throw new Error("JSON parsing error");
         })
         .then((body) => {
           const { message } = body;

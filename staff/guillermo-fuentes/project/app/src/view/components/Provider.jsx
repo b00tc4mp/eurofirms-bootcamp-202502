@@ -40,8 +40,8 @@ export const Provider = ({ provider, onReloadProvider,onEditedProvider }) => {
           {provider.contact}
         </p>
         <p className="text-gray-700 mb-1">
-          <span className="font-semibold">Direction: </span>
-          {provider.direction}
+          <span className="font-semibold">Address: </span>
+          {provider.address}
         </p>
         <p className="text-gray-700 mb-1">
           <span className="font-semibold">User: </span>
