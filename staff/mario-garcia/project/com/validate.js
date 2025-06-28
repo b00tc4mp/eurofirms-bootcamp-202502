@@ -35,8 +35,27 @@ export const validate = {
         if (!image.startsWith('http')) throw new ValidationError('invalid image format')
     },
 
-    text(text) {
-        if (typeof text !== 'string') throw new ValidationError('invalid text type')
-        if (text.length < 1) throw new ValidationError('invalid min text length')
+    doctor(doctor) {
+        if (typeof doctor !== 'string') throw new ValidationError('invalid doctor type')
+        if (doctor.length < 6) throw new ValidationError('invalid min doctor length')
+        if (doctor.length > 50) throw new ValidationError('invalid doctor max length')
+    },
+
+    treatment(treatment) {
+        if (typeof treatment !== 'string') throw new ValidationError('invalid treatment type')
+        if (treatment.length < 6) throw new ValidationError('invalid min treatment length')
+        if (treatment.length > 50) throw new ValidationError('invalid treatment max length')
+    },
+
+    city(city) {
+        if (typeof city !== 'string') throw new ValidationError('invalid city type')
+        if (city.length < 5) throw new ValidationError('invalid min city length')
+        if (city.length > 10) throw new ValidationError('invalid city max length')
+    },
+
+    experience(experience) {
+        if (typeof experience !== 'string') throw new ValidationError('invalid experience type')
+        if (experience.length < 10) throw new ValidationError('invalid min experience length')
+        if (experience.length > 100) throw new ValidationError('invalid experience max length')
     }
 }
