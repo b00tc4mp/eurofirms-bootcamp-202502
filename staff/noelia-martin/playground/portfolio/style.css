@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+
+* {
+    font-family: Onest;
+}
+
+/*Para la foto de presentacion de Homer*/
+.radius-25porciento {
+    border-radius: 25%;
+}
+
+.width7porciento {
+    width: 7%
+}
+
+
+.direction-row {
+    flex-direction: row;
+}
+
+.flex {
+    display: flex
+}
+
+.justify-center {
+    justify-content: center
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
+
+#underline {
+    text-decoration: underline;
+    /* si uso # tengo que llamarlo a traves de id, mismo funcionamiento*/
+}
+
+.width-10porciento {
+    width: 30%;
+}
+
+.width-50porciento {
+    width: 50%;
+}
+
+.colorOrange {
+    background-color: rgb(245, 221, 178);
+}
+
+.colorPink {
+    background-color: rgb(243, 176, 240);
+}
+
+.padding-0-10px {
+    padding: 0 10px
+}
+
+li {
+    padding: 5px 0
+}
