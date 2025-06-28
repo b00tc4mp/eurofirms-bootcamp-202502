@@ -10,7 +10,7 @@ import { getProviders } from './getProviders';
 import { addProvider } from './addProvider';
 import { fetchSuggestions } from './fetchSuggestions';
 import { updateProvider } from './updateProvider';
-
+import {deleteProvider} from "./deleteProvider"
 export const logic = {
   loginUser,
   isUserLoggedIn,
@@ -24,4 +24,5 @@ export const logic = {
   addProvider,
   fetchSuggestions,
   updateProvider,
+  deleteProvider,
 };

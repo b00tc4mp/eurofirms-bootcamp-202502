@@ -1,11 +1,31 @@
 import { useState } from 'react';
 import { EditProvider } from '../EditProvider';
-export const Provider = ({ provider, onReloadProvider }) => {
+import { logic } from '../../logic';
+export const Provider = ({ provider, onReloadProvider,onEditedProvider }) => {
   const [editProvider, setEditProvider] = useState(false);
 
   const handleEditedProvider = () => {
     setEditProvider(false);
     onReloadProvider();
+  };
+   const handleDeleteClick = () => {
+    if (confirm('¿Delete provider?')) {
+      try {
+        logic
+          .deleteProvider(provider.id)
+          .then(() => {
+            console.log('provider delete');
+            onEditedProvider();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error.message);
+          });
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+      }
+    }
   };
   return (
     <>
@@ -33,8 +53,14 @@ export const Provider = ({ provider, onReloadProvider }) => {
         >
           Update provider
         </button>
+         <button
+        onClick={handleDeleteClick}
+        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+      >
+        Delete provider
+      </button>
       </div>
-
+     
       {editProvider && <EditProvider provider={provider} onEditedProvider={handleEditedProvider} />}
     </>
   );
