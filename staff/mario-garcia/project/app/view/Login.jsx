@@ -45,9 +45,9 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
     return <div className="p-5">
 
-        <i className="text-xl">Logo</i>
+        <i className="text-xl font-bold text-blue-900">ACONPP</i>
 
-        <h1 className="text-3xl text-blue-900 font-semibold py-2">LOGIN Page</h1>
+        <h1 className="text-3xl text-blue-500 font-semibold py-2">LOGIN Page</h1>
 
         <form className="mt-2 flex flex-col gap-4" onSubmit={handleLoginSubmit}>
 
