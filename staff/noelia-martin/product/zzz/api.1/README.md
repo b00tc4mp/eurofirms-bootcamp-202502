@@ -1,4 +1,6 @@
+api.1
 3/5/25
+
 Instalo la libreria express (guia en mi documentacion)
 1. Creo un index.js, dentro de la carpeta de instalacion(api, dentro de product)
 2. Para que funcione los import y export modificamos package.json: debajo de versión 

@@ -1,4 +1,5 @@
-23/05/2025 y 24/05/2025
+api.2
+23/5/2025 - 24/5/2025
 
 Instalación en nuestro PC de mongoDB y mongoSH (manual en carpeta de instalación 6º documento)
 Trabajamos brevemente en mongoSH: (idem con posts)
@@ -129,7 +130,7 @@ Modificamos el fichero index.js de api
 Pasamos los tests curl a la api, modificando solo los userId y postId que necesitábamos
 
 
-Finalmente, fuimos a la app a hacer un breve cambio
+Finalmente, fuimos a la app.7 a hacer un breve cambio
     En el componente Post, indicamos que hemos cambiado en la logica getPost que en author ahora incluimos username y ese es el dato que necesitamos que muestre
     Teniamos esta linea dentro de article : <h3 className="font-bold">{post.author}</h3>
     y ahora la hemos cambiado a esta otra: <h3 className="font-bold">{post.author.username}</h3>

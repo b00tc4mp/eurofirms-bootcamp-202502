@@ -1,3 +1,6 @@
+app.6
+2/5/25 - 3/5/25
+
 Trabajamos con los posts
 1. Cambiamos en la lógica de getPost.js que en vez de aparecer el id del usuario de cada post, aparezca su username. También creamos una propiedad llamada own que nos dirá su ese ese post es del usuario conectado en ese momento
 2. En la vista Posts.jsx creamos el botón papelera: este se activara solo si own es true. Creamos su configuración, al clicarlo se llamara a un handle que llamara a la lógica de borrado de posts y a un handle de refrescado de posts

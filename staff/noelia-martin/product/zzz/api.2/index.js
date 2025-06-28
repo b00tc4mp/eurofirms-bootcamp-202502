@@ -11,7 +11,7 @@ connect('mongodb://localhost:27017/test')
         const api = express()
         const jsonBodyParser = express.json()
 
-        api.use(cors())
+        api.use(cors()) //Es un middleware que permite que la aplicación web acepte solicitudes desde diferentes orígenes (dominios)
 
         api.get('/hello', (request, response) => {
             response.send('Hello! 😉')

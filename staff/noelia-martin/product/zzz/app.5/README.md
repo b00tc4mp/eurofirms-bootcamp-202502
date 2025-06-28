@@ -1,3 +1,6 @@
+app.5
+25/4/25 - 26/4/25
+
 Previo a meternos en configuración, Manu explico dos métodos interesantes: map y toReversed. Lo he dejado en nuevos archivos independientes dentro de la carpeta app.
 
 En esta versión hay que dar muchas vueltas, por eso lo he documentado mas detalladamente

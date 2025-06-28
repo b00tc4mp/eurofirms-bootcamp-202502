@@ -8,7 +8,7 @@ import cors from 'cors'
 const api = express()
 const jsonBodyParser = express.json()
 
-api.use(cors())
+api.use(cors()) //Es un middleware que permite que la aplicación web acepte solicitudes desde diferentes orígenes (dominios)
 
 //get es para pedir datos y post para enviar datos
 
