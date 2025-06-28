@@ -33,6 +33,11 @@ export class AuthorizationError extends Error {
     super(message);
   }
 }
+export class PermissionError extends Error {
+  constructor(message) {
+    super(message);
+  }
+}
 
 const errors = {
   ValidationError,
@@ -41,6 +46,7 @@ const errors = {
   CredentialsError,
   SystemError,
   AuthorizationError,
+  PermissionError
 };
 
 export default errors;
