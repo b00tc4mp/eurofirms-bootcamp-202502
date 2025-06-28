@@ -40,7 +40,7 @@ usersRouter.post('/auth', jsonBodyParser, (request, response, next) => {
          * Pide a la Api el id de usuario de la base de users, a través de autenticarse a traves de authorization y se devuelve en formato json el username 
          */
 
-usersRouter.get('self/username', (request, response, next) => {
+usersRouter.get('/self/username', (request, response, next) => {
     try {
         /**
          * Recupera la cabecera de la autorizacion con el metodo slice y recupera el id de usuario
