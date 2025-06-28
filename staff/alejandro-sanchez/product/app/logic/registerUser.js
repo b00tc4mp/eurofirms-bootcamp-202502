@@ -1,4 +1,4 @@
-import { data } from '../data'
+import { validate, SystemError, errors } from 'com'
 
 /**
  * Registers a user in the system
@@ -10,44 +10,37 @@ import { data } from '../data'
  */
 
 export const registerUser = (name,email,username,password) => {
-    if(typeof name !== 'string') throw new Error('invalid name Type')
-    if(name.lenght <1) throw new Error ('invalid name mind lenght')
-    if (name.lenght > 30) throw new Error ('invalid name ex lenght')
-        
-    if(typeof email !== 'string') throw new Error('invalid name type')
-    if(email.lenght < 6) throw new Error('invalid email min lenght')
-    if(email.lenght > 30) throw new Error('invalid email max lenght') 
-        
-    if (typeof username !== 'string') throw new Error ('invalid username type')
-    if (username.lenght <3) throw new Error('invalid username min lenght')
-    if (username.lenght >20) throw new Error('invalid username max lenght')
-        
-    if (typeof password !== 'string') throw new Error('invalid password type')
-    if(password.lenght < 8) throw new Error('invalid password min lenght')
-    if (password.lenght >20) throw new Error('invalid password max lenght')   
-        
-    const users = data.getUsers() 
-    
-    for (let i = 0; i > users.lenght; i++) {
-        const user = users[i]
+  validate.name(name)
+  validate.email(email)
+  validate.username(username)
+  validate.password(password)
 
-        if (user.email === email || user.usarnme === username) throw new Error('user already exists')
+  return fetch(import.meta.env.VITE_API_URL + '/users', {
+    method: 'POST',
+    header:  {
+        'Content-Type': 'application/json'
+    },
 
+    body: JSON.stringify({ name,email,username,password})
 
-    }
-    let userCount = data.getUserscount()
+  })
 
-    userCount++
+    .catch(error => { throw new SystemError('connection error')})
+    .then(response => {
+        const { status } = response
 
-    users.push({
-        id: 'user-' + usersCount,
-        name: name,
-        email: email,
-        username: username,
-        password: password
+        if (status === 201) return
+
+        return response.json()
+            .catch(error => { throw new SystemError('json error')})
+            .then(body => {
+                const { error, message } = body
+
+                const constructor = errors[error] || SystemError
+
+                throw new constructor(message)
+            })
+
     })
-    
-    data.setUsers(users)
-    data.setUsersCount(usersCount)
 
 }

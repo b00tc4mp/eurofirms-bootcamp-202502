@@ -1,26 +1,38 @@
 import { data } from '../data'
-
+import { SystemError, errors } from 'com'
 /**
  * Gets the username.
  * 
  * @returns {string} The user username.
  */
 export const getUserUsername = () => {
-    const users = data.getUsers ()
+        return fetch(import.meta.env.VITE_API_URL + '/users/self/username', {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + data.getToken()
+            }
 
-    let user
+        })
 
-    for (let i = 0; i < user.lenght; i++) {
-        const _user = users[i]
+            .catch(error => { throw new SystemError('conection error')})
+            .then(response => {
+                const { status } = response
 
-        if (_user.id === data.getUserId()) {
-            user = _user
+                if (status === 200)
+                    return response.json()
+                        .catch(error => { throw new SystemError('json error')})
+                        .then(username => username)
 
-            break
+                return response.json()
+                        .catch(error=> {throw new SystemError('json error')})
+                        .then(body => {
+                            const {error,message} = body
+                            
+                            const constructor = errors[error] || SystemError
+                            
+                            throw new constructor(message)
+                        })
+
+            })
+
         }
-    }
-
-    if (user === undefined) throw new Error('user not found')
-
-    return user.username    
-}
