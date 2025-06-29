@@ -1,7 +1,7 @@
 import { connect, disconnect } from '../data/index.js'
 import { registerUser } from './registerUser.js'
 
-connect('mongodb://localhost:27017/test')
+connect('mongodb://localhost:27017/infinity')
     .then(() => {
         try {
             return registerUser('mosquito', 'mos@quito.com', '123123123')
