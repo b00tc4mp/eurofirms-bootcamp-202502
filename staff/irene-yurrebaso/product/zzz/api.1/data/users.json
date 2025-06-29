@@ -1,0 +1,51 @@
+[
+    {
+        "id": "user-1",
+        "name": "Pin 8",
+        "email": "pin@8.com",
+        "username": "pin8",
+        "password": "123123123"
+    },
+    {
+        "id": "user-2",
+        "name": "Peter Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-3",
+        "name": "Mafalda",
+        "email": "ma@falda.com",
+        "username": "mafalda",
+        "password": "123123123"
+    },
+    {
+        "id": "user-4",
+        "name": "Wendy Darling",
+        "email": "wendy@darling.com",
+        "username": "wendydarling",
+        "password": "123123123"
+    },
+    {
+        "id": "user-5",
+        "name": "Petra Pan",
+        "email": "petra@pan.com",
+        "username": "petrapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-6",
+        "name": "Micky Mouse",
+        "email": "micky@mouse.com",
+        "username": "mickymouse",
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "Pato Donald",
+        "email": "pato@donald.com",
+        "username": "patodonald",
+        "password": "123123123"
+    }
+]

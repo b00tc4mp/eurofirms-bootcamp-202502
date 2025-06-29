@@ -1,0 +1,18 @@
+[
+    {
+        "id": "post-3",
+        "author": "user-4",
+        "image": "https://media.giphy.com/media/dc5NLlkPEj92Vj09IY/giphy.gif?cid=82a1493b13oiy1vflkwwbig3vyyfw1h2zlqu7e8l2gh9cfz1&ep=v1_gifs_trending&rid=giphy.gif&ct=g",
+        "text": "Good morning",
+        "date": "2025-05-14T10:19:55.305Z",
+        "likes": []
+    },
+    {
+        "id": "post-4",
+        "author": "user-2",
+        "image": "https://media.giphy.com/media/3o6gaVztoohCD4cdAk/giphy.gif?cid=82a1493ba3k5ehv63k6i8tn6hvi1n9rufhc92cjwoapxotve&ep=v1_gifs_trending&rid=giphy.gif&ct=g",
+        "text": "how I tolerate life",
+        "date": "2025-05-14T11:22:58.409Z",
+        "likes": []
+    }
+]

@@ -1,0 +1,79 @@
+/* globals */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+a {
+    color: black;
+    font-weight: 500;
+}
+
+a:visited {
+    color: black;
+}
+
+label {
+    font-weight: 500;
+}
+
+input {
+    border-color: black;
+    padding: 5px;
+}
+
+/*utility classes*/
+
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.p-20px {
+    padding: 20px;
+}
+
+.gap-10px {
+    gap: 10px;
+}
+
+.gap-20px {
+    gap: 20px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+/* custom */
+
+.black-button {
+    background-color: black;
+    color: white;
+    padding: 10px 25px;
+}
