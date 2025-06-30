@@ -15,7 +15,9 @@ export const getUserUsername = () => {
         if(status === 200)
             return response.json()
                 .catch(error => { throw new SystemError('json error')})
-                .then(username => username)
+                .then(({ username, profileCompleted }) => {
+                   return { username, profileCompleted }
+                })
 
         return response.json()    
             .catch(error => { throw new SystemError('json error')})
