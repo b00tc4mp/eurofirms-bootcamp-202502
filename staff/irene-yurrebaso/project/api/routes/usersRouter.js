@@ -34,3 +34,18 @@ usersRouter.post('/auth', jsonBodyParser, (request, response, next) => {
         next(error)
     }
 })
+
+usersRouter.get('/self/username', (request, response, next) => {
+    try {
+        const authorization = request.headers.authorization
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+        logic.getUserUsername(userId)
+            .then(username => response.status(200).json(username))
+            .catch(error => next(error))
+    } catch(error) {
+        next(error)
+    }
+})

@@ -17,5 +17,10 @@ export const validate = {
         if (typeof password !== 'string') throw new ValidationError ('invalid password type')
         if (password.length < 8) throw new ValidationError('invalid password min length')
         if (password.length > 20) throw new ValidationError('invalid password max length')
+    },
+
+    userId(userId) {
+        if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
+        if (userId.length !== 24) throw new ValidationError('invalid userId length')
     }
 }
