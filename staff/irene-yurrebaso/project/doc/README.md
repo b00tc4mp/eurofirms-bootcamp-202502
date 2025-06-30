@@ -28,7 +28,7 @@ Admin (User) [v0.1]
 
 ### Prototype
 
-[Figma](https://www.figma.com/design/CJLXOanjDKGflaRQcdJVKp/)
+[Figma](https://www.figma.com/proto/CJLXOanjDKGflaRQcdJVKp/Autism-friendly-travel-App?node-id=3-36&p=f&t=90MKs1klT8m29D0D-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A36)
 
 ## Technical
 
