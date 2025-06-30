@@ -43,7 +43,9 @@ usersRouter.get('/self/username', (request, response, next) => {
         const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
         logic.getUserUsername(userId)
-            .then(username => response.status(200).json(username))
+            .then(({ username, profileCompleted}) => {
+                response.status(200).json({ username, profileCompleted })
+            })
             .catch(error => next(error))
     } catch(error) {
         next(error)

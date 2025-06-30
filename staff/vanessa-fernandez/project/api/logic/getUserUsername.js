@@ -9,6 +9,9 @@ export const getUserUsername = userId => {
         .then(user => {
             if(!user) throw new NotFoundError('user not found')
 
-            return user.username    
+            return {
+                username: user.username,
+                profileCompleted: user.profileCompleted
+            }        
         })
 }
