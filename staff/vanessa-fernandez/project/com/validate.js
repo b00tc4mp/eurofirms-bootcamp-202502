@@ -40,6 +40,27 @@ export const validate = {
         if (height < 50 || height > 250) throw new ValidationError('unrealistic height')    
     },
 
+    description(description) {
+        if (typeof description !== 'string') throw new ValidationError('invalid description type')
+        if (description.length < 1) throw new ValidationError('invalid description min length')    
+        if (description.length > 250) throw new ValidationError('invalid description max length')    
+    },
+
+    image(image) {
+        if (typeof image !== 'string') throw new ValidationError('invalid image type')
+        if (!image) throw new ValidationError('you must provide an image')    
+    },
+
+    difficulty(difficulty) {
+        if (typeof difficulty !== 'string') throw new ValidationError('invalid difficulty type')
+        if (!['easy', 'medium', 'hard'].includes(difficulty)) throw new ValidationError('invalid difficulty value')  
+    },
+
+    muscleGroup(muscleGroup) {
+        if (typeof muscleGroup !== 'string') throw new ValidationError('invalid muscle group type')
+        if (!['shoulders', 'legs', 'back', 'arms', 'full-body'].includes(muscleGroup)) throw new ValidationError('invalid muscle group value')  
+    },
+
     userId(userId) {
         if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
         if (userId.length !== 24) throw new ValidationError('invalid userId length')    
