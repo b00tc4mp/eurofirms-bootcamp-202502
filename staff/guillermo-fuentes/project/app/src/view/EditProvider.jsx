@@ -1,37 +1,17 @@
 import { logic } from '../logic';
-import { useState, useEffect } from 'react';
+import { useState, } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { Search } from './components/Search';
 export const EditProvider = ({ provider, onEditedProvider }) => {
   const { loggedIn, rol: userRol } = useAuth();
   const [name, setName] = useState(provider.name);
   const [contact, setContact] = useState(provider.contact);
   const [address, setAddress] = useState(provider.address);
   const [userFullName, setUserFullName] = useState(provider.user.fullName);
-  const [nameQuery, setNameQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const [selectedUserName, setSelectedUserName] = useState('');
   const [selectedUserId, setSelectedUserId] = useState(provider.user.id);
   const [error, setError] = useState('');
-
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
-
-  const handleSelectUser = (user) => {
-    setNameQuery(user.fullName);
-    setSelectedUserName(user.fullName);
-    setSelectedUserId(user._id);
-    setSuggestions([]);
-    setError('');
-  };
-
-  useEffect(() => {
-    if (isAdmin) {
-      logic.fetchSuggestions(nameQuery, setSuggestions, setError);
-    }
-    return () => logic.fetchSuggestions.cancel();
-  }, [nameQuery]);
-
   const handleEditProvider = () => onEditedProvider();
-
   const handleEditSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -39,19 +19,17 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
     const contact = form.contact.value;
     const address = form.address.value;
     //const userFullName = form.user.value;
-    if (isAdmin && !selectedUserName) {
+    if (isAdmin && !selectedUserId) {
       setError('Please select a user');
       alert('Please select a user');
       return;
     }
-
     try {
       logic
         .updateProvider(provider.id, name, contact, address, selectedUserId)
         .then(() => {
           form.reset();
-          setNameQuery('');
-          setSelectedUserName('');
+         
           setError('');
           handleEditProvider();
         })
@@ -64,10 +42,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
     }
   };
 
-  const handleNameQueryChange = (event) => {
-    setNameQuery(event.target.value);
-    setSelectedUserName('');
-  };
+
   return (
     <div
       className="w-screen h-screen flex items-center justify-center  bg-opacity-25
@@ -141,35 +116,10 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
             />
           </div>
           {isAdmin && (
-            <div>
-              <label htmlFor="user" className="block text-sm font-medium text-gray-700 mb-1">
-                Search by username
-              </label>
-              <input
-                type="text"
-                name="user"
-                id="user"
-                value={nameQuery}
-                onChange={handleNameQueryChange}
-                placeholder="Search user by name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                autoComplete="off"
-              />
-
-              {suggestions.length > 0 && (
-                <ul className="border border-gray-300 rounded-lg mt-1 max-h-40 overflow-y-auto bg-white">
-                  {suggestions.map((user) => (
-                    <li
-                      key={user._id}
-                      onClick={() => handleSelectUser(user)}
-                      className="px-4 py-2 cursor-pointer hover:bg-blue-100"
-                    >
-                      {user.fullName}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+           <Search
+                      onSelectUserId={setSelectedUserId}
+                      setError={setError}
+                    />
           )}
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
