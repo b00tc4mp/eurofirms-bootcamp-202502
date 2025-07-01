@@ -60,7 +60,7 @@ export const Login =({ onRegisterClicked, onUserLoggedIn }) => {
                         <label className="font-medium" htmlFor="password">Password</label>
                         <input
                             className="border border-gray-400 focus:border-[#0ab5ee] focus:outline-none bg-[#cde5ed] rounded px-3 py-2 transition-colors duration-300"
-                            type="text"
+                            type="password"
                             name="password"
                             id="password"
                             placeholder="Your password"

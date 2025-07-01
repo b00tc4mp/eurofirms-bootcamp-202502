@@ -83,16 +83,16 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                 <div className="flex flex-col gap-2">
                     <label
                         className="font-medium"
-                        htmlFor="username">Password</label>
+                        htmlFor="password">Password</label>
                     <input className="border border-gray-400 focus:border-[#0ab5ee] focus:outline-none bg-[#cde5ed] rounded px-3 py-2"
-                        type="text"
+                        type="password"
                         id="password"
                         name="password"
                         placeholder="Your password" />
                 </div>
 
                 <div className="flex justify-between items-center mt-4">
-                    <a className="no-underline text-black font-medium"
+                    <a className="no-underline text-[#0ab5ee] font-medium"
                     href="#"
                     onClick={handleLoginClick}>Login</a>
                     <button className="text-white bg-[#0ab5ee] hover:bg-[#119fd3] transition-colors duration-300 rounded-lg px-4 py-2" type="submit">Register</button>

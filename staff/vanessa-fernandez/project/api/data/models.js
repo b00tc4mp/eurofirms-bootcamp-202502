@@ -55,8 +55,74 @@ const user = new Schema({
     }
 })
 
+const exercise = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+
+    description: {
+        type: String,
+        required: true
+    },
+
+    image: {
+        type: String,
+        required: true
+    },
+
+    difficulty: {
+        type: String,
+        enum: ['easy', 'medium', 'hard']
+    },
+
+    muscleGroup: {
+        type: String,
+        enum: ['shoulders', 'legs', 'back', 'arms', 'full-body']
+    }
+})
+
+const workout = new Schema({
+    userId: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+
+    day: {
+        type: String,
+        required: true,
+        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    },
+
+    exercises: [{
+        exerciseId: {
+            type: ObjectId,
+            ref: 'Exercise',
+            required: true
+        },
+        sets: {
+            type: Number,
+            required: true
+        },
+        repetitions: {
+            type: Number,
+            required: true
+        },
+        restTime: {
+            type: Number,
+            required: true
+        }
+    }]
+})
+
 const User = model('User', user)
+const Exercise = model('Exercise', exercise)
+const Workout = model('WorkOut', workout)
+
 
 export {
-    User
+    User,
+    Exercise,
+    Workout
 }

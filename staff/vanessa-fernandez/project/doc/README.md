@@ -38,6 +38,7 @@ Admin (User) [v0.1]
 - View users’ progress and performance.
 - Review comments or problems reported by users.
 - Manage user profiles.
+- Implement calendar [v0.1]
 
 ---
 
@@ -107,9 +108,9 @@ Admin (User) [v0.1]
 - id (UUID)
 - name (string, required)
 - description (string, required)
-- image (string)
+- image (string, required)
 - difficulty (string, values: easy | medium | hard) [v0.1]
-- muscleGroup (string, values: hombros | piernas | espalda | brazos | full-body) [v0.1]
+- muscleGroup (string, values: shoulders | legs | back | arms | full-body) [v0.1]
 
 **Workout**
 
