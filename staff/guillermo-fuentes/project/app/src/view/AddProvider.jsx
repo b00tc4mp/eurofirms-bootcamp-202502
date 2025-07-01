@@ -1,34 +1,23 @@
-// frontend/src/view/AddProvider.jsx
-import React, { useState, useEffect } from 'react';
+
+import  { useState } from 'react';
 import { logic } from '../logic';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../context/AuthContext';
-import { useContext } from '../context/context';
+import { Search } from './components/Search';
 
 export const AddProvider = () => {
   const navigate = useNavigate();
   const { loggedIn, rol: userRol } = useAuth();
-  const { alert } = useContext();
-  const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState('');
   const [error, setError] = useState('');
 
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
 
-  useEffect(() => {
-    if (isAdmin) {
-      logic.fetchSuggestions(query, setSuggestions, setError);
-    }
-    return () => logic.fetchSuggestions.cancel();
-  }, [query]);
-
-  const handleSelectUser = (user) => {
-    setQuery(user.fullName);
-    setSelectedUserId(user._id); 
-    setSuggestions([]);
-    setError('');
-  };
+  // Redirigir si no es admin
+  if (!isAdmin) {
+    navigate('/unauthorized');
+    return null;
+  }
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
@@ -38,27 +27,23 @@ export const AddProvider = () => {
     const address = form.address.value;
     const contact = form.contact.value;
 
-    if (isAdmin && !selectedUserId) {
+    if (!selectedUserId) {
       const msg = 'Please select a user';
       setError(msg);
-      alert(msg);
       return;
     }
 
     logic
-      .addProvider(taxId,name, contact, address, isAdmin ? selectedUserId : undefined)
+      .addProvider(taxId, name, contact, address, selectedUserId)
       .then(() => {
         form.reset();
-        setQuery('');
         setSelectedUserId('');
         setError('');
         navigate('/providers');
       })
       .catch((error) => {
-        console.error(error);
         const msg = error.message || 'Error creating provider';
         setError(msg);
-        alert(msg);
       });
   };
 
@@ -70,41 +55,13 @@ export const AddProvider = () => {
         </div>
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Add Provider</h1>
         <form className="space-y-4" onSubmit={handleRegisterSubmit}>
-          {isAdmin && (
-            <div>
-              <label htmlFor="userSearch" className="block text-sm font-medium text-gray-700 mb-1">
-                User
-              </label>
-              <input
-                type="text"
-                id="userSearch"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setSelectedUserId('');
-                }}
-                placeholder="Search user by name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                autoComplete="off"
-              />
-              {suggestions.length > 0 && (
-                <ul className="border border-gray-300 rounded-lg mt-1 max-h-40 overflow-y-auto bg-white">
-                  {suggestions.map((user) => (
-                    <li
-                      key={user._id}
-                      onClick={() => handleSelectUser(user)}
-                      className="px-4 py-2 cursor-pointer hover:bg-blue-100"
-                    >
-                      {user.fullName}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          )}
+          <Search
+            onSelectUserId={setSelectedUserId}
+            setError={setError}
+          />
           <div>
             <label htmlFor="taxId" className="block text-sm font-medium text-gray-700 mb-1">
-            Tax Id
+              Tax Id
             </label>
             <input
               type="text"
@@ -130,7 +87,7 @@ export const AddProvider = () => {
           </div>
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-            Address
+              Address
             </label>
             <input
               type="text"
@@ -159,7 +116,7 @@ export const AddProvider = () => {
             <button
               type="submit"
               className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
-              disabled={isAdmin && !selectedUserId}
+              disabled={!selectedUserId}
             >
               Add provider
             </button>
