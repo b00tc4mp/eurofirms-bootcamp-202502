@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router'
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
-//import { Home } from './view/Home'
+import { Home } from './view/Home'
 import { Alert } from './view/components/Alert'
 import { Confirm } from './view/components/Confirm'
 import { Context } from './context'
@@ -22,6 +22,12 @@ export const App = () => {
 
     const handleLoginClicked = () => navigate('/login')
 
+    const handleUserRegistered = () => navigate('/login')
+
+    const handleUserLoggedIn = () => navigate('/')
+
+    const handleUserLoggedOut = () => navigate('/login')
+
     let loggedIn
 
     try {
@@ -34,7 +40,7 @@ export const App = () => {
 
     const handleAlertAccepted = () => setAlertMessage('')
 
-    
+    //faltan aqui los handles de Confirm (remove post)
 
     console.log('App -> render')
 
@@ -48,27 +54,32 @@ export const App = () => {
         <Routes>
             <Route path='/' element={
                 !loggedIn ?
-                <Landing 
-                    onRegisterClicked={handleRegisterClicked}
-                    onLoginClicked={handleLoginClicked}
-                />
-                :
-                <Home 
-                    onUserLoggedOut={handleUserLoggedOut}
-                />
-                
+                    <Landing
+                        onRegisterClicked={handleRegisterClicked}
+                        onLoginClicked={handleLoginClicked}
+                    />
+                    :
+                    <Home
+                        onUserLoggedOut={handleUserLoggedOut}
+                    />
+
             } />
             <Route path='/register' element={
-                <Register 
+                <Register
                     onLoginClicked={handleLoginClicked}
+                    onUserRegistered={handleUserRegistered}
                 />
-                
+
             } />
             <Route path='/login' element={
-                <Login />
-                
+                !loggedIn ?
+                    <Login
+                        onRegisterClicked={handleRegisterClicked}
+                        onUserLoggedIn={handleUserLoggedIn}
+                    />
+                    :
+                    <Navigate to='/' />
             } />
-            
         </Routes>
     </Context.Provider>
 

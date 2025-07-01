@@ -39,13 +39,14 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
 
     return <div className="p-5">
         <i className="text-2xl">Logo</i>
+
         <h1 className="text-2xl my-3">Register</h1>
-        <form className="flex flex-col gap-5" onSubmit={handleRegisterSubmit}>
+        <form className="mt-2 flex flex-col gap-4" onSubmit={handleRegisterSubmit}>
             <div className="flex flex-col gap-1">
                 <label htmlFor="username">Username</label>
                 <input className="border-2 border-solid p-1" type="text" id="username" name="username" placeholder="your username"/>
             </div>
-            <div className="flex flex-col" gap-1>
+            <div className="flex flex-col gap-1">
                 <label htmlFor="email">E-mail</label>
                 <input className="border-2 border-solid p-1" type="email" id="email" name="email" placeholder="your email"/>
             </div>

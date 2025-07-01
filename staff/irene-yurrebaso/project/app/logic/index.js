@@ -1,7 +1,7 @@
 import { registerUser } from './registerUser'
-// import { loginUser } from './loginUser'
-// import { getUserUsername } from './getUserUsername'
-// import { logoutUser } from './logoutUser'
+import { loginUser } from './loginUser'
+import { getUserUsername } from './getUserUsername'
+import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
 // import { getPosts } from './getPosts'
 // import { createPost } from './createPost'
@@ -9,5 +9,8 @@ import { isUserLoggedIn } from './isUserLoggedIn'
 
 export const logic = {
     isUserLoggedIn,
-    registerUser
+    registerUser,
+    loginUser,
+    getUserUsername,
+    logoutUser
 }
