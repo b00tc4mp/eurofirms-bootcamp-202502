@@ -4,6 +4,7 @@ import { getUserUsername } from './getUserUsername.js'
 
 import { createPost } from './createPost.js'
 import { getPosts } from './getPosts.js'
+import { removePost } from './removePost.js'
 
 export const logic = {
     registerUser,
@@ -11,5 +12,6 @@ export const logic = {
     getUserUsername,
 
     createPost,
-    getPosts
+    getPosts,
+    removePost
 }
