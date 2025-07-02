@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router'
 import { Landing } from './view/Landing'
 import { Register } from './view/Register'
 import { Login } from './view/Login'
-//import { Home } from './view/Home' This page will be showed very Soon
+import { Home } from './view/Home'
 import { Alert } from './view/components/Alert'
 import { Confirm } from './view/components/Confirm'
 import { Context } from './context'
