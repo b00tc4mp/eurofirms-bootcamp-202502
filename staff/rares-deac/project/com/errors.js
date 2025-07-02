@@ -42,3 +42,5 @@ const errors = {
     SystemError,
     AuthorizationError
 }
+
+export default errors
