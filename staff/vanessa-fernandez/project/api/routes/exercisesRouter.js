@@ -18,3 +18,13 @@ exercisesRouter.post('/', jsonBodyParser, (request, response, next) => {
         next(error)
     }
 })
+
+exercisesRouter.get('/', (request, response, next) => {
+    try{
+        logic.getExercises()
+            .then(exercises => response.status(200).json(exercises))
+            .catch(error => next(error))
+    } catch(error) {
+        next(error)
+    }
+})
