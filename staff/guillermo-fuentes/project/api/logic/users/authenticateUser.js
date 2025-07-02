@@ -1,6 +1,6 @@
-import { User } from '../data/index.js';
-import bcrypt from 'bcryptjs';
-import { validate, NotFoundError, CredentialsError } from 'com';
+import { User } from "../../data/index.js";
+import bcrypt from "bcryptjs";
+import { validate, NotFoundError, CredentialsError } from "com";
 
 export const authenticateUser = (email, password) => {
   validate.email(email);
@@ -10,7 +10,7 @@ export const authenticateUser = (email, password) => {
       throw new SystemError(error.message);
     })
     .then((user) => {
-      if (!user) throw new NotFoundError('user not found');
+      if (!user) throw new NotFoundError("user not found");
 
       return bcrypt
         .compare(password, user.password)
@@ -18,7 +18,7 @@ export const authenticateUser = (email, password) => {
           throw new SystemError(error.message);
         })
         .then((match) => {
-          if (!match) throw new CredentialsError('wrong password');
+          if (!match) throw new CredentialsError("wrong password");
 
           return { id: user.id, role: user.role };
         });

@@ -1,4 +1,4 @@
-import { Provider, User } from "../data/index.js";
+import { Provider, User } from "../../data/index.js";
 import { DuplicityError, NotFoundError, SystemError, validate, PermissionError, RoleError } from "com";
 //Poner adminId primero
 export const addProvider = (adminId, taxId, name, contact, address, userId) => {

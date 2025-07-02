@@ -1,23 +1,23 @@
-import { Provider, User } from '../data/index.js';
-import { NotFoundError, SystemError, validate } from 'com';
+import { Provider, User } from "../../data/index.js";
+import { NotFoundError, SystemError, validate } from "com";
 
 export const getProviders = (userId) => {
   validate.userId(userId);
   return User.findById(userId)
     .catch((error) => {
-      throw new SystemError('mongo error');
+      throw new SystemError("mongo error");
     })
     .then((user) => {
-      if (!user) throw new NotFoundError('user not found');
-      return Provider.find({}, '-__v')
+      if (!user) throw new NotFoundError("user not found");
+      return Provider.find({}, "-__v")
         .lean()
-        .populate('user', 'fullName _id')
+        .populate("user", "fullName _id")
         .catch((error) => {
-          throw new SystemError('Error in mongo');
+          throw new SystemError("Error in mongo");
         })
         .then((providers) => {
           if (!providers || providers.length === 0) {
-            throw new NotFoundError('Providers not found');
+            throw new NotFoundError("Providers not found");
           }
 
           providers.forEach((provider) => {

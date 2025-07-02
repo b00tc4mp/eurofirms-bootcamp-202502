@@ -1,23 +1,23 @@
-import { User } from '../data/index.js';
-import { SystemError, NotFoundError, validate } from 'com';
+import { User } from "../../data/index.js";
+import { NotFoundError, SystemError, validate } from "com";
 
-export const getUsersByRol = (userId, role) => {
-  validate.role(role);
+export const getUsers = (userId) => {
   validate.userId(userId);
   return User.findById(userId)
     .catch((error) => {
-      throw new SystemError('mongo error');
+      throw new SystemError("mongo error");
     })
     .then((user) => {
-      if (!user) throw new NotFoundError('user not found');
-      return User.find({ role })
+      if (!user) throw new NotFoundError("user not found");
+      return User.find()
         .lean()
+
         .catch((error) => {
-          throw new SystemError('Error in MongoDB');
+          throw new SystemError("Error in MongoDB");
         })
         .then((users) => {
           if (!users || users.length === 0) {
-            throw new NotFoundError('Users not found');
+            throw new NotFoundError("Users not found");
           }
 
           users.forEach((user) => {

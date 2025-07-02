@@ -1,4 +1,4 @@
-import { connect, disconnect } from "../data/index.js";
+import { connect, disconnect } from "../../data/index.js";
 import { updateUser } from "./updateUser.js";
 
 connect("mongodb://localhost:27017/proyectoFinal")

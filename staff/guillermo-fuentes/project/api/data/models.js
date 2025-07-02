@@ -59,7 +59,46 @@ const provider = new Schema({
     required: true,
   },
 });
+
+const product = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  stock: {
+    type: Number,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  dateCreation: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  dateModification: {
+    type: Date,
+    default: null,
+  },
+  provider: {
+    type: ObjectId,
+    ref: "Provider",
+    required: true,
+  },
+});
+
 const User = model("User", user);
 const Provider = model("Provider", provider);
+const Product = model("Product", product);
 
-export { User, Provider };
+export { User, Provider, Product };

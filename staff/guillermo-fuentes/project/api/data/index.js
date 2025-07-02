@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { User, Provider } from "./models.js";
+import { User, Provider, Product } from "./models.js";
 const { connect, disconnect } = mongoose;
 
-export { connect, disconnect, User, Provider };
+export { connect, disconnect, User, Provider, Product };

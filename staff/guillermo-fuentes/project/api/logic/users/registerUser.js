@@ -1,4 +1,4 @@
-import { User } from "../data/index.js";
+import { User } from "../../data/index.js";
 import bcrypt from "bcryptjs";
 import { DuplicityError, SystemError, validate } from "com";
 

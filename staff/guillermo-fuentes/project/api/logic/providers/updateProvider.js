@@ -1,4 +1,4 @@
-import { User, Provider } from "../data/index.js";
+import { User, Provider } from "../../data/index.js";
 import { DuplicityError, NotFoundError, SystemError, validate, ValidationError } from "com";
 //cambiar targetid a providerid
 export const updateProvider = (requesterId, targetId, name, contact, address, providerId) => {

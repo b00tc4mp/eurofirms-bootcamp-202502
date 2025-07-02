@@ -1,4 +1,4 @@
-import { Provider, User } from "../data/index.js";
+import { Provider, User } from "../../data/index.js";
 import { SystemError, validate, NotFoundError } from "com";
 
 export const removeProvider = (providerId, adminId) => {
