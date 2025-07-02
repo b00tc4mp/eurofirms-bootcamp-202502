@@ -1,0 +1,1 @@
+curl -X POST -H 'Content-Type: application/json' -d '{"name": "Squat","description": "A lower body exercise that primarily targets the thighs and the glutes.","image": "https://www.inspireusafoundation.org/wp-content/uploads/2023/01/squat.gif","difficulty": "medium","muscleGroup": "legs"}' http://localhost:8080/exercises -v

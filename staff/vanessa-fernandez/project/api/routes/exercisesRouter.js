@@ -1,0 +1,20 @@
+import { Router } from 'express'
+import { jsonBodyParser } from '../middlewares/jsonBodyParser.js'
+import { logic } from '../logic/index.js'
+import jwt from 'jsonwebtoken'
+
+const { JWT_SECRET } = process.env
+
+export const exercisesRouter = Router()
+
+exercisesRouter.post('/', jsonBodyParser, (request, response, next) => {
+    try {
+        const { name, description, image, difficulty, muscleGroup } = request.body
+
+        logic.createExercise(name, description, image, difficulty, muscleGroup)
+            .then(() => response.status(201).send())
+            .catch(error => next(error))
+    } catch(error) {
+        next(error)
+    }
+})
