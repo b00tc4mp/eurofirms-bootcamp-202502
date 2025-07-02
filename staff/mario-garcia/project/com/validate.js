@@ -57,5 +57,10 @@ export const validate = {
         if (typeof experience !== 'string') throw new ValidationError('invalid experience type')
         if (experience.length < 10) throw new ValidationError('invalid min experience length')
         if (experience.length > 100) throw new ValidationError('invalid experience max length')
+    },
+
+    postId(postId) {
+        if (typeof postId !== 'string') throw new ValidationError('Invalid post type')
+        if (postId.length !== 24) throw new ValidationError('Invalid postId length')
     }
 }
