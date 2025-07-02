@@ -76,15 +76,17 @@ User
 Place
 - id (UUID)
 - name (string, required)
+- category (i.e. hotels, restaurants, outdoors, transport, shops, museums, sports, other) (string, required)
 - country (string, required)
 - city (string, required)
 - address (string, required)
-- postcode (string, required)
-- location lat & lng (number) [v0.1]
-- category (i.e. hotels, restaurants, outdoors, transport, shops, museums, sports, other things) (string, required)
-- rating (number) [v0.1]
-- date creation (ISODate, required)
+- website (string)
+- telephone (string)
+- description (string, required)
 - image (string)
+- data creation (date)
+- rating (number) [v0.1]
+- location lat & lng on map (number) [v0.1]
 
 Review
 - id (UUID)
@@ -92,7 +94,7 @@ Review
 - comment (string, required)
 - features (i.e. sensory friendly, low noise levels, flexible menu, quiet, clear information...) (boolean, required)
 - date creation (ISODate, required)
-- date visited (ISODate, required)
+- date visited (string, required)
 - image (string)
 
 ### Technologies

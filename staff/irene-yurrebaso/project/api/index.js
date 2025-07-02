@@ -4,6 +4,7 @@ import cors from 'cors'
 
 import { usersRouter } from './routes/usersRouter.js'
 import { errorHandler } from './middlewares/errorHandler.js'
+import { placesRouter } from './routes/placesRouter.js'
 
 const { MONGO_URL, PORT } = process.env
 
@@ -18,6 +19,7 @@ connect(MONGO_URL)
         })
 
         api.use('/users', usersRouter)
+        api.use('/places', placesRouter)
 
         api.use(errorHandler)
         
