@@ -1,4 +1,4 @@
-import { User, Place } from '../data.index.js'
+import { User, Place } from '../data/index.js'
 import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 
 /**
@@ -12,12 +12,20 @@ export const getPlaces = userId => {
 
     return User.findById(userId)
         .catch(error => { throw new SystemError('mongo error') })
-        .then(places => {
+        .then(user => {
             if (!user) throw new NotFoundError('user not found')
+            
+                //populate con 'reviews' quitar para vista corta
+            return Place.find({}).select('placeName image city description').select('-__v').populate('reviews').sort('-dateCreated').lean()
+                .catch(error => { throw new SystemError('mongo error') })
+                .then(places => {
+                    places.forEach(place => {
+                        place.id = place._id.toString()
+                        delete place._id
+                    })
 
-            return Place.find({}).select('-__v').populate('author', 'placeName', 'category', 'country', 'city', 'address', 'website', 'telephone', 'description', 'image').sort('-dateCreated').lean()
-                .catch()
-                .then()
+                    return places
+                })
 
         })
 }

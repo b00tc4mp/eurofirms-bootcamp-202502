@@ -1,3 +1,4 @@
+import { validate } from 'com'
 import mongoose from 'mongoose'
 
 const { Schema, model } = mongoose
@@ -78,7 +79,12 @@ const place = new Schema({
     dateCreated: {
         type: Date,
         default: Date.now
-    }
+    },
+
+    reviews: [{
+        type: ObjectId,
+        ref: 'Review'
+    }]
 })
 
 const review = new Schema({
@@ -105,9 +111,10 @@ const review = new Schema({
     },
 
     features: {
-        type: String,
+        type: [String],
         enum: ['sensory friendly', 'low noise levels', 'flexible food menu', 'quiet', 'clear information', 'soft lighthing', 'low crowd density', 'staff trained in neurodiversity', 'easy-read materials or pictograms', 'accessible times', 'low-odor environment', 'patient staff', 'option to choose quiet room or spot', 'minimal interaction'],
-        required: true
+        required: true,
+        validate: [arr => arr.length > 0 && arr.length < 6, 'must choose between 1 and 5 features']
     },
 
     dateVisited: {
@@ -117,7 +124,8 @@ const review = new Schema({
 
     dateCreated: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
 
     image: {
