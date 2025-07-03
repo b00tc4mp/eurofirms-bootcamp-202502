@@ -12,8 +12,8 @@ export const CreateProfile = ({ onCancelClicked, onProfileCreated }) => {
         const form = event.target
 
         const gender = form.gender.value
-        const weight = form.weight.value
-        const height = form.height.value
+        const weight = Number(form.weight.value)
+        const height = Number(form.height.value)
 
         try{
             logic.createProfile(gender, weight, height)
