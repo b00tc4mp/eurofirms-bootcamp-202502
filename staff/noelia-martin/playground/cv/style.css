@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+
+* {
+    font-family: Onest;
+}
+
+.radius-25porciento {
+    border-radius: 25%;
+}
+
+.width7porciento {
+    width: 7%
+}
+
+.padding-10px-10px {
+    padding: 10px 10px
+}
+
+.padding-0-50px {
+    padding: 0 50px
+}
+
+.colorMoradito {
+    background-color: rgb(192, 177, 206);
+}
+
+.colorAzulito {
+    background-color: rgb(187, 208, 216);
+}
+
+.direction-row {
+    flex-direction: row;
+}
+
+.flex {
+    display: flex
+}
+
+.justify-center {
+    justify-content: center
+}
+
+#underline {
+    text-decoration: underline;
+    /* si uso # tengo que llamarlo a traves de id, mismo funcionamiento*/
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
