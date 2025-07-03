@@ -3,7 +3,7 @@ import { User} from './models.js'
 
 const { connect, disconnect } = mongoose
 
-connect('mongodb://localhost:27017/test-YourFitstyle')
+connect('mongodb://localhost:27017/test')
     .then(() => {
 
     })

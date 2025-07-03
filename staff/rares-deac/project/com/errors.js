@@ -22,6 +22,12 @@ export class CredentialsError extends Error {
     }
 }
 
+export class AuthorshipError extends Error {
+    constructor(message) {
+        super(message)
+    }
+}
+
 export class SystemError extends Error {
     constructor(message) {
         super(message)
@@ -39,6 +45,7 @@ const errors = {
     DuplicityError,
     NotFoundError,
     CredentialsError,
+    AuthorshipError,
     SystemError,
     AuthorizationError
 }
