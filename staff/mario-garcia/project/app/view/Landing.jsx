@@ -7,7 +7,7 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
 
     return <div className="p-5">
 
-        <i className="text-xl">ACONPP</i>
+        <i className="text-2xl font-bold text-blue-900">ACONPP</i>
 
         <h1 className="text-3xl text-blue-900 font-semibold py-2">LANDING Page</h1>
 

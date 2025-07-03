@@ -19,6 +19,7 @@ export const createPost = (image, doctor, treatment, city, experience) => {
     validate.doctor(doctor)
     validate.treatment(treatment)
     validate.city(city)
+    validate.experience(experience)
 
     return fetch(import.meta.env.VITE_API_URL + '/posts', {
         method: 'POST',

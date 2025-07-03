@@ -45,7 +45,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
     return <div className="p-5">
 
-        <i className="text-xl font-bold text-blue-900">ACONPP</i>
+        <i className="text-2xl font-bold text-blue-900">ACONPP</i>
 
         <h1 className="text-3xl text-blue-500 font-semibold py-2">LOGIN Page</h1>
 
@@ -55,7 +55,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
                 <label htmlFor="username" className="text-xl">Username:</label>
 
-                <input className="my-2 border-2 px-1 rounded-md bg-blue-50 py-1" type="text" name="username" id="username" placeholder="Your Username" />
+                <input className="my-2 border-2 px-1 rounded-md bg-blue-100 py-1  border-blue-400" type="text" name="username" id="username" placeholder="Your Username" />
 
             </div>
 
@@ -63,7 +63,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
                 <label htmlFor="password" className="text-xl">Password:</label>
 
-                <input className="my-2 border-2 px-1 rounded-md bg-blue-50 py-1" type="password" name="password" id="password" placeholder="Introduce your password" />
+                <input className="my-2 border-2 px-1 rounded-md bg-blue-100 py-1 border-blue-400" type="password" name="password" id="password" placeholder="Introduce your password" />
 
             </div>
 
