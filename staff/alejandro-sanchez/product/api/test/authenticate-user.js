@@ -1,9 +1,9 @@
-fetch ('http://localhost:8080/users/auth', {
+fetch ('http://localhost:9090/users/auth', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: '{"username":"petrapan1","paswsword":"123123123"}'
+    body: '{"username":"peterpan","password":"123123123"}'
 })
 
     .catch(error => {throw new Error('connection error') })
@@ -13,7 +13,7 @@ fetch ('http://localhost:8080/users/auth', {
         if (status ===200)
             return response.json()
                 .catch(error => { throw new Error('json error')})
-                .then(userId =userId)
+                .then(token => token)
 
         return response.json()
             .catch(error => { throw new Error ('json error') })
@@ -25,5 +25,5 @@ fetch ('http://localhost:8080/users/auth', {
             })
               
     })
-    .then(userId => console.log('user authenticated', userId))
+    .then(token => console.log('user authenticated', token))
     .catch(error => console.error(error))

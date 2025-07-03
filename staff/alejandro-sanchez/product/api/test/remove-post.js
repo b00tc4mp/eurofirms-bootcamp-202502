@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/posts/post-5', {
+fetch('http://localhost:9090/posts/post-5', {
     method: 'DELETE',
     headers: {
         Authorization: 'Basic user-2'

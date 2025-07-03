@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/users/self/username', {
+fetch('http://localhost:9090/users/self/username', {
     method: 'GET',
     headers: {
         Authorization: 'Basic user-10'
@@ -21,3 +21,5 @@ fetch('http://localhost:8080/users/self/username', {
                 throw new Error(message)
             })
     })
+    .then(username => console.log('user username gotten', username))
+    .catch(error => console.error(error))
