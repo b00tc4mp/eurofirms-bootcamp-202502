@@ -5,11 +5,11 @@ connect('mongodb://localhost:27017/test-gymplan')
     .then(() => {
         try {
             return createExercise(
-                'Push-up',
-                'A basic upper - body strength exercise targeting chest, shoulders, and triceps.',
-                'https://images.pexels.com/photos/2261477/pexels-photo-2261477.jpeg',
+                'Smith machine bent-over row (pronated grip)',
+                'A back-strengthening row performed on the Smith machine using an overhand grip.',
+                'https://www.inspireusafoundation.org/wp-content/uploads/2023/01/smith-machine-row.gif',
                 'medium',
-                'arms'
+                'back'
             )
                 .then(() => console.log('exercise created'))
                 .catch(error => console.error(error))

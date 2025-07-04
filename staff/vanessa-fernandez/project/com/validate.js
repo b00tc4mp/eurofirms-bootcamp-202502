@@ -4,7 +4,7 @@ export const validate = {
     name(name) {
         if (typeof name !== 'string') throw new ValidationError('invalid name type')
         if (name.length < 1) throw new ValidationError('invalid name min length')
-        if (name.length > 30) throw new ValidationError('invalid name max length')        
+        if (name.length > 100) throw new ValidationError('invalid name max length')        
     },
 
       email(email) {
@@ -64,5 +64,30 @@ export const validate = {
     userId(userId) {
         if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
         if (userId.length !== 24) throw new ValidationError('invalid userId length')    
+    },
+
+    day(day) {
+        if (typeof day !== 'string') throw new ValidationError('invalid day type')
+        if (!['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].includes(day)) throw new ValidationError('invalid day value')    
+    },
+
+    exerciseId(exerciseId) {
+        if (typeof exerciseId !== 'string') throw new ValidationError('invalid exerciseId type')
+        if (exerciseId.length !== 24 ) throw new ValidationError('invalied exerciseId length')    
+    },
+
+    sets(sets) {
+        if (typeof sets !== 'number' || isNaN(sets)) throw new ValidationError('invalid sets type')
+        if (sets < 1 || sets > 5) throw new ValidationError('sets out of range (1-5)')    
+    },
+
+    repetitions(repetitions) {
+        if (typeof repetitions !== 'number' || isNaN(repetitions)) throw new ValidationError('invalid repetitions type')
+        if (repetitions < 1 || repetitions > 20) throw new ValidationError('repetitions out of range (1-20)')    
+    },
+
+    restTime(restTime) {
+        if(typeof restTime !== 'number' || isNaN(restTime)) throw new ValidationError('invalid restTime type')
+        if(restTime < 10 || restTime > 300) throw new ValidationError('restTime out of range (10-300)')    
     }
 }
