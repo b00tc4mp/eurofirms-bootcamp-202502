@@ -17,11 +17,7 @@ export const Home = ({ onUserLoggedOut }) => {
     useEffect(() => {
         try {
             logic.getUserUsername()
-                .then(username => {
-                    setUsername(username)
-
-                    navigate('/posts')
-                })
+                .then(username => setUsername(username))
                 .catch(error => {
                     console.error(error)
 

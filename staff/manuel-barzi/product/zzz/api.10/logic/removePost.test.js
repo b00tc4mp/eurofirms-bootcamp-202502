@@ -1,11 +1,11 @@
 import { connect, disconnect } from '../data/index.js'
-import { authenticateUser } from './authenticateUser.js'
+import { removePost } from './removePost.js'
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
-            return authenticateUser('peterpan', '123123123')
-                .then(user => console.log('user authenticated', user))
+            return removePost('6831e7a7fd98fd111ae2800d', '6831d56b39462bcec83f3b76')
+                .then(() => console.log('post removed'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
@@ -13,4 +13,3 @@ connect('mongodb://localhost:27017/test')
     })
     .catch(error => console.error(error))
     .finally(() => disconnect())
-

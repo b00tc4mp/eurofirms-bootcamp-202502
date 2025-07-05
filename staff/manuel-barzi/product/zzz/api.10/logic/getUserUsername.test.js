@@ -1,11 +1,11 @@
 import { connect, disconnect } from '../data/index.js'
-import { authenticateUser } from './authenticateUser.js'
+import { getUserUsername } from './getUserUsername.js'
 
 connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
-            return authenticateUser('peterpan', '123123123')
-                .then(user => console.log('user authenticated', user))
+            return getUserUsername('6831e7a7fd98fd111ae2800d')
+                .then(username => console.log('user username', username))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
@@ -13,4 +13,3 @@ connect('mongodb://localhost:27017/test')
     })
     .catch(error => console.error(error))
     .finally(() => disconnect())
-

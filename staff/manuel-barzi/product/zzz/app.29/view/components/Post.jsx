@@ -25,16 +25,6 @@ export const Post = ({ post, onPostDeleted }) => {
             })
     }
 
-    let isAdmin
-
-    try {
-        isAdmin = logic.isUserAdministrator()
-    } catch (error) {
-        console.error(error)
-
-        alert(error.message)
-    }
-
     console.log('Post -> render')
 
     return <article>
@@ -46,6 +36,6 @@ export const Post = ({ post, onPostDeleted }) => {
 
         <time>{post.date}</time>
 
-        {(post.own || isAdmin) && <button className="border-4 border-black px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
+        {post.own && <button className="border-4 border-black px-2 mx-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
     </article>
 }
