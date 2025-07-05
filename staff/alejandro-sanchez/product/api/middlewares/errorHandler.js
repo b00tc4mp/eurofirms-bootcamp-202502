@@ -1,4 +1,4 @@
-import { AuthorshipError, CredentialsError, DuplicityError,NotFoundError, SystemError, Validation, AuthorizationError } from 'com'
+import { AuthorshipError, CredentialsError, DuplicityError,NotFoundError, SystemError, ValidationError, AuthorizationError } from 'com'
 import jwt from 'jsonwebtoken'
 
 const { JsonWebTokenError} =jwt
@@ -29,7 +29,7 @@ export const errorHandler = (error,request,response,next) => {
 } else if (error instanceof SyntaxError && error.message.includes('JSON')) {
     status = 401
     errorName = AuthorizationError.name
-    Message = 'invalid payload'
+    message = 'invalid payload'
 
 } else
     errorName = SystemError.name

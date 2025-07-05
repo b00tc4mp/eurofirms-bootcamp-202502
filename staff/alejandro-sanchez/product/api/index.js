@@ -1,11 +1,11 @@
 import { connect } from './data/index.js'
 import express from 'express'
 import cors from 'cors'
-import jwt from 'jsonwebtoken'
-import { logic } from './logic/index.js'
-import { AuthorshipError, CredentialsError, DuplicityError, NotFoundError, SystemError, ValidationError, AuthorizationError } from 'com'
 
-const { JsonWebTokenError } = jwt
+import { usersRouter } from './routes/userRouter.js'
+import { postsRouter } from './routes/postRouter.js'
+import { errorHandler } from './middlewares/errorHandler.js'
+
 
 const { MONGO_URL, PORT, JWT_SECRET } = process.env
 
