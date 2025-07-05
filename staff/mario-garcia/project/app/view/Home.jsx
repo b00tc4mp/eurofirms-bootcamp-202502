@@ -52,13 +52,13 @@ export const Home = ({ onUserLoggedOut }) => {
 
     return <div className="p-5 grid">
 
-        <i className="text-2xl text-blue-900 font-bold">ACONPP</i>
+        <i className="text-2xl text-blue-900 font-extrabold">ACONPP</i>
 
         <div className="mt-2">
 
-            <h1 className="text-3xl text-blue-800 font-semibold py-2">HOME Page</h1>
+            <h1 className="text-3xl text-blue-700 font-bold py-2">HOME Page</h1>
 
-            <h2 className="text-xl text-blue-700 py-2">Hello, {username}!</h2>
+            <h2 className="text-xl text-blue-600 font-semibold py-2">Hello, {username}!</h2>
 
             <div className="my-2 flex justify-start">
 

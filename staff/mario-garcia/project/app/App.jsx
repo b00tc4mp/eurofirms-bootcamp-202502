@@ -31,7 +31,7 @@ export const App = () => {
     let loggedIn
 
     try {
-        loggedIn = logic.isUserLoggedIn()
+        loggedIn = logic.isUserLoggedIn()//Here I'm bringing the Token Connected
     } catch (error) {
         console.error(error)
 
