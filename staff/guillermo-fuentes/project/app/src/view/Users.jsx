@@ -9,7 +9,7 @@ export const Users = () => {
   const [role, setRol] = useState('All users');
   const navigate = useNavigate();
 
-  const roles = ['All users', 'Administrators', 'Clients'];
+  const roles = ['All users', 'Administrators', 'Clients',"Providers"];
   const { alert } = useContext();
   useEffect(() => {
     if (role === 'All users') {
@@ -36,6 +36,8 @@ export const Users = () => {
           roleToSend = 'administrator';
         } else if (role === 'Clients') {
           roleToSend = 'client';
+        }else if (role === 'Providers') {
+          roleToSend = 'provider';
         }
 
         logic
