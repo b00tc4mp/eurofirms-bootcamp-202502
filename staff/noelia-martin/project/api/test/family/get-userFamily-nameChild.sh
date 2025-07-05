@@ -1,0 +1,1 @@
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODY3MTk0ZWNjZDMxOWVkOTY1MjdmMzQiLCJpYXQiOjE3NTE1ODczOTd9.MPpdEaY0D9PggiobutUQcjvL1I4jHnzbVbJ6aRbO43Q' http://localhost:8080/userFamily/self/nameChild -v

@@ -11,9 +11,9 @@ export const userFamilyRouter = Router()
 
 userFamilyRouter.post('/', jsonBodyParser, (request, response, next) => {
     try {
-        const { nameChild, username, password, healthCareNumber, dateOfBirth } = request.body
+        const { username, password, nameChild, healthCareNumber, dateOfBirth } = request.body
 
-        logic.registerUserFamily(nameChild, username, password, healthCareNumber, dateOfBirth)
+        logic.registerUserFamily(username, password, nameChild, healthCareNumber, dateOfBirth)
             .then(() => response.status(201).send())
             .catch(error => next(error))
     } catch (error) {
@@ -36,7 +36,7 @@ userFamilyRouter.post('/auth', jsonBodyParser, (request, response, next) => {
     }
 })
 
-userFamilyRouter.get('/self/username', (request, response, next) => {
+userFamilyRouter.get('/self/nameChild', (request, response, next) => {
     try {
         const authorization = request.headers.authorization
 
@@ -44,8 +44,8 @@ userFamilyRouter.get('/self/username', (request, response, next) => {
 
         const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        logic.getUserFamilyUsername(userId)
-            .then(username => response.status(200).json(username))
+        logic.getUserFamilyNameChild(userId)
+            .then(nameChild => response.status(200).json(nameChild))
             .catch(error => next(error))
 
     } catch (error) {

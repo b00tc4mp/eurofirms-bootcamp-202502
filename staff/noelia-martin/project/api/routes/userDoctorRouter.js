@@ -52,3 +52,20 @@ userDoctorRouter.get('/self/username', (request, response, next) => {
         next(error)
     }
 })
+
+userDoctorRouter.post('/self/chooseChild', jsonBodyParser, (request, response, next) => {
+    try {
+        const { healthCareNumber } = request.body
+
+        logic.getUserDoctorChooseChild(healthCareNumber)
+            .then(userFamily => {
+                const tokenFamily = jwt.sign({ sub: userFamily.id, nameChild: userFamily.nameChild }, JWT_SECRET)
+                response.status(200).json(tokenFamily)
+            })
+            //.then(userFamily => response.status(200).json(userFamily)) //paso entero el user, por si me interesara para asignarle los formularios
+            .catch(error => next(error))
+
+    } catch (error) {
+        next(error)
+    }
+})

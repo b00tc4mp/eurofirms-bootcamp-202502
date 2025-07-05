@@ -4,7 +4,7 @@ import { registerUserFamily } from './registerUserFamily.js'
 connect('mongodb://localhost:27017/test-ChildHealthDocument')
     .then(() => {
         try {
-            return registerUserFamily('Marcos Garcia Perez', 'marcosgarciaperez', '123123123', 'AN123456789', '01/01/2010')
+            return registerUserFamily('marcosgarciaperez', '123123123', 'Marcos Garcia Perez', 'AN123456789', '01/01/2010')
                 .then(() => console.log('user registered'))
                 .catch(error => console.error(error))
 

@@ -5,11 +5,6 @@ const { Types } = Schema
 const { ObjectId } = Types
 
 const userFamily = new Schema({
-    nameChild: {
-        type: String,
-        required: true
-    },
-
     username: {
         type: String,
         required: true,
@@ -17,6 +12,11 @@ const userFamily = new Schema({
     },
 
     password: {
+        type: String,
+        required: true
+    },
+
+    nameChild: {
         type: String,
         required: true
     },

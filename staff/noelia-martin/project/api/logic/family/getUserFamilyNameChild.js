@@ -1,7 +1,7 @@
 import { UserFamily } from '../../data/index.js'
 import { validate, SystemError, NotFoundError } from 'com'
 
-export const getUserFamilyUsername = userId => {
+export const getUserFamilyNameChild = userId => {
     validate.userId(userId)
 
     return UserFamily.findById(userId)
@@ -9,6 +9,6 @@ export const getUserFamilyUsername = userId => {
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            return user.username
+            return user.nameChild
         })
 }
