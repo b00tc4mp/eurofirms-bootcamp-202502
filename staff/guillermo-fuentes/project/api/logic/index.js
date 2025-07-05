@@ -1,17 +1,20 @@
-import { authenticateUser } from './authenticateUser.js';
+import { authenticateUser } from "./users/authenticateUser.js";
 
-import { getUsers } from './getUsers.js';
-import { registerUser } from './registerUser.js';
-import { removeUser } from './removeUser.js';
+import { getUsers } from "./users/getUsers.js";
+import { registerUser } from "./users/registerUser.js";
+import { removeUser } from "./users/removeUser.js";
 
-import { getUsersByRol } from './getUsersByRol.js';
-import { addProvider } from './addProvider.js';
+import { getUsersByRol } from "./users/getUsersByRol.js";
+import { addProvider } from "./providers/addProvider.js";
 
-import { updateProvider } from './updateProvider.js';
-import { updateUser } from './updateUser.js';
-import { getProviders } from './getProvider.js';
-import { searchUsers } from './searchUsers.js';
-import { removeProvider } from './removeProvider.js';
+import { updateProvider } from "./providers/updateProvider.js";
+import { updateUser } from "./users/updateUser.js";
+import { getProviders } from "./providers/getProvider.js";
+import { searchUsers } from "./users/searchUsers.js";
+import { removeProvider } from "./providers/removeProvider.js";
+import { addProduct } from "./product/addProduct.js";
+import { updateProduct } from "./product/updateProduct.js";
+import { removeProduct } from "./product/removeProduct.js";
 export const logic = {
   registerUser,
   authenticateUser,
@@ -24,4 +27,7 @@ export const logic = {
   updateProvider,
   getProviders,
   searchUsers,
+  addProduct,
+  updateProduct,
+  removeProduct,
 };

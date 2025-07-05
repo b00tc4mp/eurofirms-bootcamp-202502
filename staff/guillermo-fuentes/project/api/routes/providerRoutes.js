@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 const { JWT_SECRET } = process.env;
 
 export const providerRouter = Router();
+
 providerRouter.post("/", jsonBodyParser, (request, response, next) => {
   try {
     const authorization = request.headers.authorization;

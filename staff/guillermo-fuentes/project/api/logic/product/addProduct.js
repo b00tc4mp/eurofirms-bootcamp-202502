@@ -1,8 +1,8 @@
 import { Product, Provider, User } from "../../data/index.js";
 import { validate, SystemError, NotFoundError, RoleError } from "com";
 
-export const addProduct = (employeeId, name, description, price, stock, image, provider) => {
-  validate.employeeId(employeeId);
+export const addProduct = (providerId, name, description, price, stock, image, provider) => {
+  validate.providerId(providerId);
   validate.name(name);
   validate.description(description);
   validate.price(price);
@@ -11,16 +11,15 @@ export const addProduct = (employeeId, name, description, price, stock, image, p
   validate.providerId(provider);
 
   return Promise.all([
-    User.findById(employeeId).catch((error) => {
+    User.findById(providerId).catch((error) => {
       throw new SystemError(`Mongo error (User): ${error.message}`);
     }),
     Provider.findById(provider).catch((error) => {
-      // <--- Aquí debe ir provider, no employeeId
       throw new SystemError(`Mongo error (Provider): ${error.message}`);
     }),
   ]).then(([employee, provider]) => {
     if (!employee) throw new NotFoundError("employee not found");
-    if (employee.role !== "employee" && employee.role !== "administrator") {
+    if (employee.role !== "provider" && employee.role !== "administrator") {
       throw new RoleError("User is not authorized to create products");
     }
     if (!provider) throw new NotFoundError("Provider not found");
