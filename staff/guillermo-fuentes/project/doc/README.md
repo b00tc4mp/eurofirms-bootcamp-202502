@@ -84,7 +84,7 @@ User
 - address (string, required)
 - role (string, values: administrator | client| employee| provider required)
 
-  Proveedor
+Provider
 
 - id (UUID)
 - name (string, required, unique)
