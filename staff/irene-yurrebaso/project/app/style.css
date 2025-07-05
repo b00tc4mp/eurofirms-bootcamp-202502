@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Quicksand:wght@300..700&display=swap');
+
 @import "tailwindcss";
 
-/*@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');*/
+
+body {
+    font-family: Lexend, sans-serif;
+}
+
+p {
+    font-weight: 500;
+}
+
+.logo {
+    font-family: Quicksand, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}

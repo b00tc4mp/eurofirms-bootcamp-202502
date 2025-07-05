@@ -31,7 +31,7 @@ const place = new Schema({
         required: true
     },
 
-    placeName: {
+    name: {
         type: String,
         required: true,
         unique: true

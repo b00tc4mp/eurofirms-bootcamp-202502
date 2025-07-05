@@ -14,9 +14,9 @@ placesRouter.post('/', jsonBodyParser, (request, response, next) => {
 
         const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        const { placeName, category, country, city, address, website, telephone, description, image } = request.body
+        const { name, category, country, city, address, website, telephone, description, image } = request.body
 
-        logic.createPlace(userId, placeName, category, country, city, address, website, telephone, description, image)
+        logic.createPlace(userId, name, category, country, city, address, website, telephone, description, image)
             .then(() => response.status(201).send())
             .catch(error => next(error))
     } catch (error) {

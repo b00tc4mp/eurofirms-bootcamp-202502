@@ -1,9 +1,9 @@
 import { connect, disconnect } from '../data/index.js'
 import { createPlace } from './createPlace.js'
 
-connect('mongodb://localhost:27017/infinity')
+connect('mongodb://localhost:27017/infinity-test')
     .then(() => {
-        return createPlace('6861798f500437c1d1f7373f', 'Gloria Thalasso & Hotels', 'hotels', 'Spain', 'San Bartolomé de Tirajana', 'C/ Las Margaritas s/n 35100, Las Palmas', 'https://www.gloriapalaceth.com/en/autism-friendly/', '+34 928 12 86 40', 'We are aware of the difficulties that people with autism and their families face in their daily life. For this reason, GLORIA THALASSO & HOTELS chain has been certified as an AUTISM FRIENDLY place, so that you can feel welcome in any of our hotels.', 'https://content.tui.co.uk/adamtui/2017_9/14_9/6e1bc27e-0bd9-4552-af09-a7ee00961828/ACC_031945_GCA_15WebOriginalCompressed.jpg?i10c=img.resize(width:470);img.crop(width:470%2Cheight:265)')
+        return createPlace('68680e6deb57024a85a3565c', 'Early birds evening @ The Science Museum', 'museums', 'United Kingdom', 'London', 'Exhibition Rd, South Kensington, London SW7 2DD', 'https://www.sciencemuseum.org.uk/see-and-do/early-birds', '+44 033 0058 0058', 'Early Birds is a sensory friendly event for families with members who need a quieter environment to enjoy the museum.', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/db/af/3d/the-entrance-to-the-science.jpg?w=1000&h=-1&s=1')
             .then(() => console.log('place created'))
             .catch(error => console.error(error))
     })

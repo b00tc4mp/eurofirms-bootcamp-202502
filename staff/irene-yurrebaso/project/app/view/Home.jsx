@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 
 import { logic } from '../logic'
 
-//import { Posts } from './components/Posts'
-//import { CreatePost } from './components/CreatePost'
+import { Places } from './components/Places'
+//import { CreatePlace} from './components/CreatePlace'
 import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
     const { alert } = useContext()
 
+    const [view, setView] = useState('places')
     const [username, setUsername] = useState('World')
 
     useEffect(() => {
@@ -32,7 +33,7 @@ export const Home = ({ onUserLoggedOut }) => {
             logic.logoutUser()
 
             onUserLoggedOut()
-        } catch(error) {
+        } catch (error) {
             alert(error.message)
         }
     }
@@ -40,16 +41,18 @@ export const Home = ({ onUserLoggedOut }) => {
     console.log('Home -> render')
 
     return <div className="p-5">
-        <i className="text-2xl">Logo</i>
-        <h1 className="text-2xl my-3">Home</h1>
-        <h2 className="flex justify-center my-5 font-semibold">Hello, {username}!</h2>
-        
-        <button 
-            className="bg-black text-white py-2 px-4" 
-            type="button"
-            onClick={handleLogoutClick}
-        >Log out</button>
+        <div className="flex flex-col items-center gap-2">
+            <img src="/logo.jpg" alt="Infinity Travel" />
+            <i class="logo">Infinity Travel</i>
+        </div>
+        <div className="my-4">
+            <p className="flex my-5 font-semibold">Hello, {username}!</p>
 
-       
+            <a className="underline" href="#" onClick={handleLogoutClick}>Log out</a>
+        </div>
+        <div>
+            <h1 className="text-xl">You might like these</h1>
+            {view === 'places' && <Places />}
+        </div>
     </div>
 }

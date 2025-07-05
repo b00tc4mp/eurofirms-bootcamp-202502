@@ -33,23 +33,23 @@ const { connect, disconnect } = mongoose
 //     .catch(error => console.error(error))
 //     .finally(() => disconnect())
 
-// connect('mongodb://localhost:27017/infinity')
-//     .then(() => {
-//         return Place.create({
-//             author: '68641c8883b3e8e0e415df55',
-//             name: 'Early birds evening @ The Science Museum',
-//             category: 'museums',
-//             country: 'United Kingdom',
-//             city: 'London',
-//             address: 'Exhibition Rd, South Kensington, London SW7 2DD',
-//             website: 'https://www.sciencemuseum.org.uk/see-and-do/early-birds',
-//             telephone: '+44 033 0058 0058',
-//             description: 'Early Birds is a sensory friendly event for families with members who need a quieter environment to enjoy the museum.',
-//             image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/db/af/3d/the-entrance-to-the-science.jpg?w=1000&h=-1&s=1'
-//         })
-//     })
-//     .catch(error => console.error(error))
-//     .finally(() => disconnect())
+connect('mongodb://localhost:27017/infinity')
+    .then(() => {
+        return Place.create({
+            author: '68641c8883b3e8e0e415df55',
+            name: 'Early birds evening @ The Science Museum',
+            category: 'museums',
+            country: 'United Kingdom',
+            city: 'London',
+            address: 'Exhibition Rd, South Kensington, London SW7 2DD',
+            website: 'https://www.sciencemuseum.org.uk/see-and-do/early-birds',
+            telephone: '+44 033 0058 0058',
+            description: 'Early Birds is a sensory friendly event for families with members who need a quieter environment to enjoy the museum.',
+            image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/db/af/3d/the-entrance-to-the-science.jpg?w=1000&h=-1&s=1'
+        })
+    })
+    .catch(error => console.error(error))
+    .finally(() => disconnect())
 
 // connect('mongodb://localhost:27017/infinity')
 //     .then(() => {

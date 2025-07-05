@@ -16,7 +16,7 @@ export const getPlaces = userId => {
             if (!user) throw new NotFoundError('user not found')
             
                 //populate con 'reviews' quitar para vista corta
-            return Place.find({}).select('placeName image city description').select('-__v').populate('reviews').sort('-dateCreated').lean()
+            return Place.find({}).select('name city description image').select('-__v').populate('reviews').sort('-dateCreated').lean()
                 .catch(error => { throw new SystemError('mongo error') })
                 .then(places => {
                     places.forEach(place => {

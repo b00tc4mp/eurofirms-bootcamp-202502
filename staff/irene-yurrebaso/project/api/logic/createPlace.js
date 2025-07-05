@@ -5,7 +5,7 @@ import { validate, SystemError, errors, NotFoundError } from 'com'
  * Creates a place.
  * 
  * @param {string} userId The user id.
- * @param {string} placeName Place name.
+ * @param {string} name Place name.
  * @param {string} category Place category.
  * @param {string} country Country of place.
  * @param {string} city City of place.
@@ -15,9 +15,9 @@ import { validate, SystemError, errors, NotFoundError } from 'com'
  * @param {string} description Place description.
  * @param {string} image Place image url.
  */
-export const createPlace = (userId, placeName, category, country, city, address, website, telephone, description, image) => {
+export const createPlace = (userId, name, category, country, city, address, website, telephone, description, image) => {
     validate.userId(userId)
-    validate.placeName(placeName)
+    validate.name(name)
     validate.category(category)
     validate.country(country)
     validate.city(city)
@@ -32,7 +32,7 @@ export const createPlace = (userId, placeName, category, country, city, address,
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            return Place.create({ author: userId, placeName, category, country, city, address, website, telephone, description, image})
+            return Place.create({ author: userId, name, category, country, city, address, website, telephone, description, image})
                 .catch(error => { throw new SystemError('mongo error') })
                 .then(() => { })
         })
