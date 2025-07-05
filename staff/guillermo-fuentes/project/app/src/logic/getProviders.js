@@ -1,13 +1,14 @@
-import { data } from '../data';
+import { SystemError } from "com";
+import { data } from "../data";
 export const getProviders = () => {
   return fetch(`${import.meta.env.VITE_API_URL}providers`, {
-    method: 'GET',
+    method: "GET",
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch(() => {
-      throw new Error('Connection error');
+      throw new SystemError("Connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -15,20 +16,23 @@ export const getProviders = () => {
         return response
           .json()
           .catch(() => {
-            throw new Error('json error');
+            throw new SystemError("json error");
           })
           .then((providers) => {
-            console.log('Providers recived', providers);
+            console.log("Providers recived", providers);
             return providers;
           });
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new SystemError("json error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+
+          const constructor = error[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

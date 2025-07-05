@@ -1,17 +1,29 @@
+import { useState, useEffect, useMemo } from "react";
+import { logic } from "../../logic";
+import debounce from "lodash/debounce";
 
-import { useState, useEffect } from "react";
-import { logic } from "../../logic"; 
-
-/**
- * Componente reutilizable para buscar usuarios. Muestra una lista de sugerencias basadas en la consulta del usuario.
- * @param {function} onSelectUser - Función para manejar el ID del usuario seleccionado.
- * @param {function} setError - Función para establecer mensajes de error (opcional).
- * @returns {JSX.Element} Input de búsqueda con lista de sugerencias.
- */
 export const Search = ({ onSelectUserId, setError = () => {} }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [userSelected, setUserSelected] = useState(false)
+  const [userSelected, setUserSelected] = useState(false);
+
+/*UseMemo es un hook de react que sirve para memorizar el resultado de una operacion costosa esto evita
+ que se vuelva a ejecutar innecesariamente en cada renderizado, a menos que sus dependencias cambien.
+*/
+
+
+const debouncedFetchSuggestions = useMemo(() =>
+  debounce((query) => {
+    logic.getUsersSuggestions(query)
+      .then((users) => {
+        setSuggestions(users);
+      })
+      .catch((error) => {
+        setError(error);
+        alert(error.message);
+      });
+  }, 300),
+[]); 
 
   const handleSelectUser = (user) => {
     setQuery(user.fullName);
@@ -23,13 +35,16 @@ export const Search = ({ onSelectUserId, setError = () => {} }) => {
 
   useEffect(() => {
     if (query && !userSelected) {
-      logic.fetchSuggestions(query, setSuggestions, setError);
+      debouncedFetchSuggestions(query);
     } else {
       setSuggestions([]);
       setError("");
     }
-    return () => logic.fetchSuggestions.cancel();
-  }, [query, setError]);
+
+    return () => {
+      debouncedFetchSuggestions.cancel(); // limpia debounce
+    };
+  }, [query]);
 
   return (
     <div>
@@ -42,9 +57,8 @@ export const Search = ({ onSelectUserId, setError = () => {} }) => {
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
-        
+          setUserSelected(false);
         }}
-   
         placeholder="Search user by name"
         className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         autoComplete="off"
@@ -54,7 +68,7 @@ export const Search = ({ onSelectUserId, setError = () => {} }) => {
           {suggestions.map((user) => (
             <li
               key={user._id}
-              onClick={ () => handleSelectUser(user)}                
+              onClick={() => handleSelectUser(user)}
               className="px-4 py-2 cursor-pointer hover:bg-blue-100"
             >
               {user.fullName}

@@ -1,15 +1,15 @@
-import { data } from '../data';
-import { validate } from 'com';
+import { data } from "../data";
+import { SystemError, validate } from "com";
 export const deleteUser = (idUser) => {
   validate.userId(idUser);
   return fetch(`${import.meta.env.VITE_API_URL}users/${idUser}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch(() => {
-      throw new Error('connection error');
+      throw new SystemError("connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -17,11 +17,12 @@ export const deleteUser = (idUser) => {
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new SystemError("json error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+          const constructor = error[error] || SystemError;
+          throw new constructor(message);
         });
     });
 };

@@ -1,5 +1,5 @@
 // frontend/src/services/addProvider.js
-import { validate } from "com";
+import { SystemError, validate } from "com";
 import { data } from "../data";
 
 export const addProvider = (taxId, name, contact, address, userId) => {
@@ -17,7 +17,7 @@ export const addProvider = (taxId, name, contact, address, userId) => {
     body: JSON.stringify({ taxId, name, contact, address, userId }),
   })
     .catch(() => {
-      throw new Error("Connection error");
+      throw new SystemError("Connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -25,11 +25,14 @@ export const addProvider = (taxId, name, contact, address, userId) => {
       return response
         .json()
         .catch(() => {
-          throw new Error("JSON error");
+          throw new SystemError("JSON error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+
+          const constructor = error[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

@@ -1,23 +1,28 @@
 import { data } from "../data";
-import { validate } from "com";
-export const deleteProvider =(providerId)=>{
-    validate.providerId(providerId);
-    return fetch(`${import.meta.env.VITE_API_URL}providers/${providerId}`,{
-        method:'DELETE',
-        headers:{
-            Authorization: `Bearer ${data.getToken()}`,
-        },
+import { SystemError, validate } from "com";
+export const deleteProvider = (providerId) => {
+  validate.providerId(providerId);
+  return fetch(`${import.meta.env.VITE_API_URL}providers/${providerId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${data.getToken()}`,
+    },
+  })
+    .catch(() => {
+      throw new SystemError("connection error");
     })
-    .then((response)=>{
-        if(response.status===204){
-            return;
-        }
-        return response.json().then((body)=>{
-            const {message}=body;
-            throw new Error(message);
+    .then((response) => {
+      const { status } = response;
+      if (status === 204) return;
+      return response
+        .json()
+        .catch(() => {
+          throw new SystemError("json error");
         })
-    })
-    .catch((error)=>{
-        throw error;
-    }) 
-}
+        .then((body) => {
+          const { error, message } = body;
+          const constructor = error[error] || SystemError;
+          throw new constructor(message);
+        });
+    });
+};
