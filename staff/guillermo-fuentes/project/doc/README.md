@@ -13,6 +13,7 @@ Regular (User)
 
 - Modificar su propia informacion
 - Eliminar su usuario
+- Ver Productos
 
 Admin (User) [v0.1]
 
@@ -20,6 +21,16 @@ Admin (User) [v0.1]
 - Eliminar otros usuarios
 - crear nuevos usuarios
 - editar informacion de los usuarios
+- Crear proveedor
+- Eliminar proveedor
+- Editar proveedor
+- Crear productos
+- Eliminar productos
+- Editar productos
+  Provider
+- Crear productos
+- Eliminar productos
+- Editar productos
 
 ### Prototype
 
@@ -70,15 +81,27 @@ User
 - fullName (string, required)
 - email (string, required, unique)
 - password (string, required)
-- direction (string, required)
-- role (string, values: administrador | cliente| empleado, required)
+- address (string, required)
+- role (string, values: administrator | client| employee| provider required)
 
   Proveedor
 
 - id (UUID)
 - name (string, required, unique)
-- direction(string required)
+- address(string required)
 - user(referencia al id usuario, ObjectId)
+
+Product
+
+- id(UUID)
+- name (string, required, unique)
+- description(string, required)
+- price(number, required)
+- stock(number, required)
+- image(string,required)
+- dateCreation(date, required, default: date.now)
+- dateModification(date, required, default:null)
+- provider(referencia al id del provider)
 
 ### Technologies
 
