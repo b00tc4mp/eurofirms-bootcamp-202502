@@ -3,7 +3,7 @@ import { authenticateUser } from "./authenticateUser.js";
 connect("mongodb://localhost:27017/proyectoFinal")
   .then(() => {
     try {
-      return authenticateUser("antonio@perez.com", "12345678")
+      return authenticateUser("prueba@curl.com", "12345678")
         .then((userId) => console.log("user authenticated: ", userId))
         .catch((error) => console.error(error));
     } catch (error) {
