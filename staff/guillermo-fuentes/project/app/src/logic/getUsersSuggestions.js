@@ -1,14 +1,19 @@
 import { SystemError } from "com";
 import { data } from "../data";
-export const getUsers = () => {
-  return fetch(`${import.meta.env.VITE_API_URL}users`, {
-    method: "GET",
+/** La libreria **debounce** nos permite limitar la frecuencia con la que se ejecuta una peticion que se llama repetidamente en un corto periodo de tiempo.
+ * debounce envuelve la función que hace la petición fetch a la API.
+ * El 300 al final indica que la función espera 300 milisegundos después de la última llamada antes de ejecutarse.
+ *
+ */
+
+export const getUsersSuggestions = (query) => {
+  return fetch(`${import.meta.env.VITE_API_URL}users/search/${encodeURIComponent(query)}`, {
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch(() => {
-      throw new SystemError("Conection error");
+      throw new SystemError("connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -18,10 +23,8 @@ export const getUsers = () => {
           .catch(() => {
             throw new SystemError("json error");
           })
-          .then((users) => {
-            console.log("Users received ", users);
-            return users;
-          });
+          .then((users) => users);
+
       return response
         .json()
         .catch(() => {
@@ -29,9 +32,7 @@ export const getUsers = () => {
         })
         .then((body) => {
           const { error, message } = body;
-
           const constructor = error[error] || SystemError;
-
           throw new constructor(message);
         });
     });

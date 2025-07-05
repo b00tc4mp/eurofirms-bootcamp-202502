@@ -1,4 +1,4 @@
-import { validate } from "com";
+import { SystemError, validate } from "com";
 import { data } from "../data";
 
 export const updateProvider = (targetId, name, contact, address, providerId) => {
@@ -16,7 +16,7 @@ export const updateProvider = (targetId, name, contact, address, providerId) => 
     body: JSON.stringify({ name, address, contact, providerId }),
   })
     .catch(() => {
-      throw new Error("connection error");
+      throw new SystemError("connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -24,11 +24,14 @@ export const updateProvider = (targetId, name, contact, address, providerId) => 
       return response
         .json()
         .catch(() => {
-          throw new Error("JSON parsing error");
+          throw new SystemError("JSON parsing error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+
+          const constructor = error[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

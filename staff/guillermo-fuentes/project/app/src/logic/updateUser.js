@@ -1,4 +1,4 @@
-import { validate } from "com";
+import { SystemError, validate } from "com";
 import { data } from "../data";
 
 export const updateUser = (targetId, fullName, email, password, address, role) => {
@@ -18,7 +18,7 @@ export const updateUser = (targetId, fullName, email, password, address, role) =
     body: JSON.stringify({ fullName, email, password, address, role }),
   })
     .catch(() => {
-      throw new Error("connection error");
+      throw new SystemError("connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -26,11 +26,14 @@ export const updateUser = (targetId, fullName, email, password, address, role) =
       return response
         .json()
         .catch(() => {
-          throw new Error("JSON parsing error");
+          throw new SystemError("JSON parsing error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+
+          const constructor = error[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

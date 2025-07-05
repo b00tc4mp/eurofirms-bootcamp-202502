@@ -1,18 +1,18 @@
-import { validate } from 'com';
-import { data } from '../data';
+import { SystemError, validate } from "com";
+import { data } from "../data";
 
 export const loginUser = (email, password) => {
   validate.email(email);
   validate.password(password);
   return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
   })
     .catch(() => {
-      throw new Error('connection error');
+      throw new SystemError("connection error");
     })
     .then((response) => {
       const { status } = response;
@@ -20,7 +20,7 @@ export const loginUser = (email, password) => {
         return response
           .json()
           .catch(() => {
-            throw new Error('json error');
+            throw new SystemError("json error");
           })
           .then(({ token, role }) => {
             data.setToken(token);
@@ -31,11 +31,14 @@ export const loginUser = (email, password) => {
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new SystemError("json error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+
+          const constructor = error[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };

@@ -1,13 +1,14 @@
-import { data } from '../data';
+import { SystemError } from "com";
+import { data } from "../data";
 export const getUsersByRol = (rol) => {
   return fetch(`${import.meta.env.VITE_API_URL}users/${rol}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch(() => {
-      throw new Error('Conection error');
+      throw new SystemError("Conection error");
     })
     .then((response) => {
       const { status } = response;
@@ -15,20 +16,23 @@ export const getUsersByRol = (rol) => {
         return response
           .json()
           .catch(() => {
-            throw new Error('json error');
+            throw new SystemError("json error");
           })
           .then((users) => {
-            console.log('Usuarios recibidor ', users);
+            console.log("Usuarios recibidor ", users);
             return users;
           });
       return response
         .json()
         .catch(() => {
-          throw new Error('json error');
+          throw new SystemError("json error");
         })
         .then((body) => {
-          const { message } = body;
-          throw new Error(message);
+          const { error, message } = body;
+
+          const constructor = error[error] || SystemError;
+
+          throw new constructor(message);
         });
     });
 };
