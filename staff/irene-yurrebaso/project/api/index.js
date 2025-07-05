@@ -1,0 +1,28 @@
+import { connect } from './data/index.js'
+import express from 'express'
+import cors from 'cors'
+
+import { errorHandler } from './middlewares/errorHandler.js'
+import { usersRouter } from './routes/usersRouter.js'
+import { placesRouter } from './routes/placesRouter.js'
+
+const { MONGO_URL, PORT } = process.env
+
+connect(MONGO_URL)
+    .then(() => {
+        const api = express()
+
+        api.use(cors())
+
+        api.get('/', (request, response) => {
+            response.send('Hello! API here...')
+        })
+
+        api.use('/users', usersRouter)
+        api.use('/places', placesRouter)
+
+        api.use(errorHandler)
+        
+        api.listen(PORT, () => console.log(`API listening on port ${PORT}`))
+    })
+    .catch(error => console.log(error))
