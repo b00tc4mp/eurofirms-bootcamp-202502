@@ -13,4 +13,3 @@ connect('mongodb://localhost:27017/test')
     })
     .catch((error) => console.error(error))
     .finally(() => disconnect());
-    

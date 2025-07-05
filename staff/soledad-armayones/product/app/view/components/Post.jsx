@@ -1,22 +1,31 @@
 import { logic } from '../../logic'
 
+import { useContext } from '../../context'
+
 export const Post = ({ post, onPostDeleted }) => {
+    const { alert, confirm } = useContext()
+
     const handleDeleteClick = () => {
-        if (confirm('Delete post?'))
-            try {
-                logic.removePost(post.id)
-                    .then(() => onPostDeleted())
-                    .catch(error => {
+        confirm('Delete post?')
+            .then(result => {
+                if (result)
+                    try {
+                        logic.removePost(post.id)
+                            .then(() => onPostDeleted())
+                            .catch(error => {
+                                console.error(error)
+
+                                alert(error.message)
+                            })
+                    } catch (error) {
                         console.error(error)
 
                         alert(error.message)
-                    })
-            } catch (error) {
-                console.error(error)
-
-                alert(error.message)
-            }
+                    }
+            })
     }
+
+    console.log('Post -> render')
 
     return <article>
         <h3 className="font-bold">{post.author.username}</h3>

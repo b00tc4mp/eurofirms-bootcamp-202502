@@ -1,20 +1,25 @@
-import { User } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
+fetch('http://localhost:8080/users/self/username', {
+    method: 'GET',
+    headers: {
+        Authorization: 'Basic user-10'
+    }
+})
+    .catch(error => { throw new Error('connection error') })
+    .then(response => {
+        const { status } = response
 
-/**
- * Returns the username of the user to find by user id.
- * 
- * @param {string} userId The user id.
- */
-export const getUserUsername = userId => {
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('invalid userId length')
+        if (status === 200)
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(username => username)
 
-    return User.findById(userId)
-        .catch(error => { throw new SystemError('mongo error') })
-        .then(user => {
-            if (!user) throw new NotFoundError('user not found')
+        return response.json()
+            .catch(error => { throw new Error('json error') })
+            .then(body => {
+                const { error, message } = body
 
-            return user.username
-        })
-}
+                throw new Error(message)
+            })
+    })
+    .then(username => console.log('user username gotten', username))
+    .catch(error => console.error(error))

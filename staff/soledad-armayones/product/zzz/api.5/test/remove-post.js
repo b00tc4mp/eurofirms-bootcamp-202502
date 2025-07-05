@@ -1,14 +1,17 @@
-fetch('http://localhost:8080/posts/post-5', {
-    method: 'DELETE',
+fetch('http://localhost:8080/users/self/username', {
+    method: 'GET',
     headers: {
-        Authorization: 'Basic user-2'
+        Authorization: 'Basic user-10'
     }
 })
     .catch(error => { throw new Error('connection error') })
     .then(response => {
         const { status } = response
 
-        if (status === 204) return
+        if (status === 200)
+            return response.json()
+                .catch(error => { throw new Error('json error') })
+                .then(username => username)
 
         return response.json()
             .catch(error => { throw new Error('json error') })
@@ -18,5 +21,5 @@ fetch('http://localhost:8080/posts/post-5', {
                 throw new Error(message)
             })
     })
-    .then(() => console.log('post removed'))
+    .then(username => console.log('user username gotten', username))
     .catch(error => console.error(error))

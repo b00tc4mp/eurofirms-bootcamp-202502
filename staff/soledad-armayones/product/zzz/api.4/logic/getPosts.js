@@ -1,30 +1,37 @@
 import { User, Post } from '../data/index.js'
-import { ValidationError, SystemError, NotFoundError } from './errors.js'
 
 /**
- * Creates a post in database.
+ * Returns post from database.
  * 
- * @param {string} userId The user id.
- * @param {string} image The post image url.
- * @param {string} text The post text.
+ * @param {string} userId The requester user id.
+ * 
+ * @returns {array} The posts from database.
  */
-export const createPost = (userId, image, text) => {
-    if (typeof userId !== 'string') throw new ValidationError('invalid userId type')
-    if (userId.length !== 24) throw new ValidationError('invalid userId length')
-
-    if (typeof image !== 'string') throw new ValidationError('invalid image type')
-    if (!image.startsWith('http')) throw new ValidationError('invalid image format')
-
-    if (typeof text !== 'string') throw new ValidationError('invalid text type')
-    if (text.length < 1) throw new ValidationError('invalid min text length')
+export const getPosts = userId => {
+    if (typeof userId !== 'string') throw new Error('invalid userId type')
+    if (userId.length !== 24) throw new Error('invalid userId length')
 
     return User.findById(userId)
-        .catch(error => { throw new SystemError('mongo error') })
+        .catch(error => { throw new Error(error.message) })
         .then(user => {
-            if (!user) throw new NotFoundError('user not found')
+            if (!user) throw new Error('user not found')
 
-            return Post.create({ author: userId, image, text })
-                .catch(error => { throw new SystemError('mongo error') })
-                .then(() => { })
+            return Post.find({}).select('-__v').populate('author', 'username').sort('-date').lean()
+                .catch(error => { throw new Error(error.message) })
+                .then(posts => {
+                    posts.forEach(post => {
+                        post.id = post._id.toString()
+                        delete post._id
+
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
+                            delete post.author._id
+                        }
+
+                        post.own = post.author.id === userId
+                    })
+
+                    return posts
+                })
         })
 }

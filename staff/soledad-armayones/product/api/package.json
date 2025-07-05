@@ -4,7 +4,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node --env-file .env index.js",
+    "start-watch": "node --env-file .env --watch index.js",
+    "start-inspect": "node --inspect-brk --env-file .env index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,11 +15,12 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "com": "file:../com",
     "cors": "^2.8.5",
     "expres": "^0.0.5",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.16.0",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+    "react-router": "^7.6.3"
   }
 }
