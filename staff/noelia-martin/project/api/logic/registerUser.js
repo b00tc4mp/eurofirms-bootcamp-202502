@@ -1,16 +1,20 @@
 import bcrypt from 'bcryptjs'
 
-import { UserDoctor } from '../../data/index.js'
+import { User } from '../data/index.js'
 import { validate, SystemError, DuplicityError } from 'com'
 
-export const registerUserDoctor = (username, password) => {
+export const registerUser = (username, password, name, healthCareNumber, dateOfBirth) => {
     validate.username(username)
     validate.password(password)
+    validate.name(name)
+    validate.healthCareNumber(healthCareNumber)
+    validate.dateOfBirth(dateOfBirth)
+
 
     return bcrypt.hash(password, 10)
         .catch(error => { throw new SystemError(error.message) })
         .then(hash => {
-            return UserDoctor.create({ username, password: hash })
+            return User.create({ username, password: hash, name, healthCareNumber, dateOfBirth })
                 .catch(error => {
                     if (error.code === 11000) throw new DuplicityError('user already exists') //
 
@@ -19,4 +23,3 @@ export const registerUserDoctor = (username, password) => {
                 .then(() => { })
         })
 }
-//uso exclusivo de api

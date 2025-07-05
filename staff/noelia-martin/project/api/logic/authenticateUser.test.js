@@ -1,10 +1,10 @@
-import { connect, disconnect } from '../../data/index.js' //nuevo
-import { authenticateUserDoctor } from './authenticateUserDoctor.js'
+import { connect, disconnect } from '../data/index.js' //nuevo
+import { authenticateUser } from './authenticateUser.js'
 
 connect('mongodb://localhost:27017/test-ChildHealthDocument')
     .then(() => {
         try {
-            return authenticateUserDoctor('manuelfacundoleon', '123123123')
+            return authenticateUser('marcosgarciaperez', '123123123')
                 .then(userId => console.log('user authenticated', userId))
                 .catch(error => console.error(error))
         } catch (error) {

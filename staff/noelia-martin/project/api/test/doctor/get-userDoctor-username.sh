@@ -1,1 +1,0 @@
-curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODY3MWI2ZTE5ZjI3MzQ3MzNmMzI3ZTciLCJpYXQiOjE3NTE1ODc5MDZ9.3WuGxYIjEfJmn7VrlyYuejrgEki-frzvrTKCHe7P0Rc' http://localhost:8080/userDoctor/self/username -v

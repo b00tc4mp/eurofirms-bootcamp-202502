@@ -1,0 +1,1 @@
+curl "http://localhost:8080/user/self/choosePacient?healthCareNumber=AN123456789" -v

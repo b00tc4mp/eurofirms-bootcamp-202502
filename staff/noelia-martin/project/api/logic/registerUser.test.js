@@ -1,10 +1,10 @@
-import { connect, disconnect } from '../../data/index.js'
-import { registerUserFamily } from './registerUserFamily.js'
+import { connect, disconnect } from '../data/index.js'
+import { registerUser } from './registerUser.js'
 
 connect('mongodb://localhost:27017/test-ChildHealthDocument')
     .then(() => {
         try {
-            return registerUserFamily('marcosgarciaperez', '123123123', 'Marcos Garcia Perez', 'AN123456789', '01/01/2010')
+            return registerUser('marcosgarciaperez', '123123123', 'Marcos Garcia Perez', 'AN123456789', '01/01/2010')
                 .then(() => console.log('user registered'))
                 .catch(error => console.error(error))
 

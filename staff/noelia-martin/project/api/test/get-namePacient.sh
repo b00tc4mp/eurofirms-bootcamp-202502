@@ -1,0 +1,1 @@
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODY5NTY4ZTA4ZTk0YzY3NWE5OTk5ZDQiLCJpYXQiOjE3NTE3NTI1OTV9.L4yjQBSvXo2lSfE0G-xQ2pwlCuLo8COokVMxrqW8K_o' http://localhost:8080/user/self/namePacient -v

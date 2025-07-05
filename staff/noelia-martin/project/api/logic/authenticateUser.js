@@ -1,14 +1,14 @@
 import bcrypt from 'bcryptjs'
 
-import { UserDoctor } from '../../data/index.js'
+import { User } from '../data/index.js'
 
 import { validate, SystemError, CredentialsError, NotFoundError } from 'com'
 
-export const authenticateUserDoctor = (username, password) => {
+export const authenticateUser = (username, password) => {
     validate.username(username)
     validate.password(password)
 
-    return UserDoctor.findOne({ username })
+    return User.findOne({ username })
         .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
