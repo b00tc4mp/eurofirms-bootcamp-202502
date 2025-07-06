@@ -26,8 +26,8 @@ export const Places = () => {
 
     console.log('Places -> render')
 
-    return <>
+    return <div className="flex gap-5 flex-wrap flex-end">
         {places.map(place => <Place key={place.id} place={place} />)}
-    </>
+    </div>
 }
 

@@ -28,6 +28,8 @@ export const App = () => {
 
     const handleUserLoggedOut = () => navigate('/login')
 
+    const handleAddPlaceClicked = () => navigate('/add-place')
+
     let loggedIn
 
     try {
@@ -61,6 +63,7 @@ export const App = () => {
                     :
                     <Home
                         onUserLoggedOut={handleUserLoggedOut}
+                        onAddPlaceClicked={handleAddPlaceClicked}
                     />
 
             } />
