@@ -1,11 +1,11 @@
-import { data } from '../../data'
+import { data } from '../data'
 import { SystemError, errors } from 'com'
 
-export const getUserFamilyNameChild = () => {
-    return fetch(import.meta.env.VITE_API_URL + '/userFamily/self/nameChild', {
+export const getNamePacient = (token = data.getToken()) => { //si no se indica valor, coge por defecto el data.getToken()
+    return fetch(import.meta.env.VITE_API_URL + '/user/self/namePacient', {
         method: 'GET',
         headers: {
-            Authorization: 'Bearer ' + data.getToken()
+            Authorization: 'Bearer ' + token
         }
     })
         .catch(error => { throw new SystemError('connection error') })
@@ -15,7 +15,7 @@ export const getUserFamilyNameChild = () => {
             if (status === 200)
                 return response.json()
                     .catch(error => { throw new SystemError('json error') })
-                    .then(nameChild => nameChild)
+                    .then(namePacient => namePacient)
 
             return response.json()
                 .catch(error => { throw new SystemError('json error') })

@@ -1,29 +1,29 @@
-import { logic } from '../../logic'
+import { logic } from '../logic'
 import { DuplicityError, ValidationError } from 'com'
-import { useContext } from '../../context'
+import { useContext } from '../context'
 
-export const RegisterFamily = ({ onLoginFamilyClicked, onUserFamilyRegistered }) => { //REGISTED!!!!!!!!
+export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const { alert } = useContext()
 
-    const handleLoginFamilyClick = () => onLoginFamilyClicked()
-    const handleUserFamilySubmit = (event) => {
+    const handleLoginClick = () => onLoginClicked()
+    const handleRegisterSubmit = (event) => {
         event.preventDefault()
 
         const form = event.target
 
         const username = form.username.value
         const password = form.password.value
-        const nameChild = form.nameChild.value
+        const name = form.name.value
         const healthCareNumber = form.healthCareNumber.value
         const dateOfBirth = form.dateOfBirth.value
 
 
         try {
-            logic.registerUserFamily(username, password, nameChild, healthCareNumber, dateOfBirth)
+            logic.registerUser(username, password, name, healthCareNumber, dateOfBirth)
 
                 .then(() => {
                     form.reset()
-                    onUserFamilyRegistered()
+                    onUserRegistered()
                 })
                 .catch(error => {
                     console.error(error)
@@ -41,12 +41,12 @@ export const RegisterFamily = ({ onLoginFamilyClicked, onUserFamilyRegistered })
         }
     }
 
-    console.log('RegisterFamily -> render')
+    console.log('Register -> render')
 
     return <div>
         <div className="flex flex-col justify-between items-center min-h-screen px-4 bg-white text-center mt-6">
             <h1 className="text-xl font-bold mb-8">Registro</h1>
-            <form className="w-full max-w-xs space-y-6" onSubmit={handleUserFamilySubmit}>
+            <form className="w-full max-w-xs space-y-6" onSubmit={handleRegisterSubmit}>
                 <div className="text-left">
                     <label className="block mb-1 font-medium" htmlFor="username">Nombre de Usuario</label>
                     <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="text" id="username" name="username" placeholder="your full username" />
@@ -56,8 +56,8 @@ export const RegisterFamily = ({ onLoginFamilyClicked, onUserFamilyRegistered })
                     <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="password" id="password" name="password" placeholder="your password" />
                 </div>
                 <div className="text-left">
-                    <label className="block mb-1 font-medium" htmlFor="nameChild">Nombre del Menor</label>
-                    <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="text" id="nameChild" name="nameChild" placeholder="your nameChild" />
+                    <label className="block mb-1 font-medium" htmlFor="name">Nombre del Menor</label>
+                    <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="text" id="name" name="name" placeholder="your name" />
                 </div>
                 <div className="text-left">
                     <label className="block mb-1 font-medium" htmlFor="healthCareNumber">Número tarjeta Sanitaria</label>
@@ -68,7 +68,7 @@ export const RegisterFamily = ({ onLoginFamilyClicked, onUserFamilyRegistered })
                     <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="text" id="dateOfBirth" name="dateOfBirth" placeholder="your dateOfBirth" />
                 </div>
                 <div className="flex justify-between items-center mt-4">
-                    <a className="underline font-medium text-sm" href="#" onClick={handleLoginFamilyClick}>Iniciar Sesión</a>
+                    <a className="underline font-medium text-sm" href="#" onClick={handleLoginClick}>Iniciar Sesión</a>
                     <button className="bg-black text-white px-4 py-2 text-sm font-semibold rounded" type="submit">Siguiente</button>
                 </div>
             </form>

@@ -1,10 +1,10 @@
 import { ValidationError } from './index.js'
 
 export const validate = {
-    nameChild(nameChild) {
-        if (typeof nameChild !== 'string') throw new ValidationError('invalid nameChild type')
-        if (nameChild.length < 1) throw new ValidationError('invalid nameChild min length')
-        if (nameChild.length > 30) throw new ValidationError('invalid nameChild max length')
+    name(name) {
+        if (typeof name !== 'string') throw new ValidationError('invalid name type')
+        if (name.length < 1) throw new ValidationError('invalid name min length')
+        if (name.length > 30) throw new ValidationError('invalid name max length')
     },
 
     username(username) {

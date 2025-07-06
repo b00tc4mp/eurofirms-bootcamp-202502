@@ -1,23 +1,6 @@
-// export const Welcome = ({ onLandingFamilyClicked, onLoginDoctorClicked }) => {
+export const Welcome = ({ onLandingRegularClicked, onLoginDoctorClicked }) => {
 
-//     const handleLandingFamilyClick = () => onLandingFamilyClicked()
-//     const handleLoginDoctorClick = () => onLoginDoctorClicked()
-
-//     console.log('Welcome -> render')
-
-//     return <div className="p-5">
-//         <i className="text-2xl">Logo</i>
-//         <div className="mt-2">
-//             <a className="underline" href="#" onClick={handleLandingFamilyClick}>Familiar</a>
-//             &nbsp;or&nbsp;
-//             <a className="underline" href="#" onClick={handleLoginDoctorClick}>Personal Sanitario</a>
-//         </div>
-//     </div>
-// }
-
-export const Welcome = ({ onLandingFamilyClicked, onLoginDoctorClicked }) => {
-
-    const handleLandingFamilyClick = () => onLandingFamilyClicked()
+    const handleLandingRegularClick = () => onLandingRegularClicked()
     const handleLoginDoctorClick = () => onLoginDoctorClicked()
 
     console.log('Welcome -> render')
@@ -28,7 +11,7 @@ export const Welcome = ({ onLandingFamilyClicked, onLoginDoctorClicked }) => {
             Familias de la Junta de Andalucía
         </div>
         <div className="flex gap-12 mt-10 text-black font-medium underline">
-            <a className="hover:text-green-700 " href="#" onClick={handleLandingFamilyClick}>Familiar</a>
+            <a className="hover:text-green-700 " href="#" onClick={handleLandingRegularClick}>Familiar</a>
             <a className="hover:text-green-700 " href="#" onClick={handleLoginDoctorClick}>Personal Sanitario</a>
         </div>
         <div className="w-full flex justify-center pb-4">

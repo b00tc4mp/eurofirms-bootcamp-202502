@@ -2,22 +2,17 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router'
 import { useState } from 'react'
 
 import { Welcome } from './view/Welcome'
-
-import { LandingFamily } from './view/family/LandingFamily'
-import { RegisterFamily } from './view/family/RegisterFamily'
-import { LoginFamily } from './view/family/LoginFamily'
-import { HomeFamily } from './view/family/HomeFamily'
-
-import { LoginDoctor } from './view/doctor/LoginDoctor'
-import { ChooseChild } from './view/doctor/ChooseChild'
-import { HomeDoctor } from './view/doctor/HomeDoctor'
+import { Landing } from './view/Landing'
+import { Login } from './view/Login'
+import { Register } from './view/Register'
+import { ChoosePacient } from './view/ChoosePacient'
+import { Home } from './view/Home'
 
 import { Alert } from './view/components/Alert'
 import { Confirm } from './view/components/Confirm'
 import { Context } from './context'
 
 import { logic } from './logic'
-import { data } from './data'
 
 export const App = () => {
     const [alertMessage, setAlertMessage] = useState('')
@@ -27,41 +22,20 @@ export const App = () => {
 
     const navigate = useNavigate()
 
-    const handleLandingFamilyClicked = () => navigate('/landingFamily')
-    const handleLoginDoctorClicked = () => navigate('/loginDoctor')
-    const handleLogoutClicked = () => navigate('/')
+    const handleLandingRegularClicked = () => navigate('/landing')
+    const handleLoginDoctorClicked = () => navigate('/login')
+    const handleLogoutUserClicked = () => navigate('/')
 
-    const handleLoginFamilyClicked = () => navigate('/loginFamily')
-    const handleRegisterFamilyClicked = () => navigate('/registerfamily')
+    const handleLoginClicked = () => navigate('/login')
+    const handleRegisterClicked = () => navigate('/register')
 
     const handleReturnClicked = () => navigate('/')
-    const handleUserDoctorLoggedIn = () => navigate('/chooseChild') //sin implementar
+    const handleLogginSubmitedRegular = () => navigate('/')
+    const handleLogginSubmitedDoctor = () => navigate('/choosePacient')
 
-    const handleUserFamilyRegistered = () => navigate('/loginFamily')
-    const handleUserFamilyLoggedIn = () => navigate('/')
+    const handleRegisterSubmited = () => navigate('/login')
 
-    const handleUserDoctorElectedSubmited = () => navigate('/')
-
-    const handleChooseClildClicked = () => {
-        data.removeTokenFamily()
-        navigate('/chooseChild')
-    }
-
-    let loggedInFamily
-    try {
-        loggedInFamily = logic.isUserLoggedInFamily()
-    } catch (error) {
-        console.error(error)
-        alert(error.mensage)
-    }
-
-    let loggedInDoctor
-    try {
-        loggedInDoctor = logic.isUserLoggedInDoctor()
-    } catch (error) {
-        console.error(error)
-        alert(error.mensage)
-    }
+    const handlePacientElectedSubmited = () => navigate('/')
 
     let loggedIn
     try {
@@ -107,63 +81,51 @@ export const App = () => {
 
         <Routes>
             <Route path='/' element={
-                !loggedIn ? (
+                !loggedIn ?
                     <Welcome
-                        onLandingFamilyClicked={handleLandingFamilyClicked}
+                        onLandingRegularClicked={handleLandingRegularClicked}
                         onLoginDoctorClicked={handleLoginDoctorClicked}
                     />
-                ) : loggedInFamily ? (
-                    <HomeFamily onUserLoggedOut={handleLogoutClicked} />
-                ) : loggedInDoctor ? (
-                    <HomeDoctor
-                        onUserLoggedOut={handleLogoutClicked}
-                        onChooseClildClicked={handleChooseClildClicked} />
-                ) : null
+                    :
+                    <Home onLogoutUser={handleLogoutUserClicked} />
             }
             />
 
-            <Route path='/landingFamily' element={
+            <Route path='/landing' element={
                 !loggedIn ?
-                    <LandingFamily
-                        onLoginFamilyClicked={handleLoginFamilyClicked}
-                        onUserFamilyRegistered={handleRegisterFamilyClicked}
+                    <Landing
+                        onLoginClicked={handleLoginClicked}
+                        onUserRegistered={handleRegisterClicked}
                     />
                     :
                     <Navigate to='/' />
             } />
 
-            <Route path='/loginDoctor' element={
+            <Route path='/login' element={
                 !loggedIn ?
-                    <LoginDoctor
+                    <Login
                         onReturnClicked={handleReturnClicked}
-                        onUserDoctorLoggedIn={handleUserDoctorLoggedIn}
+                        onUserLoggedInRegular={handleLogginSubmitedRegular}
+                        onUserLoggedInDoctor={handleLogginSubmitedDoctor}
+
                     />
                     :
                     <Navigate to='/' />
             } />
 
-            <Route path='/registerFamily' element={
+            <Route path='/register' element={
                 !loggedIn ?
-                    <RegisterFamily
-                        onLoginFamilyClicked={handleLoginFamilyClicked}
-                        onUserFamilyRegistered={handleUserFamilyRegistered}
+                    <Register
+                        onLoginClicked={handleLoginClicked}
+                        onUserRegistered={handleRegisterSubmited}
                     />
                     :
                     <Navigate to='/' />
             } />
 
-            <Route path='/loginFamily' element={
-                !loggedIn ?
-                    <LoginFamily
-                        onRegisterFamilyClicked={handleRegisterFamilyClicked}
-                        onUserFamilyLoggedIn={handleUserFamilyLoggedIn}
-                    />
-                    :
-                    <Navigate to='/' />
-            } />
-            <Route path='/chooseChild' element={
-                <ChooseChild
-                    onUserDoctorElected={handleUserDoctorElectedSubmited}
+            <Route path='/choosePacient' element={
+                <ChoosePacient
+                    onPacientElected={handlePacientElectedSubmited}
                 />
             } />
         </Routes >

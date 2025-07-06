@@ -1,12 +1,14 @@
-import { logic } from '../../logic'
+import { logic } from '../logic'
 import { CredentialsError, NotFoundError, ValidationError } from 'com'
-import { useContext } from '../../context'
+import { useContext } from '../context'
 
-export const LoginDoctor = ({ onReturnClicked, onUserDoctorLoggedIn }) => {
+export const Login = ({ onReturnClicked, onUserLoggedInRegular, onUserLoggedInDoctor }) => {
     const { alert } = useContext()
 
+
+
     const handleReturnClick = () => onReturnClicked()
-    const handleUserDoctorSubmit = event => {
+    const handleLogginSubmit = event => {
         event.preventDefault()
 
         const form = event.target
@@ -15,11 +17,19 @@ export const LoginDoctor = ({ onReturnClicked, onUserDoctorLoggedIn }) => {
         const password = form.password.value
 
         try {
-            logic.loginUserDoctor(username, password)
+            logic.loginUser(username, password)
                 .then(() => {
                     form.reset()
+                    let isDoctor
+                    try {
+                        isDoctor = logic.isUserDoctor()
+                    } catch (error) {
+                        console.error(error)
 
-                    onUserDoctorLoggedIn()
+                        alert(error.message)
+                    }
+                    if (isDoctor) onUserLoggedInDoctor()
+                    else onUserLoggedInRegular()
                 })
                 .catch(error => {
                     console.error(error)
@@ -38,12 +48,12 @@ export const LoginDoctor = ({ onReturnClicked, onUserDoctorLoggedIn }) => {
         }
     }
 
-    console.log('LoginDoctor -> render')
+    console.log('Login -> render')
 
     return <div >
         <div className="flex flex-col justify-between items-center min-h-screen px-4 bg-white text-center">
-            <h1 className="text-xl font-bold mb-8">Iniciar Sesión doctor</h1>
-            <form className="w-full max-w-xs space-y-6" onSubmit={handleUserDoctorSubmit}>
+            <h1 className="text-xl font-bold mb-8">Iniciar Sesión</h1>
+            <form className="w-full max-w-xs space-y-6" onSubmit={handleLogginSubmit}>
                 <div className="text-left">
                     <label className="block mb-1 font-medium" htmlFor="username">Usuario</label>
                     <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="text" id="username" name="username" placeholder="your username" />
@@ -66,4 +76,4 @@ export const LoginDoctor = ({ onReturnClicked, onUserDoctorLoggedIn }) => {
             </div>
         </div>
     </div>
-} //en vez de handleUserDoctorLoggedIn de app, para las view en cada submit pondre submit handleUserDoctorSubmit
+} 

@@ -1,33 +1,33 @@
-import { data } from '../../data'
 import { validate, SystemError, errors } from 'com'
 
-export const loginUserFamily = (username, password) => {
+export const registerUser = (username, password, name, healthCareNumber, dateOfBirth) => {
     validate.username(username)
     validate.password(password)
+    validate.name(name)
+    validate.healthCareNumber(healthCareNumber)
+    validate.dateOfBirth(dateOfBirth)
 
-    return fetch(import.meta.env.VITE_API_URL + '/userFamily/auth', {
+    return fetch(import.meta.env.VITE_API_URL + '/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+
+        body: JSON.stringify({ username, password, name, healthCareNumber, dateOfBirth })
     })
         .catch(error => { throw new SystemError('connection error') })
         .then(response => {
             const { status } = response
 
-            if (status === 200)
-                return response.json()
-                    .catch(error => { throw new SystemError('json error') })
-                    .then(token => data.setToken(token))
+            if (status === 201) return
 
             return response.json()
                 .catch(error => { throw new SystemError('json error') })
                 .then(body => {
                     const { error, message } = body
+
                     const constructor = errors[error] || SystemError
                     throw new constructor(message)
                 })
         })
-
 }

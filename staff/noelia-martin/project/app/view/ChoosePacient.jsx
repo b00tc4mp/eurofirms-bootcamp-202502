@@ -1,11 +1,12 @@
-import { logic } from '../../logic'
+import { logic } from '../logic'
 import { CredentialsError, NotFoundError, ValidationError } from 'com'
-import { useContext } from '../../context'
+import { useContext } from '../context'
+import { data } from '../data'
 
-export const ChooseChild = ({ onUserDoctorElected }) => {
+export const ChoosePacient = ({ onPacientElected }) => {
     const { alert } = useContext()
 
-    const handleUserDoctorElectedSubmit = event => {
+    const handlePacientElectedSubmit = event => {
         event.preventDefault()
 
         const form = event.target
@@ -13,11 +14,11 @@ export const ChooseChild = ({ onUserDoctorElected }) => {
         const healthCareNumber = form.healthCareNumber.value
 
         try {
-            logic.getUserDoctorChooseChild(healthCareNumber)
-                .then(() => {
+            logic.getChoosePacient(healthCareNumber)
+                .then((token) => {
                     form.reset()
-                    onUserDoctorElected()
-
+                    onPacientElected()
+                    data.idPacient = token //guardamos el token en la variable volatil de idPacient
                 })
                 .catch(error => {
                     console.error(error)
@@ -36,12 +37,12 @@ export const ChooseChild = ({ onUserDoctorElected }) => {
         }
     }
 
-    console.log('ChooseChild -> render')
+    console.log('ChoosePacient -> render')
 
     return <div >
         <div className="flex flex-col justify-between items-center min-h-screen px-4 bg-white text-center">
             <h1 className="text-xl font-bold mb-8">Elije paciente</h1>
-            <form className="w-full max-w-xs space-y-6" onSubmit={handleUserDoctorElectedSubmit}>
+            <form className="w-full max-w-xs space-y-6" onSubmit={handlePacientElectedSubmit}>
                 <div className="text-left">
                     <label className="block mb-1 font-medium" htmlFor="healthCareNumber">Número tarjeta sanitaria</label>
                     <input className="w-full bg-green-700 text-white px-3 py-2 rounded focus:outline-none" type="text" id="healthCareNumber" name="healthCareNumber" placeholder="your healthCareNumber" />
