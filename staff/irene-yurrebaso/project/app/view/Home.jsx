@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 
 import { Places } from './components/Places'
-//import { CreatePlace} from './components/CreatePlace'
+import { AddPlace } from './components/AddPlace'
 import { useContext } from '../context'
 
-export const Home = ({ onUserLoggedOut, onAddPlaceClicked }) => {
+export const Home = ({ onUserLoggedOut }) => {
     const { alert } = useContext()
 
     const [view, setView] = useState('places')
@@ -58,6 +58,9 @@ export const Home = ({ onUserLoggedOut, onAddPlaceClicked }) => {
         <div>
             <h1 className="text-xl font-semibold my-4">You might like these</h1>
             {view === 'places' && <Places />}
+            {view === 'add-place' && <AddPlace
+            onCancelClicked={handleAddPlaceCancelClicked}
+            onPlaceAdded={handlePostAdded} />}
         </div>
     </div>
 }
