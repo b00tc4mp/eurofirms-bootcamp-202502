@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { logic } from '../logic'
 import { CreateProfile } from './components/CreateProfile.jsx'
+import { Days } from './components/Days.jsx'
 import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
@@ -9,6 +10,8 @@ export const Home = ({ onUserLoggedOut }) => {
     const [view, setView] = useState(null)
 
     const [username, setUsername] = useState('World')
+
+    const [selectDay, setSelectDay] = useState(null)
 
     useEffect(() => {
         try {
@@ -47,6 +50,12 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handleProfileCreated = () => setView('home')
 
+    const handleDaySelected = (day) => {
+        setSelectDay(day)
+    }
+
+    /*const handleBackToDays = () => setSelectDay(null)*/
+
     console.log('Home -> render')
 
     return <div className="px-5">
@@ -71,6 +80,7 @@ export const Home = ({ onUserLoggedOut }) => {
         </button>
         {view === 'profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
         {view == 'create-profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
+        {view == 'home' && !selectDay && <Days onSelect={handleDaySelected}/>}
 
     </div>
 }
