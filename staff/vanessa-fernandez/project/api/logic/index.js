@@ -5,6 +5,7 @@ import { createProfile } from './createProfile.js'
 import { createExercise } from './createExercise.js'
 import { getExercises } from './getExercises.js'
 import { createWorkout } from './createWorkout.js'
+import { getWorkouts } from './getWorkouts.js'
 
 export const logic = {
     registerUser, 
@@ -13,5 +14,6 @@ export const logic = {
     createProfile,
     createExercise,
     getExercises,
-    createWorkout
+    createWorkout,
+    getWorkouts
 }

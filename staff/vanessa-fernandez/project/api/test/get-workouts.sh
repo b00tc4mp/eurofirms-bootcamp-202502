@@ -1,0 +1,1 @@
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODY1NjYwOTFhYjQ5NzBjN2I3NTMxZGUiLCJpYXQiOjE3NTE5MDc5NTh9.9DaZwRKZWDLeFQBL2DDwG-DLAVdz7LfHjL7OlAaYBdg' http://localhost:8080/worksout?day=Monday -v
