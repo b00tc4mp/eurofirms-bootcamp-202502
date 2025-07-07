@@ -13,7 +13,7 @@ import { validate, SystemError, errors } from 'com'
 
 //VERIFY that the validations are correct.
 
-export const createPost = (image, doctor, treatment, city, experience) => {
+export const createPost = (image, doctor, treatment, city, experience) => {//I am adding all data as parameters ON MY APP
 
     validate.image(image)
     validate.doctor(doctor)
@@ -21,19 +21,19 @@ export const createPost = (image, doctor, treatment, city, experience) => {
     validate.city(city)
     validate.experience(experience)
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {//THE REQUEST
         method: 'POST',
         headers: {
             Authorization: 'Bearer ' + data.getToken(),
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json'//TO INFORM -- The Content will be in JSON Format
         },
-        body: JSON.stringify({ image, doctor, treatment, city, experience })
+        body: JSON.stringify({ image, doctor, treatment, city, experience })//I am creating the JSON
     })
         .catch(error => { throw SystemError('connection error') })
         .then(response => {
             const { status } = response
 
-            if (status === 201) return
+            if (status === 201) return //IF it is executed my function finish here
 
             return response.json()
                 .catch(error => { throw new SystemError('json') })

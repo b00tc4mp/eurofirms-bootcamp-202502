@@ -6,7 +6,7 @@ import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
 
-    const { alert } = useContext()
+    const { alert } = useContext()//I am using a CONTEXT = TOOL which let me to have COMPONENTS ACTIVE // To access Information
 
     const [view, setView] = useState('posts')
 
@@ -35,7 +35,7 @@ export const Home = ({ onUserLoggedOut }) => {
 
             logic.logoutUser()
 
-            onUserLoggedOut()
+            onUserLoggedOut() // This prop of HOME which lets me to communicate with App.jsx (Line 31)
         } catch (error) {
             alert(error.message)
         }

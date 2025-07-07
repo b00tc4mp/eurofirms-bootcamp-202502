@@ -16,12 +16,12 @@ export const registerUser = (name, email, username, password) => {
     validate.username(username)
     validate.password(password)
 
-    return fetch(import.meta.env.VITE_API_URL + '/users', {
+    return fetch(import.meta.env.VITE_API_URL + '/users', {//The REQUEST
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json'//TO INFORM -- The Content will be in JSON Format
         },
-        body: JSON.stringify({ name, email, username, password })
+        body: JSON.stringify({ name, email, username, password })//I am creating the JSON
     })
 
         .catch(error => { throw new SystemError('connection error') })

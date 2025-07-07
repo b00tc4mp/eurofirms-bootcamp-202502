@@ -16,7 +16,7 @@ import { SystemError, errors } from 'com'
 */
 export const getPosts = () => {
 
-    return fetch(import.meta.env.VITE_API_URL + '/posts', {
+    return fetch(import.meta.env.VITE_API_URL + '/posts', {//THE REQUEST format GET = Give ME
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()
