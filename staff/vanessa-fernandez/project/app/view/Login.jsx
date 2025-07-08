@@ -39,7 +39,7 @@ export const Login =({ onRegisterClicked, onUserLoggedIn }) => {
     return (
         <div className="px-5 py-6 min-h-screen flex flex-col justify-center items-center bg-white text-center">
             <div className="w-full max-w-md">
-                <i className="text-3xl text-[#119fd3] block mb-6">🏋️ GymPlan 🏋️</i>
+                <i className="text-4xl font-bold block mb-4 text-blue text-center">🏋️ GymPlan 🏋️</i>
 
                 <h1 className="text-2xl font-semibold text-[#0ab5ee] mb-6">Login to your account</h1>
 
