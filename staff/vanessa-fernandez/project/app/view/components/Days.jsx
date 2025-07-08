@@ -9,7 +9,7 @@ export const Days = ({ onSelect })=> {
                     <button
                         key={day}
                         onClick={() => onSelect(day)}
-                        className="px-6 py-3 rounded-2xl shadow-md bg-blue-500 text-white text-lg hover:bg-blue-600 transition"
+                        className="px-6 py-3 rounded-2xl shadow-md bg-[#0ab5ee] text-white text-lg hover:bg-[#099ecf] transition"
                     >{day}</button>    
                 ))}
             </div>

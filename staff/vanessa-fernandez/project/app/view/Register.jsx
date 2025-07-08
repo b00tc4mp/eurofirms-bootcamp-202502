@@ -67,7 +67,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                                 type="text"
                                 id="email"
                                 name="email"
-                                placeholder="Your e-amil" />
+                                placeholder="Your e-mail" />
                         </div>
 
                         <div className="flex flex-col gap-2">

@@ -4,7 +4,7 @@ import { validate, SystemError, errors } from 'com'
 export const getWorkouts = (day) => {
     validate.day(day)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/workouts?day=${day}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/worksout?day=${day}`, {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()

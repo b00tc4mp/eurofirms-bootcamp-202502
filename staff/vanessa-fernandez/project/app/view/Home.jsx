@@ -2,6 +2,7 @@ import { use, useEffect, useState } from 'react'
 import { logic } from '../logic'
 import { CreateProfile } from './components/CreateProfile.jsx'
 import { Days } from './components/Days.jsx'
+import { Workout } from './components/Workout.jsx'
 import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
@@ -50,11 +51,9 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handleProfileCreated = () => setView('home')
 
-    const handleDaySelected = (day) => {
-        setSelectDay(day)
-    }
-
-    /*const handleBackToDays = () => setSelectDay(null)*/
+    const handleDaySelected = (day) => setSelectDay(day)
+    
+    const handleBackToDays = () => setSelectDay(null)
 
     console.log('Home -> render')
 
@@ -81,6 +80,7 @@ export const Home = ({ onUserLoggedOut }) => {
         {view === 'profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
         {view == 'create-profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
         {view == 'home' && !selectDay && <Days onSelect={handleDaySelected}/>}
+        {view == 'home' && selectDay && <Workout day={selectDay} onBack={handleBackToDays}/>}
 
     </div>
 }

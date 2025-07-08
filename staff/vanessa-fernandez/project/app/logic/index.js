@@ -4,6 +4,8 @@ import { isUserLoggedIn } from './isUserLoggedIn'
 import { getUserUsername } from './getUserUsername'
 import { logoutUser } from './logoutUser'
 import { createProfile } from './createProfile'
+import { createWorkout } from './createWorkout'
+import { getWorkouts } from './getWorkouts'
 
 export const logic = {
     registerUser,
@@ -11,5 +13,7 @@ export const logic = {
     isUserLoggedIn,
     getUserUsername,
     logoutUser,
-    createProfile
+    createProfile,
+    createWorkout,
+    getWorkouts
 }
