@@ -23,6 +23,6 @@ export const createExercise = (name, description, image, difficulty, muscleGroup
         })
 
     
-    .catch(error => { throw new SystemError('mongo error')})
-    .then(() => {})
+    /*.catch(error => { throw new SystemError('mongo error')})
+    .then(() => {})*/ /* si comento este catch y este then si me entra en el duplicityError si no pasa al ultimo catch y mongo error sale*/
 }
