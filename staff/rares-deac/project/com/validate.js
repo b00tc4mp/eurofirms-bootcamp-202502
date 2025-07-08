@@ -30,8 +30,17 @@ export const validate = {
         if (userId.length !== 24) throw new ValidationError('invalid userId length')
     },
 
+    image(image) {
+        if (typeof image !== 'string') throw new ValidationError('invalid image type')
+    },
+
     text(text) {
         if (typeof text !== 'string') throw new ValidationError('invalid text type')
         if (text.length < 1) throw new ValidationError('invalid min text length')
+    },
+
+    postId(postId) {
+        if (typeof postId !== 'string') throw new ValidationError('invalid postId type')
+        if (postId.length !== 24) throw new ValidationError('invalid postId length')
     }
 }

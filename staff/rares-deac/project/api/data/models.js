@@ -34,8 +34,28 @@ const user = new Schema({
     }
 })
 
+const post = new Schema({
+    author: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+
+    image: {
+        type: String,
+        required: true
+    },
+    
+    text: {
+        type: String,
+        required: true
+    }
+})
+
 const User = model('User', user)
+const Post = model('Post', post)
 
 export {
-    User
+    User,
+    Post
 }
