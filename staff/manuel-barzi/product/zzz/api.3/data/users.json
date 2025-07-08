@@ -1,0 +1,86 @@
+[
+    {
+        "id": "user-1",
+        "name": "Pin 8",
+        "email": "pin@8.com",
+        "username": "pin8",
+        "password": "123123123"
+    },
+    {
+        "id": "user-2",
+        "name": "Peter Pan",
+        "email": "peter@pan.com",
+        "username": "peterpan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-3",
+        "name": "Petra Pan",
+        "email": "petra@pan.com",
+        "username": "petrapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-4",
+        "name": "Charly Pan",
+        "email": "charly@pan.com",
+        "username": "charlypan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-5",
+        "name": "Anna Pan",
+        "email": "anna@pan.com",
+        "username": "annapan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-6",
+        "name": "Alex Pan",
+        "email": "alex@pan.com",
+        "username": "alexpan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-7",
+        "name": "Guille Pan",
+        "email": "guille@pan.com",
+        "username": "guillepan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-8",
+        "name": "Sole Pan",
+        "email": "sole@pan.com",
+        "username": "solepan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-9",
+        "name": "Irene Pan",
+        "email": "irene@pan.com",
+        "username": "irenepan",
+        "password": "123123123"
+    },
+    {
+        "id": "user-10",
+        "name": "Vane",
+        "email": "vane@mail.com",
+        "username": "vane",
+        "password": "123123123"
+    },
+    {
+        "id": "user-11",
+        "name": "Noe",
+        "email": "noe@mail.com",
+        "username": "noe",
+        "password": "123123123"
+    },
+    {
+        "id": "user-12",
+        "name": "Mario",
+        "email": "mario@mail.com",
+        "username": "mario",
+        "password": "123123123"
+    }
+]
