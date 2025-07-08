@@ -4,6 +4,7 @@ import { getUserUsername } from './getUserUsername.js'
 
 import { createPlace } from './createPlace.js'
 import { getPlaces } from './getPlaces.js'
+import { getOnePlace } from './getOnePlace.js'
 
 export const logic = {
     registerUser,
@@ -11,5 +12,6 @@ export const logic = {
     getUserUsername,
 
     createPlace,
-    getPlaces
+    getPlaces,
+    getOnePlace
 }

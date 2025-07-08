@@ -33,6 +33,11 @@ export const validate = {
         if (name.length > 100) throw new ValidationError('invalid name max length')
     },
 
+    placeId(placeId) {
+        if (typeof placeId !== 'string') throw new ValidationError('invalid placeId type')
+        if (placeId.length !== 24) throw new ValidationError('invalid placeId length')
+    },
+
     category(category) {
         if (typeof category !== 'string') throw new ValidationError('invalid category type')
         if (!allowedCategory.includes(category)) throw new ValidationError('invalid category')        
@@ -56,7 +61,7 @@ export const validate = {
         if (city.length > 100) throw new ValidationError('invalid city max length')
     },
 
-        country(country) {
+    country(country) {
         if (typeof country !== 'string') throw new ValidationError('invalid country type')
         if (country.length < 1) throw new ValidationError('invalid country min length')
         if (country.length > 100) throw new ValidationError('invalid country max length')

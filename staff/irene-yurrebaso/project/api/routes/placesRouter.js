@@ -24,6 +24,7 @@ placesRouter.post('/', jsonBodyParser, (request, response, next) => {
     }
 })
 
+//get places
 placesRouter.get('/', (request, response, next) => {
     try {
         const authorization = request.headers.authorization
@@ -35,6 +36,25 @@ placesRouter.get('/', (request, response, next) => {
             .then(places => response.status(200).json(places))
             .catch(error => next(error))
     } catch (error) {
+        next(error)
+    }
+})
+
+//get one place
+placesRouter.get('/:placeId', (request, response, next) => {
+    try {
+        const authorization = request.headers.authorization
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+        //extract placeId from the request parameters (from :placeId in the route)
+        const placeId = request.params.placeId
+
+        logic.getOnePlace(userId, placeId)
+            .then(place => response.status(200).json(place))
+            .catch(error => next(error))
+    } catch(error) {
         next(error)
     }
 })
