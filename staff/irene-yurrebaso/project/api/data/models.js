@@ -39,7 +39,7 @@ const place = new Schema({
 
     category: {
         type: String,
-        enum: ['hotels', 'restaurants', 'outdoors', 'museums', 'shops', 'sports', 'entertainment', 'transport', 'other'],
+        enum: ['hotels', 'restaurants', 'outdoors', 'museums', 'shops', 'sports', 'transport', 'other'],
         required: true
     },
 

@@ -55,7 +55,7 @@ App
 - Home
 - Add place
 - Write review
-- Show city, categories and places
+- Show city, category and places
 - Show place with reviews
 
 Home

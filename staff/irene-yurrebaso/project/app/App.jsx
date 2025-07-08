@@ -28,8 +28,6 @@ export const App = () => {
 
     const handleUserLoggedOut = () => navigate('/login')
 
-    const handleAddPlaceClicked = () => navigate('/')
-
     let loggedIn
 
     try {

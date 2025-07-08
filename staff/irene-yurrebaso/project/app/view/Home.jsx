@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { logic } from '../logic'
 
 import { Places } from './components/Places'
-import { AddPlace } from './components/AddPlace'
+import { CreatePlace } from './components/CreatePlace'
 import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
@@ -38,11 +38,15 @@ export const Home = ({ onUserLoggedOut }) => {
         }
     }
 
-    const handleAddPlaceClick = () => onAddPlaceClicked()
+    const handleCreatePlaceClick = () => setView('add-place')
+
+    const handleCreatePlaceCancelClicked = () => setView('places')
+
+    const handlePlaceCreated = () => setView('places')
 
     console.log('Home -> render')
 
-    return <div className="p-5">
+    return <div className="px-10 py-8">
         <div className="flex flex-col items-center gap-2">
             <img src="/logo.jpg" alt="Infinity Travel" />
             <i class="logo">Infinity Travel</i>
@@ -52,15 +56,17 @@ export const Home = ({ onUserLoggedOut }) => {
 
             <a className="underline text-blue-600 text-sm" href="#" onClick={handleLogoutClick}>Log out</a>
         </div>
+
         <div>
-            <button className="border-2 border-pink-800 p-1 text-rose-800 cursor-pointer" onClick={handleAddPlaceClick}>+ Add a place</button>
-        </div>
-        <div>
-            <h1 className="text-xl font-semibold my-4">You might like these</h1>
+            {view === 'places' && 
+            <div>
+                <button className="border-2 border-pink-800 p-1 text-rose-800 cursor-pointer" onClick={handleCreatePlaceClick}>+ Add a place</button>
+            </div>}
             {view === 'places' && <Places />}
-            {view === 'add-place' && <AddPlace
-            onCancelClicked={handleAddPlaceCancelClicked}
-            onPlaceAdded={handlePostAdded} />}
+            {view === 'add-place' && <CreatePlace 
+            onCancelClicked={handleCreatePlaceCancelClicked}
+            onPlaceCreated={handlePlaceCreated}
+            />}
         </div>
     </div>
 }

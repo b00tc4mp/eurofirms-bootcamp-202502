@@ -5,7 +5,7 @@ import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
 
 import { getPlaces } from './getPlaces'
-//import { createPlace } from './createPlace'
+import { createPlace } from './createPlace'
 // import { removePost } from './removePost'
 
 export const logic = {
@@ -15,6 +15,6 @@ export const logic = {
     isUserLoggedIn,
     logoutUser,
 
-    getPlaces
-    //createPlace
+    getPlaces,
+    createPlace
 }

@@ -19,11 +19,16 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
                     Autism-friendly leisure & travel information, for and by the autistic community.
                 </p>
             </div>
-            <div className="bg-[url('globe2.jpg')] bg-cover bg-center py-20 flex justify-center">
+            <div className="bg-[url('globe2.jpg')] bg-cover bg-center py-20 flex justify-around">
+                <div className="flex flex-col gap-2">
+                <p className="text-white font-extralight">New to the app?</p>
+                <a className="bg-rose-800 text-white px-10" href="#" onClick={handleRegisterClick}>Register</a>
+                </div>
                 
-                <a className="underline text-white px-20" href="#" onClick={handleRegisterClick}>Register</a>
-                &nbsp;or&nbsp;
-                <a className="underline text-white px-20" href="#" onClick={handleLoginClick}>Login</a>
+                <div className="flex flex-col gap-2">
+                <p className="text-white font-extralight">Already registered?</p>
+                <a className="bg-rose-800 text-white px-12" href="#" onClick={handleLoginClick}>Login</a>
+                </div>
                
             </div>
 

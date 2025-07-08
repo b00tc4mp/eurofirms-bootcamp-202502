@@ -1,6 +1,6 @@
 import { ValidationError } from './errors.js'
 
-const allowedCategories = ['hotels', 'restaurants', 'outdoors', 'museums', 'shops', 'entertainment', 'transport', 'other']
+const allowedCategory = ['hotels', 'restaurants', 'outdoors', 'museums', 'shops', 'entertainment', 'transport', 'other']
 
 export const validate = {
     username(username) {
@@ -35,13 +35,19 @@ export const validate = {
 
     category(category) {
         if (typeof category !== 'string') throw new ValidationError('invalid category type')
-        if (!allowedCategories.includes(category)) throw new ValidationError('invalid category')
+        if (!allowedCategory.includes(category)) throw new ValidationError('invalid category')        
     },
 
-    country(country) {
-        if (typeof country !== 'string') throw new ValidationError('invalid country type')
-        if (country.length < 1) throw new ValidationError('invalid country min length')
-        if (country.length > 100) throw new ValidationError('invalid country max length')
+    description(description) {
+        if (typeof description !== 'string') throw new ValidationError('invalid description type')
+        if (description.length < 10) throw new ValidationError('invalid description min length')
+        if (description.length > 500) throw new ValidationError('invalid description max length')
+    },
+
+    address(address) {
+        if (typeof address !== 'string') throw new ValidationError('invalid address type')
+        if (address.length < 1) throw new ValidationError('invalid address min length')
+        if (address.length > 200) throw new ValidationError('invalid address max length')
     },
 
     city(city) {
@@ -50,10 +56,10 @@ export const validate = {
         if (city.length > 100) throw new ValidationError('invalid city max length')
     },
 
-    address(address) {
-        if (typeof address !== 'string') throw new ValidationError('invalid address type')
-        if (address.length < 1) throw new ValidationError('invalid address min length')
-        if (address.length > 200) throw new ValidationError('invalid address max length')
+        country(country) {
+        if (typeof country !== 'string') throw new ValidationError('invalid country type')
+        if (country.length < 1) throw new ValidationError('invalid country min length')
+        if (country.length > 100) throw new ValidationError('invalid country max length')
     },
 
     website(website) {
@@ -66,12 +72,6 @@ export const validate = {
         if (typeof telephone !== 'string') throw new ValidationError('invalid telephone type')
         if (telephone.length < 3) throw new ValidationError('invalid telephone min length')
         if (telephone.length > 100) throw new ValidationError('invalid telephone max length')
-    },
-
-    description(description) {
-        if (typeof description !== 'string') throw new ValidationError('invalid description type')
-        if (description.length < 10) throw new ValidationError('invalid description min length')
-        if (description.length > 500) throw new ValidationError('invalid description max length')
     },
 
     image(image) {

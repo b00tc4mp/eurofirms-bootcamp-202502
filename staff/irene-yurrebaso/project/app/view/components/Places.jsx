@@ -26,8 +26,12 @@ export const Places = () => {
 
     console.log('Places -> render')
 
-    return <div className="flex gap-5 flex-wrap flex-end">
+    return <div>
+        
+        <h1 className="text-xl font-semibold my-4">You might like these</h1>
+        <div className="flex gap-5 flex-wrap flex-end">
         {places.map(place => <Place key={place.id} place={place} />)}
+        </div>
     </div>
 }
 
