@@ -17,6 +17,15 @@ export const getProducts = (userId) => {
         })
         .then((products) => {
           if (!products || products.length === 0) throw new NotFoundError("Products not found");
+
+          products.forEach((product) => {
+            product.id = product._id.toString();
+            delete product._id;
+            if (product.provider && product.provider._id) {
+              product.provider.id = product.provider._id.toString();
+              delete product.provider._id;
+            }
+          });
           return products;
         });
     });
