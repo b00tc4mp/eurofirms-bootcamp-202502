@@ -6,12 +6,13 @@ import { Place } from './Place'
 
 import { useContext } from '../../context'
 
-export const Places = () => {
+export const Places = ({onChangeToPlaceDetails}) => {
     const { alert } = useContext()
 
     const [places, setPlaces] = useState([])
 
-    useEffect(() => {
+    //cuando cargue el compo Home se dispara useEffect y se cargan los places
+    useEffect(() => { 
         try {
             logic.getPlaces()
                 .then(places => {
@@ -24,13 +25,18 @@ export const Places = () => {
         }
     }, [])
 
+    //Pedir a Home que muestre PlaceDetails.jsx con placeId
+    const handlePlaceClicked = (placeId) => {
+        onChangeToPlaceDetails(placeId)
+    }
+
     console.log('Places -> render')
 
     return <div>
         
         <h1 className="text-xl font-semibold my-4">You might like these</h1>
         <div className="flex gap-5 flex-wrap flex-end">
-        {places.map(place => <Place key={place.id} place={place} />)}
+        {places.map(place => <Place key={place.id} place={place} onPlaceClicked={handlePlaceClicked}/>)}
         </div>
     </div>
 }

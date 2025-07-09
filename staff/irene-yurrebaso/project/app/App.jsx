@@ -50,7 +50,6 @@ export const App = () => {
     }}>
         {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
 
-
         <Routes>
             <Route path='/' element={
                 !loggedIn ?
@@ -62,7 +61,6 @@ export const App = () => {
                     <Home
                         onUserLoggedOut={handleUserLoggedOut}
                     />
-
             } />
             <Route path='/register' element={
                 <Register

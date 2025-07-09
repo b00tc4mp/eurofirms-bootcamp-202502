@@ -4,13 +4,17 @@ import { logic } from '../logic'
 
 import { Places } from './components/Places'
 import { CreatePlace } from './components/CreatePlace'
+import { PlaceDetails } from './components/PlaceDetails'
 import { useContext } from '../context'
 
 export const Home = ({ onUserLoggedOut }) => {
     const { alert } = useContext()
 
+    //cuando cambias el valor, se recarga el componente completo. setView se encarga de cambiar el valor.
     const [view, setView] = useState('places')
     const [username, setUsername] = useState('World')
+    //uso placeId para pasar a PlaceDetails.jsx
+    const [placeId, setPlaceId] = useState('')
 
     useEffect(() => {
         try {
@@ -44,12 +48,18 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handlePlaceCreated = () => setView('places')
 
+    const handleChangeToPlaceDetails = (placeId) => {
+        setPlaceId(placeId)
+        
+        setView('place-details') 
+    }
+
     console.log('Home -> render')
 
     return <div className="px-10 py-8">
         <div className="flex flex-col items-center gap-2">
             <img src="/logo.jpg" alt="Infinity Travel" />
-            <i class="logo">Infinity Travel</i>
+            <i className="logo">Infinity Travel</i>
         </div>
         <div className="my-8">
             <p className="flex my-1">Hello, <span className="font-semibold">{username}</span>!</p>
@@ -62,11 +72,15 @@ export const Home = ({ onUserLoggedOut }) => {
             <div>
                 <button className="border-2 border-pink-800 p-1 text-rose-800 cursor-pointer" onClick={handleCreatePlaceClick}>+ Add a place</button>
             </div>}
-            {view === 'places' && <Places />}
+            {view === 'places' && <Places 
+            onChangeToPlaceDetails={handleChangeToPlaceDetails}
+            />}
             {view === 'add-place' && <CreatePlace 
             onCancelClicked={handleCreatePlaceCancelClicked}
             onPlaceCreated={handlePlaceCreated}
             />}
+            {/*El primer placeId es la propiedad q se le pasa al componente PlaceDetails, y el segundo placeId es el q se coge del useState */}
+            {view === 'place-details' && <PlaceDetails placeId={placeId}/>}
         </div>
     </div>
 }
