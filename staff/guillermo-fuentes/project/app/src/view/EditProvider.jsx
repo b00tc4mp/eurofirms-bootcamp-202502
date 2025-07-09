@@ -1,7 +1,7 @@
 import { logic } from '../logic';
 import { useState, } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Search } from './components/Search';
+import { SearchUsers } from './components/SearchUsers';
 export const EditProvider = ({ provider, onEditedProvider }) => {
   const { loggedIn, rol: userRol } = useAuth();
   const [name, setName] = useState(provider.name);
@@ -116,7 +116,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
             />
           </div>
           {isAdmin && (
-           <Search
+           <SearchUsers
                       onSelectUserId={setSelectedUserId}
                       setError={setError}
                     />

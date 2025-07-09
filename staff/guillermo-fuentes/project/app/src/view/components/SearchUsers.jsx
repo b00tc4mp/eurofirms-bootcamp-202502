@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { logic } from "../../logic";
 import debounce from "lodash/debounce";
 
-export const Search = ({ onSelectUserId, setError = () => {} }) => {
+export const SearchUsers = ({ onSelectUserId, setError = () => {} }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [userSelected, setUserSelected] = useState(false);

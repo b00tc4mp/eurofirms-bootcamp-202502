@@ -12,6 +12,8 @@ import { Alert } from './view/components/Alert';
 import { Confirm } from './view/components/Confirm';
 import { Context } from './context/context';
 import { AddProvider } from './view/AddProvider';
+import { Products } from './view/Products';
+import { AddProduct } from './view/AddProduct';
 export const App = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [confirmMessage, setConfirmMessage] = useState('');
@@ -73,6 +75,7 @@ export const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/addProvider" element={<AddProvider />} />
+        <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/users"
@@ -87,6 +90,14 @@ export const App = () => {
           element={
             <ProtectedRoute>
               <Providers />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/products"
+          element={
+            <ProtectedRoute>
+              <Products />
             </ProtectedRoute>
           }
         />

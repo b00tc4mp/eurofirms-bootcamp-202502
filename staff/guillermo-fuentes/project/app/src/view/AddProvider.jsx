@@ -3,7 +3,7 @@ import  { useState } from 'react';
 import { logic } from '../logic';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../context/AuthContext';
-import { Search } from './components/Search';
+import { SearchUsers } from './components/SearchUsers';
 
 export const AddProvider = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ export const AddProvider = () => {
         </div>
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Add Provider</h1>
         <form className="space-y-4" onSubmit={handleRegisterSubmit}>
-          <Search
+          <SearchUsers
             onSelectUserId={setSelectedUserId}
             setError={setError}
           />

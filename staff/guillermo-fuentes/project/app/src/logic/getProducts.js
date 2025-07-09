@@ -1,36 +1,36 @@
-import { SystemError, validate } from "com";
+import { SystemError } from "com";
 import { data } from "../data";
 
-export const addProvider = (taxId, name, contact, address, userId) => {
-  validate.taxId(taxId);
-  validate.name(name);
-  validate.contact(contact);
-  validate.address(address);
-
-  return fetch(`${import.meta.env.VITE_API_URL}providers`, {
-    method: "POST",
+export const getProducts = () => {
+  return fetch(`${import.meta.env.VITE_API_URL}products`, {
+    method: "GET",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${data.getToken()}`,
     },
-    body: JSON.stringify({ taxId, name, contact, address, userId }),
   })
     .catch(() => {
       throw new SystemError("Connection error");
     })
     .then((response) => {
       const { status } = response;
-      if (status === 201) return;
+      if (status === 200)
+        return response
+          .json()
+          .catch(() => {
+            throw new SystemError("json error");
+          })
+          .then((products) => {
+            console.log("Products received ", products);
+            return products;
+          });
       return response
         .json()
         .catch(() => {
-          throw new SystemError("JSON error");
+          throw new SystemError("json error");
         })
         .then((body) => {
           const { error, message } = body;
-
           const constructor = error[error] || SystemError;
-
           throw new constructor(message);
         });
     });

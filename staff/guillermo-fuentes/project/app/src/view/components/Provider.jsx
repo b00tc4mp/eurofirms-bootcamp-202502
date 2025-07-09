@@ -29,39 +29,46 @@ export const Provider = ({ provider, onReloadProvider,onEditedProvider }) => {
   };
   return (
     <>
-      <div className="max-w-sm w-full bg-white border border-gray-300 rounded-x1 shadow-lg p-6 m-4 hover:shadow-x1 transition-shadow duration-300">
-        <h2 className="text-2xl font-bold text-red-600 mb-3">{provider.name}</h2>
-        <p className="text-gray-700 mb-1">
-          <span className="font-semibold">Name: </span>
-          {provider.name}
-        </p>
-        <p className="text-gray-700 mb-1">
-          <span className="font-semibold">Contact: </span>
-          {provider.contact}
-        </p>
-        <p className="text-gray-700 mb-1">
-          <span className="font-semibold">Address: </span>
-          {provider.address}
-        </p>
-        <p className="text-gray-700 mb-1">
-          <span className="font-semibold">User: </span>
-          {provider.user.fullName}
-        </p>
-        <button
-          className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200 mb-4"
-          onClick={() => setEditProvider(true)}
-        >
-          Update provider
-        </button>
-         <button
-        onClick={handleDeleteClick}
-        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
-      >
-        Delete provider
-      </button>
+      <div className="max-w-sm w-full bg-white border border-gray-200 rounded-2xl shadow-md p-6 m-4 hover:shadow-lg transition-shadow duration-300">
+        <h2 className="text-xl font-bold text-gray-800 mb-4">{provider.name}</h2>
+  
+        <div className="space-y-2 text-sm text-gray-700">
+          <p>
+            <span className="font-semibold">Name:</span> {provider.name}
+          </p>
+          <p>
+            <span className="font-semibold">Contact:</span> {provider.contact}
+          </p>
+          <p>
+            <span className="font-semibold">Address:</span> {provider.address}
+          </p>
+          <p>
+            <span className="font-semibold">User:</span> {provider.user.fullName}
+          </p>
+        </div>
+  
+        <div className="mt-4 space-y-2">
+          <button
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+            onClick={() => setEditProvider(true)}
+          >
+            Update Provider
+          </button>
+          <button
+            onClick={handleDeleteClick}
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+          >
+            Delete Provider
+          </button>
+        </div>
       </div>
-     
-      {editProvider && <EditProvider provider={provider} onEditedProvider={handleEditedProvider} />}
+  
+      {editProvider && (
+        <EditProvider
+          provider={provider}
+          onEditedProvider={handleEditedProvider}
+        />
+      )}
     </>
   );
-};
+}  
