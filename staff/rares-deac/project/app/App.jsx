@@ -32,7 +32,7 @@ export const App = () => {
 
     try {
         loggedIn = logic.isUserLoggedIn()
-    }   catch (error) {
+    } catch (error) {
         console.error(error)
 
         alert(error.message)
@@ -71,19 +71,19 @@ export const App = () => {
         {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
 
         <Routes>
-            <Route path='/' element={
+            <Route path='/*' element={
                 !loggedIn ?
                     <Landing
                         onRegisterClicked={handleRegisterClicked}
                         onLoginClicked={handleLoginClicked}
-                        />
-                        :
-                        <Home onUserLoggedOut={handleUserLoggedOut} />
+                    />
+                    :
+                    <Home onUserLoggedOut={handleUserLoggedOut} />
             } />
 
             <Route path='/register' element={
                 !loggedIn ?
-                    <Register   
+                    <Register
                         onLoginClicked={handleLoginClicked}
                         onUserRegistered={handleUserRegistered}
                     />
@@ -93,12 +93,12 @@ export const App = () => {
 
             <Route path='/login' element={
                 !loggedIn ?
-                <Login
-                    onRegisterClicked={handleRegisterClicked}
-                    onUserLoggedIn={handleUserLoggedIn}
-                />
-                :
-                <Navigate to='/' />
+                    <Login
+                        onRegisterClicked={handleRegisterClicked}
+                        onUserLoggedIn={handleUserLoggedIn}
+                    />
+                    :
+                    <Navigate to='/' />
             } />
         </Routes>
     </Context.Provider>
