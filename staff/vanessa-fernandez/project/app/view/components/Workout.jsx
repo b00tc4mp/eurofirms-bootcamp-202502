@@ -5,10 +5,10 @@ import { useContext } from '../../context'
 export const Workout = ({ day, onBack }) => {
     const { alert } = useContext()
     const [workout, setWorkout] = useState(null)
-    
+
 
     useEffect(() => {
-        try{
+        try {
             logic.getWorkouts(day)
                 .then(workout => {
                     setWorkout(workout)
@@ -18,8 +18,8 @@ export const Workout = ({ day, onBack }) => {
 
                     alert(error.message)
                 })
-            
-        } catch(error) {
+
+        } catch (error) {
             console.error(error)
 
             alert(error.message)
@@ -31,7 +31,7 @@ export const Workout = ({ day, onBack }) => {
             <button
                 className="mb-4 text-white bg-[#0ab5ee] px-4 py-2 rounded-lg hover:bg-[#099ecf] transition"
                 onClick={onBack}
-            > ⬅️ Back </button>    
+            > ⬅️ Back </button>
 
             <h2 className="text-2xl font-bold mb-4">Workout for {day}</h2>
 
@@ -40,18 +40,20 @@ export const Workout = ({ day, onBack }) => {
             )}
 
             {workout && (
-                <div className="space-y-6"> 
+                <div className="space-y-6">
                     {workout.exercises.map((exercise, index) => (
-                        <div key={index} className="p-4 rounded-xl shadow-md border border-gray-200">
-                            <h3 className="text-xl font-semibold">{exercise.name}</h3>
-                            <img src={exercise.image} alt={exercise.name} className="w-full h-48 object-cover rounded-lg my-2" />
-                            <p className="text-sm text-gray-700">{exercise.description}</p>
-                            < div className="mt-2 text-sm">
-                                <p><strong>Sets:</strong>{exercise.sets}</p>
-                                <p><strong>Repetitions:</strong>{exercise.repetitions}</p>
-                                <p><strong>Rest Time:</strong>{exercise.restTime} sec</p>
-                                <p><strong>Difficulty:</strong>{exercise.difficulty}</p>
-                                <p><strong>Muscle Group:</strong>{exercise.muscleGroup}</p>
+                        <div key={index} className="p-4 rounded-xl shadow-md border border-gray-200 bg-white flex flex-col items-center">
+                            <h3 className="text-xl font-semibold text-center text-[#119fd3] mb-4">{exercise.name}</h3>
+                            <div className="w-full max-w-sm h-60 flex justify-center items-center overflow-hidden mb-4 rounded-xl">
+                                <img src={exercise.image} alt={exercise.name} className="object-cover w-full h-full rounded-xl" />
+                            </div>
+                            <p className="text-sm text-gray-700 text-center mb-4">{exercise.description}</p>
+                            < div className=" flex flex-wrap justify-center gap-4 text-sm text-[#119fd3] w-full">
+                                <p><strong>Sets: </strong>{exercise.sets}</p>
+                                <p><strong>Repetitions: </strong>{exercise.repetitions}</p>
+                                <p><strong>Rest Time: </strong>{exercise.restTime} sec</p>
+                                <p><strong>Difficulty: </strong>{exercise.difficulty}</p>
+                                <p><strong>Muscle Group: </strong>{exercise.muscleGroup}</p>
                             </div>
                         </div>
                     ))}
