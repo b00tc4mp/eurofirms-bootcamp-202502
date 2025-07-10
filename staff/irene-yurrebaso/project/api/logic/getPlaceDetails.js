@@ -8,7 +8,7 @@ import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
  * @param {string} placeId The requested place id.
  * @returns {Promise<Object>} The place requested from database.
  */
-export const getOnePlace = (userId, placeId) => {
+export const getPlaceDetails = (userId, placeId) => {
     validate.userId(userId)
     validate.placeId(placeId)
 

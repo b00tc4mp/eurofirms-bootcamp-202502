@@ -1,5 +1,7 @@
 import { data } from '../data'
-import { SystemError, errors } from 'com'
+import { errors } from 'com'
+
+const { SystemError } = errors
 
 /**
  * @returns {[{

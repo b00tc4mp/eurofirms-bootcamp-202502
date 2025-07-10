@@ -15,13 +15,23 @@ export const getPlaces = userId => {
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
             
-                //populate con 'reviews' quitar para vista corta
-            return Place.find({}).select('name city description image').select('-__v').populate('reviews').sort('-dateCreated').lean()
+            //.populate se usa para traer un dato que esta referenciado
+            return Place.find({}).select('name city description image').select('-__v').populate('author', '_id').sort('-dateCreated').lean()
                 .catch(error => { throw new SystemError('mongo error') })
                 .then(places => {
                     places.forEach(place => {
                         place.id = place._id.toString()
                         delete place._id
+
+                        if (!place.author) throw new AuthorshipError('place has no author')
+
+                        if (place.author._id) {
+                            place.author.id = place.author._id.toString()
+                            delete place.author._id
+                        }
+
+                        //da true o false
+                        place.own = place.author.id === userId
                     })
 
                     return places

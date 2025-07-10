@@ -18,6 +18,11 @@ export const Places = ({onChangeToPlaceDetails}) => {
                 .then(places => {
                     setPlaces(places)
                 })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
         } catch (error) {
             console.error(error)
 
@@ -30,13 +35,32 @@ export const Places = ({onChangeToPlaceDetails}) => {
         onChangeToPlaceDetails(placeId)
     }
 
+    const handlePlaceDeleted = () => {
+        try {
+            logic.getPlaces()
+                .then(places => {
+                    setPlaces(places)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch(error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+    
+
     console.log('Places -> render')
 
     return <div>
         
         <h1 className="text-xl font-semibold my-4">You might like these</h1>
         <div className="flex gap-6 flex-wrap">
-        {places.map(place => <Place key={place.id} place={place} onPlaceClicked={handlePlaceClicked}/>)}
+        {places.map(place => <Place key={place.id} place={place} onPlaceClicked={handlePlaceClicked} onPlaceDeleted={handlePlaceDeleted} />)}
         </div>
     </div>
 }

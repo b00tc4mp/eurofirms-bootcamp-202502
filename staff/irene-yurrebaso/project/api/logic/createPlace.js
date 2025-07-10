@@ -1,5 +1,5 @@
 import { User, Place } from '../data/index.js'
-import { validate, SystemError, errors, NotFoundError } from 'com'
+import { validate, SystemError, errors, NotFoundError, DuplicityError } from 'com'
 
 /**
  * Creates a place.
@@ -33,7 +33,9 @@ export const createPlace = (userId, name, category, country, city, address, webs
             if (!user) throw new NotFoundError('user not found')
 
             return Place.create({ author: userId, name, category, country, city, address, website, telephone, description, image})
-                .catch(error => { throw new SystemError('mongo error') })
+                .catch(error => { 
+                    if (error.code === 11000) throw new DuplicityError('place name already exists')
+                    throw new SystemError('mongo error') })
                 .then(() => { })
         })
 }

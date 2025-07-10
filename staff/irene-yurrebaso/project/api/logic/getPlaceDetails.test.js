@@ -1,11 +1,11 @@
 import { connect, disconnect } from '../data/index.js'
-import { getPlaces } from './getPlaces.js'
+import { getPlaceDetails } from './getPlaceDetails.js'
 
 connect('mongodb://localhost:27017/infinity')
     .then(() => {
         try {
-            return getPlaces('6861798f500437c1d1f7373f')
-                .then(places => console.log('places', places))
+            return getPlaceDetails('68600c77c831de7e0bd16422', '686cde07395faf16997e6a49')
+                .then(place => console.log('place', place))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
