@@ -6,6 +6,7 @@ import { logoutUser } from './logoutUser'
 import { createProfile } from './createProfile'
 import { createWorkout } from './createWorkout'
 import { getWorkouts } from './getWorkouts'
+import { createExercise } from './createExercise'
 
 export const logic = {
     registerUser,
@@ -15,5 +16,6 @@ export const logic = {
     logoutUser,
     createProfile,
     createWorkout,
-    getWorkouts
+    getWorkouts,
+    createExercise
 }

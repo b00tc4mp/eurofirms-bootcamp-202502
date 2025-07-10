@@ -1,9 +1,6 @@
 import { Router } from 'express'
 import { jsonBodyParser } from '../middlewares/jsonBodyParser.js'
 import { logic } from '../logic/index.js'
-import jwt from 'jsonwebtoken'
-
-const { JWT_SECRET } = process.env
 
 export const exercisesRouter = Router()
 

@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken'
 
 const { JWT_SECRET } = process.env
 
-export const worksoutRouter = Router()
+export const workoutsRouter = Router()
 
-worksoutRouter.post('/', jsonBodyParser, (request, response, next) => {
+workoutsRouter.post('/', jsonBodyParser, (request, response, next) => {
     try {
         const authorization = request.headers.authorization
         const token = authorization.slice(7)
@@ -24,7 +24,7 @@ worksoutRouter.post('/', jsonBodyParser, (request, response, next) => {
     }
 })
 
-worksoutRouter.get('/', (request, response, next) => {
+workoutsRouter.get('/', (request, response, next) => {
     try{
         const authorization = request.headers.authorization
         const token = authorization.slice(7)

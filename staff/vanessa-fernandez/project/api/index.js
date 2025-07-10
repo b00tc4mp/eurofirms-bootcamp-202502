@@ -4,7 +4,7 @@ import cors from 'cors'
 
 import { usersRouter } from './routes/usersRouter.js'
 import { exercisesRouter } from './routes/exercisesRouter.js'
-import { worksoutRouter } from './routes/worksOutRouter.js'
+import { workoutsRouter } from './routes/worksOutRouter.js'
 import { errorHandler } from './middlewares/errorHandler.js'
 
 const { MONGO_URL, PORT } = process.env
@@ -21,7 +21,7 @@ connect(MONGO_URL)
 
         api.use('/users', usersRouter)
         api.use('/exercises', exercisesRouter)
-        api.use('/worksout', worksoutRouter)
+        api.use('/workouts', workoutsRouter)
 
         api.use(errorHandler)
         
