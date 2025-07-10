@@ -40,11 +40,11 @@ productRouter.put("/:productId", jsonBodyParser, (request, response, next) => {
     const token = authorization.slice(7);
     const { sub: requesterId } = jwt.verify(token, JWT_SECRET);
 
-    const { providerId: targetId } = request.params; // Fixed from userId to proveedorId
+    const { productId: targetId } = request.params;
     const { name, description, price, stock, image, providerId } = request.body;
 
     logic
-      .updateProduct(requesterId, targetId, description, price, stock, image, providerId)
+      .updateProduct(requesterId, targetId, name, description, price, stock, image, providerId)
       .then(() => response.status(200).json({ mensaje: "Product updated succesfully" }))
       .catch((error) => next(error));
   } catch (error) {

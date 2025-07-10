@@ -33,6 +33,7 @@ export const updateProduct = (requesterId, targetId, name, description, price, s
     product.stock = stock;
     product.image = image;
     product.provider = providerId;
+    product.dateModification = Date.now();
     return product.save();
   });
 };
