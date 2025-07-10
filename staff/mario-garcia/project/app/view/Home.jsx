@@ -42,7 +42,7 @@ export const Home = ({ onUserLoggedOut }) => {
 
     }
 
-    const handleCreatePostClick = () => setView('create-post')
+    const handleCreatePostClick = () => setView('create-post') //On my button "+""
 
     const handleCreatePostCancelClicked = () => setView('posts')
 

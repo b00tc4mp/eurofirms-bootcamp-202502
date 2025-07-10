@@ -10,20 +10,20 @@ const { MONGO_URL, PORT } = process.env
 
 connect(MONGO_URL)//Connect to Mongo  
     .then(() => {
-        const api = express() //Tool for our server
+        const api = express()//Tool to connect API with DataBase
 
-        api.use(cors())//Configure the Server to listen any request (everywhere)
+        api.use(cors())//To LINK: API SERVER (Port: 8080) + Vite and React (Port: 5173) -- Configure the Server to listen any request (everywhere)
 
         api.get('/hello', (request, responde) => {//Listen one request
             response.send('Hello 😁!')
         })
 
-        api.use('/users', usersRouter) //Listening all request = localhost:8080/users
-        api.use('/posts', postsRouter) //Listening all request = localhost:8080/posts
+        api.use('/users', usersRouter)//Listening all request = localhost:8080/users
+        api.use('/posts', postsRouter)//Listening all request = localhost:8080/posts
 
         api.use(errorHandler)//Implement the errorHandler
 
-        api.listen(PORT, () => console.log('API listening on port ' + PORT))//Here we start our Sever with all code that we have executed previously
+        api.listen(PORT, () => console.log('API listening on port ' + PORT))//Our API must LISTEN on PORT 8080 
     })
 
 

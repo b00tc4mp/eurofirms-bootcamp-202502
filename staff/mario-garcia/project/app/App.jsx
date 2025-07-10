@@ -20,15 +20,15 @@ export const App = () => {
     const [confirmMessage, setConfirmMessage] = useState('')//With setConfirmMessage I am going to MODIFY confirmMessage
     const [confirmAction, setConfirmAction] = useState(null)//With setConfirmAction I am going to MODIFY confirmAction
 
-    const handleRegisterClicked = () => navigate('/register')
+    const handleRegisterClicked = () => navigate('/register') //It is LINKED with ROUTES LANDING = Line 84 and ROUTES LOGIN = Line 104
 
-    const handleLoginClicked = () => navigate('/login')
+    const handleLoginClicked = () => navigate('/login') //It is LINKED with ROUTES LANDING = Line 85 and ROUTES REGISTER = Line 94
 
-    const handleUserRegistered = () => navigate('/login')
+    const handleUserRegistered = () => navigate('/login') //It is LINKED with ROUTES REGISTER = Line 95
 
-    const handleUserLoggedIn = () => navigate('/')
+    const handleUserLoggedIn = () => navigate('/') //It is LINKED with ROUTES LOGIN = Line 105
 
-    const handleUserLoggedOut = () => navigate('/login')
+    const handleUserLoggedOut = () => navigate('/login') //It is LINKED with ROUTES HOME = Line 88
 
     let loggedIn
 

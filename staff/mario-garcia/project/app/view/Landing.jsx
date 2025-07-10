@@ -1,7 +1,14 @@
 export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
 
     const handleRegisterClick = () => onRegisterClicked()
+    // Arrow's Function App.jsx NAVIGATE = Line 23 -- Register is SHOWED
+    // ROUTES LANDING = Line 84 + ROUTES LOGIN = Line 104
+    // It is LINKED to the Button -- Register is SHOWED
+
     const handleLoginClick = () => onLoginClicked()
+    // Arrow's Function App.jsx NAVIGATE = Line 25 -- Login is SHOWED 
+    // ROUTES LANDING = Line 85 + ROUTES REGISTER = Line 94
+    // It is LINKED to the Button -- Login is SHOWED
 
     console.log('Landing -> render')
 

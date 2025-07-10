@@ -7,6 +7,9 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
     const { alert } = useContext()
 
     const handleLoginClick = () => onLoginClicked()
+    // Arrow's Function App.jsx NAVIGATE = Line 25 -- Login is SHOWED 
+    // ROUTES LANDING = Line 85 + ROUTES REGISTER = Line 94
+    // It is LINKED to the Button -- Login is SHOWED
 
     const handleRegisterSubmit = event => {
 
@@ -24,7 +27,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
                 .then(() => {
                     form.reset()
 
-                    onUserRegistered()
+                    onUserRegistered() //This prop lets me to communicate with App.jsx NAVIGATE (Line 27) and ROUTES REGISTER = Line 95 -- Login is SHOWED
                 })
                 .catch(error => {
                     console.error(error)
