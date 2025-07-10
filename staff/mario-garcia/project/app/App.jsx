@@ -78,7 +78,7 @@ export const App = () => {
             onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
 
         <Routes>
-            <Route path="/" element={
+            <Route path='/' element={
                 !loggedIn ?
                     <Landing
                         onRegisterClicked={handleRegisterClicked}

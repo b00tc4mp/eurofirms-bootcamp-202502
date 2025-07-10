@@ -21,7 +21,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                 .then(() => {
                     form.reset()
 
-                    onUserLoggedIn()
+                    onUserLoggedIn() // This prop of LOGIN which lets me to communicate with App.jsx (Line 29)
                 })
                 .catch(error => {
                     console.error(error)

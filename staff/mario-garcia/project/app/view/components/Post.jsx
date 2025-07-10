@@ -25,6 +25,8 @@ export const Post = ({ post, onPostDeleted }) => {
     }
     console.log('Post -> render') //We INFORM when we paint the Post.
 
+    //NEXT STEP = <a href={post.url} target="_blank"> and </a>
+
     return <article className="w-100 mb-10">
 
         <h3 className="my-5 rounded-lg font-bold text-blue-800 px-2 py-2 bg-blue-300 border-2 border-blue-500">{post.author.username}</h3>
