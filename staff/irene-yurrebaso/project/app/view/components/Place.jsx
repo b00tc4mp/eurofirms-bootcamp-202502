@@ -13,12 +13,14 @@ export const Place = ({ place, onPlaceClicked }) => {
 
     console.log('Place -> render')
 
-    return <article className="max-w-xs">
-        <h3 className="font-semibold"><a className="hover:underline" href="#" onClick={handlePlaceClick}>{place.name}</a></h3>
+    return <article className="max-w-sm">
+        <h3 className="font-semibold"><a className="hover:underline hover:underline-offset-2" href="#" onClick={handlePlaceClick}>{place.name}</a></h3>
         <h4 className="">{place.city}</h4>
+        <div className="my-2">
         <a href="#" onClick={handlePlaceClick}>
-            <img className="py-2 cursor-pointer" src={place.image} alt={place.name} />
+            <img className="cursor-pointer w-full h-60 object-cover rounded" src={place.image} alt={place.name} />
         </a>
-        <p className="font-light">{place.description}</p>
+        </div>
+        <p className="font-light mt-3">{place.description}</p>
     </article>
 }

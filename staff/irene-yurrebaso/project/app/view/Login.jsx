@@ -3,8 +3,8 @@ import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'c
 import { logic } from '../logic'
 
 import { useContext } from '../context'
- 
-export const Login = ({ onRegisterClicked, onUserLoggedIn}) => {
+
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
     const { alert } = useContext()
 
     const handleRegisterClick = () => onRegisterClicked()
@@ -32,7 +32,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn}) => {
                     else
                         alert('ERROR: ' + error.message)
                 })
-        } catch(error) {
+        } catch (error) {
             console.error(error)
 
             if (error instanceof ValidationError)
@@ -44,13 +44,13 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn}) => {
 
     console.log('Login -> render')
 
-    return <div className="p-5">
+    return <div className="p-5 max-w-screen-lg mx-auto">
         <div className="flex flex-col items-center">
-                <img src="/logo.jpg" alt="Infinity Travel" />
+            <img src="/logo.jpg" alt="Infinity Travel" />
 
-                <i class="logo">Infinity Travel</i>
-            </div>
-        <div className="mt-2">
+            <i class="logo">Infinity Travel</i>
+        </div>
+        <div className="mt-5">
 
             <form className="mt-2 flex flex-col gap-4" onSubmit={handleLoginSubmit}>
                 <div className="flex flex-col gap-1">

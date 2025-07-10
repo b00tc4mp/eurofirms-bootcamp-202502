@@ -54,23 +54,24 @@ export const Home = ({ onUserLoggedOut }) => {
         setView('place-details') 
     }
 
+    const handleGoBackClicked = () => setView('places')
+    
+
     console.log('Home -> render')
 
-    return <div className="px-10 py-8">
+    return <div className="px-10 py-8 max-w-screen-xl mx-auto">
         <div className="flex flex-col items-center gap-2">
             <img src="/logo.jpg" alt="Infinity Travel" />
             <i className="logo">Infinity Travel</i>
         </div>
-        <div className="my-8">
-            <p className="flex my-1">Hello, <span className="font-semibold">{username}</span>!</p>
-
-            <a className="underline text-blue-600 text-sm" href="#" onClick={handleLogoutClick}>Log out</a>
+        <div className="my-6">
+            <p className="flex my-1">Hello, <span className="font-semibold">{username}</span>!<span><a className="underline text-blue-600 text-sm ml-4" href="#" onClick={handleLogoutClick}>Log out</a></span></p>
         </div>
 
         <div>
             {view === 'places' && 
             <div>
-                <button className="border-2 border-pink-800 p-1 text-rose-800 cursor-pointer" onClick={handleCreatePlaceClick}>+ Add a place</button>
+                <button className="border-2 border-pink-800 p-1 text-rose-800 cursor-pointer hover:text-white hover:bg-rose-800" onClick={handleCreatePlaceClick}>+ Add a place</button>
             </div>}
             {view === 'places' && <Places 
             onChangeToPlaceDetails={handleChangeToPlaceDetails}
@@ -80,7 +81,9 @@ export const Home = ({ onUserLoggedOut }) => {
             onPlaceCreated={handlePlaceCreated}
             />}
             {/*El primer placeId es la propiedad q se le pasa al componente PlaceDetails, y el segundo placeId es el q se coge del useState */}
-            {view === 'place-details' && <PlaceDetails placeId={placeId}/>}
+            {view === 'place-details' && <PlaceDetails 
+            placeId={placeId}
+            onGoBackClicked={handleGoBackClicked}/>}
         </div>
     </div>
 }

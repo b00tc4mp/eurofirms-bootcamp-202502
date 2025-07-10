@@ -7,7 +7,7 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
     console.log('Landing -> render')
 
     return <>
-        <div className="flex flex-col p-5 gap-8">
+        <div className="flex flex-col gap-8 px-10 py-8 max-w-screen-xl mx-auto">
             <div className="flex flex-col items-center">
                 <img src="/logo.jpg" alt="Infinity Travel" />
 
@@ -19,7 +19,7 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
                     Autism-friendly leisure & travel information, for and by the autistic community.
                 </p>
             </div>
-            <div className="bg-[url('globe2.jpg')] bg-cover bg-center py-20 flex justify-around">
+            <div className="bg-[url('globe2.jpg')] bg-cover bg-center py-30 flex justify-around">
                 <div className="flex flex-col gap-2">
                 <p className="text-white font-extralight">New to the app?</p>
                 <a className="bg-rose-800 text-white px-10" href="#" onClick={handleRegisterClick}>Register</a>

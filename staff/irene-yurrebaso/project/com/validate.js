@@ -30,7 +30,7 @@ export const validate = {
     name(name) {
         if (typeof name !== 'string') throw new ValidationError('invalid name type')
         if (name.length < 3) throw new ValidationError('invalid name min length')
-        if (name.length > 100) throw new ValidationError('invalid name max length')
+        if (name.length > 80) throw new ValidationError('invalid name max length')
     },
 
     placeId(placeId) {

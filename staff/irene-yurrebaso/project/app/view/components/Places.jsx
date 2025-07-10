@@ -35,7 +35,7 @@ export const Places = ({onChangeToPlaceDetails}) => {
     return <div>
         
         <h1 className="text-xl font-semibold my-4">You might like these</h1>
-        <div className="flex gap-5 flex-wrap flex-end">
+        <div className="flex gap-6 flex-wrap">
         {places.map(place => <Place key={place.id} place={place} onPlaceClicked={handlePlaceClicked}/>)}
         </div>
     </div>
