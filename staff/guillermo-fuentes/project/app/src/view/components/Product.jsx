@@ -1,7 +1,17 @@
+import { useState } from "react";
+import { EditProduct } from "../EditProduct";
+export const Product = ({product, onReloadProvider})=>{
 
-export const Product = ({product})=>{
+  const [editProduct, setEditProduct] = useState(false);
+
+  const handleEditProduct = () => {
+    setEditProduct(false);
+    onReloadProvider();
+  };
+
     return (
-        <div className="max-w-sm w-full bg-white border border-gray-200 rounded-2xl shadow-md p-6 m-4 hover:shadow-lg transition-shadow duration-300">
+      <>
+       <div className="max-w-sm w-full bg-white border border-gray-200 rounded-2xl shadow-md p-6 m-4 hover:shadow-lg transition-shadow duration-300">
           <div className="flex items-center gap-4 mb-4">
             <img
               src={product.image}
@@ -10,7 +20,7 @@ export const Product = ({product})=>{
             />
             <div>
               <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
-              <p className="text-sm text-gray-500">{product.provider.name}</p>
+              <p className="text-sm text-gray-500">  {product.provider.name}</p>
             </div>
           </div>
       
@@ -25,30 +35,38 @@ export const Product = ({product})=>{
               <span className="font-semibold">Stock:</span> {product.stock}
             </p>
             <p>
-              <span className="font-semibold">Created:</span> 
+              <span className="font-semibold">Created: </span> 
               {new Date(product.dateCreation).toLocaleString()}
             </p>
             <p>
-              <span className="font-semibold">Modified:</span> 
-              {new Date(product.dateModification).toLocaleString()}
+              <span className="font-semibold">Modified: </span> 
+              {new Date(product.dateModification).toLocaleString()==="1/1/1970, 1:00:00" ? "Not modified":new Date(product.dateModification).toLocaleString() }
             </p>
           </div>
       
-          {/* Botones comentados por ahora */}
-          {/* <div className="mt-4 space-y-2">
+         
+          <div className="mt-4 space-y-2">
             <button
               className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200"
-              onClick={() => setEditProvider(true)}
+              onClick={() => setEditProduct(true)}
             >
               Update Provider
             </button>
-            <button
+            {/* <button
               onClick={handleDeleteClick}
               className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
             >
               Delete Provider
-            </button>
-          </div> */}
+            </button> */}
+          </div>
         </div>
+       {editProduct && (
+               <EditProduct
+                 product={product}
+                 onEditedProduct={handleEditProduct}
+               />
+             )}
+      </>
+       
       );
     }      

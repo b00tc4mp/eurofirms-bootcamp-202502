@@ -41,7 +41,7 @@ useEffect(()=>{
 return (
     <div>
       <label htmlFor="userSearch" className="block text-sm font-medium text-gray-700 mb-1">
-        User
+        Providers
       </label>
       <input
         type="text"

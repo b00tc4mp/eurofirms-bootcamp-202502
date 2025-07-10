@@ -26,9 +26,9 @@ useEffect(()=>{
 const handleUpadateProducts = () => {
     try {
       logic
-        .getProviders()
-        .then((users) => {
-          setProducts(users);
+        .getProducts()
+        .then((products) => {
+          setProducts(products);
         })
         .catch((error) => {
           console.error(error);
