@@ -10,6 +10,7 @@ export const updateProduct = (requesterId, targetId, name, description, price, s
   validate.stock(stock);
   validate.image(image);
   validate.providerId(providerId);
+
   return Promise.all([
     User.findById(requesterId).catch((error) => {
       throw new SystemError(`Mongo error (User): ${error.message}`);

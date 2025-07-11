@@ -4,6 +4,7 @@ import { SystemError, validate, NotFoundError } from "com";
 export const removeProvider = (providerId, adminId) => {
   validate.providerId(providerId);
   validate.adminId(adminId);
+
   return Promise.all([Provider.findById(providerId), User.findById(adminId)])
     .catch((error) => {
       throw new SystemError("mongo error");

@@ -4,6 +4,7 @@ import { validate } from "com";
 export const removeProduct = (productId, userId) => {
   validate.productId(productId);
   validate.userId(userId);
+
   return Promise.all([Product.findById(productId), User.findById(userId)])
     .then(([product, user]) => {
       if (!product) throw new NotFoundError("Product not found");

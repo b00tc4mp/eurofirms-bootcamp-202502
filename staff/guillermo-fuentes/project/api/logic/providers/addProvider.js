@@ -1,6 +1,6 @@
 import { Provider, User } from "../../data/index.js";
 import { DuplicityError, NotFoundError, SystemError, validate, PermissionError, RoleError } from "com";
-//Poner adminId primero
+
 export const addProvider = (adminId, taxId, name, contact, address, userId) => {
   validate.adminId(adminId);
   validate.taxId(taxId);
@@ -9,7 +9,6 @@ export const addProvider = (adminId, taxId, name, contact, address, userId) => {
   validate.address(address);
   validate.userId(userId);
 
-  // Verificar que el usuario autenticado es administrador
   return User.findById(adminId)
     .catch((error) => {
       throw new SystemError(`Mongo error: ${error.message}`);
@@ -29,12 +28,10 @@ export const addProvider = (adminId, taxId, name, contact, address, userId) => {
             throw new NotFoundError("User not found");
           }
 
-          // Verificar que el usuario encontrado no sea el administrador
           if (user._id.toString() === adminId) {
             throw new PermissionError("Admin cannot be assigned as provider");
           }
 
-          // Crear el proveedor
           return Provider.create({
             taxId,
             name,

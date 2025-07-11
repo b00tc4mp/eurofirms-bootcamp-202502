@@ -3,6 +3,7 @@ import { NotFoundError, SystemError, validate } from "com";
 
 export const getUsers = (userId) => {
   validate.userId(userId);
+
   return User.findById(userId)
     .catch((error) => {
       throw new SystemError("mongo error");
@@ -16,10 +17,6 @@ export const getUsers = (userId) => {
           throw new SystemError("Error in MongoDB");
         })
         .then((users) => {
-          if (!users || users.length === 0) {
-            throw new NotFoundError("Users not found");
-          }
-
           users.forEach((user) => {
             user.id = user._id.toString();
             delete user._id;

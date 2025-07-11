@@ -5,6 +5,7 @@ import { validate, NotFoundError, CredentialsError } from "com";
 export const authenticateUser = (email, password) => {
   validate.email(email);
   validate.password(password);
+
   return User.findOne({ email })
     .catch((error) => {
       throw new SystemError(error.message);

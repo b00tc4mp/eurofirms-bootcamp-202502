@@ -9,8 +9,8 @@ export const registerUser = (fullName, email, password, address, role) => {
   validate.password(password);
   validate.address(address);
   validate.role(role);
-  const saltRounds = 10;
 
+  const saltRounds = 10;
   return bcrypt
     .hash(password, saltRounds)
     .catch((error) => {

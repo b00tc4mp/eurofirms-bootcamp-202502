@@ -1,6 +1,6 @@
 import { User, Provider } from "../../data/index.js";
 import { DuplicityError, NotFoundError, SystemError, validate, ValidationError } from "com";
-//cambiar targetid a providerid
+
 export const updateProvider = (requesterId, targetId, name, contact, address, providerId) => {
   validate.adminId(requesterId);
   validate.userId(targetId);
@@ -37,9 +37,9 @@ export const updateProvider = (requesterId, targetId, name, contact, address, pr
 
     if (providerId !== undefined) {
       if (!isAdmin && !isSameUser) throw new ValidationError("Field not allowed: user");
-      provider.user = providerId; // Es una referencia ObjectId
+      provider.user = providerId;
     }
 
-    return provider.save(); // 💾 Guardar los cambios
+    return provider.save();
   });
 };

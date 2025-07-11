@@ -3,6 +3,7 @@ import { NotFoundError, SystemError, validate } from "com";
 
 export const getProviders = (userId) => {
   validate.userId(userId);
+
   return User.findById(userId)
     .catch((error) => {
       throw new SystemError("mongo error");
@@ -16,10 +17,6 @@ export const getProviders = (userId) => {
           throw new SystemError("Error in mongo");
         })
         .then((providers) => {
-          if (!providers || providers.length === 0) {
-            throw new NotFoundError("Providers not found");
-          }
-
           providers.forEach((provider) => {
             provider.id = provider._id.toString();
             delete provider._id;

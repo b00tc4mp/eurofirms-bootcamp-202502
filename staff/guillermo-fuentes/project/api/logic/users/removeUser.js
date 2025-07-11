@@ -1,9 +1,10 @@
 import { User, Provider } from "../../data/index.js";
-
 import { SystemError, NotFoundError, validate } from "com";
+
 export const removeUser = (userId, adminId) => {
   validate.userId(userId);
   validate.adminId(adminId);
+
   return Promise.all([
     User.findOne({ _id: userId }),
     User.findOne({ _id: adminId }),
