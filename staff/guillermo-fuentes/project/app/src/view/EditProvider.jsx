@@ -2,6 +2,8 @@ import { logic } from '../logic';
 import { useState, } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { SearchUsers } from './components/SearchUsers';
+import { useContext } from '../context/context';
+
 export const EditProvider = ({ provider, onEditedProvider }) => {
   const { loggedIn, rol: userRol } = useAuth();
   const [name, setName] = useState(provider.name);
@@ -10,15 +12,18 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
   const [userFullName, setUserFullName] = useState(provider.user.fullName);
   const [selectedUserId, setSelectedUserId] = useState(provider.user.id);
   const [error, setError] = useState('');
+
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
   const handleEditProvider = () => onEditedProvider();
+  const {alert}= useContext();
+
   const handleEditSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const contact = form.contact.value;
     const address = form.address.value;
-    //const userFullName = form.user.value;
+
     if (isAdmin && !selectedUserId) {
       setError('Please select a user');
       alert('Please select a user');

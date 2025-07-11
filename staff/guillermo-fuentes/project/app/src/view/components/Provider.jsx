@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { EditProvider } from '../EditProvider';
 import { logic } from '../../logic';
+import { useContext } from '../../context/context';
 export const Provider = ({ provider, onReloadProvider,onEditedProvider }) => {
   const [editProvider, setEditProvider] = useState(false);
-
+const {alert,confirm}= useContext();
   const handleEditedProvider = () => {
     setEditProvider(false);
     onReloadProvider();

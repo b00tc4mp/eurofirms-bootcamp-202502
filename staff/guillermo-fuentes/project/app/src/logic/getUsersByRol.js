@@ -1,7 +1,10 @@
-import { SystemError } from "com";
+import { SystemError, validate } from "com";
 import { data } from "../data";
-export const getUsersByRol = (rol) => {
-  return fetch(`${import.meta.env.VITE_API_URL}users/${rol}`, {
+
+export const getUsersByRol = (role) => {
+  validate.role(role);
+
+  return fetch(`${import.meta.env.VITE_API_URL}users/${role}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${data.getToken()}`,

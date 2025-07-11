@@ -1,28 +1,21 @@
-import { SystemError } from "com";
 import { data } from "../data";
+import { SystemError, validate } from "com";
 
-export const getUsers = () => {
-  return fetch(`${import.meta.env.VITE_API_URL}users`, {
-    method: "GET",
+export const deleteProduct = (productId) => {
+  validate.productId(productId);
+
+  return fetch(`${import.meta.env.VITE_API_URL}products/${productId}`, {
+    method: "DELETE",
     headers: {
       Authorization: `Bearer ${data.getToken()}`,
     },
   })
     .catch(() => {
-      throw new SystemError("Conection error");
+      throw new SystemError("connection error");
     })
     .then((response) => {
       const { status } = response;
-      if (status === 200)
-        return response
-          .json()
-          .catch(() => {
-            throw new SystemError("json error");
-          })
-          .then((users) => {
-            console.log("Users received ", users);
-            return users;
-          });
+      if (status === 204) return;
       return response
         .json()
         .catch(() => {
@@ -30,9 +23,7 @@ export const getUsers = () => {
         })
         .then((body) => {
           const { error, message } = body;
-
           const constructor = error[error] || SystemError;
-
           throw new constructor(message);
         });
     });

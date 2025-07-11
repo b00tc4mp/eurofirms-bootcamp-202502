@@ -25,6 +25,7 @@ export const Providers = () => {
       alert(error.message);
     }
   }, []);
+  
   const handleUpadateProvider = () => {
     try {
       logic
@@ -41,7 +42,7 @@ export const Providers = () => {
       alert(error.message);
     }
   };
-
+ 
   return (
     <>
       <div className="flex flex-col items-center mt-8 px-4">

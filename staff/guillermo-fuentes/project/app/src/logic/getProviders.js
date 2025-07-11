@@ -1,5 +1,6 @@
 import { SystemError } from "com";
 import { data } from "../data";
+
 export const getProviders = () => {
   return fetch(`${import.meta.env.VITE_API_URL}providers`, {
     method: "GET",

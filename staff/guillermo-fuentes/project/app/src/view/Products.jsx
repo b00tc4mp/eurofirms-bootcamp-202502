@@ -51,12 +51,15 @@ return (
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl w-full">
         {products.map((product)=>(
+
             <Product 
             key={product.id}
             product={product}
             onReloadProvider={handleUpadateProducts}
+            onEditedProduct={handleUpadateProducts}
             />
         ))}
+        {!products.length && <p>No hay productos que mostrar</p>}
         </div>
 
     </div>

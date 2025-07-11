@@ -7,6 +7,7 @@ export const updateProvider = (targetId, name, contact, address, providerId) => 
   validate.address(address);
   validate.contact(contact);
   validate.providerId(providerId);
+
   return fetch(`${import.meta.env.VITE_API_URL}providers/${targetId}`, {
     method: "PUT",
     headers: {

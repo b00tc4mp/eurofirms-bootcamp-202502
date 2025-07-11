@@ -4,6 +4,7 @@ import { data } from "../data";
 export const loginUser = (email, password) => {
   validate.email(email);
   validate.password(password);
+
   return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
     method: "POST",
     headers: {

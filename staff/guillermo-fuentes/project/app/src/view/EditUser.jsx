@@ -1,7 +1,7 @@
 import { logic } from '../logic';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
-//Usamos propiedades para traer datos estas propiedades vienen del componente User
+
 export const EditUser = ({ user, onEditedUser }) => {
   //Usamos estados para pasar el valor actual del campo y poder cambiar el valor usando value
   const { loggedIn, rol: userRol } = useAuth();
@@ -10,9 +10,10 @@ export const EditUser = ({ user, onEditedUser }) => {
   const [address, setAddress] = useState(user.address);
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(user.role);
-  //Usamos el contexto que hemos creado para comprobar si el usuario esta logueado y es administrador
+
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
   const handleEditUser = () => onEditedUser();
+
   const handleEditSubmit = (event) => {
     event.preventDefault();
     const form = event.target;

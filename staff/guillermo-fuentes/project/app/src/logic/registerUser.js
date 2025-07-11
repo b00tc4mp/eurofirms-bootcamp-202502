@@ -6,6 +6,7 @@ export const registerUser = (fullName, email, password, address, role) => {
   validate.password(password);
   validate.address(address);
   validate.role(role);
+
   return fetch(`${import.meta.env.VITE_API_URL}users`, {
     method: "POST",
     headers: {

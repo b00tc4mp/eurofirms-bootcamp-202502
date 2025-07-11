@@ -19,6 +19,7 @@ const debouncedFetchSuggestions = useMemo(() =>
       });
   }, 300),
 []); 
+
 const handleSelectProvider = (provider)=>{
     setQuery(provider.name)
     onSelectProviderId(provider._id)

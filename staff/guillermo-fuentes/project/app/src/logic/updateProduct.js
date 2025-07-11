@@ -1,5 +1,6 @@
 import { SystemError, validate } from "com";
 import { data } from "../data";
+
 export const updateProduct = (targetId, name, description, price, stock, image, providerId) => {
   validate.productId(targetId);
   validate.name(name);
@@ -8,6 +9,7 @@ export const updateProduct = (targetId, name, description, price, stock, image, 
   validate.stock(stock);
   validate.image(image);
   validate.providerId(providerId);
+
   return fetch(`${import.meta.env.VITE_API_URL}products/${targetId}`, {
     method: "PUT",
     headers: {

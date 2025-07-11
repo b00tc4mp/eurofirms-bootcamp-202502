@@ -1,14 +1,32 @@
 import { useState } from "react";
+import { logic } from "../../logic";
 import { EditProduct } from "../EditProduct";
-export const Product = ({product, onReloadProvider})=>{
+import { useContext } from "../../context/context";
+export const Product = ({product, onReloadProvider,onEditedProduct})=>{
 
   const [editProduct, setEditProduct] = useState(false);
-
+const {alert,confirm}= useContext();
   const handleEditProduct = () => {
     setEditProduct(false);
     onReloadProvider();
   };
-
+  const handleDeleteClick = () => {
+   confirm("Delete product?")
+   .then(result=>{
+    if(result)
+      try {
+        logic.deleteProduct(product.id)
+        .then(()=>onEditedProduct())
+        .catch(error=>{
+          console.error(error)
+          alert(error.message)
+        })
+      } catch (error) {
+        console.error(error)
+        alert(error.message)
+      }
+   })
+  };
     return (
       <>
        <div className="max-w-sm w-full bg-white border border-gray-200 rounded-2xl shadow-md p-6 m-4 hover:shadow-lg transition-shadow duration-300">
@@ -52,12 +70,12 @@ export const Product = ({product, onReloadProvider})=>{
             >
               Update Provider
             </button>
-            {/* <button
+            <button
               onClick={handleDeleteClick}
               className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
             >
-              Delete Provider
-            </button> */}
+              Delete Product
+            </button>
           </div>
         </div>
        {editProduct && (
