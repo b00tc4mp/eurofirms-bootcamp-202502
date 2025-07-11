@@ -142,5 +142,26 @@ usersRouter.get("/search/:query", (req, res, next) => {
       next(error);
     });
 });
+usersRouter.get("/user/:userId", (request, response, next) => {
+  try {
+    const { authorization } = request.headers;
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      const error = new Error("Invalid authorization header");
+      error.status = 401;
+      throw error;
+    }
+
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+
+    const { userId: targetUserId } = request.params;
+    logic
+      .getUserById(userId, targetUserId)
+      .then((user) => response.status(200).json(user))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default usersRouter;
