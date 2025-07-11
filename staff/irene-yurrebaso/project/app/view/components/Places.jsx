@@ -35,6 +35,7 @@ export const Places = ({onChangeToPlaceDetails}) => {
         onChangeToPlaceDetails(placeId)
     }
 
+    //pedir a Home q se refresque cuando hemos eliminado un place.
     const handlePlaceDeleted = () => {
         try {
             logic.getPlaces()
@@ -53,7 +54,6 @@ export const Places = ({onChangeToPlaceDetails}) => {
         }
     }
     
-
     console.log('Places -> render')
 
     return <div>

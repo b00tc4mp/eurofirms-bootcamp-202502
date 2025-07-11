@@ -12,10 +12,13 @@ export const Home = ({ onUserLoggedOut }) => {
 
     //cuando cambias el valor, se recarga el componente completo. setView se encarga de cambiar el valor.
     const [view, setView] = useState('places')
+
     const [username, setUsername] = useState('World')
+
     //uso placeId para pasar a PlaceDetails.jsx
     const [placeId, setPlaceId] = useState('')
 
+    //cargar username
     useEffect(() => {
         try {
             logic.getUserUsername()
@@ -56,7 +59,6 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handleGoBackClicked = () => setView('places')
     
-
     console.log('Home -> render')
 
     return <div className="px-10 py-8 max-w-screen-xl mx-auto">
@@ -65,7 +67,7 @@ export const Home = ({ onUserLoggedOut }) => {
             <i className="logo">Infinity Travel</i>
         </div>
         <div className="my-6">
-            <p className="flex my-1">Hello, <span className="font-semibold">{username}</span>!<span><a className="underline text-blue-600 text-sm ml-4" href="#" onClick={handleLogoutClick}>Log out</a></span></p>
+            <p className="flex my-1">Hello,<span className="font-semibold"> {username}</span>!<span><a className="underline text-blue-600 text-sm ml-4" href="#" onClick={handleLogoutClick}>Log out</a></span></p>
         </div>
 
         <div>

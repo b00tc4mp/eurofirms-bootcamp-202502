@@ -63,12 +63,12 @@ export const CreatePlace = ({ onCancelClicked, onPlaceCreated }) => {
             <div className="flex flex-col gap-3">
                 <h2 className="text-lg">1. Location details</h2>
                 <div className="flex flex-col gap-5">
-                    <label className="font-semibold" htmlFor="name">Name</label>
+                    <label className="font-semibold" htmlFor="name">Name *</label>
                     <input className="border-2 border-solid p-1" type="text" id="name" name="name" placeholder="The place name" />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                    <h3 className="font-semibold" htmlFor="category">Which category best describes this place?</h3>
+                    <h3 className="font-semibold" htmlFor="category">Which category best describes this place? *</h3>
                     <div>
                         <input
                             className="mr-2"
@@ -158,19 +158,19 @@ export const CreatePlace = ({ onCancelClicked, onPlaceCreated }) => {
                         <label htmlFor="other">Other things</label>
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label htmlFor="description" className="font-semibold">Description</label>
+                        <label htmlFor="description" className="font-semibold">Description *</label>
                         <textarea className="border-2 border-solid p-1" id="description" name="description" rows="5" cols="33" placeholder="Brief description of the place and what makes it a great autistic-friendly option."></textarea>
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label className="font-semibold" htmlFor="address">Address</label>
+                        <label className="font-semibold" htmlFor="address">Address *</label>
                         <input className="border-2 border-solid p-1" type="text" id="address" name="address" placeholder="The place address" />
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label className="font-semibold" htmlFor="city">City/Town</label>
+                        <label className="font-semibold" htmlFor="city">City/Town *</label>
                         <input className="border-2 border-solid p-1" type="text" id="city" name="city" placeholder="The place city" />
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label className="font-semibold" htmlFor="country">Country</label>
+                        <label className="font-semibold" htmlFor="country">Country *</label>
                         <input className="border-2 border-solid p-1" type="text" id="country" name="country" placeholder="The place country" />
                     </div>
                 </div>
@@ -178,18 +178,18 @@ export const CreatePlace = ({ onCancelClicked, onPlaceCreated }) => {
             <div className="flex flex-col gap-3">
                 <h2 className="text-lg">2. Contact details</h2>
                 <div className="flex flex-col gap-1">
-                    <label className="font-semibold" htmlFor="website">Website</label>
+                    <label className="font-semibold" htmlFor="website">Website *</label>
                     <input className="border-2 border-solid p-1" type="text" id="website" name="website" placeholder="The place website" />
                 </div>
                 <div className="flex flex-col gap-1">
-                    <label className="font-semibold" htmlFor="telephone">Official phone</label>
+                    <label className="font-semibold" htmlFor="telephone">Official phone *</label>
                     <input className="border-2 border-solid p-1" type="text" id="telephone" name="telephone" placeholder="The place telephone" />
                 </div>
             </div>
             <div className="flex flex-col gap-3">
                 <h2 className="text-lg">3. Photographs</h2>
                 <div className="flex flex-col gap-1">
-                    <label className="font-semibold" htmlFor="image">Photo link</label>
+                    <label className="font-semibold" htmlFor="image">Photo link *</label>
                     <input className="border-2 border-solid p-1" type="text" id="image" name="image" placeholder="Photo link" />
                 </div>
             </div>

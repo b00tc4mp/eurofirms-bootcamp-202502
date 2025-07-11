@@ -6,7 +6,7 @@ export const Place = ({ place, onPlaceClicked, onPlaceDeleted }) => {
     const { alert, confirm } = useContext()
 
     const handleDeleteClick = () => {
-        confirm('Delete post?')
+        confirm('Delete this place?')
             .then(result => {
                 if (result)
                     try {
@@ -46,6 +46,6 @@ export const Place = ({ place, onPlaceClicked, onPlaceDeleted }) => {
 
         <p className="font-light mt-3">{place.description}</p>
 
-        {place.own && <button className="mx-3 border-b-2 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
+        {place.own && <button className="border-b-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
     </article>
 }

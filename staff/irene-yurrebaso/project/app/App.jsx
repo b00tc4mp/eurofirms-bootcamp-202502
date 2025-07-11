@@ -12,11 +12,15 @@ import { Context } from './context'
 import { logic } from './logic'
 
 export const App = () => {
+    //hook para cambiar vistas con react router
     const navigate = useNavigate()
 
+    //useState para pintar ventana alert (ej. cuando hay error de validacion)
     const [alertMessage, setAlertMessage] = useState('')
-    //const [confirmMessage, setConfirmMessage] = useState('')
-    //const [confirmAction, setConfirmAction] = useState(null)
+    //useState para pintar ventana confirm (ej. en delete place)
+    const [confirmMessage, setConfirmMessage] = useState('')
+    //guarda true o false del resolve de la promesa 'confirm delete'
+    const [confirmAction, setConfirmAction] = useState(null)
 
     const handleRegisterClicked = () => navigate('/register')
 
@@ -37,18 +41,40 @@ export const App = () => {
 
         alert(error.message)
     }
-
+    
+    //handle para ventana 'alert'
     const handleAlertAccepted = () => setAlertMessage('')
 
-    //faltan aqui los handles de Confirm (remove post)
+    //3 handles de ventana Confirm (remove place)
+    const handleAcceptConfirm = () => {
+        setConfirmMessage('')
+
+        confirmAction.resolve(true)
+    }
+
+    const handleCancelConfirm = () => {
+        setConfirmMessage('')
+
+        confirmAction.resolve(false)
+    }
+
+    const handleShowConfirm = (message) => {
+        setConfirmMessage(message)
+
+        return new Promise((resolve, reject) => {
+            setConfirmAction({ resolve })
+        })
+    }
 
     console.log('App -> render')
 
     return <Context.Provider value={{
         alert: setAlertMessage,
-        //confirm: handleShowConfirm
+        confirm: handleShowConfirm
     }}>
         {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted} />}
+
+        {confirmMessage && <Confirm message={confirmMessage} onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
 
         <Routes>
             <Route path='/' element={
@@ -80,5 +106,4 @@ export const App = () => {
             } />
         </Routes>
     </Context.Provider>
-
 }
