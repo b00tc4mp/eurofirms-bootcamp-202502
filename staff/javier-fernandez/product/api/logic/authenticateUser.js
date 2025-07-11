@@ -14,7 +14,7 @@ export const authenticateUser = (username, password) => {
   Validate.password(password)
 
  return User.findOne({ username })
-    .catch(error => { throw new SystemError(error.message) })
+    .catch(error => { throw new SystemError('mongo error') })
     .then(user => {
       if (!user) throw new NotFoundError('user not found')
 

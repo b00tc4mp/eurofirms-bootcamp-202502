@@ -19,19 +19,19 @@ export const removePost = (userId, postId) => {
     // otherwise, delete post from database
 
    return User.findById(userId)
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
             return Post.findById(postId)
-                .catch(error => {  throw new SystemError(error.message) })
+                .catch(error => {  throw new SystemError('mongo error') })
                 .then(post => {
                     if (!post) throw new NotFoundError('post not found')
 
-                    if (post.author.toString() !== userId)throw new AuthorshipError('user not owner of post')
+                    if (post.role !== 'administrator' && post.author.toString() !== userId ) throw new AuthorshipError('user not author of post')
 
                     return Post.deleteOne({ _id: postId })
-                        .catch(error => { throw new SystemError(error.message) })
+                        .catch(error => { throw new SystemError('mongo error') })
                         .then(() => { })
                 })
         })

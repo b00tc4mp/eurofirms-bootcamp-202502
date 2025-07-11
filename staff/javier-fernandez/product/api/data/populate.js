@@ -1,16 +1,10 @@
-import mongodb from 'mongodb'
+import mongoose from 'mongoose'
+import { User, Post } from './models.js'
 
-const { MongoClient, ObjectId } = mongodb
+const { connect, disconnect } = mongoose
 
-const client = new MongoClient('mongodb://localhost:27017')
-
-client.connect()
-    .then(() => {
-        const db = client.db('test')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
+connect('mongodb://localhost:27017/test')
+    .then(() => { 
         // return users.insertOne({ name: 'ko bi', email: 'ko@bi.com', username: 'kobi', password: '123123123'})
          //.catch(error => { throw new Error('mongo error') })
         // .then(() => console.log('user inserted'))
@@ -56,7 +50,7 @@ client.connect()
             //.then(() => console.log('post deleted'))
 
         return posts.find({})
-            .catch(error => { throw new Error('mongo error') })
+            .catch(error => { throw new Error(error.message) })
             .then(posts => console.log('posts', posts))
     })
     .catch(error => console.error(error))

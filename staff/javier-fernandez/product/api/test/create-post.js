@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQ0NDUxMzc1Nzg3ZTdjNTkwOGYxZjEiLCJpYXQiOjE3NTAyNzE2Mjh9.roQHa1VyKCB0svqyZqVGcFEeysZIRY1oESiGvhO5euI',
+        Authorization: 'Basic user-20',
         'Content-Type': 'application/json'
     },
     body: '{"image": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWExcmlycmMzcWU2cTc2eDZ2Y2VlNXQwYXpodWs2YTNxd3BwY3k0eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12mRllHWXpt4M8/giphy.gif", "text": "enseño a mi nieto"}'

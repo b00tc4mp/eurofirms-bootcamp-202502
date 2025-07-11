@@ -14,7 +14,7 @@ export const getUserUsername = userId => {
     // if user found then retuen username
 
    return User.findById(userId)
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
             if(!user) throw new NotFoundError('user not found')
 

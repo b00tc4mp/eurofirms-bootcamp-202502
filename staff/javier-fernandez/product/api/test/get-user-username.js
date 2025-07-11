@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/users/self/username', {
     method: 'GET',
     headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODUxYmM3ZGFmNDg2NGE0MmZlZDJjZTMiLCJpYXQiOjE3NTA3MDI0MTR9.-7t8wCYu75vPNSelKRo7X7yH4SVrqE03lO9KVwyxfAo'
+        Authorization: 'Basic user-10'
     }
 })
     .catch(error => { throw new Error('connection error') })

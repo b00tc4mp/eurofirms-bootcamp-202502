@@ -18,12 +18,12 @@ export const createPost = (userId, image, text) => {
 
    return User.findById(userId)
 
-        .catch(error => {throw new SystemError(error.message)}) 
+        .catch(error => {throw new SystemError('mongo error') }) 
         .then(user => {
         if (!user) throw new NotFoundError('user not found')
 
             return Post.create({author:userId, image, text})
-                .catch(error => {throw new SystemError(error.message)})
-                .then(() => {})
+                .catch(error => {throw new SystemError('mongo error')})
+                .then(() => { })
         })
 }

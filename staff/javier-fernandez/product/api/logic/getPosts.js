@@ -15,12 +15,12 @@ export const getPosts = userId => {
     // if user exists return posts
 
     return User.findById(userId)
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new SystemError('mongo error') })
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
             return Post.find({}).select('-__v').populate('author', 'username').sort('-date').lean()
-                .catch(error => { throw new SystemError(error.message) })
+                .catch(error => { throw new SystemError('mongo error') })
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
