@@ -1,6 +1,7 @@
 import { registerUser } from './registerUser.js'
 import { authenticateUser } from './authenticateUser.js'
 import { getUserUsername } from './getUserUsername.js'
+import { getUsers } from './getUsers.js'
 import { createProfile } from './createProfile.js'
 import { createExercise } from './createExercise.js'
 import { getExercises } from './getExercises.js'
@@ -15,5 +16,6 @@ export const logic = {
     createExercise,
     getExercises,
     createWorkout,
-    getWorkouts
+    getWorkouts, 
+    getUsers
 }

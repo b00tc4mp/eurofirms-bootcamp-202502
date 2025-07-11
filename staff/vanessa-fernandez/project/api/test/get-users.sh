@@ -1,0 +1,1 @@
+curl -X GET -H 'Authorization: Bearer

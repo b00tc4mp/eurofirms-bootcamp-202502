@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { jsonBodyParser } from '../middlewares/jsonBodyParser.js'
 import { logic } from '../logic/index.js'
 import jwt from 'jsonwebtoken'
+import { AuthorizationError } from 'com'
 
 const { JWT_SECRET } = process.env
 
@@ -68,3 +69,21 @@ usersRouter.patch('/profile', jsonBodyParser, (request, response, next) => {
         next(error)
     }
 })
+
+usersRouter.get('/', (request, response, next) => {
+    try {
+        const authorization = request.headers.authorization
+        const token = authorization.slice(7)
+
+        const { role } = jwt.verify(token, JWT_SECRET)
+
+        if (role !== 'admin')
+            throw new AuthorizationError('admin privileges required')
+
+        logic.getUsers()
+            .then(users => response.status(200).json(users))
+            .catch(next)
+    } catch(error) {
+        next(error)
+    }
+} )
