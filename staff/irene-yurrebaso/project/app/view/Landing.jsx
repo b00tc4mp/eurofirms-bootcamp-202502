@@ -22,12 +22,12 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
             <div className="bg-[url('globe2.jpg')] bg-cover bg-center py-30 flex justify-around">
                 <div className="flex flex-col gap-2">
                 <p className="text-white font-extralight">New to the app?</p>
-                <a className="bg-rose-800 text-white px-10" href="#" onClick={handleRegisterClick}>Register</a>
+                <a className="bg-rose-800 text-white px-10 py-2 hover:bg-rose-900" href="#" onClick={handleRegisterClick}>Register</a>
                 </div>
                 
                 <div className="flex flex-col gap-2">
                 <p className="text-white font-extralight">Already registered?</p>
-                <a className="bg-rose-800 text-white px-12" href="#" onClick={handleLoginClick}>Login</a>
+                <a className="bg-rose-800 text-white px-12 py-2 hover:bg-rose-900" href="#" onClick={handleLoginClick}>Login</a>
                 </div>
                
             </div>

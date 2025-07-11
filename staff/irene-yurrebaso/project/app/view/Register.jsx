@@ -58,7 +58,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
             </div>
             <div className="flex justify-between">
                 <a className="underline" href="#" onClick={handleLoginClick}>Login</a>
-                <button className="bg-rose-800 text-white py-2 px-4 cursor-pointer" type="submit">Register</button>
+                <button className="bg-rose-800 text-white py-2 px-4 cursor-pointer hover:bg-rose-900" type="submit">Register</button>
             </div>
         </form>
     </div>

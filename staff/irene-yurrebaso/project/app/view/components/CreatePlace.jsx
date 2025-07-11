@@ -195,7 +195,7 @@ export const CreatePlace = ({ onCancelClicked, onPlaceCreated }) => {
             </div>
             <div className="flex justify-between pt-8">
                 <a className="underline text-blue-600" href="#" onClick={handleCancelClick}>Cancel</a>
-                <button className="bg-rose-800 text-white py-2 px-4 cursor-pointer" type="submit">Submit</button>
+                <button className="bg-rose-800 text-white py-2 px-4 cursor-pointer hover:bg-rose-900" type="submit">Submit</button>
             </div>
         </form>
     </div>
