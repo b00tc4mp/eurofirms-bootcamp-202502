@@ -21,7 +21,7 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
                 .then(() => {
                     form.reset()
 
-                    onPostCreated()
+                    onPostCreated()//It is LINKED with Line 49 of view Home.jsx
                 })
                 .catch(error => {
                     console.error(error)

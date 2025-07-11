@@ -45,6 +45,7 @@ export const Posts = () => {
 
     console.log('Posts -> render')
 
+    //Here I am SHOWING all Post One by One
     return <>
         {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
     </>

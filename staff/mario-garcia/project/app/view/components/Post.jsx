@@ -4,7 +4,7 @@ import { useContext } from '../../context'
 export const Post = ({ post, onPostDeleted }) => {
     const { alert, confirm } = useContext()
 
-    const handleDeleteClick = () => {
+    const handleDeleteClick = () => {//It will be UNCHAINED when we PUSH our Button "Delete"
         confirm('Delete post?')
             .then(result => {
                 if (result)

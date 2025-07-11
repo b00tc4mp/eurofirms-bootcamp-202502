@@ -44,9 +44,9 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handleCreatePostClick = () => setView('create-post') //On my button "+""
 
-    const handleCreatePostCancelClicked = () => setView('posts')
+    const handleCreatePostCancelClicked = () => setView('posts')//It is LINKED with Lines 7 and 91 of components CreatePost.jsx
 
-    const handlePostCreated = () => setView('posts')
+    const handlePostCreated = () => setView('posts')//It is LINKED with Line 24 components CreatePost.jsx
 
     console.log('Home -> render')
 
