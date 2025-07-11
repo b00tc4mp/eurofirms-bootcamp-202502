@@ -80,6 +80,7 @@ Admin (User) [v0.1]
 **Home Subviews**
 
 - Edit Profile
+- Days
 - Workout plan
 
 **Workout plan**
