@@ -52,35 +52,48 @@ export const Home = ({ onUserLoggedOut }) => {
     const handleProfileCreated = () => setView('home')
 
     const handleDaySelected = (day) => setSelectDay(day)
-    
+
     const handleBackToDays = () => setSelectDay(null)
 
     console.log('Home -> render')
 
-    return <div className="px-5">
+    return <div className=" relative px-5 py-6 min-h-screen flex flex-col items-center bg-white text-center">
 
-        <i className="text-2xl block">🏋️ GymPlan 🏋️</i>
+        <div className="absolute top-4 left-4 text-xl font-bold text-[#0ab5ee]">🏋️ GymPlan 🏋️</div>
 
-        <div className="mt-2 flex justify-between items-center">
-            <h1 className="text-[22px] font-bold text-[#119fd3]">Hello, {username}!!</h1>
+        <div className="absolute top-4 right-4 text-xl font-bold text-[#0ab5ee]">🏋️ Gymplan 🏋️</div>
 
-            {view === 'home' &&
 
-                <button className="text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2 transform duration-210 hover:scale-110"
-                    title="Edit your profile"
-                    type="button"
-                    onClick={handleCreateProfileClick}>Edit your profile
-                </button>}
+        <h1 className="mt-14 text-[24px] font-bold text-[#119fd3]">Hello, {username}!!</h1>
+
+        <div className="mt-6 flex justify-between gap-6 w-full max-w-md px-4">
+
+            {view === 'home' && (
+                <>
+                    <button className="flex-1 text-white bg-[#0ab5ee] font-medium rounded-xl px-4 py-2 hover:bg-[#099ecf] transition"
+                        title="Edit your profile"
+                        type="button"
+                        onClick={handleCreateProfileClick}>Edit your profile
+                    </button>
+                    <button className="flex-1 text-white bg-[#0ab5ee] font-medium rounded-xl px-4 py-2 hover:bg-[#099ecf] transition"
+                        title="Exit to Login"
+                        type="button"
+                        onClick={handleLogoutClick}>Logout
+                    </button>
+                </>
+            )}
+
         </div>
-        <button className="mt-2 text-white bg-[#0ab5ee] font-thin border-none rounded-[10px] cursor-pointer px-4 py-2 transform transition-transform duration-210 hover:scale-110"
-            title="Exit to Login"
-            type="button"
-            onClick={handleLogoutClick}>Logout
-        </button>
-        {view === 'profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
-        {view == 'create-profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
-        {view == 'home' && !selectDay && <Days onSelect={handleDaySelected}/>}
-        {view == 'home' && selectDay && <Workout day={selectDay} onBack={handleBackToDays}/>}
+
+        <div className="mt-8 w-full flex justify-center">
+            {view === 'profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
+            {view == 'create-profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
+            {view == 'home' && !selectDay && <Days onSelect={handleDaySelected} />}
+            {view == 'home' && selectDay && <Workout day={selectDay} onBack={handleBackToDays} />}
+
+        </div>
+
+
 
     </div>
 }
