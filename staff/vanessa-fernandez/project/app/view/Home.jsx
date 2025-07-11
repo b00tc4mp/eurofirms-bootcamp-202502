@@ -1,5 +1,6 @@
 import { use, useEffect, useState } from 'react'
 import { logic } from '../logic'
+import { ListUsers } from './components/ListUsers.jsx'
 import { CreateProfile } from './components/CreateProfile.jsx'
 import { Days } from './components/Days.jsx'
 import { Workout } from './components/Workout.jsx'
@@ -12,6 +13,8 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const [username, setUsername] = useState('World')
 
+    const [isAdmin, setIsAdmin] = useState(false)
+
     const [selectDay, setSelectDay] = useState(null)
 
     useEffect(() => {
@@ -20,7 +23,11 @@ export const Home = ({ onUserLoggedOut }) => {
                 .then(({ username, profileCompleted }) => {
                     setUsername(username)
 
-                    if (!profileCompleted) setView('profile')
+                    const admin = logic.isUserAdmin()
+                    setIsAdmin(admin)
+
+                    if (admin) setView('admin')
+                    else if (!profileCompleted) setView('profile')
                     else setView('home')
                 })
                 .catch(error => {
@@ -88,13 +95,11 @@ export const Home = ({ onUserLoggedOut }) => {
         <div className="mt-8 w-full flex justify-center">
             {view === 'profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
             {view == 'create-profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
+            {view ==='admin' && <ListUsers onUserSelected={(user) => console.log('Selected user: ', user)} />}
             {view == 'home' && !selectDay && <Days onSelect={handleDaySelected} />}
             {view == 'home' && selectDay && <Workout day={selectDay} onBack={handleBackToDays} />}
 
         </div>
-
-
-
     </div>
 }
 
