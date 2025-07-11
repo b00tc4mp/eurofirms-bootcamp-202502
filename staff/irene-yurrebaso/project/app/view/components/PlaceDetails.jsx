@@ -5,8 +5,8 @@ import { useContext } from '../../context'
 import { useState, useEffect } from 'react'
 
 //placeId es la variable q se pasa por props desde Home
-export const PlaceDetails = ({ placeId, onGoBackClicked }) => {
-    const { alert } = useContext()
+export const PlaceDetails = ({ placeId, onGoBackClicked, onPlaceDeleted }) => {
+    const { alert, confirm } = useContext()
 
     const [place, setPlace] = useState('')
 
@@ -25,6 +25,26 @@ export const PlaceDetails = ({ placeId, onGoBackClicked }) => {
 
     const handleGoBackClick = () => onGoBackClicked()
 
+    const handleDeleteClick = () => {
+        confirm('Delete this place?')
+            .then(result => {
+                if (result)
+                    try {
+                        logic.removePlace(place.id)
+                            .then(() => onPlaceDeleted())
+                            .catch(error => {
+                                console.error(error)
+
+                                alert(error.message)
+                            })
+                    } catch (error) {
+                        console.error(error)
+
+                        alert(error.message)
+                    }
+            })
+    }
+
 
     console.log('PlaceDetails -> render')
 
@@ -34,8 +54,8 @@ export const PlaceDetails = ({ placeId, onGoBackClicked }) => {
             <h2 className="text-2xl font-bold">{place.name}</h2>
             <p>
                 <span>{place.city}</span>
-                <span>-</span>
-                <span> {place.country}</span>
+                <span className="mx-1">-</span>
+                <span>{place.country}</span>
             </p>
 
             <p><span className="border-2 border-rose-800 rounded-xl px-2 my-2">Category: {place.category}</span></p>
@@ -48,8 +68,10 @@ export const PlaceDetails = ({ placeId, onGoBackClicked }) => {
 
             <h3 className="font-semibold">About</h3>
             <p className="font-light">{place.description}</p>
+
+            {place.own && 
+            <button className="border-b-1 cursor-pointer place-self-start" onClick={handleDeleteClick}>🗑️</button>
+            }
         </article>
     </div>
 }
-
-//añadir codigo para delete place by admin

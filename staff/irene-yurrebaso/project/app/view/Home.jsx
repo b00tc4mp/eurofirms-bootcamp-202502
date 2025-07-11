@@ -58,6 +58,8 @@ export const Home = ({ onUserLoggedOut }) => {
     }
 
     const handleGoBackClicked = () => setView('places')
+
+    const handlePlaceDeleted = () => setView('places')
     
     console.log('Home -> render')
 
@@ -67,7 +69,7 @@ export const Home = ({ onUserLoggedOut }) => {
             <i className="logo">Infinity Travel</i>
         </div>
         <div className="my-6">
-            <p className="flex my-1">Hello,<span className="font-semibold"> {username}</span>!<span><a className="underline text-blue-600 text-sm ml-4" href="#" onClick={handleLogoutClick}>Log out</a></span></p>
+            <p className="flex my-1">Hello,<span className="font-semibold ml-1">{username}</span>!<span><a className="underline text-blue-600 text-sm ml-4" href="#" onClick={handleLogoutClick}>Log out</a></span></p>
         </div>
 
         <div>
@@ -85,7 +87,9 @@ export const Home = ({ onUserLoggedOut }) => {
             {/*El primer placeId es la propiedad q se le pasa al componente PlaceDetails, y el segundo placeId es el q se coge del useState */}
             {view === 'place-details' && <PlaceDetails 
             placeId={placeId}
-            onGoBackClicked={handleGoBackClicked}/>}
+            onGoBackClicked={handleGoBackClicked}
+            onPlaceDeleted={handlePlaceDeleted} 
+            />}
         </div>
     </div>
 }

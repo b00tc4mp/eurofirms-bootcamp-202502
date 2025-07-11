@@ -12,7 +12,8 @@ import { SystemError, errors } from 'com'
  * website: string,
  * telephone: string,
  * image: string,
- * reviews: string[]
+ * reviews: string[],
+ * author: string
  * }
  */
 export const getPlaceDetails = (placeId) => {

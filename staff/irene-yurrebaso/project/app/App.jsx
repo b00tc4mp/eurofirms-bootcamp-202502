@@ -41,7 +41,7 @@ export const App = () => {
 
         alert(error.message)
     }
-    
+
     //handle para ventana 'alert'
     const handleAlertAccepted = () => setAlertMessage('')
 

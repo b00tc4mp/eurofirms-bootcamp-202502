@@ -15,7 +15,7 @@ export const getPlaces = userId => {
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
             
-            //.populate se usa para traer un dato que esta referenciado
+            //.populate se usa para traer un dato que esta referenciado. En este caso lo usamos para saber el autor del post 'place.own' y asi ofrecerle la opcion de eliminarlo
             return Place.find({}).select('name city description image').select('-__v').populate('author', '_id').sort('-dateCreated').lean()
                 .catch(error => { throw new SystemError('mongo error') })
                 .then(places => {
@@ -30,7 +30,7 @@ export const getPlaces = userId => {
                             delete place.author._id
                         }
 
-                        //da true o false
+                        //saber si autor del place es el usuario loginado: da true o false
                         place.own = place.author.id === userId
                     })
 

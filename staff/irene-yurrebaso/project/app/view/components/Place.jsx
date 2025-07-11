@@ -45,7 +45,7 @@ export const Place = ({ place, onPlaceClicked, onPlaceDeleted }) => {
         </div>
 
         <p className="font-light mt-3">{place.description}</p>
-
-        {place.own && <button className="border-b-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}
+        <div className="flex">{place.own && <button className="border-b-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}</div>
+        
     </article>
 }
