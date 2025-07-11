@@ -2,10 +2,12 @@ import { logic } from "../../logic";
 import { useState } from "react";
 import { EditUser } from "../EditUser";
 import { useContext } from "../../context/context";
-
+import { useAuth } from "../../context/AuthContext";
 export const User = ({ user, onUserDeleted, onReloadUser }) => {
   const [editUser, setEditUser] = useState(false);
   const { alert, confirm } = useContext();
+  const { loggedIn, rol: userRol } = useAuth();
+  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
   const handleEditedUser = () => {
     setEditUser(false);
     onReloadUser();
@@ -51,23 +53,23 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
           <span className="font-semibold">Register Date:</span> {new Date(user.registerDate).toLocaleString()}
         </p>
       </div>
-
-      <div className="mt-4 space-y-2">
-        <button
-          className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200"
-          onClick={() => setEditUser(true)}
-        >
-          Update User
-        </button>
-        <button
-          onClick={handleDeleteClick}
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
-        >
-          Delete User
-        </button>
-      </div>
-
-      {editUser && <EditUser user={user} onEditedUser={handleEditedUser} />}
+      {isAdmin && (
+        <div className="mt-4 space-y-2">
+          <button
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+            onClick={() => setEditUser(true)}
+          >
+            Update User
+          </button>
+          <button
+            onClick={handleDeleteClick}
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+          >
+            Delete User
+          </button>
+          {editUser && <EditUser user={user} onEditedUser={handleEditedUser} />}
+        </div>
+      )}
     </div>
   );
 };

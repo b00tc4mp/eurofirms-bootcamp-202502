@@ -1,21 +1,15 @@
 import { useState } from "react";
 import { logic } from "../logic";
 import { useNavigate } from "react-router";
-import { useAuth } from "../context/AuthContext";
+
 import { SearchProviders } from "./components/SearchProviders";
 
 export const AddProduct = () => {
   const navigate = useNavigate();
-  const { loggedIn, rol: userRol } = useAuth();
+
   const [selectedProviderId, setSelectedProviderId] = useState("");
   const [error, setError] = useState("");
 
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
-
-  if (!isAdmin) {
-    navigate("/unauthorized");
-    return null;
-  }
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
     const form = event.target;

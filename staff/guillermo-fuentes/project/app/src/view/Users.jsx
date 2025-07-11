@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { User } from "./components/User";
 import { useNavigate } from "react-router";
 import { useContext } from "../context/context";
+import { useAuth } from "../context/AuthContext";
 export const Users = () => {
   const [users, setUsers] = useState([]);
   //Usar useState para saber que valor está seleccionado en el desplegable
@@ -11,53 +12,48 @@ export const Users = () => {
 
   const roles = ["All users", "Administrators", "Clients", "Providers"];
   const { alert } = useContext();
-
+  const { isAdmin, currentUser } = useAuth();
   useEffect(() => {
-    if (role === "All users") {
-      try {
+    if (isAdmin) {
+      if (role === "All users") {
         logic
           .getUsers()
           .then((users) => {
-            console.log("users obteined");
             setUsers(users);
           })
           .catch((error) => {
             console.error(error);
             alert(error.message);
           });
-        console.log(users);
-      } catch (error) {
-        console.error(error);
-        alert(error.message);
-      }
-    } else {
-      try {
-        let roleToSend;
-        if (role === "Administrators") {
-          roleToSend = "administrator";
-        } else if (role === "Clients") {
-          roleToSend = "client";
-        } else if (role === "Providers") {
-          roleToSend = "provider";
-        }
+      } else {
+        const roleMap = {
+          Administrators: "administrator",
+          Clients: "client",
+          Providers: "provider",
+        };
+        const roleToSend = roleMap[role];
 
         logic
           .getUsersByRol(roleToSend)
           .then((users) => {
-            console.log("users obteined");
             setUsers(users);
           })
           .catch((error) => {
             console.error(error);
             alert(error.message);
           });
-        console.log(users);
-      } catch (error) {
-        console.error(error);
-        alert(error.message);
       }
+    } else if (currentUser) {
+      // Usuario normal: solo ve su usuario
+      logic
+        .getUserById(currentUser.id)
+        .then((user) => setUsers([user])) // array para mapearlo
+        .catch((error) => {
+          console.error(error);
+          alert(error.message);
+        });
     }
-  }, [role]);
+  }, [role, isAdmin, currentUser]);
 
   const handleUpadateUser = () => {
     try {
