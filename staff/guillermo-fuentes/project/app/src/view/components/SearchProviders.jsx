@@ -27,6 +27,7 @@ const handleSelectProvider = (provider)=>{
     setError("")
     setProviderSelect(true)
 };
+
 useEffect(()=>{
     if(query && !providerSelect){
         debouncedFetchSuggestions(query)

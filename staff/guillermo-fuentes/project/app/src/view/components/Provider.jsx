@@ -2,32 +2,33 @@ import { useState } from 'react';
 import { EditProvider } from '../EditProvider';
 import { logic } from '../../logic';
 import { useContext } from '../../context/context';
+
 export const Provider = ({ provider, onReloadProvider,onEditedProvider }) => {
-  const [editProvider, setEditProvider] = useState(false);
+const [editProvider, setEditProvider] = useState(false);
 const {alert,confirm}= useContext();
+
   const handleEditedProvider = () => {
     setEditProvider(false);
     onReloadProvider();
   };
-   const handleDeleteClick = () => {
-    if (confirm('¿Delete provider?')) {
-      try {
-        logic
-          .deleteProvider(provider.id)
-          .then(() => {
-            console.log('provider delete');
-            onEditedProvider();
-          })
-          .catch((error) => {
-            console.error(error);
-            alert(error.message);
-          });
-      } catch (error) {
-        console.error(error);
-        alert(error.message);
-      }
-    }
-  };
+
+  const handleDeleteClick = () => {
+    confirm("Delete product?")
+    .then(result=>{
+     if(result)
+       try {
+         logic.deleteProvider(provider.id)
+         .then(()=>onEditedProvider())
+         .catch(error=>{
+           console.error(error)
+           alert(error.message)
+         })
+       } catch (error) {
+         console.error(error)
+         alert(error.message)
+       }
+    })
+   };
   return (
     <>
       <div className="max-w-sm w-full bg-white border border-gray-200 rounded-2xl shadow-md p-6 m-4 hover:shadow-lg transition-shadow duration-300">

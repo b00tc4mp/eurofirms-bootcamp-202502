@@ -1,21 +1,19 @@
-
-import  { useState } from 'react';
-import { logic } from '../logic';
-import { useNavigate } from 'react-router';
-import { useAuth } from '../context/AuthContext';
-import { SearchUsers } from './components/SearchUsers';
+import { useState } from "react";
+import { logic } from "../logic";
+import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
+import { SearchUsers } from "./components/SearchUsers";
 
 export const AddProvider = () => {
   const navigate = useNavigate();
   const { loggedIn, rol: userRol } = useAuth();
-  const [selectedUserId, setSelectedUserId] = useState('');
-  const [error, setError] = useState('');
+  const [selectedUserId, setSelectedUserId] = useState("");
+  const [error, setError] = useState("");
 
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
 
-  // Redirigir si no es admin
   if (!isAdmin) {
-    navigate('/unauthorized');
+    navigate("/unauthorized");
     return null;
   }
 
@@ -28,7 +26,7 @@ export const AddProvider = () => {
     const contact = form.contact.value;
 
     if (!selectedUserId) {
-      const msg = 'Please select a user';
+      const msg = "Please select a user";
       setError(msg);
       return;
     }
@@ -37,12 +35,12 @@ export const AddProvider = () => {
       .addProvider(taxId, name, contact, address, selectedUserId)
       .then(() => {
         form.reset();
-        setSelectedUserId('');
-        setError('');
-        navigate('/providers');
+        setSelectedUserId("");
+        setError("");
+        navigate("/providers");
       })
       .catch((error) => {
-        const msg = error.message || 'Error creating provider';
+        const msg = error.message || "Error creating provider";
         setError(msg);
       });
   };
@@ -55,10 +53,7 @@ export const AddProvider = () => {
         </div>
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Add Provider</h1>
         <form className="space-y-4" onSubmit={handleRegisterSubmit}>
-          <SearchUsers
-            onSelectUserId={setSelectedUserId}
-            setError={setError}
-          />
+          <SearchUsers onSelectUserId={setSelectedUserId} setError={setError} />
           <div>
             <label htmlFor="taxId" className="block text-sm font-medium text-gray-700 mb-1">
               Tax Id

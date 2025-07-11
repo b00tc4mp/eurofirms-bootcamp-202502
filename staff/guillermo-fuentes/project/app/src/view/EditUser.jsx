@@ -1,6 +1,6 @@
-import { logic } from '../logic';
-import { useAuth } from '../context/AuthContext';
-import { useState } from 'react';
+import { logic } from "../logic";
+import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
 export const EditUser = ({ user, onEditedUser }) => {
   //Usamos estados para pasar el valor actual del campo y poder cambiar el valor usando value
@@ -8,7 +8,7 @@ export const EditUser = ({ user, onEditedUser }) => {
   const [fullName, setFullName] = useState(user.fullName);
   const [email, setEmail] = useState(user.email);
   const [address, setAddress] = useState(user.address);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState(user.role);
 
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
@@ -44,7 +44,7 @@ export const EditUser = ({ user, onEditedUser }) => {
       className="w-screen h-screen flex items-center justify-center  bg-opacity-25
  px-4 fixed inset-0  z-50"
     >
-      {' '}
+      {" "}
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
         <div className="flex justify-center mb-6 text-4xl text-blue-500">
           <i className="fas fa-user-plus"></i>
@@ -98,7 +98,7 @@ export const EditUser = ({ user, onEditedUser }) => {
           </div>
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-            Address
+              Address
             </label>
             <input
               type="text"

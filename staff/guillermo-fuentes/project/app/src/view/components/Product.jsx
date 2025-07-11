@@ -2,14 +2,17 @@ import { useState } from "react";
 import { logic } from "../../logic";
 import { EditProduct } from "../EditProduct";
 import { useContext } from "../../context/context";
+
 export const Product = ({product, onReloadProvider,onEditedProduct})=>{
 
-  const [editProduct, setEditProduct] = useState(false);
+const [editProduct, setEditProduct] = useState(false);
 const {alert,confirm}= useContext();
+
   const handleEditProduct = () => {
     setEditProduct(false);
     onReloadProvider();
   };
+
   const handleDeleteClick = () => {
    confirm("Delete product?")
    .then(result=>{

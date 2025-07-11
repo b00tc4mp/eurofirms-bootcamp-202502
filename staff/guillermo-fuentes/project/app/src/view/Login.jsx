@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router';
-import { logic } from '../logic';
-import { useAuth } from '../context/AuthContext';
+import { useNavigate } from "react-router";
+import { logic } from "../logic";
+import { useAuth } from "../context/AuthContext";
 export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const handleRegisterClick = () => navigate('/register');
+  const handleRegisterClick = () => navigate("/register");
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ export const Login = () => {
         .then(() => {
           form.reset();
           login();
-          navigate('/users');
+          navigate("/users");
         })
         .catch((error) => {
           console.error(error);

@@ -1,23 +1,24 @@
-import { logic } from '../logic';
-import { useEffect, useState } from 'react';
-import { User } from './components/User';
-import { useNavigate } from 'react-router';
-import { useContext } from '../context/context';
+import { logic } from "../logic";
+import { useEffect, useState } from "react";
+import { User } from "./components/User";
+import { useNavigate } from "react-router";
+import { useContext } from "../context/context";
 export const Users = () => {
   const [users, setUsers] = useState([]);
   //Usar useState para saber que valor está seleccionado en el desplegable
-  const [role, setRol] = useState('All users');
+  const [role, setRol] = useState("All users");
   const navigate = useNavigate();
 
-  const roles = ['All users', 'Administrators', 'Clients',"Providers"];
+  const roles = ["All users", "Administrators", "Clients", "Providers"];
   const { alert } = useContext();
+
   useEffect(() => {
-    if (role === 'All users') {
+    if (role === "All users") {
       try {
         logic
           .getUsers()
           .then((users) => {
-            console.log('users obteined');
+            console.log("users obteined");
             setUsers(users);
           })
           .catch((error) => {
@@ -32,18 +33,18 @@ export const Users = () => {
     } else {
       try {
         let roleToSend;
-        if (role === 'Administrators') {
-          roleToSend = 'administrator';
-        } else if (role === 'Clients') {
-          roleToSend = 'client';
-        }else if (role === 'Providers') {
-          roleToSend = 'provider';
+        if (role === "Administrators") {
+          roleToSend = "administrator";
+        } else if (role === "Clients") {
+          roleToSend = "client";
+        } else if (role === "Providers") {
+          roleToSend = "provider";
         }
 
         logic
           .getUsersByRol(roleToSend)
           .then((users) => {
-            console.log('users obteined');
+            console.log("users obteined");
             setUsers(users);
           })
           .catch((error) => {
@@ -74,9 +75,11 @@ export const Users = () => {
       alert(error.message);
     }
   };
+
   const handleRoleChange = (event) => {
     setRol(event.target.value);
   };
+
   return (
     <div className="flex flex-col items-center mt-8 px-4">
       {/* Desplegable */}
@@ -95,7 +98,7 @@ export const Users = () => {
 
         <button
           className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300"
-          onClick={() => navigate('/register')}
+          onClick={() => navigate("/register")}
         >
           <i className="fa fa-plus"></i>
           Register

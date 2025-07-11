@@ -1,8 +1,8 @@
-import { logic } from '../logic';
-import { useState, } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { SearchUsers } from './components/SearchUsers';
-import { useContext } from '../context/context';
+import { logic } from "../logic";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { SearchUsers } from "./components/SearchUsers";
+import { useContext } from "../context/context";
 
 export const EditProvider = ({ provider, onEditedProvider }) => {
   const { loggedIn, rol: userRol } = useAuth();
@@ -11,11 +11,11 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
   const [address, setAddress] = useState(provider.address);
   const [userFullName, setUserFullName] = useState(provider.user.fullName);
   const [selectedUserId, setSelectedUserId] = useState(provider.user.id);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
   const handleEditProvider = () => onEditedProvider();
-  const {alert}= useContext();
+  const { alert } = useContext();
 
   const handleEditSubmit = (event) => {
     event.preventDefault();
@@ -25,8 +25,8 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
     const address = form.address.value;
 
     if (isAdmin && !selectedUserId) {
-      setError('Please select a user');
-      alert('Please select a user');
+      setError("Please select a user");
+      alert("Please select a user");
       return;
     }
     try {
@@ -34,8 +34,8 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
         .updateProvider(provider.id, name, contact, address, selectedUserId)
         .then(() => {
           form.reset();
-         
-          setError('');
+
+          setError("");
           handleEditProvider();
         })
         .catch((error) => {
@@ -46,7 +46,6 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
       alert(error.message);
     }
   };
-
 
   return (
     <div
@@ -91,7 +90,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
           </div>
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-            Address
+              Address
             </label>
             <input
               type="text"
@@ -120,12 +119,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
               readOnly
             />
           </div>
-          {isAdmin && (
-           <SearchUsers
-                      onSelectUserId={setSelectedUserId}
-                      setError={setError}
-                    />
-          )}
+          {isAdmin && <SearchUsers onSelectUserId={setSelectedUserId} setError={setError} />}
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
