@@ -1,4 +1,4 @@
-import { createContext, useContext as useContexsReact } from 'react'
+import { createContext, useContext as useContextReact } from 'react'
 
 export const Context = createContext()
 

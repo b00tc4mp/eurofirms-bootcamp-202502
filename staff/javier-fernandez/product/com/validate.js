@@ -1,6 +1,6 @@
 import { ValidationError } from './errors.js'
 
-export const Validate = { 
+export const validate = { 
     name(name) {
         if (typeof name !== 'string') throw new ValidationError('invalid name type')
         if (name.length < 1) throw new ValidationError('invalid name min  length')

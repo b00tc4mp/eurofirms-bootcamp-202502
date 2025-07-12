@@ -1,5 +1,5 @@
 import { data } from '../data'
-
+import { validate, SystemError, errors } from 'com'
 /**
  * Logs a user in the system.
  * 
@@ -7,8 +7,8 @@ import { data } from '../data'
  * @param {string} password The user password.
  */
 export const loginUser = (username, password) => {
-    Validate.username(username)
-    Validate.password(password)
+    validate.username(username)
+    validate.password(password)
 
  return fetch(import.meta.env.VITE_API_URL + '/users/auth', {
     method: 'POST',

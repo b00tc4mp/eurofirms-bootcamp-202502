@@ -1,5 +1,5 @@
 import { data } from '../data'
-import { Validate, SystemError, errors } from 'com'
+import { validate, SystemError, errors } from 'com'
 /**
  * creates a post.
  * 
@@ -7,8 +7,8 @@ import { Validate, SystemError, errors } from 'com'
  * @param {string} text the post text.
  */
  export const createPost = (image, text) => {
-    Validate.image(image)
-    Validate.text(text)
+    validate.image(image)
+    validate.text(text)
     
         return fetch(import.meta.env.VITE_API_URL + '/posts', {
             method: 'POST',
