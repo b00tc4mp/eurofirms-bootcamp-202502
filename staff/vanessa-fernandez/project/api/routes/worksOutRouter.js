@@ -61,3 +61,23 @@ workoutsRouter.get('/admin', (request, response, next) => {
         next(error)
     }
 })
+
+workoutsRouter.delete('/:workoutId', (request, response, next) => {
+    try {
+        const authorization = request.headers.authorization
+        const token = authorization.slice(7)
+
+        const { sub: userId, role } = jwt.verify(token, JWT_SECRET)
+
+        if (role !== 'admin')
+            throw new AuthorizationError('not allowed')
+
+        const { workoutId } = request.params
+
+        logic.removeWorkout(userId, workoutId)
+            .then(() => response.status(204).send())
+            .catch(error => next(error))
+    } catch (error) {
+        next(error)
+    }
+})
