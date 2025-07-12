@@ -5,18 +5,18 @@ import jwt from 'jsonwebtoken'
 
 const { JWT_SECRET } = process.env
 
-export const postsRouter = Router()
+export const routinesRouter = Router()
 
-postsRouter.post('/', jsonBodyParser, (request, response, next) => {
+routinesRouter.post('/', jsonBodyParser, (request, response, next) => {
     try {
         const authorization = request.headers.authorization
         const token = authorization.slice(7)
 
         const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        const { image, text } = request.body
+        const { title, description } = request.body
 
-        logic.createPost(userId, image, text)
+        logic.createRoutine(userId, title, description)
             .then(() => response.status(201).send())
             .catch(error => next(error))
     }   catch (error) {
@@ -24,31 +24,31 @@ postsRouter.post('/', jsonBodyParser, (request, response, next) => {
     }
 })
 
-postsRouter.get('/', (request, response, next) => {
+routinesRouter.get('/', (request, response, next) => {
     try {
         const authorization = request.headers.authorization
         const token = authorization.slice(7)
 
         const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        logic.getPosts(userId)
-            .then(posts => response.status(200).json(posts))
+        logic.getRoutines(userId)
+            .then(routines => response.status(200).json(routines))
             .catch(error => next(error))
     }   catch (error) {
         next(error)
     }
 })
 
-postsRouter.delete('/:postId', (request, response, next) => {
+routinesRouter.delete('/:routineId', (request, response, next) => {
     try {
         const authorization = request.headers.authorization
         const token = authorization.slice(7)
 
         const { sub:userId } = jwt.verify(token, JWT_SECRET)
 
-        const { postId } = request.params
+        const { routineId } = request.params
 
-        logic.removePost(userId, postId)
+        logic.removeRoutine(userId, routineId)
             .then(() => response.status(204).send())
             .catch(error => next(error))
     }   catch (error) {

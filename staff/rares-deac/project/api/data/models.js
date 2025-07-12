@@ -34,28 +34,28 @@ const user = new Schema({
     }
 })
 
-const post = new Schema({
+const routine = new Schema({
     author: {
         type: ObjectId,
         ref: 'User',
         required: true
     },
 
-    image: {
+    title: {
         type: String,
         required: true
     },
     
-    text: {
+    description: {
         type: String,
         required: true
     }
 })
 
 const User = model('User', user)
-const Post = model('Post', post)
+const Routine = model('Routine', routine)
 
 export {
     User,
-    Post
+    Routine
 }

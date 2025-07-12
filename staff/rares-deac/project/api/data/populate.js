@@ -1,14 +1,14 @@
 import mongoose from 'mongoose'
-import { User, Post} from './models.js'
+import { User, Routine} from './models.js'
 
 const { connect, disconnect } = mongoose
 
 connect('mongodb://localhost:27017/YourFitStyle')
     .then(() => {
 
-        return Post.find({})
+        return Routine.find({})
             .catch(error => { throw new Error(error.message) })
-            .then(posts => console.log('posts', posts))
+            .then(routines => console.log('routines', routines))
 
     })
     .catch(error => console.error(error))

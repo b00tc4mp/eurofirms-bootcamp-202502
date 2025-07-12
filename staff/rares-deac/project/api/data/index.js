@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { User, Post } from './models.js'
+import { User, Routine } from './models.js'
 
 const { connect, disconnect } = mongoose
 
@@ -8,5 +8,5 @@ export {
     disconnect,
 
     User,
-    Post
+    Routine
 }

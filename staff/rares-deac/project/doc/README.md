@@ -85,17 +85,18 @@ Regular (User)
     -username (string, required, unique)
     - password( string, required)
 
-    Exercise 
+
+    Routine
+    -id (UUID)
+    -author (User.id, required)
+    -title (string, required)
+    -description (string, required)
+
+    Exercise (v 0.1)
     - id (UUID)
     - Category (string, required)
     - Name (string, required)
     - Description (string)
-
-    Routine
-    -id (UUID)
-    -name (string, required)
-    -Author (UserId, required)
-
 
 ### Technologies
 

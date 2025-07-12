@@ -30,17 +30,18 @@ export const validate = {
         if (userId.length !== 24) throw new ValidationError('invalid userId length')
     },
 
-    image(image) {
-        if (typeof image !== 'string') throw new ValidationError('invalid image type')
+    title(title) {
+        if (typeof title !== 'string') throw new ValidationError('invalid title type')
+        if (title.length < 1) throw new ValidationError ('invalid title length')
     },
 
-    text(text) {
-        if (typeof text !== 'string') throw new ValidationError('invalid text type')
-        if (text.length < 1) throw new ValidationError('invalid min text length')
+    description(description) {
+        if (typeof description !== 'string') throw new ValidationError('invalid description type')
+        if (description.length < 5) throw new ValidationError('invalid min description length')
     },
 
-    postId(postId) {
-        if (typeof postId !== 'string') throw new ValidationError('invalid postId type')
-        if (postId.length !== 24) throw new ValidationError('invalid postId length')
+    routineId(routineId) {
+        if (typeof routineId !== 'string') throw new ValidationError('invalid routineId type')
+        if (routineId.length !== 24) throw new ValidationError('invalid routineId length')
     }
 }

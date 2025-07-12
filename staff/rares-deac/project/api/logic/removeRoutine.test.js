@@ -1,14 +1,14 @@
 import { connect, disconnect } from '../data/index.js'
-import { getPosts } from './getPosts.js'
+import { removeRoutine } from './removeRoutine.js'
 
 connect('mongodb://localhost:27017/YourFitStyle')
     .then(() => {
         try {
-            return getPosts('686cedebae501c877892f051')
-                .then(posts => console.log('posts', posts))
+            return removeRoutine('686cedebae501c877892f051','6872396ec6b7cbdbaa622544')
+                .then(() => console.log('routine removed'))
                 .catch(error => console.error(error))
         } catch (error) {
-            console.error(error) 
+            console.error(error)
         }
     })
     .catch(error => console.error(error))
