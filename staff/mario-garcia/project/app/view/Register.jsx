@@ -51,35 +51,27 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         <form className="mt-2 flex flex-col gap-4" onSubmit={handleRegisterSubmit}>
 
             <div className="flex flex-col gap">
-
                 <label htmlFor="name" className="text-xl text-blue-500 font-semibold">Name:</label>
 
                 <input className="my-2 border-2 px-1 rounded-md bg-blue-100 border-blue-300 py-1" type="text" id="name" name="name" placeholder="Your full name" />
-
             </div>
 
             <div className="flex flex-col gap">
-
                 <label htmlFor="email" className="text-xl text-blue-500 font-semibold">Email:</label>
 
                 <input className="my-2 border-2 px-1 rounded-md bg-blue-100 border-blue-300 py-1" type="email" name="email" id="email" placeholder="Your e-mail" />
-
             </div>
 
             <div className="flex flex-col gap">
-
                 <label htmlFor="username" className="text-xl text-blue-500 font-semibold">Username:</label>
 
                 <input className="my-2 border-2 px-1 rounded-md bg-blue-100 border-blue-300 py-1" type="text" name="username" id="username" placeholder="Your Username" />
-
             </div>
 
             <div className="flex flex-col gap-10px">
-
                 <label htmlFor="password" className="text-xl text-blue-500 font-semibold">Password:</label>
 
                 <input className="my-2 border-2 px-1 rounded-md bg-blue-100 border-blue-300 py-1" type="password" name="password" id="password" placeholder="Introduce a password" />
-
             </div>
 
             <div className="my-2 flex justify-between">

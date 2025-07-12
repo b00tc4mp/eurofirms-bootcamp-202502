@@ -14,11 +14,16 @@ Regular (User)
 - Search information
 - Share any experience
 - Value trearments and doctors
-- Request information to the Post's Owner
-- Report any false post
+- Request information to the experience's Owner
+- Report any false experience
+
+[v0.1]
 - Block users
 
-Admin (User) [v0.1]
+Admin (User) 
+- Remove any experience
+
+[v0.1]
 - Lock and Unlock to any user
 - View reports
 
@@ -71,7 +76,7 @@ User
 * password (string, required)
 * role (string, values: regular | admin, required  )
 
-Review
+Experience
 * id (UUID)
 * author (User.id)
 * date (string, required)
