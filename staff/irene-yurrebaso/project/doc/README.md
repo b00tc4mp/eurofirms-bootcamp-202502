@@ -78,6 +78,7 @@ User
 - username (string, required)
 - email (string, required, unique)
 - password (string, required)
+- role (string, values: regular | admin, required)
 
 Place
 - id (UUID)
@@ -86,11 +87,11 @@ Place
 - country (string, required)
 - city (string, required)
 - address (string, required)
-- website (string)
+- website (string, required)
 - telephone (string)
 - description (string, required)
-- image (string)
-- data creation (date)
+- image (string, required)
+- data creation (date, required)
 
 [v0.1]
 - rating (number) [v0.1]
