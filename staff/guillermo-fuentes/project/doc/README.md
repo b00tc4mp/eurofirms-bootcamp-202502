@@ -9,7 +9,7 @@ proyecto pretende facilitar la administracion de usuarios de manera que sea faci
 
 ### Use Cases
 
-Regular (User)
+Regular (User) [v0.1]
 
 - Modify own information 🎆
 
@@ -38,7 +38,7 @@ Regular (User)
 
 - Edit products 🎆
 
-  Provider
+  Provider [v0.1]
 
 - Create products 🎆
 
