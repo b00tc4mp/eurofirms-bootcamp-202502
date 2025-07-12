@@ -7,23 +7,24 @@ export const SearchUsers = ({ onSelectUserId, setError = () => {} }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [userSelected, setUserSelected] = useState(false);
 
-/*UseMemo es un hook de react que sirve para memorizar el resultado de una operacion costosa esto evita
+  /*UseMemo es un hook de react que sirve para memorizar el resultado de una operacion costosa esto evita
  que se vuelva a ejecutar innecesariamente en cada renderizado, a menos que sus dependencias cambien.
 */
-
-
-const debouncedFetchSuggestions = useMemo(() =>
-  debounce((query) => {
-    logic.getUsersSuggestions(query)
-      .then((users) => {
-        setSuggestions(users);
-      })
-      .catch((error) => {
-        setError(error);
-        alert(error.message);
-      });
-  }, 300),
-[]); 
+  const debouncedFetchSuggestions = useMemo(
+    () =>
+      debounce((query) => {
+        logic
+          .getUsersSuggestions(query)
+          .then((users) => {
+            setSuggestions(users);
+          })
+          .catch((error) => {
+            setError(error);
+            alert(error.message);
+          });
+      }, 300),
+    []
+  );
 
   const handleSelectUser = (user) => {
     setQuery(user.fullName);

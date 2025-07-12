@@ -1,6 +1,5 @@
 import { logic } from "../logic";
 import { useState } from "react";
-
 import { useRole } from "../hooks/useRole";
 import { SearchProviders } from "./components/SearchProviders";
 import { useContext } from "../context/context";
@@ -29,11 +28,13 @@ export const EditProduct = ({ product, onEditedProduct }) => {
     const price = parseInt(form.price.value);
     const stock = parseInt(form.stock.value);
     const image = form.image.value;
+
     if (isAdmin && !selectedProviderId) {
       setError("Please select a provider");
       alert("Please select a provider");
       return;
     }
+
     try {
       logic
         .updateProduct(product.id, name, description, price, stock, image, selectedProviderId)
@@ -50,6 +51,7 @@ export const EditProduct = ({ product, onEditedProduct }) => {
       alert(error.message);
     }
   };
+
   return (
     <div
       className="w-screen h-screen flex items-center justify-center  bg-opacity-25

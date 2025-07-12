@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useLoggedIn } from "../../hooks/useLoggedIn";
 import { logic } from "../../logic";
 import { useRole } from "../../hooks/useRole";
+
 export const Navbar = () => {
   const navigate = useNavigate();
   const loggedIn = useLoggedIn();
@@ -17,6 +18,7 @@ export const Navbar = () => {
       alert(error.message);
     }
   };
+
   const { isAdmin } = useRole();
   const toggleSidebar = () => setIsOpen(!isOpen);
 

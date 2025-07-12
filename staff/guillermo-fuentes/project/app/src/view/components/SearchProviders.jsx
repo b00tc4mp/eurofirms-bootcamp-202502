@@ -1,46 +1,49 @@
-import { useState,useEffect,useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { logic } from "../../logic";
 import debounce from "lodash/debounce";
 
-export const SearchProviders = ({onSelectProviderId,setError=()=>{}})=>{
-const [query,setQuery] = useState("")
-const [suggestions,setSuggestions]=useState([])
-const [providerSelect, setProviderSelect]= useState(false)
+export const SearchProviders = ({ onSelectProviderId, setError = () => {} }) => {
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [providerSelect, setProviderSelect] = useState(false);
 
-const debouncedFetchSuggestions = useMemo(() =>
-  debounce((query) => {
-    logic.getProvidersSuggestions(query)
-      .then((providers) => {
-        setSuggestions(providers);
-      })
-      .catch((error) => {
-        setError(error);
-        alert(error.message);
-      });
-  }, 300),
-[]); 
+  const debouncedFetchSuggestions = useMemo(
+    () =>
+      debounce((query) => {
+        logic
+          .getProvidersSuggestions(query)
+          .then((providers) => {
+            setSuggestions(providers);
+          })
+          .catch((error) => {
+            setError(error);
+            alert(error.message);
+          });
+      }, 300),
+    []
+  );
 
-const handleSelectProvider = (provider)=>{
-    setQuery(provider.name)
-    onSelectProviderId(provider._id)
-    setSuggestions([])
-    setError("")
-    setProviderSelect(true)
-};
+  const handleSelectProvider = (provider) => {
+    setQuery(provider.name);
+    onSelectProviderId(provider._id);
+    setSuggestions([]);
+    setError("");
+    setProviderSelect(true);
+  };
 
-useEffect(()=>{
-    if(query && !providerSelect){
-        debouncedFetchSuggestions(query)
-    }else{
-        setSuggestions([])
-        setError("")
+  useEffect(() => {
+    if (query && !providerSelect) {
+      debouncedFetchSuggestions(query);
+    } else {
+      setSuggestions([]);
+      setError("");
     }
-    return ()=>{
-        debouncedFetchSuggestions.cancel();
-    }
-},[query])
+    return () => {
+      debouncedFetchSuggestions.cancel();
+    };
+  }, [query]);
 
-return (
+  return (
     <div>
       <label htmlFor="userSearch" className="block text-sm font-medium text-gray-700 mb-1">
         Providers

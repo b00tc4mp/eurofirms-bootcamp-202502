@@ -9,8 +9,8 @@ export const Providers = () => {
   const [providers, setProviders] = useState([]);
   const navigate = useNavigate();
   const { alert } = useContext();
-
   const { isAdmin } = useRole();
+
   useEffect(() => {
     try {
       logic

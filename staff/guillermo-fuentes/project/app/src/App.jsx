@@ -21,7 +21,6 @@ export const App = () => {
   const [confirmMessage, setConfirmMessage] = useState("");
   const [confirmAction, setConfirmAction] = useState(null);
   const loggedIn = useLoggedIn();
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,6 +43,7 @@ export const App = () => {
       alert(error.message);
     }
   }, [navigate, location.pathname]);
+
   const handleAlertAccepted = () => setAlertMessage("");
 
   const handleAcceptConfirm = () => {

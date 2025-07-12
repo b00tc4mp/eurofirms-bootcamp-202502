@@ -11,7 +11,6 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
   const [userFullName, setUserFullName] = useState(provider.user.fullName);
   const [selectedUserId, setSelectedUserId] = useState(provider.user.id);
   const [error, setError] = useState("");
-
   const { isAdmin } = useRole();
 
   const handleEditProvider = () => onEditedProvider();
@@ -29,6 +28,7 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
       alert("Please select a user");
       return;
     }
+
     try {
       logic
         .updateProvider(provider.id, name, contact, address, selectedUserId)

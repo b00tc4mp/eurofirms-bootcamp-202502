@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { logic } from "../logic";
 import { useNavigate } from "react-router";
-
 import { SearchUsers } from "./components/SearchUsers";
 
 export const AddProvider = () => {
   const navigate = useNavigate();
-
   const [selectedUserId, setSelectedUserId] = useState("");
   const [error, setError] = useState("");
 

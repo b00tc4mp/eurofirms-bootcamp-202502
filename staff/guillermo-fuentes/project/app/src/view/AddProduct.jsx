@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { logic } from "../logic";
 import { useNavigate } from "react-router";
-
 import { SearchProviders } from "./components/SearchProviders";
 
 export const AddProduct = () => {
@@ -24,6 +23,7 @@ export const AddProduct = () => {
       setError(msg);
       return;
     }
+
     logic
       .addProduct(name, description, price, stock, image, selectedProviderId)
       .then(() => {

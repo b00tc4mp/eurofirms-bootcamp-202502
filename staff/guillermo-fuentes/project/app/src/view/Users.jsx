@@ -47,7 +47,6 @@ export const Users = () => {
           });
       }
     } else if (currentUser) {
-      // Usuario normal: solo ve su usuario
       logic
         .getUserById(currentUser)
         .then((user) => setUsers([user]))

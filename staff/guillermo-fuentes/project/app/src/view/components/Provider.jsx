@@ -5,15 +5,18 @@ import { useContext } from "../../context/context";
 import { useLoggedIn } from "../../hooks/useLoggedIn";
 import { useRole } from "../../hooks/useRole";
 import { useNavigate } from "react-router";
+
 export const Provider = ({ provider, onReloadProvider, onEditedProvider }) => {
   const [editProvider, setEditProvider] = useState(false);
   const navigate = useNavigate();
   const { alert, confirm } = useContext();
   const loggedIn = useLoggedIn();
   const { isAdmin } = useRole();
+
   if (!isAdmin) {
     navigate("/home");
   }
+
   const handleEditedProvider = () => {
     setEditProvider(false);
     onReloadProvider();

@@ -3,7 +3,6 @@ import { logic } from "../logic";
 
 export const Login = () => {
   const navigate = useNavigate();
-
   const handleRegisterClick = () => navigate("/register");
 
   const handleLoginSubmit = (event) => {

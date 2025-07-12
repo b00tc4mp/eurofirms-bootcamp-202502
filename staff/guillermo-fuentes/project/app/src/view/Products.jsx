@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useContext } from "../context/context";
 import { Product } from "./components/Product";
-
 import { useRole } from "../hooks/useRole";
+
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { alert } = useContext();
-
   const { isAdmin, isProvider } = useRole();
+
   useEffect(() => {
     try {
       logic

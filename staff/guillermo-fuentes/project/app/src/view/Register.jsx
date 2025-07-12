@@ -1,9 +1,9 @@
 import { logic } from "../logic";
 import { useNavigate } from "react-router";
 import { useRole } from "../hooks/useRole";
+
 export const Register = () => {
   const navigate = useNavigate();
-
   const { isAdmin } = useRole();
 
   const handleLoginClick = (event) => {

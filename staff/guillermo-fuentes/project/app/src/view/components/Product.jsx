@@ -4,12 +4,14 @@ import { EditProduct } from "../EditProduct";
 import { useContext } from "../../context/context";
 import { useLoggedIn } from "../../hooks/useLoggedIn";
 import { useRole } from "../../hooks/useRole";
+
 export const Product = ({ product, onReloadProvider, onEditedProduct }) => {
   const [editProduct, setEditProduct] = useState(false);
   const { alert, confirm } = useContext();
 
   const loggedIn = useLoggedIn();
   const { isAdmin, isProvider } = useRole();
+
   const handleEditProduct = () => {
     setEditProduct(false);
     onReloadProvider();

@@ -1,10 +1,8 @@
 import { logic } from "../logic";
-
 import { useState } from "react";
 import { useRole } from "../hooks/useRole";
-export const EditUser = ({ user, onEditedUser }) => {
-  //Usamos estados para pasar el valor actual del campo y poder cambiar el valor usando value
 
+export const EditUser = ({ user, onEditedUser }) => {
   const [fullName, setFullName] = useState(user.fullName);
   const [email, setEmail] = useState(user.email);
   const [address, setAddress] = useState(user.address);
