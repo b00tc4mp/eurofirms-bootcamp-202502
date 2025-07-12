@@ -102,6 +102,19 @@ export const Home = ({ onUserLoggedOut }) => {
                 </>
             )}
 
+            {view === 'admin' && (
+                <div className="mt-6 flex justify-end gap-6 w-full max-w-md px-4">
+                    <button
+                        className="text-white bg-[#0ab5ee] font-medium rounded-xl px-4 py-2 hover:bg-[#099ecf] transition"
+                        title="Exit to Login"
+                        type="button"
+                        onClick={handleLogoutClick}
+                    >
+                        Logout
+                    </button>
+                </div>
+            )}
+
         </div>
 
         <div className="mt-8 w-full flex justify-center">

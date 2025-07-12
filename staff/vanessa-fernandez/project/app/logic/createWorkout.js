@@ -1,7 +1,8 @@
 import { data } from '../data'
 import { validate, SystemError, errors } from 'com'
 
-export const createWorkout = (day, exercises) => {
+export const createWorkout = (userId, day, exercises) => {
+    validate.userId(userId)
     validate.day(day)
 
     exercises.forEach(({ exerciseId, sets, repetitions, restTime }) => {
