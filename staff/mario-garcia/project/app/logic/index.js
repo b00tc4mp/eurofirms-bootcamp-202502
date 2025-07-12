@@ -3,6 +3,8 @@ import { loginUser } from './loginUser'
 import { getUserUsername } from './getUserUserName'
 import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
+import { isUserAdministrator } from './isUserAdministrator'
+
 import { getPosts } from './getPosts'
 import { createPost } from './createPost'
 import { removePost } from './removePost'
@@ -13,6 +15,8 @@ export const logic = {
     getUserUsername,
     logoutUser,
     isUserLoggedIn,
+    isUserAdministrator,
+
     getPosts,
     createPost,
     removePost

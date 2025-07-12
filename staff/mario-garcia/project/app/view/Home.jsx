@@ -3,8 +3,11 @@ import { logic } from '../logic'
 import { Posts } from './components/Posts'
 import { CreatePost } from './components/CreatePost'
 import { useContext } from '../context'
+import { useNavigate } from 'react-router'
 
 export const Home = ({ onUserLoggedOut }) => {
+
+    const navigate = useNavigate()
 
     const { alert } = useContext()//I am using a CONTEXT = TOOL which let me to have COMPONENTS ACTIVE // To access Information
 
@@ -16,7 +19,12 @@ export const Home = ({ onUserLoggedOut }) => {
 
         try {
             logic.getUserUsername()
-                .then(username => setUsername(username))
+                .then(username => {
+
+                    setUsername(username)
+
+                    navigate('/posts')
+                })
                 .catch(error => {
                     console.error(error)
 
@@ -50,32 +58,25 @@ export const Home = ({ onUserLoggedOut }) => {
 
     console.log('Home -> render')
 
-    return <div className="p-5 grid">
-
+    return <>
         <i className="text-2xl text-blue-900 font-extrabold">ACONPP</i>
 
         <div className="mt-2">
-
             <h1 className="text-3xl text-blue-700 font-bold py-2">HOME Page</h1>
 
             <h2 className="text-xl text-blue-600 font-semibold py-2">Hello, {username}!</h2>
 
-            <div className="my-2 flex justify-start">
+            <div className="my-2 flex justify-between">
+                <button className="border-2 rounded-md bg-blue-50 text-blue-900 px-2 font-medium cursor-pointer"
+                    type="button"
+                    onClick={handleCreatePostClick}
+                >+</button>
 
                 <button className="border-2 rounded-md bg-blue-50 text-blue-900 px-2 font-medium cursor-pointer"
                     type="button"
                     onClick={handleLogoutClick}
-
                 >Logout</button>
-
-                <button className="border-2 rounded-md bg-blue-50 text-blue-900 px-2 font-medium mx-75 cursor-pointer"
-                    type="button"
-                    onClick={handleCreatePostClick}
-
-                >+</button>
-
             </div>
-
         </div>
 
         {view === 'posts' && <Posts alert={alert} confirm={confirm} />}
@@ -84,7 +85,5 @@ export const Home = ({ onUserLoggedOut }) => {
             onCancelClicked={handleCreatePostCancelClicked}
             onPostCreated={handlePostCreated}
         />}
-
-    </div>
-
+    </>
 }

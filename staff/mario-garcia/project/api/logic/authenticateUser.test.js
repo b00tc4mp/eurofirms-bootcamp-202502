@@ -5,7 +5,7 @@ connect('mongodb://localhost:27017/test-aconpp')
     .then(() => {
         try {
             return authenticateUser('spiderman', '123123123')
-                .then(userId => console.log('user authenticated', userId))
+                .then(user => console.log('user authenticated', user))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

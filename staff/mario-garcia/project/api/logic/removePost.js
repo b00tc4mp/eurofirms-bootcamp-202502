@@ -22,7 +22,7 @@ export const removePost = (userId, postId) => {
                 .then(post => {
                     if (!post) throw new NotFoundError('post not found')
 
-                    if (post.author.toString() !== userId) throw new AuthorshipError('user not author of post')
+                    if (user.role !== 'admin' && post.author.toString() !== userId) throw new AuthorshipError('user not author of post')
 
                     return Post.deleteOne({ _id: postId })
                         .catch(error => { throw new SystemError('mongo error') })

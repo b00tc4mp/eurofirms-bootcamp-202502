@@ -43,8 +43,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
 
     console.log('Register -> render')
 
-    return <div className="p-5">
-
+    return <>
         <i className="text-2xl font-extrabold text-blue-900">ACONPP</i>
 
         <h1 className="text-3xl text-blue-700 font-bold py-2">REGISTER Page</h1>
@@ -84,15 +83,10 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
             </div>
 
             <div className="my-2 flex justify-between">
-
                 <button className="border-2 rounded-md bg-blue-50 text-blue-900 px-2 font-medium cursor-pointer" type="button" onClick={handleLoginClick}>Login</button>
 
                 <button className="border-2 rounded-md bg-orange-50 text-blue-900 px-2 font-medium cursor-pointer" type="submit">Register</button>
-
             </div>
-
         </form>
-
-    </div>
-
+    </>
 }

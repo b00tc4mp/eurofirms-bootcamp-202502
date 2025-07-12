@@ -14,7 +14,6 @@ import { validate, SystemError, errors } from 'com'
 //VERIFY that the validations are correct.
 
 export const createPost = (image, doctor, treatment, city, experience) => {//I am adding all data as parameters ON MY APP
-
     validate.image(image)
     validate.doctor(doctor)
     validate.treatment(treatment)

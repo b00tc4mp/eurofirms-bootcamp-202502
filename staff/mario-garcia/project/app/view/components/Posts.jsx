@@ -46,7 +46,7 @@ export const Posts = () => {
     console.log('Posts -> render')
 
     //Here I am SHOWING all Post One by One
-    return <>
+    return <div className="flex flex-col justify-center w-full">
         {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handlePostDeleted} />)}
-    </>
+    </div>
 }

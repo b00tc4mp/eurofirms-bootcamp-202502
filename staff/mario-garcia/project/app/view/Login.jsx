@@ -46,8 +46,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
     console.log('Login -> render')
 
-    return <div className="p-5">
-
+    return <>
         <i className="text-2xl font-extrabold text-blue-900">ACONPP</i>
 
         <h1 className="text-3xl text-blue-700 font-bold py-2">LOGIN Page</h1>
@@ -55,30 +54,22 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         <form className="mt-2 flex flex-col gap-4" onSubmit={handleLoginSubmit}>
 
             <div className="flex flex-col gap">
-
                 <label htmlFor="username" className="text-xl text-blue-500 font-semibold">Username:</label>
 
                 <input className="my-2 border-2 px-1 rounded-md bg-blue-100 py-1 border-blue-300" type="text" name="username" id="username" placeholder="Your Username" />
-
             </div>
 
             <div className="flex flex-col gap">
-
                 <label htmlFor="password" className="text-xl text-blue-500 font-semibold">Password:</label>
 
                 <input className="my-2 border-2 px-1 rounded-md bg-blue-100 py-1 border-blue-300" type="password" name="password" id="password" placeholder="Introduce your password" />
-
             </div>
 
             <div className="my-2 flex justify-between">
-
                 <button className="border-2 rounded-md bg-blue-50 text-blue-900 px-2 font-medium cursor-pointer" type="button" onClick={handleRegisterClick}>Register</button>
 
                 <button className="border-2 rounded-md bg-orange-50 text-blue-900 px-2 font-medium cursor-pointer" type="submit">Login</button>
-
             </div>
-
         </form>
-
-    </div>
+    </>
 }

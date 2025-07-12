@@ -66,6 +66,12 @@ const post = new Schema({
         type: String,
         required: true
     },
+
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
 })
 
 const User = model('User', user)

@@ -40,6 +40,12 @@ export class AuthorizationError extends Error {
     }
 }
 
+export class RoleError extends Error {
+    constructor(message) {
+        super(message)
+    }
+}
+
 const errors = {
     ValidationError,
     DuplicityError,
@@ -47,7 +53,8 @@ const errors = {
     CredentialsError,
     AuthorshipError,
     SystemError,
-    AuthorizationError
+    AuthorizationError,
+    RoleError
 }
 
 export default errors

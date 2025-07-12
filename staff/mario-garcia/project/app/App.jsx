@@ -77,36 +77,40 @@ export const App = () => {
 
             onCancelled={handleCancelConfirm} onAccepted={handleAcceptConfirm} />}
 
-        <Routes>
-            <Route path='/' element={
-                !loggedIn ?
-                    <Landing
-                        onRegisterClicked={handleRegisterClicked}
-                        onLoginClicked={handleLoginClicked}
-                    />
-                    :
-                    <Home onUserLoggedOut={handleUserLoggedOut} />
-            } />
+        <div className="p-5 flex justify-center">
+            <div className="w-full min-w-100 max-w-[1024px]">
+                <Routes>
+                    <Route path='/*' element={
+                        !loggedIn ?
+                            <Landing
+                                onRegisterClicked={handleRegisterClicked}
+                                onLoginClicked={handleLoginClicked}
+                            />
+                            :
+                            <Home onUserLoggedOut={handleUserLoggedOut} />
+                    } />
 
-            <Route path='/register' element={
-                !loggedIn ?
-                    <Register
-                        onLoginClicked={handleLoginClicked}
-                        onUserRegistered={handleUserRegistered}
-                    />
-                    :
-                    <Navigate to='/' />
-            } />
+                    <Route path='/register' element={
+                        !loggedIn ?
+                            <Register
+                                onLoginClicked={handleLoginClicked}
+                                onUserRegistered={handleUserRegistered}
+                            />
+                            :
+                            <Navigate to='/' />
+                    } />
 
-            <Route path='/login' element={
-                !loggedIn ?
-                    <Login
-                        onRegisterClicked={handleRegisterClicked}
-                        onUserLoggedIn={handleUserLoggedIn}
-                    />
-                    :
-                    <Navigate to='/' />
-            } />
-        </Routes>
+                    <Route path='/login' element={
+                        !loggedIn ?
+                            <Login
+                                onRegisterClicked={handleRegisterClicked}
+                                onUserLoggedIn={handleUserLoggedIn}
+                            />
+                            :
+                            <Navigate to='/' />
+                    } />
+                </Routes>
+            </div>
+        </div>
     </Context.Provider>
 }
