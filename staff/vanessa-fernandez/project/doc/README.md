@@ -72,20 +72,49 @@ Admin (User) [v0.1]
 
 **App Views**
 
-- Landing
-- Register
-- Login
-- Home
+- **Landing** -> Bienvenida con opciones para register o login
+- **Register** -> Formulario de registro
+- **Login** -> Formulario de login
+- **Home** -> Pantalla principal tras login
 
-**Home Subviews**
+---
 
-- Edit Profile
-- Days
-- Workout plan
+#### **Home (Usuario Regular)**
 
-**Workout plan**
+- `/` → **Days**  
+  Vista con los días de la semana para seleccionar entrenamientos.
 
-- Exercises
+- `/workout/:day` → **Workout Plan**  
+  Muestra los ejercicios asignados para ese día.  
+  Permite marcar ejercicios como completados y añadir comentarios. *(v0.1)*
+
+- `/create-profile` → **Edit Profile**  
+  Formulario para completar datos personales (género, peso, altura).
+
+  - `/` → **List Users**  
+  Vista inicial que muestra todos los usuarios registrados.
+
+- `/admin` → **Admin Panel**  
+  Gestión del usuario seleccionado:  
+  - Visualizar su plan semanal.
+  - Crear/editar/eliminar rutinas.
+  - Ver comentarios o problemas reportados.
+
+- `/create-profile` (opcional)  
+  Editar perfil propio si el admin no lo ha completado aún.
+
+---
+
+#### **Componentes Compartidos**
+
+- **Alert**  
+  Ventana emergente para mostrar mensajes de error o confirmación.
+
+- **Confirm**  
+   Componente modal para confirmar acciones como borrar rutinas.
+---
+
+#### **Home (Usuario Admin)**
 
 ---
 
