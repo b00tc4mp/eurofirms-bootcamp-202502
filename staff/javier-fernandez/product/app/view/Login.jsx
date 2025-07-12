@@ -1,10 +1,12 @@
 import { CredentialsError, NotFoundError, SystemError, ValidationError } from 'com'
+
 import { logic } from "../logic"
 
-export const Login = (props) => {
-    const onRegisterClicked = props.onRegisterClicked 
-    const onUserLoggedIn = props.onUserLoggedIn
+import { useContext } from '../context'
 
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
+    const { alert } = useContext()
+    
     const handleRegisterClick = () => onRegisterClicked()
 
     const handleLoginSubmit = event => {
@@ -26,13 +28,14 @@ export const Login = (props) => {
             console.error(error)
 
             if (error instanceof NotFoundError || error instanceof CredentialsError)
-                alert('WARN:', error.message)
-            else alert('ERROR:', error.message)
+                alert('WARN:' + error.message)
+            else 
+                alert('ERROR:' + error.message)
         })
         } catch (error) {
            if (error instanceof ValidationError)
-            alert('WARN:', error.message)
-           else alert('ERROR:', error.message)
+            alert('WARN:' + error.message)
+           else alert('ERROR:' + error.message)
         }
 
     }
@@ -51,6 +54,7 @@ export const Login = (props) => {
                     <label htmlFor="username">Username</label>
                     <input className="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />
                 </div>
+
                 <div className="flex flex-col gap">
                     <label htmlFor="password">Password</label>
                     <input className="border-2 px-1" type="password" id="password" name="password" placeholder="your password" />
@@ -58,6 +62,7 @@ export const Login = (props) => {
 
                 <div className="flex justify-between">
                     <a className="underline" href="#" onClick={handleRegisterClick} >Register</a>
+                    
                     <button className="bg-black text-white px-2" type="submit">Login</button>
                 </div>
             </form>

@@ -1,8 +1,9 @@
 import { logic } from '../logic'
+
+import { useContext } from '../context'
  
-export const Register = (props) => { 
-    const onLoginClicked = props.onLoginClicked
-    const onUserRegistered = props.onUserRegistered
+export const Register = ({ onLoginClicked, onUserRegistered }) => { 
+    const { alert } = useContext()
 
     const handleLoginClick = () => onLoginClicked()
 
@@ -67,6 +68,7 @@ export const Register = (props) => {
 
                 <div className="flex justify-between">
                     <a className="underline" href="#" onClick={handleLoginClick} >Login</a>
+                    
                     <button className="bg-black text-white px-2" type="submit">Register</button>
                 </div>
             </form>

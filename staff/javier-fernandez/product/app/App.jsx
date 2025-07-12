@@ -57,7 +57,7 @@ export const App = () => {
 
     return new Promise((resolve, reject) => 
     {
-        setConfirmAction({ resolve})
+        setConfirmAction({ resolve })
     })
    }
 

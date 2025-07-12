@@ -26,6 +26,7 @@ export const getPosts = () => {
                 return response.json()
                     .catch(error => { throw new SystemError('json error') })
                     .then(posts => posts)
+                    
             return response.json()
                 .catch(error => { throw new SystemError('json error') })
                 .then(body => {

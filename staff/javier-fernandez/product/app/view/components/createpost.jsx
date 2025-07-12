@@ -1,9 +1,11 @@
 import { logic } from '../../logic' 
 
+import { useContext } from '../../context'
+
 export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
     const handleCancelClick = () => onCancelClicked() 
 
-    const handleCreatedPostSubmit = (event) => {
+    const handleCreatedPostSubmit = event => {
         event.preventDefault() //Controla el comportamiento que tiene event por defecto 
         
         
@@ -14,10 +16,16 @@ export const CreatePost = ({ onCancelClicked, onPostCreated }) => {
 
         try {
             logic.createPost(image, text)
+                .then(() => {
+                    form.reset()
 
-            form.reset()
+                    onPostCreated()
+                })
+                .catch<(error => { 
+                    console.error(error)
 
-            onPostCreated()
+                    alert(error.message)
+                })
         } catch (error) {
             alert(error.message)
         }
