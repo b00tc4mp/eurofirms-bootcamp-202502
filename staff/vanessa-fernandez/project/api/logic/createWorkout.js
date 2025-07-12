@@ -51,6 +51,13 @@ export const createWorkout = (userId, day, exercises) => {
                         exercises
                     })
                     .catch(error => { throw new SystemError('mongo error') })
+                    .then((workout) => {
+                        workout.id = workout._id.toString()
+                        delete workout._id
+                        delete workout.__v
+
+                        return workout
+                    })
                 })      
         })
 }
