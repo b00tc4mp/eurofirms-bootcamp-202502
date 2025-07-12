@@ -45,11 +45,20 @@ export const PlaceDetails = ({ placeId, onGoBackClicked, onPlaceDeleted }) => {
             })
     }
 
+    let isAdmin
+
+    try {
+        isAdmin = logic.isUserAdministrator()
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
 
     console.log('PlaceDetails -> render')
 
     return <div>
-        <button className="bg-rose-800 text-white px-2 mb-3 cursor-pointer" onClick={handleGoBackClick}>&lt; Go back</button>
+        <button className="bg-rose-800 text-white px-2 mb-3 cursor-pointer hover:bg-rose-900" onClick={handleGoBackClick}>&lt; Go back</button>
         <article className="flex flex-col gap-2 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold">{place.name}</h2>
             <p>
@@ -69,7 +78,7 @@ export const PlaceDetails = ({ placeId, onGoBackClicked, onPlaceDeleted }) => {
             <h3 className="font-semibold">About</h3>
             <p className="font-light">{place.description}</p>
 
-            {place.own && 
+            {(place.own || isAdmin) && 
             <button className="border-b-1 cursor-pointer place-self-start" onClick={handleDeleteClick}>🗑️</button>
             }
         </article>

@@ -41,7 +41,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         <div className="flex flex-col items-center">
             <img src="/logo.jpg" alt="Infinity Travel" />
 
-            <i class="logo">Infinity Travel</i>
+            <i className="logo">Infinity Travel</i>
         </div>
         <form className="mt-5 flex flex-col gap-4" onSubmit={handleRegisterSubmit}>
             <div className="flex flex-col gap-1">

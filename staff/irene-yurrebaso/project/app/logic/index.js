@@ -3,6 +3,7 @@ import { loginUser } from './loginUser'
 import { getUserUsername } from './getUserUsername'
 import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
+import { isUserAdministrator } from './isUserAdministrator'
 
 import { getPlaces } from './getPlaces'
 import { createPlace } from './createPlace'
@@ -15,6 +16,7 @@ export const logic = {
     getUserUsername,
     isUserLoggedIn,
     logoutUser,
+    isUserAdministrator,
 
     getPlaces,
     createPlace,

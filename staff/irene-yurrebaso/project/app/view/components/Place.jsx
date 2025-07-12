@@ -31,6 +31,16 @@ export const Place = ({ place, onPlaceClicked, onPlaceDeleted }) => {
         onPlaceClicked(place.id) //captura el id al hacer click
     }
 
+    let isAdmin
+
+    try {
+        isAdmin = logic.isUserAdministrator()
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
+
     console.log('Place -> render')
 
     return <article className="max-w-sm">
@@ -45,7 +55,8 @@ export const Place = ({ place, onPlaceClicked, onPlaceDeleted }) => {
         </div>
 
         <p className="font-light mt-3">{place.description}</p>
-        <div className="flex">{place.own && <button className="border-b-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}</div>
+        
+        <div className="flex">{(place.own || isAdmin) && <button className="border-b-1 cursor-pointer" onClick={handleDeleteClick}>🗑️</button>}</div>
         
     </article>
 }

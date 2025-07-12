@@ -24,7 +24,8 @@ export const authenticateUser = (username, password) => {
                 .then(match => {
                     if (!match) throw new CredentialsError('wrong password')
                     
-                    return user.id
+                    //user.role para poder asignar administrator
+                    return { id: user.id, role: user.role}
                 })
         })
 }

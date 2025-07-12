@@ -21,7 +21,7 @@ export const removePlace = (userId, placeId) => {
                 .then(place => {
                     if (!place) throw new NotFoundError('place not found')
                     
-                    if (place.author.toString() !== userId) throw new AuthorshipError('user not author of place')
+                    if (user.role !== 'administrator' && place.author.toString() !== userId) throw new AuthorshipError('user not author of place')
                     
                     return Place.deleteOne({ _id: placeId })
                         .catch(error => { throw new SystemError('mongo error') })
