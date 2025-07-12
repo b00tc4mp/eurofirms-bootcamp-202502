@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useLoggedIn } from "../../hooks/useLoggedIn";
 import { logic } from "../../logic";
-
+import { useRole } from "../../hooks/useRole";
 export const Navbar = () => {
   const navigate = useNavigate();
   const loggedIn = useLoggedIn();
@@ -12,11 +12,12 @@ export const Navbar = () => {
   const handleLogoutClick = () => {
     try {
       logic.logoutUser();
+      navigate("/login");
     } catch (error) {
       alert(error.message);
     }
   };
-
+  const { isAdmin } = useRole();
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   return (
@@ -43,7 +44,7 @@ export const Navbar = () => {
             className="text-3xl font-bold text-red-600 mb-10 cursor-pointer hover:opacity-80 transition"
             onClick={() => navigate("/home")}
           >
-            🌟 App
+            🔐 Admin Panel
           </div>
 
           {/* Navigation */}
@@ -56,12 +57,15 @@ export const Navbar = () => {
                 >
                   👤 Users
                 </button>
-                <button
-                  className="text-gray-700 text-left hover:text-blue-600 transition font-medium"
-                  onClick={() => navigate("/providers")}
-                >
-                  🏢 Providers
-                </button>
+                {isAdmin && (
+                  <button
+                    className="text-gray-700 text-left hover:text-blue-600 transition font-medium"
+                    onClick={() => navigate("/providers")}
+                  >
+                    🏢 Providers
+                  </button>
+                )}
+
                 <button
                   className="text-gray-700 text-left hover:text-blue-600 transition font-medium"
                   onClick={() => navigate("/products")}

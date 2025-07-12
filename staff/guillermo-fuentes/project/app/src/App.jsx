@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { logic } from "./logic";
-import { Routes, Route, useNavigate, useLocation } from "react-router";
+import { Routes, Route, useNavigate, useLocation, Navigate } from "react-router";
 import { Home } from "./view/Home";
 import { Register } from "./view/Register";
 import { Login } from "./view/Login";
@@ -15,6 +15,7 @@ import { AddProvider } from "./view/AddProvider";
 import { Products } from "./view/Products";
 import { AddProduct } from "./view/AddProduct";
 import { useLoggedIn } from "./hooks/useLoggedIn";
+
 export const App = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
@@ -27,6 +28,7 @@ export const App = () => {
   if (!loggedIn) {
     navigate("/login");
   }
+
   useEffect(() => {
     if (location.pathname !== "/") return;
     try {
@@ -63,6 +65,7 @@ export const App = () => {
       setConfirmAction({ resolve });
     });
   };
+
   return (
     <Context.Provider
       value={{
@@ -82,9 +85,9 @@ export const App = () => {
         <Route path="/addProvider" element={<AddProvider />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/providers" element={<Providers />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/users" element={loggedIn ? <Users /> : <Navigate to="/login" />} />
+        <Route path="/providers" element={loggedIn ? <Providers /> : <Navigate to="/login" />} />
+        <Route path="/products" element={loggedIn ? <Products /> : <Navigate to="/login" />} />
       </Routes>
     </Context.Provider>
   );
