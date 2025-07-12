@@ -1,7 +1,9 @@
-import { SystemError } from "com";
+import { SystemError, validate } from "com";
 import { data } from "../data";
 
-export const getProvidersSuggestions = (query) => {
+export const getProvidersSuggestions = (userId, query) => {
+  validate.userId(userId);
+  validate.query(query);
   return fetch(`${import.meta.env.VITE_API_URL}products/search/${encodeURIComponent(query)}`, {
     headers: {
       Authorization: `Bearer ${data.getToken()}`,

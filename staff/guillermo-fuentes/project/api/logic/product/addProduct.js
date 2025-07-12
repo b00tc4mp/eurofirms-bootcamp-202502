@@ -10,22 +10,19 @@ export const addProduct = (providerId, name, description, price, stock, image, p
   validate.image(image);
   validate.providerId(provider);
 
-  return Promise.all([
-    User.findById(providerId).catch((error) => {
-      throw new SystemError(`Mongo error (User): ${error.message}`);
-    }),
-    Provider.findById(provider).catch((error) => {
-      throw new SystemError(`Mongo error (Provider): ${error.message}`);
-    }),
-  ]).then(([employee, provider]) => {
-    if (!employee) throw new NotFoundError("employee not found");
-    if (employee.role !== "provider" && employee.role !== "administrator") {
-      throw new RoleError("User is not authorized to create products");
-    }
-    if (!provider) throw new NotFoundError("Provider not found");
+  return Promise.all([User.findById(providerId), Provider.findById(provider)])
+    .catch((error) => {
+      throw new SystemError("mongo error");
+    })
+    .then(([employee, provider]) => {
+      if (!employee) throw new NotFoundError("employee not found");
+      if (employee.role !== "provider" && employee.role !== "administrator") {
+        throw new RoleError("user is not authorized to create products");
+      }
+      if (!provider) throw new NotFoundError("provider not found");
 
-    return Product.create({ name, description, price, stock, image, provider }).catch((error) => {
-      throw new SystemError(`Mongo error (Product): ${error.message}`);
+      return Product.create({ name, description, price, stock, image, provider }).catch((error) => {
+        throw new SystemError("mongo error");
+      });
     });
-  });
 };

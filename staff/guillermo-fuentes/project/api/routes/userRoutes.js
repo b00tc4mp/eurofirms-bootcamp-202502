@@ -45,7 +45,7 @@ usersRouter.delete("/:userId", (request, response, next) => {
     const { sub: adminId } = jwt.verify(token, JWT_SECRET);
     const { userId } = request.params;
     logic
-      .removeUser(userId, adminId)
+      .removeUser(adminId, userId)
       .then(() => response.status(204).send())
       .catch((error) => next(error));
   } catch (error) {
@@ -132,9 +132,10 @@ usersRouter.put("/:userId", jsonBodyParser, (request, response, next) => {
 });
 usersRouter.get("/search/:query", (req, res, next) => {
   const { query } = req.params;
-
+  const token = req.headers.authorization.slice(7);
+  const { sub: userId } = jwt.verify(token, process.env.JWT_SECRET);
   logic
-    .searchUsers(query)
+    .searchUsers(userId, query)
     .then((users) => {
       res.status(200).json(users);
     })

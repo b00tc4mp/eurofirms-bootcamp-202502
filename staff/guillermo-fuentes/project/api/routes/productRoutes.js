@@ -65,7 +65,7 @@ productRouter.delete("/:productId", (request, response, next) => {
     const { productId } = request.params;
 
     logic
-      .removeProduct(productId, userId)
+      .removeProduct(userId, productId)
       .then(() => response.status(204).send())
       .catch((error) => next(error));
   } catch (error) {
@@ -73,10 +73,16 @@ productRouter.delete("/:productId", (request, response, next) => {
   }
 });
 productRouter.get("/search/:query", (req, res, next) => {
-  const { query } = req.params;
+  const authorization = req.headers.authorization;
+  if (!authorization || !authorization.startsWith("Bearer ")) {
+    throw new ValidationError("Token de autenticación no proporcionado");
+  }
 
+  const token = authorization.slice(7);
+  const { query } = req.params;
+  const { sub: userId } = jwt.verify(token, JWT_SECRET);
   logic
-    .searchProviders(query)
+    .searchProviders(userId, query)
     .then((products) => {
       res.status(200).json(products);
     })

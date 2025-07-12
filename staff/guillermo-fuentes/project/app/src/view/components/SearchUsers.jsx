@@ -1,12 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
 import { logic } from "../../logic";
 import debounce from "lodash/debounce";
-
+import { data } from "../../data";
+import { getPayloadFromToken } from "../../logic/helper/getPayloadFromToken";
 export const SearchUsers = ({ onSelectUserId, setError = () => {} }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [userSelected, setUserSelected] = useState(false);
-
+  const token = data.getToken();
+  const userId = getPayloadFromToken(token);
   /*UseMemo es un hook de react que sirve para memorizar el resultado de una operacion costosa esto evita
  que se vuelva a ejecutar innecesariamente en cada renderizado, a menos que sus dependencias cambien.
 */
@@ -14,7 +16,7 @@ export const SearchUsers = ({ onSelectUserId, setError = () => {} }) => {
     () =>
       debounce((query) => {
         logic
-          .getUsersSuggestions(query)
+          .getUsersSuggestions(userId.sub, query)
           .then((users) => {
             setSuggestions(users);
           })

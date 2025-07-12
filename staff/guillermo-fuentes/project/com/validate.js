@@ -55,29 +55,39 @@ export const validate = {
     if (typeof taxId !== "string") throw new ValidationError("invalid taxId type");
     if (!taxId.length) throw new ValidationError("invalid taxId length");
   },
+
   description(description) {
     if (typeof description !== "string") throw new ValidationError("invalid description type");
     if (description.length < 5) throw new ValidationError("invalid description min length");
   },
+
   price(price) {
     if (typeof price !== "number") throw new ValidationError("Invalid price type");
     if (price < 0) throw new ValidationError("Invalid price value");
   },
+
   stock(stock) {
     if (typeof stock !== "number") throw new ValidationError("Invalid stock type");
     if (stock < 0) throw new ValidationError("Invalid stock value");
   },
+
   image(image) {
     if (typeof image !== "string") throw new ValidationError("Invalid image type");
     if (!image.startsWith("http")) throw new ValidationError("Invalid image url");
     if (!image.trim()) throw new ValidationError("Invalid image length");
   },
+
   employeeId(employeeId) {
     if (typeof employeeId !== "string") throw new ValidationError("invalid employeeId type");
     if (employeeId.length !== 24) throw new ValidationError("invalid employeeId length");
   },
+
   productId(productId) {
     if (typeof productId !== "string") throw new ValidationError("invalid productId type");
     if (productId.length !== 24) throw new ValidationError("invalid productId length");
+  },
+
+  query(query) {
+    if (typeof query !== "string") throw new ValidationError("invalid query type");
   },
 };

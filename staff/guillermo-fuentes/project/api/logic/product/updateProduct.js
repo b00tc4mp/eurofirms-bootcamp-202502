@@ -11,30 +11,33 @@ export const updateProduct = (requesterId, targetId, name, description, price, s
   validate.image(image);
   validate.providerId(providerId);
 
-  return Promise.all([
-    User.findById(requesterId).catch((error) => {
-      throw new SystemError(`Mongo error (User): ${error.message}`);
-    }),
-    Product.findById(targetId).catch((error) => {
-      throw new SystemError(`Mongo error (Product): ${error.message}`);
-    }),
-  ]).then(([user, product]) => {
-    if (!user) {
-      throw new NotFoundError(`User with id ${requesterId} does not exist`);
-    }
-    if (!product) {
-      throw new NotFoundError(`Product with id ${targetId} does not exist`);
-    }
-    if (user.role !== "administrator" && user.role !== "provider") {
-      throw new AuthorizationError(`User not authorized for this action`);
-    }
-    product.name = name;
-    product.description = description;
-    product.price = price;
-    product.stock = stock;
-    product.image = image;
-    product.provider = providerId;
-    product.dateModification = Date.now();
-    return product.save();
-  });
+  return Promise.all([User.findById(requesterId), Product.findById(targetId)])
+    .catch((error) => {
+      throw new SystemError("mongo error");
+    })
+    .then(([user, product]) => {
+      if (!user) {
+        throw new NotFoundError("user not found");
+      }
+
+      if (!product) {
+        throw new NotFoundError("product not found");
+      }
+
+      if (user.role !== "administrator" && user.role !== "provider") {
+        throw new AuthorizationError("user not authorized for this action");
+      }
+
+      product.name = name;
+      product.description = description;
+      product.price = price;
+      product.stock = stock;
+      product.image = image;
+      product.provider = providerId;
+      product.dateModification = Date.now();
+
+      return product.save().catch(() => {
+        throw new SystemError("mongo error");
+      });
+    });
 };

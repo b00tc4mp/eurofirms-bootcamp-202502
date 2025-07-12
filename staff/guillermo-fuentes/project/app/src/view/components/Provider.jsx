@@ -23,7 +23,7 @@ export const Provider = ({ provider, onReloadProvider, onEditedProvider }) => {
   };
 
   const handleDeleteClick = () => {
-    confirm("Delete product?").then((result) => {
+    confirm("Delete provider?").then((result) => {
       if (result)
         try {
           logic

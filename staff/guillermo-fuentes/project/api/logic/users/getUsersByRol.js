@@ -2,8 +2,8 @@ import { User } from "../../data/index.js";
 import { SystemError, NotFoundError, validate } from "com";
 
 export const getUsersByRol = (userId, role) => {
-  validate.role(role);
   validate.userId(userId);
+  validate.role(role);
 
   return User.findById(userId)
     .catch((error) => {
@@ -15,7 +15,7 @@ export const getUsersByRol = (userId, role) => {
       return User.find({ role })
         .lean()
         .catch((error) => {
-          throw new SystemError("Error in MongoDB");
+          throw new SystemError("mongo error");
         })
         .then((users) => {
           users.forEach((user) => {

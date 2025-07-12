@@ -2,27 +2,29 @@ import { useState } from "react";
 import { logic } from "../../logic";
 import { EditProduct } from "../EditProduct";
 import { useContext } from "../../context/context";
-import { useLoggedIn } from "../../hooks/useLoggedIn";
-import { useRole } from "../../hooks/useRole";
-
+// import { useLoggedIn } from "../../hooks/useLoggedIn";
+// import { useRole } from "../../hooks/useRole";
+import { data } from "../../data";
+import { getPayloadFromToken } from "../../logic/helper/getPayloadFromToken";
 export const Product = ({ product, onReloadProvider, onEditedProduct }) => {
   const [editProduct, setEditProduct] = useState(false);
   const { alert, confirm } = useContext();
 
-  const loggedIn = useLoggedIn();
-  const { isAdmin, isProvider } = useRole();
+  // const loggedIn = useLoggedIn();
+  // const { isAdmin, isProvider } = useRole();
 
   const handleEditProduct = () => {
     setEditProduct(false);
     onReloadProvider();
   };
-
+  const token = data.getToken();
+  const userId = getPayloadFromToken(token);
   const handleDeleteClick = () => {
     confirm("Delete product?").then((result) => {
       if (result)
         try {
           logic
-            .deleteProduct(product.id)
+            .deleteProduct(userId.sub, product.id)
             .then(() => onEditedProduct())
             .catch((error) => {
               console.error(error);
@@ -83,24 +85,21 @@ export const Product = ({ product, onReloadProvider, onEditedProduct }) => {
           </p>
         </div>
 
-        {loggedIn && (isAdmin || isProvider) && (
-          <div className="mt-6 space-y-3">
-            <button
-              className="w-full bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 text-white font-semibold py-3 rounded-lg transition duration-200"
-              onClick={() => setEditProduct(true)}
-            >
-              Update Product
-            </button>
-            {isAdmin && (
-              <button
-                onClick={handleDeleteClick}
-                className="w-full bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 text-white font-semibold py-3 rounded-lg transition duration-200"
-              >
-                Delete Product
-              </button>
-            )}
-          </div>
-        )}
+        <div className="mt-6 space-y-3">
+          <button
+            className="w-full bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 text-white font-semibold py-3 rounded-lg transition duration-200"
+            onClick={() => setEditProduct(true)}
+          >
+            Update Product
+          </button>
+
+          <button
+            onClick={handleDeleteClick}
+            className="w-full bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 text-white font-semibold py-3 rounded-lg transition duration-200"
+          >
+            Delete Product
+          </button>
+        </div>
 
         {editProduct && <EditProduct product={product} onEditedProduct={handleEditProduct} />}
       </div>

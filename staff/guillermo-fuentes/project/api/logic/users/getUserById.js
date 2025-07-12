@@ -14,7 +14,7 @@ export const getUserById = (userId, targetUserId) => {
       return User.findById(targetUserId)
         .lean()
         .catch((error) => {
-          throw new SystemError("Error in mongo db");
+          throw new SystemError("mongo error");
         })
         .then((user) => {
           user.id = user._id.toString();

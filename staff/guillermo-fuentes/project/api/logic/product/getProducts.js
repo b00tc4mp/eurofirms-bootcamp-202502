@@ -15,7 +15,7 @@ export const getProducts = (userId) => {
         .lean()
         .populate("provider", "name _id")
         .catch((error) => {
-          throw new SystemError("Error in mongo");
+          throw new SystemError("mongo error");
         })
         .then((products) => {
           products.forEach((product) => {

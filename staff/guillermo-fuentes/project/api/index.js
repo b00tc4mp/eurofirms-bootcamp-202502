@@ -24,6 +24,6 @@ connect(MONGO_URL)
     server.use("/products", productRouter);
 
     server.use(errorHandler);
-    server.listen(PORT, () => console.debug("server escucha"));
+    server.listen(PORT, () => console.debug("API listening"));
   })
   .catch((error) => console.error(error));

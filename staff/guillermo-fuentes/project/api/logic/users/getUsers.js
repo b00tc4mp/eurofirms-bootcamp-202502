@@ -14,7 +14,7 @@ export const getUsers = (userId) => {
         .lean()
 
         .catch((error) => {
-          throw new SystemError("Error in MongoDB");
+          throw new SystemError("mongo error");
         })
         .then((users) => {
           users.forEach((user) => {

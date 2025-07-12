@@ -14,7 +14,7 @@ export const registerUser = (fullName, email, password, address, role) => {
   return bcrypt
     .hash(password, saltRounds)
     .catch((error) => {
-      throw new SystemError(error.message || "Register error");
+      throw new SystemError("bcrypt  error");
     })
     .then((hashedPassword) => {
       return User.create({
@@ -28,7 +28,7 @@ export const registerUser = (fullName, email, password, address, role) => {
           if (error.code === 11000) {
             throw new DuplicityError("the user with this email already exists");
           }
-          throw new SystemError(error.message || "Register error");
+          throw new SystemError("mongo error");
         })
         .then(() => {});
     });

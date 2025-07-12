@@ -8,7 +8,7 @@ export const authenticateUser = (email, password) => {
 
   return User.findOne({ email })
     .catch((error) => {
-      throw new SystemError(error.message);
+      throw new SystemError("mongo error");
     })
     .then((user) => {
       if (!user) throw new NotFoundError("user not found");

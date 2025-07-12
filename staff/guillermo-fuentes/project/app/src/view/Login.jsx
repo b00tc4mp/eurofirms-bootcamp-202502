@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router";
 import { logic } from "../logic";
 
-export const Login = () => {
-  const navigate = useNavigate();
-  const handleRegisterClick = () => navigate("/register");
+export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
+  const handleRegisterClick = () => onRegisterClicked();
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +15,7 @@ export const Login = () => {
         .then(() => {
           form.reset();
 
-          navigate("/users");
+          onUserLoggedIn();
         })
         .catch((error) => {
           console.error(error);

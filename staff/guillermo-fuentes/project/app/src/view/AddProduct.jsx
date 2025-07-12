@@ -23,7 +23,6 @@ export const AddProduct = () => {
       setError(msg);
       return;
     }
-
     logic
       .addProduct(name, description, price, stock, image, selectedProviderId)
       .then(() => {

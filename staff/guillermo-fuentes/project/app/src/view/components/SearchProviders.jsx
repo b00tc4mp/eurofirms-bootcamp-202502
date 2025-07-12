@@ -1,17 +1,19 @@
 import { useState, useEffect, useMemo } from "react";
 import { logic } from "../../logic";
 import debounce from "lodash/debounce";
-
+import { data } from "../../data";
+import { getPayloadFromToken } from "../../logic/helper/getPayloadFromToken";
 export const SearchProviders = ({ onSelectProviderId, setError = () => {} }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [providerSelect, setProviderSelect] = useState(false);
-
+  const token = data.getToken();
+  const userId = getPayloadFromToken(token);
   const debouncedFetchSuggestions = useMemo(
     () =>
       debounce((query) => {
         logic
-          .getProvidersSuggestions(query)
+          .getProvidersSuggestions(userId.sub, query)
           .then((providers) => {
             setSuggestions(providers);
           })
@@ -25,7 +27,7 @@ export const SearchProviders = ({ onSelectProviderId, setError = () => {} }) => 
 
   const handleSelectProvider = (provider) => {
     setQuery(provider.name);
-    onSelectProviderId(provider._id);
+    onSelectProviderId(provider.id);
     setSuggestions([]);
     setError("");
     setProviderSelect(true);

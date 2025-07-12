@@ -23,10 +23,6 @@ export const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (!loggedIn) {
-    navigate("/login");
-  }
-
   useEffect(() => {
     if (location.pathname !== "/") return;
     try {
@@ -65,6 +61,10 @@ export const App = () => {
     });
   };
 
+  const handleRegisterClicked = () => navigate("/register");
+
+  const handleUserLoggedIn = () => navigate("/users");
+  const handleProductAdded = () => navigate("/home");
   return (
     <Context.Provider
       value={{
@@ -79,11 +79,23 @@ export const App = () => {
       )}
       <Navbar />
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={loggedIn ? <Register /> : <Navigate to="/login" />} />
-        <Route path="/addProvider" element={<AddProvider />} />
-        <Route path="/addProduct" element={<AddProduct />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={loggedIn ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/register" element={loggedIn ? <Navigate to="/home" /> : <Register />} />
+        <Route path="/addProvider" element={loggedIn ? <AddProvider /> : <Navigate to="/login" />} />
+        <Route
+          path="/addProduct"
+          element={loggedIn ? <AddProduct onProductAdded={handleProductAdded} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/login"
+          element={
+            loggedIn ? (
+              <Navigate to="/home" />
+            ) : (
+              <Login onRegisterClicked={handleRegisterClicked} onUserLoggedIn={handleUserLoggedIn} />
+            )
+          }
+        />
         <Route path="/users" element={loggedIn ? <Users /> : <Navigate to="/login" />} />
         <Route path="/providers" element={loggedIn ? <Providers /> : <Navigate to="/login" />} />
         <Route path="/products" element={loggedIn ? <Products /> : <Navigate to="/login" />} />
