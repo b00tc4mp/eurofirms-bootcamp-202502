@@ -37,7 +37,11 @@ export const CreateWorkout = ({ userId, day, onBack }) => {
             logic.createWorkout(userId, day, payload)
                 .then(() => {
                     alert('Workout created successfully')
-                    onBack()
+                    
+                    return logic.getWorkoutForUser(userId, day)
+                })
+                .then(freshWorkout => {
+                    onBack(freshWorkout)
                 })
                 .catch(error => {
                     console.error(error)

@@ -23,6 +23,7 @@ export const createWorkout = (userId, day, exercises) => {
         .catch(error => { throw new SystemError('mongo error')})
         .then(user => {
             if(!user) throw new NotFoundError('user not found')
+               
             //3ª comprobar si existe la rutina para ese usuario y dia    
             return Workout.findOne({ userId, day })
                 .catch(error => { throw new SystemError('mongo error')})

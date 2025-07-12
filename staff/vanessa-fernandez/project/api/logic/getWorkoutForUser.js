@@ -1,4 +1,4 @@
-// logic/getWorkoutForUser.js (backend)
+
 import { Workout } from '../data/index.js'
 import { validate, NotFoundError, SystemError } from 'com'
 

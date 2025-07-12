@@ -13,9 +13,11 @@ workoutsRouter.post('/', jsonBodyParser, (request, response, next) => {
         const authorization = request.headers.authorization
         const token = authorization.slice(7)
 
-        const { sub: userId } = jwt.verify(token, JWT_SECRET)
+        const { sub: requesterId, role } = jwt.verify(token, JWT_SECRET)
 
-        const { day, exercises } = request.body
+        if (role !== 'admin') throw new AuthorizationError('not allowed')
+
+        const { userId, day, exercises } = request.body
 
         logic.createWorkout(userId, day, exercises)
             .then(() => response.status(201).send())

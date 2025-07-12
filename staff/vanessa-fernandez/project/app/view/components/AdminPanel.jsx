@@ -100,8 +100,8 @@ export const AdminPanel = ({ user, onBack }) => {
                         <div className="mt-4 space-y-4">
                             {workout.exercises.map((exercise, index) => (
                                 <div key={index} className="border rounded-lg p-4 shadow-sm">
-                                    <p className="font-semibold text-[#119fd3]">{exercise.name}</p>
-                                    <p className="text-sm text-gray-700">{exercise.description}</p>
+                                    <p className="font-semibold text-[#119fd3]">{exercise.exerciseId.name}</p>
+                                    <p className="text-sm text-gray-700">{exercise.exerciseId.description}</p>
                                 </div>
                             ))}
 
@@ -134,7 +134,10 @@ export const AdminPanel = ({ user, onBack }) => {
                 <CreateWorkout
                     userId={user._id}
                     day={selectedDay}
-                    onBack={handleBackToDays}
+                    onBack={(freshWorkout) => {
+                        if (freshWorkout) setWorkout(freshWorkout)
+                        setShowCreate(false)
+                    }}
                 />
             )}
         </div>
