@@ -11,27 +11,40 @@ proyecto pretende facilitar la administracion de usuarios de manera que sea faci
 
 Regular (User)
 
-- Modificar su propia informacion 🎆
-- Ver Productos 🎆
-- Ver Proveedores 🎆
+- Modify own information 🎆
+
+- View products 🎆
+
+- View own user 🎆
   Admin (User) [v0.1]
 
-- Ver informacion de otros usuarios 🎆
-- Eliminar otros usuarios 🎆
-- crear nuevos usuarios 🎆
-- editar informacion de los usuarios 🎆
-- Crear proveedor 🎆
-- Eliminar proveedor 🎆
-- Editar proveedor 🎆
-- Crear productos 🎆
-- Eliminar productos 🎆
-- Editar productos 🎆
+- View information of other users 🎆
+
+- Delete other users 🎆
+
+- Create new users 🎆
+
+- Edit user information 🎆
+
+- Create supplier 🎆
+
+- Delete supplier 🎆
+
+- Edit supplier 🎆
+
+- Create products 🎆
+
+- Delete products 🎆
+
+- Edit products 🎆
 
   Provider
 
-- Crear productos 🎆
-- Eliminar productos 🎆
-- Editar productos 🎆
+- Create products 🎆
+
+- Delete products 🎆
+
+- Edit products 🎆
 
 ### Prototype
 
