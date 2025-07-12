@@ -26,6 +26,8 @@ export const Workout = ({ day, onBack }) => {
         }
     }, [day])
 
+    console.log('Wokout -> render')
+
     return (
         <div className="mt-8 px-4">
             <button

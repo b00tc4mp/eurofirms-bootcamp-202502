@@ -25,6 +25,8 @@ export const ListUsers = ({ onUserSelected }) => {
         
     }, [])
 
+    console.log('ListUser -> render')
+
 
     return (
         <div className="mt-8 w-full max-w-md">

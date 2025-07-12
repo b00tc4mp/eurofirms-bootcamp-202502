@@ -81,6 +81,7 @@ export const AdminPanel = ({ user, onBack }) => {
         onBack()
     }
 
+    console.log('AdminPanel -> render')
 
     return (
         <div className="p-4">

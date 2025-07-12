@@ -53,6 +53,8 @@ export const CreateWorkout = ({ userId, day, onBack }) => {
         }
     }
 
+    console.log('CreateWorkout -> render')
+
     return (
         <div className="px-5 py-6 min-h-screen flex flex-col items-center bg-white text-center">
             <div className="w-full max-w-md">
