@@ -1,14 +1,14 @@
-import { logic } from '../logic';
-import { useNavigate } from 'react-router';
-import { useAuth } from '../context/AuthContext';
+import { logic } from "../logic";
+import { useNavigate } from "react-router";
+import { useRole } from "../hooks/useRole";
 export const Register = () => {
   const navigate = useNavigate();
-  const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+
+  const { isAdmin } = useRole();
 
   const handleLoginClick = (event) => {
     event.preventDefault();
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleRegisterSubmit = (event) => {
@@ -25,7 +25,7 @@ export const Register = () => {
         .registerUser(fullName, email, password, address, role)
         .then(() => {
           form.reset();
-          navigate('/home');
+          navigate("/home");
         })
         .catch((error) => {
           console.error(error);
@@ -85,7 +85,7 @@ export const Register = () => {
           </div>
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-            Address
+              Address
             </label>
             <input
               type="text"

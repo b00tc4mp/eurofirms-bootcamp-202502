@@ -1,11 +1,11 @@
 import { logic } from "../logic";
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+
+import { useRole } from "../hooks/useRole";
 import { SearchProviders } from "./components/SearchProviders";
 import { useContext } from "../context/context";
 
 export const EditProduct = ({ product, onEditedProduct }) => {
-  const { loggedIn, rol: userRol } = useAuth();
   const [name, setName] = useState(product.name);
   const [description, setDescription] = useState(product.description);
   const [price, setPrice] = useState(product.price);
@@ -15,7 +15,8 @@ export const EditProduct = ({ product, onEditedProduct }) => {
   const [selectedProviderId, setSelectedProviderId] = useState(product.provider.id);
   const [error, setError] = useState("");
 
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+  const { isAdmin } = useRole();
+
   const { alert } = useContext();
 
   const handleEditProduct = () => onEditedProduct();

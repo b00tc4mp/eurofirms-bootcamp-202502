@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
+import { useLoggedIn } from "../../hooks/useLoggedIn";
 import { logic } from "../../logic";
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const { loggedIn, logout } = useAuth();
+  const loggedIn = useLoggedIn();
+
   const [isOpen, setIsOpen] = useState(true);
 
   const handleLogoutClick = () => {
     try {
       logic.logoutUser();
-      logout();
     } catch (error) {
       alert(error.message);
     }

@@ -1,17 +1,17 @@
 import { logic } from "../logic";
-import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
 
+import { useState } from "react";
+import { useRole } from "../hooks/useRole";
 export const EditUser = ({ user, onEditedUser }) => {
   //Usamos estados para pasar el valor actual del campo y poder cambiar el valor usando value
-  const { loggedIn, rol: userRol } = useAuth();
+
   const [fullName, setFullName] = useState(user.fullName);
   const [email, setEmail] = useState(user.email);
   const [address, setAddress] = useState(user.address);
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(user.role);
 
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+  const { isAdmin } = useRole();
   const handleEditUser = () => onEditedUser();
 
   const handleEditSubmit = (event) => {

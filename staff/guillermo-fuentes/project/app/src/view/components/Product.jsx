@@ -2,14 +2,14 @@ import { useState } from "react";
 import { logic } from "../../logic";
 import { EditProduct } from "../EditProduct";
 import { useContext } from "../../context/context";
-import { useAuth } from "../../context/AuthContext";
+import { useLoggedIn } from "../../hooks/useLoggedIn";
+import { useRole } from "../../hooks/useRole";
 export const Product = ({ product, onReloadProvider, onEditedProduct }) => {
   const [editProduct, setEditProduct] = useState(false);
   const { alert, confirm } = useContext();
-  const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
-  const isProvider = loggedIn && userRol === import.meta.env.VITE_ROL_2;
 
+  const loggedIn = useLoggedIn();
+  const { isAdmin, isProvider } = useRole();
   const handleEditProduct = () => {
     setEditProduct(false);
     onReloadProvider();
@@ -68,7 +68,8 @@ export const Product = ({ product, onReloadProvider, onEditedProduct }) => {
               : new Date(product.dateModification).toLocaleString()}
           </p>
         </div>
-        {isAdmin ||
+        {loggedIn ||
+          isAdmin ||
           (isProvider && (
             <div className="mt-4 space-y-2">
               <button

@@ -1,10 +1,13 @@
-import { useAuth } from './AuthContext';
-import { Navigate } from 'react-router';
+import { useLoggedIn } from "../hooks/useLoggedIn";
+import { Navigate } from "react-router";
+import { useRole } from "../hooks/useRole";
 // Redirige a login si no está logueado
 export const ProtectedRoute = ({ children }) => {
-  const { loggedIn, rol } = useAuth();
+  const loggedIn = useLoggedIn();
 
-  if (!loggedIn || rol !== import.meta.env.VITE_ROL_1) {
+  const { isAdmin } = useRole();
+
+  if (!loggedIn || !isAdmin) {
     return <Navigate to="/home" replace />;
   }
 

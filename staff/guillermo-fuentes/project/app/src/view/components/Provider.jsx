@@ -2,12 +2,12 @@ import { useState } from "react";
 import { EditProvider } from "../EditProvider";
 import { logic } from "../../logic";
 import { useContext } from "../../context/context";
-import { useAuth } from "../../context/AuthContext";
+import { useLoggedIn } from "../../hooks/useLoggedIn";
 export const Provider = ({ provider, onReloadProvider, onEditedProvider }) => {
   const [editProvider, setEditProvider] = useState(false);
   const { alert, confirm } = useContext();
-  const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+  const loggedIn = useLoggedIn();
+
   const handleEditedProvider = () => {
     setEditProvider(false);
     onReloadProvider();
@@ -49,7 +49,7 @@ export const Provider = ({ provider, onReloadProvider, onEditedProvider }) => {
             <span className="font-semibold">User:</span> {provider.user.fullName}
           </p>
         </div>
-        {isAdmin && (
+        {loggedIn && (
           <div className="mt-4 space-y-2">
             <button
               className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-200"

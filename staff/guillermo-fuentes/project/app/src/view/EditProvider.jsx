@@ -1,11 +1,10 @@
 import { logic } from "../logic";
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { SearchUsers } from "./components/SearchUsers";
 import { useContext } from "../context/context";
+import { useRole } from "../hooks/useRole";
 
 export const EditProvider = ({ provider, onEditedProvider }) => {
-  const { loggedIn, rol: userRol } = useAuth();
   const [name, setName] = useState(provider.name);
   const [contact, setContact] = useState(provider.contact);
   const [address, setAddress] = useState(provider.address);
@@ -13,7 +12,8 @@ export const EditProvider = ({ provider, onEditedProvider }) => {
   const [selectedUserId, setSelectedUserId] = useState(provider.user.id);
   const [error, setError] = useState("");
 
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+  const { isAdmin } = useRole();
+
   const handleEditProvider = () => onEditedProvider();
   const { alert } = useContext();
 

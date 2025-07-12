@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 import { logic } from "../logic";
-import { useAuth } from "../context/AuthContext";
+
 export const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+
   const handleRegisterClick = () => navigate("/register");
 
   const handleLoginSubmit = (event) => {
@@ -17,7 +17,7 @@ export const Login = () => {
         .loginUser(email, password)
         .then(() => {
           form.reset();
-          login();
+
           navigate("/users");
         })
         .catch((error) => {

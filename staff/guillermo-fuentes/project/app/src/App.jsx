@@ -14,12 +14,13 @@ import { Context } from "./context/context";
 import { AddProvider } from "./view/AddProvider";
 import { Products } from "./view/Products";
 import { AddProduct } from "./view/AddProduct";
-import { useAuth } from "./context/AuthContext";
+import { useLoggedIn } from "./hooks/useLoggedIn";
 export const App = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
   const [confirmAction, setConfirmAction] = useState(null);
-  const { loggedIn } = useAuth();
+  const loggedIn = useLoggedIn();
+
   const navigate = useNavigate();
   const location = useLocation();
 

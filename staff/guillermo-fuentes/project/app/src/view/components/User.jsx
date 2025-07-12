@@ -2,12 +2,11 @@ import { logic } from "../../logic";
 import { useState } from "react";
 import { EditUser } from "../EditUser";
 import { useContext } from "../../context/context";
-import { useAuth } from "../../context/AuthContext";
+import { useRole } from "../../hooks/useRole";
 export const User = ({ user, onUserDeleted, onReloadUser }) => {
   const [editUser, setEditUser] = useState(false);
   const { alert, confirm } = useContext();
-  const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+  const { isAdmin } = useRole();
   const handleEditedUser = () => {
     setEditUser(false);
     onReloadUser();

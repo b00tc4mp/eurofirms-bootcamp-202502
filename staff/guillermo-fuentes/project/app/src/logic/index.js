@@ -17,6 +17,8 @@ import { getProvidersSuggestions } from "./getProvidersSuggestions";
 import { updateProduct } from "./updateProduct";
 import { deleteProduct } from "./deleteProduct";
 import { getUserById } from "./getUserById";
+import { isUserAdministrator } from "./isUserAdministrator";
+import { isUserProvider } from "./isUserProvider";
 export const logic = {
   loginUser,
   isUserLoggedIn,
@@ -37,4 +39,6 @@ export const logic = {
   updateProduct,
   deleteProduct,
   getUserById,
+  isUserProvider,
+  isUserAdministrator,
 };

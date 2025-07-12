@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { Provider } from "./components/Provider";
 import { useNavigate } from "react-router";
 import { useContext } from "../context/context";
-import { useAuth } from "../context/AuthContext";
+import { useRole } from "../hooks/useRole";
+
 export const Providers = () => {
   const [providers, setProviders] = useState([]);
   const navigate = useNavigate();
   const { alert } = useContext();
-  const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
+
+  const { isAdmin } = useRole();
   useEffect(() => {
     try {
       logic

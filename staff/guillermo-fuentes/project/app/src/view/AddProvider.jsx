@@ -1,21 +1,14 @@
 import { useState } from "react";
 import { logic } from "../logic";
 import { useNavigate } from "react-router";
-import { useAuth } from "../context/AuthContext";
+
 import { SearchUsers } from "./components/SearchUsers";
 
 export const AddProvider = () => {
   const navigate = useNavigate();
-  const { loggedIn, rol: userRol } = useAuth();
+
   const [selectedUserId, setSelectedUserId] = useState("");
   const [error, setError] = useState("");
-
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
-
-  if (!isAdmin) {
-    navigate("/unauthorized");
-    return null;
-  }
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();

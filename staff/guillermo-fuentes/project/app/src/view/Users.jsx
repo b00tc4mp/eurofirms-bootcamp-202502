@@ -3,16 +3,18 @@ import { useEffect, useState } from "react";
 import { User } from "./components/User";
 import { useNavigate } from "react-router";
 import { useContext } from "../context/context";
-import { useAuth } from "../context/AuthContext";
+import { useRole } from "../hooks/useRole";
+import { data } from "../data";
+import { getPayloadFromToken } from "../logic/helper/getPayloadFromToken";
 export const Users = () => {
   const [users, setUsers] = useState([]);
-  //Usar useState para saber que valor está seleccionado en el desplegable
   const [role, setRol] = useState("All users");
   const navigate = useNavigate();
-
   const roles = ["All users", "Administrators", "Clients", "Providers"];
   const { alert } = useContext();
-  const { isAdmin, currentUser } = useAuth();
+  const { isAdmin } = useRole();
+  const token = data.getToken();
+  const currentUser = getPayloadFromToken(token);
   useEffect(() => {
     if (isAdmin) {
       if (role === "All users") {
@@ -26,12 +28,14 @@ export const Users = () => {
             alert(error.message);
           });
       } else {
-        const roleMap = {
-          Administrators: "administrator",
-          Clients: "client",
-          Providers: "provider",
-        };
-        const roleToSend = roleMap[role];
+        let roleToSend;
+        if (role === "Administrators") {
+          roleToSend = "administrator";
+        } else if (role === "Clients") {
+          roleToSend = "client";
+        } else if (role === "Providers") {
+          roleToSend = "provider";
+        }
 
         logic
           .getUsersByRol(roleToSend)
@@ -46,8 +50,8 @@ export const Users = () => {
     } else if (currentUser) {
       // Usuario normal: solo ve su usuario
       logic
-        .getUserById(currentUser.id)
-        .then((user) => setUsers([user])) // array para mapearlo
+        .getUserById(currentUser.sub)
+        .then((user) => setUsers([user]))
         .catch((error) => {
           console.error(error);
           alert(error.message);

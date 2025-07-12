@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useContext } from "../context/context";
 import { Product } from "./components/Product";
-import { useAuth } from "../context/AuthContext";
+
+import { useRole } from "../hooks/useRole";
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { alert } = useContext();
-  const { loggedIn, rol: userRol } = useAuth();
-  const isAdmin = loggedIn && userRol === import.meta.env.VITE_ROL_1;
-  const isProvider = loggedIn && userRol === import.meta.env.VITE_ROL_2;
+
+  const { isAdmin, isProvider } = useRole();
   useEffect(() => {
     try {
       logic
