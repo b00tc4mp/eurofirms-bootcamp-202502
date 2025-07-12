@@ -10,6 +10,7 @@ import { createProfile } from './createProfile'
 import { createWorkout } from './createWorkout'
 import { getWorkouts } from './getWorkouts'
 import { getWorkoutForUser } from './getWorkoutForUser'
+import { removeWorkout } from './removeWorkout'
 
 import { createExercise } from './createExercise'
 import { getExercises } from './getExercises'
@@ -22,11 +23,15 @@ export const logic = {
     getUserUsername,
     logoutUser,
     createProfile,
-    createWorkout,
-    getWorkouts,
-    createExercise,
     isUserAdmin,
     getUsers,
+
+    createExercise,
+    getExercises,
+   
+    createWorkout,
+    getWorkouts,
     getWorkoutForUser,
-    getExercises
+    removeWorkout
+   
 }

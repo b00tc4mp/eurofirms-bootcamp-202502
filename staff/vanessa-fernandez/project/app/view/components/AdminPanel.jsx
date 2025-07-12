@@ -6,10 +6,12 @@ import { CreateWorkout } from './CreateWorkout'
 
 
 export const AdminPanel = ({ user, onBack }) => {
-    const { alert } = useContext()
+    const { alert, confirm } = useContext()
+
 
     const [selectedDay, setSelectedDay] = useState(null)
     const [workout, setWorkout] = useState(null)
+    const [workoutId, setWorkoutId] = useState(null)
     const [showCreate, setShowCreate] = useState(false)
 
     console.log('Admin panel user:', user)
@@ -21,11 +23,13 @@ export const AdminPanel = ({ user, onBack }) => {
                 logic.getWorkoutForUser(user.id, selectedDay)
                     .then(workout => {
                         setWorkout(workout)
+                        setWorkoutId(workout.id || workout._id)
                         setShowCreate(false)
                     })
                     .catch(error => {
                         if (error.message === 'workout not found') {
                             setWorkout(null)
+                            setWorkoutId(null)
                             setShowCreate(false)
                         } else {
                             console.error(error)
@@ -49,6 +53,32 @@ export const AdminPanel = ({ user, onBack }) => {
         setShowCreate(false)
         setSelectedDay(null)
         setWorkout(null)
+    }
+
+    const handleDeleteWorkout = () => {
+    
+        confirm('Delete workout?')
+            .then(result => {
+                if (result)
+                    try {
+                        logic.removeWorkout(workoutId)
+                            .then(() => onWorkoutDeleted())
+                            .catch(error => {
+                                console.error(error)
+
+                                alert(error.message)
+                            })
+                    }catch (error) {
+                        console.error(error)
+
+                        alert(error.message)
+                    }
+            })
+
+    }
+    
+    const onWorkoutDeleted = () => {
+        onBack()
     }
 
 
@@ -77,9 +107,9 @@ export const AdminPanel = ({ user, onBack }) => {
 
                             <button
                                 className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                                onClick={() => console.log('TODO: delete workout')}
+                                onClick={handleDeleteWorkout}
                             >
-                                Delete Workout
+                               🗑️ Delete Workout
                             </button>
                         </div>
                     ) : (

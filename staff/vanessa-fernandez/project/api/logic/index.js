@@ -7,6 +7,7 @@ import { createExercise } from './createExercise.js'
 import { getExercises } from './getExercises.js'
 import { createWorkout } from './createWorkout.js'
 import { getWorkouts } from './getWorkouts.js'
+import { getWorkoutForUser } from './getWorkoutForUser.js'
 import { removeWorkout } from './removeWorkout.js'
 
 export const logic = {
@@ -21,5 +22,6 @@ export const logic = {
     
     createWorkout,
     getWorkouts, 
+    getWorkoutForUser,
     removeWorkout
 }

@@ -54,7 +54,7 @@ workoutsRouter.get('/admin', (request, response, next) => {
 
         const { userId, day } = request.query
 
-        logic.getWorkouts(userId, day)
+        logic.getWorkoutForUser(userId, day)
             .then(workout => response.status(200).json(workout))
             .catch( error => next(error))
     } catch (error) {
