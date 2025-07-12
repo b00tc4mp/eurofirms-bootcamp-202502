@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { logic } from "../logic";
-import { useNavigate } from "react-router";
+
 import { SearchProviders } from "./components/SearchProviders";
 
-export const AddProduct = () => {
-  const navigate = useNavigate();
-
+export const AddProduct = ({ onProductAdded }) => {
   const [selectedProviderId, setSelectedProviderId] = useState("");
   const [error, setError] = useState("");
-
+  const handleProductAdded = () => onProductAdded();
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -29,7 +27,7 @@ export const AddProduct = () => {
         form.reset();
         setSelectedProviderId("");
         setError("");
-        navigate("/products");
+        handleProductAdded();
       })
       .catch((error) => {
         const msg = error.message || "Error creating product";

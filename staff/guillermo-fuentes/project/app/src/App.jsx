@@ -22,7 +22,7 @@ export const App = () => {
   const loggedIn = useLoggedIn();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const isAdmin = logic.isUserAdministrator();
   useEffect(() => {
     if (location.pathname !== "/") return;
     try {
@@ -60,11 +60,13 @@ export const App = () => {
       setConfirmAction({ resolve });
     });
   };
-
+  // Navegacion
   const handleRegisterClicked = () => navigate("/register");
-
   const handleUserLoggedIn = () => navigate("/users");
-  const handleProductAdded = () => navigate("/home");
+  const handleProductAdded = () => navigate("/products");
+  const handleUserRegistered = () => navigate("/home");
+  const handleRegisterCancel = () => navigate("/login");
+  const handleProviderAdded = () => navigate("/providers");
   return (
     <Context.Provider
       value={{
@@ -80,8 +82,23 @@ export const App = () => {
       <Navbar />
       <Routes>
         <Route path="/home" element={loggedIn ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/register" element={loggedIn ? <Navigate to="/home" /> : <Register />} />
-        <Route path="/addProvider" element={loggedIn ? <AddProvider /> : <Navigate to="/login" />} />
+        <Route
+          path="/register"
+          element={
+            !loggedIn ? (
+              <Navigate to="/login" />
+            ) : isAdmin ? (
+              <Register onUserRegistered={handleUserRegistered} onRegisterCancel={handleRegisterCancel} />
+            ) : (
+              <Navigate to="/home" />
+            )
+          }
+        />
+
+        <Route
+          path="/addProvider"
+          element={loggedIn ? <AddProvider onProviderAdded={handleProviderAdded} /> : <Navigate to="/login" />}
+        />
         <Route
           path="/addProduct"
           element={loggedIn ? <AddProduct onProductAdded={handleProductAdded} /> : <Navigate to="/login" />}

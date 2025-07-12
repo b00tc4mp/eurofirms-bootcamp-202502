@@ -1,14 +1,13 @@
 import { logic } from "../logic";
-import { useNavigate } from "react-router";
 import { useRole } from "../hooks/useRole";
 
-export const Register = () => {
-  const navigate = useNavigate();
+export const Register = ({ onUserRegistered, onRegisterCancel }) => {
   const { isAdmin } = useRole();
-
+  const handleUserRegistered = () => onUserRegistered();
+  const handleCancelRegister = () => onRegisterCancel();
   const handleLoginClick = (event) => {
     event.preventDefault();
-    navigate("/login");
+    handleCancelRegister();
   };
 
   const handleRegisterSubmit = (event) => {
@@ -25,7 +24,7 @@ export const Register = () => {
         .registerUser(fullName, email, password, address, role)
         .then(() => {
           form.reset();
-          navigate("/home");
+          handleUserRegistered();
         })
         .catch((error) => {
           console.error(error);

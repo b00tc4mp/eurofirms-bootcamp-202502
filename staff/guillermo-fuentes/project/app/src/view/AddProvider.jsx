@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { logic } from "../logic";
-import { useNavigate } from "react-router";
 import { SearchUsers } from "./components/SearchUsers";
 
-export const AddProvider = () => {
-  const navigate = useNavigate();
+export const AddProvider = ({ onProviderAdded }) => {
   const [selectedUserId, setSelectedUserId] = useState("");
   const [error, setError] = useState("");
-
+  const handleProviderAdded = () => onProviderAdded();
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -28,7 +26,7 @@ export const AddProvider = () => {
         form.reset();
         setSelectedUserId("");
         setError("");
-        navigate("/providers");
+        handleProviderAdded();
       })
       .catch((error) => {
         const msg = error.message || "Error creating provider";
