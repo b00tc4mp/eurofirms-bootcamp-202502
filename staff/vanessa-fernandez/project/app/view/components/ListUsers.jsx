@@ -31,7 +31,7 @@ export const ListUsers = ({ onUserSelected }) => {
             <h2 className="text-xl font-bold text-[#0ab5ee] mb-4 text-center">All Users</h2>
             <ul className="space-y-3">
                 {users.map(user => (
-                    <li key={user.id} className="flex justify-between items-center bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
+                    <li key={user._id} className="flex justify-between items-center bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
                         <span>{user.username}</span>
                         <button
                             onClick={() => onUserSelected(user)}

@@ -82,7 +82,7 @@ usersRouter.get('/', (request, response, next) => {
 
         logic.getUsers()
             .then(users => response.status(200).json(users))
-            .catch(next)
+            .catch(error => next(error))
     } catch(error) {
         next(error)
     }

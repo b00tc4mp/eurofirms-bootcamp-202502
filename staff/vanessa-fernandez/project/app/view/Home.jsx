@@ -5,6 +5,7 @@ import { CreateProfile } from './components/CreateProfile.jsx'
 import { Days } from './components/Days.jsx'
 import { Workout } from './components/Workout.jsx'
 import { useContext } from '../context'
+import { AdminPanel } from './components/AdminPanel.jsx'
 
 export const Home = ({ onUserLoggedOut }) => {
     const { alert } = useContext()
@@ -16,6 +17,8 @@ export const Home = ({ onUserLoggedOut }) => {
     const [isAdmin, setIsAdmin] = useState(false)
 
     const [selectDay, setSelectDay] = useState(null)
+
+    const [user, setSelectedUser] = useState(null)
 
     useEffect(() => {
         try {
@@ -62,6 +65,15 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handleBackToDays = () => setSelectDay(null)
 
+    const handleUserSelected = (user) => {
+        const normalizedUser = {
+            ...user,
+            id: user._id
+        }
+
+        setSelectedUser(normalizedUser)
+    }
+
     console.log('Home -> render')
 
     return <div className=" relative px-5 py-6 min-h-screen flex flex-col items-center bg-white text-center">
@@ -95,7 +107,8 @@ export const Home = ({ onUserLoggedOut }) => {
         <div className="mt-8 w-full flex justify-center">
             {view === 'profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
             {view == 'create-profile' && <CreateProfile onCancelClicked={handleCreateProfileCancelClicked} onProfileCreated={handleProfileCreated} alert={alert} />}
-            {view ==='admin' && <ListUsers onUserSelected={(user) => console.log('Selected user: ', user)} />}
+            {view ==='admin' && !user && ( <ListUsers onUserSelected={handleUserSelected} />)}
+            {view ==='admin' && user && (<AdminPanel user={user} onBack={() => setSelectedUser(null)}/>)}
             {view == 'home' && !selectDay && <Days onSelect={handleDaySelected} />}
             {view == 'home' && selectDay && <Workout day={selectDay} onBack={handleBackToDays} />}
 
