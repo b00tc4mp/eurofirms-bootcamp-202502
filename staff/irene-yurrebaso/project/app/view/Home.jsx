@@ -61,7 +61,7 @@ export const Home = ({ onUserLoggedOut }) => {
 
     const handlePlaceDeleted = () => setView('places')
     
-    console.log('Home -> render')
+    console.debug('Home -> render')
 
     return <div className="px-10 py-8 max-w-screen-xl mx-auto">
         <div className="flex flex-col items-center gap-2">

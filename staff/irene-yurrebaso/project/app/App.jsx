@@ -66,7 +66,7 @@ export const App = () => {
         })
     }
 
-    console.log('App -> render')
+    console.debug('App -> render')
 
     return <Context.Provider value={{
         alert: setAlertMessage,

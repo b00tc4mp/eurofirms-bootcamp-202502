@@ -41,7 +41,7 @@ export const Place = ({ place, onPlaceClicked, onPlaceDeleted }) => {
         alert(error.message)
     }
 
-    console.log('Place -> render')
+    console.debug('Place -> render')
 
     return <article className="max-w-sm">
         <h3 className="font-semibold"><a className="hover:underline hover:underline-offset-2" href="#" onClick={handlePlaceClick}>{place.name}</a></h3>

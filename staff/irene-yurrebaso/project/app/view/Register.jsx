@@ -35,7 +35,7 @@ export const Register = ({ onLoginClicked, onUserRegistered }) => {
         }
     }
 
-    console.log('Register -> render')
+    console.debug('Register -> render')
 
     return <div className="p-5 max-w-screen-lg mx-auto">
         <div className="flex flex-col items-center">

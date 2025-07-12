@@ -4,7 +4,7 @@ export const Landing = ({ onRegisterClicked, onLoginClicked }) => {
 
     const handleLoginClick = () => onLoginClicked()
 
-    console.log('Landing -> render')
+    console.debug('Landing -> render')
 
     return <>
         <div className="flex flex-col gap-8 px-10 py-8 max-w-screen-xl mx-auto">

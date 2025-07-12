@@ -54,7 +54,7 @@ export const Places = ({onChangeToPlaceDetails}) => {
         }
     }
     
-    console.log('Places -> render')
+    console.debug('Places -> render')
 
     return <div>
         

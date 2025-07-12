@@ -55,7 +55,7 @@ export const CreatePlace = ({ onCancelClicked, onPlaceCreated }) => {
         }
     }
 
-    console.log('CreatePlace -> render')
+    console.debug('CreatePlace -> render')
 
     return <div>
         <h1 className="text-xl font-semibold my-4">Add a place</h1>

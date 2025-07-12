@@ -60,7 +60,7 @@ export const PlaceDetails = ({ placeId, onGoBackClicked, onPlaceDeleted }) => {
         alert(error.message)
     }
 
-    console.log('PlaceDetails -> render')
+    console.debug('PlaceDetails -> render')
 
     return <div>
         <button className="bg-rose-800 text-white px-2 mb-3 cursor-pointer hover:bg-rose-900" onClick={handleGoBackClick}>&lt; Go back</button>
