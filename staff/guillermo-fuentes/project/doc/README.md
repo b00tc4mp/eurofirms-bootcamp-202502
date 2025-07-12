@@ -11,7 +11,7 @@ proyecto pretende facilitar la administracion de usuarios de manera que sea faci
 
 Regular (User)
 
-- Modificar su propia informacion
+- Modificar su propia informacion 🎆
 - Ver Productos 🎆
 - Ver Proveedores 🎆
   Admin (User) [v0.1]
@@ -129,4 +129,4 @@ Product
 
 ## Management
 
-[Issues](https://github.com/b00tc4mp/eurofirms-bootcamp-202502/issues/81)
+[Issues](https://github.com/b00tc4mp/eurofirms-bootcamp-202502/issues/87)
