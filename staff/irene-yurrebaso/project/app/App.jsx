@@ -89,11 +89,13 @@ export const App = () => {
                     />
             } />
             <Route path='/register' element={
-                <Register
-                    onLoginClicked={handleLoginClicked}
-                    onUserRegistered={handleUserRegistered}
-                />
-
+                !loggedIn ?
+                    <Register
+                        onLoginClicked={handleLoginClicked}
+                        onUserRegistered={handleUserRegistered}
+                    />
+                    :
+                    <Navigate to='/' />
             } />
             <Route path='/login' element={
                 !loggedIn ?

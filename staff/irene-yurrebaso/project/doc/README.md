@@ -13,14 +13,21 @@ ES: La app Infinity Travel es un portal colaborativo en el que viajeros dentro d
 ### Use Cases
 
 Regular (User)
-- search by city, city and category, or place 
 - add place
+- remove place
+
+[v0.1]
 - add review
 - edit review
 - delete review
-- geolocalization on map [v0.1]
+- geolocalization on map 
+- search by city, city and category, or place 
 
-Admin (User) [v0.1]
+Admin (User)
+- add place 
+- remove place
+
+[v0.1]
 - approve place
 - delete place
 - delete review
@@ -53,15 +60,14 @@ App
 - Register
 - Login
 - Home
-- Add place
-- Write review
-- Show city, category and places
-- Show place with reviews
+    - Places
+        - Place
+    - CreatePlace
+    - PlaceDetails
 
-Home
-- Search
-- Write review
-- Add place
+[v0.1]
+- WriteReview
+- Show place with reviews
 
 ```
 
@@ -85,14 +91,16 @@ Place
 - description (string, required)
 - image (string)
 - data creation (date)
+
+[v0.1]
 - rating (number) [v0.1]
 - location lat & lng on map (number) [v0.1]
 
-Review
+Review [v0.1]
 - id (UUID)
 - title (string, required)
 - comment (string, required)
-- features (i.e. sensory friendly, low noise levels, flexible menu, quiet, clear information...) (boolean, required)
+- features (i.e. sensory friendly, low noise levels, flexible menu, quiet, clear information...) (string, required)
 - date creation (ISODate, required)
 - date visited (string, required)
 - image (string)
@@ -108,4 +116,4 @@ Review
 
 ## Management
 
-[Issues] (https://github.com/b00tc4mp/eurofirms-bootcamp-202502/issues/93)
+[Issues](https://github.com/b00tc4mp/eurofirms-bootcamp-202502/issues/93)

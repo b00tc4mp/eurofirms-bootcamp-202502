@@ -16,6 +16,11 @@ export const PlaceDetails = ({ placeId, onGoBackClicked, onPlaceDeleted }) => {
                 .then(place => {
                     setPlace(place)
                 })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
         } catch (error) {
             console.error(error)
 
