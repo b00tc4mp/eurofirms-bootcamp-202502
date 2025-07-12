@@ -4,7 +4,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
   .then(() => {
     try {
       return getUsers("6857e3c3c94ecaebfb3d947a")
-        .then((users) => console.log("Users", users))
+        .then((users) => console.debug("Users", users))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

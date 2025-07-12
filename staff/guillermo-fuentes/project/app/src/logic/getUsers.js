@@ -20,7 +20,7 @@ export const getUsers = () => {
             throw new SystemError("json error");
           })
           .then((users) => {
-            console.log("Users received ", users);
+            console.debug("Users received ", users);
             return users;
           });
       return response

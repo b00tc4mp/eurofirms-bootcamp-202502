@@ -16,7 +16,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
 
         "685fed30931539e79c3f67a0"
       )
-        .then(() => console.log("Product updated"))
+        .then(() => console.debug("Product updated"))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

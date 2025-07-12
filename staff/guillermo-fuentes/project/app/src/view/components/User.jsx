@@ -21,7 +21,7 @@ export const User = ({ user, onUserDeleted, onReloadUser }) => {
           logic
             .deleteUser(user.id)
             .then(() => {
-              console.log("user delete");
+              console.debug("user delete");
               onUserDeleted();
             })
             .catch((error) => {

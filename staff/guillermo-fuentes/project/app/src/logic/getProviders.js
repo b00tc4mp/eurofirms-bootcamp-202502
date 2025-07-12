@@ -20,7 +20,7 @@ export const getProviders = () => {
             throw new SystemError("json error");
           })
           .then((providers) => {
-            console.log("Providers recived", providers);
+            console.debug("Providers recived", providers);
             return providers;
           });
       return response

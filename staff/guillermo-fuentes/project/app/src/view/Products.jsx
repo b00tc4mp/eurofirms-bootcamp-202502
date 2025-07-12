@@ -21,7 +21,7 @@ export const Products = () => {
         .catch((error) => {
           alert(error.message);
         });
-      console.log(products);
+      console.debug(products);
     } catch (error) {
       console.error(error);
       alert(error.message);

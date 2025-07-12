@@ -12,7 +12,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
         "calle actualizada",
         "685d754c88eed2c3173a46f5"
       )
-        .then(() => console.log("Provider updated"))
+        .then(() => console.debug("Provider updated"))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

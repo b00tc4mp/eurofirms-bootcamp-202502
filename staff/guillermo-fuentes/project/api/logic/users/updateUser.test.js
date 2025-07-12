@@ -13,7 +13,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
         "usuario@actualizado.com",
         "12345678"
       )
-        .then(() => console.log("user updated"))
+        .then(() => console.debug("user updated"))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

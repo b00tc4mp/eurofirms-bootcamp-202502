@@ -11,7 +11,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
         "Calle ejemplo 3",
         "685ed7b5cc250d208b96432e"
       )
-        .then(() => console.log("Provider registered"))
+        .then(() => console.debug("Provider registered"))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

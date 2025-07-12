@@ -22,7 +22,7 @@ export const getUsersByRol = (role) => {
             throw new SystemError("json error");
           })
           .then((users) => {
-            console.log("Usuarios recibidor ", users);
+            console.debug("Usuarios recibidor ", users);
             return users;
           });
       return response

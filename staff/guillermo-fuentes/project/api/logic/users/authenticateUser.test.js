@@ -4,7 +4,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
   .then(() => {
     try {
       return authenticateUser("prueba@curl.com", "12345678")
-        .then((userId) => console.log("user authenticated: ", userId))
+        .then((userId) => console.debug("user authenticated: ", userId))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

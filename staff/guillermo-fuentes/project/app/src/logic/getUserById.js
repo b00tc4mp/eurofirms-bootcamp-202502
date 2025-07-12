@@ -20,7 +20,7 @@ export const getUserById = (userId) => {
             throw new SystemError("json error");
           })
           .then((user) => {
-            console.log("Users received ", user);
+            console.debug("Users received ", user);
             return user;
           });
       return response

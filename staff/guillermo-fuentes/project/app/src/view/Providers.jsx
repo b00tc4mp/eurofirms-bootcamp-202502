@@ -21,7 +21,7 @@ export const Providers = () => {
         .catch((error) => {
           alert(error.message);
         });
-      console.log(providers);
+      console.debug(providers);
     } catch (error) {
       console.error(error);
       alert(error.message);

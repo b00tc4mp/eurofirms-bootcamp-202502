@@ -5,45 +5,35 @@
 Este proyecto trata de un panel de administracion donde un administrador podra crear, borrar y eliminar usuarios, este
 proyecto pretende facilitar la administracion de usuarios de manera que sea facil he intuitiva
 
+![Minions](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHMwNmE5eXNyN3FzdnBmd3M4MnVodnE5NWE2bDRpZDlrbTM5bmp5cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GliOid0Gx3T3O/giphy.gif)
+
 ## Functional
 
 ### Use Cases
 
-Regular (User) [v0.1]
+Regular (User)
 
 - Modify own information 🎆
-
 - View products 🎆
-
 - View own user 🎆
-  Admin (User) [v0.1]
+
+Admin (User)
 
 - View information of other users 🎆
-
 - Delete other users 🎆
-
 - Create new users 🎆
-
 - Edit user information 🎆
-
 - Create supplier 🎆
-
 - Delete supplier 🎆
-
 - Edit supplier 🎆
-
 - Create products 🎆
-
 - Delete products 🎆
-
 - Edit products 🎆
 
-  Provider [v0.1]
+Provider (User)
 
 - Create products 🎆
-
 - Delete products 🎆
-
 - Edit products 🎆
 
 ### Prototype
@@ -64,7 +54,8 @@ App
 - assets
 - context
 - view
-  API
+
+API
 
 - routes
 - logic
@@ -78,26 +69,25 @@ App
 ```
 App
 
- |- Register
- |- Login
- |- Home
- |- Users
- |- User
- |- Provider
- |- Providers
- |- AddProvider
- |- EditProvider
- |- Product
- |- Products
- |- AddProduct
- |- EditProduct
- |- SearchProviders
- |- SerachUsers
- |- Navbar
- |- Alert
- |- Confirm
-
-...
+- Register
+- Login
+- Home
+- Users
+    - User
+      - EditUser
+- Providers
+  - Provider
+    - EditProvider
+- AddProvider
+  - SearchUsers
+- Products
+  - Product
+    - EditProduct
+- AddProduct
+  - SearchProviders
+- Navbar
+- Alert
+- Confirm
 ```
 
 ### Data Model
@@ -115,20 +105,20 @@ Provider
 
 - id (UUID)
 - name (string, required, unique)
-- address(string required)
-- user(referencia al id usuario, ObjectId)
+- address (string required)
+- user (User.id, UUID)
 
 Product
 
 - id(UUID)
 - name (string, required, unique)
-- description(string, required)
-- price(number, required)
-- stock(number, required)
-- image(string,required)
-- dateCreation(date, required, default: date.now)
-- dateModification(date, required, default:null)
-- provider(referencia al id del provider)
+- description (string, required)
+- price (number, required)
+- stock (number, required)
+- image (string,required)
+- dateCreation (date, required, default: date.now)
+- dateModification (date, required, default:null)
+- provider (Provider.id, UUID)
 
 ### Technologies
 

@@ -6,7 +6,6 @@ import { Register } from "./view/Register";
 import { Login } from "./view/Login";
 import { Users } from "./view/Users";
 import { Providers } from "./view/Providers";
-import { ProtectedRoute } from "./context/ProtectedRoute";
 import { Navbar } from "./view/components/Navbar";
 import { Alert } from "./view/components/Alert";
 import { Confirm } from "./view/components/Confirm";
@@ -32,7 +31,7 @@ export const App = () => {
     if (location.pathname !== "/") return;
     try {
       const loggedIn = logic.isUserLoggedIn();
-      console.log("the login is " + loggedIn);
+      console.debug("the login is " + loggedIn);
       if (loggedIn) {
         navigate("/users", { replace: true });
       } else {
@@ -81,7 +80,7 @@ export const App = () => {
       <Navbar />
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={loggedIn ? <Register /> : <Navigate to="/login" />} />
         <Route path="/addProvider" element={<AddProvider />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/login" element={<Login />} />

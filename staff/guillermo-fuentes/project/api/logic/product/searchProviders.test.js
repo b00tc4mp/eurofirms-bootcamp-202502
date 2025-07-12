@@ -5,7 +5,7 @@ connect("mongodb://localhost:27017/proyectoFinal")
   .then(() => {
     try {
       return searchProviders("Arcadio SA")
-        .then((user) => console.log("Provider found", user))
+        .then((user) => console.debug("Provider found", user))
         .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);

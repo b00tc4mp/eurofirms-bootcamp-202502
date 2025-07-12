@@ -20,7 +20,7 @@ export const getProducts = () => {
             throw new SystemError("json error");
           })
           .then((products) => {
-            console.log("Products received ", products);
+            console.debug("Products received ", products);
             return products;
           });
       return response
