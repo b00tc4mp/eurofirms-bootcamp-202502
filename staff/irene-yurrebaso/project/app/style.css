@@ -3,13 +3,8 @@
 
 @import "tailwindcss";
 
+.font-Quicksand { font-family: 'Quicksand', sans-serif; }
 
 body {
     font-family: Lexend, sans-serif;
-}
-
-.logo {
-    font-family: Quicksand, sans-serif;
-    font-style: normal;
-    font-weight: 700;
 }

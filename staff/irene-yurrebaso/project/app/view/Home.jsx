@@ -66,7 +66,7 @@ export const Home = ({ onUserLoggedOut }) => {
     return <div className="px-10 py-8 max-w-screen-xl mx-auto">
         <div className="flex flex-col items-center gap-2">
             <img src="/logo.jpg" alt="Infinity Travel" />
-            <i className="logo">Infinity Travel</i>
+            <i className="font-Quicksand font-black">Infinity Travel</i>
         </div>
         <div className="my-6">
             <p className="flex my-1">Hello,<span className="font-semibold ml-1">{username}</span>!<span><a className="underline text-blue-600 text-sm ml-4" href="#" onClick={handleLogoutClick}>Log out</a></span></p>

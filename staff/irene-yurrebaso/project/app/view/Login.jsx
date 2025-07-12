@@ -48,7 +48,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
         <div className="flex flex-col items-center">
             <img src="/logo.jpg" alt="Infinity Travel" />
 
-            <i className="logo">Infinity Travel</i>
+            <i className="font-Quicksand font-black">Infinity Travel</i>
         </div>
         <div className="mt-5">
 
