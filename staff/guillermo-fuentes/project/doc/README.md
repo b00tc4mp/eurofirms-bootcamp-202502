@@ -12,25 +12,26 @@ proyecto pretende facilitar la administracion de usuarios de manera que sea faci
 Regular (User)
 
 - Modificar su propia informacion
-- Eliminar su usuario
-- Ver Productos
+- Ver Productos 🎆
+- Ver Proveedores 🎆
+  Admin (User) [v0.1]
 
-Admin (User) [v0.1]
+- Ver informacion de otros usuarios 🎆
+- Eliminar otros usuarios 🎆
+- crear nuevos usuarios 🎆
+- editar informacion de los usuarios 🎆
+- Crear proveedor 🎆
+- Eliminar proveedor 🎆
+- Editar proveedor 🎆
+- Crear productos 🎆
+- Eliminar productos 🎆
+- Editar productos 🎆
 
-- Ver informacion de otros usuarios
-- Eliminar otros usuarios
-- crear nuevos usuarios
-- editar informacion de los usuarios
-- Crear proveedor
-- Eliminar proveedor
-- Editar proveedor
-- Crear productos
-- Eliminar productos
-- Editar productos
   Provider
-- Crear productos
-- Eliminar productos
-- Editar productos
+
+- Crear productos 🎆
+- Eliminar productos 🎆
+- Editar productos 🎆
 
 ### Prototype
 
@@ -69,6 +70,19 @@ App
  |- Home
  |- Users
  |- User
+ |- Provider
+ |- Providers
+ |- AddProvider
+ |- EditProvider
+ |- Product
+ |- Products
+ |- AddProduct
+ |- EditProduct
+ |- SearchProviders
+ |- SerachUsers
+ |- Navbar
+ |- Alert
+ |- Confirm
 
 ...
 ```
