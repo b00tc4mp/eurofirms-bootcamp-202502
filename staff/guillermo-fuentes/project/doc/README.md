@@ -2,8 +2,8 @@
 
 ## Intro
 
-Este proyecto trata de un panel de administracion donde un administrador podra crear, borrar y eliminar usuarios, este
-proyecto pretende facilitar la administracion de usuarios de manera que sea facil he intuitiva
+Este proyecto consiste en un panel de administración en el que un administrador podrá crear, modificar y eliminar usuarios.  
+Su objetivo es facilitar la gestión de usuarios de forma clara, sencilla e intuitiva.
 
 ![Minions](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHMwNmE5eXNyN3FzdnBmd3M4MnVodnE5NWE2bDRpZDlrbTM5bmp5cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GliOid0Gx3T3O/giphy.gif)
 
