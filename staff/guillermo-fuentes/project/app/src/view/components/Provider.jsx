@@ -47,6 +47,9 @@ export const Provider = ({ provider, onReloadProvider, onEditedProvider }) => {
 
           <div className="space-y-2 text-sm text-gray-700">
             <p>
+              <span className="font-semibold">Tax Id:</span> {provider.taxId}
+            </p>
+            <p>
               <span className="font-semibold">Name:</span> {provider.name}
             </p>
             <p>

@@ -64,7 +64,8 @@ export const App = () => {
   const handleRegisterClicked = () => navigate("/register");
   const handleUserLoggedIn = () => navigate("/users");
   const handleProductAdded = () => navigate("/products");
-  const handleUserRegistered = () => navigate("/home");
+  const handleUserRegistered = () => navigate("/login");
+  const handleUserRegisteredAdmin = () => navigate("/users");
   const handleRegisterCancel = () => navigate("/login");
   const handleProviderAdded = () => navigate("/providers");
   return (
@@ -85,10 +86,12 @@ export const App = () => {
         <Route
           path="/register"
           element={
-            !loggedIn ? (
-              <Navigate to="/login" />
-            ) : isAdmin ? (
-              <Register onUserRegistered={handleUserRegistered} onRegisterCancel={handleRegisterCancel} />
+            !loggedIn || isAdmin ? (
+              <Register
+                onUserRegistered={handleUserRegistered}
+                onUserRegisteredAdmin={handleUserRegisteredAdmin}
+                onRegisterCancel={handleRegisterCancel}
+              />
             ) : (
               <Navigate to="/home" />
             )

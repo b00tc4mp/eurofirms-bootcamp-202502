@@ -1,10 +1,11 @@
 import { logic } from "../logic";
 import { useRole } from "../hooks/useRole";
 
-export const Register = ({ onUserRegistered, onRegisterCancel }) => {
+export const Register = ({ onUserRegistered, onUserRegisteredAdmin, onRegisterCancel }) => {
   const { isAdmin } = useRole();
   const handleUserRegistered = () => onUserRegistered();
   const handleCancelRegister = () => onRegisterCancel();
+  const handleRegisterAdmin = () => onUserRegisteredAdmin();
   const handleLoginClick = (event) => {
     event.preventDefault();
     handleCancelRegister();
@@ -24,7 +25,11 @@ export const Register = ({ onUserRegistered, onRegisterCancel }) => {
         .registerUser(fullName, email, password, address, role)
         .then(() => {
           form.reset();
-          handleUserRegistered();
+          if (!isAdmin) {
+            handleUserRegistered();
+          } else {
+            handleRegisterAdmin();
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -38,10 +43,8 @@ export const Register = ({ onUserRegistered, onRegisterCancel }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-        <div className="flex justify-center mb-6 text-4xl text-blue-500">
-          <i className="fas fa-user-plus"></i> {/* Font Awesome icon optional */}
-        </div>
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Registro</h1>
+        <div className="flex justify-center mb-6 text-4xl text-blue-500"></div>
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Register</h1>
         <form className="space-y-4" onSubmit={handleRegisterSubmit}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -113,25 +116,30 @@ export const Register = ({ onUserRegistered, onRegisterCancel }) => {
                   defaultValue="client"
                   required
                 >
-                  <option value="client">Cliente</option>
-                  <option value="administrator">Administrador</option>
+                  <option value="client">Client</option>
+                  <option value="administrator">Administrator</option>
+                  <option value="provider">Provider</option>
+                  <option value="employee">Employee</option>
                 </select>
               </>
             ) : (
               <input type="text" name="role" id="role" value="client" readOnly hidden className="w-full" />
             )}
           </div>
-
           <div className="flex justify-between gap-2 pt-2">
-            <button
-              onClick={handleLoginClick}
-              className="w-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition"
-            >
-              Login
-            </button>
+            {!isAdmin && (
+              <button
+                onClick={handleLoginClick}
+                className="w-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition"
+              >
+                Login
+              </button>
+            )}
             <button
               type="submit"
-              className="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition"
+              className={`${
+                !isAdmin ? "w-1/2" : "w-full"
+              } bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition`}
             >
               Register
             </button>

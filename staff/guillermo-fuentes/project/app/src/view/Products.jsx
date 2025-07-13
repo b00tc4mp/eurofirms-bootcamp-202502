@@ -48,7 +48,7 @@ export const Products = () => {
   return (
     <>
       <div className="flex flex-col items-center mt-8 px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Productos disponibles</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Available Products</h1>
 
         {(isAdmin || isProvider) && (
           <div className="mb-8">
@@ -57,7 +57,7 @@ export const Products = () => {
               onClick={() => navigate("/addProduct")}
             >
               <span className="text-xl">➕</span>
-              Añadir producto
+              Add product
             </button>
           </div>
         )}
@@ -73,7 +73,7 @@ export const Products = () => {
           ))}
 
           {!products.length && (
-            <div className="col-span-full text-center mt-8 text-gray-500 text-lg">🛒 No hay productos que mostrar</div>
+            <div className="col-span-full text-center mt-8 text-gray-500 text-lg">🛒 There are no products to show</div>
           )}
         </div>
       </div>

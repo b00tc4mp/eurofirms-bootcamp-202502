@@ -9,7 +9,7 @@ export const Users = () => {
   const [users, setUsers] = useState([]);
   const [role, setRol] = useState("All users");
   const navigate = useNavigate();
-  const roles = ["All users", "Administrators", "Clients", "Providers"];
+  const roles = ["All users", "Administrators", "Clients", "Providers", "Employee"];
   const { alert } = useContext();
   const { isAdmin } = useRole();
 
@@ -34,8 +34,9 @@ export const Users = () => {
           roleToSend = "client";
         } else if (role === "Providers") {
           roleToSend = "provider";
+        } else if (role === "Employee") {
+          roleToSend = "employee";
         }
-
         logic
           .getUsersByRol(roleToSend)
           .then((users) => {

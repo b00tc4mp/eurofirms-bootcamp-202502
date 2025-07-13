@@ -46,7 +46,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Contraseña
+              Password
             </label>
             <input
               type="password"
