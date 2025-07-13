@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './view/Landing'
@@ -24,7 +24,7 @@ export const App = () => {
 
     const handleUserRegistered = () => navigate('/login')
 
-    const handleUserLoggedIn = () => navigate('/login')
+    const handleUserLoggedIn = () => navigate('/')
 
     const handleUserLoggedOut = () => navigate('/login')
 
@@ -73,10 +73,10 @@ export const App = () => {
    
 
      <Routes>
-        <Route path='/' element={
+        <Route path='/*' element={
             !loggedIn ?
                 <Landing
-                    onRegisterCclicked={handleRegisterClicked}
+                    onRegisterClicked={handleRegisterClicked}
                     onLoginClicked={handleLoginClicked}
                     />
                     :

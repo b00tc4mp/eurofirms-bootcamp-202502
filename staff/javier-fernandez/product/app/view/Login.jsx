@@ -33,6 +33,8 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
                 alert('ERROR:' + error.message)
         })
         } catch (error) {
+            console.error(error)
+            
            if (error instanceof ValidationError)
             alert('WARN:' + error.message)
            else alert('ERROR:' + error.message)
