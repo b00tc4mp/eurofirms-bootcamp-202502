@@ -2,31 +2,36 @@ import { data } from '../data'
 import { SystemError, errors } from 'com'
 
 /**
- * Gets the user username.
+ * Gets all routines from users in the system
  * 
- * @returns { string } The user username.
+ * @returns {[{
+ * id: string,
+ * author: string,
+ * title: string,
+ * description: string
+ * }]} The routines from users in the system.
  */
-export const getUserUsername = () => {
-    return fetch(import.meta.env.VITE_API_URL + '/users/self/username', {
+export const getRoutines = () => {
+    return fetch(import.meta.env.VITE_API_URL + '/routines', {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new SystemError('connection error') })
-        .then (response => {
+        .then(response => {
             const { status } = response
 
-            if (status === 200) 
+            if (status === 200)
                 return response.json()
                     .catch(error => { throw new SystemError('json error') })
-                    .then(username => username)
-
+                    .then(routines => routines)
+            
             return response.json()
                 .catch(error => { throw new SystemError('json error') })
                 .then(body => {
                     const { error, message } = body
-                    
+
                     const constructor = errors[error] || SystemError
 
                     throw new constructor(message)
