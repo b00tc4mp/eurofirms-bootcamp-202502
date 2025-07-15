@@ -6,6 +6,7 @@ import { isUserLoggedIn } from './isUserLoggedIn'
 import { getPosts } from './getPosts'
 import { createPost } from './createPost'
 import { removePost } from './removePost'
+import {isUserAdministrator} from "./isUserAdministrator"
 
 export const logic = {
     registerUser,
@@ -15,5 +16,6 @@ export const logic = {
     isUserLoggedIn,
     getPosts,
     createPost,
-    removePost
+    removePost,
+    isUserAdministrator
 }

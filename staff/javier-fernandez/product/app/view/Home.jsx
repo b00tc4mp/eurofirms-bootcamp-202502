@@ -45,11 +45,11 @@ export const Home = ({ onUserLoggedOut }) => {
         }
     }
 
-    const handleCreatePostClick = () => navigate('create-post')
+    const handleCreatePostClick = () => navigate('/create-post')
 
-    const handleCreatePostCancelClicked = () => navigate('posts')
+    const handleCreatePostCancelClicked = () => navigate('/posts')
 
-    const handlePostCreated = () => navigate('posts')
+    const handlePostCreated = () => navigate('/posts')
  
     console.log('Home -> render')
 

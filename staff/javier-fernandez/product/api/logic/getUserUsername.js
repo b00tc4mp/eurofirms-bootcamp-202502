@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import { Validate, SystemError, NotFoundError } from 'com'
+import { validate, SystemError, NotFoundError } from 'com'
 
 /**
  * Return the username of the user to find by user id.
@@ -7,7 +7,7 @@ import { Validate, SystemError, NotFoundError } from 'com'
  * @param {string} userId the user id.
  */
 export const getUserUsername = userId => {
-    Validate.userId(userId)
+    validate.userId(userId)
 
     // search user with this userId
     // if user not found then throw error

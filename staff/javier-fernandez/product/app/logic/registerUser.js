@@ -1,5 +1,4 @@
-import { data } from '../data'
-
+import { validate } from 'com'
 /**
  * Registers a user in the system.
  * 

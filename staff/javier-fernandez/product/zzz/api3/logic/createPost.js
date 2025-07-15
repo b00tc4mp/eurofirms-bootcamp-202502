@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
- import { Validate, SystemError, NotFoundError } from 'com'
+ import { validate, SystemError, NotFoundError } from 'com'
 /**
  * Create a post in database.
  * 
@@ -8,9 +8,9 @@ import { User, Post } from '../data/index.js'
  * @param {string} text The post text.
  */
 export const createPost = (userId, image, text) => {
-   Validate.userId(userId)
-   Validate.image(image)
-   Validate.text(text)
+   validate.userId(userId)
+   validate.image(image)
+   validate.text(text)
 
     // verify user exists searching it by user id
     // if user not found then throw error

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 
 import { User } from '../data/index.js'
-import { Validate, DuplicityError, SystemError } from 'com'
+import { validate, DuplicityError, SystemError } from 'com'
 
 /**
  * Registers a user in the system.
@@ -12,10 +12,10 @@ import { Validate, DuplicityError, SystemError } from 'com'
  * @param {string} password The user password.
  */
 export const registerUser = (name, email, username, password) => {
-    Validate.name(name)
-    Validate.email(email)
-    Validate.useranme(username)
-    Validate.password(password)
+    validate.name(name)
+    validate.email(email)
+    validate.useranme(username)
+    validate.password(password)
         
     return bcrypt.hash(password, 10)
         .catch(error => { throw new SystemError(error.message) })

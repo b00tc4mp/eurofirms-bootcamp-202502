@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 
 import { User } from '../data/index.js'
-import { Validate, SystemError, CredentialsError, NotFoundError } from 'com'
+import { validate, SystemError, CredentialsError, NotFoundError } from 'com'
 
 /**
  * Authenticates a user from the system.
@@ -10,8 +10,8 @@ import { Validate, SystemError, CredentialsError, NotFoundError } from 'com'
  * @param {string} password The user password.
  */
 export const authenticateUser = (username, password) => {
-  Validate.username(username)
-  Validate.password(password)
+  validate.username(username)
+  validate.password(password)
 
  return User.findOne({ username })
     .catch(error => { throw new SystemError('mongo error') })
@@ -23,7 +23,7 @@ export const authenticateUser = (username, password) => {
           .then(match => {
               if (!match) throw new CredentialsError('wrong password')
 
-                return user.id 
+                return user
           })
     }) 
 }

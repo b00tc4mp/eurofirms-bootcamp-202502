@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { Validate, SystemError, NotFoundError, AuthorshipError } from 'com'
+import { validate, SystemError, NotFoundError, AuthorshipError } from 'com'
 /**
  * Removes a post by id from database.
  * 
@@ -7,8 +7,8 @@ import { Validate, SystemError, NotFoundError, AuthorshipError } from 'com'
  * @param {string} postId The post id to remove.
  */
 export const removePost = (userId, postId) => {
-   Validate.userId(userId)
-   Validate.postId(postId)
+   validate.userId(userId)
+   validate.postId(postId)
    
 
     // verify user exists by userId

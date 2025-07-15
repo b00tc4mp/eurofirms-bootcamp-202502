@@ -64,7 +64,7 @@ export const App = () => {
    console.log('App -> render')
 
    return <Context.Provider value={{
-        alert: setAlertMessage,
+        alert: setAlertMessage, //setAlertMessage("ERROR")
         confirm: handleShowConfirm
    }}>
     {alertMessage && <Alert message={alertMessage} onAccepted={handleAlertAccepted}/>}

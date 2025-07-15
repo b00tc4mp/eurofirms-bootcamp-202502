@@ -1,5 +1,5 @@
 import { User, Post } from '../data/index.js'
-import { Validate, SystemError, NotFoundError } from 'com'
+import { validate, SystemError, NotFoundError } from 'com'
 /**
  * Returns post from database.
  * 
@@ -8,7 +8,7 @@ import { Validate, SystemError, NotFoundError } from 'com'
  * @returns {array} The posts from database.
  */
 export const getPosts = userId => {
-    Validate.userId(userId)
+    validate.userId(userId)
     
     // verify user exists by user id
     // if user not found throw error
