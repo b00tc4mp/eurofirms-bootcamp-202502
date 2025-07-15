@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Boldonse&family=Atma:wght@400&display=swap');
+body {
+    background-color: #fef3bd;
+  }
+  /* utility classes */
+  .flex {
+    display: flex;
+  }
+
+  .block {
+    display: block;
+  }
+
+  .justify-content {
+    justify-content: space-evenly;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+
+  .align-items {
+    align-items: flex-start;
+  }
+
+  .gap-40px {
+    gap: 40px;
+  }
+
+  .padding-20px {
+    padding: 20px;
+  }
+
+  .font-family {
+    font-family: Boldonse;
+  }
+
+  .font-family-1 {
+    font-family: Barriecito;
+  }
+
+  .font-family-2 {
+    font-family: Atma ;
+  }
+
+  .width-75px {
+    width: 75px;
+  }
+
+  .width-250px {
+    width: 250px;
+  }
+
+  .border-radius-20px {
+    border-radius: 20px;
+  }
+
+  .max-width {
+    max-width: 100%;
+  }
+
+  .width-50 {
+    width: 50%;
+  }
+
+  .height {
+    height: 150px;
+  }
+  
+ .left-container ul li::marker {
+  content: '🍩';
+  font-size: 1.2em;
+ }
+
+ .right-container {
+    max-width: 800px;
+    margin: 0 auto;
+ }
+
+ .experience ul li::marker {
+  content: '🍺';
+  font-size: 1.2em;
+ }
+  
+  
