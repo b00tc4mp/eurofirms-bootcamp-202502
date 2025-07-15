@@ -16,7 +16,7 @@ export const createRoutine = (title,description) => {
         headers: {
             Authorization: 'Bearer ' + data.getToken(), 'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ image, text })
+        body: JSON.stringify({ title, description })
     })
         .catch(error => { throw new SystemError('connection error') })
         .then(response => {

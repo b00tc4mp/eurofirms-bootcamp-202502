@@ -37,10 +37,10 @@ export const Routine = ({ routine, onRoutineDeleted }) => {
 
     console.log('Routine -> render')
 
-    return <article>
-        <h3 className='font-bold'>{routine.author.username}</h3>
+    return <article className="rounded-2xl border-black border-2 p-2">
 
-        <div>{routine.title}
+        <div className>
+            <h4>{routine.title}</h4>
             <p>{routine.description}</p>
         </div>
 

@@ -48,7 +48,8 @@ export const Routines = () => {
 
     console.log('Routines -> render')
 
-    return <>
+    return <div className="pb-8 flex flex-col gap-4 mt-4" >
+
         {routines.map(routine => <Routine key={routine.id} routine={routine} onRoutineDeleted={handleRoutineDeleted} />)}
-    </>
+    </div>
 }

@@ -4,6 +4,9 @@ import { getUserUsername } from './getUserUsername'
 import { logoutUser } from './logoutUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
 import { isUserAdministrator } from './isUserAdministrator'
+import { getRoutines } from './getRoutines'
+import { createRoutine } from './createRoutine'
+import { removeRoutine } from './removeRoutine'
 
 
 export const logic = {
@@ -12,5 +15,9 @@ export const logic = {
     getUserUsername,
     logoutUser,
     isUserLoggedIn,
-    isUserAdministrator
+    isUserAdministrator,
+
+    getRoutines,
+    createRoutine,
+    removeRoutine
 }

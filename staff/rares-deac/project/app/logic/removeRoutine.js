@@ -9,10 +9,10 @@ import { validate, SystemError, errors } from 'com'
 export const removeRoutine = routineId => {
     validate.routineId(routineId)
 
-    return fetch(import.meta.nev.VITE_API_URL + '/routines/' + routineId, {
+    return fetch(import.meta.env.VITE_API_URL + '/routines/' + routineId, {
         method: 'DELETE',
         headers: {
-            Authorization: 'Bearer' + data.getToken()
+            Authorization: 'Bearer ' + data.getToken()
         }
     })
         .catch(error => { throw new SystemError('connection error') })

@@ -6,8 +6,7 @@ import { logic } from '../logic'
 import { useContext } from '../context'
 
 import { Routines } from './components/Routines'
-import {CreateRoutine } from './components/CreateRoutine.jsx'
-import { useContext } from '../context'
+import { CreateRoutine } from './components/CreateRoutine.jsx'
 
 export const Home = ({ onUserLoggedOut }) => {
     const navigate = useNavigate()
@@ -54,7 +53,7 @@ export const Home = ({ onUserLoggedOut }) => {
 
     console.log('Home -> render')
 
-    return <div className='p-5'>
+    return <div className='p-5 bg-[#C7C6C6] h-screen'>
         <i classNAme="text-2xl">Logo</i>
 
         <div className="mt-2">
@@ -72,6 +71,7 @@ export const Home = ({ onUserLoggedOut }) => {
             >Logout</button>
         </div>
 
+
         <Routes>
             <Route path="/routines" element={<Routines alert={alert} confirm={confirm} />} />
             <Route path="/create-routine" element={<CreateRoutine
@@ -79,6 +79,11 @@ export const Home = ({ onUserLoggedOut }) => {
                 onRoutineCreated={handleRoutineCreated}
             />} />
         </Routes>
+
+        <footer className="bg-white rounded-t-xl w-full  fixed bottom-0 left-0 flex flex-row gap-16 justify-center py-2 ">
+            <button className="bg-[#4550F2] rounded-2xl border-black border-2 p-1.5 text-white text-xs font-semibold">Personalizado</button>
+            <button className="bg-[#4550F2] rounded-2xl border-black border-2 p-1.5 text-white text-xs font-semibold">Mi Perfil</button>
+        </footer>
 
     </div>
 }

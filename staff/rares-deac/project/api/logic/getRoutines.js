@@ -17,7 +17,7 @@ export const getRoutines = userId => {
         .then(user => {
             if (!user) throw new NotFoundError('user not found')
 
-            return Routine.find({}).select('-__v').populate('author', 'username').lean()
+            return Routine.find({author: userId}).select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError('mongo error') })
                 .then(routines => {
                     routines.forEach(routine => {

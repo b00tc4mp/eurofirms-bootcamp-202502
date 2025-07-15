@@ -45,22 +45,27 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
     console.log('Login -> render')
 
-    return <div className="p-5">
+    return <div className="p-5  bg-[#C7C6C6] h-screen">
         <i className="text-2xl">Logo</i>
 
         <div className='mt-2'>
-            <h1 className="text-xl">Login</h1>
+            <h1 className="text-xl font-semibold">Login</h1>
 
             <form className="flex flex-col gap-4" onSubmit={handleLoginSubmit}>
                 <div className="flex flex-col gap">
-                    <label htmlFor="username">Username</label>
-                    <input className="border-2 px-1" type="text" id="username" name="username" placeholder="your username" />
+                    <label className="font-medium" htmlFor="username">Username</label>
+                    <input className="border-2 px-1 border-[#6461CC] bg-white" type="text" id="username" name="username" placeholder="your username" />
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex flex-col gap">
+                    <label className="font-medium" htmlFor="password">Password</label>
+                    <input className="border-2 px-1 border-[#6461CC] bg-white" type="password" id="password" name="password" placeholder="your password" />
+                </div>
+
+                <div className="flex justify-between font-semibold">
                     <a className="underline" href="#" onClick={handleRegisterClick}>Register</a>
 
-                    <button className="bg-black text-white px-2"
+                    <button className="bg-[#6B77B3] py-1 text-white px-4 cursor-pointer"
                         type="submit">Login</button>
                 </div>
             </form>
