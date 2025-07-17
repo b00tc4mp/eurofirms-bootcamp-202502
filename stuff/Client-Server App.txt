@@ -1,0 +1,7 @@
+title Client-Server App
+
+User->Client: 127.0.0.1:5500
+Client->Server:Request
+Server->Client:Response
+Client->User:load
+

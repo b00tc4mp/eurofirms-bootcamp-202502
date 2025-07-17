@@ -1,0 +1,20 @@
+title Untitled
+
+User -> Nav: localhost:5173
+Nav -> App Server: index.html
+App Server -> Nav: <html>...</html>
+Nav -> Nav: load App with Login
+Nav -> User: OO
+User -> Nav: click Login
+Nav -> API Server: xhr
+API Server -> DB Server: read data
+DB Server -> API Server: json
+API Server -> Nav: 200 
+Nav -> Nav: App navigates to Home
+Nav -> Nav: Home load
+Nav -> API Server: xhr
+API Server -> DB Server: read data
+DB Server -> API Server: json
+API Server -> Nav: 200 
+Nav -> Nav: shows user and posts
+Nav -> User: OO
