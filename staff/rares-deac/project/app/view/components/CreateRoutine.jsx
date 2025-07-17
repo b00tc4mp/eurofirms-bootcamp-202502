@@ -47,7 +47,7 @@ export const CreateRoutine = ({ onCancelClicked, onRoutineCreated }) => {
 
             <div className="flex flex-col gap">
                 <label htmlFor="description">Description</label>
-                <input className="border-2 px-1" type="text" id="description" placeholder="Type here your routine" />
+                <textarea className="border-2 px-1" type="text" id="description" placeholder="Type here your routine" />
             </div>
 
             <div className="flex justify-between">

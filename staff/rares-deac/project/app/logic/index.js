@@ -6,6 +6,7 @@ import { isUserLoggedIn } from './isUserLoggedIn'
 import { isUserAdministrator } from './isUserAdministrator'
 import { getRoutines } from './getRoutines'
 import { createRoutine } from './createRoutine'
+import { updateRoutine } from './updateRoutine'
 import { removeRoutine } from './removeRoutine'
 
 
@@ -19,5 +20,6 @@ export const logic = {
 
     getRoutines,
     createRoutine,
+    updateRoutine,
     removeRoutine
 }

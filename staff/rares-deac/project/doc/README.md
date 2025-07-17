@@ -3,7 +3,7 @@
 ## Intro
 This app will store your exercises and let you personalize your routine  
 
-![Tu Entrenando](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWtjODliNnpwcDcyeGR0dWtjZ2t1MWNpMjRuZHRpdWVjODhzOHRtbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DiiRCPwltHTLaHmF2E/giphy.gif)
+![Tu Entrenando](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3emJyYXUwaTExdzhmamY4MnI2aTluM2w0Z2F3dHQ0bjcxbzhsM2dieSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/hlh2xvhZOfzji/giphy.gif)
 
 ## Functional
 
@@ -46,36 +46,30 @@ Regular (User)
   |- Home
   |- Personalized
   |- New training
-  |- Exercises
+  |- Exercises [v0.1]
   |- Training window
 
   Home
    |- Personalized
-   |- My Profile
-
-  Personalized
-   |- Personalized
-   |- My Profile
    |- New
    |- Routine
+   |- My Profile[v0.1]
 
-  New training
-   |- Personalized name
-   |- Add exercise
+  New Routine
+   |- Routine title
+   |- Add Routine description
 
-  Exercises
+  Exercises[v0.1]
    |- Search bar
    |- Select Exercises
    |- Add Exercises
 
-  Training Window
+  Training Window[v0.1]
    |- adding set button
    |- add Exercise
    |- Save button
    |- Name Edit Button
 
-   ...
-   ```
    ### Data Model
 
    User
@@ -84,7 +78,6 @@ Regular (User)
     - email (string, required, unique)
     -username (string, required, unique)
     - password( string, required)
-
 
     Routine
     -id (UUID)

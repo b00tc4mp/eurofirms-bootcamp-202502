@@ -46,10 +46,28 @@ export const Routines = () => {
         }
     }
 
+    const handleRoutineUpdated = () => {
+        try {
+            logic.getRoutines()
+                .then(routines => {
+                    setRoutines(routines)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        }   catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
     console.log('Routines -> render')
 
-    return <div className="pb-8 flex flex-col gap-4 mt-4" >
+    return <div className="pb-8 flex flex-col gap-4 mt-4  bg-[#C7C6C6] h-screen" >
 
-        {routines.map(routine => <Routine key={routine.id} routine={routine} onRoutineDeleted={handleRoutineDeleted} />)}
+        {routines.map(routine => <Routine key={routine.id} routine={routine} onRoutineDeleted={handleRoutineDeleted} onRoutineUpdated={handleRoutineUpdated} />)}
     </div>
 }

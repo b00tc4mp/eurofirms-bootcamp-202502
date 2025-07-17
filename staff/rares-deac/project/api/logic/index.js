@@ -4,6 +4,7 @@ import { getUserUsername } from './getUserUsername.js'
 
 import { createRoutine } from './createRoutine.js'
 import { getRoutines } from './getRoutines.js'
+import { updateRoutine } from './updateRoutine.js'
 import { removeRoutine } from './removeRoutine.js'
 
 export const logic = {
@@ -13,5 +14,6 @@ export const logic = {
 
     createRoutine,
     getRoutines,
+    updateRoutine,
     removeRoutine
 }
