@@ -53,22 +53,24 @@ export const Home = ({ onUserLoggedOut }) => {
 
     console.log('Home -> render')
 
-    return <div className='p-5 bg-[#C7C6C6] h-screen'>
+    return <div className='p-5 bg-[#C7C6C6] h-screen-full'>
         <i classNAme="text-2xl">Logo</i>
 
         <div className="mt-2">
             <h1 className='text-xl'>Hello, {username}</h1>
 
             <button
-                className="bg-black text-white px-2 mx-1"
+                className="bg-black text-white px-2 mx-1 rounded-2xl cursor-pointer"
                 type="button"
-                onClick={handleCreateRoutineClick}>+ NUEVO</button>
+                onClick={handleCreateRoutineClick}>+ NUEVO
+            </button>
 
             <button
-                className="bg-black text-white px-2 mx-1"
+                className="bg-black text-white px-2 mx-1 rounded-2xl cursor-pointer"
                 type="button"
                 onClick={handleLogoutClick}
-            >Logout</button>
+            >Logout
+            </button>
         </div>
 
 

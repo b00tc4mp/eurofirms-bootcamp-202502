@@ -45,7 +45,7 @@ export const Login = ({ onRegisterClicked, onUserLoggedIn }) => {
 
     console.log('Login -> render')
 
-    return <div className="p-5  bg-[#C7C6C6] h-screen">
+    return <div className="p-5  bg-[#C7C6C6] h-screen-full">
         <i className="text-2xl">Logo</i>
 
         <div className='mt-2'>

@@ -36,7 +36,7 @@ export const CreateRoutine = ({ onCancelClicked, onRoutineCreated }) => {
 
     console.log('CreateRoutine -> render')
 
-    return <div className="mt-2">
+    return <div className="mt-2 bg-[#C7C6C6] h-screen-full">
         <h1>Nuevo entrenamiento</h1>
 
         <form className="mt-2 flex flex-col gap-4" onSubmit={handleCreateRoutineSubmit}>
@@ -53,7 +53,7 @@ export const CreateRoutine = ({ onCancelClicked, onRoutineCreated }) => {
             <div className="flex justify-between">
                 <a className="underline" href="#" onClick={handleCancelClick}>Cancel</a>
 
-                <button className="bg-black text-white px-2" type="submit">Create</button>
+                <button className="bg-[#6B77B3] py-1 text-white px-4 cursor-pointer" type="submit">Create</button>
             </div>
         </form>
     </div>
