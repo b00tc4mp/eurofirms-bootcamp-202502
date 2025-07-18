@@ -1,0 +1,1 @@
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODc2N2U3YWYxMDU4NjI0OGFhYTMzOWIiLCJyb2xlIjoicmVndWxhciIsImlhdCI6MTc1MjY2NDA3Mn0.LSEokpRI03mj4BZFHWgTvzUqOE6oyAlFmpHivO2Spiw' http://localhost:8080/users/self/username -v
