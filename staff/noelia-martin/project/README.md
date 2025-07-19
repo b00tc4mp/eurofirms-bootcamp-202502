@@ -8,17 +8,15 @@
 
  ### Use Cases
 
- Regular (user)
+ Regular (User)
  - Registrar y loguear una vez por menor
- - Leer y editar formularios reservados para madres, padres o tutores
+ - Leer, editar y eliminar formularios reservados para madres, padres o tutores
  - Leer formularios reservados para el personal sanitario.
- - Acceder a la vista de Documento de Salud Infantil completo.
 
- Regular (doctors)
+ Doctor (User)
  - No registrar, se le proporciona datos de acceso para poder loguearse.
- - Leer y editar formularios reservados para personal sanitario.
+ - Leer, editar y eliminar formularios reservados para personal sanitario.
  - Leer formularios reservados para madres, padres o tutores.
- - Acceder a la vista de Documento de Salud Infantil completo.
 
  ### Prototype
  [figma](https://www.figma.com/proto/zK3AsY7a7Vf8M0jt721H5a/Proyecto?node-id=5-41&t=PlzesSSVCMkHcFAF-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=5%3A41)
@@ -46,36 +44,38 @@ API
 ```
 App
  |- Welcome
- |- Landing_family
- |- Register_family
- |- Login_family
- |- Login_doctor
- |- Home_family
+ |- Landing
+ |- Register
+ |- Login
+ |- Home
  |- ChooseChild
- |- Home_doctor
 
 
 Home
  |- forms ...
- |- Child Health Document
 
 ...
 ```
 
 ### Data Model
 
-UserFamily
+User
 - id (UUID)
 - username (string, required, unique)
 - password (string, required)
-- nameChild (string, required)
+- name (string, required)
 - healthCareNumber (string, required, unique)
 - dateOfBirth (date, required)
+- role (string, required, enum: [regular, doctor], default: regular)
 
-UserDoctor
-- id (UUID)
-- username (string, required, unique)
-- password (string, required)
+Child
+- parents (objectId, ref: User, required)
+- name (string)
+- surnames (string)
+- birthdate (string)
+- address (string)
+...
+
 
 ### Technologies
 

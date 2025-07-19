@@ -1,28 +1,47 @@
 Versión 1 de API
 
-1º Creo dos modelos: 
-    User : almacena los usuarios de la aplicaciones usando roles (regular si es Paciente y doctor si es Doctor)
-    Child: almacena los input de la aplicación (todos, los de paciente y doctor)
+1º Instalo y preparo todo lo necesario para hacer funcionar com y api
+    Fuera de API: 
+        - com -> en la carpeta de project creo com, indico que sea un paquete y lo configuro con todos los controladores de errores que voy a necesitar.
 
-La idea a implementar es: 
-    - Un User Regular es un usuario controlado por un adulto creado para un niño en concreto.
-    Gracias a ese usuario tendrá acceso a un Child, el cuál es un modelo con los input que contiene información del niño. Unos input se rellenará entre el adulto(el padre) y un doctor.
-    - Un user Doctor es un usuario para el doctor el cuál a través del NUHSA del paciente accederá al Child de es paciente y rellenará los input que le corresponda.
+    En API:
+        - Indico que sea un paquete. 
+        - Instalo express, mongoose, bcryptjs, jwt, cors y com
+        - Modifico el fichero package-json para que utilice la versión 0.0.0 e indico que es type:module.
+        - Creo la base de datos test-ChildHealthDocument.
+        - Creo la carpeta data con models y populate para comprobar que funciona correctamente.
+
+2º Configuro la primera parte de api (sin posibilidad de integrar en app los input de child)
+    - Creo dos modelos en data: 
+        User: almacena los usuarios de la aplicaciones usando roles regular y doctor
+        Child: almacena los input de la aplicación (todos, los de regular y doctor)
+
+    La idea a implementar es: 
+        - Un User Regular es un usuario controlado por un adulto creado para un niño en concreto (para un paciente). 
+            Un User Regular tendrá asignado un Child, el cuál es un modelo con los input que contiene información del niño. 
+            Los input se rellenarán entre el usuario regular y el usuario doctor.
+        - Un user Doctor es un usuario para el doctor, el cuál a través del NUHSA del paciente accederá a su Child y rellenará los input que le corresponda.
+
+    - Role Doctor
+        Los doctores no se podrán registrar.
+        En data creo set-roles que coge un usuario ya registrado y modifica su role a doctor. Esto SOLO lo hará el administrador de la aplicación. (Ejecutando con node ese fichero)
+
+    - Creo lógicas:
+        -registerUser: Registra un usuario para el paciente (el role lo configura por defecto models como regular)
+        -authenticateUser: Autentica independientemente del role que tenga el usuario y devuelve un token con su user.id y user.role
+        -getChoosePacient: Utilizada solo por el doctor. Se introduce un NUHSA (id.healthCareNumber) y devuelve un token con su user.id correspondiente
+        -getNamePacient: Se introduce un user.id y devuelve user.name
+        En cada lógica implemento un pequeño test js, dentro de la misma carpeta de lógica.
+
+    - Creo rutas y todos los test sh en la carpeta test
+
+    - Creo y configuro .env con las variables MONGO_URL, PORT y JWT_SECRET.
+
+    - Creo y configuro la carpeta middlewares con errorHandler(controlador de errores de index de api) y jsonBodyParser.
+
+    
+Me voy a app y la configuro hasta llegar a la home con un mensaje de bienvenida personalizado utilizando lógicas de api.
 
 
-2º Role Doctor
-    Los doctores no se podrán registrar, en data creo set-roles que coge un usuario ya registrado y lo hace doctor. Esto SOLO lo hará el administrador de la aplicación. (ejecutando con node ese fichero)
-
-
-3º Creo lógicas:
-    -registerUser: Registra un usuario para el paciente (el role lo configura por defecto models como regular)
-    -authenticateUser: Autentica independientemente del role que tenga el usuario y devuelve un token con su id
-    -getChoosePacient: Utilizada solo por el doctor. Se introduce un NUHSA y devuelve un token con su id correspondiente
-    -getNamePacient: Se introduce un id y devuelve name
-
-
-4º Creo rutas y todos los test
-
-
-Esta versión se crea modificando la anterior, todas las pequeñas configuraciones ya están implementadas
-(middlewares, routes, token, errores con componente com, env ...)
+3º Configuro la segunda parte de api (configuración completa, en app se podrá crear los formularios de cada tipo de usuario y sus input se almacenarán en Child)
+......
