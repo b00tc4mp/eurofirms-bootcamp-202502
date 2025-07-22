@@ -96,7 +96,43 @@ const product = new Schema({
     required: true,
   },
 });
-
+const order = new Schema({
+  numberOrder: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  dateOrder: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  stateOrder: {
+    type: String,
+    required: true,
+  },
+  total: {
+    type: String,
+    required: true,
+  },
+  saleId: {
+    type: String,
+  },
+  currency: {
+    type: String,
+  },
+  pagoId: {
+    type: String,
+  },
+  isCar: {
+    type: Boolean,
+  },
+  user: {
+    type: ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
 const User = model("User", user);
 const Provider = model("Provider", provider);
 const Product = model("Product", product);
