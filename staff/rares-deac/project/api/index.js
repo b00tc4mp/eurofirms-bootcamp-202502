@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { connect } from './data/index.js'
 import express from 'express'
 import cors from 'cors'
