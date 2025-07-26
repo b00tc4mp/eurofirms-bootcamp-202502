@@ -1,4 +1,4 @@
-# Admin panel [v0.0]
+# Admin panel [v1.0]
 
 ## Intro
 
@@ -35,6 +35,13 @@ Provider (User)
 - Create products 🎆
 - Delete products 🎆
 - Edit products 🎆
+
+Order (User)
+
+- Create order
+- Edit order
+- Delete order
+- Refund order
 
 ### Prototype
 
@@ -119,6 +126,23 @@ Product
 - dateCreation (date, required, default: date.now)
 - dateModification (date, required, default:null)
 - provider (Provider.id, UUID)
+
+Order
+
+- id(UUID)
+- numberOrder (string, required)
+- dateOrder (date, required)
+- stateOrder (string, required)
+- total (number, required)
+- saleId (string)
+- currency (string, required)
+- pagoId (string)
+- isCar (boolean)
+- user (User.id, UUID)
+- products (Array)
+  - product (Product.id, UUID)
+  - quatity (number, required, min 1)
+  - priceAtOrderTime (number, required)
 
 ### Technologies
 
