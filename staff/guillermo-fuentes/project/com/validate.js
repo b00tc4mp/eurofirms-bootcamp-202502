@@ -90,4 +90,35 @@ export const validate = {
   query(query) {
     if (typeof query !== "string") throw new ValidationError("invalid query type");
   },
+  numberOrder(numberOrder) {
+    if (typeof numberOrder !== "string") throw new ValidationError("invalid numberOrder type");
+  },
+  stateOrder(stateOrder) {
+    if (typeof stateOrder !== "string") throw new ValidationError("invalid stateOrder type");
+  },
+  total(total) {
+    if (typeof total !== "number") throw new ValidationError("invalid total type");
+  },
+  saleId(saleId) {
+    if (typeof saleId !== "string") throw new ValidationError("invalid saleId type");
+  },
+  currency(currency) {
+    if (typeof currency !== "string") throw new ValidationError("invalid currency type");
+  },
+  pagoId(pagoId) {
+    if (typeof pagoId !== "string") throw new ValidationError("invalid pagoId type");
+  },
+  product(product) {
+    if (typeof product !== "string") throw new ValidationError("invalid product type");
+  },
+  quantity(quantity) {
+    if (typeof quantity !== "number") throw new ValidationError("invalid quantity type");
+  },
+  priceAtOrderTime(priceAtOrderTime) {
+    if (typeof priceAtOrderTime !== "number") throw new ValidationError("invalid priceAtOrderTime type");
+  },
+  productId(productId) {
+    if (typeof productId !== "string") throw new ValidationError("invalid productId type");
+    if (productId.length !== 24) throw new ValidationError("invalid productId length");
+  },
 };
