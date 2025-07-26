@@ -7,7 +7,7 @@ import { usersRouter } from "./routes/userRoutes.js";
 import { providerRouter } from "./routes/providerRoutes.js";
 import { productRouter } from "./routes/productRoutes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
-
+import { orderRouter } from "./routes/orderRoutes.js";
 const { MONGO_URL, PORT } = process.env;
 
 connect(MONGO_URL)
@@ -22,7 +22,7 @@ connect(MONGO_URL)
     server.use("/users", usersRouter);
     server.use("/providers", providerRouter);
     server.use("/products", productRouter);
-
+    server.use("/orders", orderRouter);
     server.use(errorHandler);
     server.listen(PORT, () => console.debug("API listening"));
   })

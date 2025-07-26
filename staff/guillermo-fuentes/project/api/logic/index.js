@@ -18,6 +18,7 @@ import { removeProduct } from "./product/removeProduct.js";
 import { searchProviders } from "./product/searchProviders.js";
 import { getProducts } from "./product/getProducts.js";
 import { getUserById } from "./users/getUserById.js";
+import { addOrder } from "./Order/addOrder.js";
 export const logic = {
   registerUser,
   authenticateUser,
@@ -36,4 +37,5 @@ export const logic = {
   searchProviders,
   getProducts,
   getUserById,
+  addOrder,
 };

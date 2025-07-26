@@ -110,9 +110,10 @@ const order = new Schema({
   stateOrder: {
     type: String,
     required: true,
+    default: "In progress",
   },
   total: {
-    type: String,
+    type: Number,
     required: true,
   },
   saleId: {
@@ -120,6 +121,7 @@ const order = new Schema({
   },
   currency: {
     type: String,
+    required: true,
   },
   pagoId: {
     type: String,
@@ -132,9 +134,27 @@ const order = new Schema({
     ref: "User",
     required: true,
   },
+  products: [
+    {
+      product: {
+        type: ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
+      priceAtOrderTime: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
 });
 const User = model("User", user);
 const Provider = model("Provider", provider);
 const Product = model("Product", product);
-
-export { User, Provider, Product };
+const Order = model("Order", order);
+export { User, Provider, Product, Order };
