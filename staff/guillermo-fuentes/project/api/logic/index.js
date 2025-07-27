@@ -1,12 +1,9 @@
 import { authenticateUser } from "./users/authenticateUser.js";
-
 import { getUsers } from "./users/getUsers.js";
 import { registerUser } from "./users/registerUser.js";
 import { removeUser } from "./users/removeUser.js";
-
 import { getUsersByRol } from "./users/getUsersByRol.js";
 import { addProvider } from "./providers/addProvider.js";
-
 import { updateProvider } from "./providers/updateProvider.js";
 import { updateUser } from "./users/updateUser.js";
 import { getProviders } from "./providers/getProvider.js";
@@ -21,6 +18,10 @@ import { getUserById } from "./users/getUserById.js";
 import { addOrder } from "./Order/addOrder.js";
 import { updateOrder } from "./Order/updateOrder.js";
 import { deleteOrder } from "./Order/deleteOrder.js";
+import { getAllOrder } from "./Order/getAllOrders.js";
+import { getOrderDetails } from "./Order/getOrderDetails.js";
+import { getOrderByUser } from "./Order/getOrdersByUser.js";
+
 export const logic = {
   registerUser,
   authenticateUser,
@@ -42,4 +43,7 @@ export const logic = {
   addOrder,
   updateOrder,
   deleteOrder,
+  getAllOrder,
+  getOrderDetails,
+  getOrderByUser,
 };

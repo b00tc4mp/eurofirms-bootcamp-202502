@@ -1,9 +1,9 @@
 import { connect, disconnect } from "../../data/index.js";
-import { getOrders } from "./getOrders.js";
+import { getOrderByUser } from "./getOrdersByUser.js";
 
 connect("mongodb://localhost:27017/proyectoFinal")
   .then(() => {
-    return getOrders("6873f0f152ec79b950c77cc9")
+    return getOrderByUser("6873f0f152ec79b950c77cc9")
       .then((orders) => {
         console.debug("Orders", JSON.stringify(orders, null, 2)); // Pretty-print JSON
       })

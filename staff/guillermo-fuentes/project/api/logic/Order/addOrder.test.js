@@ -5,9 +5,9 @@ connect("mongodb://localhost:27017/proyectoFinal")
   .then(() => {
     return addOrder(
       "6873f0f152ec79b950c77cc9", // userId (cualquier usuario)
-      "ORD-",
+      "ORD-002",
       "In progress",
-      10.0,
+      20.0,
       null, // saleId (aún no se usa)
       "EUR", // currency
       null, // pagoId (aún no se usa)

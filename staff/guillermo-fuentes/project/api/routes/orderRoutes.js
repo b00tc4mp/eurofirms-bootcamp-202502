@@ -69,3 +69,62 @@ orderRouter.delete("/:orderId", (request, response, next) => {
     next(error);
   }
 });
+orderRouter.get("/", (request, response, next) => {
+  try {
+    // Verificar autenticación
+    const authorization = request.headers.authorization;
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      throw new ValidationError("Token de autenticación no proporcionado");
+    }
+
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+
+    logic
+      .getAllOrder(userId)
+      .then((orders) => response.status(200).json(orders))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+orderRouter.get("/user", (request, response, next) => {
+  try {
+    // Verificar autenticación
+    const authorization = request.headers.authorization;
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      throw new ValidationError("Token de autenticación no proporcionado");
+    }
+
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+
+    logic
+      .getOrderByUser(userId)
+      .then((orders) => response.status(200).json(orders))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
+orderRouter.get("/:orderId", (request, response, next) => {
+  try {
+    // Verificar autenticación
+    const authorization = request.headers.authorization;
+    if (!authorization || !authorization.startsWith("Bearer ")) {
+      throw new ValidationError("Token de autenticación no proporcionado");
+    }
+
+    const token = authorization.slice(7);
+    const { sub: userId } = jwt.verify(token, JWT_SECRET);
+
+    const { orderId } = request.params;
+
+    logic
+      .getOrderDetails(userId, orderId)
+      .then((orders) => response.status(200).json(orders))
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
+  }
+});
