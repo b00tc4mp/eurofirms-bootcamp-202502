@@ -121,4 +121,8 @@ export const validate = {
     if (typeof productId !== "string") throw new ValidationError("invalid productId type");
     if (productId.length !== 24) throw new ValidationError("invalid productId length");
   },
+  orderId(orderId) {
+    if (typeof orderId !== "string") throw new ValidationError("invalid orderId type");
+    if (!orderId.trim()) throw new ValidationError("invalid orderId length");
+  },
 };
